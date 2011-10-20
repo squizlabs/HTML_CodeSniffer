@@ -321,8 +321,8 @@ var HTMLCS = new function()
     var _getSniffPath = function(standard, sniff) {
         var parts = standard.split('/');
         parts.pop();
-
-        return parts.join('/') + '/Sniffs/' + sniff.replace('.', '/', 'g') + '.js';
+        var path = parts.join('/') + '/Sniffs/' + sniff.replace(/\./g, '/') + '.js';
+        return path;
     };
 
     /**
