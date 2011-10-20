@@ -28,9 +28,13 @@ var HTMLCS = new function()
             return false;
         }
 
-        this.loadStandard(standard, function() {
+        if (_standards[_getStandardPath(standard)]) {
             HTMLCS.run(callback, content);
-        });
+        } else {
+            this.loadStandard(standard, function() {
+                HTMLCS.run(callback, content);
+            });
+        }
     };
 
     /**
@@ -177,24 +181,7 @@ var HTMLCS = new function()
      */
     var _includeStandard = function(standard, callback, options) {
         if (standard.indexOf('http') !== 0) {
-            // Get the include path of a local standard.
-            var scripts = document.getElementsByTagName('script');
-            var path    = null;
-
-            // Loop through all the script tags that exist in the document and find the one
-            // that has included this file.
-            for (var i = 0; i < scripts.length; i++) {
-                if (scripts[i].src) {
-                    if (scripts[i].src.match(/HTMLCS\.js/)) {
-                        // We have found our appropriate <script> tag that includes
-                        // this file, we can extract the path.
-                        path = scripts[i].src.replace(/HTMLCS\.js/,'');
-                        break;
-                    }
-                }
-            }
-
-            standard = path + 'Standards/' + standard + '/ruleset.js';
+            standard = _getStandardPath(standard);
         }//end id
 
         // Include the standard's ruleset JS file.
@@ -336,6 +323,36 @@ var HTMLCS = new function()
         parts.pop();
 
         return parts.join('/') + '/Sniffs/' + sniff.replace('.', '/', 'g') + '.js';
+    };
+
+    /**
+     * Returns the path to a local standard.
+     *
+     * @param {string} standard The name of the standard.
+     *
+     * @return {string} The path to the local standard.
+     */
+    var _getStandardPath = function(standard)
+    {
+        // Get the include path of a local standard.
+        var scripts = document.getElementsByTagName('script');
+        var path    = null;
+
+        // Loop through all the script tags that exist in the document and find the one
+        // that has included this file.
+        for (var i = 0; i < scripts.length; i++) {
+            if (scripts[i].src) {
+                if (scripts[i].src.match(/HTMLCS\.js/)) {
+                    // We have found our appropriate <script> tag that includes
+                    // this file, we can extract the path.
+                    path = scripts[i].src.replace(/HTMLCS\.js/,'');
+                    break;
+                }
+            }
+        }
+
+        return path + 'Standards/' + standard + '/ruleset.js';
+
     };
 
     /**
