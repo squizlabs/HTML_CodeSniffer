@@ -60,7 +60,8 @@
 </head>
 <body>
 <textarea id="source" style="width:100%; height:200px;"></textarea>
-<button onclick="javascript:runHTMLCS();">Run HTMLCodeSniffer</button>
+<button onclick="javascript:runHTMLCS();">Run HTMLCodeSniffer</button>&nbsp;
+<a href="javascript:(function(){if(window['HTMLCS']) {HTMLCS.process('WCAG2AAA', document.body, function() {if (console.table) {console.table(HTMLCS.getMessages());} else {console.info(HTMLCS.getMessages());}}); return;} var s=document.createElement('script');s.type='text/javascript';s.src='https://raw.github.com/squizlabs/HTMLCodeSniffer/master/HTMLCS.js';document.body.appendChild(s); var t = setInterval(function() {if(!window['HTMLCS']) {return;} clearInterval(t);HTMLCS.process('WCAG2AAA', document.body, function() {console.table(HTMLCS.getMessages());});}, 100); })()">HTMLCS This Page</a> &lt;-- bookmarklet 
 <hr />
 <div id="resultsWrapper">
 
