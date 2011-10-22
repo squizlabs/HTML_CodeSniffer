@@ -1,4 +1,4 @@
-var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guidline1_1_1_1_1 = {
+var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
     register: function()
     {
         return ['img'];
