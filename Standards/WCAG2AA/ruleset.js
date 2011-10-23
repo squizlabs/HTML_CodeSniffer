@@ -4,7 +4,12 @@ var HTMLCS_WCAG2AA = {
     sniffs: [
         {
             standard: 'WCAG2AAA',
-            include: ['Principle1.Guideline1_1.1_1_1']
+            include: [
+               'Principle1.Guideline1_1.1_1_1',
+               'Principle1.Guideline1_3.1_3_1',
+               'Principle2.Guideline2_4.2_4_2',
+               'Principle2.Guideline2_4.2_4_4'
+            ]
         }
     ]
 };
