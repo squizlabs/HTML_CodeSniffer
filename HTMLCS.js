@@ -24,6 +24,12 @@ var HTMLCS = new function()
      * @param {function}       The function that will be called when the testing is completed.
      */
     this.process = function(standard, content, callback) {
+        // Clear previous runs.
+        _standards    = {};
+        _sniffs       = [];
+        _tags         = {};
+        _standard     = null;
+
         if (!content) {
             return false;
         }
@@ -67,8 +73,23 @@ var HTMLCS = new function()
     this.run = function(callback, content) {
         var element = null;
         if (typeof content === 'string') {
-            element = document.createElement('div');
-            element.innerHTML = content;
+            if (this.isFullDoc(content) === true) {
+                element = document.createElement('iframe');
+                element.style.display = 'none';
+                element = document.body.insertBefore(element, null);
+
+                if (element.contentDocument) {
+                    element = element.contentDocument;
+                } else if (element.contentWindow) {
+                    element = element.contentWindow.document;
+                }
+
+                element.write(content);
+                element.close();
+            } else {
+                element = document.createElement('div');
+                element.innerHTML = content;
+            }
         } else {
             element = content;
         }
@@ -87,6 +108,34 @@ var HTMLCS = new function()
         // Run the sniffs.
         _run(elements, callback);
     };
+
+    /**
+     * Returns true if the content passed appears to be from a full document.
+     *
+     * With string content, we consider a full document as the presence of <html>,
+     * or <head> + <body> elements. For an element, only the 'html' element (the
+     * document element) is accepted.
+     *
+     * @param {string|DOMNode} content  An HTML string or a DOMNode.
+     *
+     * @return {boolean}
+     */
+    this.isFullDoc = function(content) {
+        var fullDoc = false;
+        if (typeof content === 'string') {
+            if (content.indexOf('<html') !== -1) {
+                fullDoc = true;
+            } else if ((content.indexOf('<head') !== -1) && (content.indexOf('<body') !== -1)) {
+                fullDoc = true;
+            }
+        } else {
+            if (content.nodeName.toLowerCase() === 'html') {
+                fullDoc = true;
+            }
+        }
+
+        return fullDoc;
+    }
 
     /**
      * Adds a message.
@@ -397,11 +446,24 @@ var HTMLCS = new function()
     var _includeScript = function(src, callback) {
         var script    = document.createElement('script');
         script.onload = function() {
+            script.onload = null;
+            script.onreadystatechange = null;
             callback.call(this);
         };
 
+        script.onreadystatechange = function() {
+            if (this.readyState === 'complete') {
+                script.onload();
+            }
+        }
+
         script.src = src;
-        document.head.appendChild(script);
+
+        if (document.head) {
+            document.head.appendChild(script);
+        } else {
+            document.getElementsByTagName('head')[0].appendChild(script);
+        }
     };
 
     /**
@@ -415,10 +477,13 @@ var HTMLCS = new function()
         element      = element || document;
         var elements = element.getElementsByTagName('*');
 
-        // Conver to array.
-        elements = [].slice.call(elements, 0);
+        // Convert to array. We can't use
+        var elArray = [];
+        for (var i = 0; i < elements.length; i++) {
+            elArray.push(elements[i]);
+        }
 
-        return elements;
+        return elArray;
     };
 
 };
