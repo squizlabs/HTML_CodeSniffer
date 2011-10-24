@@ -34,7 +34,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_4_2_4_2 = {
             if (title === null) {
                 HTMLCS.addMessage(HTMLCS.ERROR, element, 'A title should be provided for the document, using a non-empty title element in the head section.', 'H25.1');
             } else {
-                if (title.innerHTML.trim() === '') {
+                if (/^\s*$/.test(title.innerHTML) === true) {
                     HTMLCS.addMessage(HTMLCS.ERROR, element, 'The title element in the head section should be non-empty.', 'H25.1');
                 } else {
                     HTMLCS.addMessage(HTMLCS.NOTICE, element, 'Check that the title element describes the document.', 'H25.2');
