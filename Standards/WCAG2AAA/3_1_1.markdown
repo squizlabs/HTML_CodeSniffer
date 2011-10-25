@@ -11,6 +11,8 @@ layout: default
 
 The default human language of each Web page can be programmatically determined.
 
+The full ["understanding" page for Success Criterion 3.1.1](http://www.w3.org/TR/UNDERSTANDING-WCAG20/meaning-doc-lang-id.html) is available from the W3C.
+
 ### Advisory techniques
 
 Technique [H57](#tech-h57), below, is the only supported sufficient technique for HTML documents. [Using the Content-Language header in HTTP][SVR5] is considered an advisory technique, and may apply for document types other than HTML - however, since conformance is only defined at a web page level, server techniques alone may not be sufficient.

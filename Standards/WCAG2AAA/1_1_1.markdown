@@ -20,8 +20,10 @@ All non-text content that is presented to the user has a text alternative that s
 
 "Non-text content" is defined as
 
-> any content that is not a sequence of characters that can be programmatically determined or where the sequence is not expressing something in human language  
+> any content that is not a sequence of characters that can be programmatically determined or where the sequence is not expressing something in human language
 > *Note:* This includes ASCII Art..., emoticons, leetspeak..., and images representing text
+
+The full ["understanding" page for Success Criterion 1.1.1](http://www.w3.org/TR/UNDERSTANDING-WCAG20/text-equiv-all.html) is available from the W3C.
 
 ## Techniques tested
 
@@ -184,7 +186,7 @@ Items 2 and 3 must pass for the technique to pass.
 
 HTMLCodeSniffer will throw an error if an alt attribute is missing from an image.
 
-Where the alt text is valid, a notice reminding testers to ensure the alt text is appropriate for the image (technique [G94](#tech-g94)) will be emitted. 
+Where the alt text is valid, a notice reminding testers to ensure the alt text is appropriate for the image (technique [G94](#tech-g94)) will be emitted.
 
 #### Examples
 
@@ -206,7 +208,7 @@ Error due to no alt attribute provided.
 
     <img src="subscribe.png" alt="" />
 
-This should not fail this technique alone. However, a warning will be flagged under technique [H67](#tech-h67), which relates to images that should be ignored by assistive technology. In this case, this img element should be manually failed, as it is obvious that this image is **not** purely for decorative purposes.  
+This should not fail this technique alone. However, a warning will be flagged under technique [H67](#tech-h67), which relates to images that should be ignored by assistive technology. In this case, this img element should be manually failed, as it is obvious that this image is **not** purely for decorative purposes.
 
 ##### Manual fail example 4
 
@@ -218,7 +220,7 @@ Should be interpreted the same as example 3. White space should not change how t
 
     <img src="subscribe.png" alt="newspaper icon" />
 
-This would not fail the automated processes of this technique alone. However, a notice will be flagged under technique [G94](#tech-h94), which relates to images that should be ignored by assistive technology. In this case, the img element should be manually failed. 
+This would not fail the automated processes of this technique alone. However, a notice will be flagged under technique [G94](#tech-h94), which relates to images that should be ignored by assistive technology. In this case, the img element should be manually failed.
 
 ### <a id="tech-h67">H67: Using null alt text and no title attribute on img elements for images that <acronym title="assistive technology">AT</acronym> should ignore</a>
 
@@ -233,7 +235,7 @@ Omitting the alt attribute completely is an error (under technique [H37](#tech-h
 > 1. Check that title attribute is either absent or empty.
 > 2. Check that alt attribute is present and empty or contains only whitespace (but not &nbsp;)
 
-Both items have to pass for an image to be considered successfully ignored. 
+Both items have to pass for an image to be considered successfully ignored.
 
 If an image is marked as ignored, a warning is emitted to that effect.
 
@@ -244,25 +246,25 @@ If an image is marked as ignored, a warning is emitted to that effect.
     <img src="htmlcs.png" alt="" />
 
 Standard example with completely empty alt text, and no title attribute.
-    
+
 ##### Warning example 2
 
     <img src="htmlcs.png" alt="" title="" />
 
 The standard allows the title attribute to be present but empty.
-    
+
 ##### Warning example 3
 
     <img src="htmlcs.png" alt="   " />
 
 Pure whitespace in the alt text is still considered "empty".
-    
+
 ##### Error example 4
 
     <img src="htmlcs.png" alt="" title="Non-empty title" />
 
 HTMLCodeSniffer will throw an error on this example. If the image contains empty alt text, it should have no title.
-    
+
 ##### Warning (?) example 5
 
     <img src="htmlcs.png" alt="&nbsp;" />
@@ -284,6 +286,6 @@ HTMLCodeSniffer emits a notice for technique G94 where alt text is validly used 
 > 1. Remove, hide, or mask the non-text content
 > 2. Replace it with the text alternative
 > 3. Check that nothing is lost (the purpose of the non-text content is met by the text alternative)
-> 4. If the non-text content contains words that are important to understanding the content, the words are included in the text alternative 
+> 4. If the non-text content contains words that are important to understanding the content, the words are included in the text alternative
 
 To pass, item 3 must pass, and also item 4 if it applies to that item of non-text content.

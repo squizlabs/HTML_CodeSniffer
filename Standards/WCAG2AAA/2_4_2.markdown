@@ -1,0 +1,155 @@
+---
+title: Success Criterion 2.4.2, Page Titled
+layout: default
+---
+
+# Success Criterion 2.4.2: Page Titled
+
+- **Applies to**: A, AA, AAA
+
+## Definition
+
+Web pages have titles that describe topic or purpose.
+
+The full ["understanding" page for Success Criterion 2.4.2](http://www.w3.org/TR/UNDERSTANDING-WCAG20/navigation-mechanisms-title.html) is available from the W3C.
+
+### Manual testing required
+
+A notice will be emitted for each valid title tag found, indicating that a manual check is required to ensure that the page title is descriptive of the document of which it is a part.
+
+Page titles should be descriptive. Quoting the general technique for descriptive titles (technique [G88][]):
+
+> Descriptive titles help users find content, orient themselves within it, and navigate through it. A descriptive title allows a user to easily identify what Web page they are using and to tell when the Web page has changed. The title can be used to identify the Web page without requiring users to read or interpret page content.
+
+  [G88]: http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/G88 "G88: Providing descriptive titles for Web pages"
+
+Of course, a descriptive title is important even where no disabilities are involved - for example, user agents displaying web pages in multiple tabs.
+
+Technique G88 suggests that titles be short, and make sense when read out of context (such as in a search result). It can also be helpful for it to identify structure in a site (or other resource to which a web page belongs) - especially where there is no other technique used (such as a [breadcrumb trail][G65]) - and potentially be unique within a site.
+
+  [G65]: http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/G65.html "G65: Providing a breadcrumb trail"
+
+Where a title identifies site structure, G88 suggests the title be "front-loaded", so that the most specific information is accessible first. For instance, *"Success Criterion 2.4.2 - HTMLCodeSniffer Documentation"* would be preferable to *"HTMLCodeSniffer Documentation: Success Criterion 2.4.2"* - as a screen reader would likely have to read the site title on every page load, which is redundant information when browsing through a site.
+
+Front-loading the title reduces delays for users requiring assistive technology, such as these groups:
+
+- Those who have to navigate titles through audio or braille, etc.
+- Those who still use visual interfaces but require adjustments (such as increases in font size) due to poor vision.
+
+This does not just apply to how the web page itself is handled by assistive technology - it also flows to how it appears in, for instance, a search engine result, which may also be read or presented to the user using assistive technology.
+
+## Techniques tested
+
+### Table of contents
+
+- [H25: Providing a title using the title element](#tech-h25)
+
+### <a id="tech-h25">H25: Providing a title using the title element</a>
+
+From the technique page:
+
+> All HTML and XHTML documents, including those in individual frames in a frameset, have a title element in the head section that defines in a simple phrase the purpose of the document.
+
+#### Testing
+
+> 1. Examine the source code of the HTML or XHTML document and check that a non-empty title element appears in the head section.
+> 2. Check that the title element describes the document.
+
+#### Examples
+
+##### Success Example 1
+
+    <html>
+    <head>
+        <title>HTMLCodeSniffer Example</title>
+    </head>
+    <body>
+        <p>Hello World</p>
+    </body>
+    </html>
+
+Title tag included and specified. A notice will be emitted to remind the tester that the title should describe the topic or purpose of the document.
+
+##### Success Example 2
+
+    <head>
+        <title>HTMLCodeSniffer Example</title>
+    </head>
+    <body>
+        <p>Hello World</p>
+    </body>
+
+Processed as a full document. When both head and body tags exist, a bare html tag is presumed to wrap them. A notice will be emitted to remind the tester that the title should describe the topic or purpose of the document.
+
+##### Example 3
+
+    <p>Hello World</p>
+
+No error should be emitted, since this is a document fragment.
+
+##### Example 4
+
+    <body>
+        <p>Hello World</p>
+    </body>
+
+No error should be emitted, since this is a document fragment. If the html tag is omitted, having body alone does not process this as a full document.
+
+##### Failure Example 5
+
+    <html>
+    <body>
+        <p>Hello World</p>
+    </body>
+    </html>
+
+Failed due to not having a head tag to insert the title into. Since there is a html tag, this will be parsed as a full document regardless of the lack of head tag.
+
+##### Failure Example 6
+
+    <html>
+    <head>
+    </head>
+    <body>
+        <p>Hello World</p>
+    </body>
+    </html>
+
+Failed due to having a head tag but no title tag.
+
+##### Failure Example 7
+
+    <html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <p>Hello World</p>
+    </body>
+    </html>
+
+Failed due to the title tag being empty.
+
+##### Failure Example 8
+
+    <html>
+    <head>
+        <title>    </title>
+    </head>
+    <body>
+        <p>Hello World</p>
+    </body>
+    </html>
+
+Failed due to the title tag being empty (whitespace does not count).
+
+##### Failure Example 9
+
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <p>Hello World</p>
+    </body>
+
+When there are both head and body elements, the document will be processed as a full document. This therefore gets processed like example 7 above.
