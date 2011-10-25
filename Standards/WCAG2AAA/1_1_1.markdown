@@ -1,0 +1,112 @@
+---
+title: Success Criterion 1.1.1
+---
+
+# Success Criterion 1.1.1: Non-Text Content
+
+- **Applies to**: A, AA, AAA
+
+## Definition
+
+All non-text content that is presented to the user has a text alternative that serves the equivalent purpose, except for the situations listed below.
+
+- *Controls, Input:* If non-text content is a control or accepts user input, then it has a name that describes its purpose. (Refer to Guideline 4.1 for additional requirements for controls and content that accepts user input.)
+- *Time-Based Media:* If non-text content is time-based media, then text alternatives at least provide descriptive identification of the non-text content. (Refer to Guideline 1.2 for additional requirements for media.)
+- *Test:* If non-text content is a test or exercise that would be invalid if presented in text, then text alternatives at least provide descriptive identification of the non-text content.
+- *Sensory:* If non-text content is primarily intended to create a specific sensory experience, then text alternatives at least provide descriptive identification of the non-text content.
+- *CAPTCHA:* If the purpose of non-text content is to confirm that content is being accessed by a person rather than a computer, then text alternatives that identify and describe the purpose of the non-text content are provided, and alternative forms of CAPTCHA using output modes for different types of sensory perception are provided to accommodate different disabilities.
+- *Decoration, Formatting, Invisible:* If non-text content is pure decoration, is used only for visual formatting, or is not presented to users, then it is implemented in a way that it can be ignored by assistive technology.
+
+"Non-text content" is defined as
+
+> any content that is not a sequence of characters that can be programmatically determined or where the sequence is not expressing something in human language
+> *Note:* This includes ASCII Art..., emoticons, leetspeak..., and images representing text
+
+## Techniques tested
+
+### Table of contents
+
+- [H2: Combining adjacent image and text links for the same resource](#h2)
+
+### <a id="h2">H2: Combining adjacent image and text links for the same resource</a>
+
+When a link containing an img element and text need to be created, the best practice is to put them together in one link (rather than two). The img element should only contain text if it provides information the text does not provide; otherwise the alt text should remain blank.
+
+If the image's text alternative duplicates the link text, the concern is that:
+
+- They appear to assistive technology as two separate and identical links, even though they do not appear that way visually, or
+- If the links are combined but alt text remains, assistive technology would "stutter" in that it would read the text description of the link twice.
+
+#### Testing
+
+The test for this technique is defined as:
+
+> For each a in the content that contains an img element:
+> 1. Check that there is no adjacent a element that has the same href attribute and the same description.
+
+HTMLCodeSniffer bases its tests on the "Failure Examples" provided in the technique (which are similar to those provided below), rather than the test, for specific examples of how this test can be failed. The above test describes Failure example 3, however there are other failure examples based on how this technique can be *incorrectly* applied:
+
+- The alt text is removed from the img element while not combining the links, causing the element with the image to contain no descriptive text at all (Failure example 4);
+- The text links are combined without removing alt text from the image (Failure example 5).
+
+HTMLCodeSniffer judges links to be "adjacent" if the "a" tags are directly next to each other, or are separated by only whitespace.
+
+#### Examples
+
+##### Success example 1
+
+    <a href="htmlcs.html">
+        <img src="htmlcs.png" alt="" />
+        HTMLCodeSniffer
+    </a>
+
+The image here is presumed to be one that denotes HTMLCodeSniffer, which does not
+provide any further information than that presented in the text content in the link. In this case the image should be ignored by the assistive technology.
+
+##### Success example 2
+
+    <a href="htmlcs.pdf">
+        HTMLCodeSniffer documentation
+        <img src="pdf.png" alt="(PDF format)" />
+    </a>
+
+Here an image (presumably a mini-PDF logo icon) is used to denote that the link points to a PDF document, and therefore provides further information to the text alternative. Therefore, using alt text to describe the purpose of the image is
+appropriate.
+
+This also shows why the image and text need to be combined in the one link. If this were two separate links, we would have a link to the file with a description "(PDF format)", which does not state the purpose of the document.
+
+##### Failure example 3
+
+    <a href="htmlcs.html">
+        <img src="htmlcs.png" alt="HTMLCodeSniffer" />
+    </a>
+    <a href="htmlcs.html">
+        HTMLCodeSniffer
+    </a>
+
+These appear to be two visually distinct links, but to assistive technology (like a
+screen reader), these are identical links, and the potential for confusion exists.
+
+##### Failure example 4
+
+    <a href="htmlcs.html">
+        <img src="htmlcs.png" alt="" />
+    </a>
+    <a href="htmlcs.html">
+        HTMLCodeSniffer
+    </a>
+
+This example is an incorrect application of this technique, because it leaves the
+image link with no text alternative, and therefore no description at all that can be
+used by assistive technology.
+
+##### Failure example 5
+
+    <a href="htmlcs.html">
+        <img src="htmlcs.png" alt="HTMLCodeSniffer" />
+        HTMLCodeSniffer
+    </a>
+
+This example is an incorrect application of this technique, because the image text
+duplicates the text portion of the link. It would be read as "HTMLCodeSniffer
+HTMLCodeSniffer" by a screen reader, which is problematic and confusing.
