@@ -40,8 +40,8 @@ Therefore, our automated testing can be limited to the following:
 
 In the case of HTML 5, a W3C Editor's Draft exists referring to a concept called ["Polyglot Markup"][HTML5 Polyglot], which is a method of ensuring that XHTML 5 documents can work properly when interpreted as HTML-serialised documents - which is intended to happen with an XHTML document is sent with the content type text/html. This specifies using both lang and xml:lang with identical, which are accepted as benign elements in either serialisation (HTML or XHTML), as long as they are equal (case-insensitive). XHTML 1.0 also states that both are acceptable in its [HTML Compatibility Guidelines appendix][XHTML 1.0 C]. However, HTML 4 markup is not valid when xml:lang exists.
 
-[HTML5 Polyglot] http://www.w3.org/TR/html-polyglot/ "Polyglot Markup: HTML-Compatible XHTML Documents"
-[XHTML 1.0 C] http://www.w3.org/TR/xhtml1/guidelines.html "XHTML 1.0 (Second Edition) - Appendix C: HTML Compatibility Guidelines"
+  [HTML5 Polyglot]: http://www.w3.org/TR/html-polyglot/ "Polyglot Markup: HTML-Compatible XHTML Documents"
+  [XHTML 1.0 C]: http://www.w3.org/TR/xhtml1/guidelines.html "XHTML 1.0 (Second Edition) - Appendix C: HTML Compatibility Guidelines"
 
 #### Testing
 
@@ -49,11 +49,11 @@ In the case of HTML 5, a W3C Editor's Draft exists referring to a concept called
 > 2. Check that the html element has a lang and/or xml:lang attribute.
 > 3. Check that the value of the lang attribute conforms to [<acronym title="Best Current Practice">BCP</acronym> 47: Tags for the Identification of Languages or its successor][BCP47] and reflects the primary language used by the Web page.
 
-<acronym title="Best Current Practice">BCP</acronym> 47, as published by the <acronym title="Internet Engineering Task Force">IETF</acronym>, is a concatenation of two <acronym title="Request For Comments">RFC</acronym> documents: [#5646][RFC5646] ("Tags for Identifying Languages") and [#4647][RFC4647] ("Matching of Language Tags").
+  <acronym title="Best Current Practice">BCP</acronym> 47, as published by the <acronym title="Internet Engineering Task Force">IETF</acronym>, is a concatenation of two <acronym title="Request For Comments">RFC</acronym> documents: [#5646][RFC5646] ("Tags for Identifying Languages") and [#4647][RFC4647] ("Matching of Language Tags").
 
-  [BCP47]: http://www.rfc-editor.org/rfc/bcp/bcp47.txt "Best Current Practice 47"
-  [RFC5646]: http://www.rfc-editor.org/rfc/rfc5646.txt "RFC 5646"
-  [RFC4647]: http://www.rfc-editor.org/rfc/rfc4647.txt "RFC 4647"
+[BCP47]: http://www.rfc-editor.org/rfc/bcp/bcp47.txt "Best Current Practice 47"
+[RFC5646]: http://www.rfc-editor.org/rfc/rfc5646.txt "RFC 5646"
+[RFC4647]: http://www.rfc-editor.org/rfc/rfc4647.txt "RFC 4647"
 
 #### Examples
 
