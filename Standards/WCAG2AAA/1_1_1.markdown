@@ -19,7 +19,7 @@ All non-text content that is presented to the user has a text alternative that s
 
 "Non-text content" is defined as
 
-> any content that is not a sequence of characters that can be programmatically determined or where the sequence is not expressing something in human language
+> any content that is not a sequence of characters that can be programmatically determined or where the sequence is not expressing something in human language  
 > *Note:* This includes ASCII Art..., emoticons, leetspeak..., and images representing text
 
 ## Techniques tested
@@ -41,7 +41,7 @@ If the image's text alternative duplicates the link text, the concern is that:
 
 The test for this technique is defined as:
 
-> For each a in the content that contains an img element:
+> For each a in the content that contains an img element:  
 > 1. Check that there is no adjacent a element that has the same href attribute and the same description.
 
 HTMLCodeSniffer bases its tests on the "Failure Examples" provided in the technique (which are similar to those provided below), rather than the test, for specific examples of how this test can be failed. The above test describes Failure example 3, however there are other failure examples based on how this technique can be *incorrectly* applied:
