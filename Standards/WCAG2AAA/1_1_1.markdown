@@ -26,9 +26,13 @@ All non-text content that is presented to the user has a text alternative that s
 
 ### Table of contents
 
-- [H2: Combining adjacent image and text links for the same resource](#h2)
+- [H2: Combining adjacent image and text links for the same resource](#tech-h2)
+- [H36: Using alt attributes on images used as submit buttons](#tech-h36)
+- [H37: Using alt attributes on img elements](#tech-h37)
+- [H67: Using null alt text and no title attribute on img elements for images that <acronym title="Assistive Technology">AT</acronym> should ignore](#tech-h67)
+- [G94: Providing short text alternative for non-text content that serves the same purpose and presents the same information as the non-text content](#tech-g94)
 
-### <a id="h2">H2: Combining adjacent image and text links for the same resource</a>
+### <a id="tech-h2">H2: Combining adjacent image and text links for the same resource</a>
 
 When a link containing an img element and text need to be created, the best practice is to put them together in one link (rather than two). The img element should only contain text if it provides information the text does not provide; otherwise the alt text should remain blank.
 
@@ -75,7 +79,7 @@ appropriate.
 
 This also shows why the image and text need to be combined in the one link. If this were two separate links, we would have a link to the file with a description "(PDF format)", which does not state the purpose of the document.
 
-##### Failure example 3
+##### Error example 3
 
     <a href="htmlcs.html">
         <img src="htmlcs.png" alt="HTMLCodeSniffer" />
@@ -87,7 +91,7 @@ This also shows why the image and text need to be combined in the one link. If t
 These appear to be two visually distinct links, but to assistive technology (like a
 screen reader), these are identical links, and the potential for confusion exists.
 
-##### Failure example 4
+##### Error example 4
 
     <a href="htmlcs.html">
         <img src="htmlcs.png" alt="" />
@@ -100,7 +104,7 @@ This example is an incorrect application of this technique, because it leaves th
 image link with no text alternative, and therefore no description at all that can be
 used by assistive technology.
 
-##### Failure example 5
+##### Error example 5
 
     <a href="htmlcs.html">
         <img src="htmlcs.png" alt="HTMLCodeSniffer" />
@@ -110,3 +114,108 @@ used by assistive technology.
 This example is an incorrect application of this technique, because the image text
 duplicates the text portion of the link. It would be read as "HTMLCodeSniffer
 HTMLCodeSniffer" by a screen reader, which is problematic and confusing.
+
+### <a id="tech-h36">H36: Using alt attributes on images used as submit buttons</a>
+
+TODO.
+
+#### Testing
+
+TODO.
+
+#### Examples
+
+TODO.
+
+### <a id="tech-h37">H37: Using alt attributes on img elements</a>
+
+The purpose of this technique is best described by the first line of the technique's description:
+
+> When using the img element, specify a short text alternative with the alt attribute. *Note:* The value of this attribute is referred to as "alt text".
+
+If the image contains words, those words should form part of the alt text, so users who cannot see the image don't miss anything.
+
+In all cases, the intent is that the alt text should convey the same **meaning** as the image. A description of the visual characteristics is not a good idea if that is not the main expression conveyed by the image (for instance, it would not work well with a chart).
+
+#### Testing
+
+The prescribed test for this technique is as follows:
+
+> 1. Examine each img element in the content
+> 2. Check that each img element which conveys meaning contains an alt attribute.
+> 3. If the image contains words that are important to understanding the content, the words are included in the text alternative.
+
+Items 2 and 3 must pass for the technique to pass.
+
+HTMLCodeSniffer will throw an error if an alt attribute is missing from an image.
+
+#### Examples
+
+TODO.
+
+### <a id="tech-h67">H67: Using null alt text and no title attribute on img elements for images that <acronym title="assistive technology">AT</acronym> should ignore</a>
+
+WCAG 2.0 allows for images without a function and purpose - referred to as "purely decorative" - to be marked with an empty alt attribute, **and** an empty or absent title attribute.
+
+Omitting the alt attribute completely is an error (under technique [H37](#tech-h37)). Leaving that attribute out makes interpretation undefined to assistive technology. It may treat the image as blank, but it may also do other things, such as using the file name as the text alternative. It is required that this not be left to chance, by providing an alt attribute that is blank.
+
+#### Testing
+
+> For each image that should be ignored:
+> 1. Check that title attribute is either absent or empty.
+> 2. Check that alt attribute is present and empty or contains only whitespace (but not &nbsp;)
+
+Both items have to pass for an image to be considered successfully ignored. 
+
+If an image is marked as ignored, a warning is emitted to that effect.
+
+#### Examples
+
+##### Warning example 1
+
+    <img src="htmlcs.png" alt="" />
+
+Standard example with completely empty alt text, and no title attribute.
+    
+##### Warning example 2
+
+    <img src="htmlcs.png" alt="" title="" />
+
+The standard allows the title attribute to be present but empty.
+    
+##### Warning example 3
+
+    <img src="htmlcs.png" alt="   " />
+
+Pure whitespace in the alt text is still considered "empty".
+    
+##### Error example 4
+
+    <img src="htmlcs.png" alt="" title="Non-empty title" />
+
+HTMLCodeSniffer will throw an error on this example. If the image contains empty alt text, it should have no title.
+    
+##### Warning (?) example 5
+
+    <img src="htmlcs.png" alt="&nbsp;" />
+
+This is not a good example (and would fail technique [G94](#tech-g94)), but according to the test, this should not be considered an "ignored" image due to the presence of a <acronym title="non-breaking space">NBSP</acronym>.
+
+> This currently does not throw anything different to example 1, because it uses "<abbr title="backslash-s">\s</abbr>" as the space character wildcard. The ECMAScript includes <acronym title="non-breaking space">NBSP</acronym> as part of "<abbr title="backslash-s">\s</abbr>", which doesn't fulfil example 5.
+>
+> If the alt text contains only <acronym title="non-breaking spaces">NBSPs</acronym> (and other whitespace), this should probably be an error, as the intention is likely that the image will be ignored by assistive technology, but the WCAG 2.0 test suggests it should not be.
+
+### <a id="tech-g94">G94: Providing short text alternative for non-text content that serves the same purpose and presents the same information as the non-text content</a>
+
+This is a general catch-all technique that is implemented in certain ways, such as techniques [H37](#tech-h37), [H36](#tech-h36), etc.
+
+HTMLCodeSniffer emits a notice for technique G94 where alt text is validly used (and not null) for non-text content, to warn the user that even if there is a text alternative, it must still match the non-text content in its purpose. This can be an issue if the non-text content is updated but the text alternative is not updated at the same time.
+
+#### Testing
+
+> 1. Remove, hide, or mask the non-text content
+> 2. Replace it with the text alternative
+> 3. Check that nothing is lost (the purpose of the non-text content is met by the text alternative)
+> 4. If the non-text content contains words that are important to understanding the content, the words are included in the text alternative 
+
+To pass, item 3 must pass, and also item 4 if it applies to that item of non-text content.
