@@ -46,7 +46,8 @@ If the image's text alternative duplicates the link text, the concern is that:
 
 The test for this technique is defined as:
 
-> For each a in the content that contains an img element:  
+> For each a in the content that contains an img element:
+>
 > 1. Check that there is no adjacent a element that has the same href attribute and the same description.
 
 HTMLCodeSniffer bases its tests on the "Failure Examples" provided in the technique (which are similar to those provided below), rather than the test, for specific examples of how this test can be failed. The above test describes Failure example 3, however there are other failure examples based on how this technique can be *incorrectly* applied:
@@ -118,15 +119,50 @@ HTMLCodeSniffer" by a screen reader, which is problematic and confusing.
 
 ### <a id="tech-h36">H36: Using alt attributes on images used as submit buttons</a>
 
-TODO.
+Applies to input elements with a type of "image". These are "image submit buttons", where an image replaces the usual submit button. These should have alt text relating to their function: a plain-text alternative to an image containing text, or an alternative defining their purpose otherwise. (For instance, if a submit button is a right arrow meaning "Next", the alt text should be "Next", not "right arrow image" for instance).
+
+As submit buttons always have a purpose and function, using technique [H67](#tech-h67) by specifying empty alt text is not allowed as this would prevent submission of the form.
+
+Where the alt text is valid, a notice reminding testers to ensure the alt text is appropriate for the submit button (technique [G94](#tech-g94)) will be emitted.
 
 #### Testing
 
-TODO.
+> 1. For all input elements that have a type attribute value of "image", check for the presence of an alt attribute.
+> 2. Check that the alt attribute indicates the button's function.
+
+Both of the above items must pass for this sufficient technique to pass.
 
 #### Examples
 
-TODO.
+##### Success example 1
+
+    <input type="image" src="submit.png" alt="Submit Form" />
+
+Standard example. The alt text should mirror the purpose of the submission action, including any important words on the image (see technique [G94](#tech-g94)).
+
+##### Error example 2
+
+    <input type="image" src="submit.png" />
+
+Error due to no alt attribute provided.
+
+##### Error example 3
+
+    <input type="image" src="submit.png" alt="" />
+
+Error due to empty alt text specified. This would potentially mean the method for submitting the form is hidden from assistive technlogy.
+
+##### Error example 4
+
+    <input type="image" src="submit.png" alt="   " />
+
+Error due to empty alt text specified. Even those there is whitespace, this is the same issue as Example 3.
+
+##### Manual fail example 5
+
+    <input type="image" src="submit.png" alt="big red button" />
+
+Will not fail the automated testing of this technique. However, this should be manually failed, as this description fails item 2 of the testing (it does not describe the purpose of the submission action). It will also fail technique [G94](#tech-g94) as this is not an appropriate short text alternative.
 
 ### <a id="tech-h37">H37: Using alt attributes on img elements</a>
 
@@ -140,8 +176,6 @@ In all cases, the intent is that the alt text should convey the same **meaning**
 
 #### Testing
 
-The prescribed test for this technique is as follows:
-
 > 1. Examine each img element in the content
 > 2. Check that each img element which conveys meaning contains an alt attribute.
 > 3. If the image contains words that are important to understanding the content, the words are included in the text alternative.
@@ -150,9 +184,41 @@ Items 2 and 3 must pass for the technique to pass.
 
 HTMLCodeSniffer will throw an error if an alt attribute is missing from an image.
 
+Where the alt text is valid, a notice reminding testers to ensure the alt text is appropriate for the image (technique [G94](#tech-g94)) will be emitted. 
+
 #### Examples
 
-TODO.
+The examples below relate to a hypothetical "Subscribe" image, containing a newspaper icon, inviting users to subscribe to a site's mailing list or newsletter.
+
+##### Success example 1
+
+    <img src="subscribe.png" alt="Subscribe to our newsletter" />
+
+Standard example. The alt text should mirror the purpose of the image, including any important words on the image (see technique [G94](#tech-g94)). This may be appropriate if the image states "Subscribe to our newsletter" - or even just "Subscribe", if there is not enough context around the image to determine what you are subscribing to.
+
+##### Error example 2
+
+    <img src="subscribe.png" />
+
+Error due to no alt attribute provided.
+
+##### Manual fail example 3
+
+    <img src="subscribe.png" alt="" />
+
+This should not fail this technique alone. However, a warning will be flagged under technique [H67](#tech-h67), which relates to images that should be ignored by assistive technology. In this case, this img element should be manually failed, as it is obvious that this image is **not** purely for decorative purposes.  
+
+##### Manual fail example 4
+
+    <img src="subscribe.png" alt="   " />
+
+Should be interpreted the same as example 3. White space should not change how this is interpreted.
+
+##### Manual fail example 5
+
+    <img src="subscribe.png" alt="newspaper icon" />
+
+This would not fail the automated processes of this technique alone. However, a notice will be flagged under technique [G94](#tech-h94), which relates to images that should be ignored by assistive technology. In this case, the img element should be manually failed. 
 
 ### <a id="tech-h67">H67: Using null alt text and no title attribute on img elements for images that <acronym title="assistive technology">AT</acronym> should ignore</a>
 
@@ -163,6 +229,7 @@ Omitting the alt attribute completely is an error (under technique [H37](#tech-h
 #### Testing
 
 > For each image that should be ignored:
+>
 > 1. Check that title attribute is either absent or empty.
 > 2. Check that alt attribute is present and empty or contains only whitespace (but not &nbsp;)
 
