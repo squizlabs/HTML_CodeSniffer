@@ -29,7 +29,7 @@ Technique G88 suggests that titles be short, and make sense when read out of con
 
   [G65]: http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/G65.html "G65: Providing a breadcrumb trail"
 
-Where a title identifies site structure, G88 suggests the title be "front-loaded", so that the most specific information is accessible first. For instance, *"Success Criterion 2.4.2 - HTMLCodeSniffer Documentation"* would be preferable to *"HTMLCodeSniffer Documentation: Success Criterion 2.4.2"* - as a screen reader would likely have to read the site title on every page load, which is redundant information when browsing through a site.
+Where a title identifies site structure, G88 suggests the title be "front-loaded", so that the most specific information is accessible first. For instance, *"Success Criterion 2.4.2 - HTMLCodeSniffer Documentation"* would be preferable for accessibility purposes to *"HTMLCodeSniffer Documentation: Success Criterion 2.4.2"* - as a screen reader would likely have to read the site title on every page load, which is redundant information when browsing through a site. (Whether it would be preferable for
 
 Front-loading the title reduces delays for users requiring assistive technology, such as these groups:
 

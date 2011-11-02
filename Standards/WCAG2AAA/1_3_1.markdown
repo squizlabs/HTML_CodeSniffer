@@ -1,0 +1,191 @@
+---
+title: Success Criterion 1.3.1, Info and Relationships
+layout: default
+---
+
+# Success Criterion 1.3.1: Info and Relationships
+
+- **Applies to**: <abbr title="Single A">A</abbr>, <abbr title="Double A">AA</abbr>, <abbr title="Triple A">AAA</abbr>
+
+## Definition
+
+Information, structure, and relationships conveyed through presentation can be programmatically determined or are available in text.
+
+The full ["understanding" page for Success Criterion 1.3.1](http://www.w3.org/TR/UNDERSTANDING-WCAG20/content-structure-separation-programmatic.html) is available from the W3C.
+
+Information that is conveyed using colour alone falls under "Success Criterion 1.4.1 - Use of Colour" instead. Although the value of the colour can be programmatically determined, this value alone does not convey information. A text alternative is required in this case.
+
+## Techniques tested
+
+### Table of contents
+
+- [H42: Using h1-h6 to identify headings](#tech-h42)
+- [H44: Using label elements to associate text labels with form controls](#tech-h44)
+- [H49: Using semantic markup to mark emphasized or special text](#tech-h49)
+
+### <a id="tech-h42">H42: Using h1-h6 to identify headings</a>
+
+"The objective of this technique is to use HTML and XHTML heading markup to provide semantic code for headings in the content."
+
+#### Testing
+
+> 1. Check that heading markup is used when content is a heading.
+> 2. Check that heading markup is not used when content is not a heading.
+
+Not very helpful - it's not easy to determine what is a heading or and what is not.
+
+The following inferences can probably be made, using warnings to alert the user to a potential header or misuse of headers:
+
+- A paragraph that is immediately wrapped with a strong/em tag or some other styling, is probably a candidate for flagging as a potential heading.
+- A large amount of text without headings might throw a warning that you may need to implement headings. (This might be applicable more to technique H69 - providing section headings - than this one.)
+- Perhaps if a paragraph is unstyled and looks like a single sentence fragment, we could warn as to whether it should be a heading.
+
+#### Examples
+
+### <a id="tech-h44">H44: Using label elements to associate text labels with form controls</a>
+
+This also applies to Success Criteria [1.1.1 - Info and Relationships](./1_1_1), 3.3.2 - Labels and Instructions, and 4.1.2 - Name, Role, Value; all of which apply at the <abbr title="Single A">A</abbr> level.
+
+#### Testing
+
+> 1. Check that there is a label element that identifies the purpose of the control (before/after) the applicable element.
+> 2. Check that the for attribute of the label element matches the id of the applicable element.
+> 3. Check that the label element is visible.
+
+Items 1 and 2 are sufficient, except for Success Criterion 3.3.2 - Labels and Instructions, where item 3 is also necessary.
+
+##### Position of label
+
+The test criteria are split into two parts, based on the position the label should be located relative to the control. This is desired in the case of user-agents that do not support associating labels with controls: the text provided is at least in an expected place on the interface.
+
+The label should be displayed *before* the control element for inputs generally manifesting themselves as a textual input (input element with type "text", "password" and "file"; and the textarea element), and for drop-down select boxes (select element).
+
+The label should be displayed *after* the control element for radio buttons and check boxes (input element with type "radio" or "checkbox").
+
+Note that "before" and "after" generally refer to the left and right hand sides (respectively) of the control when writing in Latin script, but would be reversed where the writing direction is right-to-left.
+
+##### How far before/after?
+
+The technique does not state *how far* before or after the element the label should appear. General technique [G162: Positioning labels to maximize predictability of relationships](http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/G162). This states "immediately before" and "immediately after", where "before" can also include directly above the field (so the label and text field line up).
+
+Also relevant is the [interim checkpoint 10.2](http://www.w3.org/TR/WCAG10/#tech-unassociated-labels) (at <abbr title="Double A">AA</abbr> level) in <acronym title="Web Content Accessibility Guidelines">WCAG</acronym> 1.0, stating that until label/control associations are supported (using the "for" attribute for instance):
+
+> The label must immediately precede its control on the same line (allowing more than one control/label per line) or be in the line preceding the control (with only one label and one control per line).
+
+This interim checkpoint probably no longer applies due to improved abilities of browsers and assistive technology, but is a good starting point for determining what is acceptable.
+
+##### No label required
+
+Further, the description for this technique states which elements should **not** have a label element - since the control itself provides a label, or the control has no visual implementation.
+
+Elements that should **not** have a label element include buttons of various types (input element with type "submit", "reset", or "image", and button element), and hidden fields (input element with type "hidden").
+
+#### Examples
+
+##### Success Example 1
+
+    <p><label for="testInput">Test Input:</label><input type="text" id="testInput" /></p>
+    <p><label for="testTextArea">Test Input:</label><textarea id="testTextArea">
+    Sample Text
+    </textarea></p>
+    <p><label for="testSelect">Test Select:</label><select id="testSelect">
+        <option>Apples</option>
+        <option>Oranges</option>
+    </select></p>
+
+Correct placement for a text box, text area, or select field.
+
+##### Success Example 2
+
+    <p><label for="testInput">Test Input:</label>  <input type="text" id="testInput" /></p>
+
+White space between the label and input should be acceptable.
+
+##### Success Example 3
+
+    <p><label for="testInput">Test Input:</label><br/>
+    <input type="text" id="testInput" /></p>
+
+This should be acceptable as long as the label is the only thing on the first line, and the input is the only thing on the second line. This should also work where the "p" tag is replaced by "div", or the "input" replaced by "select" or "textarea".
+
+##### Warning(?) Example 4
+
+    <p><label for="testInput">Test Input:</label><br/>
+    <input type="text" id="testInput" /> (in <abbr title="Day Month Year">dd/mm/yyyy</abbr> format)</p>
+
+This could be argued either way (particularly with the WCAG 1.0 definition about "only one label and one control per line") and could probably be argued to be an error, because of the extraneous content after the input - which should actually be part of the label, as it is information necessary for filling in the form.
+
+##### Error(?) Example 5
+
+    <div><label for="testInput">Test Input:</label></div>
+    <div><input type="text" id="testInput" /></div>
+
+The label is positioned correctly as per technique G162, and thus this is *technically* correct if the div tag has its default presentation. However, this presentation cannot be guaranteed (it can be overridden by CSS, say), and the label and text box should be in the same block element as they are related.
+
+Whether this should be an error or a warning is up for debate. At the very least this should be a warning and a manual check.
+
+##### Error Example 6
+
+    <p><label for="testInput">Test Input:</label> <input type="checkbox" id="testInput" checked="checked" /></p>
+
+Incorrect location of the label for a check box. It should be right-aligned.
+
+##### Success Example 7
+
+    <p><input type="checkbox" id="testInput" checked="checked" /><label for="testInput">Test Input</label></p>
+    <p><input type="radio" id="testRadio" />  <label for="testRadio">Test Radio 1</label></p>
+
+Correct location of a label for check box and radio button inputs. White space should be acceptable.
+
+##### Error Example 8
+
+    <p><input type="checkbox" id="testInput" checked="checked" /><br/><label for="testInput">Test Input</label></p>
+
+Incorrect location of a label for a check box. The allowance that a text box label can appear above the label.
+
+##### Error Example 9
+
+    <p><label for="testReset">Reset Form:</label> <input type="reset" id="testReset" /></p>
+
+A reset type of input is a button, and thus does not require a label.
+
+##### Success Example 10
+
+    <p><input type="reset" id="testReset" value="Reset Form" /></p>
+
+No label element detected for a reset button. This is correct: the label of the button is "Reset Form".
+
+##### Error Example 11
+
+    <p><input type="text" id="testInput" /></p>
+
+A text box without a label at all is an error.
+
+### <a id="tech-h49">H49: Using semantic markup to mark emphasized or special text</a>
+
+In HTML 4 (and therefore XHTML 1.0), tags such as b, i, u, tt and others are defined as presentational elements, as opposed to "structured text" elements like em, strong, code, kbd and the like. The presentational tags do not convey any purpose beyond presentation and are therefore of little use to assistive technology.
+
+> Note, however, that in HTML5 tags such as b, i, u are defined in semantic terms and thus may still be considered valid, however they are defined as a "last resort" to better-matched semantic tags.
+
+#### Related Reading
+
+- [Phrase elements as defined by HTML 4](http://www.w3.org/TR/html4/struct/text.html#h-9.2.1). This covers em, strong, code, etc as part of "structured text".
+- [Font-style elements defined by HTML 4](http://www.w3.org/TR/html4/present/graphics.html#h-15.2.1). This covers b, i, u, etc in purely presentational terms.
+- [Text-level semantics in HTML5 Working Draft](http://dev.w3.org/html5/spec/Overview.html#text-level-semantics).
+
+#### Testing
+
+> 1. Examine the content for information that is conveyed through variations in presentation of text.
+> 2. Check that appropriate semantic markup (such as em, strong, cite, blockquote, quote, sub, and sup) have been used to mark the text that conveys information through variations in text.
+
+At the very least, we check for use of presentational markup where semantic markup should be used (tags such as b, i, u).
+
+Where a remedy is to be provided, keep in mind that replacing the tags directly based on presentation (eg. directly replacing i with em) may not always be the most appropriate, if the meaning of the semantic tag is not respected.
+
+Example 1: you have been using italics to markup inline quotes presentationally. In this case, it would be more semantically sound to markup the quote using the q tag.
+
+Example 2: you have been bolding text (using b) to emphasise, but the emphasis is not strong enough to consider "strong" - say, your stronger emphasis is bold text plus a colour. It may be more semantically sound to replace that b with em (and not strong) and then style em as bold text through CSS.
+
+That's not to say that the above conversion won't happen in most cases. However, this should not occur automatically, if accessibility and semantics are kept in mind.
+
+#### Examples
