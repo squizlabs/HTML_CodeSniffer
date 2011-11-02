@@ -128,7 +128,7 @@ Whether this should be an error or a warning is up for debate. At the very least
 
     <p><label for="testInput">Test Input:</label> <input type="checkbox" id="testInput" checked="checked" /></p>
 
-Incorrect location of the label for a check box. It should be right-aligned.
+Incorrect location of the label for a check box. It should be after the check box instead.
 
 ##### Success Example 7
 
@@ -141,7 +141,7 @@ Correct location of a label for check box and radio button inputs. White space s
 
     <p><input type="checkbox" id="testInput" checked="checked" /><br/><label for="testInput">Test Input</label></p>
 
-Incorrect location of a label for a check box. The allowance that a text box label can appear above the label.
+Incorrect location of a label for a check box. The allowance that a text box label can appear above the label does not apply in reverse (ie. below) for a check box or radio button.
 
 ##### Error Example 9
 
