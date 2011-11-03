@@ -85,7 +85,22 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
                 // There is no label for this form control. For certain types of
                 // input, "no label" is not an error.
                 if (/^(submit|reset|image|hidden|button)$/.test(inputType) === false) {
-                    HTMLCS.addMessage(HTMLCS.ERROR, element, 'Attach a label to this form control through the use of the for attribute.', 'H44.2');
+                    // If there is a title, we presume that H65 applies - the label
+                    // element cannot be used, and the title should be used as the
+                    // descriptive label instead.
+                    if (element.hasAttribute('title') === true) {
+                        if (/^\s*$/.test(element.getAttribute('title') === true) {
+                            // But the title attribute is empty. Whoops.
+                            HTMLCS.addMessage(HTMLCS.ERROR, element, 'Check that the title attribute identifies the purpose of the control.', 'H65.3');
+                        } else {
+                            // Manual check required as to the title. Making this a
+                            // warning because a manual tester also needs to confirm
+                            // that a label element is not feasible for the control.
+                            HTMLCS.addMessage(HTMLCS.WARNING, element, 'Check that the title attribute identifies the purpose of the control, and that a label element is not appropriate.', 'H65');
+                        }
+                    } else {
+                        HTMLCS.addMessage(HTMLCS.ERROR, element, 'Attach a label to this form control through the use of the for attribute.', 'H44.2');
+                    }
                 }
             } else {
                 // There is a label for a form control that should not have a label,
@@ -93,7 +108,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
                 // reset, alt on image submit, button's content), or there is no
                 // visible field (hidden).
                 if (/^(submit|reset|image|hidden|button)$/.test(inputType) === true) {
-                    HTMLCS.addMessage(HTMLCS.WARNING, element, 'Label element should not be used for this type of form control.', 'H44');
+                    HTMLCS.addMessage(HTMLCS.ERROR, element, 'Label element should not be used for this type of form control.', 'H44');
                 } else {
                     var labelOnRight = false;
                     if (/^(checkbox|radio)$/.test(inputType) === true) {
