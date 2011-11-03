@@ -106,7 +106,7 @@ var HTMLCS = new function()
         var elements = _getAllTags(element);
 
         // Run the sniffs.
-        _run(elements, callback);
+        _run(elements, element, callback);
     };
 
     /**
@@ -173,7 +173,7 @@ var HTMLCS = new function()
      * @param {DOMNode}  element  The element to test.
      * @param {function} callback The function to call once all tests are run.
      */
-    var _run = function(elements, callback) {
+    var _run = function(elements, topElement, callback) {
         if (elements.length === 0) {
             callback.call(this);
             return;
@@ -182,11 +182,11 @@ var HTMLCS = new function()
         var element = elements.shift();
         var tagName = element.tagName.toLowerCase();
         if (_tags[tagName] && _tags[tagName].length > 0) {
-            _processSniffs(element, _tags[tagName].concat([]), function() {
-                _run(elements, callback);
+            _processSniffs(element, _tags[tagName].concat([]), topElement, function() {
+                _run(elements, topElement, callback);
             });
         } else {
-            _run(elements, callback);
+            _run(elements, topElement, callback);
         }
     };
 
@@ -197,7 +197,7 @@ var HTMLCS = new function()
      * @param {array}    sniffs   Array of sniffs.
      * @param {function} callback The function to call once the processing is completed.
      */
-    var _processSniffs = function(element, sniffs, callback) {
+    var _processSniffs = function(element, sniffs, topElement, callback) {
         if (sniffs.length === 0) {
             callback.call(this);
             return;
@@ -209,15 +209,15 @@ var HTMLCS = new function()
         if (sniff.useCallback === true) {
             // If the useCallback property is set to true then wait for process method
             // to call the function and then continue processing sniffs.
-            sniff.process(element, function() {
-                _processSniffs(element, sniffs, callback);
+            sniff.process(element, topElement, function() {
+                _processSniffs(element, sniffs, topElement, callback);
             });
         } else {
             // Process the sniff.
-            sniff.process(element);
+            sniff.process(element, topElement);
 
             // Continue processing the rest of the sniffs.
-            _processSniffs(element, sniffs, callback);
+            _processSniffs(element, sniffs, topElement, callback);
         }
     };
 
@@ -452,7 +452,8 @@ var HTMLCS = new function()
         };
 
         script.onreadystatechange = function() {
-            if (this.readyState === 'complete') {
+            if (/^(complete|loaded)$/.test(this.readyState) === true) {
+                script.onreadystatechange = null;
                 script.onload();
             }
         }
