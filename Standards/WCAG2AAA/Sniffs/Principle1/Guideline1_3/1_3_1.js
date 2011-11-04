@@ -14,6 +14,8 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
             'select',
             'textarea',
             'button',
+            'th',
+            'td',
         ];
 
     },
@@ -40,6 +42,11 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
             case 'u':
             case 's':
                 this.testPresentationMarkup(element);
+            break;
+
+            case 'th':
+            case 'td':
+                this.testTableHeaderScope(element);
             break;
         }//end switch
     },
@@ -170,4 +177,34 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
             }
         }
     },
+
+    testTableHeaderScope: function(element)
+    {
+        var scope = '';
+        if (element.hasAttribute('scope') === true) {
+            if (element.getAttribute('scope')) {
+                scope = element.getAttribute('scope');
+            }
+        }
+
+        if (element.nodeName.toLowerCase() === 'th') {
+            if (/^\s*$/.test(scope) === true) {
+                // Scope empty or just whitespace.
+                HTMLCS.addMessage(HTMLCS.ERROR, element, 'Check that all th elements have a scope attribute.', 'H63.1');
+            } else if (/^(row|col|rowgroup|colgroup)$/.test(scope) === false) {
+                // Invalid scope value.
+                HTMLCS.addMessage(HTMLCS.ERROR, element, 'Check that all scope attributes have the value row, col, rowgroup, or colgroup.', 'H63.3');
+            }
+        } else {
+            if (scope !== '') {
+                // Scope attribute found on TD element. This is obsolete in HTML5.
+                HTMLCS.addMessage(HTMLCS.WARNING, element, 'Scope attributes on td elements that act as headers for other elements are obsolete in HTML5; use a th element instead.', 'H63.2');
+
+                // Test for an invalid scope value regardless.
+                if (/^(row|col|rowgroup|colgroup)$/.test(scope) === false) {
+                    HTMLCS.addMessage(HTMLCS.ERROR, element, 'Check that all scope attributes have the value row, col, rowgroup, or colgroup.', 'H63.3');
+                }
+            }//end if
+        }//end if
+    }
 };
