@@ -19,9 +19,9 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_4_2_4_1 = {
 
             if (hasTitle === false) {
                 HTMLCS.addMessage(HTMLCS.ERROR, element, 'Check this element for the presence of a title attribute that identifies the frame.', 'H64.1');
-            } else
+            } else {
                 HTMLCS.addMessage(HTMLCS.NOTICE, element, 'Check that the title attribute of this element contains text that identifies the frame.', 'H64.2');
             }
-        }
+        }//end if
     }
 };
