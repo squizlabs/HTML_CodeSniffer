@@ -89,7 +89,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
                     // element cannot be used, and the title should be used as the
                     // descriptive label instead.
                     if (element.hasAttribute('title') === true) {
-                        if (/^\s*$/.test(element.getAttribute('title') === true) {
+                        if (/^\s*$/.test(element.getAttribute('title')) === true) {
                             // But the title attribute is empty. Whoops.
                             HTMLCS.addMessage(HTMLCS.ERROR, element, 'Check that the title attribute identifies the purpose of the control.', 'H65.3');
                         } else {
