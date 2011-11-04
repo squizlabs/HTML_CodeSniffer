@@ -22,6 +22,7 @@ Information that is conveyed using colour alone falls under "Success Criterion 1
 - [H42: Using h1-h6 to identify headings](#tech-h42)
 - [H44: Using label elements to associate text labels with form controls](#tech-h44)
 - [H49: Using semantic markup to mark emphasized or special text](#tech-h49)
+- [H63: Using the scope attribute to associate header cells and data cells in data tables](#tech-h63)
 
 ### <a id="tech-h42">H42: Using h1-h6 to identify headings</a>
 
@@ -74,92 +75,169 @@ Also relevant is the [interim checkpoint 10.2](http://www.w3.org/TR/WCAG10/#tech
 
 This interim checkpoint probably no longer applies due to improved abilities of browsers and assistive technology, but is a good starting point for determining what is acceptable.
 
+Currently, HTMLCodeSniffer makes no judgement call on the distance of the label from the control, as long as it is before or after the appropriate control element in the DOM. Testing for relative position is difficult, because the label could be wrapped in other elements and therefore unable to be found on the same level as the control. If a style sheet then moves the label to an "incorrect" position, this then should be marked as a manual fail.
+
 ##### No label required
 
 Further, the description for this technique states which elements should **not** have a label element - since the control itself provides a label, or the control has no visual implementation.
 
 Elements that should **not** have a label element include buttons of various types (input element with type "submit", "reset", or "image", and button element), and hidden fields (input element with type "hidden").
 
-#### Examples
+#### Errors
 
-##### Success Example 1
+1.  A label element exists for a control that is a button-type element or a hidden field.
+    In the case of buttons, the label is provided in another way (value, alt text, element contents). In the case of hidden fields, labels make no sense since there is no visual representation.
 
-    <p><label for="testInput">Test Input:</label><input type="text" id="testInput" /></p>
-    <p><label for="testTextArea">Test Input:</label><textarea id="testTextArea">
-    Sample Text
-    </textarea></p>
-    <p><label for="testSelect">Test Select:</label><select id="testSelect">
-        <option>Apples</option>
-        <option>Oranges</option>
-    </select></p>
+    Example:
 
-Correct placement for a text box, text area, or select field.
+    Each of these controls should return an error based on being not a type of element that accepts a label of its own.
 
-##### Success Example 2
+        <form>
+            <p><label for="submitInput">Submit Form:</label> <input type="reset" id="submitInput" value="Submit Form" /></p>
+            <p><label for="resetInput">Reset Form:</label> <input type="reset" id="resetInput" value="Reset Form" /></p>
+            <p><label for="imageSubmit">Next Page:</label> <input type="image" src="next.png" alt="Proceed to Next Page" id="imageSubmit" /></p>
+            <p><label for="buttonField">Click Me:</label> <button id="buttonField">Click Me</button></p>
+            <p><label for="hiddenField">Hidden Field:</label> <input type="hidden" id="hiddenField" value="hideme" /></p>
+        </form>
 
-    <p><label for="testInput">Test Input:</label>  <input type="text" id="testInput" /></p>
+1.  A label element exists without a "for" attribute.
+    This implies an "implicit label" that would be wrapped around an input. Assistive technology handles this inconsistently, so is not recommended.
+    H44 mandates that labels be associated explicitly with a control, using the "for" attribute.
 
-White space between the label and input should be acceptable.
+    Example:
 
-##### Success Example 3
+        <form>
+            <label>First Name:
+                <input type="text" id="firstName" />
+            </label>
+        </form>
 
-    <p><label for="testInput">Test Input:</label><br/>
-    <input type="text" id="testInput" /></p>
+1.  A form control does not have an "id" attribute, thereby precluding it from having an explicit label
+    It's a good idea for other reasons too, of course.
 
-This should be acceptable as long as the label is the only thing on the first line, and the input is the only thing on the second line. This should also work where the "p" tag is replaced by "div", or the "input" replaced by "select" or "textarea".
+    Example:
 
-##### Warning(?) Example 4
+        <form>
+            First Name: <input type="text" name="firstName" />
+        </form>
 
-    <p><label for="testInput">Test Input:</label><br/>
-    <input type="text" id="testInput" /> (in <abbr title="Day Month Year">dd/mm/yyyy</abbr> format)</p>
+1.  A form control uses an "id" attribute, but there is no label element with the same "for" attribute. There is also no "title" attribute on the control.
 
-This could be argued either way (particularly with the WCAG 1.0 definition about "only one label and one control per line") and could probably be argued to be an error, because of the extraneous content after the input - which should actually be part of the label, as it is information necessary for filling in the form.
+    Example:
 
-##### Error(?) Example 5
+        <form>
+            <input type="text" id="firstName" />
+        </form>
 
-    <div><label for="testInput">Test Input:</label></div>
-    <div><input type="text" id="testInput" /></div>
+1.  A form control uses an "id" attribute, but there is no label element with the same "for" attribute. There is a "title" attribute on the control, but it is blank.
 
-The label is positioned correctly as per technique G162, and thus this is *technically* correct if the div tag has its default presentation. However, this presentation cannot be guaranteed (it can be overridden by CSS, say), and the label and text box should be in the same block element as they are related.
+    Example:
 
-Whether this should be an error or a warning is up for debate. At the very least this should be a warning and a manual check.
+        <form>
+            <input type="text" id="firstName" title="" />
+        </form>
 
-##### Error Example 6
+    Example:
 
-    <p><label for="testInput">Test Input:</label> <input type="checkbox" id="testInput" checked="checked" /></p>
+    White space alone should not be considered a pass.
 
-Incorrect location of the label for a check box. It should be after the check box instead.
+        <form>
+            <input type="text" id="firstName" title="   " />
+        </form>
 
-##### Success Example 7
+1.  A form control has a valid label attached, but it is not in an appropriate position relative to the form control.
+    HTMLCodeSniffer tests this in relation to the DOM, which should satisfy most scenarios where text is running in a single direction. (whether it be <abbr title="left-to-right">LTR</abbr> or <abbr title="right-to-left">RTL</abbr>).
 
-    <p><input type="checkbox" id="testInput" checked="checked" /><label for="testInput">Test Input</label></p>
-    <p><input type="radio" id="testRadio" />  <label for="testRadio">Test Radio 1</label></p>
+    Example:
 
-Correct location of a label for check box and radio button inputs. White space should be acceptable.
+    Labels for text boxes should be before inputs.
 
-##### Error Example 8
+        <form>
+            <input type="text" id="firstName" />
+            <label for="firstName">First Name</label>
+        </form>
 
-    <p><input type="checkbox" id="testInput" checked="checked" /><br/><label for="testInput">Test Input</label></p>
+        Example:
 
-Incorrect location of a label for a check box. The allowance that a text box label can appear above the label does not apply in reverse (ie. below) for a check box or radio button.
+    Example:
 
-##### Error Example 9
+    Labels for check boxes should follow inputs.
 
-    <p><label for="testReset">Reset Form:</label> <input type="reset" id="testReset" /></p>
+        <form>
+            <label for="saveAsNew">Save as New:</label>
+            <input type="checkbox" id="saveAsNew" checked="checked" />
+        </form>
 
-A reset type of input is a button, and thus does not require a label.
+#### Warnings
 
-##### Success Example 10
+1.  A label element does not exist for a control, but a title attribute exists on the control and is not empty.
+    This is emitted as [technique H65](http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H65).
+    A manual tester should ensure that the title identifies the purpose of the control (as the label element would), AND that a label element is not feasible for the situation.
 
-    <p><input type="reset" id="testReset" value="Reset Form" /></p>
+    Example:
 
-No label element detected for a reset button. This is correct: the label of the button is "Reset Form".
+    A title element is appropriate, since the purpose of the controls are generally
+    identified visually by the "Search" button text. This could probably be improved
+    by wrapping both fields in a fieldset element, but that is outside the scope of
+    this technique.
 
-##### Error Example 11
+        <form>
+            <input type="text" id="testInput" title="Search Text" />
+            <button type="submit">Search</button>
+        </form>
 
-    <p><input type="text" id="testInput" /></p>
+    Example:
 
-A text box without a label at all is an error.
+    This probably would be manually failed because there is no reason why a label
+    element couldn't be used.
+
+        <form>
+            <input type="text" id="testInput" title="Test Input" />
+        </form>
+
+#### Notices
+
+1.  Where a label is correctly associated and placed in the correct position in the DOM, a notice will be thrown for the tester, as manual tests are still required, namely:
+
+      - that the label describes the purpose of the control.
+      - that the label is correctly positioned visually as well as DOM-wise. (If CSS is used to move it to the wrong place, for instance, or the label is too detached from the control.)
+
+    Examples of correct label association and placement, which will emit a notice:
+
+        <!-- Correct label position before element. -->
+        <p><label for="testInput">Test Input:</label><input type="text" id="testInput" /></p>
+        <p><label for="testTextArea">Test Input:</label><textarea id="testTextArea">
+            Sample Text
+        </textarea></p>
+        <p><label for="testSelect">Test Select:</label><select id="testSelect">
+            <option>Apples</option>
+            <option>Oranges</option>
+        </select></p>
+
+        <!-- White space is acceptable. -->
+        <p><label for="testInput">Test Input:</label>  <input type="text" id="testInput" /></p>
+
+        <!-- As should be line breaks (but only with labels placed "before"). -->
+        <p><label for="testInput">Test Input:</label><br/>
+        <input type="text" id="testInput" /></p>
+
+        <!-- Correct label position after element. -->
+        <p><input type="checkbox" id="testInput" checked="checked" /><label for="testInput">Test Input</label></p>
+        <p><input type="radio" id="testRadio" />  <label for="testRadio">Test Radio 1</label></p>
+
+    Example of potential manual fail:
+
+        <p><input type="checkbox" id="testInput" checked="checked" /><br/><label for="testInput">Test Input</label></p>
+
+    Example of potential manual fail:
+
+    Example of a text box representing a date. The instructions that the date should
+    be entered in "<abbr title="Day Month Year">dd/mm/yyyy</abbr>" format is
+    important information that should be contained either in the label or as a title
+    attribute (as per [technique G89: "Providing expected data format and example"](http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/G89)).
+
+        <p><label for="dateField">Enter Date:</label><br/>
+        <input type="text" id="dateField" /> (in <abbr title="Day Month Year">dd/mm/yyyy</abbr> format)</p>
 
 ### <a id="tech-h49">H49: Using semantic markup to mark emphasized or special text</a>
 
@@ -189,3 +267,59 @@ Example 2: you have been bolding text (using b) to emphasise, but the emphasis i
 That's not to say that the above conversion won't happen in most cases. However, this should not occur automatically, if accessibility and semantics are kept in mind.
 
 #### Examples
+
+### <a id="tech-h63">H63: Using the scope attribute to associate header cells and data cells in data tables</a>
+
+Defines whether a table header is scoped as a row header, column header, or a header for a group of rows/columns.
+
+In HTML 4, this applies to **th** and **td** elements, and the WCAG 2.0 requirements refer to the concept of "td elements that act as headers for other elements" in test 2. However, scope attributes on td elements are **obsolete in HTML 5**, and for data structure reasons a th element is preferred, perhaps combined with the appropriate usage of headers attributes if this causes the header structure to become multi-level.
+
+The column groups referred to by the "colgroup" setting, naturally enough, apply to columns defined explicitly as a group by the colgroup tag. On the other hand, the "rowgroup" setting applies to a set of rows grouped by the thead, tfoot or tbody tag (of which there may be many table bodies).
+
+#### Testing
+
+1.  Check that all th elements have a scope attribute.
+2.  Check that all td elements that act as headers for other elements have a scope attribute.
+3.  Check that all scope attributes have the value row, col, rowgroup, or colgroup.
+
+#### Errors
+
+1.  The scope attribute is not found on a th element.
+
+    Although it is legal HTML, it is not worth leaving up to chance for assistive
+    technology and other user agents to interpret.
+
+    Example:
+
+        <table>
+            <tr>
+                <th>Header</th>
+                <td>Data</td>
+            </tr>
+        </table>
+
+1.  The scope attribute is not a valid value.
+
+    Valid values are "row", "col", "rowgroup", "colgroup".
+
+    Example:
+
+        <table>
+            <tr>
+                <th scope="bogus">Header</th>
+                <td>Data</td>
+            </tr>
+        </table>
+
+#### Warnings
+
+1.  The scope attribute is found on a td element.
+
+    As stated above, td elements with scope are invalid HTML5. Use of th elements is encouraged where a td element functions as a header.
+
+        <table>
+            <tr>
+                <td class="header" scope="row">Header</td>
+                <td>Data</td>
+            </tr>
+        </table>
