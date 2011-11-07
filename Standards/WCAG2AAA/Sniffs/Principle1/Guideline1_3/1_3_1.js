@@ -521,8 +521,8 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
                         var cell     = tdCells[rownum][colnum];
                         var expected = [];
 
-                        rownum       = Number(rownum);
-                        colnum       = Number(colnum);
+                        rownum = Number(rownum);
+                        colnum = Number(colnum);
 
                         if (cell.headers.length === 0) {
                             // Headers attribute is not there.
