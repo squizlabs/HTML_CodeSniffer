@@ -19,10 +19,139 @@ Information that is conveyed using colour alone falls under "Success Criterion 1
 
 ### Table of contents
 
+- [Correct association of table headers with data cells in data tables](#tech-h43h63)
 - [H42: Using h1-h6 to identify headings](#tech-h42)
 - [H44: Using label elements to associate text labels with form controls](#tech-h44)
 - [H49: Using semantic markup to mark emphasized or special text](#tech-h49)
-- [H63: Using the scope attribute to associate header cells and data cells in data tables](#tech-h63)
+
+### <a id="tech-h43h63">Correct association of data cells with header cells in data tables</a>
+
+Includes the following techniques:
+
+- [H63: Using the scope attribute to associate header cells and data cells in data tables](http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H63)
+- [H43: Using id and headers attributes to associate data cells with header cells in data tables](http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H43)
+
+Both of these techniques aim to apply the same concept of ensuring that data cells in a data table can be associated with the correct headers. This provides context for data cells, which can be used by screen readers as they go through a table.
+
+The headers attribute (technique H43) is primarily recommended for complex tables with two or more levels of headings. If this is the case for a data table, then all cells must be labelled with a headers attribute, and all table headings with an id attribute to allow them to be referenced. Scope attribute becomes ambiguous and thus is not applicable to this type of table.
+
+Where there is only one row and one column of headers, the scope attribute (technique H63) is the recommended option - however, using the headers attribute as above is also acceptable. This especially applies when the header is not in the first row or column. The scope attribute allows a header cell to be specified as being applicable either to a row or a column (or in rarer cases, for a row group or column group - represented by a tbody or colgroup element respectively). Use of scope for row and col has reasonable support by assistive technology but for rowgroup and colgroup is less consistent.
+
+The scope attributes technique states that for "simple tables", using th and td without any further identification is enough. However, the definition of "simple table" becomes ambiguous. The technique speaks of simple tables with one row *or* column header, but then talks about it being useful to tables where the main header is not in the first row or column - which suggests that a table with one row *and*
+one column of headers can be "simple" as long as they are in the first row/column - but this is not made clear.
+
+To avoid ambiguity, HTMLCodeSniffer takes it to mean "one row *or* one column heading, but not both". Where there is one of each, some association is required - whether that is through the scope or headers attributes.
+
+The approach taken by HTMLCodeSniffer as to which technique(s) are acceptable and/or required:
+
+- If there are two rows and/or two columns of headings, use of the headers attribute is required (as scope becomes ambiguous).
+- With exactly one row and one column of headings, either headers on all td cells -or- scope on all headers will be accepted.
+- With one single row or column of headings but not both, neither is required.
+
+A "row" or "column" of headings is determined on the basis of having more than one th element in a row. This is a sufficient definition - even though having two columns in one direction (say) will trigger this in every row, by then we already know that we need headers attributes.
+
+#### Testing
+
+##### Scope attribute (H63)
+
+1.  Check that all th elements have a scope attribute.
+2.  Check that all td elements that act as headers for other elements have a scope attribute.
+3.  Check that all scope attributes have the value row, col, rowgroup, or colgroup.
+
+##### Headers attribute (H43)
+
+1.  Check for layout tables: determine whether the content has a relationship with other content in both its column and its row. If Òno," the table is a layout table. If Òyes," the table is a data table.
+2.  For data tables, check that any cell that is associated with more than one row and/or one column header contains a headers attribute that lists the id for all headers associated with that cell.
+3.  For data tables where any cell contains an id or headers attribute,
+    a. Check that each id listed in the headers attribute of the data cell matches the id attribute of a cell that is used as a header element
+    b. Check that the headers attribute of a data cell contains the id attribute of all headers associated with the data cell
+    c. Check that all ids are unique (that is, no two elements in the page have the same id)
+
+#### Examples
+
+1.  No attribute required.
+
+        <table>
+            <tr>
+                <th>Alpha</th>
+                <th>Beta</th>
+            </tr>
+            <tr>
+                <td>Cell A</td>
+                <td>Cell B</td>
+            </tr>
+        </table>
+
+1.  One row and one column, with scope attributes applied.
+
+        <table>
+            <tr>
+                <th scope="col">Column</th>
+                <th scope="col">Alpha</th>
+                <th scope="col">Beta</th>
+            </tr>
+            <tr>
+                <th scope="row">Name</th>
+                <td>Cell A</td>
+                <td>Cell B</td>
+            </tr>
+        </table>
+
+1.  One row and one column, with headers attributes applied.
+
+        <table>
+            <tr>
+                <th id="col">Column</th>
+                <th id="alpha">Alpha</th>
+                <th id="beta">Beta</th>
+            </tr>
+            <tr>
+                <th id="name">Name</th>
+                <td headers="alpha name">Cell A</td>
+                <td headers="beta name">Cell B</td>
+            </tr>
+        </table>
+
+
+1.  Two levels of column headings. The headers attribute is required.
+
+        <table>
+            <tr>
+                <th colspan="2" id="alpha">Alpha</th>
+                <th rowspan="2" id="beta">Beta</th>
+            </tr>
+            <tr>
+                <th id="alpha-1">Alpha 1</th>
+                <th id="alpha-2">Alpha 2</th>
+            </tr>
+            <tr>
+                <td headers="alpha alpha-1">Cell A1</td>
+                <td headers="alpha alpha-2">Cell A2</td>
+                <td headers="beta">Cell B</td>
+            </tr>
+        </table>
+
+
+1.  Two levels of column headings, with a column-spanned data cell. The headers attribute is required, and the spanned cell needs all headings specified.
+
+        <table>
+            <tr>
+                <th colspan="2" id="alpha">Alpha</th>
+                <th rowspan="2" id="beta">Beta</th>
+            </tr>
+            <tr>
+                <th id="alpha-1">Alpha 1</th>
+                <th id="alpha-2">Alpha 2</th>
+            </tr>
+            <tr>
+                <td colspan="2" headers="alpha alpha-1 alpha-2">Cell A1+2</td>
+                <td headers="beta">Cell B</td>
+            </tr>
+        </table>
+
+#### Errors
+
+#### Warnings
 
 ### <a id="tech-h42">H42: Using h1-h6 to identify headings</a>
 
@@ -268,58 +397,4 @@ That's not to say that the above conversion won't happen in most cases. However,
 
 #### Examples
 
-### <a id="tech-h63">H63: Using the scope attribute to associate header cells and data cells in data tables</a>
 
-Defines whether a table header is scoped as a row header, column header, or a header for a group of rows/columns.
-
-In HTML 4, this applies to **th** and **td** elements, and the WCAG 2.0 requirements refer to the concept of "td elements that act as headers for other elements" in test 2. However, scope attributes on td elements are **obsolete in HTML 5**, and for data structure reasons a th element is preferred, perhaps combined with the appropriate usage of headers attributes if this causes the header structure to become multi-level.
-
-The column groups referred to by the "colgroup" setting, naturally enough, apply to columns defined explicitly as a group by the colgroup tag. On the other hand, the "rowgroup" setting applies to a set of rows grouped by the thead, tfoot or tbody tag (of which there may be many table bodies).
-
-#### Testing
-
-1.  Check that all th elements have a scope attribute.
-2.  Check that all td elements that act as headers for other elements have a scope attribute.
-3.  Check that all scope attributes have the value row, col, rowgroup, or colgroup.
-
-#### Errors
-
-1.  The scope attribute is not found on a th element.
-
-    Although it is legal HTML, it is not worth leaving up to chance for assistive
-    technology and other user agents to interpret.
-
-    Example:
-
-        <table>
-            <tr>
-                <th>Header</th>
-                <td>Data</td>
-            </tr>
-        </table>
-
-1.  The scope attribute is not a valid value.
-
-    Valid values are "row", "col", "rowgroup", "colgroup".
-
-    Example:
-
-        <table>
-            <tr>
-                <th scope="bogus">Header</th>
-                <td>Data</td>
-            </tr>
-        </table>
-
-#### Warnings
-
-1.  The scope attribute is found on a td element.
-
-    As stated above, td elements with scope are invalid HTML5. Use of th elements is encouraged where a td element functions as a header.
-
-        <table>
-            <tr>
-                <td class="header" scope="row">Header</td>
-                <td>Data</td>
-            </tr>
-        </table>
