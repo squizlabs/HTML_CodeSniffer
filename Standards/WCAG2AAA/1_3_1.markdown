@@ -50,6 +50,8 @@ The approach taken by HTMLCodeSniffer as to which technique(s) are acceptable an
 
 A "row" or "column" of headings is determined on the basis of having more than one th element in a row. This is a sufficient definition - even though having two columns in one direction (say) will trigger this in every row, by then we already know that we need headers attributes.
 
+When either technique can be used, and only one is used but not completely (and the other not at all), HTMLCodeSniffer will only throw "missing attribute" errors for the one that is used. For the purposes of this test, at least one cell must have the appropriate attribute - for "headers" it is the attribute on td cells; just having ids on table headers doesn't count as being "used".
+
 #### Testing
 
 ##### Scope attribute (H63)
