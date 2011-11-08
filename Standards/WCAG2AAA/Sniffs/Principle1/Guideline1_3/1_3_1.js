@@ -45,6 +45,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
 
             case 'table':
                 this.testTableHeaders(element);
+                this.testTableCaptionSummary(element);
             break;
         }//end switch
     },
@@ -452,6 +453,8 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
 
                         if ((headers.length > 1) || (headers[0] !== '')) {
                             retval.used = true;
+                        } else {
+                            headers = [];
                         }
 
                         tdCells[rownum]         = tdCells[rownum] || [];
@@ -567,5 +570,32 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
         }//end for
 
         return retval;
+    },
+
+    testTableCaptionSummary: function(table) {
+        var summary   = table.getAttribute('summary') || '';
+        var captionEl = table.getElementsByTagName('caption');
+        var caption   = '';
+
+        if (captionEl.length > 0) {
+            caption = captionEl[0].innerHTML.replace(/^\s*(.*?)\s*$/g, '$1');
+        }
+        summary = summary.replace(/^\s*(.*?)\s*$/g, '$1');
+
+        if (summary !== '') {
+            if (caption === summary) {
+                HTMLCS.addMessage(HTMLCS.ERROR, table, 'If both a summary attribute and a caption element are present for this data table, the summary should not duplicate the caption.', 'H39H73.4');
+            }
+
+            HTMLCS.addMessage(HTMLCS.NOTICE, table, 'Check that the summary attribute describes the table\'s organization or explains how to use the table.', 'H73.3');
+        } else {
+            HTMLCS.addMessage(HTMLCS.NOTICE, table, 'Consider using the summary attribute of the table element to give an overview of this data table.', 'H73.3');
+        }//end if
+
+        if (caption !== '') {
+            HTMLCS.addMessage(HTMLCS.NOTICE, table, 'Check that the caption attribute accurately describes this table.', 'H39.3');
+        } else {
+            HTMLCS.addMessage(HTMLCS.NOTICE, table, 'Consider using a caption element to the table element to identify this data table.', 'H39.3');
+        }
     }
 };
