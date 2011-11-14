@@ -52,7 +52,16 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
 
     testLabelsOnInputs: function(element, top)
     {
-        var nodeName = element.nodeName.toLowerCase();
+        var nodeName  = element.nodeName.toLowerCase();
+        var inputType = nodeName;
+        if (inputType === 'input') {
+            inputType = element.getAttribute('type');
+        }
+
+        var isNoLabelControl = false;
+        if (/^(submit|reset|image|hidden|button)$/.test(inputType) === true) {
+            isNoLabelControl = true;
+        }
 
         this._labelNames = {};
         var labels = top.getElementsByTagName('label');
@@ -76,21 +85,17 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
             }//end if
         }//end for
 
-        if (element.hasAttribute('id') === false) {
+
+
+        if ((element.hasAttribute('id') === false) && (isNoLabelControl === false)) {
             // There is no id attribute at all on the control.
             HTMLCS.addMessage(HTMLCS.ERROR, element, 'Form control does not have an id, therefore it cannot have an explicit label.', 'H44');
         } else {
-            var inputType = nodeName;
-
-            if (inputType === 'input') {
-                inputType = element.getAttribute('type');
-            }
-
             var id = element.getAttribute('id');
             if (!this._labelNames[id]) {
                 // There is no label for this form control. For certain types of
                 // input, "no label" is not an error.
-                if (/^(submit|reset|image|hidden|button)$/.test(inputType) === false) {
+                if (isNoLabelControl === false) {
                     // If there is a title, we presume that H65 applies - the label
                     // element cannot be used, and the title should be used as the
                     // descriptive label instead.
@@ -113,7 +118,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
                 // because the label is provided through other means (value of select
                 // reset, alt on image submit, button's content), or there is no
                 // visible field (hidden).
-                if (/^(submit|reset|image|hidden|button)$/.test(inputType) === true) {
+                if (isNoLabelControl === true) {
                     HTMLCS.addMessage(HTMLCS.ERROR, element, 'Label element should not be used for this type of form control.', 'H44');
                 } else {
                     var labelOnRight = false;
