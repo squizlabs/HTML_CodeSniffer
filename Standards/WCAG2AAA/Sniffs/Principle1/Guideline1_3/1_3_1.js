@@ -15,6 +15,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
             'textarea',
             'button',
             'table',
+            'fieldset',
         ];
 
     },
@@ -46,6 +47,10 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
             case 'table':
                 this.testTableHeaders(element);
                 this.testTableCaptionSummary(element);
+            break;
+
+            case 'fieldset':
+                this.testFieldsetLegend(element);
             break;
         }//end switch
     },
@@ -601,6 +606,14 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
             HTMLCS.addMessage(HTMLCS.NOTICE, table, 'Check that the caption attribute accurately describes this table.', 'H39.3');
         } else {
             HTMLCS.addMessage(HTMLCS.NOTICE, table, 'Consider using a caption element to the table element to identify this data table.', 'H39.3');
+        }
+    },
+
+    testFieldsetLegend: function(fieldset) {
+        var legend = fieldset.querySelector('legend');
+
+        if ((legend === null) || (legend.parentNode !== fieldset)) {
+            HTMLCS.addMessage(HTMLCS.ERROR, fieldset, 'Check that this fieldset has a legend element that includes a description of that group.', 'H71.3');
         }
     }
 };
