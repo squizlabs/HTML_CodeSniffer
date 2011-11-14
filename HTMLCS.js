@@ -102,8 +102,10 @@ var HTMLCS = new function()
         callback  = callback || function() {};
         _messages = [];
 
-        // Get all the elements in the element.
+        // Get all the elements in the parent element.
+        // Add the parent element too, which will trigger "_top" element codes.
         var elements = _getAllTags(element);
+        elements.unshift(element);
 
         // Run the sniffs.
         _run(elements, element, callback);
@@ -180,7 +182,13 @@ var HTMLCS = new function()
         }
 
         var element = elements.shift();
-        var tagName = element.tagName.toLowerCase();
+
+        if (element === topElement) {
+            var tagName = '_top';
+        } else {
+            var tagName = element.tagName.toLowerCase();
+        }
+
         if (_tags[tagName] && _tags[tagName].length > 0) {
             _processSniffs(element, _tags[tagName].concat([]), topElement, function() {
                 _run(elements, topElement, callback);
