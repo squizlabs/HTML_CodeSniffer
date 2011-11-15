@@ -20,9 +20,11 @@ Information that is conveyed using colour alone falls under "Success Criterion 1
 ### Table of contents
 
 - [Correct association of table headers with data cells in data tables](#tech-h43h63)
+- [Usage of caption and summary attributes to identify and provide an overview of data tables](#tech-h39h73)
 - [H42: Using h1-h6 to identify headings](#tech-h42)
 - [H44: Using label elements to associate text labels with form controls](#tech-h44)
 - [H49: Using semantic markup to mark emphasized or special text](#tech-h49)
+- [H71: Providing a description for groups of form controls using fieldset and legend elements](#tech-h71)
 
 ### <a id="tech-h43h63">Correct association of data cells with header cells in data tables</a>
 
@@ -33,16 +35,16 @@ Includes the following techniques:
 
 Both of these techniques aim to apply the same concept of ensuring that data cells in a data table can be associated with the correct headers. This provides context for data cells, which can be used by screen readers as they go through a table.
 
-The headers attribute (technique H43) is primarily recommended for complex tables with two or more levels of headings. If this is the case for a data table, then all cells must be labelled with a headers attribute, and all table headings with an id attribute to allow them to be referenced. Scope attribute becomes ambiguous and thus is not applicable to this type of table.
+The headers attribute (technique H43) is primarily recommended for complex tables with two or more levels of headings. If this is the case for a data table, then all cells must be labelled with a headers attribute, and all table headings with an id attribute to allow them to be referenced. Scope attribute becomes ambiguous (and the colgroup and rowgroup settings are not very well supported) and thus is not applicable to this type of table.
 
 Where there is only one row and one column of headers, the scope attribute (technique H63) is the recommended option - however, using the headers attribute as above is also acceptable. This especially applies when the header is not in the first row or column. The scope attribute allows a header cell to be specified as being applicable either to a row or a column (or in rarer cases, for a row group or column group - represented by a tbody or colgroup element respectively). Use of scope for row and col has reasonable support by assistive technology but for rowgroup and colgroup is less consistent.
 
 The scope attributes technique states that for "simple tables", using th and td without any further identification is enough. However, the definition of "simple table" becomes ambiguous. The technique speaks of simple tables with one row *or* column header, but then talks about it being useful to tables where the main header is not in the first row or column - which suggests that a table with one row *and*
 one column of headers can be "simple" as long as they are in the first row/column - but this is not made clear.
 
-To avoid ambiguity, HTMLCodeSniffer takes it to mean "one row *or* one column heading, but not both". Where there is one of each, some association is required - whether that is through the scope or headers attributes.
+To avoid ambiguity, HTML\_CodeSniffer takes it to mean "one row _or_ one column heading, but not both". Where there is one of each, some association is required - whether that is through the scope or headers attributes.
 
-The approach taken by HTMLCodeSniffer as to which technique(s) are acceptable and/or required:
+The approach taken by HTML\_CodeSniffer as to which technique(s) are acceptable and/or required:
 
 - If there are two rows and/or two columns of headings, use of the headers attribute is required (as scope becomes ambiguous).
 - With exactly one row and one column of headings, either headers on all td cells -or- scope on all headers will be accepted.
@@ -50,7 +52,7 @@ The approach taken by HTMLCodeSniffer as to which technique(s) are acceptable an
 
 A "row" or "column" of headings is determined on the basis of having more than one th element in a row. This is a sufficient definition - even though having two columns in one direction (say) will trigger this in every row, by then we already know that we need headers attributes.
 
-When either technique can be used, and only one is used but not completely (and the other not at all), HTMLCodeSniffer will only throw "missing attribute" errors for the one that is used. For the purposes of this test, at least one cell must have the appropriate attribute - for "headers" it is the attribute on td cells; just having ids on table headers doesn't count as being "used".
+When either technique can be used, and only one is used but not completely (and the other not at all), HTML\_CodeSniffer will only throw "missing attribute" errors for the one that is used. For the purposes of this test, at least one cell must have the appropriate attribute - for "headers" it is the attribute on td cells; just having ids on table headers doesn't count as being "used".
 
 #### Testing
 
@@ -151,9 +153,121 @@ When either technique can be used, and only one is used but not completely (and 
             </tr>
         </table>
 
-#### Errors
+#### Error Examples
+
+1.  Fails because: the headers attribute is used, but was not provided for Cell A1.
+
+        <table>
+            <tr>
+                <th colspan="2" id="alpha">Alpha</th>
+                <th rowspan="2" id="beta">Beta</th>
+            </tr>
+            <tr>
+                <th id="alpha-1">Alpha 1</th>
+                <th id="alpha-2">Alpha 2</th>
+            </tr>
+            <tr>
+                <td>Cell A1</td>
+                <td headers="alpha alpha-2">Cell A2</td>
+                <td headers="beta">Cell B</td>
+            </tr>
+        </table>
+
+1.  Fails because: the headers attribute does not take into account all headers
+    for cells A1 and A2 (namely, the top-level "alpha" header).
+
+        <table>
+            <tr>
+                <th colspan="2" id="alpha">Alpha</th>
+                <th rowspan="2" id="beta">Beta</th>
+            </tr>
+            <tr>
+                <th id="alpha-1">Alpha 1</th>
+                <th id="alpha-2">Alpha 2</th>
+            </tr>
+            <tr>
+                <td headers="alpha-1">Cell A1</td>
+                <td headers="alpha-2">Cell A2</td>
+                <td headers="beta">Cell B</td>
+            </tr>
+        </table>
+
+1.  Fails because: the scope "bogus" is incorrect.
+
+        <table>
+            <tr>
+                <th scope="col">Alpha</th>
+                <th scope="bogus">Beta</th>
+            </tr>
+            <tr>
+                <td>Cell A</td>
+                <td>Cell B</td>
+            </tr>
+        </table>
+
+1.  Fails because: the author started to write scope attributes, but did not finish the job (missed for cell "Beta"). Case with one row header only.
+
+        <table>
+            <tr>
+                <th scope="col">Alpha</th>
+                <th>Beta</th>
+            </tr>
+            <tr>
+                <td>Cell A</td>
+                <td>Cell B</td>
+            </tr>
+        </table>
+
+1.  Fails because: the author started to write scope attributes, but did not finish the job (missed for the row header). Case with one row and one column header.
+
+        <table>
+            <tr>
+                <td></td>
+                <th scope="col">Alpha</th>
+                <th scope="col">Beta</th>
+            </tr>
+            <tr>
+                <th>Row</th>
+                <td>Cell A</td>
+                <td>Cell B</td>
+            </tr>
+        </table>
+
+1.  Fails because: the author started to write scope AND header attributes, but neither were completed properly.
+
+        <table>
+            <tr>
+                <td></td>
+                <th id="alpha" scope="col">Alpha</th>
+                <th id="beta" scope="col">Beta</th>
+            </tr>
+            <tr>
+                <th>Row</th>
+                <td headers="alpha">Cell A</td>
+                <td>Cell B</td>
+            </tr>
+        </table>
 
 #### Warnings
+
+1.  Warning because: with a multi-level header, the scope attribute becomes
+    ambiguous. HTML\_CodeSniffer ignores scope attributes in this circumstance. Use the headers attribute instead. (Errors will also appear because headers attribute is not used where it is compulsory.)
+
+        <table>
+            <tr>
+                <th colspan="2" scope="colgroup">Alpha</th>
+                <th rowspan="2" scope="col">Beta</th>
+            </tr>
+            <tr>
+                <th scope="col">Alpha 1</th>
+                <th scope="col">Alpha 2</th>
+            </tr>
+            <tr>
+                <td>Cell A1</td>
+                <td>Cell A2</td>
+                <td>Cell B</td>
+            </tr>
+        </table>
 
 ### <a id="tech-h42">H42: Using h1-h6 to identify headings</a>
 
@@ -172,7 +286,14 @@ The following inferences can probably be made, using warnings to alert the user 
 - A large amount of text without headings might throw a warning that you may need to implement headings. (This might be applicable more to technique H69 - providing section headings - than this one.)
 - Perhaps if a paragraph is unstyled and looks like a single sentence fragment, we could warn as to whether it should be a heading.
 
-#### Examples
+#### Warnings
+
+1.  A paragraph or div element contains one child element that is a strong, em, b, i,
+    or u tag, which suggests that the main purpose of the paragraph is to be a heading.
+
+    Example:
+
+        <p><strong>I am a fake heading</strong></p>
 
 ### <a id="tech-h44">H44: Using label elements to associate text labels with form controls</a>
 
@@ -206,7 +327,7 @@ Also relevant is the [interim checkpoint 10.2](http://www.w3.org/TR/WCAG10/#tech
 
 This interim checkpoint probably no longer applies due to improved abilities of browsers and assistive technology, but is a good starting point for determining what is acceptable.
 
-Currently, HTMLCodeSniffer makes no judgement call on the distance of the label from the control, as long as it is before or after the appropriate control element in the DOM. Testing for relative position is difficult, because the label could be wrapped in other elements and therefore unable to be found on the same level as the control. If a style sheet then moves the label to an "incorrect" position, this then should be marked as a manual fail.
+Currently, HTML\_CodeSniffer makes no judgement call on the distance of the label from the control, as long as it is before or after the appropriate control element in the DOM. Testing for relative position is difficult, because the label could be wrapped in other elements and therefore unable to be found on the same level as the control. If a style sheet then moves the label to an "incorrect" position, this then should be marked as a manual fail.
 
 ##### No label required
 
@@ -277,7 +398,7 @@ Elements that should **not** have a label element include buttons of various typ
         </form>
 
 1.  A form control has a valid label attached, but it is not in an appropriate position relative to the form control.
-    HTMLCodeSniffer tests this in relation to the DOM, which should satisfy most scenarios where text is running in a single direction. (whether it be <abbr title="left-to-right">LTR</abbr> or <abbr title="right-to-left">RTL</abbr>).
+    HTML\_CodeSniffer tests this in relation to the DOM, which should satisfy most scenarios where text is running in a single direction. (whether it be <abbr title="left-to-right">LTR</abbr> or <abbr title="right-to-left">RTL</abbr>).
 
     Example:
 
@@ -356,11 +477,13 @@ Elements that should **not** have a label element include buttons of various typ
         <p><input type="checkbox" id="testInput" checked="checked" /><label for="testInput">Test Input</label></p>
         <p><input type="radio" id="testRadio" />  <label for="testRadio">Test Radio 1</label></p>
 
-    Example of potential manual fail:
+    Example of probable manual failure:
+
+    The label is positioned after the check box element, but because of the line break it is positioned underneath instead
 
         <p><input type="checkbox" id="testInput" checked="checked" /><br/><label for="testInput">Test Input</label></p>
 
-    Example of potential manual fail:
+    Example of potential manual failure:
 
     Example of a text box representing a date. The instructions that the date should
     be entered in "<abbr title="Day Month Year">dd/mm/yyyy</abbr>" format is
@@ -374,7 +497,9 @@ Elements that should **not** have a label element include buttons of various typ
 
 In HTML 4 (and therefore XHTML 1.0), tags such as b, i, u, tt and others are defined as presentational elements, as opposed to "structured text" elements like em, strong, code, kbd and the like. The presentational tags do not convey any purpose beyond presentation and are therefore of little use to assistive technology.
 
-> Note, however, that in HTML5 tags such as b, i, u are defined in semantic terms and thus may still be considered valid, however they are defined as a "last resort" to better-matched semantic tags.
+In **HTML5**, tags such as b, i, and u remain conforming, but are defined in semantic terms rather than presentational ones. For instance, the "[t]he i element represents a span of text in an alternate voice or mood, or otherwise offset from the normal prose in a manner indicating a different quality of text...". What follows is a list of potential uses that may be italicised *without conveying emphasis* (such as a taxonomic designation), while not guaranteeing that the text will actually be presented in italics by definition.
+
+Even in HTML5, these tags they are defined as a "last resort" where there are other semantic tags which may better fit the bill. These may not necessarily be strong or em.
 
 #### Related Reading
 
@@ -397,6 +522,256 @@ Example 2: you have been bolding text (using b) to emphasise, but the emphasis i
 
 That's not to say that the above conversion won't happen in most cases. However, this should not occur automatically, if accessibility and semantics are kept in mind.
 
+#### Errors
+
+1.  Fails because presentational text is used. (Failed tags are: b, i, u, s.)
+
+    Example:
+
+        <p>
+            <b>Fails</b> because <i>presentational text is used</i>.
+        </p>
+
+### <a id="tech-h39h73">Usage of caption and summary attributes to identify and provide an overview of data tables</a>
+
+Includes the following techniques:
+
+- [H39: Using caption elements to associate data table captions with data tables](http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H39)
+- [H73: Using the summary attribute of the table element to give an overview of data tables](http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H73)
+
+The caption element and summary attribute perform two slightly different functions in providing overall description to data tables. The caption element identifies the table, and can be seen visually, generally at the top of the table (HTML 4 provides an align attribute which ; HTML5 makes no definition as to location)
+
+The summary attribute provides an overview of the data. The technique provided suggests it should be used to "provide a brief overview of how data has been organized into a table or a brief explanation of how to navigate the table". This attribute does not appear to visual user agents; if there is a summary of the data contained within (eg. you are providing some analysis to tabular data) it should probably appear as body text near the table, so both normal and assistive user agents can access it.
+
+The technique note gives an example of how the summary attribute may be useful, in the case of a transport timetable. For instance, a train timetable may list each station in the first column and then each departure time in subsequent columns. This may be obvious to a sighted user but not to one who cannot immediately see the relationships between cells. An appropriate summary may state the above instructions so that non-sighted users can find their station, then the appropriate time.
+
+> 1.  This summary may, of course, appear instead in the body text.
+> 2.  Other accessibility methods may be useful in this case. For instance, where the timetable shows "..." or "---" or similar to mean "does not stop", this should be wrapped in an abbr tag stating this, and possibly described in the summary.
+
+These techniques are combined under one heading mainly for testing point #4 in each: "If both a summary attribute and a caption element are present for this data table, check that the summary does not duplicate the caption."
+
+#### Testing
+
+##### Caption element (H39)
+
+1.  Check for layout tables: determine whether the content has a relationship with other content in both its column and its row.
+
+    - If "no," the table is a layout table.
+    - If "yes," the table is a data table.
+
+2.  If the table is a layout table, check that the table does not include a caption element.
+
+3.  If the table is a data table and it includes a caption element, check that the caption identifies the table
+
+4.  If both a summary attribute and a caption element are present for this data table, check that the summary does not duplicate the caption.
+
+If the table involved is a layout table, test 2 must pass. For data tables, tests 3 and 4 must pass.
+
+##### Summary attribute (H73)
+
+1.  Check for layout tables: determine whether the content has a relationship with other content in both its column and its row.
+
+    - If "no," the table is a layout table.
+    - If "yes," the table is a data table.
+
+2.  If the table is a layout table, check that the summary attribute is not present or summary attribute is null.
+
+3.  If the table is a data table and a summary is present, check that the summary attribute describes the table's organization or explains how to use the table
+
+4.  If both a summary attribute and a caption element are present for this data table, check that the summary does not duplicate the caption.
+
+If the table involved is a layout table, test 2 must pass. For data tables, tests 3 and 4 must pass.
+
 #### Examples
 
+1.  Example of a table where both caption and summary are provided.
 
+        <table summary="Timetable for example train service from Melbourne to Sydney.
+            Find your station in the first column, then follow that row across for
+            departure times from that station.">
+            <caption>Example train service: Melbourne to Sydney</caption>
+            <thead>
+                <tr>
+                    <th scope="col">Station</th>
+                    <th scope="col">Day Service</th>
+                    <th scope="col">Night Service</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">Melbourne</th>
+                    <td>8:30</td>
+                    <td>20:00</td>
+                </tr>
+                <tr>
+                    <th scope="row">Albury</th>
+                    <td>12:00</td>
+                    <td>23:30</td>
+                </tr>
+                <tr>
+                    <th scope="row">Goulburn</th>
+                    <td>16:30</td>
+                    <td><abbr title="Does not stop">...</abbr></td>
+                </tr>
+                <tr>
+                    <th scope="row">Sydney</th>
+                    <td>19:30</td>
+                    <td>6:30</td>
+                </tr>
+            </tbody>
+        </table>
+
+    Which appears similar to the following:
+
+    <table style="width: 50%" summary="Timetable for example train service from Melbourne to Sydney.
+        Find your station in the first column, then follow that row across for
+        departure times from that station.">
+        <caption>Example train timetable: Melbourne to Sydney</caption>
+        <thead>
+            <tr>
+                <th scope="col">Station</th>
+                <th scope="col">Day Service</th>
+                <th scope="col">Night Service</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">Melbourne</th>
+                <td>8:30</td>
+                <td>20:00</td>
+            </tr>
+            <tr>
+                <th scope="row">Albury</th>
+                <td>12:00</td>
+                <td>23:30</td>
+            </tr>
+            <tr>
+                <th scope="row">Goulburn</th>
+                <td>16:30</td>
+                <td><abbr title="Does not stop">...</abbr></td>
+            </tr>
+            <tr>
+                <th scope="row">Sydney</th>
+                <td>19:30</td>
+                <td>6:30</td>
+            </tr>
+        </tbody>
+    </table>
+
+#### Errors
+
+1.  Fails because: the summary and the caption are duplicates of each other.
+
+        <table summary="Duplicate summary and caption">
+            <caption>Duplicate summary and caption</caption>
+            <tr>
+                <th>Alpha</th>
+                <th>Beta</th>
+            </tr>
+            <tr>
+                <td>Cell A</td>
+                <td>Cell B</td>
+            </tr>
+        </table>
+
+1.  Fails because: the summary and the caption are duplicates of each other.
+
+    This is a legitimate "trimmed" test because most browsers will interpret the caption being on a separate line as whitespace between tag and duplicated summary.
+
+        <table summary="Bogus summary">
+            <caption>
+                Bogus summary
+            </caption>
+            <tr>
+                <th>Alpha</th>
+                <th>Beta</th>
+            </tr>
+            <tr>
+                <td>Cell A</td>
+                <td>Cell B</td>
+            </tr>
+        </table>
+
+#### Notices
+
+1.  When a caption attribute is provided, a notice will be emitted requesting a manual check that the caption fulfils its purpose of identifying the table.
+
+1.  Whenever a caption attribute does **not** exist or is empty, a notice will be emitted suggesting that a caption may be required for the table.
+
+1.  Whenever a summary attribute is provided, a notice will be emitted pointing to a manual check to ensure that the summary fulfils its purpose of providing an overview of the table.
+
+1.  When a summary attribute does **not** exist or is null, a notice will be emitted suggesting that a summary may be required for the table.
+
+### <a id="tech-h71">H71: Providing a description for groups of form controls using fieldset and legend elements</a>
+
+Includes the following relevant technique:
+
+- [H71: Providing a description for groups of form controls using fieldset and legend elements](http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H71)
+
+From the above W3C definition:
+
+> The objective of this technique is to provide a semantic grouping for related form controls. This allows users to understand the relationship of the controls and interact with the form more quickly and effectively.
+
+Form controls can be combined as a logical group by enclosing them in the Fieldset element. For example, a pair of drop-down boxes representing a month and year may be wrapped in a Fieldset designating them as a "credit card expiry date" - or that a credit card type, number, expiry date and verification code be designated as a group of "credit card details". Fieldset elements can be nested but the W3C advice is not to overdo it.
+
+The most important point for satisfying this technique is wrapping radio button and check box groups - that is, groups of these types of input fields that contain the same name attribute - must have a fieldset around them. This is tested by item 2 in the testing procedure. This is so it is easier to handle as a single control, allowing a user agent to bypass the entire group if necessary.
+
+"The first element inside the fieldset **should** be a legend element" (ed's emphasis), which provides a caption for the Fieldset. However, testing item 3 states that it only has to *contain* a legend element, and this is what HTML\_CodeSniffer's test currently performs.
+
+The W3C recognises the ugliness of the default presentation of the fieldset element (generally drawn as an inset border, similar to Windows' GroupBox control), but recommends that it be kept:
+
+> This visual grouping is also useful and authors should seriously consider retaining it (or some form of visual grouping). The visual effect can be modified in CSS by overriding the "border" property of the fieldset and the "position" property of the legend.
+
+If the position on the legend is set to absolute, beware that the fieldset by itself does not automatically confer a new positioning context. Moving the legend will also tend to make it lose its default qualities (such as the white background behind the fieldset's border).
+
+#### Testing
+
+1. Check that groups of logically related input elements are contained within a fieldset element.
+2. Check that any group of input elements of type="radio" or type="checkbox" with the same name attribute is contained within a fieldset element
+3. Check that each fieldset has a legend element that includes a description of that group.
+
+##### Manual testing required
+
+Item 1 requires manual testing, as HTML\_CodeSniffer makes no determination of what is logical, beyond what is stated in item 2. In other words, HTML\_CodeSniffer cannot say by itself that a group of items is an address group or a date-of-birth group or similar - this needs to be validated by the tester manually to ensure that fields are properly grouped.
+
+#### Examples
+
+1.  Correct usage of legend element as a direct child of a frameset element.
+
+    Example:
+
+        <fieldset>
+            <legend>Correct use of legend.</legend>
+        </fieldset>
+
+#### Errors
+
+1.  When a frameset element exists without a legend element directly underneath it.
+
+    Example:
+
+        <fieldset>
+        </fieldset>
+
+    Example:
+
+        <fieldset>
+        <p>
+            <legend>Invalid legend</legend>
+        </p>
+        </fieldset>
+
+2.  When a frameset element contains a legend as a direct child as intended, but the
+    legend is empty (or contains only whitespace).
+
+    Example:
+
+        <fieldset>
+            <legend></legend>
+        </fieldset>
+
+    Example:
+
+        <fieldset>
+            <legend>     </legend>
+        </fieldset>
