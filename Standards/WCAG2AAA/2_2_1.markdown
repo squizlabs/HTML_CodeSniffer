@@ -1,0 +1,28 @@
+---
+title: Success Criterion 2.2.1, Timing Adjustable
+layout: default
+---
+
+# Success Criterion 2.2.1: Timing Adjustable
+
+- **Applies to**: <abbr title="Single A">A</abbr>, <abbr title="Double A">AA</abbr>.
+- In <abbr title="Triple A">AAA</abbr>, this is superceded by [2.2.3: No Timing](./2_2_3).
+
+## Definition
+
+For each time limit that is set by the content, at least one of the following is true:
+
+1.  **Turn off:** The user is allowed to turn off the time limit before encountering it; or
+2.  **Adjust:** The user is allowed to adjust the time limit before encountering it over a wide range that is at least ten times the length of the default setting; or
+3.  **Extend:** The user is warned before time expires and given at least 20 seconds to extend the time limit with a simple action (for example, "press the space bar"), and the user is allowed to extend the time limit at least ten times; or
+4.  **Real-time Exception:** The time limit is a required part of a real-time event (for example, an auction), and no alternative to the time limit is possible; or
+5.  **Essential Exception:** The time limit is essential and extending it would invalidate the activity; or
+6.  **20 Hour Exception:** The time limit is longer than 20 hours.
+
+The full ["understanding" page for Success Criterion 2.2.1](http://www.w3.org/TR/UNDERSTANDING-WCAG20/time-limits-required-behaviors.html) is available from the W3C.
+
+## Techniques tested
+
+### Table of contents
+
+- F41: Failure of SCs 2.2.1, 2.2.4, and 3.2.5 due to using meta refresh with a time-out

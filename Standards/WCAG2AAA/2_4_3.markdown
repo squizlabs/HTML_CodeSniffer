@@ -1,0 +1,20 @@
+---
+title: Success Criterion 2.4.3, Focus Order
+layout: default
+---
+
+# Success Criterion 2.4.3: Focus Order
+
+- **Applies to**: <abbr title="Single A">A</abbr>, <abbr title="Double A">AA</abbr>, <abbr title="Triple A">AAA</abbr>.
+
+## Definition
+
+If a Web page can be navigated sequentially and the navigation sequences affect meaning or operation, focusable components receive focus in an order that preserves meaning and operability.
+
+The full ["understanding" page for Success Criterion 2.4.3](http://www.w3.org/TR/UNDERSTANDING-WCAG20/navigation-mechanisms-focus-order.html) is available from the W3C.
+
+## Techniques tested
+
+### Table of contents
+
+- H4: Creating a logical tab order through links, form controls, and objects

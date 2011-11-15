@@ -1,0 +1,22 @@
+---
+title: Success Criterion 3.2.5: Change On Request
+layout: default
+---
+
+# Success Criterion 3.2.5: Change On Request
+
+- **Applies to**: <abbr title="Triple A">AAA</abbr> only.
+
+## Definition
+
+Changes of context are initiated only by user request or a mechanism is available to turn off such changes.
+
+**Changes in context** include changes of: user agent; viewport; focus; [or] content that changes the meaning of the Web page.
+
+The full ["understanding" page for Success Criterion 3.2.5](http://www.w3.org/TR/UNDERSTANDING-WCAG20/consistent-behavior-no-extreme-changes-context.html) is available from the W3C.
+
+## Techniques tested
+
+### Table of contents
+
+- H83: Using the target attribute to open a new window on user request and indicating this in link text

@@ -5,7 +5,7 @@ layout: default
 
 # Success Criterion 1.3.1: Info and Relationships
 
-- **Applies to**: <abbr title="Single A">A</abbr>, <abbr title="Double A">AA</abbr>, <abbr title="Triple A">AAA</abbr>
+- **Applies to**: <abbr title="Single A">A</abbr>, <abbr title="Double A">AA</abbr>, <abbr title="Triple A">AAA</abbr>.
 
 ## Definition
 

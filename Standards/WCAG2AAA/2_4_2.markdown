@@ -5,7 +5,7 @@ layout: default
 
 # Success Criterion 2.4.2: Page Titled
 
-- **Applies to**: A, AA, AAA
+- **Applies to**: <abbr title="Single A">A</abbr>, <abbr title="Double A">AA</abbr>, <abbr title="Triple A">AAA</abbr>.
 
 ## Definition
 

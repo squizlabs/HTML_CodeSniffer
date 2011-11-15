@@ -5,7 +5,7 @@ layout: default
 
 # Success Criterion 1.1.1: Non-Text Content
 
-- **Applies to**: A, AA, AAA
+- **Applies to**: <abbr title="Single A">A</abbr>, <abbr title="Double A">AA</abbr>, <abbr title="Triple A">AAA</abbr>.
 
 ## Definition
 
