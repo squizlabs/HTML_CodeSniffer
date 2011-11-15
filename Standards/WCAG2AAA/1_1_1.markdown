@@ -52,12 +52,12 @@ The test for this technique is defined as:
 >
 > 1. Check that there is no adjacent a element that has the same href attribute and the same description.
 
-HTMLCodeSniffer bases its tests on the "Failure Examples" provided in the technique (which are similar to those provided below), rather than the test, for specific examples of how this test can be failed. The above test describes Failure example 3, however there are other failure examples based on how this technique can be *incorrectly* applied:
+HTML\_CodeSniffer bases its tests on the "Failure Examples" provided in the technique (which are similar to those provided below), rather than the test, for specific examples of how this test can be failed. The above test describes Failure example 3, however there are other failure examples based on how this technique can be *incorrectly* applied:
 
 - The alt text is removed from the img element while not combining the links, causing the element with the image to contain no descriptive text at all (Failure example 4);
 - The text links are combined without removing alt text from the image (Failure example 5).
 
-HTMLCodeSniffer judges links to be "adjacent" if the "a" tags are directly next to each other, or are separated by only whitespace.
+HTML\_CodeSniffer judges links to be "adjacent" if the "a" tags are directly next to each other, or are separated by only whitespace.
 
 #### Examples
 
@@ -65,16 +65,16 @@ HTMLCodeSniffer judges links to be "adjacent" if the "a" tags are directly next 
 
     <a href="htmlcs.html">
         <img src="htmlcs.png" alt="" />
-        HTMLCodeSniffer
+        HTML_CodeSniffer
     </a>
 
-The image here is presumed to be one that denotes HTMLCodeSniffer, which does not
+The image here is presumed to be one that denotes HTML\_CodeSniffer, which does not
 provide any further information than that presented in the text content in the link. In this case the image should be ignored by the assistive technology.
 
 ##### Success example 2
 
     <a href="htmlcs.pdf">
-        HTMLCodeSniffer documentation
+        HTML_CodeSniffer documentation
         <img src="pdf.png" alt="(PDF format)" />
     </a>
 
@@ -86,10 +86,10 @@ This also shows why the image and text need to be combined in the one link. If t
 ##### Error example 3
 
     <a href="htmlcs.html">
-        <img src="htmlcs.png" alt="HTMLCodeSniffer" />
+        <img src="htmlcs.png" alt="HTML_CodeSniffer" />
     </a>
     <a href="htmlcs.html">
-        HTMLCodeSniffer
+        HTML_CodeSniffer
     </a>
 
 These appear to be two visually distinct links, but to assistive technology (like a
@@ -101,7 +101,7 @@ screen reader), these are identical links, and the potential for confusion exist
         <img src="htmlcs.png" alt="" />
     </a>
     <a href="htmlcs.html">
-        HTMLCodeSniffer
+        HTML_CodeSniffer
     </a>
 
 This example is an incorrect application of this technique, because it leaves the
@@ -111,13 +111,13 @@ used by assistive technology.
 ##### Error example 5
 
     <a href="htmlcs.html">
-        <img src="htmlcs.png" alt="HTMLCodeSniffer" />
-        HTMLCodeSniffer
+        <img src="htmlcs.png" alt="HTML_CodeSniffer" />
+        HTML_CodeSniffer
     </a>
 
 This example is an incorrect application of this technique, because the image text
-duplicates the text portion of the link. It would be read as "HTMLCodeSniffer
-HTMLCodeSniffer" by a screen reader, which is problematic and confusing.
+duplicates the text portion of the link. It would be read as "HTML\_CodeSniffer
+HTML\_CodeSniffer" by a screen reader, which is problematic and confusing.
 
 ### <a id="tech-h36">H36: Using alt attributes on images used as submit buttons</a>
 
@@ -184,7 +184,7 @@ In all cases, the intent is that the alt text should convey the same **meaning**
 
 Items 2 and 3 must pass for the technique to pass.
 
-HTMLCodeSniffer will throw an error if an alt attribute is missing from an image.
+HTML\_CodeSniffer will throw an error if an alt attribute is missing from an image.
 
 Where the alt text is valid, a notice reminding testers to ensure the alt text is appropriate for the image (technique [G94](#tech-g94)) will be emitted.
 
@@ -263,7 +263,7 @@ Pure whitespace in the alt text is still considered "empty".
 
     <img src="htmlcs.png" alt="" title="Non-empty title" />
 
-HTMLCodeSniffer will throw an error on this example. If the image contains empty alt text, it should have no title.
+HTML\_CodeSniffer will throw an error on this example. If the image contains empty alt text, it should have no title.
 
 ##### Warning (?) example 5
 
@@ -279,7 +279,7 @@ This is not a good example (and would fail technique [G94](#tech-g94)), but acco
 
 This is a general catch-all technique that is implemented in certain ways, such as techniques [H37](#tech-h37), [H36](#tech-h36), etc.
 
-HTMLCodeSniffer emits a notice for technique G94 where alt text is validly used (and not null) for non-text content, to warn the user that even if there is a text alternative, it must still match the non-text content in its purpose. This can be an issue if the non-text content is updated but the text alternative is not updated at the same time.
+HTML\_CodeSniffer emits a notice for technique G94 where alt text is validly used (and not null) for non-text content, to warn the user that even if there is a text alternative, it must still match the non-text content in its purpose. This can be an issue if the non-text content is updated but the text alternative is not updated at the same time.
 
 #### Testing
 
