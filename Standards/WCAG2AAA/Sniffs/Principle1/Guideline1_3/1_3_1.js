@@ -4,12 +4,9 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
     register: function()
     {
         return [
+            '_top',
             'p',
             'div',
-            'b',
-            'i',
-            'u',
-            's',
             'input',
             'select',
             'textarea',
@@ -24,35 +21,32 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
     {
         var nodeName = element.nodeName.toLowerCase();
 
-        switch (nodeName) {
-            case 'input':
-            case 'select':
-            case 'textarea':
-            case 'button':
-                this.testLabelsOnInputs(element, top);
-            break;
+        if (element === top) {
+            this.testPresentationMarkup(top);
+        } else {
+            switch (nodeName) {
+                case 'input':
+                case 'select':
+                case 'textarea':
+                case 'button':
+                    this.testLabelsOnInputs(element, top);
+                break;
 
-            case 'p':
-            case 'div':
-                this.testNonSemanticHeading(element);
-            break;
+                case 'p':
+                case 'div':
+                    this.testNonSemanticHeading(element);
+                break;
 
-            case 'b':
-            case 'i':
-            case 'u':
-            case 's':
-                this.testPresentationMarkup(element);
-            break;
+                case 'table':
+                    this.testTableHeaders(element);
+                    this.testTableCaptionSummary(element);
+                break;
 
-            case 'table':
-                this.testTableHeaders(element);
-                this.testTableCaptionSummary(element);
-            break;
-
-            case 'fieldset':
-                this.testFieldsetLegend(element);
-            break;
-        }//end switch
+                case 'fieldset':
+                    this.testFieldsetLegend(element);
+                break;
+            }//end switch
+        }//end if
     },
 
     testLabelsOnInputs: function(element, top)
@@ -160,12 +154,13 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
         }//end if
     },
 
-    testPresentationMarkup: function(element)
+    testPresentationMarkup: function(top)
     {
-        // Presentation tags that should have no place in modern HTML.
-        var tag = element.nodeName.toLowerCase();
-        if (/^(b|i|u|s)$/.test(tag) === true) {
-            HTMLCS.addMessage(HTMLCS.ERROR, element, 'Semantic markup should be used to mark emphasised or special text so that it can be programmatically determined.', 'H49');
+        // Presentation tags and attributes that should have no place in modern HTML.
+        var tags = top.querySelectorAll('b, i, u, s, strike, tt, big, small, center, font, *[align]');
+
+        for (var i = 0; i < tags.length; i++) {
+            HTMLCS.addMessage(HTMLCS.ERROR, tags[i], 'Semantic markup should be used to mark emphasised or special text so that it can be programmatically determined.', 'H49');
         }
     },
 
