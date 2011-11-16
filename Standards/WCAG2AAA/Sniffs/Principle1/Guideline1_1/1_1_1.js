@@ -22,24 +22,46 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
     },
 
     testNullAltText: function(element) {
-        var nodeName = element.nodeName.toLowerCase();
+        var nodeName      = element.nodeName.toLowerCase();
+        var linkOnlyChild = false;
+
+        if (element.parentNode.nodeName.toLowerCase() === 'a') {
+            var prevNode = _getPreviousSiblingElement(element, null);
+            var nextNode = _getNextSiblingElement(element, null);
+
+            if ((prevNode === null) && (nextNode === null)) {
+                linkOnlyChild = true;
+            }
+        }//end if
 
         if (element.hasAttribute('alt') === false) {
             // Img tags and image submit buttons must have an alt attribute.
             if (nodeName === 'input') {
                 HTMLCS.addMessage(HTMLCS.ERROR, element, 'When using an image submit button, specify a short text alternative with the alt attribute that describes the function of the button.', 'H36.1');
             } else {
-                HTMLCS.addMessage(HTMLCS.ERROR, element, 'When using the img element, specify a short text alternative with the alt attribute.', 'H37');
+                if (linkOnlyChild === true) {
+                    HTMLCS.addMessage(HTMLCS.ERROR, element, 'If an img element is the only content of the a element, check that its text alternative describes the purpose of the link.', 'H30.2');
+                } else {
+                    HTMLCS.addMessage(HTMLCS.ERROR, element, 'When using the img element, specify a short text alternative with the alt attribute.', 'H37');
+                }
             }
         } else if (!element.getAttribute('alt') || /^\s*$/.test(element.getAttribute('alt')) === true) {
             if (nodeName === 'input') {
+                // Image submit buttons cannot have an empty alt text.
                 HTMLCS.addMessage(HTMLCS.ERROR, element, 'Image submit button must contain alt text that describes the function of the button.', 'H36.2');
             } else {
                 if (element.hasAttribute('title') === true) {
                     HTMLCS.addMessage(HTMLCS.ERROR, element, 'Img element with empty alt text must have absent or empty title attribute.', 'H67.1');
                 } else {
-                    // Img tags cannot have an empty alt attribute.
-                    HTMLCS.addMessage(HTMLCS.WARNING, element, 'Img element is marked so that it is ignored by Assistive Technology.', 'H67.2');
+                    // Img tags cannot have an empty alt text if it is the only
+                    // content in a link (as the link requires text). Otherwise, it
+                    // can have empty alt text but it must be an image that should be
+                    // ignored.
+                    if (linkOnlyChild === true) {
+                        HTMLCS.addMessage(HTMLCS.ERROR, element, 'If an img element is the only content of the a element, check that its text alternative describes the purpose of the link.', 'H30.2');
+                    } else {
+                        HTMLCS.addMessage(HTMLCS.WARNING, element, 'Img element is marked so that it is ignored by Assistive Technology.', 'H67.2');
+                    }
                 }
             }
         } else {
@@ -86,8 +108,8 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
             //     (This leaves one link with no text at all - the two should be
             //      combined into one link.)
             if (nodes.anchor.text === '') {
-                var prevLink = this._getPreviousAdjacentAnchorNode(anchor);
-                var nextLink = this._getNextAdjacentAnchorNode(anchor);
+                var prevLink = this._getPreviousSiblingElement(anchor, 'a', true);
+                var nextLink = this._getNextSiblingElement(anchor, 'a', true);
 
                 if (prevLink !== null) {
                     nodes.previous = {
@@ -187,59 +209,115 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
         return alt;
     },
 
-    _getPreviousAdjacentAnchorNode: function(element) {
-        var prevLink = element.previousSibling;
-        while (prevLink !== null) {
-            if (prevLink.nodeType === 3) {
-                // If the previous node is a text node and it doesn't just contain
-                // whitespace, then there is no adjacent "a" node and it can
-                // be ignored.
-                if (/^\s*$/.test(prevLink.nodeValue) === false) {
-                    prevLink = null;
+    /**
+     * Get the previous sibling element.
+     *
+     * This is a substitute for previousSibling where there are text, comment and
+     * other nodes between elements.
+     *
+     * If tagName is null, immediate is ignored and effectively defaults to true: the
+     * previous element will be returned regardless of what it is.
+     *
+     * @param {DOMNode} element           Element to start from.
+     * @param {String}  [tagName=null]    Only match this tag. If null, match any.
+     *                                    Not case-sensitive.
+     * @param {Boolean} [immediate=false] Only match if the tag in tagName is the
+     *                                    immediately preceding non-whitespace node.
+     *
+     * @returns {DOMNode} The appropriate node or null if none is found.
+     */
+    _getPreviousSiblingElement: function(element, tagName, immediate) {
+        if (tagName === undefined) {
+            tagName = null;
+        }
+
+        if (immediate === undefined) {
+            immediate = false;
+        }
+
+        var prevNode = element.previousSibling;
+        while (prevNode !== null) {
+            if (prevNode.nodeType === 3) {
+                if ((/^\s*$/.test(prevNode.nodeValue) === false) && (immediate === truee)) {
+                    // Failed. Immediate node requested and we got text instead.
+                    prevNode = null;
                     break;
                 }
-            } else if (prevLink.nodeType === 1) {
+            } else if (prevNode.nodeType === 1) {
                 // If this an element, we break regardless. If it's an "a" node,
                 // it's the one we want. Otherwise, there is no adjacent "a" node
                 // and it can be ignored.
-                if (prevLink.nodeName.toLowerCase() !== 'a') {
-                    prevLink = null;
+                if ((tagName === null) || (prevNode.nodeName.toLowerCase() === tagName)) {
+                    // Correct element, or we aren't picky.
+                    break;
+                } else if (immediate === true) {
+                    // Failed. Immediate node requested and not correct tag name.
+                    prevNode = null;
+                    break;
                 }
 
                 break;
             }//end if
 
-            prevLink = prevLink.previousSibling;
+            prevNode = prevNode.previousSibling;
         }//end if
 
-        return prevLink;
+        return prevNode;
     },
 
-    _getNextAdjacentAnchorNode: function(element) {
-        var nextLink = element.nextSibling;
-        while (nextLink !== null) {
-            if (nextLink.nodeType === 3) {
-                // If the previous node is a text node and it doesn't just contain
-                // whitespace, then there is no adjacent "a" node and it can
-                // be ignored.
-                if (/^\s*$/.test(nextLink.nodeValue) === false) {
-                    nextLink = null;
+    /**
+     * Get the previous sibling element.
+     *
+     * This is a substitute for previousSibling where there are text, comment and
+     * other nodes between elements.
+     *
+     * If tagName is null, immediate is ignored and effectively defaults to true: the
+     * previous element will be returned regardless of what it is.
+     *
+     * @param {DOMNode} element           Element to start from.
+     * @param {String}  [tagName=null]    Only match this tag. If null, match any.
+     *                                    Not case-sensitive.
+     * @param {Boolean} [immediate=false] Only match if the tag in tagName is the
+     *                                    immediately preceding non-whitespace node.
+     *
+     * @returns {DOMNode} The appropriate node or null if none is found.
+     */
+    _getNextSiblingElement: function(element, tagName, immediate) {
+        if (tagName === undefined) {
+            tagName = null;
+        }
+
+        if (immediate === undefined) {
+            immediate = false;
+        }
+
+        var nextNode = element.nextSibling;
+        while (nextNode !== null) {
+            if (nextNode.nodeType === 3) {
+                if ((/^\s*$/.test(nextNode.nodeValue) === false) && (immediate === truee)) {
+                    // Failed. Immediate node requested and we got text instead.
+                    nextNode = null;
                     break;
                 }
-            } else if (nextLink.nodeType === 1) {
+            } else if (nextNode.nodeType === 1) {
                 // If this an element, we break regardless. If it's an "a" node,
                 // it's the one we want. Otherwise, there is no adjacent "a" node
                 // and it can be ignored.
-                if (nextLink.nodeName.toLowerCase() !== 'a') {
-                    nextLink = null;
+                if ((tagName === null) || (nextNode.nodeName.toLowerCase() === tagName)) {
+                    // Correct element, or we aren't picky.
+                    break;
+                } else if (immediate === true) {
+                    // Failed. Immediate node requested and not correct tag name.
+                    nextNode = null;
+                    break;
                 }
 
                 break;
             }//end if
 
-            nextLink = nextLink.nextSibling;
+            nextNode = nextNode.nextSibling;
         }//end if
 
-        return nextLink;
+        return nextNode;
     }
 };
