@@ -30,12 +30,15 @@ The full ["understanding" page for Success Criterion 1.1.1](http://www.w3.org/TR
 ### Table of contents
 
 - [H2: Combining adjacent image and text links for the same resource](#tech-h2)
+- [H24: Providing text alternatives for the area elements of image maps](#tech-h24)
 - [H36: Using alt attributes on images used as submit buttons](#tech-h36)
 - [H37: Using alt attributes on img elements](#tech-h37)
 - [H67: Using null alt text and no title attribute on img elements for images that <acronym title="Assistive Technology">AT</acronym> should ignore](#tech-h67)
 - [G94: Providing short text alternative for non-text content that serves the same purpose and presents the same information as the non-text content](#tech-g94)
 
 ### <a id="tech-h2">H2: Combining adjacent image and text links for the same resource</a>
+
+[Technique H2](http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H2) refers both to combined image-and-text links, and links contained in adjacent cells in a table. Only the first is currently implemented.
 
 When a link containing an img element and text need to be created, the best practice is to put them together in one link (rather than two). The img element should only contain text if it provides information the text does not provide; otherwise the alt text should remain blank.
 
@@ -45,8 +48,6 @@ If the image's text alternative duplicates the link text, the concern is that:
 - If the links are combined but alt text remains, assistive technology would "stutter" in that it would read the text description of the link twice.
 
 #### Testing
-
-The test for this technique is defined as:
 
 > For each a in the content that contains an img element:
 >
@@ -61,63 +62,97 @@ HTML\_CodeSniffer judges links to be "adjacent" if the "a" tags are directly nex
 
 #### Examples
 
-##### Success example 1
+1.  Successful usage of the technique where the image does not provide any further detail to the purpose of the link than the link text itself. In this example, the image describes HTML\_CodeSniffer, which is already described in the link text. Therefore the image should be ignored by assistive technology.
 
-    <a href="htmlcs.html">
-        <img src="htmlcs.png" alt="" />
-        HTML_CodeSniffer
-    </a>
+    Example:
 
-The image here is presumed to be one that denotes HTML\_CodeSniffer, which does not
-provide any further information than that presented in the text content in the link. In this case the image should be ignored by the assistive technology.
+        <a href="htmlcs.html">
+            <img src="htmlcs.png" alt="" />
+            HTML_CodeSniffer
+        </a>
 
-##### Success example 2
+2.  Successful usage of the technique, where the image adds additional meaning to the link. In this example, the image is an icon indicating the link leads to a PDF file - this needs alt text to describe its purpose.
 
-    <a href="htmlcs.pdf">
-        HTML_CodeSniffer documentation
-        <img src="pdf.png" alt="(PDF format)" />
-    </a>
+    Example:
 
-Here an image (presumably a mini-PDF logo icon) is used to denote that the link points to a PDF document, and therefore provides further information to the text alternative. Therefore, using alt text to describe the purpose of the image is
-appropriate.
+        <a href="htmlcs.pdf">
+            HTML_CodeSniffer documentation
+            <img src="pdf.png" alt="(as a PDF)" />
+        </a>
 
-This also shows why the image and text need to be combined in the one link. If this were two separate links, we would have a link to the file with a description "(PDF format)", which does not state the purpose of the document.
+#### Errors
 
-##### Error example 3
+1.  Fails because: the text equivalent of both the links are the same. They may appear to be visually distinct links, but to a screen reader, they are identical. (Corresponds to "Failure Example 3" in W3C documentation.)
 
-    <a href="htmlcs.html">
-        <img src="htmlcs.png" alt="HTML_CodeSniffer" />
-    </a>
-    <a href="htmlcs.html">
-        HTML_CodeSniffer
-    </a>
+    Example:
 
-These appear to be two visually distinct links, but to assistive technology (like a
-screen reader), these are identical links, and the potential for confusion exists.
+        <a href="htmlcs.html">
+            <img src="htmlcs.png" alt="HTML_CodeSniffer" />
+        </a>
+        <a href="htmlcs.html">
+            HTML_CodeSniffer
+        </a>
 
-##### Error example 4
+2.  Fails because: the technique has been applied incorrectly. Although the duplication of link text has been avoided, a link is now without any text alternative. (Corresponds to "Failure Example 4" in W3C documentation.)
 
-    <a href="htmlcs.html">
-        <img src="htmlcs.png" alt="" />
-    </a>
-    <a href="htmlcs.html">
-        HTML_CodeSniffer
-    </a>
+        <a href="htmlcs.html">
+            <img src="htmlcs.png" alt="" />
+        </a>
+        <a href="htmlcs.html">
+            HTML_CodeSniffer
+        </a>
 
-This example is an incorrect application of this technique, because it leaves the
-image link with no text alternative, and therefore no description at all that can be
-used by assistive technology.
+3.  Fails because: the technique has been applied incorrectly. The links have been combined into one, but the alt text has not been removed. It would be read as "HTML\_CodeSniffer HTML\_CodeSniffer" by a screen reader, which is problematic and confusing. (Corresponds to "Failure Example 5" in W3C documentation.)
 
-##### Error example 5
+    Example:
 
-    <a href="htmlcs.html">
-        <img src="htmlcs.png" alt="HTML_CodeSniffer" />
-        HTML_CodeSniffer
-    </a>
+        <a href="htmlcs.html">
+            <img src="htmlcs.png" alt="HTML_CodeSniffer" />
+            HTML_CodeSniffer
+        </a>
 
-This example is an incorrect application of this technique, because the image text
-duplicates the text portion of the link. It would be read as "HTML\_CodeSniffer
-HTML\_CodeSniffer" by a screen reader, which is problematic and confusing.
+### <a id="tech-h24">H24: Providing text alternatives for the area elements of image maps</a>
+
+Image maps split the visual space of an image into a number of clickable links. Image maps can be implemented *client-side* (inside the HTML document) or *server-side* (coordinates sent as a query string to a script). The former should be used wherever possible: server-side image maps are not accessible on their own, because the clickable areas implemented are not discernable at the client side, and are certainly not accessible with a keyboard.
+
+In a client-side image map, an img element is wedded to a map of clickable areas, generally using the area element. Each area should contain alt text that should display as part of a text alternative to the map when images are disabled. If the alt text is missing or empty, it's like having an "a" element without link text: nothing explains the purpose of the clickable area.
+
+It is also recommended that each area element contain a title attribute, because browsers do not show the alt text for the area when images are enabled - particularly if its function is ambiguous from the image alone.
+
+#### Testing
+
+> For each area element in an image map:
+>
+> 1. Check that the area element has an alt attribute.
+> 2. Check that the text alternative specified by the alt attribute serves the same purpose as the part of image map image referenced by the area element of the imagemap.
+
+#### Examples
+
+1.  Area contains an appropriately filled alt attribute. (Will emit a notice to flag that this alt text should correctly reflect the purpose of the area being mapped.)
+
+    Example:
+
+        <map name="TestMap">
+            <area shape="rect" coords="0,0,100,100" href="htmlcs.html" alt="HTML_CodeSniffer Downloads" />
+        </map>
+
+#### Errors
+
+1.  Fails because an area element is provided without an alt attribute.
+
+    Example:
+
+        <map name="TestMap">
+            <area shape="rect" coords="0,0,100,100" href="htmlcs.html" />
+        </map>
+
+1.  Fails because an area element is provided with an alt attribute which is empty or entirely consists of whitespace.
+
+    Example:
+
+        <map name="TestMap">
+            <area shape="rect" coords="0,0,100,100" href="htmlcs.html" alt="" />
+        </map>
 
 ### <a id="tech-h36">H36: Using alt attributes on images used as submit buttons</a>
 
@@ -136,35 +171,41 @@ Both of the above items must pass for this sufficient technique to pass.
 
 #### Examples
 
-##### Success example 1
+1.  Successful usage. The alt text should reflect the purpose of the submission action, including any important words on the image (see technique [G94](#tech-g94)).
 
-    <input type="image" src="submit.png" alt="Submit Form" />
+    Example:
 
-Standard example. The alt text should mirror the purpose of the submission action, including any important words on the image (see technique [G94](#tech-g94)).
+    	<input type="image" src="submit.png" alt="Submit Form" /> 
 
-##### Error example 2
+#### Errors
 
-    <input type="image" src="submit.png" />
+1.  Fails because: no alt attribute is provided.
 
-Error due to no alt attribute provided.
+    Example:
 
-##### Error example 3
+    	<input type="image" src="submit.png" />
 
-    <input type="image" src="submit.png" alt="" />
+2.  Fails because: the alt text is empty.
 
-Error due to empty alt text specified. This would potentially mean the method for submitting the form is hidden from assistive technlogy.
+    Example:
 
-##### Error example 4
+    	<input type="image" src="submit.png" alt="" />
 
-    <input type="image" src="submit.png" alt="   " />
+3.  Fails because: once whitespace is trimmed, the alt text is empty.
 
-Error due to empty alt text specified. Even those there is whitespace, this is the same issue as Example 3.
+	Example:
 
-##### Manual fail example 5
+    	<input type="image" src="submit.png" alt="   " />
 
-    <input type="image" src="submit.png" alt="big red button" />
+#### Cases for manual failure
 
-Will not fail the automated testing of this technique. However, this should be manually failed, as this description fails item 2 of the testing (it does not describe the purpose of the submission action). It will also fail technique [G94](#tech-g94) as this is not an appropriate short text alternative.
+1.  Submit button described as a "big red button". No error will be thrown as the alt text is present, but the notice for appropriate alt text will be emitted. This does not describe the function of the button, and thus should be failed manually.
+
+    In any case, this description would potentially also fail Success Criteria 1.3.3 (Sensory Characteristics) and 1.4.1 (Use of Colour), both at <abbr title="Single A">A</abbr> level, because references are made to its size and colour that are useless to blind users.
+
+    Example:
+    
+    	<input type="image" src="submit.png" alt="big red button" />
 
 ### <a id="tech-h37">H37: Using alt attributes on img elements</a>
 
@@ -190,38 +231,27 @@ Where the alt text is valid, a notice reminding testers to ensure the alt text i
 
 #### Examples
 
-The examples below relate to a hypothetical "Subscribe" image, containing a newspaper icon, inviting users to subscribe to a site's mailing list or newsletter.
+1.  Example of an image being used for a button containing a newspaper icon and an
+    invitation to subscribe to a site's newsletter.
 
-##### Success example 1
+    Example:
+    
+    	<img src="subscribe.png" alt="Subscribe to our newsletter" />
 
-    <img src="subscribe.png" alt="Subscribe to our newsletter" />
+#### Errors
 
-Standard example. The alt text should mirror the purpose of the image, including any important words on the image (see technique [G94](#tech-g94)). This may be appropriate if the image states "Subscribe to our newsletter" - or even just "Subscribe", if there is not enough context around the image to determine what you are subscribing to.
+1.	Fails because: no alt attribute is provided.
 
-##### Error example 2
+	Example:
 
-    <img src="subscribe.png" />
+		<img src="subscribe.png" />
+		
+#### Cases for manual failure
 
-Error due to no alt attribute provided.
+1.  Img elements can be manually failed on testing item 3, if important words in the image aren't part of the alt text.
 
-##### Manual fail example 3
-
-    <img src="subscribe.png" alt="" />
-
-This should not fail this technique alone. However, a warning will be flagged under technique [H67](#tech-h67), which relates to images that should be ignored by assistive technology. In this case, this img element should be manually failed, as it is obvious that this image is **not** purely for decorative purposes.
-
-##### Manual fail example 4
-
-    <img src="subscribe.png" alt="   " />
-
-Should be interpreted the same as example 3. White space should not change how this is interpreted.
-
-##### Manual fail example 5
-
-    <img src="subscribe.png" alt="newspaper icon" />
-
-This would not fail the automated processes of this technique alone. However, a notice will be flagged under technique [G94](#tech-h94), which relates to images that should be ignored by assistive technology. In this case, the img element should be manually failed.
-
+2.  Images can be manually failed on other grounds. For instance, a non-decorative image with empty alt text (see technique [H67](#tech-h67)), or the alt text not describing the image properly (see technique [G94](#tech-g94)). These examples are not provided here.
+		
 ### <a id="tech-h67">H67: Using null alt text and no title attribute on img elements for images that <acronym title="assistive technology">AT</acronym> should ignore</a>
 
 WCAG 2.0 allows for images without a function and purpose - referred to as "purely decorative" - to be marked with an empty alt attribute, **and** an empty or absent title attribute.
@@ -233,7 +263,7 @@ Omitting the alt attribute completely is an error (under technique [H37](#tech-h
 > For each image that should be ignored:
 >
 > 1. Check that title attribute is either absent or empty.
-> 2. Check that alt attribute is present and empty or contains only whitespace (but not &nbsp;)
+> 2. Check that alt attribute is present and empty or contains only whitespace (but not &amp;nbsp;)
 
 Both items have to pass for an image to be considered successfully ignored.
 
@@ -241,39 +271,47 @@ If an image is marked as ignored, a warning is emitted to that effect.
 
 #### Examples
 
-##### Warning example 1
+All valid examples of ignored images should emit a **warning** stating that the image is ignored by assistive technology.
 
-    <img src="htmlcs.png" alt="" />
+1.  Completely empty alt text, and no title attribute.
 
-Standard example with completely empty alt text, and no title attribute.
+	Example:
 
-##### Warning example 2
+    	<img src="htmlcs.png" alt="" />
 
-    <img src="htmlcs.png" alt="" title="" />
+1.  Completely empty alt text, title attribute also empty.
 
-The standard allows the title attribute to be present but empty.
+    Example:
+    
+        <img src="htmlcs.png" alt="" title="" />
 
-##### Warning example 3
+1.  Alt text is only whitespace.
 
-    <img src="htmlcs.png" alt="   " />
+	Example:
+    
+		<img src="htmlcs.png" alt="   " />
+    
+#### Errors
 
-Pure whitespace in the alt text is still considered "empty".
+1.  Fails because: an image that should be ignored (due to no alt text) should not contain a title attribute.
 
-##### Error example 4
+	Example:
 
-    <img src="htmlcs.png" alt="" title="Non-empty title" />
+    	<img src="htmlcs.png" alt="" title="Non-empty title" />
 
-HTML\_CodeSniffer will throw an error on this example. If the image contains empty alt text, it should have no title.
+#### Non-examples 
 
-##### Warning (?) example 5
+These examples should not trigger anything from this test.
 
-    <img src="htmlcs.png" alt="&nbsp;" />
+1.  Non-breaking spaces should not be treated as "empty." This is a rather artificial example and of course would break the rule of alt texts being descriptive.
 
-This is not a good example (and would fail technique [G94](#tech-g94)), but according to the test, this should not be considered an "ignored" image due to the presence of a <acronym title="non-breaking space">NBSP</acronym>.
+	Example:
 
-> This currently does not throw anything different to example 1, because it uses "<abbr title="backslash-s">\s</abbr>" as the space character wildcard. The ECMAScript includes <acronym title="non-breaking space">NBSP</acronym> as part of "<abbr title="backslash-s">\s</abbr>", which doesn't fulfil example 5.
->
-> If the alt text contains only <acronym title="non-breaking spaces">NBSPs</acronym> (and other whitespace), this should probably be an error, as the intention is likely that the image will be ignored by assistive technology, but the WCAG 2.0 test suggests it should not be.
+    	<img src="htmlcs.png" alt="&nbsp;" />
+
+    > This currently does not throw anything different to example 1, because it uses "<abbr title="backslash-s">\s</abbr>" as the space character wildcard. The ECMAScript includes <acronym title="non-breaking space">NBSP</acronym> as part of "<abbr title="backslash-s">\s</abbr>", which doesn't fulfil example 5.
+    >	
+	> If the alt text contains only <acronym title="non-breaking spaces">NBSPs</acronym> (and other whitespace), this should probably be an error, as the intention is likely that the image will be ignored by assistive technology, but the WCAG 2.0 test suggests it should not be.
 
 ### <a id="tech-g94">G94: Providing short text alternative for non-text content that serves the same purpose and presents the same information as the non-text content</a>
 
