@@ -3,27 +3,42 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
     {
         return [
             'img',
-            'input'
+            'input',
+            'area',
         ];
 
     },
 
     process: function(element)
     {
-        if (element.nodeName.toLowerCase() === 'img') {
-            this.testNullAltText(element);
-            this.testLinkStutter(element);
-        } else if (element.nodeName.toLowerCase() === 'input') {
-            // Only look for input type="image" tags.
-            if ((element.hasAttribute('type') === true) && (element.getAttribute('type') === 'image')) {
+        var nodeName = element.nodeName.toLowerCase();
+
+        switch (nodeName) {
+            case 'img':
                 this.testNullAltText(element);
-            }
+                this.testLinkStutter(element);
+            break;
+
+            case 'input':
+                // Only look for input type="image" tags.
+                if ((element.hasAttribute('type') === true) && (element.getAttribute('type') === 'image')) {
+                    this.testNullAltText(element);
+                }
+            break;
+
+            case 'area':
+                // Client-side image maps.
+                this.testNullAltText(element);
+            break;
         }
     },
 
-    testNullAltText: function(element) {
+    testNullAltText: function(element)
+    {
         var nodeName      = element.nodeName.toLowerCase();
         var linkOnlyChild = false;
+        var missingAlt    = false;
+        var nullAlt       = false;
 
         if (element.parentNode.nodeName.toLowerCase() === 'a') {
             var prevNode = _getPreviousSiblingElement(element, null);
@@ -35,48 +50,58 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
         }//end if
 
         if (element.hasAttribute('alt') === false) {
-            // Img tags and image submit buttons must have an alt attribute.
-            if (nodeName === 'input') {
-                HTMLCS.addMessage(HTMLCS.ERROR, element, 'When using an image submit button, specify a short text alternative with the alt attribute that describes the function of the button.', 'H36.1');
-            } else {
-                if (linkOnlyChild === true) {
-                    HTMLCS.addMessage(HTMLCS.ERROR, element, 'If an img element is the only content of the a element, check that its text alternative describes the purpose of the link.', 'H30.2');
-                } else {
-                    HTMLCS.addMessage(HTMLCS.ERROR, element, 'When using the img element, specify a short text alternative with the alt attribute.', 'H37');
-                }
-            }
+            missingAlt = true;
         } else if (!element.getAttribute('alt') || /^\s*$/.test(element.getAttribute('alt')) === true) {
-            if (nodeName === 'input') {
-                // Image submit buttons cannot have an empty alt text.
-                HTMLCS.addMessage(HTMLCS.ERROR, element, 'Image submit button must contain alt text that describes the function of the button.', 'H36.2');
-            } else {
-                if (element.hasAttribute('title') === true) {
-                    HTMLCS.addMessage(HTMLCS.ERROR, element, 'Img element with empty alt text must have absent or empty title attribute.', 'H67.1');
-                } else {
-                    // Img tags cannot have an empty alt text if it is the only
-                    // content in a link (as the link requires text). Otherwise, it
-                    // can have empty alt text but it must be an image that should be
-                    // ignored.
-                    if (linkOnlyChild === true) {
-                        HTMLCS.addMessage(HTMLCS.ERROR, element, 'If an img element is the only content of the a element, check that its text alternative describes the purpose of the link.', 'H30.2');
+            nullAlt = true;
+        }
+
+        // Now determine which test(s) should fire.
+        switch (nodeName) {
+            case 'img':
+                if ((linkOnlyChild === true) && ((missingAlt === true) || (nullAlt === true))) {
+                    // Img tags cannot have an empty alt text if it is the
+                    // only content in a link (as the link would not have a text
+                    // alternative).
+                    HTMLCS.addMessage(HTMLCS.ERROR, element, 'If an img element is the only content of the a element, check that its text alternative describes the purpose of the link.', 'H30.2');
+                } else if (missingAlt === true) {
+                    HTMLCS.addMessage(HTMLCS.ERROR, element, 'When using the img element, specify a short text alternative with the alt attribute.', 'H37');
+                } else if (nullAlt === true) {
+                    if (element.hasAttribute('title') === true) {
+                        HTMLCS.addMessage(HTMLCS.ERROR, element, 'Img element with empty alt text must have absent or empty title attribute.', 'H67.1');
                     } else {
                         HTMLCS.addMessage(HTMLCS.WARNING, element, 'Img element is marked so that it is ignored by Assistive Technology.', 'H67.2');
                     }
+                } else {
+                    HTMLCS.addMessage(HTMLCS.NOTICE, element, 'Ensure that the img element\'s alt text serves the same purpose and presents the same information as the image.', 'G94');
                 }
-            }
-        } else {
-            // Filled in alt text. Throw a notice to flag that the alt text should be
-            // in line with the content of the image, or the purpose of the submit
-            // button (in case it is not kept up to date, for instance).
-            if (nodeName === 'input') {
-                HTMLCS.addMessage(HTMLCS.NOTICE, element, 'Ensure that the image submit button\'s alt text identifies the purpose of the button.', 'G94');
-            } else {
-                HTMLCS.addMessage(HTMLCS.NOTICE, element, 'Ensure that the img element\'s alt text serves the same purpose and presents the same information as the image.', 'G94');
-            }
-        }
+            break;
+
+            case 'input':
+                // Image submit buttons.
+                if ((missingAlt === true) || (nullAlt === true)) {
+                    HTMLCS.addMessage(HTMLCS.ERROR, element, 'When using an image submit button, specify a short text alternative with the alt attribute that describes the function of the button.', 'H36');
+                } else {
+                    HTMLCS.addMessage(HTMLCS.NOTICE, element, 'Ensure that the image submit button\'s alt text identifies the purpose of the button.', 'G94');
+                }
+            break;
+
+            case 'area':
+                // Area tags in a client-side image map.
+                if ((missingAlt === true) || (nullAlt === true)) {
+                    HTMLCS.addMessage(HTMLCS.ERROR, element, 'For each area element in an image map, check that the area element has a text alternative (using the alt attribute) that serves the same purpose as the part of image map image it references.', 'H24');
+                } else {
+                    HTMLCS.addMessage(HTMLCS.NOTICE, element, 'Ensure that the area element\'s text alternative serves the same purpose as the part of image map image it references.', 'H24.2');
+                }
+            break;
+
+            default:
+                // No other tags defined.
+            break;
+        }//end switch
     },
 
-    testLinkStutter: function(element) {
+    testLinkStutter: function(element)
+    {
         if (element.parentNode.nodeName.toLowerCase() === 'a') {
             var anchor = element.parentNode;
 
@@ -148,7 +173,8 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
         }//end if
     },
 
-    _getLinkTextContent: function(anchor) {
+    _getLinkTextContent: function(anchor)
+    {
         var anchor = anchor.cloneNode(true);
         var nodes  = [];
         for (var i = 0; i < anchor.childNodes.length; i++) {
@@ -177,7 +203,8 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
         return text;
     },
 
-    _getLinkAltText: function(anchor) {
+    _getLinkAltText: function(anchor)
+    {
         var anchor = anchor.cloneNode(true);
         var nodes  = [];
         for (var i = 0; i < anchor.childNodes.length; i++) {
