@@ -5,6 +5,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
             'img',
             'input',
             'area',
+            'object',
         ];
 
     },
@@ -30,9 +31,25 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
                 // Client-side image maps.
                 this.testNullAltText(element);
             break;
+
+            case 'object':
+                this.testObjectTextAlternative(element);
+            break;
         }
     },
 
+    /**
+     * Test for missing or null alt text in certain elements.
+     *
+     * Tested elements are:
+     * - IMG elements
+     * - INPUT elements with type="image" (ie. image submit buttons).
+     * - AREA elements (ie. in client-side image maps).
+     *
+     * @param {DOMNode} element The element to test.
+     *
+     * @returns void
+     */
     testNullAltText: function(element)
     {
         var nodeName      = element.nodeName.toLowerCase();
@@ -111,7 +128,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
             var nodes = {
                 anchor: {
                     href: anchor.getAttribute('href'),
-                    text: this._getLinkTextContent(anchor),
+                    text: this._getElementTextContent(anchor, false),
                     alt: this._getLinkAltText(anchor)
                 }
             }
@@ -139,7 +156,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
                 if (prevLink !== null) {
                     nodes.previous = {
                         href: prevLink.getAttribute('href'),
-                        text: this._getLinkTextContent(prevLink),
+                        text: this._getElementTextContent(prevLink, false),
                         alt: this._getLinkAltText(prevLink)
                     }
                 }
@@ -147,7 +164,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
                 if (nextLink !== null) {
                     nodes.next = {
                         href: nextLink.getAttribute('href'),
-                        text: this._getLinkTextContent(nextLink),
+                        text: this._getElementTextContent(nextLink, false),
                         alt: this._getLinkAltText(nextLink)
                     }
                 }
@@ -173,8 +190,38 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
         }//end if
     },
 
-    _getLinkTextContent: function(anchor)
+    /**
+     * Test the inclusion of a text alternative on OBJECT tags.
+     *
+     * OBJECT tags can be nested inside themselves to provide lesser-functioning
+     * alternatives to the primary (outermost) tag, but a text alternative must be
+     * provided inside. Alt text from an image is sufficient.
+     *
+     * @param {DOMNode} element The element to test.
+     *
+     * @returns void
+     */
+    testObjectTextAlternative: function(element)
     {
+        // Test firstly for whether we have an object alternative.
+        var childObject = element.querySelector('object');
+
+        // If we have an object as our alternative, skip it. Pass the blame onto
+        // the child.
+        if (childObject === null) {
+            var textAlt = this._getElementTextContent(element, true);
+            if (textAlt === '') {
+                HTMLCS.addMessage(HTMLCS.ERROR, element, 'Check that the body of each object element contains a text alternative for the object.', 'H53');
+            }
+        }//end if
+    },
+
+    _getElementTextContent: function(anchor, includeAlt)
+    {
+        if (includeAlt === undefined) {
+            includeAlt = true;
+        }
+
         var anchor = anchor.cloneNode(true);
         var nodes  = [];
         for (var i = 0; i < anchor.childNodes.length; i++) {
@@ -187,7 +234,12 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
 
             // If it's an element, add any sub-nodes to the process list.
             if (node.nodeType === 1) {
-                if (node.nodeName.toLowerCase() !== 'img') {
+                if (node.nodeName.toLowerCase() === 'img') {
+                    // If an image, include the alt text unless we are blocking it.
+                    if ((includeAlt === true) && (node.hasAttribute('alt') === true)) {
+                        text.push(node.getAttribute('alt'));
+                    }
+                } else {
                     for (var i = 0; i < node.childNodes.length; i++) {
                         nodes.push(node.childNodes[i]);
                     }
