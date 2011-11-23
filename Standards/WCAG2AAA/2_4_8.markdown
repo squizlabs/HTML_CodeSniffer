@@ -1,0 +1,120 @@
+---
+title: Success Criterion 2.4.8, Location
+layout: default
+---
+
+# Success Criterion 2.4.9: Link Purpose (Link Only)
+
+- **Applies to**: <abbr title="Triple A">AAA</abbr> only.
+
+## Definition
+
+Information about the user's location within a set of Web pages is available.
+
+The full ["understanding" page for Success Criterion 2.4.8](http://www.w3.org/TR/UNDERSTANDING-WCAG20/navigation-mechanisms-location.html) is available from the W3C.
+
+This only tests the usage of link elements, however the following techniques are also sufficient where appropriate:
+- Providing a breadcrumb trail.
+- Providing a site map.
+- Indicating current location within navigation bars.
+
+With the latter, just changing the background colour is not sufficient (see Success Criterion 1.4.1, Use of Colour): something else should change, such as disabling the link, or adding an indicator such as an asterisk or bullet.
+
+## Techniques tested
+
+### Table of contents
+
+- [H59: Using the link element and navigation tools](#tech-h59)
+
+### <a id="tech-h59">H59: Using the link element and navigation tools</a>
+
+#### Testing
+
+#### Examples
+
+1.  Successful usage.
+
+    Example:
+    
+        <html>
+            <head>
+                <link rel="start" href="start.html" />
+            </head>
+            <body>
+            </body>
+        </html>
+        
+#### Errors
+
+1.  Successful usage.
+
+    Example:
+    
+        <html>
+            <head>                
+            </head>
+            <body>
+                <link rel="start" href="start.html" />
+            </body>
+        </html>
+
+1.  Fails because: no rel attribute is specified.
+
+    Example:
+    
+        <html>
+            <head>
+                <link href="start.html" />
+            </head>
+            <body>
+            </body>
+        </html>
+
+1.  Fails because: a rel attribute is specified but it is empty.
+
+    Example:
+    
+        <html>
+            <head>
+                <link rel="" href="start.html" />
+            </head>
+            <body>
+            </body>
+        </html>
+
+1.  Fails because: no rel attribute is specified. Reverse links (using the rev
+attribute) have seen little usage and have been obsoleted in HTML5.  
+
+    Example:
+    
+        <html>
+            <head>
+                <link rev="made" href="author.html" />
+            </head>
+            <body>
+            </body>
+        </html>
+
+1.  Fails because: no href attribute is specified.
+
+    Example:
+    
+        <html>
+            <head>            
+                <link rel="contents" />
+            </head>
+            <body>
+            </body>
+        </html>
+        
+1.  Fails because: a href attribute is specified but it is empty.
+
+    Example:
+    
+        <html>
+            <head>            
+                <link rel="contents" href="" />
+            </head>
+            <body>
+            </body>
+        </html>
