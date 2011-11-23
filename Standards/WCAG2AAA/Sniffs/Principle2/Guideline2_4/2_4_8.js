@@ -8,23 +8,11 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_4_2_4_8 = {
     process: function(element)
     {
         var linkParentName = element.parentNode.nodeName.toLowerCase();
-        var correctLoc     = false;
         
         // Check for the correct location. HTML4 states "it may only appear in the
         // HEAD element". HTML5 states it appears "wherever metadata content is
         // expected", which only includes the head element.
-        if (linkParentName === 'head') {
-            correctLoc = true;
-        } else if (linkParentName === 'noscript') {
-            // In HTML5, link elements are also explicitly allowed to be in a
-            // "head > noscript > link" structure.
-            var grandParentName = element.parentNode.parentNode.nodeName.toLowerCase();
-            if (grandParentName === 'head') {
-                correctLoc = true;
-            }
-        }
-            
-        if (correctLoc === false) {
+        if (linkParentName !== 'head') {
             HTMLCS.addMessage(HTMLCS.ERROR, element, 'Check that all link elements pertaining to navigation occur in the head section of the document.', 'H59.1');
         }
         
