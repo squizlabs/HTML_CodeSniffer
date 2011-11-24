@@ -26,12 +26,16 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
         } else {
             switch (nodeName) {
                 case 'input':
-                case 'select':
                 case 'textarea':
                 case 'button':
                     this.testLabelsOnInputs(element, top);
                 break;
 
+                case 'select':
+                    this.testLabelsOnInputs(element, top);
+                    this.testOptgroup(element);
+                break;
+                
                 case 'p':
                 case 'div':
                     this.testNonSemanticHeading(element);
@@ -609,6 +613,15 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
 
         if ((legend === null) || (legend.parentNode !== fieldset)) {
             HTMLCS.addMessage(HTMLCS.ERROR, fieldset, 'Check that this fieldset has a legend element that includes a description of that group.', 'H71.3');
+        }
+    }
+
+    testOptgroup: function(select) {
+        var optgroup = fieldset.querySelector('optgroup');
+        
+        if (optgroup === null) {
+            // Optgroup isn't being used.
+            HTMLCS.addMessage(HTMLCS.WARNING, select, 'If this selection list contains groups of related options, they should be grouped with optgroup.', 'H85.2');
         }
     }
 };
