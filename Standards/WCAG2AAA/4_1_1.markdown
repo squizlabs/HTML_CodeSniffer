@@ -1,0 +1,67 @@
+---
+title: Success Criterion 4.1.1, Parsing
+layout: default
+---
+
+# Success Criterion 4.1.1: Parsing
+
+- **Applies to**: <abbr title="Single A">A</abbr>, <abbr title="Double A">AA</abbr>, <abbr title="Triple A">AAA</abbr>.
+
+## Definition
+
+In content implemented using markup languages, elements have complete start and end tags, elements are nested according to their specifications, elements do not contain duplicate attributes, and any IDs are unique, except where the specifications allow these features. (Level A)
+
+*Note:* Start and end tags that are missing a critical character in their formation, such as a closing angle bracket or a mismatched attribute value quotation mark are not complete.
+
+The full ["understanding" page for Success Criterion 4.1.1](http://www.w3.org/TR/UNDERSTANDING-WCAG20/ensure-compat-parses.html) is available from the W3C.
+
+Keep in mind that "valid" and "well-formed" are two different things, at least in XML. In an XML document (including XHTML), it only needs to be well-formed to satisfy this Success Criterion - not necessarily valid. The reason the definition itself is so explicit is because HTML does not have concept of well-formedness: a separate sufficient technique combines the three requirements listed above so that they apply for HTML.
+
+## Techniques tested
+
+### Table of contents
+
+- [H93: Ensuring that id attributes are unique on a Web page](#tech-h93)
+
+### H93: Ensuring that id attributes are unique on a Web page
+
+[Detailed information about technique H93](http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H93) is available from the W3C. Failures of this technique are flagged as [F77](http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/F77).
+
+> The objective of this technique is to avoid key errors that are known to cause
+> problems for assistive technologies when they are trying to parse content that has
+> the same id attribute on different elements. These errors can be avoided by making
+> sure the Web page does not have duplicate id values...
+
+... generally by running the document through a HTML validator. We don't have this at our disposal, but we can check for duplicate ID attributes.
+
+Failures are flagged as F77: "Failure of Success Criterion 4.1.1 due to duplicate values of type ID", indicating that this is an outright failure of the Success Criterion, rather than merely a failure to properly apply the technique.
+
+The difference in wording of F77 ("values of type ID") is because it also applies to other XML-based markup languages, where other element types can be specified in a DTD or XML Schema as of ID type. This does not matter to us much with a HTML document.
+
+This can only authoritatively be tested at a full-document level. Although a document snippet may be tested, it cannot by necessity be representative of the page in which it is contained.
+
+#### Testing
+
+For H93:
+
+> Check that all id attribute values are unique on the web page.
+
+The failure check for F77 is similar, but more generic in that it speaks of "attributes of type ID" as above.
+
+#### Examples
+
+1.  Example of code that should not trigger this error.
+
+    Example:
+    
+        <div id="test1">Test1</div>
+        <p id="test2">Test2</p>
+
+#### Errors
+
+1.  Fails because: duplicate ID elements used.
+
+    Example:
+    
+        <div id="test">Test1</div>
+        <p id="test">Test2</p>
