@@ -357,7 +357,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
         var prevNode = element.previousSibling;
         while (prevNode !== null) {
             if (prevNode.nodeType === 3) {
-                if ((/^\s*$/.test(prevNode.nodeValue) === false) && (immediate === truee)) {
+                if ((/^\s*$/.test(prevNode.nodeValue) === false) && (immediate === true)) {
                     // Failed. Immediate node requested and we got text instead.
                     prevNode = null;
                     break;
@@ -413,7 +413,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
         var nextNode = element.nextSibling;
         while (nextNode !== null) {
             if (nextNode.nodeType === 3) {
-                if ((/^\s*$/.test(nextNode.nodeValue) === false) && (immediate === truee)) {
+                if ((/^\s*$/.test(nextNode.nodeValue) === false) && (immediate === true)) {
                     // Failed. Immediate node requested and we got text instead.
                     nextNode = null;
                     break;
