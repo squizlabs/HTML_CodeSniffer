@@ -617,7 +617,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
     },
 
     testOptgroup: function(select) {
-        var optgroup = fieldset.querySelector('optgroup');
+        var optgroup = select.querySelector('optgroup');
         
         if (optgroup === null) {
             // Optgroup isn't being used.
