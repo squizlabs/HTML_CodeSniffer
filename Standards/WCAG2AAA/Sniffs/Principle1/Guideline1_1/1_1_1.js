@@ -256,16 +256,16 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
         }//end if
     },
 
-    _getElementTextContent: function(anchor, includeAlt)
+    _getElementTextContent: function(element, includeAlt)
     {
         if (includeAlt === undefined) {
             includeAlt = true;
         }
 
-        var anchor = anchor.cloneNode(true);
+        var element = element.cloneNode(true);
         var nodes  = [];
-        for (var i = 0; i < anchor.childNodes.length; i++) {
-            nodes.push(anchor.childNodes[i]);
+        for (var i = 0; i < element.childNodes.length; i++) {
+            nodes.push(element.childNodes[i]);
         }
 
         var text = [];
