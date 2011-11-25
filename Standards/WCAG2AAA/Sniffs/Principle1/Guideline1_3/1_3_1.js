@@ -13,6 +13,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
             'button',
             'table',
             'fieldset',
+            'form',
         ];
 
     },
@@ -31,11 +32,15 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
                     this.testLabelsOnInputs(element, top);
                 break;
 
+                case 'form':
+                    this.testRequiredFieldsets(element);
+                break;
+
                 case 'select':
                     this.testLabelsOnInputs(element, top);
                     this.testOptgroup(element);
                 break;
-                
+
                 case 'p':
                 case 'div':
                     this.testNonSemanticHeading(element);
@@ -618,10 +623,55 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
 
     testOptgroup: function(select) {
         var optgroup = select.querySelector('optgroup');
-        
+
         if (optgroup === null) {
             // Optgroup isn't being used.
             HTMLCS.addMessage(HTMLCS.WARNING, select, 'If this selection list contains groups of related options, they should be grouped with optgroup.', 'H85.2');
         }
-    }
+    },
+
+    /**
+     * Test for radio buttons and checkboxes with same name in a fieldset.
+     *
+     * One error will be fired at a form level, rather than firing one for each
+     * violating group of inputs (as there could be many).
+     *
+     * @param {DOMNode} form The form to test.
+     *
+     * @returns void
+     */
+    testRequiredFieldsets: function(form) {
+        var optionInputs = form.querySelectorAll('input[type=radio], input[type=checkbox]');
+        var usedNames     = {};
+
+        for (var i = 0; i < optionInputs.length; i++) {
+            var option = optionInputs[i];
+
+            if (option.hasAttribute('name') === true) {
+                var optionName = option.getAttribute('name');
+
+                // Now find if we are in a fieldset. Stop at the top of the DOM, or
+                // at the form element.
+                var fieldset = option.parentNode;
+                while ((fieldset.nodeName.toLowerCase() !== 'fieldset') && (fieldset !== null) && (fieldset !== form)) {
+                    fieldset = fieldset.parentNode;
+                }
+
+                if (fieldset.nodeName.toLowerCase() !== 'fieldset') {
+                    // Record that this name is used, but there is no fieldset.
+                    fieldset = null;
+                }
+            }//end if
+
+            if (usedNames[optionName] === undefined) {
+                usedNames[optionName] = fieldset;
+            } else if ((fieldset === null) || (fieldset !== usedNames[optionName])) {
+                // Multiple names detected = should be in a fieldset.
+                // Either first instance or this one wasn't in a fieldset, or they
+                // are in different fieldsets.
+                HTMLCS.addMessage(HTMLCS.ERROR, form, 'Check that any group of input elements of type="radio" or type="checkbox" with the same name attribute is contained within a fieldset element.', 'H71.2');
+                break;
+            }//end if
+        }//end for
+    },
 };
