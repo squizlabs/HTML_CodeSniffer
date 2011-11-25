@@ -614,7 +614,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
         if ((legend === null) || (legend.parentNode !== fieldset)) {
             HTMLCS.addMessage(HTMLCS.ERROR, fieldset, 'Check that this fieldset has a legend element that includes a description of that group.', 'H71.3');
         }
-    }
+    },
 
     testOptgroup: function(select) {
         var optgroup = fieldset.querySelector('optgroup');
