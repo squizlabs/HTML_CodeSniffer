@@ -1,5 +1,6 @@
 ---
-title: Success Criterion 2.2.1, Timing Adjustable
+title: Success Criterion 2.2.1: Timing Adjustable
+category: Tested Techniques
 layout: default
 ---
 

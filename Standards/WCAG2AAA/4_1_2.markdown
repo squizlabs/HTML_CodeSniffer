@@ -1,5 +1,6 @@
 ---
-title: Success Criterion 4.1.2, Name, Role, Value
+title: Success Criterion 4.1.2: Name, Role, Value
+category: Tested Techniques
 layout: default
 ---
 

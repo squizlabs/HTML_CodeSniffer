@@ -1,5 +1,6 @@
 ---
-title: Success Criterion 4.1.1, Parsing
+title: Success Criterion 4.1.1: Parsing
+category: Tested Techniques
 layout: default
 ---
 

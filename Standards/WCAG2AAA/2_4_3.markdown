@@ -1,5 +1,6 @@
 ---
-title: Success Criterion 2.4.3, Focus Order
+title: Success Criterion 2.4.3: Focus Order
+category: Tested Techniques
 layout: default
 ---
 

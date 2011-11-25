@@ -1,5 +1,6 @@
 ---
-title: Success Criterion 2.4.4, Link Purpose (In Context)
+title: Success Criterion 2.4.4: Link Purpose (In Context)
+category: Tested Techniques
 layout: default
 ---
 

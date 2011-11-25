@@ -1,5 +1,6 @@
 ---
-title: Success Criterion 2.4.9, Link Purpose (Link Only)
+title: Success Criterion 2.4.9: Link Purpose (Link Only)
+category: Tested Techniques
 layout: default
 ---
 

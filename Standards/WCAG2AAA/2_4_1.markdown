@@ -1,5 +1,6 @@
 ---
-title: Success Criterion 2.4.1, Bypass Blocks
+title: Success Criterion 2.4.1: Bypass Blocks
+category: Tested Techniques
 layout: default
 ---
 

@@ -1,5 +1,6 @@
 ---
-title: Success Criterion 1.1.1, Non-Text Content
+title: Success Criterion 1.1.1: Non-Text Content
+category: Tested Techniques
 layout: default
 ---
 

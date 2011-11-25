@@ -1,5 +1,6 @@
 ---
-title: Success Criterion 2.4.2, Page Titled
+title: Success Criterion 2.4.2: Page Titled
+category: Tested Techniques
 layout: default
 ---
 

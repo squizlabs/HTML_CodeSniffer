@@ -1,5 +1,6 @@
 ---
-title: Success Criterion 3.2.2, On Input
+title: Success Criterion 3.2.2: On Input
+category: Tested Techniques
 layout: default
 ---
 
