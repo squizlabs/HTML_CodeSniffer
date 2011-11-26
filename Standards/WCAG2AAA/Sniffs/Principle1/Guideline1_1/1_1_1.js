@@ -256,6 +256,48 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
         }//end if
     },
 
+    /**
+     * Test the inclusion of a text alternative on APPLET tags.
+     *
+     * These might still be used in HTML 4.01 and XHTML 1.0 Transitional DTDs. Both
+     * alt text and body text alternative are required: Oracle's docs state that
+     * "alt" is for those that understand APPLET but not Java; the body text for
+     * those that don't understand APPLET. WCAG 2.0 suggests support for either alt
+     * method is inconsistent and therefore to use both.
+     *
+     * @param {DOMNode} element The element to test.
+     *
+     * @returns void
+     */
+    testAppletTextAlternative: function(element)
+    {
+        // Test firstly for whether we have an object alternative.
+        var childObject = element.querySelector('object');
+        var hasError    = false;
+
+        // If we have an object as our alternative, skip it. Pass the blame onto
+        // the child. (This is a special case: those that don't understand APPLET
+        // may understand OBJECT, but APPLET shouldn't be nested.)
+        if (childObject === null) {
+            var textAlt = this._getElementTextContent(element, true);
+            if (textAlt === '') {
+                HTMLCS.addMessage(HTMLCS.ERROR, element, 'Check that the applet element contains a text alternative for the applet in the body of the applet element.', 'H35.3');
+                hasError = true;
+            }
+        }//end if
+
+        var altAttr = element.getAttribute('alt') || '';
+        if (/^\s*$/.test(altAttr) === '') {
+            HTMLCS.addMessage(HTMLCS.ERROR, element, 'Check that the applet element contains an alt attribute with a text alternative for the applet.', 'H35.2');
+            hasError = true;
+        }
+
+        if (hasError === false) {
+            // No error? Remind of obligations about equivalence of alternatives.
+            HTMLCS.addMessage(HTMLCS.NOTICE, element, 'Check that short (and if appropriate, long) text alternatives are available for non-text content that serve the same purpose and presents the same information.', 'G94G92');
+        }
+    },
+
     _getElementTextContent: function(element, includeAlt)
     {
         if (includeAlt === undefined) {
