@@ -44,6 +44,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
                 case 'p':
                 case 'div':
                     this.testNonSemanticHeading(element);
+                    this.testListsWithBreaks(element);
                 break;
 
                 case 'table':
@@ -674,4 +675,58 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
             }//end if
         }//end for
     },
+
+    testListsWithBreaks: function(element) {
+        var firstBreak = element.querySelector('br');
+        var items      = [];
+
+        // If there is a br tag, go break up the element and see what each line
+        // starts with.
+        if (firstBreak !== null) {
+            var nodes    = [];
+
+            // Convert child nodes NodeList into an array.
+            for (var i = 0; i < element.childNodes.length; i++) {
+                nodes.push(element.childNodes[i]);
+            }
+
+            var thisItem = [];
+            while (nodes.length > 0) {
+                var subel = nodes.shift();
+
+                if (subel.nodeType === 1) {
+                    // Element node.
+                    if (subel.nodeName.toLowerCase() === 'br') {
+                        // Line break. Join and trim what we have now.
+                        items.push(thisItem.join(' ').replace(/^\s*(.*?)\s*$/g, '$1'));
+                        thisItem = [];
+                    } else {
+                        // Shift the contents of the sub element in, but in reverse.
+                        for (var i = subel.childNodes.length - 1; i >= 0; --i) {
+                            nodes.unshift(subel.childNodes[i]);
+                        }
+                    }
+                } else if (subel.nodeType === 3) {
+                    // Text node.
+                    thisItem.push(subel.nodeValue);
+                }
+            }//end while
+
+            if (thisItem.length > 0) {
+                items.push(thisItem.join(' ').replace(/^\s*(.*?)\s*$/g, '$1'));
+            }
+
+            for (var i = 0; i < items.length; i++) {
+                if (/^[\-*]\s+/.test(items[0]) === true) {
+                    // Test for "- " or "* " cases.
+                    HTMLCS.addMessage(HTMLCS.ERROR, element, 'Check that content that has the visual appearance of a list (with or without bullets) is marked as an unordered list.', 'H48.1');
+                    break;
+                } if (/^\d+[:\-.]?\s+/.test(items[0]) === true) {
+                    // Test for "1 " cases (or "1. ", "1: ", "1- ").
+                    HTMLCS.addMessage(HTMLCS.ERROR, element, 'Check that content that has the visual appearance of a numbered list is marked as an ordered list.', 'H48.2');
+                    break;
+                }
+            }//end for
+        }//end if
+    }
 };
