@@ -22,7 +22,7 @@ The full ["understanding" page for Success Criterion 2.4.1](http://www.w3.org/TR
 
 ### <a id="tech-h50">H50: Using map to group links</a>
 
-[Detailed information about technique H50](http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H50) is available from the W3C. *Note:* An earlier version of the Techniques for WCAG 2.0 document (dated 11 December 2008) stated that wrapping the links in a list was also sufficient for technique H50, however this has been recinded in the current version (14 October 2010), and now only mentions the map element.
+[Detailed information about technique H50](http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H50) is available from the W3C. *Note:* An earlier version of the Techniques for WCAG 2.0 document (dated 11 December 2008) stated that [wrapping the links in a list was also sufficient for technique H50](http://www.w3.org/TR/2008/NOTE-WCAG20-TECHS-20081211/H50), however this has been recinded in the current version (14 October 2010), and now only mentions the map element.
 
 > The objective of this technique is to demonstrate how to group links into logical sets using the map element. When links are grouped into logical sets (for example, in a navigation bar or main menu that appears on every page in a site) they should be marked up as a unit.
 
@@ -37,4 +37,5 @@ HTML_CodeSniffer currently emits a warning if it finds two or more links in a pa
 ### Testing
 
 > Examine the content for anchor [a] elements which are to be grouped together.
+>
 > 1. Check that the anchor elements are grouped using map elements.
