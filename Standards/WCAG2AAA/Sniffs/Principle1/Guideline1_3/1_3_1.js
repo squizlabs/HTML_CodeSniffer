@@ -721,7 +721,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
                     // Test for "- " or "* " cases.
                     HTMLCS.addMessage(HTMLCS.ERROR, element, 'Check that content that has the visual appearance of a list (with or without bullets) is marked as an unordered list.', 'H48.1');
                     break;
-                } if (/^\d+[:\-.]?\s+/.test(items[0]) === true) {
+                } if (/^\d+[:\/\-.]?\s+/.test(items[0]) === true) {
                     // Test for "1 " cases (or "1. ", "1: ", "1- ").
                     HTMLCS.addMessage(HTMLCS.ERROR, element, 'Check that content that has the visual appearance of a numbered list is marked as an ordered list.', 'H48.2');
                     break;
