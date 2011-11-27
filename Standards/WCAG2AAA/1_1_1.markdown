@@ -1,6 +1,5 @@
 ---
-title: Success Criterion 1.1.1: Non-Text Content
-category: Tested Techniques
+title: Success Criterion 1.1.1, Non-Text Content
 layout: default
 ---
 
@@ -34,12 +33,18 @@ The full ["understanding" page for Success Criterion 1.1.1](http://www.w3.org/TR
 - [H24: Providing text alternatives for the area elements of image maps](#tech-h24)
 - [H36: Using alt attributes on images used as submit buttons](#tech-h36)
 - [H37: Using alt attributes on img elements](#tech-h37)
+- [H45: Using longdesc](#tech-h45)
+- [H53: Using the body of the object element](#tech-h53)
 - [H67: Using null alt text and no title attribute on img elements for images that <acronym title="Assistive Technology">AT</acronym> should ignore](#tech-h67)
 - [G94: Providing short text alternative for non-text content that serves the same purpose and presents the same information as the non-text content](#tech-g94)
 
+#### Techniques explicitly not tested
+
+- [H46: Using noembed with embed](#tech-h46)
+
 ### <a id="tech-h2">H2: Combining adjacent image and text links for the same resource</a>
 
-[Technique H2](http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H2) refers both to combined image-and-text links, and links contained in adjacent cells in a table. Only the first is currently implemented.
+[Detailed information about technique H2](http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H2) is available from the W3C. It refers both to combined image-and-text links, and links contained in adjacent cells in a table. Only the first is currently implemented.
 
 When a link containing an img element and text need to be created, the best practice is to put them together in one link (rather than two). The img element should only contain text if it provides information the text does not provide; otherwise the alt text should remain blank.
 
@@ -114,6 +119,8 @@ HTML\_CodeSniffer judges links to be "adjacent" if the "a" tags are directly nex
 
 ### <a id="tech-h24">H24: Providing text alternatives for the area elements of image maps</a>
 
+[Detailed information about technique H24](http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H24) is available from the W3C.
+
 Image maps split the visual space of an image into a number of clickable links. Image maps can be implemented *client-side* (inside the HTML document) or *server-side* (coordinates sent as a query string to a script). The former should be used wherever possible: server-side image maps are not accessible on their own, because the clickable areas implemented are not discernable at the client side, and are certainly not accessible with a keyboard.
 
 In a client-side image map, an img element is wedded to a map of clickable areas, generally using the area element. Each area should contain alt text that should display as part of a text alternative to the map when images are disabled. If the alt text is missing or empty, it's like having an "a" element without link text: nothing explains the purpose of the clickable area.
@@ -157,6 +164,8 @@ It is also recommended that each area element contain a title attribute, because
 
 ### <a id="tech-h36">H36: Using alt attributes on images used as submit buttons</a>
 
+[Detailed information about technique H36](http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H36) is available from the W3C.
+
 Applies to input elements with a type of "image". These are "image submit buttons", where an image replaces the usual submit button. These should have alt text relating to their function: a plain-text alternative to an image containing text, or an alternative defining their purpose otherwise. (For instance, if a submit button is a right arrow meaning "Next", the alt text should be "Next", not "right arrow image" for instance).
 
 As submit buttons always have a purpose and function, using technique [H67](#tech-h67) by specifying empty alt text is not allowed as this would prevent submission of the form.
@@ -176,7 +185,7 @@ Both of the above items must pass for this sufficient technique to pass.
 
     Example:
 
-    	<input type="image" src="submit.png" alt="Submit Form" /> 
+        <input type="image" src="submit.png" alt="Submit Form" />
 
 #### Errors
 
@@ -184,19 +193,19 @@ Both of the above items must pass for this sufficient technique to pass.
 
     Example:
 
-    	<input type="image" src="submit.png" />
+        <input type="image" src="submit.png" />
 
 2.  Fails because: the alt text is empty.
 
     Example:
 
-    	<input type="image" src="submit.png" alt="" />
+        <input type="image" src="submit.png" alt="" />
 
 3.  Fails because: once whitespace is trimmed, the alt text is empty.
 
-	Example:
+    Example:
 
-    	<input type="image" src="submit.png" alt="   " />
+        <input type="image" src="submit.png" alt="   " />
 
 #### Cases for manual failure
 
@@ -205,10 +214,12 @@ Both of the above items must pass for this sufficient technique to pass.
     In any case, this description would potentially also fail Success Criteria 1.3.3 (Sensory Characteristics) and 1.4.1 (Use of Colour), both at <abbr title="Single A">A</abbr> level, because references are made to its size and colour that are useless to blind users.
 
     Example:
-    
-    	<input type="image" src="submit.png" alt="big red button" />
+
+        <input type="image" src="submit.png" alt="big red button" />
 
 ### <a id="tech-h37">H37: Using alt attributes on img elements</a>
+
+[Detailed information about technique H37](http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H37) is available from the W3C.
 
 The purpose of this technique is best described by the first line of the technique's description:
 
@@ -236,24 +247,138 @@ Where the alt text is valid, a notice reminding testers to ensure the alt text i
     invitation to subscribe to a site's newsletter.
 
     Example:
-    
-    	<img src="subscribe.png" alt="Subscribe to our newsletter" />
+
+        <img src="subscribe.png" alt="Subscribe to our newsletter" />
 
 #### Errors
 
 1.	Fails because: no alt attribute is provided.
 
-	Example:
+    Example:
 
-		<img src="subscribe.png" />
-		
+        <img src="subscribe.png" />
+
 #### Cases for manual failure
 
 1.  Img elements can be manually failed on testing item 3, if important words in the image aren't part of the alt text.
 
 2.  Images can be manually failed on other grounds. For instance, a non-decorative image with empty alt text (see technique [H67](#tech-h67)), or the alt text not describing the image properly (see technique [G94](#tech-g94)). These examples are not provided here.
-		
+
+### <a id="tech-h45">H45: Using longdesc</a>
+
+[Detailed information about technique H45](http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H45) is available from the W3C.
+
+Where images cannot be fully described by a short text alternative, a longdesc attribute can be added to provide a long text alternative. The correct value of a longdesc attribute is a URI which points to a source (whether it be HTML, text)
+
+This is not the only method of providing a long text alternative. Other possible techniques include:
+
+- Adding a link immediately after the non-text content (technique [G73](http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/G73)). This was often implemented using a link with text "d", however this is probably not a good link name by itself.
+- Providing the long description in the body of the content, and pointing to the location of the text in the short text alternative (technique [G74](http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/G74)).
+
+#### Examples
+
+1.  Correct usage with the longdesc attribute pointing to an appropriate URI. A notice
+    will be emitted reminding authors to check that the longdesc target is appropriate
+    for the attribute.
+
+        <img src="htmlcs_usage.png" alt="Chart of HTML_CodeSniffer usage statistics" longdesc="http://example.com/htmlcs_usage_desc.html" />
+
+#### Warnings
+
+1.  When an image uses the longdesc attribute, but is not an absolute URI. It is
+    emitted as a warning because we cannot easily tell whether it is a relative URL
+    (eg. just a file name) or junk text.
+
+    Example that should be manually failed:
+
+        <img src="htmlcs_usage.png" alt="Chart of HTML_CodeSniffer usage statistics" longdesc="HTML_CodeSniffer usage increased over the period 2011-......." />
+
+    Example that should be manually passed (so long as the page exists):
+
+        <img src="htmlcs_usage.png" alt="Chart of HTML_CodeSniffer usage statistics" longdesc="htmlcs_usage_desc.html" />
+
+1.  When an image is used without a longdesc attribute. It is fired as a warning to
+    alert authors that they should seriously consider whether the short text
+    alternative properly describes the image. The message says to use the longdesc
+    attribute "or another sufficient technique", such as G73 or G74 above.
+
+    Example (using G74):
+
+        <img src="htmlcs_usage.png" alt="Chart of HTML_CodeSniffer usage statistics - text explanation follows after image." />
+        <p>HTML_CodeSniffer usage increased over the period from 2011 to etc...</p>
+
+### <a id="tech-h53">H53: Using the body of the object element</a>
+
+[Detailed information about technique H53](http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H53) is available from the W3C. This technique seems to overlap with [H27: Providing text and non-text alternatives for object](http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H27), which appears to be a half-thought if anything, and at best a duplicate to H53 in terms of process.
+
+This technique provides an accessible text alternative to the object element, which is generally used for non-text content that require external plugins (but is not limited to such).
+
+Multiple object elements can be nested to provide non-text alternatives to the outermost element. However, the innermost object tag element contain a text alternative. Any sort of short text alternative is sufficient, such as alt text from an image.
+
+The text alternative should have the same purpose the contents of the original object - this means it could end up being a **long** text alternative.
+
+#### Testing
+
+> 1. Check that the body of each object element contains a text alternative for the object.
+
+#### Examples
+
+Note: a notice should be emitted reminding users to check whether the contents are indeed a suitable alternative for the object. In these simplified examples, they are probably not.
+
+1.  Simple text alternative.
+
+    Example:
+
+        <object>
+            Text alternative
+        </object>
+
+2.  A text alternative can be block content.
+
+    Example:
+
+        <object>
+            <p>Text alternative</p>
+            <p>Another line of text</p>
+        </object>
+
+3.  Text alternative taken from the alt text of an image.
+
+    Example:
+
+        <object>
+            <img src="htmlcs.png" alt="HTML_CodeSniffer" />
+        </object>
+
+4.  Simple text alternative when nested inside multiple objects (in this case, a Flash file containing a static image as its alternative, which itself as a text alternative).
+
+    Example:
+
+        <object data="htmlcs.swf" type="application/x-shockwave-flash">
+            <object data="htmlcs.png" type="image/png">
+                Text alternative
+            </object>
+        </object>
+
+#### Errors
+
+1.  No text alternative provided.
+
+    Example:
+
+        <object />
+
+2.  Text alternative taken from the alt text of an image but it is blank.
+
+    Example:
+
+        <object>
+            <img src="htmlcs.png" alt="" />
+        </object>
+
 ### <a id="tech-h67">H67: Using null alt text and no title attribute on img elements for images that <acronym title="assistive technology">AT</acronym> should ignore</a>
+
+[Detailed information about technique H67](http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H67) is available from the W3C.
 
 WCAG 2.0 allows for images without a function and purpose - referred to as "purely decorative" - to be marked with an empty alt attribute, **and** an empty or absent title attribute.
 
@@ -276,45 +401,47 @@ All valid examples of ignored images should emit a **warning** stating that the 
 
 1.  Completely empty alt text, and no title attribute.
 
-	Example:
+    Example:
 
-    	<img src="htmlcs.png" alt="" />
+        <img src="htmlcs.png" alt="" />
 
 1.  Completely empty alt text, title attribute also empty.
 
     Example:
-    
+
         <img src="htmlcs.png" alt="" title="" />
 
 1.  Alt text is only whitespace.
 
-	Example:
-    
-		<img src="htmlcs.png" alt="   " />
-    
+    Example:
+
+        <img src="htmlcs.png" alt="   " />
+
 #### Errors
 
 1.  Fails because: an image that should be ignored (due to no alt text) should not contain a title attribute.
 
-	Example:
+    Example:
 
-    	<img src="htmlcs.png" alt="" title="Non-empty title" />
+        <img src="htmlcs.png" alt="" title="Non-empty title" />
 
-#### Non-examples 
+#### Non-examples
 
 These examples should not trigger anything from this test.
 
 1.  Non-breaking spaces should not be treated as "empty." This is a rather artificial example and of course would break the rule of alt texts being descriptive.
 
-	Example:
+    Example:
 
-    	<img src="htmlcs.png" alt="&nbsp;" />
+        <img src="htmlcs.png" alt="&nbsp;" />
 
-    > This currently does not throw anything different to example 1, because it uses "<abbr title="backslash-s">\s</abbr>" as the space character wildcard. The ECMAScript includes <acronym title="non-breaking space">NBSP</acronym> as part of "<abbr title="backslash-s">\s</abbr>", which doesn't fulfil example 5.
-    >	
-	> If the alt text contains only <acronym title="non-breaking spaces">NBSPs</acronym> (and other whitespace), this should probably be an error, as the intention is likely that the image will be ignored by assistive technology, but the WCAG 2.0 test suggests it should not be.
+    > This currently does not throw anything different to example 1, because it uses "<abbr title="backslash-s">\s</abbr>" as the space character wildcard. The ECMAScript includes <acronym title="non-breaking space">NBSP</acronym> as part of "<abbr title="backslash-s">\s</abbr>", which doesn't fulfil testing item 2.
+    >
+    > If the alt text contains only <acronym title="non-breaking spaces">NBSPs</acronym> (and other whitespace), this should probably be an error, as the intention is likely that the image will be ignored by assistive technology, but the WCAG 2.0 test suggests it should not be.
 
 ### <a id="tech-g94">G94: Providing short text alternative for non-text content that serves the same purpose and presents the same information as the non-text content</a>
+
+[Detailed information about technique G94](http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/G94) is available from the W3C.
 
 This is a general catch-all technique that is implemented in certain ways, such as techniques [H37](#tech-h37), [H36](#tech-h36), etc.
 
@@ -328,3 +455,16 @@ HTML\_CodeSniffer emits a notice for technique G94 where alt text is validly use
 > 4. If the non-text content contains words that are important to understanding the content, the words are included in the text alternative
 
 To pass, item 3 must pass, and also item 4 if it applies to that item of non-text content.
+
+### <a id="tech-h46">NOT TESTED: H46: Using noembed with embed</a>
+
+[Detailed information about technique H46](http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H46) is available from the W3C.
+
+This technique speaks of marrying the non-standard embed element, used by as a forerunner to the HTML 4.0-standard object element, with a noembed element which provides a text alternative. The noembed element could be placed either inside the embed element, or immediately afterwards.
+
+I am of the belief that this technique should not be used, for the following reasons:
+
+1. Prior to HTML5, the embed element itself was non-standard. Although this alone does not fail Success Criterion 4.1.1 (Parsing) - validation is not a requirement, only well-formedness is - it makes it difficult, if not impossible, to satisfy the sufficient techniques.
+2. In HTML5, the embed element is included, however the noembed element is absent. The spec states that the embed element **does not include fallback content**; user agents should use a default plugin instead (even if to say "this content is unsupported"). Therefore, there is no guarantee that the default content will be accessible.
+
+Accessible documents should use the object element instead (see technique [H53](#tech-h53)).
