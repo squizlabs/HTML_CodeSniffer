@@ -6,6 +6,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
             'input',
             'area',
             'object',
+            'applet',
         ];
 
     },
@@ -35,6 +36,10 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
 
             case 'object':
                 this.testObjectTextAlternative(element);
+            break;
+
+            case 'applet':
+                this.testAppletTextAlternative(element);
             break;
         }
     },
