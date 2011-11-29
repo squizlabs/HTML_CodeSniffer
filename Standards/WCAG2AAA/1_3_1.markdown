@@ -272,6 +272,8 @@ When either technique can be used, and only one is used but not completely (and 
 
 ### <a id="tech-h42">H42: Using h1-h6 to identify headings</a>
 
+[Detailed information about technique H42](http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H42) is available from the W3C.
+
 "The objective of this technique is to use HTML and XHTML heading markup to provide semantic code for headings in the content."
 
 #### Testing
@@ -298,7 +300,7 @@ The following inferences can probably be made, using warnings to alert the user 
 
 ### <a id="tech-h44">H44: Using label elements to associate text labels with form controls</a>
 
-This also applies to Success Criteria [1.1.1 - Info and Relationships](./1_1_1), 3.3.2 - Labels and Instructions, and 4.1.2 - Name, Role, Value; all of which apply at the <abbr title="Single A">A</abbr> level.
+[Detailed information about technique H44](http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H44) is available from the W3C. This technique also applies to Success Criteria [1.1.1 - Info and Relationships](./1_1_1), 3.3.2 - Labels and Instructions, and 4.1.2 - Name, Role, Value; all of which apply at the <abbr title="Single A">A</abbr> level.
 
 #### Testing
 
@@ -495,6 +497,8 @@ Elements that should **not** have a label element include buttons of various typ
         <input type="text" id="dateField" /> (in <abbr title="Day Month Year">dd/mm/yyyy</abbr> format)</p>
 
 ### <a id="tech-h49">H49: Using semantic markup to mark emphasized or special text</a>
+
+[Detailed information about technique H49](http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H49) is available from the W3C.
 
 In HTML 4 (and therefore XHTML 1.0), tags such as b, i, u, tt and others are defined as presentational elements, as opposed to "structured text" elements like em, strong, code, kbd and the like. The presentational tags do not convey any purpose beyond presentation and are therefore of little use to assistive technology.
 
@@ -705,11 +709,7 @@ If the table involved is a layout table, test 2 must pass. For data tables, test
 
 ### <a id="tech-h71">H71: Providing a description for groups of form controls using fieldset and legend elements</a>
 
-Includes the following relevant technique:
-
-- [H71: Providing a description for groups of form controls using fieldset and legend elements](http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H71)
-
-From the above W3C definition:
+[Detailed information about technique H71](http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H71) is available from the W3C, which includes the following definition:
 
 > The objective of this technique is to provide a semantic grouping for related form controls. This allows users to understand the relationship of the controls and interact with the form more quickly and effectively.
 
