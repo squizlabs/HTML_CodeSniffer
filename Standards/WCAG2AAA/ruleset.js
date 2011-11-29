@@ -4,6 +4,7 @@ var HTMLCS_WCAG2AAA = {
     sniffs: [
         'Principle1.Guideline1_1.1_1_1',
         'Principle1.Guideline1_3.1_3_1',
+        'Principle2.Guideline2_1.2_1_1',
         'Principle2.Guideline2_2.2_2_1',
         'Principle2.Guideline2_4.2_4_1',
         'Principle2.Guideline2_4.2_4_2',
