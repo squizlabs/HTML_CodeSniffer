@@ -1,6 +1,5 @@
 ---
 title: Success Criterion 3.2.2: On Input
-category: Tested Techniques
 layout: default
 ---
 
@@ -20,7 +19,7 @@ The full ["understanding" page for Success Criterion 3.2.2](http://www.w3.org/TR
 
 ### Table of contents
 
-- [H32: Providing submit buttons]
+- [H32: Providing submit buttons](#tech-h32)
 
 ### <a id="tech-h32">H32: Providing submit buttons</a>
 

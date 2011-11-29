@@ -1,6 +1,5 @@
 ---
 title: Success Criterion 2.4.3: Focus Order
-category: Tested Techniques
 layout: default
 ---
 
@@ -18,4 +17,19 @@ The full ["understanding" page for Success Criterion 2.4.3](http://www.w3.org/TR
 
 ### Table of contents
 
-- H4: Creating a logical tab order through links, form controls, and objects
+- [H4: Creating a logical tab order through links, form controls, and objects](#tech-h4)
+
+### <a id="tech-h4">H4: Creating a logical tab order through links, form controls, and objects</a>
+
+[Detailed information about technique H4](http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H4) is available from the W3C.
+
+This technique speaks of using the tabindex attribute on elements to set a tab order when the default tab order is inadequate. Usually, it is not required and can cause problems in maintenance:
+
+> Often, [G59: Placing the interactive elements in an order that follows sequences and relationships within the content](http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/G59) is sufficient and this technique is not necessary. It can be very easy to introduce usability bugs when setting the tab order explicitly.
+
+A notice about this technique will be thrown when an element is found using the tabindex attribute.
+
+#### Testing
+
+> 1. Check if tabindex is used.
+> 2. If tabindex is used, check that the tab order specified by the tabindex attributes follows relationships in the content.

@@ -47,7 +47,7 @@ This does not just apply to how the web page itself is handled by assistive tech
 
 ### <a id="tech-h25">H25: Providing a title using the title element</a>
 
-From the technique page:
+[Detailed information about technique H25](http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H25) is available from the W3C, which contains this description:
 
 > All HTML and XHTML documents, including those in individual frames in a frameset, have a title element in the head section that defines in a simple phrase the purpose of the document.
 

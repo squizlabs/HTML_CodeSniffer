@@ -18,7 +18,7 @@ The full ["understanding" page for Success Criterion 2.4.1](http://www.w3.org/TR
 ### Table of contents
 
 - [H50: Using map to group links](#tech-h50)
-- H64: Using the title attribute of the frame and iframe elements
+- [H64: Using the title attribute of the frame and iframe elements](#tech-h64)
 
 ### <a id="tech-h50">H50: Using map to group links</a>
 
@@ -39,3 +39,14 @@ HTML_CodeSniffer currently emits a warning if it finds two or more links in a pa
 > Examine the content for anchor [a] elements which are to be grouped together.
 >
 > 1. Check that the anchor elements are grouped using map elements.
+
+### <a id="tech-h64">H64: Using the title attribute of the frame and iframe elements</a>
+
+[Detailed information about technique H64](http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H64) is available from the W3C. The technique labels the frame so that a user can navigate between frames in a frameset, or skip the contents of an inline frame (iframe) if necessary.
+
+Since HTML_CodeSniffer can only easily deal with documents outside of a frameset (ie. it can't check errors inside individual frames), this is currently implemented only for iframe elements. HTML5 does not support framesets, so this limitation will likely become less importing into the future.
+
+#### Testing
+
+> 1. Check each frame and iframe element in the HTML or XHTML source code for the presence of a title attribute.
+> 2. Check that the title attribute contains text that identifies the frame.

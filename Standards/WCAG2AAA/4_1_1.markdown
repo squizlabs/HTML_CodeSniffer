@@ -1,6 +1,5 @@
 ---
 title: Success Criterion 4.1.1: Parsing
-category: Tested Techniques
 layout: default
 ---
 
@@ -54,7 +53,7 @@ The failure check for F77 is similar, but more generic in that it speaks of "att
 1.  Example of code that should not trigger this error.
 
     Example:
-    
+
         <div id="test1">Test1</div>
         <p id="test2">Test2</p>
 
@@ -63,6 +62,6 @@ The failure check for F77 is similar, but more generic in that it speaks of "att
 1.  Fails because: duplicate ID elements used.
 
     Example:
-    
+
         <div id="test">Test1</div>
         <p id="test">Test2</p>

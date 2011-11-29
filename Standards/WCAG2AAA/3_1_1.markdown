@@ -1,6 +1,5 @@
 ---
 title: Success Criterion 3.1.1: Language of Page
-category: Tested Techniques
 layout: default
 ---
 

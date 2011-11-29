@@ -1,6 +1,5 @@
 ---
 title: Success Criterion 4.1.2: Name, Role, Value
-category: Tested Techniques
 layout: default
 ---
 
@@ -45,7 +44,7 @@ Using [technique H91](#tech-h91) successfully ensures that ordinary HTML form co
 
 *Note:* The "table above" is a table found in the [detailed information about technique H91](http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H91).
 
-The testing performed by HTML_CodeSniffer is to ensure that each applicable element contains one item of content that can count as its "Name" and one as its "Value", according to the table in the above document. This can be an attribute, the contents of the element, or something else again - for instance, the label element as a control name, or a select list's value being the value of the relevant "selected option". 
+The testing performed by HTML_CodeSniffer is to ensure that each applicable element contains one item of content that can count as its "Name" and one as its "Value", according to the table in the above document. This can be an attribute, the contents of the element, or something else again - for instance, the label element as a control name, or a select list's value being the value of the relevant "selected option".
 
 #### Errors
 
@@ -62,7 +61,7 @@ Errors occur when no item of data can be found that can represent a control or l
 2.  Fails because: a value is not provided for the select list. One should be marked with the "selected" attribute to provide a value.
 
     Example:
-    
+
         <p>
             <label for="selectList">Select one:</label>
             <select id="selectList">

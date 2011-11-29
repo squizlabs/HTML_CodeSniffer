@@ -1,6 +1,5 @@
 ---
 title: Success Criterion 3.2.5: Change On Request
-category: Tested Techniques
 layout: default
 ---
 
