@@ -178,6 +178,7 @@ layout: default
 </tr>
 <tr>
 <td id="sc2_4_3" headers="sc gl2_4"><a href="./2_4_3">2.4.3: Focus Order</a></td>
+<td id="cov2_4_3" headers="coverage gl2_4">
 <ul>
 <li><a href="./2_4_3#tech-h4">H4: Creating a logical tab order through links, form controls, and objects</a></li>
 </ul>
@@ -210,7 +211,7 @@ layout: default
 </tr>
 <tr>
 <td id="sc2_4_9" headers="sc gl2_4"><a href="./2_4_9">2.4.9: Link Purpose (Link Only)</a></td>
-<td id="cov2_4_8" headers="coverage gl2_4">
+<td id="cov2_4_9" headers="coverage gl2_4">
 <ul>
 <li><a href="./2_4_9#tech-h30">H30: Providing link text that describes the purpose of a link for anchor elements</a></li>
 </ul>
