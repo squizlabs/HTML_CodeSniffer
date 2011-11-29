@@ -202,9 +202,29 @@ layout: default
 </tr>
 <tr>
 <td id="sc2_4_5" headers="sc gl2_4">2.4.5: Multiple Ways</td>
+<td id="cov2_4_5" headers="coverage gl2_4">
+<p>Implement two or more of the following methods of accessing content:</p>
+<ul>
+<li>Links to navigate to related Web Pages</li>
+<li>A Table of Contents</li>
+<li>A site map</li>
+<li>A search function</li>
+<li>A list of links to all other pages</li>
+<li>Linking to all pages from the home page</li>
+</ul>
+
+<p>The latter two options only tend to make sense in small sites, where listing all pages at once does not pose a usability issue.</p>
+</td>
 </tr>
 <tr>
 <td id="sc2_4_6" headers="sc gl2_4">2.4.6: Headings and Labels</td>
+<td id="cov2_4_6" headers="coverage gl2_4">
+<p>The sufficient techniques are general ones that simply state that headings and labels must be "descriptive". They must also be programmatically determined, but this is covered in <a href="./1_3_1"><acronym title="Success Criterion">SC</acronym> 1.3.1</a>.</p>
+
+<p>"Labels and headings do not need to be lengthy. A word, or even a single character, may suffice if it provides an appropriate cue to finding and navigating content."</p>
+
+<p>Advisory techniques include having unique headings in a page, and starting each section with unique information.</p>
+</td>
 </tr>
 <tr>
 <td id="sc2_4_7" headers="sc gl2_4">2.4.7: Focus Visible</td>
