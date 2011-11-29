@@ -61,7 +61,17 @@ layout: default
 </tr>
 <tr>
 <td id="gl1_3" headers="guideline" rowspan="3">1.3: Create content that can be presented in different ways (for example simpler layout) without losing information or structure.</td>
-<td id="sc1_3_1" headers="sc gl1_3">1.3.1: Info and Relationships</td>
+<td id="sc1_3_1" headers="sc gl1_3"><a href="./1_3_1">1.3.1: Info and Relationships</a></td>
+<td id="cov1_3_1" headers="coverage gl1_3">
+<ul>
+<li><a href="./1_3_1#tech-h43h63">H43/H63: Correct association of table headers with data cells in data tables</a></li>
+<li><a href="./1_3_1#tech-h39h73">H39/H73: Usage of caption and summary attributes to identify and provide an overview of data tables</a></li>
+<li><a href="./1_3_1#tech-h42">H42: Using h1-h6 to identify headings</a></li>
+<li><a href="./1_3_1#tech-h44">H44: Using label elements to associate text labels with form controls</a></li>
+<li><a href="./1_3_1#tech-h49">H49: Using semantic markup to mark emphasized or special text</a></li>
+<li><a href="./1_3_1#tech-h71">H71: Providing a description for groups of form controls using fieldset and legend elements</a></li>
+</ul>
+</td>
 </tr>
 <tr>
 <td id="sc1_3_2" headers="sc gl1_3">1.3.2: Meaningful Sequence</td>
@@ -122,7 +132,12 @@ layout: default
 </tr>
 <tr>
 <td id="gl2_2" headers="guideline" rowspan="5">2.2: Provide users enough time to read and use content.</td>
-<td id="sc2_2_1" headers="sc gl2_2">2.2.1: Timing Adjustable</td>
+<td id="sc2_2_1" headers="sc gl2_2"><a href="./2_2_1">2.2.1: Timing Adjustable</a></td>
+<td id="cov2_2_1" headers="coverage gl2_2">
+<ul>
+<li><a href="./2_2_1#tech-f41">F41: Failure of SCs 2.2.1, 2.2.4, and 3.2.5 due to using meta refresh with a time-out</a></li>
+</ul>
+</td>
 </tr>
 <tr>
 <td id="sc2_2_2" headers="sc gl2_2">2.2.2: Pause, Stop, Hide</td>
@@ -145,16 +160,36 @@ layout: default
 </tr>
 <tr>
 <td id="gl2_4" headers="guideline" rowspan="10">2.4: Provide ways to help users navigate, find content, and determine where they are.</td>
-<td id="sc2_4_1" headers="sc gl2_4">2.4.1: Bypass Blocks</td>
+<td id="sc2_4_1" headers="sc gl2_4"><a href="./2_4_1">2.4.1: Bypass Blocks</a></td>
+<td id="cov2_4_1" headers="coverage gl2_4">
+<ul>
+<li><a href="./2_4_1#tech-h50">H50: Using map to group links</a></li>
+<li><a href="./2_4_1#tech-h64">H64: Using the title attribute of the frame and iframe elements</a></li>
+</ul>
+</td>
 </tr>
 <tr>
-<td id="sc2_4_2" headers="sc gl2_4">2.4.2: Page Titled</td>
+<td id="sc2_4_2" headers="sc gl2_4"><a href="./2_4_2">2.4.2: Page Titled</a></td>
+<td id="cov2_4_2" headers="coverage gl2_4">
+<ul>
+<li><a href="./2_4_2#tech-h25">H25: Providing a title using the title element</a></li>
+</ul>
+</td>
 </tr>
 <tr>
-<td id="sc2_4_3" headers="sc gl2_4">2.4.3: Focus Order</td>
+<td id="sc2_4_3" headers="sc gl2_4"><a href="./2_4_3">2.4.3: Focus Order</a></td>
+<ul>
+<li><a href="./2_4_3#tech-h4">H4: Creating a logical tab order through links, form controls, and objects</a></li>
+</ul>
+</td>
 </tr>
 <tr>
-<td id="sc2_4_4" headers="sc gl2_4">2.4.4: Link Purpose (In Context)</td>
+<td id="sc2_4_4" headers="sc gl2_4"><a href="./2_4_4">2.4.4: Link Purpose (In Context)</a></td>
+<td id="cov2_4_4" headers="coverage gl2_4">
+<ul>
+<li><a href="./2_4_4#tech-incontext">H77-81/H33: Identifying the purpose of a link using link text combined with its programmatically determined link context</a></li>
+</ul>
+</td>
 </tr>
 <tr>
 <td id="sc2_4_5" headers="sc gl2_4">2.4.5: Multiple Ways</td>
@@ -166,10 +201,20 @@ layout: default
 <td id="sc2_4_7" headers="sc gl2_4">2.4.7: Focus Visible</td>
 </tr>
 <tr>
-<td id="sc2_4_8" headers="sc gl2_4">2.4.8: Location</td>
+<td id="sc2_4_8" headers="sc gl2_4"><a href="./2_4_8">2.4.8: Location</a></td>
+<td id="cov2_4_8" headers="coverage gl2_4">
+<ul>
+<li><a href="./2_4_8#tech-h59">H59: Using the link element and navigation tools</a></li>
+</ul>
+</td>
 </tr>
 <tr>
-<td id="sc2_4_9" headers="sc gl2_4">2.4.9: Link Purpose (Link Only)</td>
+<td id="sc2_4_9" headers="sc gl2_4"><a href="./2_4_9">2.4.9: Link Purpose (Link Only)</a></td>
+<td id="cov2_4_8" headers="coverage gl2_4">
+<ul>
+<li><a href="./2_4_9#tech-h30">H30: Providing link text that describes the purpose of a link for anchor elements</a></li>
+</ul>
+</td>
 </tr>
 <tr>
 <td id="sc2_4_10" headers="sc gl2_4">2.4.10: (Section Headings)</td>
@@ -189,7 +234,12 @@ layout: default
 </tr>
 <tr>
 <td id="gl3_1" headers="guideline" rowspan="6">3.1: Make Web pages appear and operate in predictable ways.</td>
-<td id="sc3_1_1" headers="sc gl3_1">3.1.1: Language of Page</td>
+<td id="sc3_1_1" headers="sc gl3_1"><a href="./3_1_1">3.1.1: Language of Page</a></td>
+<td id="cov3_1_1" headers="coverage gl3_1">
+<ul>
+<li><a href="./3_1_1#tech-h57">H57: Using language attributes on the html element</a></li>
+</ul>
+</td>
 </tr>
 <tr>
 <td id="sc3_1_2" headers="sc gl3_1">3.1.2: Language of Parts</td>
@@ -211,7 +261,12 @@ layout: default
 <td id="sc3_2_1" headers="sc gl3_2">3.2.1: On Focus</td>
 </tr>
 <tr>
-<td id="sc3_2_2" headers="sc gl3_2">3.2.2: On Input</td>
+<td id="sc3_2_2" headers="sc gl3_2"><a href="./3_2_2">3.2.2: On Input</a></td>
+<td id="cov3_2_2" headers="coverage gl3_2">
+<ul>
+<li><a href="./3_2_2#tech-h32">H32: Providing submit buttons</a></li>
+</ul>
+</td>
 </tr>
 <tr>
 <td id="sc3_2_3" headers="sc gl3_2">3.2.3: Consistent Navigation</td>
@@ -220,7 +275,12 @@ layout: default
 <td id="sc3_2_4" headers="sc gl3_2">3.2.4: Consistent Identification</td>
 </tr>
 <tr>
-<td id="sc3_2_5" headers="sc gl3_2">3.2.5: Change on Request</td>
+<td id="sc3_2_5" headers="sc gl3_2"><a href="./3_2_5">3.2.5: Change on Request</a></td>
+<td id="cov3_2_5" headers="coverage gl3_2">
+<ul>
+<li><a href="./3_2_5#tech-h83">H83: Using the target attribute to open a new window on user request and indicating this in link text</a></li>
+</ul>
+</td>
 </tr>
 <tr>
 <td id="gl3_3" headers="guideline" rowspan="6">3.3: Help users avoid and correct mistakes.</td>
@@ -256,10 +316,20 @@ layout: default
 </tr>
 <tr>
 <td id="gl4_1" headers="guideline" rowspan="2">4.1: Maximize compatibility with current and future user agents, including assistive technologies.</td>
-<td id="sc4_1_1" headers="sc gl4_1">4.1.1: Parsing</td>
+<td id="sc4_1_1" headers="sc gl4_1"><a href="./4_1_1">4.1.1: Parsing</a></td>
+<td id="cov4_1_1" headers="coverage gl4_1">
+<ul>
+<li><a href="./4_1_1#tech-h93">H93: Ensuring that id attributes are unique on a Web page</a></li>
+</ul>
+</td>
 </tr>
 <tr>
-<td id="sc4_1_2" headers="sc gl4_1">4.1.2: Name, Role, Value</td>
+<td id="sc4_1_2" headers="sc gl4_1"><a href="./4_1_2">4.1.2: Name, Role, Value</a></td>
+<td id="cov4_1_2" headers="coverage gl4_1">
+<ul>
+<li><a href="./4_1_2#tech-h91">H91: Using HTML form controls and links</a></li>
+</ul>
+</td>
 </tr>
 </table>
 
