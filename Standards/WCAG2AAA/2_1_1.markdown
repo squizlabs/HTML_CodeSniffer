@@ -1,0 +1,46 @@
+---
+title: Success Criterion 2.1.1: Keyboard
+layout: default
+---
+
+# Success Criterion 2.1.1: Keyboard
+
+- **Applies to**: <abbr title="Single A">A</abbr>, <abbr title="Double A">AA</abbr>.
+- In <abbr title="Triple A">AAA</abbr>, Success Criterion 2.1.3, "Keyboard (No Exception)" removes the exceptions in the first sentence. Thus, the techniques remain valid.
+
+## Definition
+
+All functionality of the content is operable through a keyboard interface without requiring specific timings for individual keystrokes, except where the underlying function requires input that depends on the path of the user's movement and not just the endpoints. (Level A)
+
+- *Note 1:* This exception relates to the underlying function, not the input technique. For example, if using handwriting to enter text, the input technique (handwriting) requires path-dependent input but the underlying function (text input) does not.
+- *Note 2:* This does not forbid and should not discourage providing mouse input or other input methods in addition to keyboard operation.
+
+The full ["understanding" page for Success Criterion 2.1.1](http://www.w3.org/TR/UNDERSTANDING-WCAG20/keyboard-operation-keyboard-operable.html) is available from the W3C.
+
+Note that a page that contains "input that depends on the path of the user's movement" cannot ever meet <abbr title="Triple A">AAA</abbr> conformance.
+
+## Techniques tested
+
+### Table of contents
+
+- [SCR2: Using redundant keyboard and mouse event handlers](#tech-scr2)
+
+### <a id="tech-scr2">SCR2: Using redundant keyboard and mouse event handlers</a>
+
+[Detailed information about technique SCR2](http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/SCR2) is available from the W3C.
+
+The technique provided by SCR2 specifically refers to an example changing an image when it receives the focus - that an image change on a link using onmouseover and onmouseout should also be implemented using onfocus and onblur, so it is activated using the keyboard (by tabbing to the element).
+
+However, it equally applies to other functionality that would be accessible only via the mouse. Tested events include mouseover, mouseout, mousemove, mousedown, mouseup, and dblclick.
+
+Note that onclick is not tested, as it is generally not considered "inaccessible" to the keyboard; certain elements will typically generate a click event on a certain key press - notably links and buttons (see [technique SCR35](http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/SCR35)). The [current working draft of DOM Events Level 3 Specification](http://www.w3.org/TR/DOM-Level-3-Events/) states "Though the click event type has its origins in pointer devices (e.g., a mouse), subsequent implementation enhancements have extended it beyond that association, and it can be considered a device-independent event type for element activation."
+
+#### Testing
+
+The test procedure in SCR2 specifically relates to the example provided (image switch on mousing over an image link), so it is not worth replicating here.
+
+The intention, however, is that anything using a mouse-specific event should provide the functionality in either device-independent events (like focus and blur) or keyboard events (like keydown/up).
+
+As events can be implemented using a variety of different methods - ranging from via HTML attributes, through to DOM events, to being set through frameworks like jQuery or Prototype.js. On the flipside, even if a corresponding event is provided in code as an HTML attribute, there is no guarantee that it exposes the same functionality as the mouse event.
+
+Therefore, a warning will be generated on elements that contain the mouse-specific attributes. It will be up to the author to ensure that the functionality is provided to keyboard users in an appropriate manner.

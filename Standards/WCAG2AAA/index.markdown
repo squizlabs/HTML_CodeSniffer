@@ -122,13 +122,20 @@ layout: default
 </tr>
 <tr>
 <td id="gl2_1" headers="guideline" rowspan="3">2.1: Make all functionality available from a keyboard.</td>
-<td id="sc2_1_1" headers="sc gl2_1">2.1.1: Keyboard</td>
+<td id="sc2_1_1" headers="sc gl2_1"><a href="./2_1_1">2.1.1: Keyboard</a></td>
+<td id="cov2_1_1" headers="coverage gl2_1">
+<ul>
+<li><a href="./2_1_1#tech-scr2">SCR2: Using redundant keyboard and mouse event handlers</a></li>
+</ul>
+</td>
 </tr>
 <tr>
 <td id="sc2_1_2" headers="sc gl2_1">2.1.2: No Keyboard Trap</td>
 </tr>
 <tr>
 <td id="sc2_1_3" headers="sc gl2_1">2.1.3: Keyboard (No Exception)</td>
+<td id="cov2_1_3" headers="coverage gl2_1">
+<p>Explicitly, no techniques beyond that in <a href="./2_1_1"><acronym title="Success Criterion">SC</acronym> 2.1.1</a>. If analog, time-dependent input cannot be omitted from the page, then it cannot meet <abbr title="Triple A">AAA</abbr>.</p>
 </tr>
 <tr>
 <td id="gl2_2" headers="guideline" rowspan="5">2.2: Provide users enough time to read and use content.</td>
@@ -153,7 +160,7 @@ layout: default
 </tr>
 <tr>
 <td id="gl2_3" headers="guideline" rowspan="2">2.3: Do not design content in a way that is known to cause seizures.</td>
-<td id="sc2_3_1" headers="sc gl2_3">2.3.1: Three Flashes of Below Threshold</td>
+<td id="sc2_3_1" headers="sc gl2_3">2.3.1: Three Flashes or Below Threshold</td>
 </tr>
 <tr>
 <td id="sc2_3_2" headers="sc gl2_3">2.3.2: Three Flashes</td>
@@ -218,7 +225,7 @@ layout: default
 </td>
 </tr>
 <tr>
-<td id="sc2_4_10" headers="sc gl2_4">2.4.10: (Section Headings)</td>
+<td id="sc2_4_10" headers="sc gl2_4">2.4.10: Section Headings</td>
 </tr>
 </table>
 
@@ -301,6 +308,9 @@ layout: default
 </tr>
 <tr>
 <td id="sc3_3_6" headers="sc gl3_3">3.3.6: Error Prevention (All)</td>
+<td id="cov3_3_6" headers="coverage gl3_3">
+<p>Implement requirements from <acronym title="Success Criterion">SC</acronym> 3.3.4 to all forms.</p>
+</td>
 </tr>
 </table>
 
