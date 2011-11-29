@@ -102,6 +102,9 @@ layout: default
 ## Principle 2: Operable
 
 <table>
+<col width="30%" />
+<col width="20%" />
+<col width="50%" />
 <tr>
 <th id="guideline">Guideline</th>
 <th id="sc">Success Criterion</th>
@@ -176,6 +179,9 @@ layout: default
 ## Principle 3: Understandable
 
 <table>
+<col width="30%" />
+<col width="20%" />
+<col width="50%" />
 <tr>
 <th id="guideline">Guideline</th>
 <th id="sc">Success Criterion</th>
@@ -240,6 +246,9 @@ layout: default
 ## Principle 4: Robust
 
 <table>
+<col width="30%" />
+<col width="20%" />
+<col width="50%" />
 <tr>
 <th id="guideline">Guideline</th>
 <th id="sc">Success Criterion</th>
