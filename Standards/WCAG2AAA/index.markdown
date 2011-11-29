@@ -136,6 +136,7 @@ layout: default
 <td id="sc2_1_3" headers="sc gl2_1">2.1.3: Keyboard (No Exception)</td>
 <td id="cov2_1_3" headers="coverage gl2_1">
 <p>Explicitly, no techniques beyond that in <a href="./2_1_1"><acronym title="Success Criterion">SC</acronym> 2.1.1</a>. If analog, time-dependent input cannot be omitted from the page, then it cannot meet <abbr title="Triple A">AAA</abbr>.</p>
+</td>
 </tr>
 <tr>
 <td id="gl2_2" headers="guideline" rowspan="5">2.2: Provide users enough time to read and use content.</td>
