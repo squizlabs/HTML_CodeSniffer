@@ -16,6 +16,7 @@ layout: default
 <td id="gl1_1" headers="guideline">1.1</td>
 <td id="sc1_1_1" headers="sc gl1_1">[1.1.1: Non-text Content](./1_1_1)</td>
 <td id="cov1_1_1" headers="coverage gl1_1">
+
 - [H2: Combining adjacent image and text links for the same resource](./1_1_1#tech-h2)
 - [H24: Providing text alternatives for the area elements of image maps](./1_1_1#tech-h24)
 - [H36: Using alt attributes on images used as submit buttons](./1_1_1#tech-h36)
@@ -24,6 +25,7 @@ layout: default
 - [H53: Using the body of the object element[./1_1_1#tech-h53)
 - [H67: Using null alt text and no title attribute on img elements for images that <acronym title="assistive technology">AT</acronym> should ignore](./1_1_1#tech-h67)
 - [G94: Providing short text alternative for non-text content that serves the same purpose and presents the same information as the non-text content](./1_1_1#tech-g94)
+
 </td>
 </tr>
 <tr>
