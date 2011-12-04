@@ -1,0 +1,75 @@
+---
+title: Success Criterion 3.2.2: On Input
+category: Tested Techniques
+layout: default
+---
+
+# Success Criterion 3.2.2: On Input
+
+- **Applies to**: <abbr title="Single A">A</abbr>, <abbr title="Double A">AA</abbr>, <abbr title="Triple A">AAA</abbr>.
+
+## Definition
+
+Changing the setting of any user interface component does not automatically cause a change of context unless the user has been advised of the behavior before using the component.
+
+**Changes in context** include changes of: user agent; viewport; focus; [or] content that changes the meaning of the Web page.
+
+The full ["understanding" page for Success Criterion 3.2.2](http://www.w3.org/TR/UNDERSTANDING-WCAG20/consistent-behavior-unpredictable-change.html) is available from the W3C.
+
+## Techniques tested
+
+### Table of contents
+
+- [H32: Providing submit buttons]
+
+### <a id="tech-h32">H32: Providing submit buttons</a>
+
+Includes the following techniques:
+
+- The general technique [G80: Providing a submit button to initiate a change of context](http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/G80)
+- The HTML equivalent technique [H32: Providing submit buttons](http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/G32)
+
+Providing a submit button suggests that a user will be able to use that submit button to explicitly trigger a change in context, rather than it being placed out of their control by a web page. (That this criterion is successful depends, of course, on the author not doing such latter things.)
+
+In HTML, the three elements that count as submit buttons are:
+
+- input element with type "submit" - providing a normal button that submits.
+- input element with type "image" - providing an image submit button.
+- button element with type "submit" - providing a normal submit button that can be more richly styled than the equivalent input element.
+
+#### Testing
+
+The testing procedure for H32 is:
+
+1. Find all forms in the content.
+2. For each form, check that it has a submit button (input type="submit", input type="image", or button type="submit").
+
+The general version of the procedure in technique G80 is fundamentally equivalent, without the specific examples of buttons in HTML.
+
+#### Examples
+
+1.  Successful usage(s) of a submit button.
+
+        <!-- Using input type="submit". -->
+        <form action="submit1.php" method="GET">
+            <input type="submit" value="Submit Form" />
+        </form>
+
+        <!-- Using input type="image". -->
+        <form action="submit2.php" method="GET">
+            <input type="image" src="submit.png" alt="Submit Form" />
+        </form>
+
+        <!-- Using button type="submit". -->
+        <form action="submit3.php" method="GET">
+            <button type="submit">Submit Form</button>
+        </form>
+
+#### Errors
+
+1.  A form does not have a submit element (one of the above) contained within.
+
+    Example:
+
+    <form>
+    </form>

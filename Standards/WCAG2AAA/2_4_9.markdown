@@ -1,0 +1,39 @@
+---
+title: Success Criterion 2.4.9: Link Purpose (Link Only)
+category: Tested Techniques
+layout: default
+---
+
+# Success Criterion 2.4.9: Link Purpose (Link Only)
+
+- **Applies to**: <abbr title="Triple A">AAA</abbr> only.
+
+## Definition
+
+A mechanism is available to allow the purpose of each link to be identified from link text alone, except where the purpose of the link would be ambiguous to users in general.
+
+This is a more strict version of the success criterion [2.4.4 Link Purpose (In Context)](./2_4_4) that is applicable to the <abbr title="Single A">A</abbr> and <abbr title="Double A">AA</abbr> levels.
+
+Note: "ambiguous to users in general" is defined as:
+
+> the purpose cannot be determined from the link and all information of the Web page
+> presented to the user simultaneously with the link (i.e., readers without
+> disabilities would not know what a link would do until they activated it).
+>
+> Example: The word guava in the following sentence "One of the notable exports is
+> [guava](.)" is a link. The link could lead to a definition of guava, a chart listing the
+> quantity of guava exported or a photograph of people harvesting guava. Until the
+> link is activated, all readers are unsure and the person with a disability is not
+> at any disadvantage.
+
+In other words, if a well-functioning user would be just as confused by the link as a disadvantaged user, this criterion would not be violated, since the purpose of accessibility rules such as this is that users with disabilities are not at any disadvantage to normal users. That is not to say, however, that applying the techniques would not be a good idea - for all users, not just those with disabilities.
+
+Providing context to the link as per 2.4.4 become advisory techniques, rather than sufficient for satisfying this success criterion.
+
+The full ["understanding" page for Success Criterion 2.4.9](http://www.w3.org/TR/UNDERSTANDING-WCAG20/navigation-mechanisms-link.html) is available from the W3C.
+
+## Techniques tested
+
+### Table of contents
+
+- H30: Providing link text that describes the purpose of a link for anchor elements
