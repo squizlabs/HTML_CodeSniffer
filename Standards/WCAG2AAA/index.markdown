@@ -131,6 +131,11 @@ layout: default
 </tr>
 <tr>
 <td id="sc2_1_2" headers="sc gl2_1">2.1.2: No Keyboard Trap</td>
+<td id="cov2_1_2" headers="coverage gl2_1">
+<ul>
+<li><a href="./2_1_2#tech-f10">F10: Failure of <acronym title="Success Criterion">SC</acronym> 2.1.2 and <acronym title="Conformance Requirement">CR</acronym> 5 due to combining multiple content formats in a way that traps users inside one format type</a></li>
+</ul>
+</td>
 </tr>
 <tr>
 <td id="sc2_1_3" headers="sc gl2_1">2.1.3: Keyboard (No Exception)</td>

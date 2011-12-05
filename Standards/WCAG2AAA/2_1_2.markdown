@@ -1,0 +1,37 @@
+---
+title: Success Criterion 2.1.2: No Keyboard Trap
+layout: default
+---
+
+# Success Criterion 2.1.2: No Keyboard Trap
+
+- **Applies to**: <abbr title="Single A">A</abbr>, <abbr title="Double A">AA</abbr>, <abbr title="Triple A">AAA</abbr>
+
+## Definition
+
+If keyboard focus can be moved to a component of the page using a keyboard interface, then focus can be moved away from that component using only a keyboard interface, and, if it requires more than unmodified arrow or tab keys or other standard exit methods, the user is advised of the method for moving focus away. (Level A)
+
+*Note:* Since any content that does not meet this success criterion can interfere with a user's ability to use the whole page, all content on the Web page (whether it is used to meet other success criteria or not) must meet this success criterion. See [Conformance Requirement 5: Non-Interference](http://www.w3.org/TR/2008/REC-WCAG20-20081211/#cc5).
+
+The full ["understanding" page for Success Criterion 2.1.2](http://www.w3.org/TR/UNDERSTANDING-WCAG20/keyboard-operation-trapping.html) is available from the W3C.
+
+## Techniques tested
+
+### Table of contents
+
+- [F10: Failure of Success Criterion 2.1.2 and Conformance Requirement 5 due to combining multiple content formats in a way that traps users inside one format type](#tech-f10)
+
+### <a id="tech-f10">Failure of Success Criterion 2.1.2 and Conformance Requirement 5 due to combining multiple content formats in a way that traps users inside one format type</a>
+
+[Detailed information about technique F10](http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/F10) is available from the W3C.
+
+By definition, this is a manual check, as it is impossible to know how a plugin will behave. However it is an important one, as this failure condition disqualifies a page from conformance at any level - regardless of whether the plugin is "relied upon" for content - due to the "no interference" conformance requirement.
+
+This is probably another good reason why testing in multiple browsers - and particularly OSes - is important. A format that may be accessible on one browser/OS combination may not be accessible in another for various reasons.
+
+#### Testing
+
+> 1. Using a keyboard, navigate through the content.
+> 2. Check to see that the keyboard focus is not "trapped" and it is possible to move keyboard focus out of the plug-in content without closing the user agent or restarting the system.
+>
+> If the keyboard focus becomes "trapped," then this failure condition applies and content fails the Success Criterion and conformance requirement 5.
