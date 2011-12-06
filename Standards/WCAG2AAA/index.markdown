@@ -277,9 +277,19 @@ layout: default
 </tr>
 <tr>
 <td id="sc3_1_2" headers="sc gl3_1">3.1.2: Language of Parts</td>
+<td id="cov3_1_2" headers="coverage gl3_1"
+<p>Use the lang element on elements (or xml:lang where that is required) to indicate changes in text language. Since HTML_CodeSniffer cannot detect changes in language itself, this is a manual check.</p>
+
+<p>Providing the primary code (eg. "de" for German) is important; the regional sub-codes usually less so because of patchy screen reader support when switching between languages.</p>
+</td>
 </tr>
 <tr>
 <td id="sc3_1_3" headers="sc gl3_1">3.1.3: Unusual Words</td>
+<td id="cov3_1_3" headers="coverage gl3_1">
+<p>Define the unusual words, either inline (including using the dfn element), or linking to definitions in a glossary, or providing a dictionary search feature.</p>
+
+<p>If a word or phrase only means one unique thing in a page, it is OK to provide the definition on the first occurrence. See [Understanding <acronym title="Success Criterion">SC</acronym> 3.1.3](http://www.w3.org/TR/UNDERSTANDING-WCAG20/meaning-idioms.html) for more detail.</p>
+</td>
 </tr>
 <tr>
 <td id="sc3_1_4" headers="sc gl3_1">3.1.4: Abbreviations</td>
