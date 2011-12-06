@@ -286,6 +286,20 @@ layout: default
 </tr>
 <tr>
 <td id="sc3_1_5" headers="sc gl3_1">3.1.5: Reading Level</td>
+<td id="cov3_1_5" headers="coverage gl3_1">
+<p>Manual check. Various techniques are provided for reducing complexity, including:</p>
+
+<ul>
+<li>Making text easier to read, or providing a summary that is less complex ("lower secondary" education level at most)</li>
+<li>Providing visual illustrations, pictures, and symbols to help explain ideas, events, and processes</li>
+<li>Providing a spoken version of the text</li>
+<li>Providing sign language versions of information, ideas, and processes that must be understood in order to use the content</li>
+</ul>
+
+<p>The W3C targets the UNESCO "lower secondary" education level for this Success Criterion (7-9 years of education).</p>
+
+<p>"No technique will help all users who have difficulty. So different techniques are provided as sufficient techniques here for authors trying to make their sites more accessible. Any numbered technique or combination above can be used by a particular site and it is considered sufficient by the Working Group."</p>
+</td>
 </tr>
 <tr>
 <td id="sc3_1_6" headers="sc gl3_1">3.1.6: Pronunciation</td>
@@ -307,6 +321,9 @@ layout: default
 </tr>
 <tr>
 <td id="sc3_2_4" headers="sc gl3_2">3.2.4: Consistent Identification</td>
+<td id="cov3_1_2" headers="coverage gl3_2">
+<p>Using labels, names, and text alternatives consistently for content that have the same functionality. Also follow <a href="./1_1_1"><acronym title="Success Criterion">SC</acronym> 1.1.1</a> and <a href="./4_1_2"><acronym title="Success Criterion">SC</acronym> 4.1.2</a> so these labels/names/text alternatives actually exist.</p>
+</td>
 </tr>
 <tr>
 <td id="sc3_2_5" headers="sc gl3_2"><a href="./3_2_5">3.2.5: Change on Request</a></td>
