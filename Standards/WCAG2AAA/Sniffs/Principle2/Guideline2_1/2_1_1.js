@@ -23,7 +23,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_1_2_1_1 = {
 
             var mouseOutEls = top.querySelectorAll('*[onmouseout]');
             for (var i = 0; i < mouseOutEls.length; i++) {
-                HTMLCS.addMessage(HTMLCS.4WARNING, mouseOutEls[i], 'Ensure the functionality provided by mousing out of this element is available through the keyboard; for instance, using the blur event.', 'SCR2');
+                HTMLCS.addMessage(HTMLCS.WARNING, mouseOutEls[i], 'Ensure the functionality provided by mousing out of this element is available through the keyboard; for instance, using the blur event.', 'SCR2');
             }
 
             var mouseMoveEls = top.querySelectorAll('*[onmousemove]');
