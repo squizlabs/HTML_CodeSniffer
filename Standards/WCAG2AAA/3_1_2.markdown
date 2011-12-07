@@ -1,0 +1,93 @@
+---
+title: Success Criterion 3.1.2: Language of Parts
+layout: default
+---
+
+# Success Criterion 3.1.2: Language of Parts
+
+- **Applies to**: <abbr title="Double A">AA</abbr>, <abbr title="Triple A">AAA</abbr>.
+- Not required at <abbr title="Single A">A</abbr> level. You still need to mark the language of the document as per [Success Criterion 3.1.1](./3_1_1).
+
+## Definition
+
+The human language of each passage or phrase in the content can be programmatically determined except for proper names, technical terms, words of indeterminate language, and words or phrases that have become part of the vernacular of the immediately surrounding text.
+
+The full ["understanding" page for Success Criterion 3.1.2](http://www.w3.org/TR/UNDERSTANDING-WCAG20/meaning-other-lang-id.html) is available from the W3C.
+
+## Techniques tested
+
+### Table of contents
+
+- [H58: Using language attributes to identify changes in the human language](#tech-h58)
+
+### <a id="tech-h58">H58: Using language attributes to identify changes in the human language</a>
+
+[Detailed information about technique H58](http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H58) is available from the W3C.
+
+This involves setting the lang (or xml:lang) attribute on elements that are in a different human language to the page-level language. (You have [set the page-level language](./3_1_1#tech-h57), haven't you?) They apply not only to the contents but also the attributes of that element.
+
+"Additional subtags for region, script, variant or other aspects may lead to errors in language switching in older versions of some screenreaders." Some screen readers are listed as only switching on the primary code (eg. "fr" for French, rather than "fr-CA" for French spoken in Canada, typically).
+
+#### Testing
+
+- For each element in the document:
+
+    1. Check that the human language of the content of the element is the same as the inherited language for the element as specified in [HTML 4.01, Inheritance of language codes](http://www.w3.org/TR/1999/REC-html401-19991224/struct/dirlang.html#h-8.1.2)
+
+- For each lang attribute in the document:
+
+    1. Check that the value of the lang attribute conforms to [BCP 47: Tags for the Identification of Languages][BCP47] or its successor
+
+- For each xml:lang attribute in the document:
+
+    1. Check that the value of the xml:lang attribute conforms to [BCP 47: Tags for the Identification of Languages][BCP47] or its successor
+
+[BCP47]: http://www.rfc-editor.org/rfc/bcp/bcp47.txt
+
+The [language subtag registry](http://www.iana.org/assignments/language-subtag-registry) is administered by IANA, and is populated primarily through various ISO standard sources, such as ISO 639 (language codes) and ISO 3166 (country codes).
+
+> A valid language tag is: language-script?-region?-variant\*-extension\*-privateuse?
+>
+>  - An asterisk means zero or more of that section, a question mark means zero or one.
+>  - **language** is 2-8 alpha characters (2-3 common), lower case (optionally followed by hash and 3 alpha characters (**extlang**), one to three times)
+>  - **script** is 4 alpha characters, title case
+>  - **region** is 2 alpha characters (for a country, typically), upper case) or a 3-digit number (for a region)
+>  - **variant** is 5-8 alphanumeric characters, OR one digit followed by three alphanumeric characters
+>  - **extension** is of the format "code-value*"
+>      - Code is a single alphanumeric character, except "x".
+>      - [Only one extension is currently registered](http://www.iana.org/assignments/language-tag-extensions-registry): "u" for Unicode extensions
+>      - One or more values can be specified (hyphen between them): 2-8 alphanumeric characters.
+>  - **privateuse** is of the format "x-value*"
+>      - the "x" is invariant
+>      - One or more values can be specified (hyphen between them): 1-8 alphanumeric characters.
+>
+> Case is insensitive, but the above states how they *should* be written for consistency.
+>3
+> A **privateuse** section can replace an entire language tag, as can a set of grandfathered tags.
+
+#### Correct language tags
+
+1. 'en' (English. Latin script presumed by "Suppress-Script" property.)
+1. 'en-AU' (English - Australia.)
+1. 'zh' (Chinese. No script presumed.)
+1. 'zh-Hant' (Chinese - "Traditional Han" script, as used in places like Taiwan or Hong Kong.)
+1. 'zh-Hans' (Chinese - "Simplified Han" script, as used in places like mainland China or Singapore.)
+1. 'zh-Hant-TW' (Chinese - "Traditional Han" - Taiwan.)
+1. 'zh-Latn-pinyin' (Chinese - Latin script, "Pinyin romanisation" variant.)
+1. 'en-AU-x-nsw' (English - Australia with private use section.)
+1. 'en-AU-u-kf-upper' (English - Australia with a registered extension, in this case the [Unicode collation extensions](http://cldr.unicode.org/index/bcp47-extension).)
+1. 'x-test' (Private use tag replaces entire language tag.)
+1. 'tlh' (three character language tag, this one for the Klingon language (!).)
+1. 'i-klingon' (grandfathered tag for Klingon - "irregular", hence "i".)
+
+#### Not well-formed
+
+1. 'en-AU-Latn' (After language should be a 3-alpha extlang, or 4-alpha script. Should be "en-Latn-AU".)
+1. 'x' (Private use tags require one or more values... you can't have an "x" on its own.)
+1. 'i' (Same... irregular tags need something after it.)
+
+#### Well-formed but probably not valid
+
+1. 'test' (4-character language names are reserved. Perhaps you meant "x-test"?)
+1. 'en-AUS' (Legal as a language with an extlang subtag... but no extlangs have been defined for English.)
+1. 'english' (5-8 character names need to be registered... and none have been.)
