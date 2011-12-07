@@ -328,10 +328,13 @@ layout: default
 </tr>
 <tr>
 <td id="sc3_2_3" headers="sc gl3_2">3.2.3: Consistent Navigation</td>
+<td id="cov3_2_3" headers="coverage gl3_2">
+<p>Present repeated components in the same relative order each time they appear in a collection of Web pages.</p>
+</td>
 </tr>
 <tr>
 <td id="sc3_2_4" headers="sc gl3_2">3.2.4: Consistent Identification</td>
-<td id="cov3_1_2" headers="coverage gl3_2">
+<td id="cov3_2_4" headers="coverage gl3_2">
 <p>Using labels, names, and text alternatives consistently for content that have the same functionality. Also follow <a href="./1_1_1"><acronym title="Success Criterion">SC</acronym> 1.1.1</a> and <a href="./4_1_2"><acronym title="Success Criterion">SC</acronym> 4.1.2</a> so these labels/names/text alternatives actually exist.</p>
 </td>
 </tr>
