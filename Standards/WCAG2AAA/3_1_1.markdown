@@ -51,7 +51,7 @@ In the case of HTML 5, a W3C Editor's Draft exists referring to a concept called
 > 2. Check that the html element has a lang and/or xml:lang attribute.
 > 3. Check that the value of the lang attribute conforms to [<acronym title="Best Current Practice">BCP</acronym> 47: Tags for the Identification of Languages or its successor][BCP47] and reflects the primary language used by the Web page.
 
-Note: <acronym title="Best Current Practice">BCP</acronym> 47, as published by the <acronym title="Internet Engineering Task Force">IETF</acronym>, is a concatenation of two <acronym title="Request For Comments">RFC</acronym> documents: [#5646][RFC5646] ("Tags for Identifying Languages") and [#4647][RFC4647] ("Matching of Language Tags").
+Note: <acronym title="Best Current Practice">BCP</acronym> 47, as published by the <acronym title="Internet Engineering Task Force">IETF</acronym>, is a concatenation of two <acronym title="Request For Comments">RFC</acronym> documents: [#5646][RFC5646] ("Tags for Identifying Languages") and [#4647][RFC4647] ("Matching of Language Tags"). Discussion about well-formedness of language tags can be found in [Success Criterion 3.1.2](./3_1_2).
 
 [BCP47]: http://www.rfc-editor.org/rfc/bcp/bcp47.txt "Best Current Practice 47"
 [RFC5646]: http://www.rfc-editor.org/rfc/rfc5646.txt "RFC 5646"

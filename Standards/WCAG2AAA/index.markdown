@@ -278,7 +278,11 @@ layout: default
 <tr>
 <td id="sc3_1_2" headers="sc gl3_1">3.1.2: Language of Parts</td>
 <td id="cov3_1_2" headers="coverage gl3_1"
-<p>Use the lang element on elements (or xml:lang where that is required) to indicate changes in text language. Since HTML_CodeSniffer cannot detect changes in language itself, this is a manual check.</p>
+<ul>
+<li><a href="./3_1_1#tech-h58">H58: Using language attributes to identify changes in the human language</a></li>
+</ul>
+
+<p>Use the lang element on elements (or xml:lang where that is required) to indicate changes in text language. Since HTML_CodeSniffer cannot detect changes in language itself, this is a manual check. However, HTML_CodeSniffer will check for the well-formedness of language tags that get placed into these attributes.</p>
 
 <p>Providing the primary code (eg. "de" for German) is important; the regional sub-codes usually less so because of patchy screen reader support when switching between languages.</p>
 </td>
@@ -312,7 +316,22 @@ layout: default
 </td>
 </tr>
 <tr>
-<td id="sc3_1_6" headers="sc gl3_1">3.1.6: Pronunciation</td>
+<td id="sc3_1_6" headers="sc gl3_1"><a href="./3_1_6">3.1.6: Pronunciation</a></td>
+<td id="cov3_1_6" headers="coverage gl3_1">
+<ul>
+<li><a href="./3_1_6#tech-h62">H62: Using the ruby element (XHTML 1.1, HTML5)</a></li>
+</ul>
+
+<p>Also sufficient:</p>
+
+<ul>
+<li>providing the pronunciation directly after the word</li>
+<li>linking to a definition (including in a dictionary or glossary) that contains the pronunciation</li>
+<li>Using standard diacritical marks that can be turned off (where applicable)</li>
+</ul>
+
+<p>Correct use of the ruby element (and particularly rp) should provide ruby support where it is supported, and fulfil the "pronunciation directly after the word" technique for browsers that do not support ruby.</p>
+</td>
 </tr>
 <tr>
 <td id="gl3_2" headers="guideline" rowspan="5">3.2: Make Web pages appear and operate in predictable ways.</td>

@@ -1,0 +1,33 @@
+---
+title: Success Criterion 3.1.6: Pronunciation
+layout: default
+---
+
+# Success Criterion 3.1.6: Pronunciation
+
+- **Applies to**: <abbr title="Triple A">AAA</abbr> only.
+
+## Definition
+
+A mechanism is available for identifying specific pronunciation of words where meaning of the words, in context, is ambiguous without knowing the pronunciation.
+
+The full ["understanding" page for Success Criterion 3.1.6](http://www.w3.org/TR/UNDERSTANDING-WCAG20/meaning-pronunciation.html) is available from the W3C.
+
+## Techniques tested
+
+### Table of contents
+
+- [H62: Using the ruby element](#tech-h62)
+
+### <a id="tech-h62">H62: Using the ruby element</a>
+
+[Detailed information about technique H62](http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H62) is available from the W3C. This definition applies to XHTML 1.1; in HTML 5 the rb element (nor complex ruby annotation) does not exist; instead the base text is placed inside the ruby element itself as body content.
+
+*Full explanation TBD. Currently checks for missing rt and rp elements the as per testing procedure.*
+
+#### Testing
+
+> 1. Check that a rt element contains pronunciation information for each run of text defined by the rb element.[*]
+> 2. If simple Ruby markup is used, check that the rp element is present to indicate to user agents that do not support Ruby annotations that the text in the rt element provides the pronunciation information.
+
+*\*Note:* Testing is as applied to XHTML 1.1. In HTML5, replace "the rb element" with the body content of the ruby element".
