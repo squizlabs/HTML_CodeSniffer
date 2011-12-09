@@ -13,6 +13,14 @@ A mechanism is available for identifying specific pronunciation of words where m
 
 The full ["understanding" page for Success Criterion 3.1.6](http://www.w3.org/TR/UNDERSTANDING-WCAG20/meaning-pronunciation.html) is available from the W3C.
 
+Additional general techniques are available for fulfilling this Success Criterion:
+
+<ul>
+<li>Providing the pronunciation directly after the word. If ruby is used and the rp element is used properly, it should fall back to this case in browsers without ruby support.</li>
+<li>Linking to a definition (including in a dictionary or glossary) that contains the pronunciation</li>
+<li>Using standard diacritical marks that can be turned off (where applicable). The W3C offers an [example from the University of Hawai'i](http://www.hawaii.edu/site/info/diacritics.php), which allows the switching of Hawai'ian language diacritical marks.</li>
+</ul>
+
 ## Techniques tested
 
 ### Table of contents
@@ -23,11 +31,64 @@ The full ["understanding" page for Success Criterion 3.1.6](http://www.w3.org/TR
 
 [Detailed information about technique H62](http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H62) is available from the W3C. This definition applies to XHTML 1.1; in HTML 5 the rb element (nor complex ruby annotation) does not exist; instead the base text is placed inside the ruby element itself as body content.
 
-*Full explanation TBD. Currently checks for missing rt and rp elements the as per testing procedure.*
+One method of marking pronounciation, particularly in Asian scripts like Chinese characters or Japanese kanji, is to use smaller characters above, below, or beside the text - either simpler characters (such as hiragana in Japanese), or Latin romanisation (such as romaji or pinyin). This is called *ruby text* by the W3C.
+
+Support: due to the lack of support for XHTML 1.1 (or rather, the lack of implementation, possibly due to IE not supporting XML content-types well), the ruby element is not well supported - ironically, IE has handled it the longest; Webkit also handles it natively in recent versions (Safari 5.0+, Chrome 5+). Gecko does not handle ruby natively - the bug has been open for more than a decade now - although plugins are available.
+
+The lack of wide support - something that will never be 100% (eg. text browsers?) - means use of the rp element is important. The rp element has no representation in browsers that support the ruby element; in browsers that do not understand them, the elements will have no effect, with the result being the base text, with the pronunciation beside it in whatever passes for parentheses.
 
 #### Testing
 
-> 1. Check that a rt element contains pronunciation information for each run of text defined by the rb element.[*]
-> 2. If simple Ruby markup is used, check that the rp element is present to indicate to user agents that do not support Ruby annotations that the text in the rt element provides the pronunciation information.
+> 1. Check that a rt element contains pronunciation information for each run of text defined by the rb element[1].
+> 2. If simple Ruby markup[2] is used, check that the rp element is present to indicate to user agents that do not support Ruby annotations that the text in the rt element provides the pronunciation information.
 
-*\*Note:* Testing is as applied to XHTML 1.1. In HTML5, replace "the rb element" with the body content of the ruby element".
+*Note 1:* Testing is as applied to XHTML 1.1. In HTML5, replace "the rb element" with the body content of the ruby element".
+
+*Note 2:* In XHTML 1.1, "simple ruby markup" involves using the rb, rt and rp elements. "Complex ruby markup" involves also using the rbc and rtc elements to define ruby base and text containers. Complex ruby markup does not exist in HTML 5, although nesting of ruby elements is sometimes suggested. The rp element is not applicable in complex ruby markup.
+
+#### Correct Usage
+
+1.  XHTML 1.1 version.
+
+    Example:
+
+        <ruby>
+            <rb>Test</rb>
+            <rp> (</rp>
+            <rt>Teh-ST</rt>
+            <rp>)</rp>
+        </ruby>
+
+2.  HTML5 version; note no rb element.
+
+        <ruby>
+            Test
+            <rp> (</rp>
+            <rt>Teh-ST</rt>
+            <rp>)</rp>
+        </ruby>
+
+#### Errors
+
+1.  Fails because: no rt element present (testing point 1).
+
+    Note that the message for this error mirrors testing point 1, with "rb element" replaced with "body content of the ruby element" as applicable for HTML 5-style ruby markup.
+
+    Example (XHTML 1.1):
+
+        <ruby>
+            <rb>Test</rb>
+        </ruby>
+
+    Example (HTML 5):
+
+        <ruby>Test</ruby>
+
+2.  Fails because: no rp element present (testing point 2).
+
+    Example:
+
+        <ruby>
+            <rb>Test</rb>
+            <rt>Teh-ST</rt>
+        </ruby>
