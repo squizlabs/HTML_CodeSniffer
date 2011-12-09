@@ -274,7 +274,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
         if ((headersAttr.required === true) && (headersAttr.allowScope === true) && (headersAttr.correct === false) && (scopeAttr.correct === false)) {
             if ((scopeAttr.used === false) && (headersAttr.used === false)) {
                 // Nothing used at all.
-                HTMLCS.addMessage(HTMLCS.ERROR, table, 'Associate data cells with table headings using either the scope or headers attribute techniques.', 'H43H63');
+                HTMLCS.addMessage(HTMLCS.ERROR, table, 'Associate data cells with table headings using either the scope or headers attribute techniques.', 'H43,H63');
             } else if ((scopeAttr.used === false) && ((headersAttr.missingThId.length > 0) || (headersAttr.missingTd.length > 0))) {
                 // Headers attribute is used, but not all th elements have ids.
                 if (headersAttr.missingThId.length > 0) {
@@ -290,7 +290,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
                 HTMLCS.addMessage(HTMLCS.ERROR, table, 'Check that all th elements have a scope attribute.', 'H63.1');
             } else if ((scopeAttr.missing.length > 0) && ((headersAttr.missingThId.length > 0) || (headersAttr.missingTd.length > 0))) {
                 // Both are used and both were done incorrectly. Provide generic message.
-                HTMLCS.addMessage(HTMLCS.ERROR, table, 'Associate data cells with table headings using either the scope or headers attribute techniques.', 'H43H63');
+                HTMLCS.addMessage(HTMLCS.ERROR, table, 'Associate data cells with table headings using either the scope or headers attribute techniques.', 'H43,H63');
             }
         }
     },
@@ -599,7 +599,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
 
         if (summary !== '') {
             if (caption === summary) {
-                HTMLCS.addMessage(HTMLCS.ERROR, table, 'If both a summary attribute and a caption element are present for this data table, the summary should not duplicate the caption.', 'H39H73.4');
+                HTMLCS.addMessage(HTMLCS.ERROR, table, 'If both a summary attribute and a caption element are present for this data table, the summary should not duplicate the caption.', 'H39,H73.4');
             }
 
             HTMLCS.addMessage(HTMLCS.NOTICE, table, 'Check that the summary attribute describes the table\'s organization or explains how to use the table.', 'H73.3');
