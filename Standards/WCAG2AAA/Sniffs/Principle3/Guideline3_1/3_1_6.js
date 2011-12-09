@@ -7,7 +7,6 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_1_3_1_6 = {
 
     process: function(element)
     {
-        // Generic message for changes in language.
         var rb = element.querySelectorAll('rb');
         var rt = element.querySelectorAll('rt');
         if (rt.length === 0) {
