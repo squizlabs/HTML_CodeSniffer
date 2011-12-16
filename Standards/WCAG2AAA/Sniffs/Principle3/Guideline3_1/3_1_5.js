@@ -1,6 +1,4 @@
 var HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_1_3_1_5 = {
-    _labelNames: null,
-
     register: function()
     {
         return ['_top'];
