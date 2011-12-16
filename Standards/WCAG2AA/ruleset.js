@@ -6,6 +6,10 @@ var HTMLCS_WCAG2AA = {
             standard: 'WCAG2AAA',
             include: [
                'Principle1.Guideline1_1.1_1_1',
+               'Principle1.Guideline1_2.1_2_1',
+               'Principle1.Guideline1_2.1_2_2',
+               'Principle1.Guideline1_2.1_2_4',
+               'Principle1.Guideline1_2.1_2_5',
                'Principle1.Guideline1_3.1_3_1',
                'Principle1.Guideline1_3.1_3_2',
                'Principle1.Guideline1_3.1_3_3',
