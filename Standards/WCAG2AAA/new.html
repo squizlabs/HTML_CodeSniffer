@@ -1,0 +1,2903 @@
+<html>
+<head>
+<title>WCAG 2.0 AAA</title>
+<style type="text/css">
+h1 {border-bottom: 5px solid #56a8f9; background-color: #333; color: white; padding: 15px 10px; margin: -10px -10px 10px -10px}
+body {padding: 10px; margin: 0}
+body, th, td {font: 10.5pt 'verdana', sans-serif}
+table h4 {margin: 0; padding:0.2em 0; background-color: #eef}
+table p {margin: 0; margin-top: 0;}
+table h4 + p, p + p {margin-top: 0.5em;}
+table {width: 100%; background-color: #ccc}
+table td {background-color: #fff; vertical-align: top; border-collapse: collapse; padding: 5px; margin: 1px}
+table th {background-color: #ddd; font-weight: bold; border-collapse: collapse; padding: 5px; margin: 1px}
+table tr.na td.dimOnNa {background-color: #f5f5f5; color: #999; text-decoration: line-through;}
+table td.assertType {font-weight: bold;}
+table tr.error td.assertType {background-color: #c00; color: white;}
+table tr.warning td.assertType {background-color: #ff0; color: black;}
+table tr.notice td.assertType {background-color: #666; color: white;}
+div.edsnote {background-color: #ffd; border: 1px solid #dd0; margin: 5px; padding: 5px;}
+</style>
+</head>
+<body>
+<h1>Web Content Accessibility Guidelines 2.0, Level <abbr title="Triple A">AAA</abbr></h1>
+<h2><a name="pr1">Principle 1: Perceivable</a></h2>
+
+<h3><a name="gl1_1">Guideline 1.1: Text Alternatives</a></h3>
+
+<p>Provide text alternatives for any non-text content so that it can be changed into other forms people need, such as large print, braille, speech, symbols or simpler language.</p>
+
+<table>
+<colgroup>
+<col width="40%">
+<col width="6%">
+<col width="30%">
+<col width="12%">
+<col width="12%">
+</colgroup>
+<tbody>
+<tr>
+<th id="sc">Success Criterion</th>
+<th id="type">Type</th>
+<th id="name">Message Name</th>
+<th id="tech">Applies To</th>
+<th id="tech">Techniques</th>
+</tr>
+
+<tr class="error">
+<td rowspan="20" headers="sc" id="sc1_1_1">
+<h4>1.1.1: Non-text Content (Level <abbr title="Single A">A</abbr>)</h4>
+<p>All non-text content that is presented to the user has a text alternative that serves the equivalent purpose, except for the situations listed below.</p>
+
+<ul>
+<li><em>Controls, Input:</em> If non-text content is a control or accepts user input, then it has a name that describes its purpose. (Refer to <a href="#gl4_1">Guideline 4.1</a> for additional requirements for controls and content that accepts user input.)</li>
+<li><em>Time-Based Media:</em> If non-text content is time-based media, then text alternatives at least provide descriptive identification of the non-text content. (Refer to <a href="#gl1_2">Guideline 1.2</a> for additional requirements for media.)</li>
+<li><em>Test:</em> If non-text content is a test or exercise that would be invalid if presented in text, then text alternatives at least provide descriptive identification of the non-text content.</li>
+<li><em>Sensory:</em> If non-text content is primarily intended to create a specific sensory experience, then text alternatives at least provide descriptive identification of the non-text content.</li>
+<li><em>CAPTCHA:</em> If the purpose of non-text content is to confirm that content is being accessed by a person rather than a computer, then text alternatives that identify and describe the purpose of the non-text content are provided, and alternative forms of CAPTCHA using output modes for different types of sensory perception are provided to accommodate different disabilities.</li>
+<li><em>Decoration, Formatting, Invisible:</em> If non-text content is pure decoration, is used only for visual formatting, or is not presented to users, then it is implemented in a way that it can be ignored by assistive technology.</li>
+</ul>
+</td>
+<td class="assertType dimOnNa" id="1_1_1_7_type" headers="type sc1_1_1">
+Error</td>
+<td class="dimOnNa" id="1_1_1_7_name" headers="name sc1_1_1">
+<p>For each area element in an image map, check that the area element has a text alternative (using the alt attribute) that serves the same purpose as the part of image map image it references.</p>
+</td>
+<td class="dimOnNa" id="1_1_1_7_applies" headers="tech sc1_1_1">
+<p>Area elements in a client-side image map without alt text</p>
+</td>
+<td class="dimOnNa" id="1_1_1_7_tech" headers="tech sc1_1_1">
+<ul>
+<li>H24</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_1_1_14_type" headers="type sc1_1_1">
+Error</td>
+<td class="dimOnNa" id="1_1_1_14_name" headers="name sc1_1_1">
+<p>Img element inside a link must not use alt text that duplicates the content of a text link beside it.</p>
+</td>
+<td class="dimOnNa" id="1_1_1_14_applies" headers="tech sc1_1_1">
+<p>Img element in an same anchor ("a" element) with the same alt text as the text of an adjacent anchor with the same href</p>
+</td>
+<td class="dimOnNa" id="1_1_1_14_tech" headers="tech sc1_1_1">
+<ul>
+<li>H2.EG3</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_1_1_0_type" headers="type sc1_1_1">
+Error</td>
+<td class="dimOnNa" id="1_1_1_0_name" headers="name sc1_1_1">
+<p>If an img element is the only content of the a element, check that its text alternative describes the purpose of the link.</p>
+</td>
+<td class="dimOnNa" id="1_1_1_0_applies" headers="tech sc1_1_1">
+<p>Img element that is the only content of an anchor ("a" element)</p>
+</td>
+<td class="dimOnNa" id="1_1_1_0_tech" headers="tech sc1_1_1">
+<ul>
+<li>H30.2</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_1_1_13_type" headers="type sc1_1_1">
+Error</td>
+<td class="dimOnNa" id="1_1_1_13_name" headers="name sc1_1_1">
+<p>Img element inside a link has empty alt text when a link beside it contains link text; consider combining the links.</p>
+</td>
+<td class="dimOnNa" id="1_1_1_13_applies" headers="tech sc1_1_1">
+<p>Img element in an same anchor ("a" element) with empty alt text, where an adjacent anchor with the same href exists with text</p>
+</td>
+<td class="dimOnNa" id="1_1_1_13_tech" headers="tech sc1_1_1">
+<ul>
+<li>H2.EG4</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_1_1_15_type" headers="type sc1_1_1">
+Error</td>
+<td class="dimOnNa" id="1_1_1_15_name" headers="name sc1_1_1">
+<p>Check that the body of each object element contains a text alternative for the object.</p>
+</td>
+<td class="dimOnNa" id="1_1_1_15_applies" headers="tech sc1_1_1">
+<p>Object element without a text alternative</p>
+</td>
+<td class="dimOnNa" id="1_1_1_15_tech" headers="tech sc1_1_1">
+<ul>
+<li>H53</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_1_1_5_type" headers="type sc1_1_1">
+Error</td>
+<td class="dimOnNa" id="1_1_1_5_name" headers="name sc1_1_1">
+<p>When using an image submit button, specify a short text alternative with the alt attribute that describes the function of the button.</p>
+</td>
+<td class="dimOnNa" id="1_1_1_5_applies" headers="tech sc1_1_1">
+<p>Image submit button (input type="image") without an alt attribute, or with empty alt text</p>
+</td>
+<td class="dimOnNa" id="1_1_1_5_tech" headers="tech sc1_1_1">
+<ul>
+<li>H36</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_1_1_1_type" headers="type sc1_1_1">
+Error</td>
+<td class="dimOnNa" id="1_1_1_1_name" headers="name sc1_1_1">
+<p>When using the img element, specify a short text alternative with the alt attribute.</p>
+</td>
+<td class="dimOnNa" id="1_1_1_1_applies" headers="tech sc1_1_1">
+<p>Img element where the alt attribute is entirely omitted</p>
+</td>
+<td class="dimOnNa" id="1_1_1_1_tech" headers="tech sc1_1_1">
+<ul>
+<li>H37</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_1_1_2_type" headers="type sc1_1_1">
+Error</td>
+<td class="dimOnNa" id="1_1_1_2_name" headers="name sc1_1_1">
+<p>Img element with empty alt text must have absent or empty title attribute.</p>
+</td>
+<td class="dimOnNa" id="1_1_1_2_applies" headers="tech sc1_1_1">
+<p>Img element where the alt text is empty but the title attribute is specified</p>
+</td>
+<td class="dimOnNa" id="1_1_1_2_tech" headers="tech sc1_1_1">
+<ul>
+<li>H67.1</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_1_1_18_type" headers="type sc1_1_1">
+Error</td>
+<td class="dimOnNa" id="1_1_1_18_name" headers="name sc1_1_1">
+<p>Check that the applet element contains an alt attribute with a text alternative for the applet.</p>
+</td>
+<td class="dimOnNa" id="1_1_1_18_applies" headers="tech sc1_1_1">
+<p>Applet element without an alt attribute</p>
+</td>
+<td class="dimOnNa" id="1_1_1_18_tech" headers="tech sc1_1_1">
+<ul>
+<li>H35.2</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_1_1_17_type" headers="type sc1_1_1">
+Error</td>
+<td class="dimOnNa" id="1_1_1_17_name" headers="name sc1_1_1">
+<p>Check that the applet element contains a text alternative for the applet in the body of the applet element.</p>
+</td>
+<td class="dimOnNa" id="1_1_1_17_applies" headers="tech sc1_1_1">
+<p>Applet element without text alternative in body text</p>
+</td>
+<td class="dimOnNa" id="1_1_1_17_tech" headers="tech sc1_1_1">
+<ul>
+<li>H35.3</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_1_1_12_type" headers="type sc1_1_1">
+Error</td>
+<td class="dimOnNa" id="1_1_1_12_name" headers="name sc1_1_1">
+<p>Img element inside a link must not use alt text that duplicates the text content of the link.</p>
+</td>
+<td class="dimOnNa" id="1_1_1_12_applies" headers="tech sc1_1_1">
+<p>Img element residing with text in the same anchor ("a" element) where the alt text and the body text are the same</p>
+</td>
+<td class="dimOnNa" id="1_1_1_12_tech" headers="tech sc1_1_1">
+<ul>
+<li>H2.EG5</li>
+</ul>
+</td>
+</tr>
+
+<tr class="warning">
+<td class="assertType dimOnNa" id="1_1_1_9_type" headers="type sc1_1_1">
+Warning</td>
+<td class="dimOnNa" id="1_1_1_9_name" headers="name sc1_1_1">
+<p>If this image cannot be described in a short text alternative, provide a long text alternative, either using the longdesc attribute or another sufficient technique.</p>
+</td>
+<td class="dimOnNa" id="1_1_1_9_applies" headers="tech sc1_1_1">
+<p>Img element without longdesc attribute</p>
+</td>
+<td class="dimOnNa" id="1_1_1_9_tech" headers="tech sc1_1_1">
+<ul>
+<li>H45.1</li>
+</ul>
+</td>
+</tr>
+
+<tr class="warning">
+<td class="assertType dimOnNa" id="1_1_1_3_type" headers="type sc1_1_1">
+Warning</td>
+<td class="dimOnNa" id="1_1_1_3_name" headers="name sc1_1_1">
+<p>Img element is marked so that it is ignored by Assistive Technology.</p>
+</td>
+<td class="dimOnNa" id="1_1_1_3_applies" headers="tech sc1_1_1">
+<p>Any img element where title and alt text are properly left blank</p>
+</td>
+<td class="dimOnNa" id="1_1_1_3_tech" headers="tech sc1_1_1">
+<ul>
+<li>H67.2</li>
+</ul>
+</td>
+</tr>
+
+<tr class="warning">
+<td class="assertType dimOnNa" id="1_1_1_10_type" headers="type sc1_1_1">
+Warning</td>
+<td class="dimOnNa" id="1_1_1_10_name" headers="name sc1_1_1">
+<p>Check that the value of the longdesc attribute is a valid URI of an existing resource.</p>
+</td>
+<td class="dimOnNa" id="1_1_1_10_applies" headers="tech sc1_1_1">
+<p>Img element without longdesc attribute</p>
+</td>
+<td class="dimOnNa" id="1_1_1_10_tech" headers="tech sc1_1_1">
+<ul>
+<li>H45.2</li>
+</ul>
+</td>
+</tr>
+
+<tr class="notice">
+<td class="assertType dimOnNa" id="1_1_1_4_type" headers="type sc1_1_1">
+Notice</td>
+<td class="dimOnNa" id="1_1_1_4_name" headers="name sc1_1_1">
+<p>Ensure that the img element's alt text serves the same purpose and presents the same information as the image.</p>
+</td>
+<td class="dimOnNa" id="1_1_1_4_applies" headers="tech sc1_1_1">
+<p>Any img element where the alt text has been correctly specified</p>
+</td>
+<td class="dimOnNa" id="1_1_1_4_tech" headers="tech sc1_1_1">
+<ul>
+<li>G94</li>
+</ul>
+</td>
+</tr>
+
+<tr class="notice">
+<td class="assertType dimOnNa" id="1_1_1_19_type" headers="type sc1_1_1">
+Notice</td>
+<td class="dimOnNa" id="1_1_1_19_name" headers="name sc1_1_1">
+<p>Check that short (and if appropriate, long) text alternatives are available for non-text content that serve the same purpose and presents the same information.</p>
+</td>
+<td class="dimOnNa" id="1_1_1_19_applies" headers="tech sc1_1_1">
+<p>Applet element with both text alternatives</p>
+</td>
+<td class="dimOnNa" id="1_1_1_19_tech" headers="tech sc1_1_1">
+<ul>
+<li>G94</li>
+<li>G92</li>
+</ul>
+</td>
+</tr>
+
+<tr class="notice">
+<td class="assertType dimOnNa" id="1_1_1_6_type" headers="type sc1_1_1">
+Notice</td>
+<td class="dimOnNa" id="1_1_1_6_name" headers="name sc1_1_1">
+<p>Ensure that the image submit button's alt text identifies the purpose of the button.</p>
+</td>
+<td class="dimOnNa" id="1_1_1_6_applies" headers="tech sc1_1_1">
+<p>Image submit button (input type="image") with alt text correctly specified</p>
+</td>
+<td class="dimOnNa" id="1_1_1_6_tech" headers="tech sc1_1_1">
+<ul>
+<li>G94</li>
+</ul>
+</td>
+</tr>
+
+<tr class="notice">
+<td class="assertType dimOnNa" id="1_1_1_8_type" headers="type sc1_1_1">
+Notice</td>
+<td class="dimOnNa" id="1_1_1_8_name" headers="name sc1_1_1">
+<p>Ensure that the area element's text alternative serves the same purpose as the part of image map image it references.</p>
+</td>
+<td class="dimOnNa" id="1_1_1_8_applies" headers="tech sc1_1_1">
+<p>Area elements in a client-side image map with alt text correctly specified</p>
+</td>
+<td class="dimOnNa" id="1_1_1_8_tech" headers="tech sc1_1_1">
+<ul>
+<li>H24.2</li>
+</ul>
+</td>
+</tr>
+
+<tr class="notice">
+<td class="assertType dimOnNa" id="1_1_1_11_type" headers="type sc1_1_1">
+Notice</td>
+<td class="dimOnNa" id="1_1_1_11_name" headers="name sc1_1_1">
+<p>Check that the content at the target of the longdesc URI contains a long description describing the original non-text content associated with it.</p>
+</td>
+<td class="dimOnNa" id="1_1_1_11_applies" headers="tech sc1_1_1">
+<p>Img element with a longdesc attribute</p>
+</td>
+<td class="dimOnNa" id="1_1_1_11_tech" headers="tech sc1_1_1">
+<ul>
+<li>H45.3</li>
+</ul>
+</td>
+</tr>
+
+<tr class="notice">
+<td class="assertType dimOnNa" id="1_1_1_16_type" headers="type sc1_1_1">
+Notice</td>
+<td class="dimOnNa" id="1_1_1_16_name" headers="name sc1_1_1">
+<p>Check that short (and if appropriate, long) text alternatives are available for non-text content that serve the same purpose and presents the same information.</p>
+</td>
+<td class="dimOnNa" id="1_1_1_16_applies" headers="tech sc1_1_1">
+<p>Object element with text alternative</p>
+</td>
+<td class="dimOnNa" id="1_1_1_16_tech" headers="tech sc1_1_1">
+<ul>
+<li>G94</li>
+<li>G92</li>
+</ul>
+</td>
+</tr>
+
+</tbody></table><h3><a name="gl1_2">Guideline 1.2: Time-based Media</a></h3>
+
+<p>Provide alternatives for time-based media.</p>
+
+<table>
+<colgroup>
+<col width="40%">
+<col width="6%">
+<col width="30%">
+<col width="12%">
+<col width="12%">
+</colgroup>
+<tbody>
+<tr>
+<th id="sc">Success Criterion</th>
+<th id="type">Type</th>
+<th id="name">Message Name</th>
+<th id="tech">Applies To</th>
+<th id="tech">Techniques</th>
+</tr>
+
+<tr class="notice">
+<td rowspan="2" headers="sc" id="sc1_2_1">
+<h4>1.2.1: Audio-only and Video-only (Prerecorded) (Level <abbr title="Single A">A</abbr>)</h4>
+<p>For prerecorded audio-only and prerecorded video-only media, the following are true, except when the audio or video is a media alternative for text and is clearly labeled as such:</p>
+
+<ul>
+<li><em>Prerecorded Audio-only:</em> An alternative for time-based media is provided that presents equivalent information for prerecorded audio-only content.</li>
+<li><em>Prerecorded Video-only:</em> Either an alternative for time-based media or an audio track is provided that presents equivalent information for prerecorded video-only content.</li>
+</ul>
+</td>
+<td class="assertType dimOnNa" id="1_2_1_1_type" headers="type sc1_2_1">
+Notice</td>
+<td class="dimOnNa" id="1_2_1_1_name" headers="name sc1_2_1">
+<p>If this embedded object contains pre-recorded video only, and is not provided as an alternative for text content, check that an alternative text version is available, or an audio track is provided that presents equivalent information.</p>
+</td>
+<td class="dimOnNa" id="1_2_1_1_applies" headers="tech sc1_2_1">
+<p>Embedded objects that may contain video (object, embed, applet, video)</p>
+</td>
+<td class="dimOnNa" id="1_2_1_1_tech" headers="tech sc1_2_1">
+<ul>
+<li>G159</li>
+<li>G166</li>
+</ul>
+</td>
+</tr>
+
+<tr class="notice">
+<td class="assertType dimOnNa" id="1_2_1_0_type" headers="type sc1_2_1">
+Notice</td>
+<td class="dimOnNa" id="1_2_1_0_name" headers="name sc1_2_1">
+<p>If this embedded object contains pre-recorded audio only, and is not provided as an alternative for text content, check that an alternative text version is available.</p>
+</td>
+<td class="dimOnNa" id="1_2_1_0_applies" headers="tech sc1_2_1">
+<p>Embedded objects that may be audio-only (object, embed, applet, bgsound, audio)</p>
+</td>
+<td class="dimOnNa" id="1_2_1_0_tech" headers="tech sc1_2_1">
+<ul>
+<li>G158</li>
+</ul>
+</td>
+</tr>
+
+<tr class="notice">
+<td rowspan="1" headers="sc" id="sc1_2_2">
+<h4>1.2.2: Audio-only and Video-only (Prerecorded) (Level <abbr title="Single A">A</abbr>)</h4>
+<p>Captions are provided for all prerecorded audio content in synchronized media, except when the media is a media alternative for text and is clearly labeled as such.</p>
+</td>
+<td class="assertType dimOnNa" id="1_2_2_0_type" headers="type sc1_2_2">
+Notice</td>
+<td class="dimOnNa" id="1_2_2_0_name" headers="name sc1_2_2">
+<p>If this embedded object contains pre-recorded synchronised media and is not provided as an alternative for text content, check that captions are provided for audio content.</p>
+</td>
+<td class="dimOnNa" id="1_2_2_0_applies" headers="tech sc1_2_2">
+<p>Embedded objects that may contain video (object, embed, applet, video)</p>
+</td>
+<td class="dimOnNa" id="1_2_2_0_tech" headers="tech sc1_2_2">
+<ul>
+<li>G87</li>
+<li>G93</li>
+</ul>
+</td>
+</tr>
+
+<tr class="na">
+<td rowspan="1" headers="sc" id="sc1_2_3">
+<h4>1.2.3: Audio Description or Media Alternative (Prerecorded) (Level <abbr title="Single A">A</abbr>)</h4>
+<p>An alternative for time-based media or audio description of the prerecorded video content is provided for synchronized media, except when the media is a media alternative for text and is clearly labeled as such.</p>
+<div class="edsnote"><strong>Editor's Note:</strong> <p>Superseded at level AAA by both <a href="#sc1_2_5">Success Criterion 1.2.5</a> and <a href="#sc1_2_8">Success Criterion 1.2.8</a>. Superseded at level AA by <a href="#sc1_2_5">Success Criterion 1.2.5</a>. Implementing these would satisfy this Success Criterion automatically.</p>
+</div>
+</td>
+<td class="assertType dimOnNa" id="1_2_3_0_type" headers="type sc1_2_3">
+N/A</td>
+<td class="dimOnNa" id="1_2_3_0_name" headers="name sc1_2_3">
+<p>If this embedded object contains pre-recorded synchronised media and is not provided as an alternative for text content, check that an audio description of its video, and/or an alternative text version of the content is provided.</p>
+</td>
+<td class="dimOnNa" id="1_2_3_0_applies" headers="tech sc1_2_3">
+<p>Embedded objects that may contain video (object, embed, applet, video)</p>
+</td>
+<td class="dimOnNa" id="1_2_3_0_tech" headers="tech sc1_2_3">
+<ul>
+<li>G69</li>
+<li>G78</li>
+<li>G173</li>
+<li>G8</li>
+</ul>
+</td>
+</tr>
+
+<tr class="notice">
+<td rowspan="1" headers="sc" id="sc1_2_4">
+<h4>1.2.4: Captions (Live) (Level <abbr title="Double A">AA</abbr>)</h4>
+<p>Captions are provided for all live audio content in synchronized media.</p>
+</td>
+<td class="assertType dimOnNa" id="1_2_4_0_type" headers="type sc1_2_4">
+Notice</td>
+<td class="dimOnNa" id="1_2_4_0_name" headers="name sc1_2_4">
+<p>If this embedded object contains synchronised media, check that captions are provided for live audio content.</p>
+</td>
+<td class="dimOnNa" id="1_2_4_0_applies" headers="tech sc1_2_4">
+<p>Embedded objects that may contain video (object, embed, applet, video)</p>
+</td>
+<td class="dimOnNa" id="1_2_4_0_tech" headers="tech sc1_2_4">
+<ul>
+<li>G9</li>
+<li>G87</li>
+<li>G93</li>
+</ul>
+</td>
+</tr>
+
+<tr class="notice">
+<td rowspan="1" headers="sc" id="sc1_2_5">
+<h4>1.2.5: Audio Description (Prerecorded) (Level <abbr title="Double A">AA</abbr>)</h4>
+<p>Audio description is provided for all prerecorded video content in synchronized media.</p>
+</td>
+<td class="assertType dimOnNa" id="1_2_5_0_type" headers="type sc1_2_5">
+Notice</td>
+<td class="dimOnNa" id="1_2_5_0_name" headers="name sc1_2_5">
+<p>If this embedded object contains pre-recorded synchronised media, check that an audio description is provided for its video content.</p>
+</td>
+<td class="dimOnNa" id="1_2_5_0_applies" headers="tech sc1_2_5">
+<p>Embedded objects that may contain video (object, embed, applet, video)</p>
+</td>
+<td class="dimOnNa" id="1_2_5_0_tech" headers="tech sc1_2_5">
+<ul>
+<li>G78</li>
+<li>G173</li>
+<li>G8</li>
+</ul>
+</td>
+</tr>
+
+<tr class="notice">
+<td rowspan="1" headers="sc" id="sc1_2_6">
+<h4>1.2.6: Sign Language (Prerecorded) (Level <abbr title="Triple A">AAA</abbr>)</h4>
+<p>Sign language interpretation is provided for all prerecorded audio content in synchronized media.</p>
+</td>
+<td class="assertType dimOnNa" id="1_2_6_0_type" headers="type sc1_2_6">
+Notice</td>
+<td class="dimOnNa" id="1_2_6_0_name" headers="name sc1_2_6">
+<p>If this embedded object contains pre-recorded synchronised media, check that a sign language interpretation is provided for its audio.</p>
+</td>
+<td class="dimOnNa" id="1_2_6_0_applies" headers="tech sc1_2_6">
+<p>Embedded objects that may contain video (object, embed, applet, video)</p>
+</td>
+<td class="dimOnNa" id="1_2_6_0_tech" headers="tech sc1_2_6">
+<ul>
+<li>G54</li>
+<li>G81</li>
+</ul>
+</td>
+</tr>
+
+<tr class="notice">
+<td rowspan="1" headers="sc" id="sc1_2_7">
+<h4>1.2.7: Extended Audio Description (Prerecorded) (Level <abbr title="Triple A">AAA</abbr>)</h4>
+<p>Where pauses in foreground audio are insufficient to allow audio descriptions to convey the sense of the video, extended audio description is provided for all prerecorded video content in synchronized media.</p>
+</td>
+<td class="assertType dimOnNa" id="1_2_7_0_type" headers="type sc1_2_7">
+Notice</td>
+<td class="dimOnNa" id="1_2_7_0_name" headers="name sc1_2_7">
+<p>If this embedded object contains synchronised media, and where pauses in foreground audio is not sufficient to allow audio descriptions to convey the sense of pre-recorded video, check that an extended audio description is provided, either through scripting or an alternate version.</p>
+</td>
+<td class="dimOnNa" id="1_2_7_0_applies" headers="tech sc1_2_7">
+<p>Embedded objects that may contain video (object, embed, applet, video)</p>
+</td>
+<td class="dimOnNa" id="1_2_7_0_tech" headers="tech sc1_2_7">
+<ul>
+<li>G8</li>
+</ul>
+</td>
+</tr>
+
+<tr class="notice">
+<td rowspan="1" headers="sc" id="sc1_2_8">
+<h4>1.2.8: Media Alternative (Prerecorded) (Level <abbr title="Triple A">AAA</abbr>)</h4>
+<p>An alternative for time-based media is provided for all prerecorded synchronized media and for all prerecorded video-only media.</p>
+</td>
+<td class="assertType dimOnNa" id="1_2_8_0_type" headers="type sc1_2_8">
+Notice</td>
+<td class="dimOnNa" id="1_2_8_0_name" headers="name sc1_2_8">
+<p>If this embedded object contains pre-recorded synchronised media or video-only content, check that an alternative text version of the content is provided.</p>
+</td>
+<td class="dimOnNa" id="1_2_8_0_applies" headers="tech sc1_2_8">
+<p>Embedded objects that may contain video (object, embed, applet, video)</p>
+</td>
+<td class="dimOnNa" id="1_2_8_0_tech" headers="tech sc1_2_8">
+<ul>
+<li>G69</li>
+<li>G159</li>
+</ul>
+</td>
+</tr>
+
+<tr class="notice">
+<td rowspan="1" headers="sc" id="sc1_2_9">
+<h4>1.2.9: Audio-only (Live) (Level <abbr title="Triple A">AAA</abbr>)</h4>
+<p>An alternative for time-based media that presents equivalent information for live audio-only content is provided.</p>
+</td>
+<td class="assertType dimOnNa" id="1_2_9_0_type" headers="type sc1_2_9">
+Notice</td>
+<td class="dimOnNa" id="1_2_9_0_name" headers="name sc1_2_9">
+<p>If this embedded object contains live audio-only content, check that an alternative text version of the content is provided.</p>
+</td>
+<td class="dimOnNa" id="1_2_9_0_applies" headers="tech sc1_2_9">
+<p>Embedded objects that may be audio-only (object, embed, applet, bgsound, audio)</p>
+</td>
+<td class="dimOnNa" id="1_2_9_0_tech" headers="tech sc1_2_9">
+<ul>
+<li>G150</li>
+<li>G151</li>
+<li>G157</li>
+</ul>
+</td>
+</tr>
+
+</tbody></table><h3><a name="gl1_3">Guideline 1.3: Adaptable</a></h3>
+
+<p>Create content that can be presented in different ways (for example simpler layout) without losing information or structure.</p>
+
+<table>
+<colgroup>
+<col width="40%">
+<col width="6%">
+<col width="30%">
+<col width="12%">
+<col width="12%">
+</colgroup>
+<tbody>
+<tr>
+<th id="sc">Success Criterion</th>
+<th id="type">Type</th>
+<th id="name">Message Name</th>
+<th id="tech">Applies To</th>
+<th id="tech">Techniques</th>
+</tr>
+
+<tr class="error">
+<td rowspan="33" headers="sc" id="sc1_3_1">
+<h4>1.3.1: Info and Relationships (Level <abbr title="Single A">A</abbr>)</h4>
+<p>Information, structure, and relationships conveyed through presentation can be programmatically determined or are available in text.</p>
+</td>
+<td class="assertType dimOnNa" id="1_3_1_19_type" headers="type sc1_3_1">
+Error</td>
+<td class="dimOnNa" id="1_3_1_19_name" headers="name sc1_3_1">
+<p>Check that all th elements contain an id attribute, so that they may be referenced by the headers attribute.</p>
+</td>
+<td class="dimOnNa" id="1_3_1_19_applies" headers="tech sc1_3_1">
+
+</td>
+<td class="dimOnNa" id="1_3_1_19_tech" headers="tech sc1_3_1">
+<ul>
+<li>H43</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_3_1_20_type" headers="type sc1_3_1">
+Error</td>
+<td class="dimOnNa" id="1_3_1_20_name" headers="name sc1_3_1">
+<p>Check that all td elements contain a headers attribute that lists the id for all headers associated with that cell.</p>
+</td>
+<td class="dimOnNa" id="1_3_1_20_applies" headers="tech sc1_3_1">
+
+</td>
+<td class="dimOnNa" id="1_3_1_20_tech" headers="tech sc1_3_1">
+<ul>
+<li>H43</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_3_1_18_type" headers="type sc1_3_1">
+Error</td>
+<td class="dimOnNa" id="1_3_1_18_name" headers="name sc1_3_1">
+<p>Associate data cells with table headings using either the scope or headers attribute techniques.</p>
+</td>
+<td class="dimOnNa" id="1_3_1_18_applies" headers="tech sc1_3_1">
+
+</td>
+<td class="dimOnNa" id="1_3_1_18_tech" headers="tech sc1_3_1">
+<ul>
+<li>H43</li>
+<li>H63</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_3_1_17_type" headers="type sc1_3_1">
+Error</td>
+<td class="dimOnNa" id="1_3_1_17_name" headers="name sc1_3_1">
+<p>Check that all td elements contain a headers attribute.</p>
+</td>
+<td class="dimOnNa" id="1_3_1_17_applies" headers="tech sc1_3_1">
+
+</td>
+<td class="dimOnNa" id="1_3_1_17_tech" headers="tech sc1_3_1">
+<ul>
+<li>H43</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_3_1_15_type" headers="type sc1_3_1">
+Error</td>
+<td class="dimOnNa" id="1_3_1_15_name" headers="name sc1_3_1">
+<p>Associate data cells with multi-level table headings using the headers attribute.</p>
+</td>
+<td class="dimOnNa" id="1_3_1_15_applies" headers="tech sc1_3_1">
+
+</td>
+<td class="dimOnNa" id="1_3_1_15_tech" headers="tech sc1_3_1">
+<ul>
+<li>H43</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_3_1_0_type" headers="type sc1_3_1">
+Error</td>
+<td class="dimOnNa" id="1_3_1_0_name" headers="name sc1_3_1">
+<p>Use the label element to explicitly associate a form control with a label, through the use of the "for" attribute.</p>
+</td>
+<td class="dimOnNa" id="1_3_1_0_applies" headers="tech sc1_3_1">
+
+</td>
+<td class="dimOnNa" id="1_3_1_0_tech" headers="tech sc1_3_1">
+<ul>
+<li>H44.1</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_3_1_21_type" headers="type sc1_3_1">
+Error</td>
+<td class="dimOnNa" id="1_3_1_21_name" headers="name sc1_3_1">
+<p>Check that all th elements have a scope attribute.</p>
+</td>
+<td class="dimOnNa" id="1_3_1_21_applies" headers="tech sc1_3_1">
+
+</td>
+<td class="dimOnNa" id="1_3_1_21_tech" headers="tech sc1_3_1">
+<ul>
+<li>H63.1</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_3_1_22_type" headers="type sc1_3_1">
+Error</td>
+<td class="dimOnNa" id="1_3_1_22_name" headers="name sc1_3_1">
+<p>Associate data cells with table headings using either the scope or headers attribute techniques.</p>
+</td>
+<td class="dimOnNa" id="1_3_1_22_applies" headers="tech sc1_3_1">
+
+</td>
+<td class="dimOnNa" id="1_3_1_22_tech" headers="tech sc1_3_1">
+<ul>
+<li>H43</li>
+<li>H63</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_3_1_31_type" headers="type sc1_3_1">
+Error</td>
+<td class="dimOnNa" id="1_3_1_31_name" headers="name sc1_3_1">
+<p>Check that content that has the visual appearance of a list (with or without bullets) is marked as an unordered list.</p>
+</td>
+<td class="dimOnNa" id="1_3_1_31_applies" headers="tech sc1_3_1">
+
+</td>
+<td class="dimOnNa" id="1_3_1_31_tech" headers="tech sc1_3_1">
+<ul>
+<li>H48.1</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_3_1_32_type" headers="type sc1_3_1">
+Error</td>
+<td class="dimOnNa" id="1_3_1_32_name" headers="name sc1_3_1">
+<p>Check that content that has the visual appearance of a numbered list is marked as an ordered list.</p>
+</td>
+<td class="dimOnNa" id="1_3_1_32_applies" headers="tech sc1_3_1">
+
+</td>
+<td class="dimOnNa" id="1_3_1_32_tech" headers="tech sc1_3_1">
+<ul>
+<li>H48.2</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_3_1_30_type" headers="type sc1_3_1">
+Error</td>
+<td class="dimOnNa" id="1_3_1_30_name" headers="name sc1_3_1">
+<p>Check that any group of input elements of type="radio" or type="checkbox" with the same name attribute is contained within a fieldset element.</p>
+</td>
+<td class="dimOnNa" id="1_3_1_30_applies" headers="tech sc1_3_1">
+
+</td>
+<td class="dimOnNa" id="1_3_1_30_tech" headers="tech sc1_3_1">
+<ul>
+<li>H71.2</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_3_1_28_type" headers="type sc1_3_1">
+Error</td>
+<td class="dimOnNa" id="1_3_1_28_name" headers="name sc1_3_1">
+<p>Check that this fieldset has a legend element that includes a description of that group.</p>
+</td>
+<td class="dimOnNa" id="1_3_1_28_applies" headers="tech sc1_3_1">
+
+</td>
+<td class="dimOnNa" id="1_3_1_28_tech" headers="tech sc1_3_1">
+<ul>
+<li>H71.3</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_3_1_23_type" headers="type sc1_3_1">
+Error</td>
+<td class="dimOnNa" id="1_3_1_23_name" headers="name sc1_3_1">
+<p>If both a summary attribute and a caption element are present for this data table, the summary should not duplicate the caption.</p>
+</td>
+<td class="dimOnNa" id="1_3_1_23_applies" headers="tech sc1_3_1">
+
+</td>
+<td class="dimOnNa" id="1_3_1_23_tech" headers="tech sc1_3_1">
+<ul>
+<li>H39</li>
+<li>H73.4</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_3_1_14_type" headers="type sc1_3_1">
+Error</td>
+<td class="dimOnNa" id="1_3_1_14_name" headers="name sc1_3_1">
+<p>Incorrect headers attribute, expected "' + headersAttr.wrongHeaders[i].expected + '" but found "' + headersAttr.wrongHeaders[i].actual + '"</p>
+</td>
+<td class="dimOnNa" id="1_3_1_14_applies" headers="tech sc1_3_1">
+
+</td>
+<td class="dimOnNa" id="1_3_1_14_tech" headers="tech sc1_3_1">
+<ul>
+<li>H43</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_3_1_16_type" headers="type sc1_3_1">
+Error</td>
+<td class="dimOnNa" id="1_3_1_16_name" headers="name sc1_3_1">
+<p>Check that all th elements contain an id attribute.</p>
+</td>
+<td class="dimOnNa" id="1_3_1_16_applies" headers="tech sc1_3_1">
+
+</td>
+<td class="dimOnNa" id="1_3_1_16_tech" headers="tech sc1_3_1">
+<ul>
+<li>H43</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_3_1_6_type" headers="type sc1_3_1">
+Error</td>
+<td class="dimOnNa" id="1_3_1_6_name" headers="name sc1_3_1">
+<p>Label element should not be used for this type of form control.</p>
+</td>
+<td class="dimOnNa" id="1_3_1_6_applies" headers="tech sc1_3_1">
+
+</td>
+<td class="dimOnNa" id="1_3_1_6_tech" headers="tech sc1_3_1">
+<ul>
+<li>H44</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_3_1_3_type" headers="type sc1_3_1">
+Error</td>
+<td class="dimOnNa" id="1_3_1_3_name" headers="name sc1_3_1">
+<p>Check that the title attribute identifies the purpose of the control.</p>
+</td>
+<td class="dimOnNa" id="1_3_1_3_applies" headers="tech sc1_3_1">
+
+</td>
+<td class="dimOnNa" id="1_3_1_3_tech" headers="tech sc1_3_1">
+<ul>
+<li>H65.3</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_3_1_2_type" headers="type sc1_3_1">
+Error</td>
+<td class="dimOnNa" id="1_3_1_2_name" headers="name sc1_3_1">
+<p>Form control does not have an id, therefore it cannot have an explicit label.</p>
+</td>
+<td class="dimOnNa" id="1_3_1_2_applies" headers="tech sc1_3_1">
+
+</td>
+<td class="dimOnNa" id="1_3_1_2_tech" headers="tech sc1_3_1">
+<ul>
+<li>H44</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_3_1_1_type" headers="type sc1_3_1">
+Error</td>
+<td class="dimOnNa" id="1_3_1_1_name" headers="name sc1_3_1">
+<p>Multiple labels exist with the same "for" attribute. If these labels refer to different form controls, the controls should have unique "id" attributes.</p>
+</td>
+<td class="dimOnNa" id="1_3_1_1_applies" headers="tech sc1_3_1">
+
+</td>
+<td class="dimOnNa" id="1_3_1_1_tech" headers="tech sc1_3_1">
+<ul>
+<li>H93</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_3_1_7_type" headers="type sc1_3_1">
+Error</td>
+<td class="dimOnNa" id="1_3_1_7_name" headers="name sc1_3_1">
+<p>The label element for this control should be placed after this element.</p>
+</td>
+<td class="dimOnNa" id="1_3_1_7_applies" headers="tech sc1_3_1">
+
+</td>
+<td class="dimOnNa" id="1_3_1_7_tech" headers="tech sc1_3_1">
+<ul>
+<li>H44.1</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_3_1_5_type" headers="type sc1_3_1">
+Error</td>
+<td class="dimOnNa" id="1_3_1_5_name" headers="name sc1_3_1">
+<p>Attach a label to this form control through the use of the for attribute.</p>
+</td>
+<td class="dimOnNa" id="1_3_1_5_applies" headers="tech sc1_3_1">
+
+</td>
+<td class="dimOnNa" id="1_3_1_5_tech" headers="tech sc1_3_1">
+<ul>
+<li>H44.2</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_3_1_8_type" headers="type sc1_3_1">
+Error</td>
+<td class="dimOnNa" id="1_3_1_8_name" headers="name sc1_3_1">
+<p>The label element for this control should be placed before this element.</p>
+</td>
+<td class="dimOnNa" id="1_3_1_8_applies" headers="tech sc1_3_1">
+
+</td>
+<td class="dimOnNa" id="1_3_1_8_tech" headers="tech sc1_3_1">
+<ul>
+<li>H44.1</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_3_1_9_type" headers="type sc1_3_1">
+Error</td>
+<td class="dimOnNa" id="1_3_1_9_name" headers="name sc1_3_1">
+<p>Semantic markup should be used to mark emphasised or special text so that it can be programmatically determined.</p>
+</td>
+<td class="dimOnNa" id="1_3_1_9_applies" headers="tech sc1_3_1">
+
+</td>
+<td class="dimOnNa" id="1_3_1_9_tech" headers="tech sc1_3_1">
+<ul>
+<li>H49</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_3_1_11_type" headers="type sc1_3_1">
+Error</td>
+<td class="dimOnNa" id="1_3_1_11_name" headers="name sc1_3_1">
+<p>Check that all scope attributes have the value row, col, rowgroup, or colgroup.</p>
+</td>
+<td class="dimOnNa" id="1_3_1_11_applies" headers="tech sc1_3_1">
+
+</td>
+<td class="dimOnNa" id="1_3_1_11_tech" headers="tech sc1_3_1">
+<ul>
+<li>H63.3</li>
+</ul>
+</td>
+</tr>
+
+<tr class="warning">
+<td class="assertType dimOnNa" id="1_3_1_4_type" headers="type sc1_3_1">
+Warning</td>
+<td class="dimOnNa" id="1_3_1_4_name" headers="name sc1_3_1">
+<p>Check that the title attribute identifies the purpose of the control, and that a label element is not appropriate.</p>
+</td>
+<td class="dimOnNa" id="1_3_1_4_applies" headers="tech sc1_3_1">
+
+</td>
+<td class="dimOnNa" id="1_3_1_4_tech" headers="tech sc1_3_1">
+<ul>
+<li>H65</li>
+</ul>
+</td>
+</tr>
+
+<tr class="warning">
+<td class="assertType dimOnNa" id="1_3_1_10_type" headers="type sc1_3_1">
+Warning</td>
+<td class="dimOnNa" id="1_3_1_10_name" headers="name sc1_3_1">
+<p>Heading markup should be used if this content is intended as a heading.</p>
+</td>
+<td class="dimOnNa" id="1_3_1_10_applies" headers="tech sc1_3_1">
+
+</td>
+<td class="dimOnNa" id="1_3_1_10_tech" headers="tech sc1_3_1">
+<ul>
+<li>H42</li>
+</ul>
+</td>
+</tr>
+
+<tr class="warning">
+<td class="assertType dimOnNa" id="1_3_1_12_type" headers="type sc1_3_1">
+Warning</td>
+<td class="dimOnNa" id="1_3_1_12_name" headers="name sc1_3_1">
+<p>Scope attributes on td elements that act as headers for other elements are obsolete in HTML5; use a th element instead.</p>
+</td>
+<td class="dimOnNa" id="1_3_1_12_applies" headers="tech sc1_3_1">
+
+</td>
+<td class="dimOnNa" id="1_3_1_12_tech" headers="tech sc1_3_1">
+<ul>
+<li>H63.2</li>
+</ul>
+</td>
+</tr>
+
+<tr class="warning">
+<td class="assertType dimOnNa" id="1_3_1_13_type" headers="type sc1_3_1">
+Warning</td>
+<td class="dimOnNa" id="1_3_1_13_name" headers="name sc1_3_1">
+<p>Scope attributes are ambiguous in a multi-level structure. Use the headers attribute on td elements instead.</p>
+</td>
+<td class="dimOnNa" id="1_3_1_13_applies" headers="tech sc1_3_1">
+
+</td>
+<td class="dimOnNa" id="1_3_1_13_tech" headers="tech sc1_3_1">
+<ul>
+<li>H43</li>
+</ul>
+</td>
+</tr>
+
+<tr class="warning">
+<td class="assertType dimOnNa" id="1_3_1_29_type" headers="type sc1_3_1">
+Warning</td>
+<td class="dimOnNa" id="1_3_1_29_name" headers="name sc1_3_1">
+<p>If this selection list contains groups of related options, they should be grouped with optgroup.</p>
+</td>
+<td class="dimOnNa" id="1_3_1_29_applies" headers="tech sc1_3_1">
+
+</td>
+<td class="dimOnNa" id="1_3_1_29_tech" headers="tech sc1_3_1">
+<ul>
+<li>H85.2</li>
+</ul>
+</td>
+</tr>
+
+<tr class="notice">
+<td class="assertType dimOnNa" id="1_3_1_26_type" headers="type sc1_3_1">
+Notice</td>
+<td class="dimOnNa" id="1_3_1_26_name" headers="name sc1_3_1">
+<p>Check that the caption attribute accurately describes this table.</p>
+</td>
+<td class="dimOnNa" id="1_3_1_26_applies" headers="tech sc1_3_1">
+
+</td>
+<td class="dimOnNa" id="1_3_1_26_tech" headers="tech sc1_3_1">
+<ul>
+<li>H39.3</li>
+</ul>
+</td>
+</tr>
+
+<tr class="notice">
+<td class="assertType dimOnNa" id="1_3_1_24_type" headers="type sc1_3_1">
+Notice</td>
+<td class="dimOnNa" id="1_3_1_24_name" headers="name sc1_3_1">
+<p>Check that the summary attribute describes the table's organization or explains how to use the table.</p>
+</td>
+<td class="dimOnNa" id="1_3_1_24_applies" headers="tech sc1_3_1">
+
+</td>
+<td class="dimOnNa" id="1_3_1_24_tech" headers="tech sc1_3_1">
+<ul>
+<li>H73.3</li>
+</ul>
+</td>
+</tr>
+
+<tr class="notice">
+<td class="assertType dimOnNa" id="1_3_1_25_type" headers="type sc1_3_1">
+Notice</td>
+<td class="dimOnNa" id="1_3_1_25_name" headers="name sc1_3_1">
+<p>Consider using the summary attribute of the table element to give an overview of this data table.</p>
+</td>
+<td class="dimOnNa" id="1_3_1_25_applies" headers="tech sc1_3_1">
+
+</td>
+<td class="dimOnNa" id="1_3_1_25_tech" headers="tech sc1_3_1">
+<ul>
+<li>H73.3</li>
+</ul>
+</td>
+</tr>
+
+<tr class="notice">
+<td class="assertType dimOnNa" id="1_3_1_27_type" headers="type sc1_3_1">
+Notice</td>
+<td class="dimOnNa" id="1_3_1_27_name" headers="name sc1_3_1">
+<p>Consider using a caption element to the table element to identify this data table.</p>
+</td>
+<td class="dimOnNa" id="1_3_1_27_applies" headers="tech sc1_3_1">
+
+</td>
+<td class="dimOnNa" id="1_3_1_27_tech" headers="tech sc1_3_1">
+<ul>
+<li>H39.3</li>
+</ul>
+</td>
+</tr>
+
+<tr class="notice">
+<td rowspan="1" headers="sc" id="sc1_3_2">
+<h4>1.3.2: Meaningful Sequence (Level <abbr title="Single A">A</abbr>)</h4>
+<p>When the sequence in which content is presented affects its meaning, a correct reading sequence can be programmatically determined.</p>
+</td>
+<td class="assertType dimOnNa" id="1_3_2_0_type" headers="type sc1_3_2">
+Notice</td>
+<td class="dimOnNa" id="1_3_2_0_name" headers="name sc1_3_2">
+<p>Check that the content is ordered in a meaningful sequence when linearised, such as when style sheets are disabled.</p>
+</td>
+<td class="dimOnNa" id="1_3_2_0_applies" headers="tech sc1_3_2">
+
+</td>
+<td class="dimOnNa" id="1_3_2_0_tech" headers="tech sc1_3_2">
+<ul>
+<li>G57</li>
+</ul>
+</td>
+</tr>
+
+<tr class="notice">
+<td rowspan="1" headers="sc" id="sc1_3_3">
+<h4>1.3.3: Sensory Characteristics (Level <abbr title="Single A">A</abbr>)</h4>
+<p>Instructions provided for understanding and operating content do not rely solely on sensory characteristics of components such as shape, size, visual location, orientation, or sound.</p>
+
+<p><em>Note:</em> For requirements related to color, refer to <a href="#gl1_4">Guideline 1.4</a>.</p>
+</td>
+<td class="assertType dimOnNa" id="1_3_3_0_type" headers="type sc1_3_3">
+Notice</td>
+<td class="dimOnNa" id="1_3_3_0_name" headers="name sc1_3_3">
+<p>Where instructions are provided for understanding the content, do not rely on sensory characteristics alone (such as shape, size or location) to describe objects.</p>
+</td>
+<td class="dimOnNa" id="1_3_3_0_applies" headers="tech sc1_3_3">
+
+</td>
+<td class="dimOnNa" id="1_3_3_0_tech" headers="tech sc1_3_3">
+<ul>
+<li>G96</li>
+</ul>
+</td>
+</tr>
+
+</tbody></table><h3><a name="gl1_4">Guideline 1.4: Distinguishable</a></h3>
+
+<p>Make it easier for users to see and hear content including separating foreground from background. </p>
+
+<table>
+<colgroup>
+<col width="40%">
+<col width="6%">
+<col width="30%">
+<col width="12%">
+<col width="12%">
+</colgroup>
+<tbody>
+<tr>
+<th id="sc">Success Criterion</th>
+<th id="type">Type</th>
+<th id="name">Message Name</th>
+<th id="tech">Applies To</th>
+<th id="tech">Techniques</th>
+</tr>
+
+<tr class="notice">
+<td rowspan="1" headers="sc" id="sc1_4_1">
+<h4>1.4.1: Use of Colour (Level <abbr title="Single A">A</abbr>)</h4>
+<p>Colour is not used as the only visual means of conveying information, indicating an action, prompting a response, or distinguishing a visual element.</p>
+
+<p><em>Note:</em> This success criterion addresses colour perception specifically. Other forms of perception are covered in <a href="#gl1_3">Guideline 1.3</a> including programmatic access to colour and other visual presentation coding.</p>
+</td>
+<td class="assertType dimOnNa" id="1_4_1_0_type" headers="type sc1_4_1">
+Notice</td>
+<td class="dimOnNa" id="1_4_1_0_name" headers="name sc1_4_1">
+<p>Check that any information conveyed using colour alone is also available in text, or through other visual cues.</p>
+</td>
+<td class="dimOnNa" id="1_4_1_0_applies" headers="tech sc1_4_1">
+
+</td>
+<td class="dimOnNa" id="1_4_1_0_tech" headers="tech sc1_4_1">
+<ul>
+<li>G14</li>
+<li>G182</li>
+</ul>
+</td>
+</tr>
+
+<tr class="notice">
+<td rowspan="1" headers="sc" id="sc1_4_2">
+<h4>1.4.2: Audio Control (Level <abbr title="Single A">A</abbr>)</h4>
+<p>If any audio on a Web page plays automatically for more than 3 seconds, either a mechanism is available to pause or stop the audio, or a mechanism is available to control audio volume independently from the overall system volume level.</p>
+
+<p><em>Note:</em> Since any content that does not meet this success criterion can interfere with a user's ability to use the whole page, all content on the Web page (whether or not it is used to meet other success criteria) must meet this success criterion. See <a href="http://www.w3.org/TR/2010/NOTE-UNDERSTANDING-WCAG20-20101014/conformance.html#uc-conf-req5-head">Conformance Requirement 5: Non-Interference</a>.</p>
+</td>
+<td class="assertType dimOnNa" id="1_4_2_0_type" headers="type sc1_4_2">
+Notice</td>
+<td class="dimOnNa" id="1_4_2_0_name" headers="name sc1_4_2">
+<p>If any audio plays automatically for longer than 3 seconds, check that there is the ability to pause, stop or mute the audio.</p>
+</td>
+<td class="dimOnNa" id="1_4_2_0_applies" headers="tech sc1_4_2">
+
+</td>
+<td class="dimOnNa" id="1_4_2_0_tech" headers="tech sc1_4_2">
+<ul>
+<li>F23</li>
+</ul>
+</td>
+</tr>
+
+<tr class="na">
+<td rowspan="1" headers="sc" id="sc1_4_3">
+<h4>1.4.3: Contrast (Minimum) (Level <abbr title="Double A">AA</abbr>)</h4>
+<p>The visual presentation of text and images of text has a contrast ratio of at least 4.5:1, except for the following:</p>
+
+<ul>
+<li><em>Large Text:</em> Large-scale text and images of large-scale text have a contrast ratio of at least 3:1;</li>
+<li><em>Incidental:</em> Text or images of text that are part of an inactive user interface component, that are pure decoration, that are not visible to anyone, or that are part of a picture that contains significant other visual content, have no contrast requirement.</li>
+<li><em>Logotypes:</em> Text that is part of a logo or brand name has no minimum contrast requirement.</li>
+</ul>
+<div class="edsnote"><strong>Editor's Note:</strong> <p>Superseded by <a href="#sc1_4_7">Success Criterion 1.4.7</a> at level AAA, which is a stricter application of the same concept.</p>
+</div>
+</td>
+<td class="assertType dimOnNa" id="1_4_3_0_type" headers="type sc1_4_3">
+N/A</td>
+<td class="dimOnNa" id="1_4_3_0_name" headers="name sc1_4_3">
+<p>Check that a contrast ratio of at least 4.5:1 exists between text (or images of text) and its background colour, or 3.0:1 for large text.</p>
+</td>
+<td class="dimOnNa" id="1_4_3_0_applies" headers="tech sc1_4_3">
+
+</td>
+<td class="dimOnNa" id="1_4_3_0_tech" headers="tech sc1_4_3">
+<ul>
+<li>G18</li>
+<li>G145</li>
+<li>G148</li>
+<li>G174</li>
+</ul>
+</td>
+</tr>
+
+<tr class="na">
+<td rowspan="1" headers="sc" id="sc1_4_4">
+<h4>1.4.4: Resize Text (Level <abbr title="Double A">AA</abbr>)</h4>
+<p>Except for captions and images of text, text can be resized without assistive technology up to 200 percent without loss of content or functionality.</p>
+<div class="edsnote"><strong>Editor's Note:</strong> <p>Superseded by <a href="#sc1_4_8">Success Criterion 1.4.8</a> at level AAA. That Success Criterion contains additional requirements when text is resized to 200%.</p>
+</div>
+</td>
+<td class="assertType dimOnNa" id="1_4_4_0_type" headers="type sc1_4_4">
+N/A</td>
+<td class="dimOnNa" id="1_4_4_0_name" headers="name sc1_4_4">
+<p>Check that text can be resized without assistive technology up to 200 percent without loss of content or functionality.</p>
+</td>
+<td class="dimOnNa" id="1_4_4_0_applies" headers="tech sc1_4_4">
+
+</td>
+<td class="dimOnNa" id="1_4_4_0_tech" headers="tech sc1_4_4">
+<ul>
+<li>G142</li>
+</ul>
+</td>
+</tr>
+
+<tr class="notice">
+<td rowspan="1" headers="sc" id="sc1_4_5">
+<h4>1.4.5: Images of Text (Level <abbr title="Double A">AA</abbr>)</h4>
+<p>If the technologies being used can achieve the visual presentation, text is used to convey information rather than images of text except for the following:</p>
+
+<ul>
+<li><em>Customizable:</em> The image of text can be visually customized to the user's requirements;</li>
+<li><em>Essential:</em> A particular presentation of text is essential to the information being conveyed.</li>
+</ul>
+
+<p><em>Note:</em> Logotypes (text that is part of a logo or brand name) are considered essential.</p>
+</td>
+<td class="assertType dimOnNa" id="1_4_5_0_type" headers="type sc1_4_5">
+Notice</td>
+<td class="dimOnNa" id="1_4_5_0_name" headers="name sc1_4_5">
+<p>If the technologies being used can achieve the visual presentation, check that text is used to convey information rather than images of text, except when the image of text is essential to the information being conveyed, or can be visually customised to the user's requirements.</p>
+</td>
+<td class="dimOnNa" id="1_4_5_0_applies" headers="tech sc1_4_5">
+
+</td>
+<td class="dimOnNa" id="1_4_5_0_tech" headers="tech sc1_4_5">
+<ul>
+<li>G140</li>
+<li>C22</li>
+<li>C30</li>
+</ul>
+</td>
+</tr>
+
+<tr class="notice">
+<td rowspan="1" headers="sc" id="sc1_4_6">
+<h4>1.4.6: Contrast (Enhanced) (Level <abbr title="Triple A">AAA</abbr>)</h4>
+<p>The visual presentation of text and images of text has a contrast ratio of at least 7:1, except for the following:</p>
+
+<ul>
+<li><em>Large Text:</em> Large-scale text and images of large-scale text have a contrast ratio of at least 4.5:1;</li>
+<li><em>Incidental:</em> Text or images of text that are part of an inactive user interface component, that are pure decoration, that are not visible to anyone, or that are part of a picture that contains significant other visual content, have no contrast requirement.</li>
+<li><em>Logotypes:</em> Text that is part of a logo or brand name has no minimum contrast requirement.</li>
+</ul>
+</td>
+<td class="assertType dimOnNa" id="1_4_6_0_type" headers="type sc1_4_6">
+Notice</td>
+<td class="dimOnNa" id="1_4_6_0_name" headers="name sc1_4_6">
+<p>Check that a contrast ratio of at least 7.0:1 exists between text (or images of text) and its background colour, or 4.5:1 for large text.</p>
+</td>
+<td class="dimOnNa" id="1_4_6_0_applies" headers="tech sc1_4_6">
+
+</td>
+<td class="dimOnNa" id="1_4_6_0_tech" headers="tech sc1_4_6">
+<ul>
+<li>G17</li>
+<li>G18</li>
+<li>G148</li>
+<li>G174</li>
+</ul>
+</td>
+</tr>
+
+<tr class="notice">
+<td rowspan="1" headers="sc" id="sc1_4_7">
+<h4>1.4.7: Low or No Background Audio (Level <abbr title="Triple A">AAA</abbr>)</h4>
+<p>For prerecorded audio-only content that (1) contains primarily speech in the foreground, (2) is not an audio CAPTCHA or audio logo, and (3) is not vocalization intended to be primarily musical expression such as singing or rapping, at least one of the following is true:</p>
+
+<ul>
+<li><em>No Background:</em> The audio does not contain background sounds.</li>
+<li><em>Turn Off:</em> The background sounds can be turned off.</li>
+<li><em>20 dB:</em> The background sounds are at least 20 decibels lower than the foreground speech content, with the exception of occasional sounds that last for only one or two seconds.</li>
+</ul>
+
+<p><em>Note:</em> Per the definition of "decibel," background sound that meets this requirement will be approximately four times quieter than the foreground speech content. </p>
+</td>
+<td class="assertType dimOnNa" id="1_4_7_0_type" headers="type sc1_4_7">
+Notice</td>
+<td class="dimOnNa" id="1_4_7_0_name" headers="name sc1_4_7">
+<p>For pre-recorded audio-only content that is primarily speech (such as narration), any background sounds should be muteable, or be at least 20 dB (or about 4 times) quieter than the speech.</p>
+</td>
+<td class="dimOnNa" id="1_4_7_0_applies" headers="tech sc1_4_7">
+
+</td>
+<td class="dimOnNa" id="1_4_7_0_tech" headers="tech sc1_4_7">
+<ul>
+<li>G56</li>
+</ul>
+</td>
+</tr>
+
+<tr class="notice">
+<td rowspan="5" headers="sc" id="sc1_4_8">
+<h4>1.4.8: Visual Presentation (Level <abbr title="Triple A">AAA</abbr>)</h4>
+<p>For the visual presentation of blocks of text, a mechanism is available to achieve the following:</p>
+
+<ol>
+<li>Foreground and background colors can be selected by the user.</li>
+<li>Width is no more than 80 characters or glyphs (40 if CJK).</li>
+<li>Text is not justified (aligned to both the left and the right margins).</li>
+<li>Line spacing (leading) is at least space-and-a-half within paragraphs, and paragraph spacing is at least 1.5 times larger than the line spacing.</li>
+<li>Text can be resized without assistive technology up to 200 percent in a way that does not require the user to scroll horizontally to read a line of text on a full-screen window.</li>
+</ol>
+</td>
+<td class="assertType dimOnNa" id="1_4_8_4_type" headers="type sc1_4_8">
+Notice</td>
+<td class="dimOnNa" id="1_4_8_4_name" headers="name sc1_4_8">
+<p>Check that text can be resized without assistive technology up to 200 percent without requiring the user to scroll horizontally on a full-screen window.</p>
+</td>
+<td class="dimOnNa" id="1_4_8_4_applies" headers="tech sc1_4_8">
+
+</td>
+<td class="dimOnNa" id="1_4_8_4_tech" headers="tech sc1_4_8">
+<ul>
+<li>H87</li>
+<li>G146</li>
+<li>C26</li>
+</ul>
+</td>
+</tr>
+
+<tr class="notice">
+<td class="assertType dimOnNa" id="1_4_8_3_type" headers="type sc1_4_8">
+Notice</td>
+<td class="dimOnNa" id="1_4_8_3_name" headers="name sc1_4_8">
+<p>Check that line spacing in blocks of text are at least 150% in paragraphs, and paragraph spacing is at least 1.5 times the line spacing, or that a mechanism is available to achieve this.</p>
+</td>
+<td class="dimOnNa" id="1_4_8_3_applies" headers="tech sc1_4_8">
+
+</td>
+<td class="dimOnNa" id="1_4_8_3_tech" headers="tech sc1_4_8">
+<ul>
+<li>G188</li>
+<li>C21</li>
+</ul>
+</td>
+</tr>
+
+<tr class="notice">
+<td class="assertType dimOnNa" id="1_4_8_2_type" headers="type sc1_4_8">
+Notice</td>
+<td class="dimOnNa" id="1_4_8_2_name" headers="name sc1_4_8">
+<p>Check that blocks of text are not fully justified - that is, to both left and right edges - or a mechanism exists to remove full justification.</p>
+</td>
+<td class="dimOnNa" id="1_4_8_2_applies" headers="tech sc1_4_8">
+
+</td>
+<td class="dimOnNa" id="1_4_8_2_tech" headers="tech sc1_4_8">
+<ul>
+<li>C19</li>
+<li>G172</li>
+<li>G169</li>
+</ul>
+</td>
+</tr>
+
+<tr class="notice">
+<td class="assertType dimOnNa" id="1_4_8_1_type" headers="type sc1_4_8">
+Notice</td>
+<td class="dimOnNa" id="1_4_8_1_name" headers="name sc1_4_8">
+<p>Check that a mechanism exists to reduce the width of a block of text to no more than 80 characters (or 40 in Chinese, Japanese or Korean script).</p>
+</td>
+<td class="dimOnNa" id="1_4_8_1_applies" headers="tech sc1_4_8">
+
+</td>
+<td class="dimOnNa" id="1_4_8_1_tech" headers="tech sc1_4_8">
+<ul>
+<li>H87</li>
+<li>C20</li>
+</ul>
+</td>
+</tr>
+
+<tr class="notice">
+<td class="assertType dimOnNa" id="1_4_8_0_type" headers="type sc1_4_8">
+Notice</td>
+<td class="dimOnNa" id="1_4_8_0_name" headers="name sc1_4_8">
+<p>Check that a mechanism is available for the user to select foreground and background colours for blocks of text, either through the Web page or the browser.</p>
+</td>
+<td class="dimOnNa" id="1_4_8_0_applies" headers="tech sc1_4_8">
+
+</td>
+<td class="dimOnNa" id="1_4_8_0_tech" headers="tech sc1_4_8">
+<ul>
+<li>G148</li>
+<li>G156</li>
+<li>G175</li>
+</ul>
+</td>
+</tr>
+
+<tr class="notice">
+<td rowspan="1" headers="sc" id="sc1_4_9">
+<h4>1.4.9: Images of Text (No Exception) (Level <abbr title="Triple A">AAA</abbr>)</h4>
+<p>Images of text are only used for pure decoration or where a particular presentation of text is essential to the information being conveyed.</p>
+
+<p><em>Note:</em> Logotypes (text that is part of a logo or brand name) are considered essential.</p>
+</td>
+<td class="assertType dimOnNa" id="1_4_9_0_type" headers="type sc1_4_9">
+Notice</td>
+<td class="dimOnNa" id="1_4_9_0_name" headers="name sc1_4_9">
+<p>Check that images of text are only used for pure decoration or where a particular presentation of text is essential to the information being conveyed.</p>
+</td>
+<td class="dimOnNa" id="1_4_9_0_applies" headers="tech sc1_4_9">
+
+</td>
+<td class="dimOnNa" id="1_4_9_0_tech" headers="tech sc1_4_9">
+<ul>
+<li>G140</li>
+<li>C22</li>
+<li>C30</li>
+</ul>
+</td>
+</tr>
+
+</tbody></table><h2><a name="pr2">Principle 2: Operable</a></h2>
+
+<h3><a name="gl2_1">Guideline 2.1: Keyboard Accessible</a></h3>
+
+<p>Make all functionality available from a keyboard.</p>
+
+<table>
+<colgroup>
+<col width="40%">
+<col width="6%">
+<col width="30%">
+<col width="12%">
+<col width="12%">
+</colgroup>
+<tbody>
+<tr>
+<th id="sc">Success Criterion</th>
+<th id="type">Type</th>
+<th id="name">Message Name</th>
+<th id="tech">Applies To</th>
+<th id="tech">Techniques</th>
+</tr>
+
+<tr class="warning">
+<td rowspan="6" headers="sc" id="sc2_1_1">
+<h4>2.1.1: Keyboard (Level <abbr title="Single A">A</abbr>)</h4>
+<p>All functionality of the content is operable through a keyboard interface without requiring specific timings for individual keystrokes, except where the underlying function requires input that depends on the path of the user's movement and not just the endpoints.</p>
+
+<ul>
+<li><p><em>Note 1:</em> This exception relates to the underlying function, not the input technique. For example, if using handwriting to enter text, the input technique (handwriting) requires path-dependent input but the underlying function (text input) does not.</p></li>
+<li><p><em>Note 2:</em> This does not forbid and should not discourage providing mouse input or other input methods in addition to keyboard operation.</p></li>
+</ul>
+<div class="edsnote"><strong>Editor's Note:</strong> <p>Technically superseded by <a href="#sc2_1_3">Success Criterion 2.1.3</a> at level AAA.</p>
+</div>
+</td>
+<td class="assertType dimOnNa" id="2_1_1_4_type" headers="type sc2_1_1">
+Warning</td>
+<td class="dimOnNa" id="2_1_1_4_name" headers="name sc2_1_1">
+<p>Ensure the functionality provided by mousing down on this element is available through the keyboard; for instance, using the keydown event.</p>
+</td>
+<td class="dimOnNa" id="2_1_1_4_applies" headers="tech sc2_1_1">
+<p>Elements with onmousedown event attribute</p>
+</td>
+<td class="dimOnNa" id="2_1_1_4_tech" headers="tech sc2_1_1">
+<ul>
+<li>SCR2</li>
+</ul>
+</td>
+</tr>
+
+<tr class="warning">
+<td class="assertType dimOnNa" id="2_1_1_5_type" headers="type sc2_1_1">
+Warning</td>
+<td class="dimOnNa" id="2_1_1_5_name" headers="name sc2_1_1">
+<p>Ensure the functionality provided by mousing up on this element is available through the keyboard; for instance, using the keyup event.</p>
+</td>
+<td class="dimOnNa" id="2_1_1_5_applies" headers="tech sc2_1_1">
+<p>Elements with onmouseup event attribute</p>
+</td>
+<td class="dimOnNa" id="2_1_1_5_tech" headers="tech sc2_1_1">
+<ul>
+<li>SCR2</li>
+</ul>
+</td>
+</tr>
+
+<tr class="warning">
+<td class="assertType dimOnNa" id="2_1_1_3_type" headers="type sc2_1_1">
+Warning</td>
+<td class="dimOnNa" id="2_1_1_3_name" headers="name sc2_1_1">
+<p>Ensure the functionality provided by moving the mouse on this element is available through the keyboard.</p>
+</td>
+<td class="dimOnNa" id="2_1_1_3_applies" headers="tech sc2_1_1">
+<p>Elements with onmousemove event attribute</p>
+</td>
+<td class="dimOnNa" id="2_1_1_3_tech" headers="tech sc2_1_1">
+<ul>
+<li>SCR2</li>
+</ul>
+</td>
+</tr>
+
+<tr class="warning">
+<td class="assertType dimOnNa" id="2_1_1_2_type" headers="type sc2_1_1">
+Warning</td>
+<td class="dimOnNa" id="2_1_1_2_name" headers="name sc2_1_1">
+<p>Ensure the functionality provided by mousing out of this element is available through the keyboard; for instance, using the blur event.</p>
+</td>
+<td class="dimOnNa" id="2_1_1_2_applies" headers="tech sc2_1_1">
+<p>Elements with onmouseout event element</p>
+</td>
+<td class="dimOnNa" id="2_1_1_2_tech" headers="tech sc2_1_1">
+<ul>
+<li>SCR2</li>
+</ul>
+</td>
+</tr>
+
+<tr class="warning">
+<td class="assertType dimOnNa" id="2_1_1_1_type" headers="type sc2_1_1">
+Warning</td>
+<td class="dimOnNa" id="2_1_1_1_name" headers="name sc2_1_1">
+<p>Ensure the functionality provided by mousing over this element is available through the keyboard; for instance, using the focus event.</p>
+</td>
+<td class="dimOnNa" id="2_1_1_1_applies" headers="tech sc2_1_1">
+<p>Elements with onmouseover event attribute</p>
+</td>
+<td class="dimOnNa" id="2_1_1_1_tech" headers="tech sc2_1_1">
+<ul>
+<li>SCR2</li>
+</ul>
+</td>
+</tr>
+
+<tr class="warning">
+<td class="assertType dimOnNa" id="2_1_1_0_type" headers="type sc2_1_1">
+Warning</td>
+<td class="dimOnNa" id="2_1_1_0_name" headers="name sc2_1_1">
+<p>Ensure the functionality provided by double-clicking on this element is available through the keyboard.</p>
+</td>
+<td class="dimOnNa" id="2_1_1_0_applies" headers="tech sc2_1_1">
+<p>Elements with ondblclick event attribute</p>
+</td>
+<td class="dimOnNa" id="2_1_1_0_tech" headers="tech sc2_1_1">
+<ul>
+<li>SCR2</li>
+</ul>
+</td>
+</tr>
+
+<tr class="warning">
+<td rowspan="1" headers="sc" id="sc2_1_2">
+<h4>2.1.2: No Keyboard Trap (Level <abbr title="Single A">A</abbr>)</h4>
+<p>If keyboard focus can be moved to a component of the page using a keyboard interface, then focus can be moved away from that component using only a keyboard interface, and, if it requires more than unmodified arrow or tab keys or other standard exit methods, the user is advised of the method for moving focus away.</p>
+
+<p><em>Note:</em> Since any content that does not meet this success criterion can interfere with a user's ability to use the whole page, all content on the Web page (whether or not it is used to meet other success criteria) must meet this success criterion. See <a href="http://www.w3.org/TR/2010/NOTE-UNDERSTANDING-WCAG20-20101014/conformance.html#uc-conf-req5-head">Conformance Requirement 5: Non-Interference</a>.</p>
+</td>
+<td class="assertType dimOnNa" id="2_1_2_0_type" headers="type sc2_1_2">
+Warning</td>
+<td class="dimOnNa" id="2_1_2_0_name" headers="name sc2_1_2">
+<p>Check that this applet or plugin provides the ability to move the focus away from itself when using the keyboard.</p>
+</td>
+<td class="dimOnNa" id="2_1_2_0_applies" headers="tech sc2_1_2">
+
+</td>
+<td class="dimOnNa" id="2_1_2_0_tech" headers="tech sc2_1_2">
+<ul>
+<li>F10</li>
+</ul>
+</td>
+</tr>
+
+<td rowspan="1" headers="sc" id="sc2_1_3">
+<h4>2.1.3: Keyboard (No Exception) (Level <abbr title="Triple A">AAA</abbr>)</h4>
+<p>All functionality of the content is operable through a keyboard interface without requiring specific timings for individual keystrokes.</p>
+<div class="edsnote"><strong>Editor's Note:</strong> <p>No additional techniques are provided over and above <a href="#sc2_1_1">Success Criterion 2.1.1</a>. Instead, if analogue, time-dependent input is required, the content simply <strong>cannot meet AAA conformance</strong>.</p>
+</div>
+</td>
+</tbody></table><h3><a name="gl2_2">Guideline 2.2: Enough Time</a></h3>
+
+<p>Provide users enough time to read and use content.</p>
+
+<table>
+<colgroup>
+<col width="40%">
+<col width="6%">
+<col width="30%">
+<col width="12%">
+<col width="12%">
+</colgroup>
+<tbody>
+<tr>
+<th id="sc">Success Criterion</th>
+<th id="type">Type</th>
+<th id="name">Message Name</th>
+<th id="tech">Applies To</th>
+<th id="tech">Techniques</th>
+</tr>
+
+<tr class="error">
+<td rowspan="1" headers="sc" id="sc2_2_1">
+<h4>2.2.1: Timing Adjustable (Level <abbr title="Single A">A</abbr>)</h4>
+<p>For each time limit that is set by the content, at least one of the following is true:</p>
+
+<ul>
+<li><em>Turn off:</em> The user is allowed to turn off the time limit before encountering it; or</li>
+<li><em>Adjust:</em> The user is allowed to adjust the time limit before encountering it over a wide range that is at least ten times the length of the default setting; or</li>
+<li><em>Extend:</em> The user is warned before time expires and given at least 20 seconds to extend the time limit with a simple action (for example, "press the space bar"), and the user is allowed to extend the time limit at least ten times; or</li>
+<li><em>Real-time Exception:</em> The time limit is a required part of a real-time event (for example, an auction), and no alternative to the time limit is possible; or</li>
+<li><em>Essential Exception:</em> The time limit is essential and extending it would invalidate the activity; or</li>
+<li><em>20 Hour Exception:</em> The time limit is longer than 20 hours.</li>
+</ul>
+
+<p><em>Note:</em> This success criterion helps ensure that users can complete tasks without unexpected changes in content or context that are a result of a time limit. This success criterion should be considered in conjunction with <a href="#sc3_2_1">Success Criterion 3.2.1</a>, which puts limits on changes of content or context as a result of user action.</p>
+</td>
+<td class="assertType dimOnNa" id="2_2_1_0_type" headers="type sc2_2_1">
+Error</td>
+<td class="dimOnNa" id="2_2_1_0_name" headers="name sc2_2_1">
+<p>When using meta refresh to periodically refresh pages or cause a client-side redirect, the time-out must be zero.</p>
+</td>
+<td class="dimOnNa" id="2_2_1_0_applies" headers="tech sc2_2_1">
+<p>Any meta refresh element with a timeout > 0</p>
+</td>
+<td class="dimOnNa" id="2_2_1_0_tech" headers="tech sc2_2_1">
+<ul>
+<li>F41.2</li>
+</ul>
+</td>
+</tr>
+
+<tr class="notice">
+<td rowspan="1" headers="sc" id="sc2_2_2">
+<h4>2.2.2: Pause, Stop, Hide (Level <abbr title="Single A">A</abbr>)</h4>
+<p>For moving, blinking, scrolling, or auto-updating information, all of the following are true:</p>
+
+<ul>
+<li><em>Moving, blinking, scrolling:</em> For any moving, blinking or scrolling information that (1) starts automatically, (2) lasts more than five seconds, and (3) is presented in parallel with other content, there is a mechanism for the user to pause, stop, or hide it unless the movement, blinking, or scrolling is part of an activity where it is essential; and</li>
+<li><em>Auto-updating:</em> For any auto-updating information that (1) starts automatically and (2) is presented in parallel with other content, there is a mechanism for the user to pause, stop, or hide it or to control the frequency of the update unless the auto-updating is part of an activity where it is essential.</li>
+</ul>
+
+<p><em>Note 1:</em> For requirements related to flickering or flashing content, refer to <a href="#gl2_3">Guideline 2.3</a>.</p>
+
+<p><em>Note 2:</em> Since any content that does not meet this success criterion can interfere with a user's ability to use the whole page, all content on the Web page (whether or not it is used to meet other success criteria) must meet this success criterion. See <a href="http://www.w3.org/TR/2010/NOTE-UNDERSTANDING-WCAG20-20101014/conformance.html#uc-conf-req5-head">Conformance Requirement 5: Non-Interference</a>..</p>
+
+<p><em>Note 3:</em> Content that is updated periodically by software or that is streamed to the user agent is not required to preserve or present information that is generated or received between the initiation of the pause and resuming presentation, as this may not be technically possible, and in many situations could be misleading to do so.</p>
+
+<p><em>Note 4:</em> An animation that occurs as part of a preload phase or similar situation can be considered essential if interaction cannot occur during that phase for all users and if not indicating progress could confuse users or cause them to think that content was frozen or broken.</p>
+</td>
+<td class="assertType dimOnNa" id="2_2_2_0_type" headers="type sc2_2_2">
+Notice</td>
+<td class="dimOnNa" id="2_2_2_0_name" headers="name sc2_2_2">
+<p>If any part of the content moves, scrolls or blinks for more than 5 seconds, or auto-updates, check that there is a mechanism available to pause, stop, or hide the content.</p>
+</td>
+<td class="dimOnNa" id="2_2_2_0_applies" headers="tech sc2_2_2">
+<p>Top element</p>
+</td>
+<td class="dimOnNa" id="2_2_2_0_tech" headers="tech sc2_2_2">
+<ul>
+<li>SCR33</li>
+<li>SCR22</li>
+<li>G187</li>
+<li>G152</li>
+<li>G186</li>
+<li>G191</li>
+</ul>
+</td>
+</tr>
+
+<tr class="notice">
+<td rowspan="1" headers="sc" id="sc2_2_3">
+<h4>2.2.3: No Timing (Level <abbr title="Triple A">AAA</abbr>)</h4>
+<p>Timing is not an essential part of the event or activity presented by the content, except for non-interactive synchronized media and real-time events.</p>
+</td>
+<td class="assertType dimOnNa" id="2_2_3_0_type" headers="type sc2_2_3">
+Notice</td>
+<td class="dimOnNa" id="2_2_3_0_name" headers="name sc2_2_3">
+<p>Check that timing is not an essential part of the event or activity presented by the content, except for non-interactive synchronized media and real-time events.</p>
+</td>
+<td class="dimOnNa" id="2_2_3_0_applies" headers="tech sc2_2_3">
+
+</td>
+<td class="dimOnNa" id="2_2_3_0_tech" headers="tech sc2_2_3">
+<ul>
+<li>G5</li>
+</ul>
+</td>
+</tr>
+
+<tr class="notice">
+<td rowspan="1" headers="sc" id="sc2_2_4">
+<h4>2.2.4: Interruptions (Level <abbr title="Triple A">AAA</abbr>)</h4>
+<p>Interruptions can be postponed or suppressed by the user, except interruptions involving an emergency.</p>
+</td>
+<td class="assertType dimOnNa" id="2_2_4_0_type" headers="type sc2_2_4">
+Notice</td>
+<td class="dimOnNa" id="2_2_4_0_name" headers="name sc2_2_4">
+<p>Check that all interruptions (including updates to content) can be postponed or suppressed by the user, except interruptions involving an emergency.</p>
+</td>
+<td class="dimOnNa" id="2_2_4_0_applies" headers="tech sc2_2_4">
+
+</td>
+<td class="dimOnNa" id="2_2_4_0_tech" headers="tech sc2_2_4">
+<ul>
+<li>SCR14</li>
+</ul>
+</td>
+</tr>
+
+<tr class="notice">
+<td rowspan="1" headers="sc" id="sc2_2_5">
+<h4>2.2.5: Re-authenticating (Level <abbr title="Triple A">AAA</abbr>)</h4>
+<p>When an authenticated session expires, the user can continue the activity without loss of data after re-authenticating.</p>
+</td>
+<td class="assertType dimOnNa" id="2_2_5_0_type" headers="type sc2_2_5">
+Notice</td>
+<td class="dimOnNa" id="2_2_5_0_name" headers="name sc2_2_5">
+<p>If this Web page is part of a set of Web pages with an inactivity time limit, check that an authenticated user can continue the activity without loss of data after re-authenticating..</p>
+</td>
+<td class="dimOnNa" id="2_2_5_0_applies" headers="tech sc2_2_5">
+
+</td>
+<td class="dimOnNa" id="2_2_5_0_tech" headers="tech sc2_2_5">
+<ul>
+<li>G105</li>
+<li>G181</li>
+</ul>
+</td>
+</tr>
+
+</tbody></table><h3><a name="gl2_3">Guideline 2.3: Seizures</a></h3>
+
+<p>Do not design content in a way that is known to cause seizures.</p>
+
+<table>
+<colgroup>
+<col width="40%">
+<col width="6%">
+<col width="30%">
+<col width="12%">
+<col width="12%">
+</colgroup>
+<tbody>
+<tr>
+<th id="sc">Success Criterion</th>
+<th id="type">Type</th>
+<th id="name">Message Name</th>
+<th id="tech">Applies To</th>
+<th id="tech">Techniques</th>
+</tr>
+
+<tr class="notice">
+<td rowspan="1" headers="sc" id="sc2_3_1">
+<h4>2.3.1: Three Flashes or Below Threshold (Level <abbr title="Single A">A</abbr>)</h4>
+<p>Web pages do not contain anything that flashes more than three times in any one second period, or the flash is below the general flash and red flash thresholds.</p>
+
+<p><em>Note:</em> Since any content that does not meet this success criterion can interfere with a user's ability to use the whole page, all content on the Web page (whether or not it is used to meet other success criteria) must meet this success criterion. See <a href="http://www.w3.org/TR/2010/NOTE-UNDERSTANDING-WCAG20-20101014/conformance.html#uc-conf-req5-head">Conformance Requirement 5: Non-Interference</a>.</p>
+</td>
+<td class="assertType dimOnNa" id="2_3_1_0_type" headers="type sc2_3_1">
+Notice</td>
+<td class="dimOnNa" id="2_3_1_0_name" headers="name sc2_3_1">
+<p>Check that no component of the content does not flash more than three times in any 1-second period, or that the size of the flashing area is sufficiently small.</p>
+</td>
+<td class="dimOnNa" id="2_3_1_0_applies" headers="tech sc2_3_1">
+
+</td>
+<td class="dimOnNa" id="2_3_1_0_tech" headers="tech sc2_3_1">
+<ul>
+<li>G19</li>
+<li>G176</li>
+</ul>
+</td>
+</tr>
+
+<tr class="notice">
+<td rowspan="1" headers="sc" id="sc2_3_2">
+<h4>2.3.2: Three Flashes (Level <abbr title="Triple A">AAA</abbr>)</h4>
+<p>Web pages do not contain anything that flashes more than three times in any one second period.</p>
+</td>
+<td class="assertType dimOnNa" id="2_3_2_0_type" headers="type sc2_3_2">
+Notice</td>
+<td class="dimOnNa" id="2_3_2_0_name" headers="name sc2_3_2">
+<p>Check that no component of the content does not flash more than three times in any 1-second period.</p>
+</td>
+<td class="dimOnNa" id="2_3_2_0_applies" headers="tech sc2_3_2">
+
+</td>
+<td class="dimOnNa" id="2_3_2_0_tech" headers="tech sc2_3_2">
+<ul>
+<li>G19</li>
+</ul>
+</td>
+</tr>
+
+</tbody></table><h3><a name="gl2_4">Guideline 2.4: Navigable</a></h3>
+
+<p>Provide ways to help users navigate, find content, and determine where they are.</p>
+
+<table>
+<colgroup>
+<col width="40%">
+<col width="6%">
+<col width="30%">
+<col width="12%">
+<col width="12%">
+</colgroup>
+<tbody>
+<tr>
+<th id="sc">Success Criterion</th>
+<th id="type">Type</th>
+<th id="name">Message Name</th>
+<th id="tech">Applies To</th>
+<th id="tech">Techniques</th>
+</tr>
+
+<tr class="error">
+<td rowspan="3" headers="sc" id="sc2_4_1">
+<h4>2.4.1: Bypass Blocks (Level <abbr title="Single A">A</abbr>)</h4>
+<p>A mechanism is available to bypass blocks of content that are repeated on multiple Web pages.</p>
+</td>
+<td class="assertType dimOnNa" id="2_4_1_0_type" headers="type sc2_4_1">
+Error</td>
+<td class="dimOnNa" id="2_4_1_0_name" headers="name sc2_4_1">
+<p>Check this element for the presence of a title attribute that identifies the frame.</p>
+</td>
+<td class="dimOnNa" id="2_4_1_0_applies" headers="tech sc2_4_1">
+
+</td>
+<td class="dimOnNa" id="2_4_1_0_tech" headers="tech sc2_4_1">
+<ul>
+<li>H64.1</li>
+</ul>
+</td>
+</tr>
+
+<tr class="warning">
+<td class="assertType dimOnNa" id="2_4_1_2_type" headers="type sc2_4_1">
+Warning</td>
+<td class="dimOnNa" id="2_4_1_2_name" headers="name sc2_4_1">
+<p>Check that links that should be grouped into logical sets (such as a navigation bar or main menu) are grouped using map elements, so they can be bypassed.</p>
+</td>
+<td class="dimOnNa" id="2_4_1_2_applies" headers="tech sc2_4_1">
+
+</td>
+<td class="dimOnNa" id="2_4_1_2_tech" headers="tech sc2_4_1">
+<ul>
+<li>H50</li>
+</ul>
+</td>
+</tr>
+
+<tr class="notice">
+<td class="assertType dimOnNa" id="2_4_1_1_type" headers="type sc2_4_1">
+Notice</td>
+<td class="dimOnNa" id="2_4_1_1_name" headers="name sc2_4_1">
+<p>Check that the title attribute of this element contains text that identifies the frame.</p>
+</td>
+<td class="dimOnNa" id="2_4_1_1_applies" headers="tech sc2_4_1">
+
+</td>
+<td class="dimOnNa" id="2_4_1_1_tech" headers="tech sc2_4_1">
+<ul>
+<li>H64.2</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td rowspan="4" headers="sc" id="sc2_4_2">
+<h4>2.4.2: Page Titled (Level <abbr title="Single A">A</abbr>)</h4>
+<p>Web pages have titles that describe topic or purpose.</p>
+</td>
+<td class="assertType dimOnNa" id="2_4_2_2_type" headers="type sc2_4_2">
+Error</td>
+<td class="dimOnNa" id="2_4_2_2_name" headers="name sc2_4_2">
+<p>The title element in the head section should be non-empty.</p>
+</td>
+<td class="dimOnNa" id="2_4_2_2_applies" headers="tech sc2_4_2">
+
+</td>
+<td class="dimOnNa" id="2_4_2_2_tech" headers="tech sc2_4_2">
+<ul>
+<li>H25.1</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="2_4_2_1_type" headers="type sc2_4_2">
+Error</td>
+<td class="dimOnNa" id="2_4_2_1_name" headers="name sc2_4_2">
+<p>A title should be provided for the document, using a non-empty title element in the head section.</p>
+</td>
+<td class="dimOnNa" id="2_4_2_1_applies" headers="tech sc2_4_2">
+
+</td>
+<td class="dimOnNa" id="2_4_2_1_tech" headers="tech sc2_4_2">
+<ul>
+<li>H25.1</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="2_4_2_0_type" headers="type sc2_4_2">
+Error</td>
+<td class="dimOnNa" id="2_4_2_0_name" headers="name sc2_4_2">
+<p>There is no head section in which to place a descriptive title element.</p>
+</td>
+<td class="dimOnNa" id="2_4_2_0_applies" headers="tech sc2_4_2">
+
+</td>
+<td class="dimOnNa" id="2_4_2_0_tech" headers="tech sc2_4_2">
+<ul>
+<li>H25.1</li>
+</ul>
+</td>
+</tr>
+
+<tr class="notice">
+<td class="assertType dimOnNa" id="2_4_2_3_type" headers="type sc2_4_2">
+Notice</td>
+<td class="dimOnNa" id="2_4_2_3_name" headers="name sc2_4_2">
+<p>Check that the title element describes the document.</p>
+</td>
+<td class="dimOnNa" id="2_4_2_3_applies" headers="tech sc2_4_2">
+
+</td>
+<td class="dimOnNa" id="2_4_2_3_tech" headers="tech sc2_4_2">
+<ul>
+<li>H25.2</li>
+</ul>
+</td>
+</tr>
+
+<tr class="notice">
+<td rowspan="1" headers="sc" id="sc2_4_3">
+<h4>2.4.3: Focus Order (Level <abbr title="Single A">A</abbr>)</h4>
+<p>If a Web page can be navigated sequentially and the navigation sequences affect meaning or operation, focusable components receive focus in an order that preserves meaning and operability.</p>
+</td>
+<td class="assertType dimOnNa" id="2_4_3_0_type" headers="type sc2_4_3">
+Notice</td>
+<td class="dimOnNa" id="2_4_3_0_name" headers="name sc2_4_3">
+<p>If tabindex is used, check that the tab order specified by the tabindex attributes follows relationships in the content.</p>
+</td>
+<td class="dimOnNa" id="2_4_3_0_applies" headers="tech sc2_4_3">
+
+</td>
+<td class="dimOnNa" id="2_4_3_0_tech" headers="tech sc2_4_3">
+<ul>
+<li>H4.2</li>
+</ul>
+</td>
+</tr>
+
+<tr class="notice">
+<td rowspan="2" headers="sc" id="sc2_4_4">
+<h4>2.4.4: Link Purpose (In Context) (Level <abbr title="Single A">A</abbr>)</h4>
+<p>The purpose of each link can be determined from the link text alone or from the link text together with its programmatically determined link context, except where the purpose of the link would be ambiguous to users in general.</p>
+</td>
+<td class="assertType dimOnNa" id="2_4_4_1_type" headers="type sc2_4_4">
+Notice</td>
+<td class="dimOnNa" id="2_4_4_1_name" headers="name sc2_4_4">
+<p>Check that the link text combined with programmatically determined link context identifies the purpose of the link.</p>
+</td>
+<td class="dimOnNa" id="2_4_4_1_applies" headers="tech sc2_4_4">
+
+</td>
+<td class="dimOnNa" id="2_4_4_1_tech" headers="tech sc2_4_4">
+<ul>
+<li>H77</li>
+<li>H78</li>
+<li>H79</li>
+<li>H80</li>
+<li>H81</li>
+</ul>
+</td>
+</tr>
+
+<tr class="notice">
+<td class="assertType dimOnNa" id="2_4_4_0_type" headers="type sc2_4_4">
+Notice</td>
+<td class="dimOnNa" id="2_4_4_0_name" headers="name sc2_4_4">
+<p>Check that the link text combined with programmatically determined link context, or its title attribute, identifies the purpose of the link.</p>
+</td>
+<td class="dimOnNa" id="2_4_4_0_applies" headers="tech sc2_4_4">
+
+</td>
+<td class="dimOnNa" id="2_4_4_0_tech" headers="tech sc2_4_4">
+<ul>
+<li>H77</li>
+<li>H78</li>
+<li>H79</li>
+<li>H80</li>
+<li>H81</li>
+<li>H33</li>
+</ul>
+</td>
+</tr>
+
+<tr class="notice">
+<td rowspan="1" headers="sc" id="sc2_4_5">
+<h4>2.4.5: Multiple Ways (Level <abbr title="Double A">AA</abbr>)</h4>
+<p>More than one way is available to locate a Web page within a set of Web pages except where the Web Page is the result of, or a step in, a process.</p>
+</td>
+<td class="assertType dimOnNa" id="2_4_5_0_type" headers="type sc2_4_5">
+Notice</td>
+<td class="dimOnNa" id="2_4_5_0_name" headers="name sc2_4_5">
+<p>If this Web page is not part of a linear process, check that there is more than one way of locating this Web page within a set of Web pages.</p>
+</td>
+<td class="dimOnNa" id="2_4_5_0_applies" headers="tech sc2_4_5">
+
+</td>
+<td class="dimOnNa" id="2_4_5_0_tech" headers="tech sc2_4_5">
+<ul>
+<li>G125</li>
+<li>G64</li>
+<li>G63</li>
+<li>G161</li>
+<li>G126</li>
+<li>G185</li>
+</ul>
+</td>
+</tr>
+
+<tr class="notice">
+<td rowspan="1" headers="sc" id="sc2_4_6">
+<h4>2.4.6: Headings and Labels (Level <abbr title="Double A">AA</abbr>)</h4>
+<p>Headings and labels describe topic or purpose.</p>
+</td>
+<td class="assertType dimOnNa" id="2_4_6_0_type" headers="type sc2_4_6">
+Notice</td>
+<td class="dimOnNa" id="2_4_6_0_name" headers="name sc2_4_6">
+<p>Check that headings and labels describe topic or purpose.</p>
+</td>
+<td class="dimOnNa" id="2_4_6_0_applies" headers="tech sc2_4_6">
+
+</td>
+<td class="dimOnNa" id="2_4_6_0_tech" headers="tech sc2_4_6">
+<ul>
+<li>G130</li>
+<li>G131</li>
+</ul>
+</td>
+</tr>
+
+<tr class="notice">
+<td rowspan="1" headers="sc" id="sc2_4_7">
+<h4>2.4.7: Focus Visible (Level <abbr title="Double A">AA</abbr>)</h4>
+<p>Any keyboard operable user interface has a mode of operation where the keyboard focus indicator is visible.</p>
+</td>
+<td class="assertType dimOnNa" id="2_4_7_0_type" headers="type sc2_4_7">
+Notice</td>
+<td class="dimOnNa" id="2_4_7_0_name" headers="name sc2_4_7">
+<p>Check that there is at least one mode of operation where the keyboard focus indicator can be visually located on user interface controls.</p>
+</td>
+<td class="dimOnNa" id="2_4_7_0_applies" headers="tech sc2_4_7">
+
+</td>
+<td class="dimOnNa" id="2_4_7_0_tech" headers="tech sc2_4_7">
+<ul>
+<li>G149</li>
+<li>G165</li>
+<li>G195</li>
+<li>C15</li>
+<li>SCR31</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td rowspan="3" headers="sc" id="sc2_4_8">
+<h4>2.4.8: Location (Level <abbr title="Triple A">AAA</abbr>)</h4>
+<p>Information about the user's location within a set of Web pages is available.</p>
+</td>
+<td class="assertType dimOnNa" id="2_4_8_2_type" headers="type sc2_4_8">
+Error</td>
+<td class="dimOnNa" id="2_4_8_2_name" headers="name sc2_4_8">
+<p>Check that this link element contains a valid href attribute to locate the appropriate resource being linked.</p>
+</td>
+<td class="dimOnNa" id="2_4_8_2_applies" headers="tech sc2_4_8">
+
+</td>
+<td class="dimOnNa" id="2_4_8_2_tech" headers="tech sc2_4_8">
+<ul>
+<li>H59.2b</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="2_4_8_1_type" headers="type sc2_4_8">
+Error</td>
+<td class="dimOnNa" id="2_4_8_1_name" headers="name sc2_4_8">
+<p>Check that this link element contains a rel attribute identifying the link type.</p>
+</td>
+<td class="dimOnNa" id="2_4_8_1_applies" headers="tech sc2_4_8">
+
+</td>
+<td class="dimOnNa" id="2_4_8_1_tech" headers="tech sc2_4_8">
+<ul>
+<li>H59.2a</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="2_4_8_0_type" headers="type sc2_4_8">
+Error</td>
+<td class="dimOnNa" id="2_4_8_0_name" headers="name sc2_4_8">
+<p>Check that all link elements pertaining to navigation occur in the head section of the document.</p>
+</td>
+<td class="dimOnNa" id="2_4_8_0_applies" headers="tech sc2_4_8">
+
+</td>
+<td class="dimOnNa" id="2_4_8_0_tech" headers="tech sc2_4_8">
+<ul>
+<li>H59.1</li>
+</ul>
+</td>
+</tr>
+
+<tr class="notice">
+<td rowspan="1" headers="sc" id="sc2_4_9">
+<h4>2.4.9: Link Purpose (Link Only) (Level <abbr title="Triple A">AAA</abbr>)</h4>
+<p>A mechanism is available to allow the purpose of each link to be identified from link text alone, except where the purpose of the link would be ambiguous to users in general.</p>
+</td>
+<td class="assertType dimOnNa" id="2_4_9_0_type" headers="type sc2_4_9">
+Notice</td>
+<td class="dimOnNa" id="2_4_9_0_name" headers="name sc2_4_9">
+<p>Check that text of the link describes the purpose of the link.</p>
+</td>
+<td class="dimOnNa" id="2_4_9_0_applies" headers="tech sc2_4_9">
+
+</td>
+<td class="dimOnNa" id="2_4_9_0_tech" headers="tech sc2_4_9">
+<ul>
+<li>H30</li>
+</ul>
+</td>
+</tr>
+
+<td rowspan="1" headers="sc" id="sc2_4_10">
+<h4>2.4.10: Section Headings (Level <abbr title="Triple A">AAA</abbr>)</h4>
+<p>Section headings are used to organize the content.</p>
+
+<p><em>Note 1:</em> "Heading" is used in its general sense and includes titles and other ways to add a heading to different types of content.</p>
+
+<p><em>Note 2:</em> This success criterion covers sections within writing, not user interface components. User Interface components are covered under <a href="#sc4_1_2">Success Criterion 4.1.2</a>.</p>
+<div class="edsnote"><strong>Editor's Note:</strong> <p>No specific test file provided. Where HTML is used, testing for relevant semantic headers (h1-h6) occurs in <a href="#sc1_3_1">Success Criterion 1.3.1</a>.</p>
+</div>
+</td>
+</tbody></table><h2><a name="pr3">Principle 3: Understandable</a></h2>
+
+<h3><a name="gl3_1">Guideline 3.1: Readable</a></h3>
+
+<p>Make text content readable and understandable.</p>
+
+<table>
+<colgroup>
+<col width="40%">
+<col width="6%">
+<col width="30%">
+<col width="12%">
+<col width="12%">
+</colgroup>
+<tbody>
+<tr>
+<th id="sc">Success Criterion</th>
+<th id="type">Type</th>
+<th id="name">Message Name</th>
+<th id="tech">Applies To</th>
+<th id="tech">Techniques</th>
+</tr>
+
+<tr class="error">
+<td rowspan="3" headers="sc" id="sc3_1_1">
+<h4>3.1.1: Language of Page (Level <abbr title="Single A">A</abbr>)</h4>
+<p>The default human language of each Web page can be programmatically determined.</p>
+</td>
+<td class="assertType dimOnNa" id="3_1_1_2_type" headers="type sc3_1_1">
+Error</td>
+<td class="dimOnNa" id="3_1_1_2_name" headers="name sc3_1_1">
+<p>Ensure that any language tag used in an xml:lang attribute is well-formed according to the appropriate standard.</p>
+</td>
+<td class="dimOnNa" id="3_1_1_2_applies" headers="tech sc3_1_1">
+
+</td>
+<td class="dimOnNa" id="3_1_1_2_tech" headers="tech sc3_1_1">
+<ul>
+<li>H57.3</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="3_1_1_1_type" headers="type sc3_1_1">
+Error</td>
+<td class="dimOnNa" id="3_1_1_1_name" headers="name sc3_1_1">
+<p>Ensure that any language tag used in a lang attribute is well-formed according to the appropriate standard.</p>
+</td>
+<td class="dimOnNa" id="3_1_1_1_applies" headers="tech sc3_1_1">
+
+</td>
+<td class="dimOnNa" id="3_1_1_1_tech" headers="tech sc3_1_1">
+<ul>
+<li>H57.3</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="3_1_1_0_type" headers="type sc3_1_1">
+Error</td>
+<td class="dimOnNa" id="3_1_1_0_name" headers="name sc3_1_1">
+<p>The html element should have a lang or xml:lang attribute which describes the language of the document.</p>
+</td>
+<td class="dimOnNa" id="3_1_1_0_applies" headers="tech sc3_1_1">
+
+</td>
+<td class="dimOnNa" id="3_1_1_0_tech" headers="tech sc3_1_1">
+<ul>
+<li>H57.2</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td rowspan="3" headers="sc" id="sc3_1_2">
+<h4>3.1.2: Language of Parts (Level <abbr title="Double A">AA</abbr>)</h4>
+<p>The human language of each passage or phrase in the content can be programmatically determined except for proper names, technical terms, words of indeterminate language, and words or phrases that have become part of the vernacular of the immediately surrounding text.</p>
+</td>
+<td class="assertType dimOnNa" id="3_1_2_2_type" headers="type sc3_1_2">
+Error</td>
+<td class="dimOnNa" id="3_1_2_2_name" headers="name sc3_1_2">
+<p>Ensure that any language tag used in an xml:lang attribute is well-formed according to the appropriate standard.</p>
+</td>
+<td class="dimOnNa" id="3_1_2_2_applies" headers="tech sc3_1_2">
+
+</td>
+<td class="dimOnNa" id="3_1_2_2_tech" headers="tech sc3_1_2">
+<ul>
+<li>H58.1</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="3_1_2_1_type" headers="type sc3_1_2">
+Error</td>
+<td class="dimOnNa" id="3_1_2_1_name" headers="name sc3_1_2">
+<p>Ensure that any language tag used in a lang attribute is well-formed according to the appropriate standard.</p>
+</td>
+<td class="dimOnNa" id="3_1_2_1_applies" headers="tech sc3_1_2">
+
+</td>
+<td class="dimOnNa" id="3_1_2_1_tech" headers="tech sc3_1_2">
+<ul>
+<li>H58.1</li>
+</ul>
+</td>
+</tr>
+
+<tr class="notice">
+<td class="assertType dimOnNa" id="3_1_2_0_type" headers="type sc3_1_2">
+Notice</td>
+<td class="dimOnNa" id="3_1_2_0_name" headers="name sc3_1_2">
+<p>Ensure that any change in language is marked using the lang and/or xml:lang attribute on an element, as appropriate.</p>
+</td>
+<td class="dimOnNa" id="3_1_2_0_applies" headers="tech sc3_1_2">
+
+</td>
+<td class="dimOnNa" id="3_1_2_0_tech" headers="tech sc3_1_2">
+<ul>
+<li>H58</li>
+</ul>
+</td>
+</tr>
+
+<tr class="notice">
+<td rowspan="1" headers="sc" id="sc3_1_3">
+<h4>3.1.3: Unusual Words (Level <abbr title="Triple A">AAA</abbr>)</h4>
+<p>A mechanism is available for identifying specific definitions of words or phrases used in an unusual or restricted way, including idioms and jargon.</p>
+</td>
+<td class="assertType dimOnNa" id="3_1_3_0_type" headers="type sc3_1_3">
+Notice</td>
+<td class="dimOnNa" id="3_1_3_0_name" headers="name sc3_1_3">
+<p>Check that there is a mechanism available for identifying specific definitions of words or phrases used in an unusual or restricted way, including idioms and jargon.</p>
+</td>
+<td class="dimOnNa" id="3_1_3_0_applies" headers="tech sc3_1_3">
+
+</td>
+<td class="dimOnNa" id="3_1_3_0_tech" headers="tech sc3_1_3">
+<ul>
+<li>H40</li>
+<li>H54</li>
+<li>H60</li>
+<li>G62</li>
+<li>G70</li>
+</ul>
+</td>
+</tr>
+
+<tr class="notice">
+<td rowspan="1" headers="sc" id="sc3_1_4">
+<h4>3.1.4: Abbreviations (Level <abbr title="Triple A">AAA</abbr>)</h4>
+<p>A mechanism for identifying the expanded form or meaning of abbreviations is available. </p>
+</td>
+<td class="assertType dimOnNa" id="3_1_4_0_type" headers="type sc3_1_4">
+Notice</td>
+<td class="dimOnNa" id="3_1_4_0_name" headers="name sc3_1_4">
+<p>Check that a mechanism for identifying the expanded form or meaning of abbreviations is available.</p>
+</td>
+<td class="dimOnNa" id="3_1_4_0_applies" headers="tech sc3_1_4">
+
+</td>
+<td class="dimOnNa" id="3_1_4_0_tech" headers="tech sc3_1_4">
+<ul>
+<li>G102</li>
+<li>G55</li>
+<li>G62</li>
+<li>H28</li>
+<li>G97</li>
+</ul>
+</td>
+</tr>
+
+<tr class="notice">
+<td rowspan="1" headers="sc" id="sc3_1_5">
+<h4>3.1.5: Reading Level (Level <abbr title="Triple A">AAA</abbr>)</h4>
+<p>When text requires reading ability more advanced than the lower secondary education level after removal of proper names and titles, supplemental content, or a version that does not require reading ability more advanced than the lower secondary education level, is available.</p>
+</td>
+<td class="assertType dimOnNa" id="3_1_5_0_type" headers="type sc3_1_5">
+Notice</td>
+<td class="dimOnNa" id="3_1_5_0_name" headers="name sc3_1_5">
+<p>Where the content requires reading ability more advanced than the lower secondary education level, supplemental content or an alternative version should be provided.</p>
+</td>
+<td class="dimOnNa" id="3_1_5_0_applies" headers="tech sc3_1_5">
+
+</td>
+<td class="dimOnNa" id="3_1_5_0_tech" headers="tech sc3_1_5">
+<ul>
+<li>G86</li>
+<li>G103</li>
+<li>G79</li>
+<li>G153</li>
+<li>G160</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td rowspan="3" headers="sc" id="sc3_1_6">
+<h4>3.1.6: Pronunciation (Level <abbr title="Triple A">AAA</abbr>)</h4>
+<p>A mechanism is available for identifying specific pronunciation of words where meaning of the words, in context, is ambiguous without knowing the pronunciation.</p>
+</td>
+<td class="assertType dimOnNa" id="3_1_6_2_type" headers="type sc3_1_6">
+Error</td>
+<td class="dimOnNa" id="3_1_6_2_name" headers="name sc3_1_6">
+<p>If simple Ruby markup is used, check that the rp element is present to indicate to user agents that do not support Ruby annotations that the text in the rt element provides the pronunciation information.</p>
+</td>
+<td class="dimOnNa" id="3_1_6_2_applies" headers="tech sc3_1_6">
+
+</td>
+<td class="dimOnNa" id="3_1_6_2_tech" headers="tech sc3_1_6">
+<ul>
+<li>H62.2</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="3_1_6_1_type" headers="type sc3_1_6">
+Error</td>
+<td class="dimOnNa" id="3_1_6_1_name" headers="name sc3_1_6">
+<p>Check that a rt element contains pronunciation information for each run of text defined by the rb element.</p>
+</td>
+<td class="dimOnNa" id="3_1_6_1_applies" headers="tech sc3_1_6">
+
+</td>
+<td class="dimOnNa" id="3_1_6_1_tech" headers="tech sc3_1_6">
+<ul>
+<li>H62.1</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="3_1_6_0_type" headers="type sc3_1_6">
+Error</td>
+<td class="dimOnNa" id="3_1_6_0_name" headers="name sc3_1_6">
+<p>Check that a rt element contains pronunciation information for each run of text defined by the body of the ruby element.</p>
+</td>
+<td class="dimOnNa" id="3_1_6_0_applies" headers="tech sc3_1_6">
+
+</td>
+<td class="dimOnNa" id="3_1_6_0_tech" headers="tech sc3_1_6">
+<ul>
+<li>H62.1</li>
+</ul>
+</td>
+</tr>
+
+</tbody></table><h3><a name="gl3_2">Guideline 3.2: Predictable</a></h3>
+
+<p>Make Web pages appear and operate in predictable ways.</p>
+
+<table>
+<colgroup>
+<col width="40%">
+<col width="6%">
+<col width="30%">
+<col width="12%">
+<col width="12%">
+</colgroup>
+<tbody>
+<tr>
+<th id="sc">Success Criterion</th>
+<th id="type">Type</th>
+<th id="name">Message Name</th>
+<th id="tech">Applies To</th>
+<th id="tech">Techniques</th>
+</tr>
+
+<tr class="notice">
+<td rowspan="1" headers="sc" id="sc3_2_1">
+<h4>3.2.1: On Focus (Level <abbr title="Single A">A</abbr>)</h4>
+<p>When any component receives focus, it does not initiate a change of context.</p>
+</td>
+<td class="assertType dimOnNa" id="3_2_1_0_type" headers="type sc3_2_1">
+Notice</td>
+<td class="dimOnNa" id="3_2_1_0_name" headers="name sc3_2_1">
+<p>Check that a change of context does not occur when any input field receives focus.</p>
+</td>
+<td class="dimOnNa" id="3_2_1_0_applies" headers="tech sc3_2_1">
+
+</td>
+<td class="dimOnNa" id="3_2_1_0_tech" headers="tech sc3_2_1">
+<ul>
+<li>G107</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td rowspan="1" headers="sc" id="sc3_2_2">
+<h4>3.2.2: On Input (Level <abbr title="Single A">A</abbr>)</h4>
+<p>Changing the setting of any user interface component does not automatically cause a change of context unless the user has been advised of the behavior before using the component.</p>
+</td>
+<td class="assertType dimOnNa" id="3_2_2_0_type" headers="type sc3_2_2">
+Error</td>
+<td class="dimOnNa" id="3_2_2_0_name" headers="name sc3_2_2">
+<p>Check that this form has a submit button (input type="submit", input type="image", or button type="submit").</p>
+</td>
+<td class="dimOnNa" id="3_2_2_0_applies" headers="tech sc3_2_2">
+<p>Form element</p>
+</td>
+<td class="dimOnNa" id="3_2_2_0_tech" headers="tech sc3_2_2">
+<ul>
+<li>H32.2</li>
+</ul>
+</td>
+</tr>
+
+<tr class="notice">
+<td rowspan="1" headers="sc" id="sc3_2_3">
+<h4>3.2.3: Consistent Navigation (Level <abbr title="Double A">AA</abbr>)</h4>
+<p>Navigational mechanisms that are repeated on multiple Web pages within a set of Web pages occur in the same relative order each time they are repeated, unless a change is initiated by the user.</p>
+</td>
+<td class="assertType dimOnNa" id="3_2_3_0_type" headers="type sc3_2_3">
+Notice</td>
+<td class="dimOnNa" id="3_2_3_0_name" headers="name sc3_2_3">
+<p>Check that navigational mechanisms that are repeated on multiple Web pages occur in the same relative order each time they are repeated, unless a change is initiated by the user.</p>
+</td>
+<td class="dimOnNa" id="3_2_3_0_applies" headers="tech sc3_2_3">
+
+</td>
+<td class="dimOnNa" id="3_2_3_0_tech" headers="tech sc3_2_3">
+<ul>
+<li>G61</li>
+</ul>
+</td>
+</tr>
+
+<tr class="notice">
+<td rowspan="1" headers="sc" id="sc3_2_4">
+<h4>3.2.4: Consistent Identification (Level <abbr title="Double A">AA</abbr>)</h4>
+<p>Components that have the same functionality within a set of Web pages are identified consistently.</p>
+</td>
+<td class="assertType dimOnNa" id="3_2_4_0_type" headers="type sc3_2_4">
+Notice</td>
+<td class="dimOnNa" id="3_2_4_0_name" headers="name sc3_2_4">
+<p>Check that components that have the same functionality within this Web page are identified consistently in the set of Web pages to which it belongs.</p>
+</td>
+<td class="dimOnNa" id="3_2_4_0_applies" headers="tech sc3_2_4">
+
+</td>
+<td class="dimOnNa" id="3_2_4_0_tech" headers="tech sc3_2_4">
+<ul>
+<li>G197</li>
+</ul>
+</td>
+</tr>
+
+<tr class="warning">
+<td rowspan="1" headers="sc" id="sc3_2_5">
+<h4>3.2.5: Change on Request (Level <abbr title="Triple A">AAA</abbr>)</h4>
+<p>Changes of context are initiated only by user request or a mechanism is available to turn off such changes.</p>
+</td>
+<td class="assertType dimOnNa" id="3_2_5_0_type" headers="type sc3_2_5">
+Warning</td>
+<td class="dimOnNa" id="3_2_5_0_name" headers="name sc3_2_5">
+<p>Check that this link's link text contains information indicating that the link will open in a new window.</p>
+</td>
+<td class="dimOnNa" id="3_2_5_0_applies" headers="tech sc3_2_5">
+<p>Anchor ("a" element) with target="_blank"</p>
+</td>
+<td class="dimOnNa" id="3_2_5_0_tech" headers="tech sc3_2_5">
+<ul>
+<li>H83.3</li>
+</ul>
+</td>
+</tr>
+
+</tbody></table><h3><a name="gl3_3">Guideline 3.3: Input Assistance</a></h3>
+
+<p>Help users avoid and correct mistakes.</p>
+
+<table>
+<colgroup>
+<col width="40%">
+<col width="6%">
+<col width="30%">
+<col width="12%">
+<col width="12%">
+</colgroup>
+<tbody>
+<tr>
+<th id="sc">Success Criterion</th>
+<th id="type">Type</th>
+<th id="name">Message Name</th>
+<th id="tech">Applies To</th>
+<th id="tech">Techniques</th>
+</tr>
+
+<tr class="notice">
+<td rowspan="1" headers="sc" id="sc3_3_1">
+<h4>3.3.1: Error Identification (Level <abbr title="Single A">A</abbr>)</h4>
+<p>If an input error is automatically detected, the item that is in error is identified and the error is described to the user in text.</p>
+</td>
+<td class="assertType dimOnNa" id="3_3_1_0_type" headers="type sc3_3_1">
+Notice</td>
+<td class="dimOnNa" id="3_3_1_0_name" headers="name sc3_3_1">
+<p>If an input error is automatically detected in this form, check that the item(s) in error are identified and the error(s) are described to the user in text.</p>
+</td>
+<td class="dimOnNa" id="3_3_1_0_applies" headers="tech sc3_3_1">
+<p>Form element</p>
+</td>
+<td class="dimOnNa" id="3_3_1_0_tech" headers="tech sc3_3_1">
+<ul>
+<li>G83</li>
+<li>G84</li>
+<li>G85</li>
+</ul>
+</td>
+</tr>
+
+<tr class="notice">
+<td rowspan="1" headers="sc" id="sc3_3_2">
+<h4>3.3.2: Labels or Instructions (Level <abbr title="Single A">A</abbr>)</h4>
+<p>Labels or instructions are provided when content requires user input.</p>
+</td>
+<td class="assertType dimOnNa" id="3_3_2_0_type" headers="type sc3_3_2">
+Notice</td>
+<td class="dimOnNa" id="3_3_2_0_name" headers="name sc3_3_2">
+<p>Check that descriptive labels or instructions (including for required fields) are provided for user input in this form.</p>
+</td>
+<td class="dimOnNa" id="3_3_2_0_applies" headers="tech sc3_3_2">
+<p>Form element</p>
+</td>
+<td class="dimOnNa" id="3_3_2_0_tech" headers="tech sc3_3_2">
+<ul>
+<li>G131</li>
+<li>G89</li>
+<li>G184</li>
+<li>H90</li>
+</ul>
+</td>
+</tr>
+
+<tr class="notice">
+<td rowspan="1" headers="sc" id="sc3_3_3">
+<h4>3.3.3: Error Suggestion (Level <abbr title="Double A">AA</abbr>)</h4>
+<p>If an input error is automatically detected and suggestions for correction are known, then the suggestions are provided to the user, unless it would jeopardize the security or purpose of the content.</p>
+</td>
+<td class="assertType dimOnNa" id="3_3_3_0_type" headers="type sc3_3_3">
+Notice</td>
+<td class="dimOnNa" id="3_3_3_0_name" headers="name sc3_3_3">
+<p>Check that this form provides suggested corrections to errors in user input, unless it would jeopardize the security or purpose of the content.</p>
+</td>
+<td class="dimOnNa" id="3_3_3_0_applies" headers="tech sc3_3_3">
+<p>Form element</p>
+</td>
+<td class="dimOnNa" id="3_3_3_0_tech" headers="tech sc3_3_3">
+<ul>
+<li>G177</li>
+</ul>
+</td>
+</tr>
+
+<tr class="na">
+<td rowspan="1" headers="sc" id="sc3_3_4">
+<h4>3.3.4: Error Prevention (Legal, Financial, Data) (Level <abbr title="Double A">AA</abbr>)</h4>
+<p>For Web pages that cause legal commitments or financial transactions for the user to occur, that modify or delete user-controllable data in data storage systems, or that submit user test responses, at least one of the following is true:</p>
+
+<ul>
+<li><em>Reversible:</em> Submissions are reversible.</li>
+<li><em>Checked:</em> Data entered by the user is checked for input errors and the user is provided an opportunity to correct them.</li>
+<li><em>Confirmed:</em> A mechanism is available for reviewing, confirming, and correcting information before finalizing the submission.</li>
+</ul>
+<div class="edsnote"><strong>Editor's Note:</strong> <p>Superseded by <a href="#sc3_3_6">Success Criterion 3.3.6</a> at level AAA, which extends this requirement to <strong>all</strong> forms.</p>
+</div>
+</td>
+<td class="assertType dimOnNa" id="3_3_4_0_type" headers="type sc3_3_4">
+N/A</td>
+<td class="dimOnNa" id="3_3_4_0_name" headers="name sc3_3_4">
+<p>If this form would bind a user to a financial or legal commitment, modify/delete user-controllable data, or submit test responses, ensure that submissions are either reversible, checked for input errors, and/or confirmed by the user.</p>
+</td>
+<td class="dimOnNa" id="3_3_4_0_applies" headers="tech sc3_3_4">
+<p>Form element</p>
+</td>
+<td class="dimOnNa" id="3_3_4_0_tech" headers="tech sc3_3_4">
+<ul>
+<li>G98</li>
+<li>G99</li>
+<li>G155</li>
+<li>G164</li>
+<li>G168</li>
+</ul>
+</td>
+</tr>
+
+<tr class="notice">
+<td rowspan="1" headers="sc" id="sc3_3_5">
+<h4>3.3.5: Help (Level <abbr title="Triple A">AAA</abbr>)</h4>
+<p>Context-sensitive help is available.</p>
+</td>
+<td class="assertType dimOnNa" id="3_3_5_0_type" headers="type sc3_3_5">
+Notice</td>
+<td class="dimOnNa" id="3_3_5_0_name" headers="name sc3_3_5">
+<p>Check that context-sensitive help is available for this form, at a Web-page and/or control level.</p>
+</td>
+<td class="dimOnNa" id="3_3_5_0_applies" headers="tech sc3_3_5">
+<p>Form element</p>
+</td>
+<td class="dimOnNa" id="3_3_5_0_tech" headers="tech sc3_3_5">
+<ul>
+<li>G71</li>
+<li>G184</li>
+<li>G193</li>
+</ul>
+</td>
+</tr>
+
+<tr class="notice">
+<td rowspan="1" headers="sc" id="sc3_3_6">
+<h4>3.3.6: Error Prevention (All) (Level <abbr title="Triple A">AAA</abbr>)</h4>
+<p>For Web pages that require the user to submit information, at least one of the following is true:</p>
+
+<ul>
+<li><em>Reversible:</em> Submissions are reversible.</li>
+<li><em>Checked:</em> Data entered by the user is checked for input errors and the user is provided an opportunity to correct them.</li>
+<li><em>Confirmed:</em> A mechanism is available for reviewing, confirming, and correcting information before finalizing the submission.</li>
+</ul>
+</td>
+<td class="assertType dimOnNa" id="3_3_6_0_type" headers="type sc3_3_6">
+Notice</td>
+<td class="dimOnNa" id="3_3_6_0_name" headers="name sc3_3_6">
+<p>Check that submissions to this form are either reversible, checked for input errors, and/or confirmed by the user.</p>
+</td>
+<td class="dimOnNa" id="3_3_6_0_applies" headers="tech sc3_3_6">
+<p>Form element</p>
+</td>
+<td class="dimOnNa" id="3_3_6_0_tech" headers="tech sc3_3_6">
+<ul>
+<li>G98</li>
+<li>G99</li>
+<li>G155</li>
+<li>G164</li>
+<li>G168</li>
+</ul>
+</td>
+</tr>
+
+</tbody></table><h2><a name="pr4">Principle 4: Robust</a></h2>
+
+<h3><a name="gl4_1">Guideline 4.1: Compatible</a></h3>
+
+<p>Maximize compatibility with current and future user agents, including assistive technologies.</p>
+
+<table>
+<colgroup>
+<col width="40%">
+<col width="6%">
+<col width="30%">
+<col width="12%">
+<col width="12%">
+</colgroup>
+<tbody>
+<tr>
+<th id="sc">Success Criterion</th>
+<th id="type">Type</th>
+<th id="name">Message Name</th>
+<th id="tech">Applies To</th>
+<th id="tech">Techniques</th>
+</tr>
+
+<tr class="error">
+<td rowspan="1" headers="sc" id="sc4_1_1">
+<h4>4.1.1: Parsing (Level <abbr title="Single A">A</abbr>)</h4>
+<p>In content implemented using markup languages, elements have complete start and end tags, elements are nested according to their specifications, elements do not contain duplicate attributes, and any IDs are unique, except where the specifications allow these features.</p>
+
+<p><em>Note:</em> Start and end tags that are missing a critical character in their formation, such as a closing angle bracket or a mismatched attribute value quotation mark are not complete.</p>
+</td>
+<td class="assertType dimOnNa" id="4_1_1_0_type" headers="type sc4_1_1">
+Error</td>
+<td class="dimOnNa" id="4_1_1_0_name" headers="name sc4_1_1">
+<p>Check that all id attribute values are unique on the web page.</p>
+</td>
+<td class="dimOnNa" id="4_1_1_0_applies" headers="tech sc4_1_1">
+<p>Any element with an id element</p>
+</td>
+<td class="dimOnNa" id="4_1_1_0_tech" headers="tech sc4_1_1">
+<ul>
+<li>F77</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td rowspan="2" headers="sc" id="sc4_1_2">
+<h4>4.1.2: Name, Role, Value (Level <abbr title="Single A">A</abbr>)</h4>
+<p>For all user interface components (including but not limited to: form elements, links and components generated by scripts), the name and role can be programmatically determined; states, properties, and values that can be set by the user can be programmatically set; and notification of changes to these items is available to user agents, including assistive technologies.</p>
+
+<p><em>Note:</em> This success criterion is primarily for Web authors who develop or script their own user interface components. For example, standard HTML controls already meet this success criterion when used according to specification.</p>
+</td>
+<td class="assertType dimOnNa" id="4_1_2_1_type" headers="type sc4_1_2">
+Error</td>
+<td class="dimOnNa" id="4_1_2_1_name" headers="name sc4_1_2">
+<p>Check that this form control has a value that is available to an accessibility API.</p>
+</td>
+<td class="dimOnNa" id="4_1_2_1_applies" headers="tech sc4_1_2">
+<p>a, button, fieldset, input, select, textarea</p>
+</td>
+<td class="dimOnNa" id="4_1_2_1_tech" headers="tech sc4_1_2">
+<ul>
+<li>H91</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="4_1_2_0_type" headers="type sc4_1_2">
+Error</td>
+<td class="dimOnNa" id="4_1_2_0_name" headers="name sc4_1_2">
+<p>Check that this form control has a name that is available to an accessibility API.</p>
+</td>
+<td class="dimOnNa" id="4_1_2_0_applies" headers="tech sc4_1_2">
+<p>a, input type="text", select, textarea</p>
+</td>
+<td class="dimOnNa" id="4_1_2_0_tech" headers="tech sc4_1_2">
+<ul>
+<li>H91</li>
+</ul>
+</td>
+</tr>
+
+</tbody></table></body>
+</html>
