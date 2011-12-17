@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>WCAG 2.0 Success Criterion 1.1.1</title>
+<title>WCAG 2.0 Success Criterion 1.1.1 - HTML_CodeSniffer</title>
 <style type="text/css">
 h1 {border-bottom: 5px solid #56a8f9; background-color: #333; color: white; padding: 15px 10px; margin: -10px -10px 10px -10px}
 body {padding: 10px; margin: 0}
@@ -54,7 +54,7 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
 
 <p>We do not test <a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H46">Technique H46: Using noembed with embed</a>. This technique speaks of marrying the non-standard embed element, used by as a forerunner to the HTML 4.0-standard object element, with a noembed element which provides a text alternative. The noembed element could be placed either inside the embed element, or immediately afterwards.</p>
 
-<p>I am of the belief that this technique should not be used, for the following reasons:</p>
+<p>It is arguable that the noembed tag cannot be used in an accessible document, for the following reasons:</p>
 
 <ol>
 <li>Prior to HTML5, the embed element itself was non-standard. Although this alone does not fail <a href="./4_1_1">Success Criterion 4.1.1 (Parsing)</a> - validation is not a requirement, only well-formedness is - it makes it extremely difficult to satisfy the sufficient techniques. This Success Criterion suggests <a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H74">ensuring opening and closing tags are used according to specification</a> as a technique for HTML serialisation (as well-formedness is not a proper concept in HTML), but embed is not in the HTML spec, does this mean it is impossible to use the tag in HTML 4.0 and pass this Success Criterion?</li>

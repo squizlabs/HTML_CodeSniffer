@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>WCAG 2.0 Success Criterion 4.1.2</title>
+<title>WCAG 2.0 Success Criterion 4.1.2 - HTML_CodeSniffer</title>
 <style type="text/css">
 h1 {border-bottom: 5px solid #56a8f9; background-color: #333; color: white; padding: 15px 10px; margin: -10px -10px 10px -10px}
 body {padding: 10px; margin: 0}
@@ -40,7 +40,99 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
 
 <p>For HTML, the browser usually communicates with an OS-level accessibility API, which then exposes information to assistive technology. For a list of accessibility APIs in common use, the <a href="http://dev.w3.org/html5/html-api-map/">HTML to Platform Accessibility APIs Implementation Guide</a>, covering HTML 4 and 5, is a good start. This is not limited to HTML; other technologies such as Java and (presumably) Flash have techniques that expose their interfaces to accessibility APIs.</p>
 
-<p>Using <a href="#tech-h91">technique H91</a> successfully ensures that ordinary HTML form controls and links are accessible. If you are creating custom controls and widgets, it may not be so easy to expose such controls to an accessibility API - for instance, that a two-state on/off toggle button (like that found in Squiz Framework, or the iOS interface) has the role of a check box, and should be exposed to assistive technology as such. The <a href="http://www.w3.org/TR/wai-aria"><acronym title="Web Accessibility Intiative: Accessible Rich Internet Applications">WAI-ARIA</acronym> document</a> attempts to address this with a common vocabulary, but this is only at Candidate Recommendation stage, pending further implementation and testing. An implementation report was expected by July 2011, but an <a href="http://www.w3.org/WAI/aria/faq#update">August 2011 update in the FAQ for WAI-ARIA</a> states the relevant group "expects it will take several months to complete the tests".</p>
+<p>Using technique <a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H91">H91: Using HTML form controls and links</a> successfully ensures that ordinary HTML form controls and links are accessible. If you are creating custom controls and widgets, it may not be so easy to expose such controls to an accessibility API - for instance, that a two-state on/off toggle button (like that found in Squiz Framework, or the iOS interface) has the role of a check box, and should be exposed to assistive technology as such. The <a href="http://www.w3.org/TR/wai-aria"><acronym title="Web Accessibility Intiative: Accessible Rich Internet Applications">WAI-ARIA</acronym> document</a> attempts to address this with a common vocabulary, but this is only at Candidate Recommendation stage, pending further implementation and testing. An implementation report was expected by July 2011, but an <a href="http://www.w3.org/WAI/aria/faq#update">August 2011 update in the FAQ for WAI-ARIA</a> states the relevant group "expects it will take several months to complete the tests".</p>
+
+<h2>Roles, Names, States and Values table</h2>
+
+<p>Adapted from technique <a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H91">H91: Using HTML form controls and links</a>. HTML_CodeSniffer will emit errors on form fields that do not have a required source for the "name" and, if applicable, "value" fields under this model.</p>
+
+<table>
+<colgroup>
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+</colgroup>
+<thead>
+<tr>
+<th>HTML element</th>
+<th>Role</th>
+<th>Name</th>
+<th>Value</th>
+<th>State</th>
+</thead>
+<tbody>
+<tr>
+<td>a</td>
+<td>Link</td>
+<td>title attribute or element contents (including image alt text)</td>
+<td>href attribute</td>
+<td></td>
+</tr>
+<tr>
+<td>button</td>
+<td>Push button</td>
+<td>element contents or title attribute</td>
+<td></td>
+<td></td>
+</tr><tr>
+<td>fieldset</td>
+<td>Grouping</td>
+<td>legend element</td>
+<td></td>
+<td></td>
+</tr><tr>
+<td>input with type "button", "submit" or "reset"</td>
+<td>link</td>
+<td>value attribute</td>
+<td></td>
+<td></td>
+</tr><tr>
+<td>input with type "image"</td>
+<td>link</td>
+<td>alt attribute or title attribute</td>
+<td></td>
+<td></td>
+</tr><tr>
+<td>input with type "text"</td>
+<td>Editable text</td>
+<td>associated label element or title attribute</td>
+<td>value attribute</td>
+<td></td>
+</tr><tr>
+<td>input with type "password"</td>
+<td>Editbale text</td>
+<td>associated label element or title attribute</td>
+<td></td>
+<td>checked attribute</td>
+</tr><tr>
+<td>input with type "checkbox"</td>
+<td>Check box</td>
+<td>associated label element or title attribute</td>
+<td></td>
+<td>checked attribute</td>
+</tr><tr>
+<td>input with type "radio"</td>
+<td>Radio button</td>
+<td>associated label element or title attribute</td>
+<td></td>
+<td></td>
+</tr><tr>
+<td>select</td>
+<td>Combo box, list or dropdown list</td>
+<td>associated label element or title attribute</td>
+<td>value of selected option</td>
+<td></td>
+</tr><tr>
+<td>textarea</td>
+<td>Editable text</td>
+<td>associated label element or title attribute</td>
+<td>element contents</td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <h2>Messages emitted by this Success Criterion's tests</h2>
 
 <p>Note that "[Standard]" will be replaced with "WCAG2AA" or "WCAG2AAA", depending on the level being tested.</p>
@@ -68,7 +160,7 @@ Error</td>
 <p>Check that this form control has a value that is available to an accessibility API.</p>
 <div class="fullcode">[Standard].Guideline4.Principle4_1.4_1_2.H91</div></td>
 <td class="dimOnNa" id="4_1_2_1_applies" headers="tech sc4_1_2">
-<p>a, button, fieldset, input, select, textarea</p>
+<p>a, input type="text", select, textarea</p>
 </td>
 <td class="dimOnNa" id="4_1_2_1_tech" headers="tech sc4_1_2">
 <ul>
@@ -84,7 +176,7 @@ Error</td>
 <p>Check that this form control has a name that is available to an accessibility API.</p>
 <div class="fullcode">[Standard].Guideline4.Principle4_1.4_1_2.H91</div></td>
 <td class="dimOnNa" id="4_1_2_0_applies" headers="tech sc4_1_2">
-<p>a, input type="text", select, textarea</p>
+<p>a, button, fieldset, input, select, textarea</p>
 </td>
 <td class="dimOnNa" id="4_1_2_0_tech" headers="tech sc4_1_2">
 <ul>
