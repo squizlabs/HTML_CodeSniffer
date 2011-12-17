@@ -1,70 +1,32 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <title>HTML_CodeSniffer Test Page</title>
-    <link rel="stylesheet" media="screen" href="./main.css">
-    <script type="text/javascript" src="https://raw.github.com/squizlabs/HTML_CodeSniffer/master/HTMLCS.js"></script>
-    <script>
-        function runHTMLCS()
-        {
-            var source = document.getElementById('source');
-            HTMLCS.process('WCAG2AA', source.value, function() {
-                updateResults();
-            });
-        }
-
-        function updateResults()
-        {
-            var resultsWrapper = document.getElementById('resultsWrapper');
-            resultsWrapper.innerHTML = '';
-
-            var msgs = HTMLCS.getMessages();
-            if (msgs.length === 0) {
-                resultsWrapper.innerHTML = 'No errors found';
-                return;
-            }
-
-            var content = '<table border="1" cellpadding="5"><tr>';
-            content    += '<th>#</th><th>Type</th><th>Message</th><th>Code</th></tr>';
-
-            for (var i = 0; i < msgs.length; i++) {
-                var msg = msgs[i];
-                var type = '';
-                switch (msg.type) {
-                    case HTMLCS.ERROR:
-                        type = 'Error';
-                    break;
-
-                    case HTMLCS.WARNING:
-                        type = 'Warning';
-                    break;
-
-                    case HTMLCS.NOTICE:
-                        type = 'Notice';
-                    break;
-
-                    default:
-                        type = 'Unknown';
-                    break;
-                }
-
-                content += '<td>' + (i + 1) + '</td><td>' + type + '</td><td>' + msg.msg + '</td><td>' + msg.code + '</td></tr>';
-            }
-
-            content += '</table>';
-            resultsWrapper.innerHTML = content;
-
-        }
-    </script>
+<title>HTML_CodeSniffer</title>
+<style type="text/css">
+h1 {border-bottom: 5px solid #56a8f9; background-color: #333; color: white; padding: 15px 10px; margin: -10px -10px 10px -10px}
+body {padding: 10px; margin: 0; font: 10.5pt 'verdana', sans-serif}
+p + p {margin-top: 0.5em;}
+div.subhead {font-size: 1.2em; line-height: 1.5em; background-color: #eee; color: #333; border-bottom: 2px solid #666; padding: 15px 20px; margin: -10px -10px 10px -10px}
+blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px 0 5px 10px}
+</style>
 </head>
 <body>
-<textarea id="source" style="width:100%; height:200px;"></textarea>
-<button onclick="javascript:runHTMLCS();">Run HTML_CodeSniffer</button>&nbsp;
-<a href="javascript:(function(){if(window['HTMLCS']) {HTMLCS.process('WCAG2AAA', document.body, function() {if (console.table) {console.table(HTMLCS.getMessages());} else {console.info(HTMLCS.getMessages());}}); return;} var s=document.createElement('script');s.type='text/javascript';s.src='https://raw.github.com/squizlabs/HTML_CodeSniffer/master/HTMLCS.js';document.body.appendChild(s); var t = setInterval(function() {if(!window['HTMLCS']) {return;} clearInterval(t);HTMLCS.process('WCAG2AAA', document.body, function() {console.table(HTMLCS.getMessages());});}, 100); })()">HTMLCS This Page</a> &lt;-- bookmarklet 
-<hr />
-<div id="resultsWrapper">
+<h1>HTML_CodeSniffer</h1>
+<div class="subhead">
+<p>Detects violations of a defined set of standards.</p>
 
+<p>Comes with standards for checking web accessibility. Standards relating to the <a href="http://www.w3.org/TR/WCAG20">W3C Web Content Accessibility Guidelines (WCAG) 2.0</a> are in the process of being initially implemented.</p>
 </div>
+
+<h2>Table of Contents</h2>
+
+<ul>
+<li>Lists of sniffs:
+<ul>
+<li><a href="Standards/WCAG2/AAA">WCAG 2.0 Level AAA</a></li>
+<li><a href="Standards/WCAG2/AA">WCAG 2.0 Level AA</a></li>
+</ul></li>
+<li><a href="/testpage.html">Test Page</a></li>
+<li><a href="https://github.com/squizlabs/HTML_CodeSniffer">GitHub repository for HTML_CodeSniffer</a></li>
+</ul>
 </body>
 </html>
