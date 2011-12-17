@@ -1,0 +1,534 @@
+<html>
+<head>
+<title>WCAG 2.0 Success Criterion 1.3.1</title>
+<style type="text/css">
+h1 {border-bottom: 5px solid #56a8f9; background-color: #333; color: white; padding: 15px 10px; margin: -10px -10px 10px -10px}
+body {padding: 10px; margin: 0}
+body, th, td {font: 10.5pt 'verdana', sans-serif}
+table h4 {margin: 0; padding:0.2em 0; background-color: #eef}
+table p {margin: 0; margin-top: 0;}
+table h4 + p, p + p {margin-top: 0.5em;}
+table {width: 100%; background-color: #ccc}
+table td {background-color: #fff; vertical-align: top; border-collapse: collapse; padding: 5px; margin: 1px}
+table th {background-color: #ddd; font-weight: bold; border-collapse: collapse; padding: 5px; margin: 1px}
+table tr.na td.dimOnNa {background-color: #f5f5f5; color: #999; text-decoration: line-through;}
+table td.assertType {font-weight: bold;}
+table tr.error td.assertType {background-color: #c00; color: white;}
+table tr.warning td.assertType {background-color: #ff0; color: black;}
+table tr.notice td.assertType {background-color: #666; color: white;}
+div.edsnote {background-color: #ffd; border: 1px solid #dd0; margin: 5px; padding: 5px; line-height: 1.5em}
+div.subhead {font-size: 1.2em; line-height: 1.5em; background-color: #eee; color: #333; border-bottom: 2px solid #666; padding: 15px 20px; margin: -10px -10px 10px -10px}
+div.fullcode {font-size: 0.85em; font-style: italic; background-color: #f8f8f8; color: #333; margin: 5px 0px; padding: 5px 0px}
+.na div.fullcode {color: inherit; background-color: inherit}
+blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px 0 5px 10px}
+</style>
+</head>
+<body>
+<h1>WCAG 2.0 Success Criterion 1.3.1: Info and Relationships (Level <abbr title="Single A">A</abbr>)</h1>
+<div class="subhead">
+<h2>Definition</h2>
+<p>Information, structure, and relationships conveyed through presentation can be programmatically determined or are available in text.</p>
+<p><em>More discussion from W3C:</em> <strong><a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/content-structure-separation-programmatic.html">Understanding Success Criterion 1.3.1</a></strong></p>
+</div>
+<h2>Messages emitted by this Success Criterion's tests</h2>
+<table>
+<colgroup>
+<col width="6%">
+<col width="35%">
+<col width="12%">
+<col width="12%">
+<col width="35%">
+</colgroup>
+<tbody>
+<tr>
+<th id="type">Type</th>
+<th id="name">Message Name</th>
+<th id="tech">Applies To</th>
+<th id="tech">Techniques</th>
+<th id="ex">Examples</th>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_3_1_18_type" headers="type sc1_3_1">
+Error</td>
+<td class="dimOnNa" id="1_3_1_18_name" headers="name sc1_3_1">
+<p>Check that all th elements have a scope attribute.</p>
+<div class="fullcode">WCAG2A.Guideline1.Principle1_3.1_3_1.H63.1</div></td>
+<td class="dimOnNa" id="1_3_1_18_applies" headers="tech sc1_3_1">
+<p>Table that uses (and is allowed to use) the scope method of associating headers with cells, but not on all th elements</p>
+</td>
+<td class="dimOnNa" id="1_3_1_18_tech" headers="tech sc1_3_1">
+<ul>
+<li>H63.1</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_3_1_17_type" headers="type sc1_3_1">
+Error</td>
+<td class="dimOnNa" id="1_3_1_17_name" headers="name sc1_3_1">
+<p>Check that all td elements contain a headers attribute that lists the id for all headers associated with that cell.</p>
+<div class="fullcode">WCAG2A.Guideline1.Principle1_3.1_3_1.H43</div></td>
+<td class="dimOnNa" id="1_3_1_17_applies" headers="tech sc1_3_1">
+<p>Table that uses (or requires) the headers attribute, that does not use it with all td elements</p>
+</td>
+<td class="dimOnNa" id="1_3_1_17_tech" headers="tech sc1_3_1">
+<ul>
+<li>H43</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_3_1_16_type" headers="type sc1_3_1">
+Error</td>
+<td class="dimOnNa" id="1_3_1_16_name" headers="name sc1_3_1">
+<p>Check that all th elements contain an id attribute, so that they may be referenced by the headers attribute.</p>
+<div class="fullcode">WCAG2A.Guideline1.Principle1_3.1_3_1.H43</div></td>
+<td class="dimOnNa" id="1_3_1_16_applies" headers="tech sc1_3_1">
+<p>Table that uses (or requires) the headers attribute, that does not have ids on at least one th element</p>
+</td>
+<td class="dimOnNa" id="1_3_1_16_tech" headers="tech sc1_3_1">
+<ul>
+<li>H43</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_3_1_15_type" headers="type sc1_3_1">
+Error</td>
+<td class="dimOnNa" id="1_3_1_15_name" headers="name sc1_3_1">
+<p>Associate data cells with multi-level table headings using the headers attribute.</p>
+<div class="fullcode">WCAG2A.Guideline1.Principle1_3.1_3_1.H43</div></td>
+<td class="dimOnNa" id="1_3_1_15_applies" headers="tech sc1_3_1">
+<p>Table with multiple row and/or column headers, that does not use it (at all)</p>
+</td>
+<td class="dimOnNa" id="1_3_1_15_tech" headers="tech sc1_3_1">
+<ul>
+<li>H43</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_3_1_19_type" headers="type sc1_3_1">
+Error</td>
+<td class="dimOnNa" id="1_3_1_19_name" headers="name sc1_3_1">
+<p>Associate data cells with table headings using either the scope or headers attribute techniques.</p>
+<div class="fullcode">WCAG2A.Guideline1.Principle1_3.1_3_1.H43,H63</div></td>
+<td class="dimOnNa" id="1_3_1_19_applies" headers="tech sc1_3_1">
+<p>Table with one row header and one column header (only), that does not use either scope or headers</p>
+</td>
+<td class="dimOnNa" id="1_3_1_19_tech" headers="tech sc1_3_1">
+<ul>
+<li>H43</li>
+<li>H63</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_3_1_20_type" headers="type sc1_3_1">
+Error</td>
+<td class="dimOnNa" id="1_3_1_20_name" headers="name sc1_3_1">
+<p>If both a summary attribute and a caption element are present for this data table, the summary should not duplicate the caption.</p>
+<div class="fullcode">WCAG2A.Guideline1.Principle1_3.1_3_1.H39,H73.4</div></td>
+<td class="dimOnNa" id="1_3_1_20_applies" headers="tech sc1_3_1">
+<p>Table with a caption element and summary attribute, where the text matches</p>
+</td>
+<td class="dimOnNa" id="1_3_1_20_tech" headers="tech sc1_3_1">
+<ul>
+<li>H39</li>
+<li>H73.4</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_3_1_29_type" headers="type sc1_3_1">
+Error</td>
+<td class="dimOnNa" id="1_3_1_29_name" headers="name sc1_3_1">
+<p>Check that content that has the visual appearance of a numbered list is marked as an ordered list.</p>
+<div class="fullcode">WCAG2A.Guideline1.Principle1_3.1_3_1.H48.2</div></td>
+<td class="dimOnNa" id="1_3_1_29_applies" headers="tech sc1_3_1">
+<p>P or div element broken into line breaks, at least one line starting with a number followed by a common separator, or just one or more spaces</p>
+</td>
+<td class="dimOnNa" id="1_3_1_29_tech" headers="tech sc1_3_1">
+<ul>
+<li>H48.2</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_3_1_28_type" headers="type sc1_3_1">
+Error</td>
+<td class="dimOnNa" id="1_3_1_28_name" headers="name sc1_3_1">
+<p>Check that content that has the visual appearance of a list (with or without bullets) is marked as an unordered list.</p>
+<div class="fullcode">WCAG2A.Guideline1.Principle1_3.1_3_1.H48.1</div></td>
+<td class="dimOnNa" id="1_3_1_28_applies" headers="tech sc1_3_1">
+<p>P or div element broken into line breaks, at least one line starting with a hyphen or asterisk</p>
+</td>
+<td class="dimOnNa" id="1_3_1_28_tech" headers="tech sc1_3_1">
+<ul>
+<li>H48.1</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_3_1_27_type" headers="type sc1_3_1">
+Error</td>
+<td class="dimOnNa" id="1_3_1_27_name" headers="name sc1_3_1">
+<p>Check that any group of input elements of type="radio" or type="checkbox" with the same name attribute is contained within a fieldset element.</p>
+<div class="fullcode">WCAG2A.Guideline1.Principle1_3.1_3_1.H71.2</div></td>
+<td class="dimOnNa" id="1_3_1_27_applies" headers="tech sc1_3_1">
+<p>Radio or checkbox attribute that uses the same name attribute as another (ie. they are of the same group as another)</p>
+</td>
+<td class="dimOnNa" id="1_3_1_27_tech" headers="tech sc1_3_1">
+<ul>
+<li>H71.2</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_3_1_25_type" headers="type sc1_3_1">
+Error</td>
+<td class="dimOnNa" id="1_3_1_25_name" headers="name sc1_3_1">
+<p>Check that this fieldset has a legend element that includes a description of that group.</p>
+<div class="fullcode">WCAG2A.Guideline1.Principle1_3.1_3_1.H71.3</div></td>
+<td class="dimOnNa" id="1_3_1_25_applies" headers="tech sc1_3_1">
+<p>Fieldset element without a legend</p>
+</td>
+<td class="dimOnNa" id="1_3_1_25_tech" headers="tech sc1_3_1">
+<ul>
+<li>H71.3</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_3_1_0_type" headers="type sc1_3_1">
+Error</td>
+<td class="dimOnNa" id="1_3_1_0_name" headers="name sc1_3_1">
+<p>Use the label element to explicitly associate a form control with a label, through the use of the "for" attribute.</p>
+<div class="fullcode">WCAG2A.Guideline1.Principle1_3.1_3_1.H44.1</div></td>
+<td class="dimOnNa" id="1_3_1_0_applies" headers="tech sc1_3_1">
+<p>Form fields with implicitly associated with a label (wrapped inside a label)</p>
+</td>
+<td class="dimOnNa" id="1_3_1_0_tech" headers="tech sc1_3_1">
+<ul>
+<li>H44.1</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_3_1_14_type" headers="type sc1_3_1">
+Error</td>
+<td class="dimOnNa" id="1_3_1_14_name" headers="name sc1_3_1">
+<p>Incorrect headers attribute, expected "$expected" but found "$actual"</p>
+<div class="fullcode">WCAG2A.Guideline1.Principle1_3.1_3_1.H43</div></td>
+<td class="dimOnNa" id="1_3_1_14_applies" headers="tech sc1_3_1">
+<p>Table cell that uses the headers attribute, but does not match what HTML_CodeSniffer expects it to be</p>
+</td>
+<td class="dimOnNa" id="1_3_1_14_tech" headers="tech sc1_3_1">
+<ul>
+<li>H43</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_3_1_6_type" headers="type sc1_3_1">
+Error</td>
+<td class="dimOnNa" id="1_3_1_6_name" headers="name sc1_3_1">
+<p>Label element should not be used for this type of form control.</p>
+<div class="fullcode">WCAG2A.Guideline1.Principle1_3.1_3_1.H44</div></td>
+<td class="dimOnNa" id="1_3_1_6_applies" headers="tech sc1_3_1">
+<p>Button elements, and button-type input elements</p>
+</td>
+<td class="dimOnNa" id="1_3_1_6_tech" headers="tech sc1_3_1">
+<ul>
+<li>H44</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_3_1_3_type" headers="type sc1_3_1">
+Error</td>
+<td class="dimOnNa" id="1_3_1_3_name" headers="name sc1_3_1">
+<p>Check that the title attribute identifies the purpose of the control.</p>
+<div class="fullcode">WCAG2A.Guideline1.Principle1_3.1_3_1.H65.3</div></td>
+<td class="dimOnNa" id="1_3_1_3_applies" headers="tech sc1_3_1">
+<p>Element without label attribute, with an empty title attribute</p>
+</td>
+<td class="dimOnNa" id="1_3_1_3_tech" headers="tech sc1_3_1">
+<ul>
+<li>H65.3</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_3_1_2_type" headers="type sc1_3_1">
+Error</td>
+<td class="dimOnNa" id="1_3_1_2_name" headers="name sc1_3_1">
+<p>Form control does not have an id, therefore it cannot have an explicit label.</p>
+<div class="fullcode">WCAG2A.Guideline1.Principle1_3.1_3_1.H44</div></td>
+<td class="dimOnNa" id="1_3_1_2_applies" headers="tech sc1_3_1">
+<p>Form field without an id attribute</p>
+</td>
+<td class="dimOnNa" id="1_3_1_2_tech" headers="tech sc1_3_1">
+<ul>
+<li>H44</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_3_1_1_type" headers="type sc1_3_1">
+Error</td>
+<td class="dimOnNa" id="1_3_1_1_name" headers="name sc1_3_1">
+<p>Multiple labels exist with the same "for" attribute. If these labels refer to different form controls, the controls should have unique "id" attributes.</p>
+<div class="fullcode">WCAG2A.Guideline1.Principle1_3.1_3_1.H93</div></td>
+<td class="dimOnNa" id="1_3_1_1_applies" headers="tech sc1_3_1">
+<p>Labels with duplicate "for" attribute</p>
+</td>
+<td class="dimOnNa" id="1_3_1_1_tech" headers="tech sc1_3_1">
+<ul>
+<li>H93</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_3_1_7_type" headers="type sc1_3_1">
+Error</td>
+<td class="dimOnNa" id="1_3_1_7_name" headers="name sc1_3_1">
+<p>The label element for this control should be placed after this element.</p>
+<div class="fullcode">WCAG2A.Guideline1.Principle1_3.1_3_1.H44.1</div></td>
+<td class="dimOnNa" id="1_3_1_7_applies" headers="tech sc1_3_1">
+<p>input type="radio" or input type="checkbox"</p>
+</td>
+<td class="dimOnNa" id="1_3_1_7_tech" headers="tech sc1_3_1">
+<ul>
+<li>H44.1</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_3_1_5_type" headers="type sc1_3_1">
+Error</td>
+<td class="dimOnNa" id="1_3_1_5_name" headers="name sc1_3_1">
+<p>Attach a label to this form control through the use of the for attribute.</p>
+<div class="fullcode">WCAG2A.Guideline1.Principle1_3.1_3_1.H44.2</div></td>
+<td class="dimOnNa" id="1_3_1_5_applies" headers="tech sc1_3_1">
+<p>Form field without label explicitly attached</p>
+</td>
+<td class="dimOnNa" id="1_3_1_5_tech" headers="tech sc1_3_1">
+<ul>
+<li>H44.2</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_3_1_8_type" headers="type sc1_3_1">
+Error</td>
+<td class="dimOnNa" id="1_3_1_8_name" headers="name sc1_3_1">
+<p>The label element for this control should be placed before this element.</p>
+<div class="fullcode">WCAG2A.Guideline1.Principle1_3.1_3_1.H44.1</div></td>
+<td class="dimOnNa" id="1_3_1_8_applies" headers="tech sc1_3_1">
+<p>Most input elements (and select, textarea) where the label should be placed before the element</p>
+</td>
+<td class="dimOnNa" id="1_3_1_8_tech" headers="tech sc1_3_1">
+<ul>
+<li>H44.1</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_3_1_9_type" headers="type sc1_3_1">
+Error</td>
+<td class="dimOnNa" id="1_3_1_9_name" headers="name sc1_3_1">
+<p>Semantic markup should be used to mark emphasised or special text so that it can be programmatically determined.</p>
+<div class="fullcode">WCAG2A.Guideline1.Principle1_3.1_3_1.H49</div></td>
+<td class="dimOnNa" id="1_3_1_9_applies" headers="tech sc1_3_1">
+<p>b, i, u, s, strike, tt, big, small, center, font, any element with "align" attribute</p>
+</td>
+<td class="dimOnNa" id="1_3_1_9_tech" headers="tech sc1_3_1">
+<ul>
+<li>H49</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_3_1_11_type" headers="type sc1_3_1">
+Error</td>
+<td class="dimOnNa" id="1_3_1_11_name" headers="name sc1_3_1">
+<p>Check that all scope attributes have the value row, col, rowgroup, or colgroup.</p>
+<div class="fullcode">WCAG2A.Guideline1.Principle1_3.1_3_1.H63.3</div></td>
+<td class="dimOnNa" id="1_3_1_11_applies" headers="tech sc1_3_1">
+<p>Table cell with an invalid scope attribute</p>
+</td>
+<td class="dimOnNa" id="1_3_1_11_tech" headers="tech sc1_3_1">
+<ul>
+<li>H63.3</li>
+</ul>
+</td>
+</tr>
+
+<tr class="warning">
+<td class="assertType dimOnNa" id="1_3_1_4_type" headers="type sc1_3_1">
+Warning</td>
+<td class="dimOnNa" id="1_3_1_4_name" headers="name sc1_3_1">
+<p>Check that the title attribute identifies the purpose of the control, and that a label element is not appropriate.</p>
+<div class="fullcode">WCAG2A.Guideline1.Principle1_3.1_3_1.H65</div></td>
+<td class="dimOnNa" id="1_3_1_4_applies" headers="tech sc1_3_1">
+<p>Element without label attribute, with a correctly specified title attribute</p>
+</td>
+<td class="dimOnNa" id="1_3_1_4_tech" headers="tech sc1_3_1">
+<ul>
+<li>H65</li>
+</ul>
+</td>
+</tr>
+
+<tr class="warning">
+<td class="assertType dimOnNa" id="1_3_1_10_type" headers="type sc1_3_1">
+Warning</td>
+<td class="dimOnNa" id="1_3_1_10_name" headers="name sc1_3_1">
+<p>Heading markup should be used if this content is intended as a heading.</p>
+<div class="fullcode">WCAG2A.Guideline1.Principle1_3.1_3_1.H42</div></td>
+<td class="dimOnNa" id="1_3_1_10_applies" headers="tech sc1_3_1">
+<p>P or div element where its only child is one of (strong, em, b, i, u)</p>
+</td>
+<td class="dimOnNa" id="1_3_1_10_tech" headers="tech sc1_3_1">
+<ul>
+<li>H42</li>
+</ul>
+</td>
+</tr>
+
+<tr class="warning">
+<td class="assertType dimOnNa" id="1_3_1_13_type" headers="type sc1_3_1">
+Warning</td>
+<td class="dimOnNa" id="1_3_1_13_name" headers="name sc1_3_1">
+<p>Scope attributes are ambiguous in a multi-level structure. Use the headers attribute on td elements instead.</p>
+<div class="fullcode">WCAG2A.Guideline1.Principle1_3.1_3_1.H43</div></td>
+<td class="dimOnNa" id="1_3_1_13_applies" headers="tech sc1_3_1">
+<p>Table that requires the headers attribute, but uses scope instead</p>
+</td>
+<td class="dimOnNa" id="1_3_1_13_tech" headers="tech sc1_3_1">
+<ul>
+<li>H43</li>
+</ul>
+</td>
+</tr>
+
+<tr class="warning">
+<td class="assertType dimOnNa" id="1_3_1_12_type" headers="type sc1_3_1">
+Warning</td>
+<td class="dimOnNa" id="1_3_1_12_name" headers="name sc1_3_1">
+<p>Scope attributes on td elements that act as headers for other elements are obsolete in HTML5; use a th element instead.</p>
+<div class="fullcode">WCAG2A.Guideline1.Principle1_3.1_3_1.H63.2</div></td>
+<td class="dimOnNa" id="1_3_1_12_applies" headers="tech sc1_3_1">
+<p>Table cell (td element) that uses the scope attribute (HTML5 only allows it on th elements)</p>
+</td>
+<td class="dimOnNa" id="1_3_1_12_tech" headers="tech sc1_3_1">
+<ul>
+<li>H63.2</li>
+</ul>
+</td>
+</tr>
+
+<tr class="warning">
+<td class="assertType dimOnNa" id="1_3_1_26_type" headers="type sc1_3_1">
+Warning</td>
+<td class="dimOnNa" id="1_3_1_26_name" headers="name sc1_3_1">
+<p>If this selection list contains groups of related options, they should be grouped with optgroup.</p>
+<div class="fullcode">WCAG2A.Guideline1.Principle1_3.1_3_1.H85.2</div></td>
+<td class="dimOnNa" id="1_3_1_26_applies" headers="tech sc1_3_1">
+<p>Select element</p>
+</td>
+<td class="dimOnNa" id="1_3_1_26_tech" headers="tech sc1_3_1">
+<ul>
+<li>H85.2</li>
+</ul>
+</td>
+</tr>
+
+<tr class="notice">
+<td class="assertType dimOnNa" id="1_3_1_23_type" headers="type sc1_3_1">
+Notice</td>
+<td class="dimOnNa" id="1_3_1_23_name" headers="name sc1_3_1">
+<p>Check that the caption attribute accurately describes this table.</p>
+<div class="fullcode">WCAG2A.Guideline1.Principle1_3.1_3_1.H39.3</div></td>
+<td class="dimOnNa" id="1_3_1_23_applies" headers="tech sc1_3_1">
+<p>Table with a caption element</p>
+</td>
+<td class="dimOnNa" id="1_3_1_23_tech" headers="tech sc1_3_1">
+<ul>
+<li>H39.3</li>
+</ul>
+</td>
+</tr>
+
+<tr class="notice">
+<td class="assertType dimOnNa" id="1_3_1_21_type" headers="type sc1_3_1">
+Notice</td>
+<td class="dimOnNa" id="1_3_1_21_name" headers="name sc1_3_1">
+<p>Check that the summary attribute describes the table's organization or explains how to use the table.</p>
+<div class="fullcode">WCAG2A.Guideline1.Principle1_3.1_3_1.H73.3</div></td>
+<td class="dimOnNa" id="1_3_1_21_applies" headers="tech sc1_3_1">
+<p>Table with a summary attribute</p>
+</td>
+<td class="dimOnNa" id="1_3_1_21_tech" headers="tech sc1_3_1">
+<ul>
+<li>H73.3</li>
+</ul>
+</td>
+</tr>
+
+<tr class="notice">
+<td class="assertType dimOnNa" id="1_3_1_22_type" headers="type sc1_3_1">
+Notice</td>
+<td class="dimOnNa" id="1_3_1_22_name" headers="name sc1_3_1">
+<p>Consider using the summary attribute of the table element to give an overview of this data table.</p>
+<div class="fullcode">WCAG2A.Guideline1.Principle1_3.1_3_1.H73.3</div></td>
+<td class="dimOnNa" id="1_3_1_22_applies" headers="tech sc1_3_1">
+<p>Table without a summary attribute</p>
+</td>
+<td class="dimOnNa" id="1_3_1_22_tech" headers="tech sc1_3_1">
+<ul>
+<li>H73.3</li>
+</ul>
+</td>
+</tr>
+
+<tr class="notice">
+<td class="assertType dimOnNa" id="1_3_1_24_type" headers="type sc1_3_1">
+Notice</td>
+<td class="dimOnNa" id="1_3_1_24_name" headers="name sc1_3_1">
+<p>Consider using a caption element to the table element to identify this data table.</p>
+<div class="fullcode">WCAG2A.Guideline1.Principle1_3.1_3_1.H39.3</div></td>
+<td class="dimOnNa" id="1_3_1_24_applies" headers="tech sc1_3_1">
+<p>Table without a caption element</p>
+</td>
+<td class="dimOnNa" id="1_3_1_24_tech" headers="tech sc1_3_1">
+<ul>
+<li>H39.3</li>
+</ul>
+</td>
+</tr>
+
+</tbody></table></body>
+</html>

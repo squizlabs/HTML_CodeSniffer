@@ -1,0 +1,404 @@
+<html>
+<head>
+<title>WCAG 2.0 Success Criterion 1.1.1</title>
+<style type="text/css">
+h1 {border-bottom: 5px solid #56a8f9; background-color: #333; color: white; padding: 15px 10px; margin: -10px -10px 10px -10px}
+body {padding: 10px; margin: 0}
+body, th, td {font: 10.5pt 'verdana', sans-serif}
+table h4 {margin: 0; padding:0.2em 0; background-color: #eef}
+table p {margin: 0; margin-top: 0;}
+table h4 + p, p + p {margin-top: 0.5em;}
+table {width: 100%; background-color: #ccc}
+table td {background-color: #fff; vertical-align: top; border-collapse: collapse; padding: 5px; margin: 1px}
+table th {background-color: #ddd; font-weight: bold; border-collapse: collapse; padding: 5px; margin: 1px}
+table tr.na td.dimOnNa {background-color: #f5f5f5; color: #999; text-decoration: line-through;}
+table td.assertType {font-weight: bold;}
+table tr.error td.assertType {background-color: #c00; color: white;}
+table tr.warning td.assertType {background-color: #ff0; color: black;}
+table tr.notice td.assertType {background-color: #666; color: white;}
+div.edsnote {background-color: #ffd; border: 1px solid #dd0; margin: 5px; padding: 5px; line-height: 1.5em}
+div.subhead {font-size: 1.2em; line-height: 1.5em; background-color: #eee; color: #333; border-bottom: 2px solid #666; padding: 15px 20px; margin: -10px -10px 10px -10px}
+div.fullcode {font-size: 0.85em; font-style: italic; background-color: #f8f8f8; color: #333; margin: 5px 0px; padding: 5px 0px}
+.na div.fullcode {color: inherit; background-color: inherit}
+blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px 0 5px 10px}
+</style>
+</head>
+<body>
+<h1>WCAG 2.0 Success Criterion 1.1.1: Non-text Content (Level <abbr title="Single A">A</abbr>)</h1>
+<div class="subhead">
+<h2>Definition</h2>
+<p>All non-text content that is presented to the user has a text alternative that serves the equivalent purpose, except for the situations listed below.</p>
+
+<ul>
+<li><em>Controls, Input:</em> If non-text content is a control or accepts user input, then it has a name that describes its purpose. (Refer to <a href="#gl4_1">Guideline 4.1</a> for additional requirements for controls and content that accepts user input.)</li>
+<li><em>Time-Based Media:</em> If non-text content is time-based media, then text alternatives at least provide descriptive identification of the non-text content. (Refer to <a href="#gl1_2">Guideline 1.2</a> for additional requirements for media.)</li>
+<li><em>Test:</em> If non-text content is a test or exercise that would be invalid if presented in text, then text alternatives at least provide descriptive identification of the non-text content.</li>
+<li><em>Sensory:</em> If non-text content is primarily intended to create a specific sensory experience, then text alternatives at least provide descriptive identification of the non-text content.</li>
+<li><em>CAPTCHA:</em> If the purpose of non-text content is to confirm that content is being accessed by a person rather than a computer, then text alternatives that identify and describe the purpose of the non-text content are provided, and alternative forms of CAPTCHA using output modes for different types of sensory perception are provided to accommodate different disabilities.</li>
+<li><em>Decoration, Formatting, Invisible:</em> If non-text content is pure decoration, is used only for visual formatting, or is not presented to users, then it is implemented in a way that it can be ignored by assistive technology.</li>
+</ul>
+<p><em>More discussion from W3C:</em> <strong><a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/text-equiv-all.html">Understanding Success Criterion 1.1.1</a></strong></p>
+</div>
+<h2>About non-text content</h2>
+
+<p>"Non-text content" is defined as</p>
+
+<blockquote>
+  <p>any content that is not a sequence of characters that can be programmatically determined or where the sequence is not expressing something in human language
+  <em>Note:</em> This includes ASCII Art..., emoticons, leetspeak..., and images representing text</p>
+</blockquote>
+
+<h2>Explicitly not tested</h2>
+
+<p>We do not test <a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H46">Technique H46: Using noembed with embed</a>. This technique speaks of marrying the non-standard embed element, used by as a forerunner to the HTML 4.0-standard object element, with a noembed element which provides a text alternative. The noembed element could be placed either inside the embed element, or immediately afterwards.</p>
+
+<p>I am of the belief that this technique should not be used, for the following reasons:</p>
+
+<ol>
+<li>Prior to HTML5, the embed element itself was non-standard. Although this alone does not fail <a href="./4_1_1">Success Criterion 4.1.1 (Parsing)</a> - validation is not a requirement, only well-formedness is - it makes it extremely difficult to satisfy the sufficient techniques. This Success Criterion suggests <a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H74">ensuring opening and closing tags are used according to specification</a> as a technique for HTML serialisation (as well-formedness is not a proper concept in HTML), but embed is not in the HTML spec, does this mean it is impossible to use the tag in HTML 4.0 and pass this Success Criterion?</li>
+<li>In HTML5, the <a href="http://dev.w3.org/html5/spec/the-embed-element.html">embed element is included</a>, however the noembed element is absent. The spec states that the embed element <strong>does not include fallback content</strong>; user agents should use a default plugin instead (even if to say "this content is unsupported"). Therefore, there is no guarantee that the default content will be accessible.</li>
+</ol>
+
+<p>Accessible documents should use the object element instead.</p>
+<h2>Messages emitted by this Success Criterion's tests</h2>
+<table>
+<colgroup>
+<col width="6%">
+<col width="35%">
+<col width="12%">
+<col width="12%">
+<col width="35%">
+</colgroup>
+<tbody>
+<tr>
+<th id="type">Type</th>
+<th id="name">Message Name</th>
+<th id="tech">Applies To</th>
+<th id="tech">Techniques</th>
+<th id="ex">Examples</th>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_1_1_7_type" headers="type sc1_1_1">
+Error</td>
+<td class="dimOnNa" id="1_1_1_7_name" headers="name sc1_1_1">
+<p>For each area element in an image map, check that the area element has a text alternative (using the alt attribute) that serves the same purpose as the part of image map image it references.</p>
+<div class="fullcode">WCAG2A.Guideline1.Principle1_1.1_1_1.H24</div></td>
+<td class="dimOnNa" id="1_1_1_7_applies" headers="tech sc1_1_1">
+<p>Area elements in a client-side image map without alt text</p>
+</td>
+<td class="dimOnNa" id="1_1_1_7_tech" headers="tech sc1_1_1">
+<ul>
+<li>H24</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_1_1_14_type" headers="type sc1_1_1">
+Error</td>
+<td class="dimOnNa" id="1_1_1_14_name" headers="name sc1_1_1">
+<p>Img element inside a link must not use alt text that duplicates the content of a text link beside it.</p>
+<div class="fullcode">WCAG2A.Guideline1.Principle1_1.1_1_1.H2.EG3</div></td>
+<td class="dimOnNa" id="1_1_1_14_applies" headers="tech sc1_1_1">
+<p>Img element in an same anchor ("a" element) with the same alt text as the text of an adjacent anchor with the same href</p>
+</td>
+<td class="dimOnNa" id="1_1_1_14_tech" headers="tech sc1_1_1">
+<ul>
+<li>H2.EG3</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_1_1_0_type" headers="type sc1_1_1">
+Error</td>
+<td class="dimOnNa" id="1_1_1_0_name" headers="name sc1_1_1">
+<p>If an img element is the only content of the a element, check that its text alternative describes the purpose of the link.</p>
+<div class="fullcode">WCAG2A.Guideline1.Principle1_1.1_1_1.H30.2</div></td>
+<td class="dimOnNa" id="1_1_1_0_applies" headers="tech sc1_1_1">
+<p>Img element that is the only content of an anchor ("a" element)</p>
+</td>
+<td class="dimOnNa" id="1_1_1_0_tech" headers="tech sc1_1_1">
+<ul>
+<li>H30.2</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_1_1_13_type" headers="type sc1_1_1">
+Error</td>
+<td class="dimOnNa" id="1_1_1_13_name" headers="name sc1_1_1">
+<p>Img element inside a link has empty alt text when a link beside it contains link text; consider combining the links.</p>
+<div class="fullcode">WCAG2A.Guideline1.Principle1_1.1_1_1.H2.EG4</div></td>
+<td class="dimOnNa" id="1_1_1_13_applies" headers="tech sc1_1_1">
+<p>Img element in an same anchor ("a" element) with empty alt text, where an adjacent anchor with the same href exists with text</p>
+</td>
+<td class="dimOnNa" id="1_1_1_13_tech" headers="tech sc1_1_1">
+<ul>
+<li>H2.EG4</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_1_1_15_type" headers="type sc1_1_1">
+Error</td>
+<td class="dimOnNa" id="1_1_1_15_name" headers="name sc1_1_1">
+<p>Check that the body of each object element contains a text alternative for the object.</p>
+<div class="fullcode">WCAG2A.Guideline1.Principle1_1.1_1_1.H53</div></td>
+<td class="dimOnNa" id="1_1_1_15_applies" headers="tech sc1_1_1">
+<p>Object element without a text alternative</p>
+</td>
+<td class="dimOnNa" id="1_1_1_15_tech" headers="tech sc1_1_1">
+<ul>
+<li>H53</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_1_1_5_type" headers="type sc1_1_1">
+Error</td>
+<td class="dimOnNa" id="1_1_1_5_name" headers="name sc1_1_1">
+<p>When using an image submit button, specify a short text alternative with the alt attribute that describes the function of the button.</p>
+<div class="fullcode">WCAG2A.Guideline1.Principle1_1.1_1_1.H36</div></td>
+<td class="dimOnNa" id="1_1_1_5_applies" headers="tech sc1_1_1">
+<p>Image submit button (input type="image") without an alt attribute, or with empty alt text</p>
+</td>
+<td class="dimOnNa" id="1_1_1_5_tech" headers="tech sc1_1_1">
+<ul>
+<li>H36</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_1_1_1_type" headers="type sc1_1_1">
+Error</td>
+<td class="dimOnNa" id="1_1_1_1_name" headers="name sc1_1_1">
+<p>When using the img element, specify a short text alternative with the alt attribute.</p>
+<div class="fullcode">WCAG2A.Guideline1.Principle1_1.1_1_1.H37</div></td>
+<td class="dimOnNa" id="1_1_1_1_applies" headers="tech sc1_1_1">
+<p>Img element where the alt attribute is entirely omitted</p>
+</td>
+<td class="dimOnNa" id="1_1_1_1_tech" headers="tech sc1_1_1">
+<ul>
+<li>H37</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_1_1_2_type" headers="type sc1_1_1">
+Error</td>
+<td class="dimOnNa" id="1_1_1_2_name" headers="name sc1_1_1">
+<p>Img element with empty alt text must have absent or empty title attribute.</p>
+<div class="fullcode">WCAG2A.Guideline1.Principle1_1.1_1_1.H67.1</div></td>
+<td class="dimOnNa" id="1_1_1_2_applies" headers="tech sc1_1_1">
+<p>Img element where the alt text is empty but the title attribute is specified</p>
+</td>
+<td class="dimOnNa" id="1_1_1_2_tech" headers="tech sc1_1_1">
+<ul>
+<li>H67.1</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_1_1_18_type" headers="type sc1_1_1">
+Error</td>
+<td class="dimOnNa" id="1_1_1_18_name" headers="name sc1_1_1">
+<p>Check that the applet element contains an alt attribute with a text alternative for the applet.</p>
+<div class="fullcode">WCAG2A.Guideline1.Principle1_1.1_1_1.H35.2</div></td>
+<td class="dimOnNa" id="1_1_1_18_applies" headers="tech sc1_1_1">
+<p>Applet element without an alt attribute</p>
+</td>
+<td class="dimOnNa" id="1_1_1_18_tech" headers="tech sc1_1_1">
+<ul>
+<li>H35.2</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_1_1_17_type" headers="type sc1_1_1">
+Error</td>
+<td class="dimOnNa" id="1_1_1_17_name" headers="name sc1_1_1">
+<p>Check that the applet element contains a text alternative for the applet in the body of the applet element.</p>
+<div class="fullcode">WCAG2A.Guideline1.Principle1_1.1_1_1.H35.3</div></td>
+<td class="dimOnNa" id="1_1_1_17_applies" headers="tech sc1_1_1">
+<p>Applet element without text alternative in body text</p>
+</td>
+<td class="dimOnNa" id="1_1_1_17_tech" headers="tech sc1_1_1">
+<ul>
+<li>H35.3</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_1_1_12_type" headers="type sc1_1_1">
+Error</td>
+<td class="dimOnNa" id="1_1_1_12_name" headers="name sc1_1_1">
+<p>Img element inside a link must not use alt text that duplicates the text content of the link.</p>
+<div class="fullcode">WCAG2A.Guideline1.Principle1_1.1_1_1.H2.EG5</div></td>
+<td class="dimOnNa" id="1_1_1_12_applies" headers="tech sc1_1_1">
+<p>Img element residing with text in the same anchor ("a" element) where the alt text and the body text are the same</p>
+</td>
+<td class="dimOnNa" id="1_1_1_12_tech" headers="tech sc1_1_1">
+<ul>
+<li>H2.EG5</li>
+</ul>
+</td>
+</tr>
+
+<tr class="warning">
+<td class="assertType dimOnNa" id="1_1_1_9_type" headers="type sc1_1_1">
+Warning</td>
+<td class="dimOnNa" id="1_1_1_9_name" headers="name sc1_1_1">
+<p>If this image cannot be described in a short text alternative, provide a long text alternative, either using the longdesc attribute or another sufficient technique.</p>
+<div class="fullcode">WCAG2A.Guideline1.Principle1_1.1_1_1.H45.1</div></td>
+<td class="dimOnNa" id="1_1_1_9_applies" headers="tech sc1_1_1">
+<p>Img element without longdesc attribute</p>
+</td>
+<td class="dimOnNa" id="1_1_1_9_tech" headers="tech sc1_1_1">
+<ul>
+<li>H45.1</li>
+</ul>
+</td>
+</tr>
+
+<tr class="warning">
+<td class="assertType dimOnNa" id="1_1_1_3_type" headers="type sc1_1_1">
+Warning</td>
+<td class="dimOnNa" id="1_1_1_3_name" headers="name sc1_1_1">
+<p>Img element is marked so that it is ignored by Assistive Technology.</p>
+<div class="fullcode">WCAG2A.Guideline1.Principle1_1.1_1_1.H67.2</div></td>
+<td class="dimOnNa" id="1_1_1_3_applies" headers="tech sc1_1_1">
+<p>Any img element where title and alt text are properly left blank</p>
+</td>
+<td class="dimOnNa" id="1_1_1_3_tech" headers="tech sc1_1_1">
+<ul>
+<li>H67.2</li>
+</ul>
+</td>
+</tr>
+
+<tr class="warning">
+<td class="assertType dimOnNa" id="1_1_1_10_type" headers="type sc1_1_1">
+Warning</td>
+<td class="dimOnNa" id="1_1_1_10_name" headers="name sc1_1_1">
+<p>Check that the value of the longdesc attribute is a valid URI of an existing resource.</p>
+<div class="fullcode">WCAG2A.Guideline1.Principle1_1.1_1_1.H45.2</div></td>
+<td class="dimOnNa" id="1_1_1_10_applies" headers="tech sc1_1_1">
+<p>Img element without longdesc attribute</p>
+</td>
+<td class="dimOnNa" id="1_1_1_10_tech" headers="tech sc1_1_1">
+<ul>
+<li>H45.2</li>
+</ul>
+</td>
+</tr>
+
+<tr class="notice">
+<td class="assertType dimOnNa" id="1_1_1_4_type" headers="type sc1_1_1">
+Notice</td>
+<td class="dimOnNa" id="1_1_1_4_name" headers="name sc1_1_1">
+<p>Ensure that the img element's alt text serves the same purpose and presents the same information as the image.</p>
+<div class="fullcode">WCAG2A.Guideline1.Principle1_1.1_1_1.G94</div></td>
+<td class="dimOnNa" id="1_1_1_4_applies" headers="tech sc1_1_1">
+<p>Any img element where the alt text has been correctly specified</p>
+</td>
+<td class="dimOnNa" id="1_1_1_4_tech" headers="tech sc1_1_1">
+<ul>
+<li>G94</li>
+</ul>
+</td>
+</tr>
+
+<tr class="notice">
+<td class="assertType dimOnNa" id="1_1_1_19_type" headers="type sc1_1_1">
+Notice</td>
+<td class="dimOnNa" id="1_1_1_19_name" headers="name sc1_1_1">
+<p>Check that short (and if appropriate, long) text alternatives are available for non-text content that serve the same purpose and presents the same information.</p>
+<div class="fullcode">WCAG2A.Guideline1.Principle1_1.1_1_1.G94,G92</div></td>
+<td class="dimOnNa" id="1_1_1_19_applies" headers="tech sc1_1_1">
+<p>Applet element with both text alternatives</p>
+</td>
+<td class="dimOnNa" id="1_1_1_19_tech" headers="tech sc1_1_1">
+<ul>
+<li>G94</li>
+<li>G92</li>
+</ul>
+</td>
+</tr>
+
+<tr class="notice">
+<td class="assertType dimOnNa" id="1_1_1_6_type" headers="type sc1_1_1">
+Notice</td>
+<td class="dimOnNa" id="1_1_1_6_name" headers="name sc1_1_1">
+<p>Ensure that the image submit button's alt text identifies the purpose of the button.</p>
+<div class="fullcode">WCAG2A.Guideline1.Principle1_1.1_1_1.G94</div></td>
+<td class="dimOnNa" id="1_1_1_6_applies" headers="tech sc1_1_1">
+<p>Image submit button (input type="image") with alt text correctly specified</p>
+</td>
+<td class="dimOnNa" id="1_1_1_6_tech" headers="tech sc1_1_1">
+<ul>
+<li>G94</li>
+</ul>
+</td>
+</tr>
+
+<tr class="notice">
+<td class="assertType dimOnNa" id="1_1_1_8_type" headers="type sc1_1_1">
+Notice</td>
+<td class="dimOnNa" id="1_1_1_8_name" headers="name sc1_1_1">
+<p>Ensure that the area element's text alternative serves the same purpose as the part of image map image it references.</p>
+<div class="fullcode">WCAG2A.Guideline1.Principle1_1.1_1_1.H24.2</div></td>
+<td class="dimOnNa" id="1_1_1_8_applies" headers="tech sc1_1_1">
+<p>Area elements in a client-side image map with alt text correctly specified</p>
+</td>
+<td class="dimOnNa" id="1_1_1_8_tech" headers="tech sc1_1_1">
+<ul>
+<li>H24.2</li>
+</ul>
+</td>
+</tr>
+
+<tr class="notice">
+<td class="assertType dimOnNa" id="1_1_1_11_type" headers="type sc1_1_1">
+Notice</td>
+<td class="dimOnNa" id="1_1_1_11_name" headers="name sc1_1_1">
+<p>Check that the content at the target of the longdesc URI contains a long description describing the original non-text content associated with it.</p>
+<div class="fullcode">WCAG2A.Guideline1.Principle1_1.1_1_1.H45.3</div></td>
+<td class="dimOnNa" id="1_1_1_11_applies" headers="tech sc1_1_1">
+<p>Img element with a longdesc attribute</p>
+</td>
+<td class="dimOnNa" id="1_1_1_11_tech" headers="tech sc1_1_1">
+<ul>
+<li>H45.3</li>
+</ul>
+</td>
+</tr>
+
+<tr class="notice">
+<td class="assertType dimOnNa" id="1_1_1_16_type" headers="type sc1_1_1">
+Notice</td>
+<td class="dimOnNa" id="1_1_1_16_name" headers="name sc1_1_1">
+<p>Check that short (and if appropriate, long) text alternatives are available for non-text content that serve the same purpose and presents the same information.</p>
+<div class="fullcode">WCAG2A.Guideline1.Principle1_1.1_1_1.G94,G92</div></td>
+<td class="dimOnNa" id="1_1_1_16_applies" headers="tech sc1_1_1">
+<p>Object element with text alternative</p>
+</td>
+<td class="dimOnNa" id="1_1_1_16_tech" headers="tech sc1_1_1">
+<ul>
+<li>G94</li>
+<li>G92</li>
+</ul>
+</td>
+</tr>
+
+</tbody></table></body>
+</html>

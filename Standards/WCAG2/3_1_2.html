@@ -1,0 +1,100 @@
+<html>
+<head>
+<title>WCAG 2.0 Success Criterion 3.1.2</title>
+<style type="text/css">
+h1 {border-bottom: 5px solid #56a8f9; background-color: #333; color: white; padding: 15px 10px; margin: -10px -10px 10px -10px}
+body {padding: 10px; margin: 0}
+body, th, td {font: 10.5pt 'verdana', sans-serif}
+table h4 {margin: 0; padding:0.2em 0; background-color: #eef}
+table p {margin: 0; margin-top: 0;}
+table h4 + p, p + p {margin-top: 0.5em;}
+table {width: 100%; background-color: #ccc}
+table td {background-color: #fff; vertical-align: top; border-collapse: collapse; padding: 5px; margin: 1px}
+table th {background-color: #ddd; font-weight: bold; border-collapse: collapse; padding: 5px; margin: 1px}
+table tr.na td.dimOnNa {background-color: #f5f5f5; color: #999; text-decoration: line-through;}
+table td.assertType {font-weight: bold;}
+table tr.error td.assertType {background-color: #c00; color: white;}
+table tr.warning td.assertType {background-color: #ff0; color: black;}
+table tr.notice td.assertType {background-color: #666; color: white;}
+div.edsnote {background-color: #ffd; border: 1px solid #dd0; margin: 5px; padding: 5px; line-height: 1.5em}
+div.subhead {font-size: 1.2em; line-height: 1.5em; background-color: #eee; color: #333; border-bottom: 2px solid #666; padding: 15px 20px; margin: -10px -10px 10px -10px}
+div.fullcode {font-size: 0.85em; font-style: italic; background-color: #f8f8f8; color: #333; margin: 5px 0px; padding: 5px 0px}
+.na div.fullcode {color: inherit; background-color: inherit}
+blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px 0 5px 10px}
+</style>
+</head>
+<body>
+<h1>WCAG 2.0 Success Criterion 3.1.2: Language of Parts (Level <abbr title="Double A">AA</abbr>)</h1>
+<div class="subhead">
+<h2>Definition</h2>
+<p>The human language of each passage or phrase in the content can be programmatically determined except for proper names, technical terms, words of indeterminate language, and words or phrases that have become part of the vernacular of the immediately surrounding text.</p>
+<p><em>More discussion from W3C:</em> <strong><a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/meaning-other-lang-id.html">Understanding Success Criterion 3.1.2</a></strong></p>
+</div>
+<h2>Messages emitted by this Success Criterion's tests</h2>
+<table>
+<colgroup>
+<col width="6%">
+<col width="35%">
+<col width="12%">
+<col width="12%">
+<col width="35%">
+</colgroup>
+<tbody>
+<tr>
+<th id="type">Type</th>
+<th id="name">Message Name</th>
+<th id="tech">Applies To</th>
+<th id="tech">Techniques</th>
+<th id="ex">Examples</th>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="3_1_2_2_type" headers="type sc3_1_2">
+Error</td>
+<td class="dimOnNa" id="3_1_2_2_name" headers="name sc3_1_2">
+<p>Ensure that any language tag used in an xml:lang attribute is well-formed according to the appropriate standard.</p>
+<div class="fullcode">WCAG2AA.Guideline3.Principle3_1.3_1_2.H58.1</div></td>
+<td class="dimOnNa" id="3_1_2_2_applies" headers="tech sc3_1_2">
+<p>Any element with a lang element</p>
+</td>
+<td class="dimOnNa" id="3_1_2_2_tech" headers="tech sc3_1_2">
+<ul>
+<li>H58.1</li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="3_1_2_1_type" headers="type sc3_1_2">
+Error</td>
+<td class="dimOnNa" id="3_1_2_1_name" headers="name sc3_1_2">
+<p>Ensure that any language tag used in a lang attribute is well-formed according to the appropriate standard.</p>
+<div class="fullcode">WCAG2AA.Guideline3.Principle3_1.3_1_2.H58.1</div></td>
+<td class="dimOnNa" id="3_1_2_1_applies" headers="tech sc3_1_2">
+<p>Any element with a lang element</p>
+</td>
+<td class="dimOnNa" id="3_1_2_1_tech" headers="tech sc3_1_2">
+<ul>
+<li>H58.1</li>
+</ul>
+</td>
+</tr>
+
+<tr class="notice">
+<td class="assertType dimOnNa" id="3_1_2_0_type" headers="type sc3_1_2">
+Notice</td>
+<td class="dimOnNa" id="3_1_2_0_name" headers="name sc3_1_2">
+<p>Ensure that any change in language is marked using the lang and/or xml:lang attribute on an element, as appropriate.</p>
+<div class="fullcode">WCAG2AA.Guideline3.Principle3_1.3_1_2.H58</div></td>
+<td class="dimOnNa" id="3_1_2_0_applies" headers="tech sc3_1_2">
+<p>Any element with a lang element</p>
+</td>
+<td class="dimOnNa" id="3_1_2_0_tech" headers="tech sc3_1_2">
+<ul>
+<li>H58</li>
+</ul>
+</td>
+</tr>
+
+</tbody></table></body>
+</html>
