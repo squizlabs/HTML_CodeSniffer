@@ -34,6 +34,21 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
 <p><em>Note:</em> Start and end tags that are missing a critical character in their formation, such as a closing angle bracket or a mismatched attribute value quotation mark are not complete.</p>
 <p><em>More discussion from W3C:</em> <strong><a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/ensure-compat-parses.html">Understanding Success Criterion 4.1.1</a></strong></p>
 </div>
+<h2>Valid vs. Well-formed</h2>
+
+<p>Keep in mind that "valid" and "well-formed" are two different things, at least in XML. In an XML document (including XHTML), it only needs to be well-formed to satisfy this Success Criterion - not necessarily valid (technique <a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H75">H75: Ensuring that Web pages are well-formed</a>).</p>
+
+<h3>Replacements for well-formedness requirements in HTML</h3>
+
+<p>Because HTML serialisation does not have a concept of being "well-formed" so to speak, following technique <a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H88">H88: Using HTML according to spec</a> is sufficient. Otherwise, at an absolute minimum, the following three techniques must be followed:</p>
+
+<ul>
+<li><a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H74">H74: Ensuring that opening and closing tags are used according to specification</a></li>
+<li><a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H93">H93: Ensuring that id attributes are unique on a Web page</a></li>
+<li><a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H94">H94: Ensuring that elements do not contain duplicate attributes</a></li>
+</ul>
+
+<p>HTML_CodeSniffer is limited to information it can receive through the DOM, which will have likely processed out duplicate attributes, and certainly opening/closing tags in the generation process of the DOM tree. Therefore, it can only detect duplicate ID attributes. These errors are flagged as a Common Failure - <a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/F77">Failure of Success Criterion 4.1.1 due to duplicate values of type ID</a>.</p>
 <h2>Messages emitted by this Success Criterion's tests</h2>
 
 <p>Note that "[Standard]" will be replaced with "WCAG2AA" or "WCAG2AAA", depending on the level being tested.</p>
