@@ -32,6 +32,41 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
 <p>A mechanism is available for identifying specific pronunciation of words where meaning of the words, in context, is ambiguous without knowing the pronunciation.</p>
 <p><em>More discussion from W3C:</em> <strong><a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/meaning-pronunciation.html">Understanding Success Criterion 3.1.6</a></strong></p>
 </div>
+<h2>About Ruby text</h2>
+
+<p>One method of providing pronunciation of words is ruby text, as detailed in technique <a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H62">H62: Using the ruby element</a>. It is currently not necessarily the best method at the moment due to its lack of broad support (see the "Additional sufficient techniques" below), but it is one that can be programmatically checked for errors. It is also one that may become more used in the future if support improves, particularly given its acceptance into HTML5.</p>
+
+<p>One method of marking pronounciation, particularly in Asian scripts like Chinese characters or Japanese kanji, is to use smaller characters above, below, or beside the text - either simpler characters (such as hiragana in Japanese), or Latin romanisation (such as romaji or pinyin).</p>
+
+<p>This concept is generically called <em>ruby text</em> by the W3C. This comes from both the old concept of a 5.5-point text used for annotations in printing, and the term "rubi" (ルビ) being used in Japanese for this concept, known otherwise as <a href="http://en.wikipedia.org/wiki/Furigana">furigana</a>.</p>
+
+<h3>XHTML 1.1 vs HTML5</h3>
+
+<p>The testing procedure provided in this technique mentions "simple ruby markup" (there is complex markup available) and the rb element: these are part of the XHTML 1.1 definition of ruby text. In HTML5, all ruby markup is "simple", and the rb element does not exist; the base text should be placed in the body of the ruby element. HTML_CodeSniffer tweaks its error message depending on whether the DOM contains an rb element or not.</p>
+
+<h3>Browser support</h3>
+
+<p>Support for the ruby element varies, but has been slow because the lack of wide support for XHTML 1.1 (notably, Internet Explorer's poor support for markup with an XML content type in general). However, this has been slowly improving with its introduction into HTML5, with Webkit adding support recently.</p>
+
+<p>Support is broadly summarised as follows:</p>
+
+<ul>
+<li>Internet Explorer has handled ruby text since version 5.0, according to the W3C technique report - even despite its poor handling of XHTML.</li>
+<li>Webkit has had ruby support for a little while now - Safari 5.0+ and Chrome 5+ both support it.</li>
+<li>Gecko does not support ruby natively; the <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=33339">bug to track its inclusion</a> is over a decade old, and no milestone has been set. There are some add-ons available for Firefox to display ruby text properly, but their overall usefulness is unknown (eg. how Gecko handles in-page search with ruby, or selecting ruby text or its base).</li>
+</ul>
+
+<p>The lack of complete support - something that will never be 100% (eg. text browsers?) - means use of the rp element is important. The rp element has no representation in browsers that support the ruby element; in browsers that do not understand them, the elements will have no effect, with the result being the base text, with the pronunciation beside it in whatever passes for parentheses.</p>
+
+<h2>Additional sufficient techniques</h2>
+
+<p>If ruby text is not available as an option for fulfilling this Success Criterion, the following techniques are also considered sufficient, but require a manual test:</p>
+
+<ul>
+<li><a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/G120">Providing the pronunciation directly after the word</a>. If ruby text is used and the rp element is used properly, it should fall back to this case in browsers without ruby support.</li>
+<li><a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/G121">Linking to a definition</a> (including in a dictionary or <a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/G62">glossary</a>) that contains the pronunciation</li>
+<li><a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/G163">Using standard diacritical marks that can be turned off</a> (where applicable). The W3C offers an <a href="http://www.hawaii.edu/site/info/diacritics.php">example from the University of Hawai'i</a>, which allows the switching of Hawai'ian language diacritical marks.</li>
+</ul>
 <h2>Messages emitted by this Success Criterion's tests</h2>
 
 <table>
