@@ -256,12 +256,12 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
             } else {
                 // Missing TH IDs - error; emit at this stage only if headers are compulsory.
                 if (headersAttr.missingThId.length > 0) {
-                    HTMLCS.addMessage(HTMLCS.ERROR, table, 'Check that all th elements contain an id attribute.', 'H43');
+                    HTMLCS.addMessage(HTMLCS.ERROR, table, 'Check that all th elements contain an id attribute, so that they may be referenced by the headers attribute.', 'H43');
                 }
 
                 // Missing TD headers attributes - error; emit at this stage only if headers are compulsory.
                 if (headersAttr.missingTd.length > 0) {
-                    HTMLCS.addMessage(HTMLCS.ERROR, table, 'Check that all td elements contain a headers attribute.', 'H43');
+                    HTMLCS.addMessage(HTMLCS.ERROR, table, 'Check that all td elements contain a headers attribute that lists the id for all headers associated with that cell.', 'H43');
                 }
             }//end if
         }//end if
