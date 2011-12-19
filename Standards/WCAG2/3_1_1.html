@@ -59,6 +59,44 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
 <p>In the case of HTML 5, a W3C Editor's Draft exists referring to a concept called <a href="http://www.w3.org/TR/html-polyglot/" title="Polyglot Markup: HTML-Compatible XHTML Documents">"Polyglot Markup"</a>, which is a method of ensuring that XHTML 5 documents can work properly when interpreted as HTML-serialised documents - which is intended to happen with an XHTML document is sent with the content type text/html. Polyglot markup suggests using both lang and xml:lang with identical (case-insensitive) values, as each appropriate value will be considered a valid but benign attribute in the other serialisation.
 XHTML 1.0 also states that both are acceptable in its <a href="http://www.w3.org/TR/xhtml1/guidelines.html" title="XHTML 1.0 (Second Edition) - Appendix C: HTML Compatibility Guidelines">HTML Compatibility Guidelines appendix</a>. However, HTML 4 markup is not valid when xml:lang exists.</p>
 
+<h2>On language tags</h2>
+
+<p>The IETF's BCP 47 document (linked above) defines the format of a valid language tag. It contains the following subtags <strong>in this order, joined by hyphens (-)</strong>:</p>
+
+<blockquote>
+  <ul>
+  <li><strong>language</strong> (required): 2-8 alpha characters (2-3 common), lower case</li>
+  <li><strong>extlang</strong> (optional, repeatable up to 3 times): 3 alpha characters, lower case. Technically part of the language subtag. Most deprecated in favour of their own 3-character language subtag.</li>
+  <li><strong>script</strong> (optional): 4 alpha characters, title case</li>
+  <li><strong>region</strong> (optional): 2 alpha characters (for a country, typically), upper case) or a 3-digit number (for a region)</li>
+  <li><strong>variant</strong> (optional, repeatable):  5-8 alphanumeric characters, OR one digit followed by three alphanumeric characters</li>
+  <li><strong>extension</strong> (optional, repeatable): format "code-value*"
+  
+  <ul>
+  <li>Code is a single alphanumeric character, except "x".</li>
+  <li><a href="http://www.iana.org/assignments/language-tag-extensions-registry">Only one extension is currently registered</a>: "u" for Unicode extensions.</li>
+  <li>One or more values can be specified (hyphen between them): 2-8 alphanumeric characters.</li>
+  <li>Where multiple extensions are used, canonical ordering is by alphabetical order of their extension letter.</li>
+  </ul></li>
+  <li><strong>privateuse</strong> (optional): format "x-value*"
+  
+  <ul>
+  <li>the "x" is invariant</li>
+  <li>One or more values can be specified (hyphen between them): 1-8 alphanumeric characters.</li>
+  </ul></li>
+  </ul>
+  
+  <p>Case is insensitive throughout, but the above states how they <em>should</em> be written for consistency and canonicalisation purposes.</p>
+  
+  <p>A <strong>privateuse</strong> section can replace an entire language tag, as can a set of grandfathered tags.</p>
+  
+  <p>Where "repeatable" does not appear, a subtag can only be used once.</p>
+</blockquote>
+
+<p><em>Note:</em> Some assistive technologies do not recognise regional differences beyond the primary <strong>language</strong> subtag.</p>
+
+<p>The <a href="http://www.iana.org/assignments/language-subtag-registry">language subtag registry</a> is administered by IANA, and is populated primarily through various ISO standard sources, such as ISO 639 (language codes) and ISO 3166 (country codes). HTML&#95;CodeSniffer does not check for validity against this list, but does check for well-formedness.</p>
+
 <h2>On server-side techniques</h2>
 
 <p>One advisory technique provided is implemented server-side: <a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/SVR5">SVR5: Specifying the default language in the HTTP header</a>. This suggests to use the <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.12">Content-Language HTTP header</a> to identify the default language for a web page.</p>
