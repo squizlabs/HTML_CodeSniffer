@@ -49,6 +49,8 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
 </ul>
 
 <p>HTML_CodeSniffer is limited to information it can receive through the DOM, which will have likely processed out duplicate attributes, and certainly opening/closing tags in the generation process of the DOM tree. Therefore, it can only detect duplicate ID attributes. These errors are flagged as a Common Failure - <a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/F77">Failure of Success Criterion 4.1.1 due to duplicate values of type ID</a>.</p>
+
+<p>A lack of failures of this kind can only be considered authoritative if a complete document is processed. A document fragment can be tested for duplicate IDs, but there is nothing to say that it will duplicate the IDs of elements outside of that fragment.</p>
 <h2>Messages emitted by this Success Criterion's tests</h2>
 
 <p>Note that "[Standard]" will be replaced with "WCAG2AA" or "WCAG2AAA", depending on the level being tested.</p>
