@@ -32,6 +32,19 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
 <p>Changing the setting of any user interface component does not automatically cause a change of context unless the user has been advised of the behavior before using the component.</p>
 <p><em>More discussion from W3C:</em> <strong><a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/consistent-behavior-unpredictable-change.html">Understanding Success Criterion 3.2.2</a></strong></p>
 </div>
+<h2>On providing submit buttons</h2>
+
+<p>This is covered by a general technique (<a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/G80">G80: Providing a submit button to initiate a change of context</a>) and a HTML-specific technique (<a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/G32">H32: Providing submit buttons</a>).</p>
+
+<p>Providing a submit button suggests that a user will be able to use that submit button to explicitly trigger a change in context, rather than it being placed out of their control by a web page. (That this criterion is successful depends, of course, on the author not doing such latter things.)</p>
+
+<p>In HTML, the three elements that count as submit buttons are:</p>
+
+<ul>
+<li>input element with type "submit" - providing a normal button that submits.</li>
+<li>input element with type "image" - providing an image submit button.</li>
+<li>button element with type "submit" - providing a normal submit button that can be more richly styled than the equivalent input element.</li>
+</ul>
 <h2>Messages emitted by this Success Criterion's tests</h2>
 
 <p>Note that "[Standard]" will be replaced with "WCAG2AA" or "WCAG2AAA", depending on the level being tested.</p>
