@@ -8,8 +8,9 @@
     <script>
         function runHTMLCS()
         {
+            var level = document.getElementById('level');
             var source = document.getElementById('source');
-            HTMLCS.process('WCAG2AA', source.value, function() {
+            HTMLCS.process(level.value, source.value, function() {
                 updateResults();
             });
         }
@@ -59,9 +60,17 @@
     </script>
 </head>
 <body>
+<form id="runHTMLCS">
 <textarea id="source" style="width:100%; height:200px;"></textarea>
-<button onclick="javascript:runHTMLCS();">Run HTML_CodeSniffer</button>&nbsp;
-<a href="javascript:(function(){if(window['HTMLCS']) {HTMLCS.process('WCAG2AAA', document.body, function() {if (console.table) {console.table(HTMLCS.getMessages());} else {console.info(HTMLCS.getMessages());}}); return;} var s=document.createElement('script');s.type='text/javascript';s.src='https://raw.github.com/squizlabs/HTML_CodeSniffer/master/HTMLCS.js';document.body.appendChild(s); var t = setInterval(function() {if(!window['HTMLCS']) {return;} clearInterval(t);HTMLCS.process('WCAG2AAA', document.body, function() {console.table(HTMLCS.getMessages());});}, 100); })()">HTMLCS This Page</a> &lt;-- bookmarklet 
+<label for="level">Check for WCAG 2.0 Level:</label>
+<select id="level" name="level">
+<option value="WCAG2A">A</option>
+<option value="WCAG2AA" selected="selected">AA</option>
+<option value="WCAG2AAA">AAA</option>
+</select>
+<button type="button" onclick="javascript:runHTMLCS();">Run HTML_CodeSniffer</button>&nbsp;
+<a href="javascript:(function(){if(window['HTMLCS']) {HTMLCS.process('WCAG2AAA', document.body, function() {if (console.table) {console.table(HTMLCS.getMessages());} else {console.info(HTMLCS.getMessages());}}); return;} var s=document.createElement('script');s.type='text/javascript';s.src='https://raw.github.com/squizlabs/HTML_CodeSniffer/master/HTMLCS.js';document.body.appendChild(s); var t = setInterval(function() {if(!window['HTMLCS']) {return;} clearInterval(t);HTMLCS.process('WCAG2AAA', document.body, function() {console.table(HTMLCS.getMessages());});}, 100); })()">HTMLCS This Page</a> &lt;-- bookmarklet (at Level AAA)
+</form>
 <hr />
 <div id="resultsWrapper">
 
