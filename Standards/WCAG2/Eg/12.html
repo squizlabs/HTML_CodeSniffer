@@ -1,0 +1,130 @@
+<html>
+<head>
+<title>Test Example 12 - HTML_CodeSniffer</title>
+<style type="text/css">
+h1 {border-bottom: 5px solid #56a8f9; background-color: #333; color: white; padding: 15px 10px; margin: -10px -10px 10px -10px}
+body {padding: 10px; margin: 0}
+body, th, td {font: 10.5pt 'verdana', sans-serif}
+table h4 {margin: 0; padding:0.2em 0; background-color: #eef}
+table p {margin: 0; margin-top: 0;}
+table h4 + p, p + p {margin-top: 0.5em;}
+table {width: 100%; background-color: #ccc}
+table td {background-color: #fff; vertical-align: top; border-collapse: collapse; padding: 5px; margin: 1px}
+table th {background-color: #ddd; font-weight: bold; border-collapse: collapse; padding: 5px; margin: 1px}
+table tr.na td.dimOnNa {background-color: #f5f5f5; color: #999; text-decoration: line-through;}
+table td.assertType {font-weight: bold;}
+table tr.found td {background-color: #ffc;}
+table tr.error td.assertType {background-color: #c00; color: white;}
+table tr.warning td.assertType {background-color: #ff0; color: black;}
+table tr.notice td.assertType {background-color: #666; color: white;}
+div.edsnote {background-color: #ffd; border: 1px solid #dd0; margin: 5px; padding: 5px; line-height: 1.5em}
+div.subhead {font-size: 1.2em; line-height: 1.5em; background-color: #eee; color: #333; border-bottom: 2px solid #666; padding: 15px 20px; margin: -10px -10px 10px -10px}
+div.fullcode {font-size: 0.85em; font-style: italic; background-color: #f8f8f8; color: #333; margin: 5px 0px; padding: 5px 0px}
+.na div.fullcode {color: inherit; background-color: inherit}
+blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px 0 5px 10px}
+</style>
+<script type="text/javascript" src="https://raw.github.com/squizlabs/HTML_CodeSniffer/master/HTMLCS.js"></script>
+<script>
+    var expectedMsgs = [
+        '[Standard].Principle4.Guideline4_1.4_1_1.F77'
+    ];
+
+    function runHTMLCS()
+    {
+        var level = document.getElementById('level');
+        var source = document.getElementById('source');
+        HTMLCS.process(level.value, source.value, function() {
+            updateResults();
+        });
+    }
+
+    function updateResults()
+    {
+        var resultsWrapper = document.getElementById('resultsWrapper');
+        resultsWrapper.innerHTML = '';
+
+        var msgs = HTMLCS.getMessages();
+        if (msgs.length === 0) {
+            resultsWrapper.innerHTML = 'No errors found';
+            return;
+        }
+
+        var content = '<table border="1" cellpadding="5"><tr>';
+        content    += '<th>#</th><th>Type</th><th>Message</th><th>Code</th></tr>';
+
+        for (var i = 0; i < msgs.length; i++) {
+            var msg = msgs[i];
+            var type = '';
+            switch (msg.type) {
+                case HTMLCS.ERROR:
+                    type = 'Error';
+                break;
+
+                case HTMLCS.WARNING:
+                    type = 'Warning';
+                break;
+
+                case HTMLCS.NOTICE:
+                    type = 'Notice';
+                break;
+
+                default:
+                    type = 'Unknown';
+                break;
+            }
+
+            var msgParts = msg.code.split('.');
+            var sc = msgParts[3];
+
+            // Build a message code without the standard name.
+            msgParts.shift();
+            msgParts.unshift('[Standard]');
+            var noStdMsgParts = msgParts.join('.');
+
+            var foundClass = '';
+            for (var j = 0; j < expectedMsgs.length; j++) {
+                if (expectedMsgs[j] === noStdMsgParts) {
+                    foundClass = ' found';
+                    break;
+                }
+            }
+
+            content += '<tr class="' + type.toLowerCase() + foundClass + '"><td>' + (i + 1) + '</td><td class="assertType">' + type + '</td><td>' + msg.msg + '</td><td><a href="../' + sc + '">' + msg.code + '</a></td></tr>';
+        }
+
+        content += '</table>';
+        resultsWrapper.innerHTML = content;
+
+    }
+</script>
+</head>
+<body>
+<h1>HTML_CodeSniffer Test Example 12</h1>
+<div class="subhead"><p>A one-to-one relationship should be able to be determined between IDs and elements with IDs. Therefore, controls with duplicate IDs are a failure of the specs of <a href="../4_1_1">Success Criterion 4.1.1: Parsing</a>. In XML serialisation, it would not be well-formed unless duplicate IDs are explicitly allowed.</p>
+
+<p>This is marked specifically to a failure regarding duplicate IDs - <a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/F77">F77: Failure of Success Criterion 4.1.1 due to duplicate values of type ID</a> - particularly relating to HTML serialisation. However, this could also be attributed to a failure of Success Criterion 1.3.1, using failure <a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/F17">F17: Failure of Success Criterion 1.3.1 and 4.1.1 due to insufficient information in DOM to determine one-to-one relationships (e.g., between labels with same id) in HTML</a>.</p>
+</div>
+
+<h2>Code</h2>
+
+<pre><code id="examplecode">&lt;form&gt;
+    &lt;input type=&quot;text&quot; id=&quot;control1&quot; value=&quot;field 1&quot; /&gt;
+    &lt;input type=&quot;text&quot; id=&quot;control1&quot; value=&quot;field 2&quot; /&gt;
+&lt;/form&gt;</code></pre>
+
+<h2>Test</h2>
+<textarea id="source" style="display: none">&lt;form&gt;
+    &lt;input type=&quot;text&quot; id=&quot;control1&quot; value=&quot;field 1&quot; /&gt;
+    &lt;input type=&quot;text&quot; id=&quot;control1&quot; value=&quot;field 2&quot; /&gt;
+&lt;/form&gt;</textarea><select id="level" name="level">
+<option value="WCAG2A">Level A</option>
+<option value="WCAG2AA" selected="selected">Level AA</option>
+<option value="WCAG2AAA">Level AAA</option>
+</select>
+<button type="button" onclick="javascript:runHTMLCS();">Run HTML_CodeSniffer</button>
+<div id="resultsWrapper"></div>
+
+<h2>Expected Messages</h2>
+
+<h3>Errors</h3><ul><li>[Standard].Principle4.Guideline4_1.4_1_1.F77</li></ul></body>
+</html>

@@ -38,10 +38,13 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
 
 <p>The link element includes several different relation types or roles. Beyond stylesheet and "alternate" representations (for RSS/Atom feeds, for instance), some relations are used for navigation purposes.</p>
 
-<p>Appropriate lists of relation types include:
-- The <a href="http://www.w3.org/1999/xhtml/vocab/">XHTML vocabulary</a> which defines roles as they relate to XHTML+RDFa, for XHTML 1.1+.
-- The <a href="http://www.iana.org/assignments/link-relations/link-relations.xml">IANA link type registry</a> as it applies to <a href="http://tools.ietf.org/html/rfc5988">RFC5988: Web Linking</a>. This proposes that links would be able to be expressed as HTTP headers.
-- The HTML5 specification contains a <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/links.html#linkTypes">base list of supported relation types</a> - note that only "next" and "prev" are explicitly included for navigation purposes; other proposed link types in HTML5 are explicitly the responsibility of <a href="http://microformats.org/wiki/existing-rel-values#HTML5_link_type_extensions">a HTML5 link type registry maintained by the Microformats community</a>.</p>
+<p>Appropriate lists of relation types include:</p>
+
+<ul>
+<li>The <a href="http://www.w3.org/1999/xhtml/vocab/">XHTML vocabulary</a> which defines roles as they relate to XHTML+RDFa, for XHTML 1.1+.</li>
+<li>The <a href="http://www.iana.org/assignments/link-relations/link-relations.xml">IANA link type registry</a> as it applies to <a href="http://tools.ietf.org/html/rfc5988">RFC5988: Web Linking</a>. This proposes that links would be able to be expressed as HTTP headers.</li>
+<li>The HTML5 specification contains a <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/links.html#linkTypes">base list of supported relation types</a> - note that only "next" and "prev" are explicitly included for navigation purposes; other proposed link types in HTML5 are explicitly the responsibility of <a href="http://microformats.org/wiki/existing-rel-values#HTML5_link_type_extensions">a HTML5 link type registry maintained by the Microformats community</a>.</li>
+</ul>
 
 <p>Although older browsers may have displayed navigational link elements in their user interface "chrome", it is no longer a popular option, and has been removed from later browsers. Some support add-ons which add this support back in. In summary:</p>
 
@@ -51,7 +54,7 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
 <li>Firefox (and probably IE) have extensions that expose link relations in a separate toolbar.</li>
 </ul>
 
-<p>The "next" relation is also prefetched link prefetching in Firefox (and probably later versions of SeaMonkey), as well as the explicitly specified "prefetch".</p>
+<p>The "next" relation is also used for link prefetching in Firefox (and probably later versions of SeaMonkey), as well as the explicitly specified "prefetch" relation.</p>
 
 <p>HTML5 only supports "forward" links (using the rel attribute); "reverse" links (using the rev attribute) are not supported. The only major reverse relation that was commonly used in HTML was rev="made", which referred to the author of the page - this has been changed to rel="author" in HTML5. Therefore, HTML_CodeSniffer will not recognise link elements with reverse relations.</p>
 
@@ -80,7 +83,7 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
 <tr>
 <th id="type">Type</th>
 <th id="name">Message Name</th>
-<th id="tech">Applies To</th>
+<th id="applies">Applies To</th>
 <th id="tech">Techniques</th>
 <th id="ex">Examples</th>
 </tr>
@@ -90,13 +93,18 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
 Error</td>
 <td class="dimOnNa" id="2_4_8_2_name" headers="name sc2_4_8">
 <p>Check that this link element contains a valid href attribute to locate the appropriate resource being linked.</p>
-<div class="fullcode">WCAG2AAA.Guideline2.Principle2_4.2_4_8.H59.2b</div></td>
-<td class="dimOnNa" id="2_4_8_2_applies" headers="tech sc2_4_8">
+<div class="fullcode">WCAG2AAA.Principle2.Guideline2_4.2_4_8.H59.2b</div></td>
+<td class="dimOnNa" id="2_4_8_2_applies" headers="applies sc2_4_8">
 <p>Link element without href attribute</p>
 </td>
 <td class="dimOnNa" id="2_4_8_2_tech" headers="tech sc2_4_8">
 <ul>
 <li>H59.2b</li>
+</ul>
+</td>
+<td class="dimOnNa" id="2_4_8_2_examples" headers="ex sc2_4_8">
+<ul>
+<li><a href="./Eg/39">39</a></li>
 </ul>
 </td>
 </tr>
@@ -106,13 +114,18 @@ Error</td>
 Error</td>
 <td class="dimOnNa" id="2_4_8_1_name" headers="name sc2_4_8">
 <p>Check that this link element contains a rel attribute identifying the link type.</p>
-<div class="fullcode">WCAG2AAA.Guideline2.Principle2_4.2_4_8.H59.2a</div></td>
-<td class="dimOnNa" id="2_4_8_1_applies" headers="tech sc2_4_8">
+<div class="fullcode">WCAG2AAA.Principle2.Guideline2_4.2_4_8.H59.2a</div></td>
+<td class="dimOnNa" id="2_4_8_1_applies" headers="applies sc2_4_8">
 <p>Link element without rel attribute</p>
 </td>
 <td class="dimOnNa" id="2_4_8_1_tech" headers="tech sc2_4_8">
 <ul>
 <li>H59.2a</li>
+</ul>
+</td>
+<td class="dimOnNa" id="2_4_8_1_examples" headers="ex sc2_4_8">
+<ul>
+<li><a href="./Eg/38">38</a></li>
 </ul>
 </td>
 </tr>
@@ -122,13 +135,18 @@ Error</td>
 Error</td>
 <td class="dimOnNa" id="2_4_8_0_name" headers="name sc2_4_8">
 <p>Check that all link elements pertaining to navigation occur in the head section of the document.</p>
-<div class="fullcode">WCAG2AAA.Guideline2.Principle2_4.2_4_8.H59.1</div></td>
-<td class="dimOnNa" id="2_4_8_0_applies" headers="tech sc2_4_8">
+<div class="fullcode">WCAG2AAA.Principle2.Guideline2_4.2_4_8.H59.1</div></td>
+<td class="dimOnNa" id="2_4_8_0_applies" headers="applies sc2_4_8">
 <p>Link element found outside of the head section</p>
 </td>
 <td class="dimOnNa" id="2_4_8_0_tech" headers="tech sc2_4_8">
 <ul>
 <li>H59.1</li>
+</ul>
+</td>
+<td class="dimOnNa" id="2_4_8_0_examples" headers="ex sc2_4_8">
+<ul>
+<li><a href="./Eg/37">37</a></li>
 </ul>
 </td>
 </tr>

@@ -1,0 +1,188 @@
+<html>
+<head>
+<title>Test Example 34 - HTML_CodeSniffer</title>
+<style type="text/css">
+h1 {border-bottom: 5px solid #56a8f9; background-color: #333; color: white; padding: 15px 10px; margin: -10px -10px 10px -10px}
+body {padding: 10px; margin: 0}
+body, th, td {font: 10.5pt 'verdana', sans-serif}
+table h4 {margin: 0; padding:0.2em 0; background-color: #eef}
+table p {margin: 0; margin-top: 0;}
+table h4 + p, p + p {margin-top: 0.5em;}
+table {width: 100%; background-color: #ccc}
+table td {background-color: #fff; vertical-align: top; border-collapse: collapse; padding: 5px; margin: 1px}
+table th {background-color: #ddd; font-weight: bold; border-collapse: collapse; padding: 5px; margin: 1px}
+table tr.na td.dimOnNa {background-color: #f5f5f5; color: #999; text-decoration: line-through;}
+table td.assertType {font-weight: bold;}
+table tr.found td {background-color: #ffc;}
+table tr.error td.assertType {background-color: #c00; color: white;}
+table tr.warning td.assertType {background-color: #ff0; color: black;}
+table tr.notice td.assertType {background-color: #666; color: white;}
+div.edsnote {background-color: #ffd; border: 1px solid #dd0; margin: 5px; padding: 5px; line-height: 1.5em}
+div.subhead {font-size: 1.2em; line-height: 1.5em; background-color: #eee; color: #333; border-bottom: 2px solid #666; padding: 15px 20px; margin: -10px -10px 10px -10px}
+div.fullcode {font-size: 0.85em; font-style: italic; background-color: #f8f8f8; color: #333; margin: 5px 0px; padding: 5px 0px}
+.na div.fullcode {color: inherit; background-color: inherit}
+blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px 0 5px 10px}
+</style>
+<script type="text/javascript" src="https://raw.github.com/squizlabs/HTML_CodeSniffer/master/HTMLCS.js"></script>
+<script>
+    var expectedMsgs = [
+        '', '[Standard].Principle1.Guideline1_3.1_3_1.H39.3', '[Standard].Principle1.Guideline1_3.1_3_1.H73.3'
+    ];
+
+    function runHTMLCS()
+    {
+        var level = document.getElementById('level');
+        var source = document.getElementById('source');
+        HTMLCS.process(level.value, source.value, function() {
+            updateResults();
+        });
+    }
+
+    function updateResults()
+    {
+        var resultsWrapper = document.getElementById('resultsWrapper');
+        resultsWrapper.innerHTML = '';
+
+        var msgs = HTMLCS.getMessages();
+        if (msgs.length === 0) {
+            resultsWrapper.innerHTML = 'No errors found';
+            return;
+        }
+
+        var content = '<table border="1" cellpadding="5"><tr>';
+        content    += '<th>#</th><th>Type</th><th>Message</th><th>Code</th></tr>';
+
+        for (var i = 0; i < msgs.length; i++) {
+            var msg = msgs[i];
+            var type = '';
+            switch (msg.type) {
+                case HTMLCS.ERROR:
+                    type = 'Error';
+                break;
+
+                case HTMLCS.WARNING:
+                    type = 'Warning';
+                break;
+
+                case HTMLCS.NOTICE:
+                    type = 'Notice';
+                break;
+
+                default:
+                    type = 'Unknown';
+                break;
+            }
+
+            var msgParts = msg.code.split('.');
+            var sc = msgParts[3];
+
+            // Build a message code without the standard name.
+            msgParts.shift();
+            msgParts.unshift('[Standard]');
+            var noStdMsgParts = msgParts.join('.');
+
+            var foundClass = '';
+            for (var j = 0; j < expectedMsgs.length; j++) {
+                if (expectedMsgs[j] === noStdMsgParts) {
+                    foundClass = ' found';
+                    break;
+                }
+            }
+
+            content += '<tr class="' + type.toLowerCase() + foundClass + '"><td>' + (i + 1) + '</td><td class="assertType">' + type + '</td><td>' + msg.msg + '</td><td><a href="../' + sc + '">' + msg.code + '</a></td></tr>';
+        }
+
+        content += '</table>';
+        resultsWrapper.innerHTML = content;
+
+    }
+</script>
+</head>
+<body>
+<h1>HTML_CodeSniffer Test Example 34</h1>
+<div class="subhead"><p>According to <a href="../1_3_1">Success Criterion 1.3.1: Info and Relationships</a>, providing a caption and/or summary can improve the usability of a table in different ways. A caption element titles the table and is seen by all users. A summary attribute (on the table element) provides additional information for users requiring assistance, who may be reading the table cell-by-cell and therefore cannot immediately grasp the concept of the table's organisation as a whole.</p>
+
+<p>This example demonstrates correct usage of a summary element (and also a caption). A notice should be emitted to remind authors that the summary should serve its purpose. In this case, the ordering of the table may not be apparent - if you simply hear "Stop Name" in the top-left cell, do the stops go down the page or across it, for instance? The summary therefore provides context and instructions on how to use the table.</p>
+
+<p>If the summary is omitted in a case like this, it may still pass the Success Criterion if such instructions were embedded ahead of the table in the body text, so all users can see it.</p>
+</div>
+
+<h2>Code</h2>
+
+<pre><code id="examplecode">&lt;table summary=&quot;Summary of weekday Sydney-Melbourne services. Find your stop name from the first column, then read across that row to find departure times from that stop.&quot;&gt;
+    &lt;caption&gt;Weekday Timetable&lt;/caption&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th scope=&quot;col&quot;&gt;Stop Name&lt;/th&gt;
+            &lt;th scope=&quot;col&quot;&gt;Day Service&lt;/th&gt;
+            &lt;th scope=&quot;col&quot;&gt;Overnight Service&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;th scope=&quot;row&quot;&gt;Sydney Central&lt;/th&gt;
+            &lt;td&gt;08:00&lt;/td&gt;
+            &lt;td&gt;19:00&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;th scope=&quot;row&quot;&gt;Canberra&lt;/th&gt;
+            &lt;td&gt;12:00&lt;/td&gt;
+            &lt;td&gt;23:00&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;th scope=&quot;row&quot;&gt;Albury&lt;/th&gt;
+            &lt;td&gt;15:00&lt;/td&gt;
+            &lt;td&gt;02:00&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;th scope=&quot;row&quot;&gt;Melbourne&lt;/th&gt;
+            &lt;td&gt;19:00&lt;/td&gt;
+            &lt;td&gt;06:00&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+
+<h2>Test</h2>
+<textarea id="source" style="display: none">&lt;table summary=&quot;Summary of weekday Sydney-Melbourne services. Find your stop name from the first column, then read across that row to find departure times from that stop.&quot;&gt;
+    &lt;caption&gt;Weekday Timetable&lt;/caption&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th scope=&quot;col&quot;&gt;Stop Name&lt;/th&gt;
+            &lt;th scope=&quot;col&quot;&gt;Day Service&lt;/th&gt;
+            &lt;th scope=&quot;col&quot;&gt;Overnight Service&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;th scope=&quot;row&quot;&gt;Sydney Central&lt;/th&gt;
+            &lt;td&gt;08:00&lt;/td&gt;
+            &lt;td&gt;19:00&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;th scope=&quot;row&quot;&gt;Canberra&lt;/th&gt;
+            &lt;td&gt;12:00&lt;/td&gt;
+            &lt;td&gt;23:00&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;th scope=&quot;row&quot;&gt;Albury&lt;/th&gt;
+            &lt;td&gt;15:00&lt;/td&gt;
+            &lt;td&gt;02:00&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;th scope=&quot;row&quot;&gt;Melbourne&lt;/th&gt;
+            &lt;td&gt;19:00&lt;/td&gt;
+            &lt;td&gt;06:00&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</textarea><select id="level" name="level">
+<option value="WCAG2A">Level A</option>
+<option value="WCAG2AA" selected="selected">Level AA</option>
+<option value="WCAG2AAA">Level AAA</option>
+</select>
+<button type="button" onclick="javascript:runHTMLCS();">Run HTML_CodeSniffer</button>
+<div id="resultsWrapper"></div>
+
+<h2>Expected Messages</h2>
+
+<h3>Notices</h3><ul><li>[Standard].Principle1.Guideline1_3.1_3_1.H39.3</li><li>[Standard].Principle1.Guideline1_3.1_3_1.H73.3</li></ul></body>
+</html>
