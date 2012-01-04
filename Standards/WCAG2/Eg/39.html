@@ -73,6 +73,7 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
                 break;
             }
 
+            // Get the success criterion so we can provide a link.
             var msgParts = msg.code.split('.');
             var sc = msgParts[3];
 
@@ -82,14 +83,20 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
             var noStdMsgParts = msgParts.join('.');
 
             var foundClass = '';
+            var relevantText = '';
             for (var j = 0; j < expectedMsgs.length; j++) {
                 if (expectedMsgs[j] === noStdMsgParts) {
-                    foundClass = ' found';
+                    foundClass   = ' found';
+                    relevantText = ' [relevant]';
                     break;
                 }
             }
 
-            content += '<tr class="' + type.toLowerCase() + foundClass + '"><td>' + (i + 1) + '</td><td class="assertType">' + type + '</td><td>' + msg.msg + '</td><td><a href="../' + sc + '">' + msg.code + '</a></td></tr>';
+            content += '<tr class="' + type.toLowerCase() + foundClass + '">';
+            content += '<td class="number">' + (i + 1) + '</td>';
+            content += '<td class="assertType">' + type + '</td>'
+            content += '<td class="messageText">' + msg.msg + relevantText + '</td>';
+            content += '<td class="messageCode"><a href="../' + sc + '">' + msg.code + '</a></td></tr>';
         }
 
         content += '</table>';
