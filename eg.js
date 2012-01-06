@@ -1,11 +1,13 @@
-function runHTMLCS(standard, source, resultsDiv)
+function runHTMLCS(standard, source, resultsDiv, expectedMsgs, expectedOmissions)
 {
+    resultsWrapper.innerHTML = '<em>Running...</em>';
+
     HTMLCS.process(standard, source, function() {
-        updateResults(resultsDiv);
+        updateResults(resultsDiv, expectedMsgs, expectedOmissions);
     });
 }
 
-function updateResults(resultsWrapper)
+function updateResults(resultsWrapper, expectedMsgs, expectedOmissions)
 {
     resultsWrapper.innerHTML = '';
 
@@ -15,8 +17,8 @@ function updateResults(resultsWrapper)
         return;
     }
 
-    var expectedMsgs = expectedMsgs || [];
-    var testedMsgs   = testedMsgs   || [];
+    expectedMsgs      = expectedMsgs || [];
+    expectedOmissions = expectedOmissions || [];
 
     var content = '<table border="1" cellpadding="5"><tr>';
     content    += '<th>#</th><th>Type</th><th>Message</th><th>Code</th></tr>';
@@ -60,8 +62,8 @@ function updateResults(resultsWrapper)
                 break;
             }
         }
-        for (var j = 0; j < testedMsgs.length; j++) {
-            if (testedMsgs[j] === noStdMsgParts) {
+        for (var j = 0; j < expectedOmissions.length; j++) {
+            if (expectedOmissions[j] === noStdMsgParts) {
                 foundClass   = ' failed';
                 relevantText = ' [failed]';
                 break;

@@ -30,10 +30,13 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
         '', '[Standard].Principle2.Guideline2_4.2_4_2.H25.2'
     ];
 
-    var testedMsgs = [
+    var expectedOmissions = [
         ''
     ];
 
+    function runHTMLCSExample() {
+        runHTMLCS(document.getElementById('level').value, document.getElementById('source').value, document.getElementById('resultsWrapper'), expectedMsgs, expectedOmissions)
+    }
 
 </script>
 <script type="text/javascript" src="http://squizlabs.github.com/HTML_CodeSniffer/eg.js"></script>
@@ -73,7 +76,7 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
 <option value="WCAG2AA" selected="selected">Level AA</option>
 <option value="WCAG2AAA">Level AAA</option>
 </select>
-<button type="button" onclick="javascript:runHTMLCS(document.getElementById('level').value, document.getElementById('source').value, document.getElementById('resultsWrapper'));">Run HTML_CodeSniffer</button>
+<button type="button" onclick="javascript:runHTMLCSExample();">Run HTML_CodeSniffer</button>
 <div id="resultsWrapper"></div>
 
 <h2>Expected Messages</h2>
