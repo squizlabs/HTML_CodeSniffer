@@ -1,15 +1,12 @@
-function runHTMLCS()
+function runHTMLCS(standard, source, resultsDiv)
 {
-    var level = document.getElementById('level');
-    var source = document.getElementById('source');
-    HTMLCS.process(level.value, source.value, function() {
-        updateResults();
+    HTMLCS.process(standard, source, function() {
+        updateResults(resultsDiv);
     });
 }
 
-function updateResults()
+function updateResults(resultsWrapper)
 {
-    var resultsWrapper = document.getElementById('resultsWrapper');
     resultsWrapper.innerHTML = '';
 
     var msgs = HTMLCS.getMessages();
@@ -17,6 +14,9 @@ function updateResults()
         resultsWrapper.innerHTML = 'No errors found';
         return;
     }
+
+    var expectedMsgs = expectedMsgs || [];
+    var testedMsgs   = testedMsgs   || [];
 
     var content = '<table border="1" cellpadding="5"><tr>';
     content    += '<th>#</th><th>Type</th><th>Message</th><th>Code</th></tr>';
