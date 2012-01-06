@@ -14,6 +14,7 @@ table th {background-color: #ddd; font-weight: bold; border-collapse: collapse; 
 table tr.na td.dimOnNa {background-color: #f5f5f5; color: #999; text-decoration: line-through;}
 table td.assertType {font-weight: bold;}
 table tr.found td {background-color: #ffc;}
+table tr.failed td {background-color: #fcc;}
 table tr.error td.assertType {background-color: #c00; color: white;}
 table tr.warning td.assertType {background-color: #ff0; color: black;}
 table tr.notice td.assertType {background-color: #666; color: white;}
@@ -23,10 +24,15 @@ div.fullcode {font-size: 0.85em; font-style: italic; background-color: #f8f8f8; 
 .na div.fullcode {color: inherit; background-color: inherit}
 blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px 0 5px 10px}
 </style>
-<script type="text/javascript" src="https://raw.github.com/squizlabs/HTML_CodeSniffer/master/HTMLCS.js"></script>
+<!-- <script type="text/javascript" src="https://raw.github.com/squizlabs/HTML_CodeSniffer/master/HTMLCS.js"></script> -->
+<script type="text/javascript" src="http://htmlcs.avalanche/HTMLCS.js"></script>
 <script>
     var expectedMsgs = [
         '', '[Standard].Principle1.Guideline1_3.1_3_1.H85.2'
+    ];
+
+    var testedMsgs = [
+        ''
     ];
 
     function runHTMLCS()
@@ -87,7 +93,14 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
             for (var j = 0; j < expectedMsgs.length; j++) {
                 if (expectedMsgs[j] === noStdMsgParts) {
                     foundClass   = ' found';
-                    relevantText = ' [relevant]';
+                    relevantText = ' [expected]';
+                    break;
+                }
+            }
+            for (var j = 0; j < testedMsgs.length; j++) {
+                if (testedMsgs[j] === noStdMsgParts) {
+                    foundClass   = ' failed';
+                    relevantText = ' [failed]';
                     break;
                 }
             }

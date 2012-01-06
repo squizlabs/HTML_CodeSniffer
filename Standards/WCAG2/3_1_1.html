@@ -93,7 +93,7 @@ XHTML 1.0 also states that both are acceptable in its <a href="http://www.w3.org
   <p>Where "repeatable" does not appear, a subtag can only be used once.</p>
 </blockquote>
 
-<p><em>Note:</em> Some assistive technologies do not recognise regional differences beyond the primary <strong>language</strong> subtag.</p>
+<p><em>Note:</em> Some assistive technologies do not recognise regional differences beyond the primary <strong>language</strong> subtag, or only handle a limited subset of them. For instance, a screen reader could theoretically come with several accents for English - for instance, United States, United Kingdom, Australia, and so on - but only a generic one for Spanish. In the first case, country may be recognised (eg. "en-US" vs. "en-GB"); in the latter, everything after the initial "es" language tag may be ignored.</p>
 
 <p>The <a href="http://www.iana.org/assignments/language-subtag-registry">language subtag registry</a> is administered by IANA, and is populated primarily through various ISO standard sources, such as ISO 639 (language codes) and ISO 3166 (country codes). HTML&#95;CodeSniffer does not check for validity against this list, but does check for well-formedness.</p>
 
@@ -177,6 +177,9 @@ Error</td>
 </ul>
 </td>
 <td class="dimOnNa" id="3_1_1_0_examples" headers="ex sc3_1_1">
+<ul>
+<li><a href="./Eg/63">63</a></li>
+</ul>
 </td>
 </tr>
 

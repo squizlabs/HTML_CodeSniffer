@@ -1,0 +1,148 @@
+<html>
+<head>
+<title>Test Example 61 - HTML_CodeSniffer</title>
+<style type="text/css">
+h1 {border-bottom: 5px solid #56a8f9; background-color: #333; color: white; padding: 15px 10px; margin: -10px -10px 10px -10px}
+body {padding: 10px; margin: 0}
+body, th, td {font: 10.5pt 'verdana', sans-serif}
+table h4 {margin: 0; padding:0.2em 0; background-color: #eef}
+table p {margin: 0; margin-top: 0;}
+table h4 + p, p + p {margin-top: 0.5em;}
+table {width: 100%; background-color: #ccc}
+table td {background-color: #fff; vertical-align: top; border-collapse: collapse; padding: 5px; margin: 1px}
+table th {background-color: #ddd; font-weight: bold; border-collapse: collapse; padding: 5px; margin: 1px}
+table tr.na td.dimOnNa {background-color: #f5f5f5; color: #999; text-decoration: line-through;}
+table td.assertType {font-weight: bold;}
+table tr.found td {background-color: #ffc;}
+table tr.failed td {background-color: #fcc;}
+table tr.error td.assertType {background-color: #c00; color: white;}
+table tr.warning td.assertType {background-color: #ff0; color: black;}
+table tr.notice td.assertType {background-color: #666; color: white;}
+div.edsnote {background-color: #ffd; border: 1px solid #dd0; margin: 5px; padding: 5px; line-height: 1.5em}
+div.subhead {font-size: 1.2em; line-height: 1.5em; background-color: #eee; color: #333; border-bottom: 2px solid #666; padding: 15px 20px; margin: -10px -10px 10px -10px}
+div.fullcode {font-size: 0.85em; font-style: italic; background-color: #f8f8f8; color: #333; margin: 5px 0px; padding: 5px 0px}
+.na div.fullcode {color: inherit; background-color: inherit}
+blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px 0 5px 10px}
+</style>
+<!-- <script type="text/javascript" src="https://raw.github.com/squizlabs/HTML_CodeSniffer/master/HTMLCS.js"></script> -->
+<script type="text/javascript" src="http://htmlcs.avalanche/HTMLCS.js"></script>
+<script>
+    var expectedMsgs = [
+        '', '[Standard].Principle1.Guideline1_3.1_3_1.H65'
+    ];
+
+    var testedMsgs = [
+        ''
+    ];
+
+    function runHTMLCS()
+    {
+        var level = document.getElementById('level');
+        var source = document.getElementById('source');
+        HTMLCS.process(level.value, source.value, function() {
+            updateResults();
+        });
+    }
+
+    function updateResults()
+    {
+        var resultsWrapper = document.getElementById('resultsWrapper');
+        resultsWrapper.innerHTML = '';
+
+        var msgs = HTMLCS.getMessages();
+        if (msgs.length === 0) {
+            resultsWrapper.innerHTML = 'No errors found';
+            return;
+        }
+
+        var content = '<table border="1" cellpadding="5"><tr>';
+        content    += '<th>#</th><th>Type</th><th>Message</th><th>Code</th></tr>';
+
+        for (var i = 0; i < msgs.length; i++) {
+            var msg = msgs[i];
+            var type = '';
+            switch (msg.type) {
+                case HTMLCS.ERROR:
+                    type = 'Error';
+                break;
+
+                case HTMLCS.WARNING:
+                    type = 'Warning';
+                break;
+
+                case HTMLCS.NOTICE:
+                    type = 'Notice';
+                break;
+
+                default:
+                    type = 'Unknown';
+                break;
+            }
+
+            // Get the success criterion so we can provide a link.
+            var msgParts = msg.code.split('.');
+            var sc = msgParts[3];
+
+            // Build a message code without the standard name.
+            msgParts.shift();
+            msgParts.unshift('[Standard]');
+            var noStdMsgParts = msgParts.join('.');
+
+            var foundClass = '';
+            var relevantText = '';
+            for (var j = 0; j < expectedMsgs.length; j++) {
+                if (expectedMsgs[j] === noStdMsgParts) {
+                    foundClass   = ' found';
+                    relevantText = ' [expected]';
+                    break;
+                }
+            }
+            for (var j = 0; j < testedMsgs.length; j++) {
+                if (testedMsgs[j] === noStdMsgParts) {
+                    foundClass   = ' failed';
+                    relevantText = ' [failed]';
+                    break;
+                }
+            }
+
+            content += '<tr class="' + type.toLowerCase() + foundClass + '">';
+            content += '<td class="number">' + (i + 1) + '</td>';
+            content += '<td class="assertType">' + type + '</td>'
+            content += '<td class="messageText">' + msg.msg + relevantText + '</td>';
+            content += '<td class="messageCode"><a href="../' + sc + '">' + msg.code + '</a></td></tr>';
+        }
+
+        content += '</table>';
+        resultsWrapper.innerHTML = content;
+
+    }
+</script>
+</head>
+<body>
+<h1>HTML_CodeSniffer Test Example 61</h1>
+<div class="subhead"><p>According to <a href="../1_3_1">Success Criterion 1.3.1: Info and Relationships</a>, most input fields should have a label associated with it. Preferably, this is through the use of the label attribute, although it is possible to use the title attribute if the visual design cannot accommodate a label.</p>
+
+<p>When a field uses the title attribute and does not have a label, HTML_CodeSniffer will challenge the author to confirm that the title attribute is indeed the most appropriate method for labelling that field.</p>
+</div>
+
+<h2>Code</h2>
+
+<pre><code id="examplecode">&lt;form&gt;
+    &lt;p&gt;&lt;input type=&quot;text&quot; id=&quot;inputField&quot; value=&quot;&quot; title=&quot;Input Field&quot; /&gt;&lt;/p&gt;
+&lt;/form&gt;</code></pre>
+
+<h2>Test</h2>
+<textarea id="source" style="display: none">&lt;form&gt;
+    &lt;p&gt;&lt;input type=&quot;text&quot; id=&quot;inputField&quot; value=&quot;&quot; title=&quot;Input Field&quot; /&gt;&lt;/p&gt;
+&lt;/form&gt;</textarea><select id="level" name="level">
+<option value="WCAG2A">Level A</option>
+<option value="WCAG2AA" selected="selected">Level AA</option>
+<option value="WCAG2AAA">Level AAA</option>
+</select>
+<button type="button" onclick="javascript:runHTMLCS();">Run HTML_CodeSniffer</button>
+<div id="resultsWrapper"></div>
+
+<h2>Expected Messages</h2>
+
+<h3>Warnings</h3><ul><li>[Standard].Principle1.Guideline1_3.1_3_1.H65</li></ul></body>
+</html>
