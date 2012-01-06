@@ -6,69 +6,21 @@
     <link rel="stylesheet" media="screen" href="./main.css">
     <script type="text/javascript" src="https://raw.github.com/squizlabs/HTML_CodeSniffer/master/HTMLCS.js"></script>
     <script>
-        function runHTMLCS()
-        {
-            var level = document.getElementById('level');
-            var source = document.getElementById('source');
-            HTMLCS.process(level.value, source.value, function() {
-                updateResults();
-            });
-        }
-
-        function updateResults()
-        {
-            var resultsWrapper = document.getElementById('resultsWrapper');
-            resultsWrapper.innerHTML = '';
-
-            var msgs = HTMLCS.getMessages();
-            if (msgs.length === 0) {
-                resultsWrapper.innerHTML = 'No errors found';
-                return;
-            }
-
-            var content = '<table border="1" cellpadding="5"><tr>';
-            content    += '<th>#</th><th>Type</th><th>Message</th><th>Code</th></tr>';
-
-            for (var i = 0; i < msgs.length; i++) {
-                var msg = msgs[i];
-                var type = '';
-                switch (msg.type) {
-                    case HTMLCS.ERROR:
-                        type = 'Error';
-                    break;
-
-                    case HTMLCS.WARNING:
-                        type = 'Warning';
-                    break;
-
-                    case HTMLCS.NOTICE:
-                        type = 'Notice';
-                    break;
-
-                    default:
-                        type = 'Unknown';
-                    break;
-                }
-
-                content += '<td>' + (i + 1) + '</td><td>' + type + '</td><td>' + msg.msg + '</td><td>' + msg.code + '</td></tr>';
-            }
-
-            content += '</table>';
-            resultsWrapper.innerHTML = content;
-
-        }
+    function runHTMLCSTest() {
+        runHTMLCS(document.getElementById('level').value, document.getElementById('source').value, document.getElementById('resultsWrapper'))
+    }
     </script>
+    <script type="text/javascript" src="http://squizlabs.github.com/HTML_CodeSniffer/eg.js"></script>
 </head>
 <body>
 <form id="runHTMLCS">
 <textarea id="source" style="width:100%; height:200px;"></textarea>
-<label for="level">Check for WCAG 2.0 Level:</label>
 <select id="level" name="level">
-<option value="WCAG2A">A</option>
-<option value="WCAG2AA" selected="selected">AA</option>
-<option value="WCAG2AAA">AAA</option>
+<option value="WCAG2A">Level A</option>
+<option value="WCAG2AA" selected="selected">Level AA</option>
+<option value="WCAG2AAA">Level AAA</option>
 </select>
-<button type="button" onclick="javascript:runHTMLCS();">Run HTML_CodeSniffer</button>&nbsp;
+<button type="button" onclick="javascript:runHTMLCSTest();">Run HTML_CodeSniffer</button>&nbsp;
 <a href="javascript:(function(){if(window['HTMLCS']) {HTMLCS.process('WCAG2AAA', document.body, function() {if (console.table) {console.table(HTMLCS.getMessages());} else {console.info(HTMLCS.getMessages());}}); return;} var s=document.createElement('script');s.type='text/javascript';s.src='https://raw.github.com/squizlabs/HTML_CodeSniffer/master/HTMLCS.js';document.body.appendChild(s); var t = setInterval(function() {if(!window['HTMLCS']) {return;} clearInterval(t);HTMLCS.process('WCAG2AAA', document.body, function() {console.table(HTMLCS.getMessages());});}, 100); })()">HTMLCS This Page</a> &lt;-- bookmarklet (at Level AAA)
 </form>
 <hr />

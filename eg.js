@@ -74,7 +74,7 @@ function updateResults(resultsWrapper, expectedMsgs, expectedOmissions)
         content += '<td class="number">' + (i + 1) + '</td>';
         content += '<td class="assertType">' + type + '</td>'
         content += '<td class="messageText">' + msg.msg + relevantText + '</td>';
-        content += '<td class="messageCode"><a href="../' + sc + '">' + msg.code + '</a></td></tr>';
+        content += '<td class="messageCode">' + msg.code + '</td></tr>';
     }
 
     content += '</table>';
