@@ -64,8 +64,8 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
         var nullAlt       = false;
 
         if (element.parentNode.nodeName.toLowerCase() === 'a') {
-            var prevNode = _getPreviousSiblingElement(element, null);
-            var nextNode = _getNextSiblingElement(element, null);
+            var prevNode = this._getPreviousSiblingElement(element, null);
+            var nextNode = this._getNextSiblingElement(element, null);
 
             if ((prevNode === null) && (nextNode === null)) {
                 linkOnlyChild = true;
