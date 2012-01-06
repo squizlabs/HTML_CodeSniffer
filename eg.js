@@ -1,6 +1,6 @@
 function runHTMLCS(standard, source, resultsDiv, expectedMsgs, expectedOmissions)
 {
-    resultsWrapper.innerHTML = '<em>Running...</em>';
+    resultsDiv.innerHTML = '<em>Running...</em>';
 
     HTMLCS.process(standard, source, function() {
         updateResults(resultsDiv, expectedMsgs, expectedOmissions);
