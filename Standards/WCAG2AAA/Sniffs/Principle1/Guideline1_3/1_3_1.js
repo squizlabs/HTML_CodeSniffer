@@ -79,7 +79,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
                 // Implicit labels (ie. labels with no "for" attribute but instead
                 // surround a label) fail this test, due to not having enough
                 // support from assistive technology.
-                HTMLCS.addMessage(HTMLCS.ERROR, element, 'Use the label element to explicitly associate a form control with a label, through the use of the "for" attribute.', 'H44.1');
+                HTMLCS.addMessage(HTMLCS.ERROR, element, 'Use the label element to explicitly associate a form control with a label, through the use of the "for" attribute.', 'H44.1.Implicit');
             } else {
                 var labelFor = labels[i].getAttribute('for');
                 if (this._labelNames[labelFor]) {
@@ -94,11 +94,9 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
             }//end if
         }//end for
 
-
-
         if ((element.hasAttribute('id') === false) && (isNoLabelControl === false)) {
             // There is no id attribute at all on the control.
-            HTMLCS.addMessage(HTMLCS.ERROR, element, 'Form control does not have an id, therefore it cannot have an explicit label.', 'H44');
+            HTMLCS.addMessage(HTMLCS.ERROR, element, 'Form control does not have an id, therefore it cannot have an explicit label.', 'H44.NoId');
         } else {
             var id = element.getAttribute('id');
             if (!this._labelNames[id]) {
@@ -128,7 +126,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
                 // reset, alt on image submit, button's content), or there is no
                 // visible field (hidden).
                 if (isNoLabelControl === true) {
-                    HTMLCS.addMessage(HTMLCS.ERROR, element, 'Label element should not be used for this type of form control.', 'H44');
+                    HTMLCS.addMessage(HTMLCS.ERROR, element, 'Label element should not be used for this type of form control.', 'H44.NoLabelAllowed');
                 } else {
                     var labelOnRight = false;
                     if (/^(checkbox|radio)$/.test(inputType) === true) {
@@ -155,9 +153,9 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
                     }
 
                     if ((labelOnRight === true) && (posDiff > 0)) {
-                        HTMLCS.addMessage(HTMLCS.ERROR, element, 'The label element for this control should be placed after this element.', 'H44.1');
+                        HTMLCS.addMessage(HTMLCS.ERROR, element, 'The label element for this control should be placed after this element.', 'H44.1.After');
                     } else if ((labelOnRight === false) && (posDiff < 0)) {
-                        HTMLCS.addMessage(HTMLCS.ERROR, element, 'The label element for this control should be placed before this element.', 'H44.1');
+                        HTMLCS.addMessage(HTMLCS.ERROR, element, 'The label element for this control should be placed before this element.', 'H44.1.Before');
                     }
                 }//end if
             }//end if
@@ -238,30 +236,30 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
             }
         } else {
             if (scopeAttr.used === true) {
-                HTMLCS.addMessage(HTMLCS.WARNING, table, 'Scope attributes are ambiguous in a multi-level structure. Use the headers attribute on td elements instead.', 'H43');
+                HTMLCS.addMessage(HTMLCS.WARNING, table, 'Scope attributes are ambiguous in a multi-level structure. Use the headers attribute on td elements instead.', 'H43.ScopeAmbiguous');
                 scopeAttr = null;
             }
         }//end if
 
         // Incorrect usage of headers - error; emit always.
         for (var i = 0; i < headersAttr.wrongHeaders.length; i++) {
-            HTMLCS.addMessage(HTMLCS.ERROR, headersAttr.wrongHeaders[i].element, 'Incorrect headers attribute, expected "' + headersAttr.wrongHeaders[i].expected + '" but found "' + headersAttr.wrongHeaders[i].actual + '"', 'H43');
+            HTMLCS.addMessage(HTMLCS.ERROR, headersAttr.wrongHeaders[i].element, 'Incorrect headers attribute, expected "' + headersAttr.wrongHeaders[i].expected + '" but found "' + headersAttr.wrongHeaders[i].actual + '"', 'H43.IncorrectAttr');
         }
 
         // Errors where headers are compulsory.
         if ((headersAttr.required === true) && (headersAttr.allowScope === false)) {
             if (headersAttr.used === false) {
                 // Headers not used at all, and they are mandatory.
-                HTMLCS.addMessage(HTMLCS.ERROR, table, 'Associate data cells with multi-level table headings using the headers attribute.', 'H43');
+                HTMLCS.addMessage(HTMLCS.ERROR, table, 'Associate data cells with multi-level table headings using the headers attribute.', 'H43.HeadersRequired');
             } else {
                 // Missing TH IDs - error; emit at this stage only if headers are compulsory.
                 if (headersAttr.missingThId.length > 0) {
-                    HTMLCS.addMessage(HTMLCS.ERROR, table, 'Check that all th elements contain an id attribute, so that they may be referenced by the headers attribute.', 'H43');
+                    HTMLCS.addMessage(HTMLCS.ERROR, table, 'Check that all th elements contain an id attribute, so that they may be referenced by the headers attribute.', 'H43.MissingHeaderIds');
                 }
 
                 // Missing TD headers attributes - error; emit at this stage only if headers are compulsory.
                 if (headersAttr.missingTd.length > 0) {
-                    HTMLCS.addMessage(HTMLCS.ERROR, table, 'Check that all td elements contain a headers attribute that lists the id for all headers associated with that cell.', 'H43');
+                    HTMLCS.addMessage(HTMLCS.ERROR, table, 'Check that all td elements contain a headers attribute that lists the id for all headers associated with that cell.', 'H43.MissingHeadersAttrs');
                 }
             }//end if
         }//end if
@@ -278,12 +276,12 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
             } else if ((scopeAttr.used === false) && ((headersAttr.missingThId.length > 0) || (headersAttr.missingTd.length > 0))) {
                 // Headers attribute is used, but not all th elements have ids.
                 if (headersAttr.missingThId.length > 0) {
-                    HTMLCS.addMessage(HTMLCS.ERROR, table, 'Check that all th elements contain an id attribute, so that they may be referenced by the headers attribute.', 'H43');
+                    HTMLCS.addMessage(HTMLCS.ERROR, table, 'Check that all th elements contain an id attribute, so that they may be referenced by the headers attribute.', 'H43.MissingHeaderIds');
                 }
 
                 // Headers attribute is used, but not all td elements have headers attrs.
                 if (headersAttr.missingTd.length > 0) {
-                    HTMLCS.addMessage(HTMLCS.ERROR, table, 'Check that all td elements contain a headers attribute that lists the id for all headers associated with that cell.', 'H43');
+                    HTMLCS.addMessage(HTMLCS.ERROR, table, 'Check that all td elements contain a headers attribute that lists the id for all headers associated with that cell.', 'H43.MissingHeadersAttrs');
                 }
             } else if ((scopeAttr.missing.length > 0) && (headersAttr.used === false)) {
                 // Scope is used rather than headers, but not all th elements have them.
@@ -602,15 +600,15 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
                 HTMLCS.addMessage(HTMLCS.ERROR, table, 'If both a summary attribute and a caption element are present for this data table, the summary should not duplicate the caption.', 'H39,H73.4');
             }
 
-            HTMLCS.addMessage(HTMLCS.NOTICE, table, 'Check that the summary attribute describes the table\'s organization or explains how to use the table.', 'H73.3');
+            HTMLCS.addMessage(HTMLCS.NOTICE, table, 'Check that the summary attribute describes the table\'s organization or explains how to use the table.', 'H73.3.Check');
         } else {
-            HTMLCS.addMessage(HTMLCS.NOTICE, table, 'Consider using the summary attribute of the table element to give an overview of this data table.', 'H73.3');
+            HTMLCS.addMessage(HTMLCS.NOTICE, table, 'Consider using the summary attribute of the table element to give an overview of this data table.', 'H73.3.NoSummary');
         }//end if
 
         if (caption !== '') {
-            HTMLCS.addMessage(HTMLCS.NOTICE, table, 'Check that the caption attribute accurately describes this table.', 'H39.3');
+            HTMLCS.addMessage(HTMLCS.NOTICE, table, 'Check that the caption attribute accurately describes this table.', 'H39.3.Check');
         } else {
-            HTMLCS.addMessage(HTMLCS.NOTICE, table, 'Consider using a caption element to the table element to identify this data table.', 'H39.3');
+            HTMLCS.addMessage(HTMLCS.NOTICE, table, 'Consider using a caption element to the table element to identify this data table.', 'H39.3.NoCaption');
         }
     },
 

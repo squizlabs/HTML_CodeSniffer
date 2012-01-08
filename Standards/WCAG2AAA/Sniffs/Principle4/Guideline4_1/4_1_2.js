@@ -26,27 +26,27 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
             select: ['label', '@title'],
             textarea: ['label', '@title'],
         }
-        
+
         var requiredValues = {
             a: '@title',
             input_text: '@value',
             select: 'option_selected',
             textarea: '_content',
         };
-        
+
         var nodeName = element.nodeName.toLowerCase();
         if (nodeName === 'input') {
             nodeName += '_' + element.getAttribute('type').toLowerCase();
-            
+
             // Treat all input buttons as the same
             if ((nodeName === 'input_submit') || (nodeName === 'input_reset')) {
                 nodeName = 'input_button';
             }
         }//end if
-        
+
         var requiredName  = requiredNames[nodeName];
         var requiredValue = requiredValues[nodeName];
-        
+
         // Check all possible combinations of names to ensure that one exists.
         for (var i = 0; i < requiredNames[nodeName].length; i++) {
             var requiredName = requiredNames[nodeName][i];
@@ -81,14 +81,14 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
                 }
             }//end if
         }//end for
-        
+
         if (i === requiredNames[nodeName].length) {
-            HTMLCS.addMessage(HTMLCS.ERROR, element, 'Check that this form control has a name that is available to an accessibility API.', 'H91');
+            HTMLCS.addMessage(HTMLCS.ERROR, element, 'Check that this form control has a name that is available to an accessibility API.', 'H91.Name');
         }
-        
+
         var requiredValue = requiredValues[nodeName];
         var valueFound    = false;
-        
+
         if (requiredValue === undefined) {
             // Nothing required of us.
             valueFound = true;
@@ -111,12 +111,12 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
                 valueFound = true;
             }
         }//end if
-        
+
         if (valueFound === false) {
-            HTMLCS.addMessage(HTMLCS.ERROR, element, 'Check that this form control has a value that is available to an accessibility API.', 'H91');
+            HTMLCS.addMessage(HTMLCS.ERROR, element, 'Check that this form control has a value that is available to an accessibility API.', 'H91.Value');
         }
     },
-    
+
     _getElementTextContent: function(element, includeAlt)
     {
         if (includeAlt === undefined) {

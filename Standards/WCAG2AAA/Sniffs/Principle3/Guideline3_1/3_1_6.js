@@ -14,9 +14,9 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_1_3_1_6 = {
             // the presumption is that we are using HTML5 that uses the body of the ruby
             // element for the same purpose (otherwise, assume XHTML 1.1 with rb element).
             if (rb.length === 0) {
-                HTMLCS.addMessage(HTMLCS.ERROR, top, 'Check that a rt element contains pronunciation information for each run of text defined by the body of the ruby element.', 'H62.1');
+                HTMLCS.addMessage(HTMLCS.ERROR, top, 'Check that a rt element contains pronunciation information for each run of text defined by the body of the ruby element.', 'H62.1.HTML5');
             } else {
-                HTMLCS.addMessage(HTMLCS.ERROR, top, 'Check that a rt element contains pronunciation information for each run of text defined by the rb element.', 'H62.1');
+                HTMLCS.addMessage(HTMLCS.ERROR, top, 'Check that a rt element contains pronunciation information for each run of text defined by the rb element.', 'H62.1.XHTML11');
             }
         }
 

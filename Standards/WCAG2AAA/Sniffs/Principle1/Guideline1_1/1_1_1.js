@@ -95,7 +95,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
                         HTMLCS.addMessage(HTMLCS.WARNING, element, 'Img element is marked so that it is ignored by Assistive Technology.', 'H67.2');
                     }
                 } else {
-                    HTMLCS.addMessage(HTMLCS.NOTICE, element, 'Ensure that the img element\'s alt text serves the same purpose and presents the same information as the image.', 'G94');
+                    HTMLCS.addMessage(HTMLCS.NOTICE, element, 'Ensure that the img element\'s alt text serves the same purpose and presents the same information as the image.', 'G94.Image');
                 }
             break;
 
@@ -104,7 +104,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
                 if ((missingAlt === true) || (nullAlt === true)) {
                     HTMLCS.addMessage(HTMLCS.ERROR, element, 'When using an image submit button, specify a short text alternative with the alt attribute that describes the function of the button.', 'H36');
                 } else {
-                    HTMLCS.addMessage(HTMLCS.NOTICE, element, 'Ensure that the image submit button\'s alt text identifies the purpose of the button.', 'G94');
+                    HTMLCS.addMessage(HTMLCS.NOTICE, element, 'Ensure that the image submit button\'s alt text identifies the purpose of the button.', 'G94.Button');
                 }
             break;
 
@@ -256,7 +256,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
             if (textAlt === '') {
                 HTMLCS.addMessage(HTMLCS.ERROR, element, 'Check that the body of each object element contains a text alternative for the object.', 'H53');
             } else {
-                HTMLCS.addMessage(HTMLCS.NOTICE, element, 'Check that short (and if appropriate, long) text alternatives are available for non-text content that serve the same purpose and presents the same information.', 'G94,G92');
+                HTMLCS.addMessage(HTMLCS.NOTICE, element, 'Check that short (and if appropriate, long) text alternatives are available for non-text content that serve the same purpose and presents the same information.', 'G94,G92.Object');
             }
         }//end if
     },
@@ -299,7 +299,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
 
         if (hasError === false) {
             // No error? Remind of obligations about equivalence of alternatives.
-            HTMLCS.addMessage(HTMLCS.NOTICE, element, 'Check that short (and if appropriate, long) text alternatives are available for non-text content that serve the same purpose and presents the same information.', 'G94,G92');
+            HTMLCS.addMessage(HTMLCS.NOTICE, element, 'Check that short (and if appropriate, long) text alternatives are available for non-text content that serve the same purpose and presents the same information.', 'G94,G92.Applet');
         }
     },
 
