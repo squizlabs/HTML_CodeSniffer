@@ -1,4 +1,12 @@
 var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
+    /**
+     * Determines the elements to register for processing.
+     *
+     * Each element of the returned array can either be an element name, or "_top"
+     * which is the top element of the tested code.
+     *
+     * @returns {Array} The list of elements.
+     */
     register: function()
     {
         return [
@@ -11,7 +19,13 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
 
     },
 
-    process: function(element)
+    /**
+     * Process the registered element.
+     *
+     * @param {DOMNode} element The element registered.
+     * @param {DOMNode} top     The top element of the tested code.
+     */
+    process: function(element, top)
     {
         var nodeName = element.nodeName.toLowerCase();
 
@@ -124,10 +138,16 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
     },
 
     /**
-     * Test for missing or null alt text in certain elements.
+     * Test for longdesc attributes on images (technique H45).
      *
-     * Tested elements are:
-     * - IMG elements
+     * We flag messages when:
+     * - No longdesc attribute is present - a warning to ensure authors add a long
+     *   alternative (using longdesc or some other alternative).
+     * - A warning when the longdesc is not an absolute URI - to make authors check
+     *   whether the text entered is indeed a relative URI, instead of a mistake (eg.
+     *   directly entering the long alternative into longdesc).
+     * - A notice to ensure the content of the longdesc is what it should be - a long
+     *   text alternative for the image.
      *
      * @param {DOMNode} element The element to test.
      *
@@ -160,6 +180,19 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
         }
     },
 
+    /**
+     * Test for link stutter with adjacent images and text (technique H2).
+     *
+     * Only runs on IMG elements contained inside an anchor (A) element. We test that
+     * its alt text does not duplicate the text content of a link directly beside it.
+     * We also test that the technique hasn't been applied incorrectly (Failure
+     * Examples 4 and 5 in technique H2).
+     *
+     * Error messages are given codes in the form "H2.EG5", meaning it is a case of
+     * the applicable failure example (3, 4, or 5).
+     *
+     * @param {DOMNode} element The image element to test.
+     */
     testLinkStutter: function(element)
     {
         if (element.parentNode.nodeName.toLowerCase() === 'a') {
@@ -234,7 +267,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
     },
 
     /**
-     * Test the inclusion of a text alternative on OBJECT tags.
+     * Test the inclusion of a text alternative on OBJECT tags (technique H53).
      *
      * OBJECT tags can be nested inside themselves to provide lesser-functioning
      * alternatives to the primary (outermost) tag, but a text alternative must be
@@ -262,7 +295,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
     },
 
     /**
-     * Test the inclusion of a text alternative on APPLET tags.
+     * Test the inclusion of a text alternative on APPLET tags (technique H35).
      *
      * These might still be used in HTML 4.01 and XHTML 1.0 Transitional DTDs. Both
      * alt text and body text alternative are required: Oracle's docs state that
@@ -303,6 +336,14 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
         }
     },
 
+    /**
+     * Gets the text contents of an element.
+     *
+     * @param {DOMNode} element           The element being inspected.
+     * @param {Boolean} [includeAlt=true] Include alt text from images.
+     *
+     * @returns {String} The text contents.
+     */
     _getElementTextContent: function(element, includeAlt)
     {
         if (includeAlt === undefined) {
@@ -342,6 +383,13 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
         return text;
     },
 
+    /**
+     * Gets just the alt text from any images on a link.
+     *
+     * @param {DOMNode} anchor The link element being inspected.
+     *
+     * @returns {String} The alt text.
+     */
     _getLinkAltText: function(anchor)
     {
         var anchor = anchor.cloneNode(true);
@@ -432,19 +480,19 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
     },
 
     /**
-     * Get the previous sibling element.
+     * Get the next sibling element.
      *
-     * This is a substitute for previousSibling where there are text, comment and
+     * This is a substitute for nextSibling where there are text, comment and
      * other nodes between elements.
      *
      * If tagName is null, immediate is ignored and effectively defaults to true: the
-     * previous element will be returned regardless of what it is.
+     * next element will be returned regardless of what it is.
      *
      * @param {DOMNode} element           Element to start from.
      * @param {String}  [tagName=null]    Only match this tag. If null, match any.
      *                                    Not case-sensitive.
      * @param {Boolean} [immediate=false] Only match if the tag in tagName is the
-     *                                    immediately preceding non-whitespace node.
+     *                                    immediately following non-whitespace node.
      *
      * @returns {DOMNode} The appropriate node or null if none is found.
      */

@@ -18,6 +18,12 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
 
     },
 
+    /**
+     * Process the registered element.
+     *
+     * @param {DOMNode} element The element registered.
+     * @param {DOMNode} top     The top element of the tested code.
+     */
     process: function(element, top)
     {
         var nodeName = element.nodeName.toLowerCase();
@@ -59,6 +65,23 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
         }//end if
     },
 
+    /**
+     * Test for appropriate labels on inputs.
+     *
+     * HTML_CodeSniffer tests:
+     * - whether a form control has a label associated with it,
+     * - how it is associated (implicit labels are not accessible - only use
+     *   explicit labels, ie. "for" attribute),
+     * - whether said form control should have a label at all (buttons shouldn't),
+     * - whether the label is placed correctly (it should be after radio buttons and
+     *   check boxes, but before text boxes and select lists).
+     *
+     * The label position test is just "is it on the correct side". Proximity is
+     * not tested.
+     *
+     * @param {DOMNode} element The element registered.
+     * @param {DOMNode} top     The top element of the tested code.
+     */
     testLabelsOnInputs: function(element, top)
     {
         var nodeName  = element.nodeName.toLowerCase();
@@ -162,6 +185,16 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
         }//end if
     },
 
+    /**
+     * Test for the use of presentational elements (technique H49).
+     *
+     * In HTML4, certain elements are considered presentational code. In HTML5, they
+     * are redefined (based on "they are being used, so they shouldn't be
+     * deprecated") so they can be considered "somewhat" semantic. They should still
+     * be considered a last resort.
+     *
+     * @param [DOMNode] top The top element of the tested code.
+     */
     testPresentationMarkup: function(top)
     {
         // Presentation tags and attributes that should have no place in modern HTML.
@@ -172,6 +205,15 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
         }
     },
 
+    /**
+     * Test for the possible use of non-semantic headings (technique H42).
+     *
+     * Test for P|DIV > STRONG|EM|other inline styling, when said inline
+     * styling tag is the only element in the tag. It could possibly be a header
+     * that should be using h1..h6 tags instead.
+     *
+     * @param [DOMNode] element The paragraph or DIV element to test.
+     */
     testNonSemanticHeading: function(element)
     {
         // Test for P|DIV > STRONG|EM|other inline styling, when said inline
@@ -585,6 +627,11 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
         return retval;
     },
 
+    /**
+     * Test table captions and summaries (techniques H39, H73).
+     *
+     * @param {DOMNode} table Table element to test upon.
+     */
     testTableCaptionSummary: function(table) {
         var summary   = table.getAttribute('summary') || '';
         var captionEl = table.getElementsByTagName('caption');
@@ -612,6 +659,11 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
         }
     },
 
+    /**
+     * Test for fieldsets without legends (technique H71)
+     *
+     * @param {DOMNode} fieldset Fieldset element to test upon.
+     */
     testFieldsetLegend: function(fieldset) {
         var legend = fieldset.querySelector('legend');
 
@@ -620,6 +672,13 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
         }
     },
 
+    /**
+     * Test for select fields without optgroups (technique H85).
+     *
+     * It won't always be appropriate, so the error is emitted as a warning.
+     *
+     * @param {DOMNode} select Select element to test upon.
+     */
     testOptgroup: function(select) {
         var optgroup = select.querySelector('optgroup');
 
@@ -674,6 +733,11 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
         }//end for
     },
 
+    /**
+     * Test for paragraphs that appear manually bulleted or numbered (technique H48).
+     *
+     * @param {DOMNode} element The element to test upon.
+     */
     testListsWithBreaks: function(element) {
         var firstBreak = element.querySelector('br');
         var items      = [];

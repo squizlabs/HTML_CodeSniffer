@@ -1,10 +1,24 @@
 var HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_2_3_2_2 = {
+    /**
+     * Determines the elements to register for processing.
+     *
+     * Each element of the returned array can either be an element name, or "_top"
+     * which is the top element of the tested code.
+     *
+     * @returns {Array} The list of elements.
+     */
     register: function()
     {
         return ['form'];
 
     },
 
+    /**
+     * Process the registered element.
+     *
+     * @param {DOMNode} element The element registered.
+     * @param {DOMNode} top     The top element of the tested code.
+     */
     process: function(element, top)
     {
         var nodeName = element.nodeName.toLowerCase();
@@ -14,6 +28,11 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_2_3_2_2 = {
         }
     },
 
+    /**
+     * Test for forms that don't have a submit button of some sort (technique H32).
+     *
+     * @param {DOMNode} form The form to test.
+     */
     checkFormSubmitButton: function(form)
     {
         // Test for one of the three types of submit buttons.

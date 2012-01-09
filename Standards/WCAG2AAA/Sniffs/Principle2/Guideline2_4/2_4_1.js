@@ -1,4 +1,12 @@
 var HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_4_2_4_1 = {
+    /**
+     * Determines the elements to register for processing.
+     *
+     * Each element of the returned array can either be an element name, or "_top"
+     * which is the top element of the tested code.
+     *
+     * @returns {Array} The list of elements.
+     */
     register: function()
     {
         return [
@@ -11,7 +19,13 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_4_2_4_1 = {
 
     },
 
-    process: function(element)
+    /**
+     * Process the registered element.
+     *
+     * @param {DOMNode} element The element registered.
+     * @param {DOMNode} top     The top element of the tested code.
+     */
+    process: function(element, top)
     {
         var nodeName = element.nodeName.toLowerCase();
 
@@ -30,7 +44,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_4_2_4_1 = {
     },
 
     /**
-     * Test for the presence of title attributes on the iframe element.
+     * Test for the presence of title attributes on the iframe element (technique H64).
      *
      * @param {DOMNode} element The element to test.
      *
@@ -57,7 +71,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_4_2_4_1 = {
     },
 
     /**
-     * Test for the presence of the map element for grouping links.
+     * Test for the presence of the map element for grouping links (technique H50).
      *
      * @param {DOMNode} element The element to test.
      *

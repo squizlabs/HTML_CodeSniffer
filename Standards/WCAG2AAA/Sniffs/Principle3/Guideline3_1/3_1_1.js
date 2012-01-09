@@ -1,11 +1,25 @@
 var HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_1_3_1_1 = {
+    /**
+     * Determines the elements to register for processing.
+     *
+     * Each element of the returned array can either be an element name, or "_top"
+     * which is the top element of the tested code.
+     *
+     * @returns {Array} The list of elements.
+     */
     register: function()
     {
         return ['html'];
 
     },
 
-    process: function(element)
+    /**
+     * Process the registered element.
+     *
+     * @param {DOMNode} element The element registered.
+     * @param {DOMNode} top     The top element of the tested code.
+     */
+    process: function(element, top)
     {
         if ((element.hasAttribute('lang') === false) && (element.hasAttribute('xml:lang') === false)) {
             // TODO: if we can tell whether it's HTML or XHTML, we should split this
@@ -29,6 +43,17 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_1_3_1_1 = {
 
     },
 
+
+    /**
+     * Test for well-formed language tag as per IETF BCP 47.
+     *
+     * Note that this checks only for well-formedness, not whether the subtags are
+     * actually on the registered subtags list.
+     *
+     * @param {String} langTag The language tag to test.
+     *
+     * @returns {Boolean} the result of the regex test.
+     */
     isValidLanguageTag: function(langTag)
     {
         // Allow irregular or private-use tags starting with 'i' or 'x'.
