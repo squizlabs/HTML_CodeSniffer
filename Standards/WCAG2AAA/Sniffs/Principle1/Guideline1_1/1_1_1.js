@@ -88,7 +88,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
 
         if (element.hasAttribute('alt') === false) {
             missingAlt = true;
-        } else if (!element.getAttribute('alt') || /^\s*$/.test(element.getAttribute('alt')) === true) {
+        } else if (!element.getAttribute('alt') || HTMLCS.isStringEmpty(element.getAttribute('alt')) === true) {
             nullAlt = true;
         }
 
@@ -103,7 +103,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
                 } else if (missingAlt === true) {
                     HTMLCS.addMessage(HTMLCS.ERROR, element, 'When using the img element, specify a short text alternative with the alt attribute.', 'H37');
                 } else if (nullAlt === true) {
-                    if ((element.hasAttribute('title') === true) && (/^\s*$/.test(element.getAttribute('title')) === false)) {
+                    if ((element.hasAttribute('title') === true) && (HTMLCS.isStringEmpty(element.getAttribute('title')) === false)) {
                         // Title attribute present and not empty. This is wrong when
                         // an image is marked as ignored.
                         HTMLCS.addMessage(HTMLCS.ERROR, element, 'Img element with empty alt text must have absent or empty title attribute.', 'H67.1');
@@ -327,7 +327,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
         }//end if
 
         var altAttr = element.getAttribute('alt') || '';
-        if (/^\s*$/.test(altAttr) === '') {
+        if (HTMLCS.isStringEmpty(altAttr) === '') {
             HTMLCS.addMessage(HTMLCS.ERROR, element, 'Check that the applet element contains an alt attribute with a text alternative for the applet.', 'H35.2');
             hasError = true;
         }
@@ -454,7 +454,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
         var prevNode = element.previousSibling;
         while (prevNode !== null) {
             if (prevNode.nodeType === 3) {
-                if ((/^\s*$/.test(prevNode.nodeValue) === false) && (immediate === true)) {
+                if ((HTMLCS.isStringEmpty(prevNode.nodeValue) === false) && (immediate === true)) {
                     // Failed. Immediate node requested and we got text instead.
                     prevNode = null;
                     break;
@@ -510,7 +510,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
         var nextNode = element.nextSibling;
         while (nextNode !== null) {
             if (nextNode.nodeType === 3) {
-                if ((/^\s*$/.test(nextNode.nodeValue) === false) && (immediate === true)) {
+                if ((HTMLCS.isStringEmpty(nextNode.nodeValue) === false) && (immediate === true)) {
                     // Failed. Immediate node requested and we got text instead.
                     nextNode = null;
                     break;

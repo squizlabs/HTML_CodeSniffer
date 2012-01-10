@@ -495,4 +495,28 @@ var HTMLCS = new function()
         return elArray;
     };
 
+    /**
+     * Returns whether a string is considered "empty" in HTML terms.
+     *
+     * A simple regex on whitespace is not enough, because it does not take into
+     * account non-breaking spaces (&nbsp;), which are NOT considered empty.
+     *
+     * @param {String} string The string to test.
+     *
+     * @returns {Boolean} True if empty.
+     */
+    this.isStringEmpty = function(string) {
+        var empty = true;
+
+        if (string.indexOf(String.fromCharCode(160)) !== -1) {
+            // Has an NBSP, therefore cannot be empty.
+            empty = false;
+        } else if (/^\s*$/.test(string) === false) {
+            // Not spacing.
+            empty = false;
+        }
+
+        return empty;
+    };
+
 };
