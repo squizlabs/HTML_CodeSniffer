@@ -320,14 +320,14 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
         // may understand OBJECT, but APPLET shouldn't be nested.)
         if (childObject === null) {
             var textAlt = this._getElementTextContent(element, true);
-            if (textAlt === '') {
+            if (HTMLCS.isStringEmpty(textAlt) === true) {
                 HTMLCS.addMessage(HTMLCS.ERROR, element, 'Check that the applet element contains a text alternative for the applet in the body of the applet element.', 'H35.3');
                 hasError = true;
             }
         }//end if
 
         var altAttr = element.getAttribute('alt') || '';
-        if (HTMLCS.isStringEmpty(altAttr) === '') {
+        if (HTMLCS.isStringEmpty(altAttr) === true) {
             HTMLCS.addMessage(HTMLCS.ERROR, element, 'Check that the applet element contains an alt attribute with a text alternative for the applet.', 'H35.2');
             hasError = true;
         }
