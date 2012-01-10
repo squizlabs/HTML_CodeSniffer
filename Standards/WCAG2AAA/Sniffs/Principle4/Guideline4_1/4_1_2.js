@@ -37,6 +37,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
             input_password: ['label', '@title'],
             input_checkbox: ['label', '@title'],
             input_radio: ['label', '@title'],
+            input_image: ['@alt', '@title'],
             select: ['label', '@title'],
             textarea: ['label', '@title'],
         }
