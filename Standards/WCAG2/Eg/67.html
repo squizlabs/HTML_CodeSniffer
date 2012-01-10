@@ -31,7 +31,7 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
     ];
 
     var expectedOmissions = [
-        '[Standard].Principle3.Guideline3_1.3_1_2.H58.1'
+        '[Standard].Principle3.Guideline3_1.3_1_2.H58.1.Lang', '[Standard].Principle3.Guideline3_1.3_1_2.H58.1.XmlLang'
     ];
 
     function runHTMLCSExample() {
@@ -43,9 +43,12 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
 </head>
 <body>
 <h1>HTML_CodeSniffer Test Example 67</h1>
-<div class="subhead"><p><a href="../3_1_2">Success Criterion 3.1.2 (Language of Parts)</a> states that the changes in language should be marked using language attributes to qualify for <abbr title="Double A">AA</abbr> conformance.</p>
+<div class="subhead">
+<p style="text-align: center">
+<a href="66">&larr; Example 66</a> | <a href="68">Example 68 &rarr;</a></p>
+<p><a href="../3_1_2">Success Criterion 3.1.2 (Language of Parts)</a> states that the changes in language should be marked using language attributes to qualify for <abbr title="Double A">AA</abbr> conformance.</p>
 
-<p>This example should test the usage of lang and xml:lang attributes on a normal element that are well-formed, but not likely valid. HTML_CodeSniffer cannot vouch for the validity of otherwise well-formed tags. For instance, the "en-AUS" example below is well-formed because the "en" can be followed by a two-character country, three-character "extlang", or four-character script subtag - therefore it will parse as language and extlang. It is likely not what the author intended, which is likely "en-AU", and would not be valid if it was compared against the IANA language register.</p>
+<p>This example should test the usage of lang and xml:lang attributes on a normal element that are well-formed, but not likely valid. HTML&#95;CodeSniffer cannot vouch for the validity of otherwise well-formed tags. For instance, the "en-AUS" example below is well-formed because the "en" can be followed by a two-character country, three-character "extlang", or four-character script subtag - therefore it will parse as language and extlang. It is likely not what the author intended, which is likely "en-AU", and would not be valid if it was compared against the IANA language register.</p>
 </div>
 
 <h2>Code</h2>
@@ -59,13 +62,13 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
 &lt;div lang=&quot;english&quot; xml:lang=&quot;english&quot;&gt;Seven character language subtag &quot;english&quot; - well-formed but needs to be registered if 5-8 characters. No languages have been registered with longer subtag names.&lt;/div&gt;
 &lt;div lang=&quot;en-AUS&quot; xml:lang=&quot;en-AUS&quot;&gt;Tag &quot;en-AUS&quot; - well-formed because it will be interpreted as a language plus extlang, rather than language plus country&lt;/div&gt;</textarea><select id="level" name="level">
 <option value="WCAG2A">Level A</option>
-<option value="WCAG2AA" selected="selected">Level AA</option>
-<option value="WCAG2AAA">Level AAA</option>
+<option value="WCAG2AA">Level AA</option>
+<option value="WCAG2AAA" selected="selected">Level AAA</option>
 </select>
 <button type="button" onclick="javascript:runHTMLCSExample();">Run HTML_CodeSniffer</button>
 <div id="resultsWrapper"></div>
 
 <h2>Expected Messages</h2>
 
-<h3>Messages that should NOT appear</h3><ul><li>[Standard].Principle3.Guideline3_1.3_1_2.H58.1</li></ul></body>
+<h3>Messages that should NOT appear</h3><ul><li>[Standard].Principle3.Guideline3_1.3_1_2.H58.1.Lang</li><li>[Standard].Principle3.Guideline3_1.3_1_2.H58.1.XmlLang</li></ul></body>
 </html>

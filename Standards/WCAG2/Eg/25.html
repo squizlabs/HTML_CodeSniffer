@@ -27,7 +27,7 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
 <script type="text/javascript" src="https://raw.github.com/squizlabs/HTML_CodeSniffer/master/HTMLCS.js"></script>
 <script>
     var expectedMsgs = [
-        '[Standard].Principle1.Guideline1_3.1_3_1.H43'
+        '[Standard].Principle1.Guideline1_3.1_3_1.H43.IncorrectAttr'
     ];
 
     var expectedOmissions = [
@@ -43,9 +43,12 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
 </head>
 <body>
 <h1>HTML_CodeSniffer Test Example 25</h1>
-<div class="subhead"><p>According to <a href="../1_3_1">Success Criterion 1.3.1: Info and Relationships</a>, the relationship between table headings and table data (ie. th and td elements) must be programmatically determinable. This can be done using either the scope or headers attributes, depending on the number and type of headings.</p>
+<div class="subhead">
+<p style="text-align: center">
+<a href="24">&larr; Example 24</a> | <a href="26">Example 26 &rarr;</a></p>
+<p>According to <a href="../1_3_1">Success Criterion 1.3.1: Info and Relationships</a>, the relationship between table headings and table data (ie. th and td elements) must be programmatically determinable. This can be done using either the scope or headers attributes, depending on the number and type of headings.</p>
 
-<p>In this case, the table data cell named "Cell 1Aii" does not contain all of the headings (it is missing the second level). HTML_CodeSniffer will tell you what it expected the headers attribute to be in this case.</p>
+<p>In this case, the table data cell named "Cell 1Aii" does not contain all of the headings (it is missing the second level). HTML&#95;CodeSniffer will tell you what it expected the headers attribute to be in this case.</p>
 </div>
 
 <h2>Code</h2>
@@ -91,13 +94,13 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
     &lt;/tbody&gt;
 &lt;/table&gt;</textarea><select id="level" name="level">
 <option value="WCAG2A">Level A</option>
-<option value="WCAG2AA" selected="selected">Level AA</option>
-<option value="WCAG2AAA">Level AAA</option>
+<option value="WCAG2AA">Level AA</option>
+<option value="WCAG2AAA" selected="selected">Level AAA</option>
 </select>
 <button type="button" onclick="javascript:runHTMLCSExample();">Run HTML_CodeSniffer</button>
 <div id="resultsWrapper"></div>
 
 <h2>Expected Messages</h2>
 
-<h3>Errors</h3><ul><li>[Standard].Principle1.Guideline1_3.1_3_1.H43</li></ul></body>
+<h3>Errors</h3><ul><li>[Standard].Principle1.Guideline1_3.1_3_1.H43.IncorrectAttr</li></ul></body>
 </html>

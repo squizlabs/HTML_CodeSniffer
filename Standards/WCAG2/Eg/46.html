@@ -43,7 +43,10 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
 </head>
 <body>
 <h1>HTML_CodeSniffer Test Example 46</h1>
-<div class="subhead"><p>According to <a href="../1_1_1">Success Criterion 1.1.1: Non-text Content</a>, all non-text content, including embedded objects, should contain a text alternative.</p>
+<div class="subhead">
+<p style="text-align: center">
+<a href="45">&larr; Example 45</a> | <a href="47">Example 47 &rarr;</a></p>
+<p>According to <a href="../1_1_1">Success Criterion 1.1.1: Non-text Content</a>, all non-text content, including embedded objects, should contain a text alternative.</p>
 
 <p>This example should emit an error for having an empty alternative, which for object elements should be in the body of the element.</p>
 </div>
@@ -57,8 +60,8 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
 <textarea id="source" style="display: none">&lt;object src=&quot;htmlcs.png&quot; type=&quot;image/png&quot;&gt;
 &lt;/object&gt;</textarea><select id="level" name="level">
 <option value="WCAG2A">Level A</option>
-<option value="WCAG2AA" selected="selected">Level AA</option>
-<option value="WCAG2AAA">Level AAA</option>
+<option value="WCAG2AA">Level AA</option>
+<option value="WCAG2AAA" selected="selected">Level AAA</option>
 </select>
 <button type="button" onclick="javascript:runHTMLCSExample();">Run HTML_CodeSniffer</button>
 <div id="resultsWrapper"></div>

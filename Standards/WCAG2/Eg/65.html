@@ -31,7 +31,7 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
     ];
 
     var expectedOmissions = [
-        '[Standard].Principle3.Guideline3_1.3_1_2.H58.1'
+        '[Standard].Principle3.Guideline3_1.3_1_2.H58.1.Lang', '[Standard].Principle3.Guideline3_1.3_1_2.H58.1.XmlLang'
     ];
 
     function runHTMLCSExample() {
@@ -43,7 +43,10 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
 </head>
 <body>
 <h1>HTML_CodeSniffer Test Example 65</h1>
-<div class="subhead"><p><a href="../3_1_2">Success Criterion 3.1.2 (Language of Parts)</a> states that the changes in language should be marked using language attributes to qualify for <abbr title="Double A">AA</abbr> conformance.</p>
+<div class="subhead">
+<p style="text-align: center">
+<a href="64">&larr; Example 64</a> | <a href="66">Example 66 &rarr;</a></p>
+<p><a href="../3_1_2">Success Criterion 3.1.2 (Language of Parts)</a> states that the changes in language should be marked using language attributes to qualify for <abbr title="Double A">AA</abbr> conformance.</p>
 
 <p>This example should successfully test the usage of lang and xml:lang attributes on a normal element.</p>
 </div>
@@ -77,13 +80,13 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
 &lt;div lang=&quot;tlh&quot; xml:lang=&quot;tlh&quot;&gt;Klingon (three-character language subtag)&lt;/div&gt;
 &lt;div lang=&quot;i-klingon&quot; xml:lang=&quot;i-klingon&quot;&gt;Klingon (specified as irregular grandfathered tag)&lt;/div&gt;</textarea><select id="level" name="level">
 <option value="WCAG2A">Level A</option>
-<option value="WCAG2AA" selected="selected">Level AA</option>
-<option value="WCAG2AAA">Level AAA</option>
+<option value="WCAG2AA">Level AA</option>
+<option value="WCAG2AAA" selected="selected">Level AAA</option>
 </select>
 <button type="button" onclick="javascript:runHTMLCSExample();">Run HTML_CodeSniffer</button>
 <div id="resultsWrapper"></div>
 
 <h2>Expected Messages</h2>
 
-<h3>Messages that should NOT appear</h3><ul><li>[Standard].Principle3.Guideline3_1.3_1_2.H58.1</li></ul></body>
+<h3>Messages that should NOT appear</h3><ul><li>[Standard].Principle3.Guideline3_1.3_1_2.H58.1.Lang</li><li>[Standard].Principle3.Guideline3_1.3_1_2.H58.1.XmlLang</li></ul></body>
 </html>

@@ -34,7 +34,7 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
 </div>
 <h2>Associating table headers with data cells</h2>
 
-<p>The WCAG 2.0 techniques document provides two methods of associating headers with data cells: the <a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H43">headers attribute</a> and the <a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H63">scope attribute</a>.</p>
+<p>The WCAG 2.0 techniques document provides two methods of associating headers with data cells: the <a href="http://www.w3.org/TR/WCAG20-TECHS/H43">headers attribute</a> and the <a href="http://www.w3.org/TR/WCAG20-TECHS/H63">scope attribute</a>.</p>
 
 <p>The first method requires that headers be assigned an id, and that ordinary (td) cells use a "headers" attribute which specifies the IDs of all headers it is associated with. Alternatively, the "scope" attribute is placed on a th element to state which dimension it is a header for (row, col, rowgroup or colgroup) - the group headers are not well accessibility-supported, which limits its usefulness beyond a single row or column header.</p>
 
@@ -50,7 +50,7 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
 
 <h2>Adding summary and caption to tables</h2>
 
-<p>Relevant techniques are <a href="www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H39">H39: Using caption elements to associate data table captions with data tables</a>, and <a href="www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H73">H73: Using the summary attribute of the table element to give an overview of data tables</a>.</p>
+<p>Relevant techniques are <a href="www.w3.org/TR/WCAG20-TECHS/H39">H39: Using caption elements to associate data table captions with data tables</a>, and <a href="www.w3.org/TR/WCAG20-TECHS/H73">H73: Using the summary attribute of the table element to give an overview of data tables</a>.</p>
 
 <p>The caption element is reasonably obvious: it adds a title to the table for identification purposes, which all users can see. On the other hand, the summary is not shown (at all) to sighted users, so the main intent is to explain the use of the table where it is not obvious to users requiring accessibility support. The W3C article provides the example of a bus timetable, which uses the summary attribute to explain how to read it (in this case: bus stops listed in row 1, then look down that column to find departure times). For sighted users reading the timetable would be obvious, but someone with a screen reader who cannot skim-read the table first would not have this orientation.</p>
 
@@ -58,7 +58,7 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
 
 <h2>Labelling form elements</h2>
 
-<p>Labels must be explicitly labelled, using the "for" attribute, according to <a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H44">H44: Using label elements to associate text labels with form controls</a>. If the visual design cannot accommodate a label, then you can use the title attribute instead - see <a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H65">H65: Using the title attribute to identify form controls when the label element cannot be used</a>.</p>
+<p>Labels must be explicitly labelled, using the "for" attribute, according to <a href="http://www.w3.org/TR/WCAG20-TECHS/H44">H44: Using label elements to associate text labels with form controls</a>. If the visual design cannot accommodate a label, then you can use the title attribute instead - see <a href="http://www.w3.org/TR/WCAG20-TECHS/H65">H65: Using the title attribute to identify form controls when the label element cannot be used</a>.</p>
 
 <p>Implicit labels are where the label attribute wraps around the field: they are not supported by assistive technology as well as explicit labels, so are not recommended.</p>
 
@@ -68,7 +68,7 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
 
 <h3>Using the fieldset element</h3>
 
-<p>Fields that are logically related should be grouped using the fieldset element, according to technique <a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H71">H71: Providing a description for groups of form controls using fieldset and legend elements</a>.</p>
+<p>Fields that are logically related should be grouped using the fieldset element, according to technique <a href="http://www.w3.org/TR/WCAG20-TECHS/H71">H71: Providing a description for groups of form controls using fieldset and legend elements</a>.</p>
 
 <p>The W3C acknowledges that fieldset elements are tacky with default styling:</p>
 
@@ -78,15 +78,15 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
 
 <p>This also applies when one or more fields represents a single data item: for instance, a phone number or date. This would allow a user with the appropriate assistive technology to properly skip the entire item of data in one hit. As an example, a credit card expiry date is commonly represented as two drop-down fields: month and year. Each individual field should be labelled for their purpose (eg. "Month"), probably using the title attribute because the designer is not likely to want the label to show to sighted users. The two fields should then be wrapped in a fieldset element, stating their overall purpose (eg. "Expiry Date") in the legend element.</p>
 
-<p>Indeed, one common failure listed for <a href="./3_3_2">Success Criterion 3.3.2 (Labels or Instructions)</a> specifically relates to <a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/F82">formatting a phone number as multiple fields, but without including a text label</a>. (Note that this suggests three fields as per the United States' common format, but the same would apply in Australia where phone numbers are often broken up into two fields, for area code and local number.)</p>
+<p>Indeed, one common failure listed for <a href="./3_3_2">Success Criterion 3.3.2 (Labels or Instructions)</a> specifically relates to <a href="http://www.w3.org/TR/WCAG20-TECHS/F82">formatting a phone number as multiple fields, but without including a text label</a>. (Note that this suggests three fields as per the United States' common format, but the same would apply in Australia where phone numbers are often broken up into two fields, for area code and local number.)</p>
 
 <h3>Using optgroup in a select element</h3>
 
-<p>Related options should be grouped using an optgroup element, as per technique <a href="www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H85">H85: Using OPTGROUP to group OPTION elements inside a SELECT</a>.</p>
+<p>Related options should be grouped using an optgroup element, as per technique <a href="www.w3.org/TR/WCAG20-TECHS/H85">H85: Using OPTGROUP to group OPTION elements inside a SELECT</a>.</p>
 
 <h2>Using list markup</h2>
 
-<p>The relevant technique is <a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H48">H48: Using ol, ul and dl for lists or groups of links</a>. Most checks (especially for a definition list) will likely need visual confirmation that the block should be a list, however HTML&#95;CodeSniffer can help with certain paragraphs that should be turned into lists.</p>
+<p>The relevant technique is <a href="http://www.w3.org/TR/WCAG20-TECHS/H48">H48: Using ol, ul and dl for lists or groups of links</a>. Most checks (especially for a definition list) will likely need visual confirmation that the block should be a list, however HTML&#95;CodeSniffer can help with certain paragraphs that should be turned into lists.</p>
 
 <p>Paragraphs broken up by line breaks (br elements) will be detected as being potential lists when at least one line starts with the following:</p>
 
@@ -117,236 +117,22 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
 </tr>
 
 <tr class="error">
-<td class="assertType dimOnNa" id="1_3_1_18_type" headers="type sc1_3_1">
+<td class="assertType dimOnNa" id="1_3_1_15_type" headers="type sc1_3_1">
 Error</td>
-<td class="dimOnNa" id="1_3_1_18_name" headers="name sc1_3_1">
+<td class="dimOnNa" id="1_3_1_15_name" headers="name sc1_3_1">
 <p>Check that all th elements have a scope attribute.</p>
 <div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H63.1</div></td>
-<td class="dimOnNa" id="1_3_1_18_applies" headers="applies sc1_3_1">
-<p>Table that uses (and is allowed to use) the scope method of associating headers with cells, but not on all th elements</p>
+<td class="dimOnNa" id="1_3_1_15_applies" headers="applies sc1_3_1">
+<p>A table where some th elements contain a scope attribute (where it is permitted) but not all do.</p>
 </td>
-<td class="dimOnNa" id="1_3_1_18_tech" headers="tech sc1_3_1">
+<td class="dimOnNa" id="1_3_1_15_tech" headers="tech sc1_3_1">
 <ul>
 <li>H63.1</li>
 </ul>
 </td>
-<td class="dimOnNa" id="1_3_1_18_examples" headers="ex sc1_3_1">
-<ul>
-<li><a href="./Eg/30">30</a></li>
-</ul>
-</td>
-</tr>
-
-<tr class="error">
-<td class="assertType dimOnNa" id="1_3_1_17_type" headers="type sc1_3_1">
-Error</td>
-<td class="dimOnNa" id="1_3_1_17_name" headers="name sc1_3_1">
-<p>Check that all td elements contain a headers attribute that lists the id for all headers associated with that cell.</p>
-<div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H43</div></td>
-<td class="dimOnNa" id="1_3_1_17_applies" headers="applies sc1_3_1">
-<p>Table that uses (or requires) the headers attribute, that does not use it with all td elements</p>
-</td>
-<td class="dimOnNa" id="1_3_1_17_tech" headers="tech sc1_3_1">
-<ul>
-<li>H43</li>
-</ul>
-</td>
-<td class="dimOnNa" id="1_3_1_17_examples" headers="ex sc1_3_1">
-<ul>
-<li><a href="./Eg/21">21</a></li>
-<li><a href="./Eg/23">23</a></li>
-<li><a href="./Eg/24">24</a></li>
-<li><a href="./Eg/25">25</a></li>
-<li><a href="./Eg/26">26</a></li>
-<li><a href="./Eg/28">28</a></li>
-<li><a href="./Eg/31">31</a></li>
-</ul>
-</td>
-</tr>
-
-<tr class="error">
-<td class="assertType dimOnNa" id="1_3_1_16_type" headers="type sc1_3_1">
-Error</td>
-<td class="dimOnNa" id="1_3_1_16_name" headers="name sc1_3_1">
-<p>Check that all th elements contain an id attribute, so that they may be referenced by the headers attribute.</p>
-<div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H43</div></td>
-<td class="dimOnNa" id="1_3_1_16_applies" headers="applies sc1_3_1">
-<p>Table that uses (or requires) the headers attribute, that does not have ids on at least one th element</p>
-</td>
-<td class="dimOnNa" id="1_3_1_16_tech" headers="tech sc1_3_1">
-<ul>
-<li>H43</li>
-</ul>
-</td>
-<td class="dimOnNa" id="1_3_1_16_examples" headers="ex sc1_3_1">
-<ul>
-<li><a href="./Eg/21">21</a></li>
-<li><a href="./Eg/23">23</a></li>
-<li><a href="./Eg/24">24</a></li>
-<li><a href="./Eg/25">25</a></li>
-<li><a href="./Eg/26">26</a></li>
-<li><a href="./Eg/28">28</a></li>
-<li><a href="./Eg/31">31</a></li>
-</ul>
-</td>
-</tr>
-
-<tr class="error">
-<td class="assertType dimOnNa" id="1_3_1_15_type" headers="type sc1_3_1">
-Error</td>
-<td class="dimOnNa" id="1_3_1_15_name" headers="name sc1_3_1">
-<p>Associate data cells with multi-level table headings using the headers attribute.</p>
-<div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H43</div></td>
-<td class="dimOnNa" id="1_3_1_15_applies" headers="applies sc1_3_1">
-<p>Table with multiple row and/or column headers, that does not use it (at all)</p>
-</td>
-<td class="dimOnNa" id="1_3_1_15_tech" headers="tech sc1_3_1">
-<ul>
-<li>H43</li>
-</ul>
-</td>
 <td class="dimOnNa" id="1_3_1_15_examples" headers="ex sc1_3_1">
 <ul>
-<li><a href="./Eg/21">21</a></li>
-<li><a href="./Eg/23">23</a></li>
-<li><a href="./Eg/24">24</a></li>
-<li><a href="./Eg/25">25</a></li>
-<li><a href="./Eg/26">26</a></li>
-<li><a href="./Eg/28">28</a></li>
-<li><a href="./Eg/31">31</a></li>
-</ul>
-</td>
-</tr>
-
-<tr class="error">
-<td class="assertType dimOnNa" id="1_3_1_19_type" headers="type sc1_3_1">
-Error</td>
-<td class="dimOnNa" id="1_3_1_19_name" headers="name sc1_3_1">
-<p>Associate data cells with table headings using either the scope or headers attribute techniques.</p>
-<div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H43,H63</div></td>
-<td class="dimOnNa" id="1_3_1_19_applies" headers="applies sc1_3_1">
-<p>Table with one row header and one column header (only), that does not use either scope or headers</p>
-</td>
-<td class="dimOnNa" id="1_3_1_19_tech" headers="tech sc1_3_1">
-<ul>
-<li>H43</li>
-<li>H63</li>
-</ul>
-</td>
-<td class="dimOnNa" id="1_3_1_19_examples" headers="ex sc1_3_1">
-<ul>
-<li><a href="./Eg/21">21</a></li>
-<li><a href="./Eg/22">22</a></li>
-<li><a href="./Eg/27">27</a></li>
-</ul>
-</td>
-</tr>
-
-<tr class="error">
-<td class="assertType dimOnNa" id="1_3_1_20_type" headers="type sc1_3_1">
-Error</td>
-<td class="dimOnNa" id="1_3_1_20_name" headers="name sc1_3_1">
-<p>If both a summary attribute and a caption element are present for this data table, the summary should not duplicate the caption.</p>
-<div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H39,H73.4</div></td>
-<td class="dimOnNa" id="1_3_1_20_applies" headers="applies sc1_3_1">
-<p>Table with a caption element and summary attribute, where the text matches</p>
-</td>
-<td class="dimOnNa" id="1_3_1_20_tech" headers="tech sc1_3_1">
-<ul>
-<li>H39</li>
-<li>H73.4</li>
-</ul>
-</td>
-<td class="dimOnNa" id="1_3_1_20_examples" headers="ex sc1_3_1">
-<ul>
-<li><a href="./Eg/53">53</a></li>
-</ul>
-</td>
-</tr>
-
-<tr class="error">
-<td class="assertType dimOnNa" id="1_3_1_29_type" headers="type sc1_3_1">
-Error</td>
-<td class="dimOnNa" id="1_3_1_29_name" headers="name sc1_3_1">
-<p>Check that content that has the visual appearance of a numbered list is marked as an ordered list.</p>
-<div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H48.2</div></td>
-<td class="dimOnNa" id="1_3_1_29_applies" headers="applies sc1_3_1">
-<p>P or div element broken into line breaks, at least one line starting with a number followed by a common separator, or just one or more spaces</p>
-</td>
-<td class="dimOnNa" id="1_3_1_29_tech" headers="tech sc1_3_1">
-<ul>
-<li>H48.2</li>
-</ul>
-</td>
-<td class="dimOnNa" id="1_3_1_29_examples" headers="ex sc1_3_1">
-<ul>
-<li><a href="./Eg/51">51</a></li>
-</ul>
-</td>
-</tr>
-
-<tr class="error">
-<td class="assertType dimOnNa" id="1_3_1_28_type" headers="type sc1_3_1">
-Error</td>
-<td class="dimOnNa" id="1_3_1_28_name" headers="name sc1_3_1">
-<p>Check that content that has the visual appearance of a list (with or without bullets) is marked as an unordered list.</p>
-<div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H48.1</div></td>
-<td class="dimOnNa" id="1_3_1_28_applies" headers="applies sc1_3_1">
-<p>P or div element broken into line breaks, at least one line starting with a hyphen or asterisk</p>
-</td>
-<td class="dimOnNa" id="1_3_1_28_tech" headers="tech sc1_3_1">
-<ul>
-<li>H48.1</li>
-</ul>
-</td>
-<td class="dimOnNa" id="1_3_1_28_examples" headers="ex sc1_3_1">
-<ul>
-<li><a href="./Eg/52">52</a></li>
-</ul>
-</td>
-</tr>
-
-<tr class="error">
-<td class="assertType dimOnNa" id="1_3_1_27_type" headers="type sc1_3_1">
-Error</td>
-<td class="dimOnNa" id="1_3_1_27_name" headers="name sc1_3_1">
-<p>Check that any group of input elements of type="radio" or type="checkbox" with the same name attribute is contained within a fieldset element.</p>
-<div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H71.2</div></td>
-<td class="dimOnNa" id="1_3_1_27_applies" headers="applies sc1_3_1">
-<p>Radio or checkbox attribute that uses the same name attribute as another (ie. they are of the same group as another)</p>
-</td>
-<td class="dimOnNa" id="1_3_1_27_tech" headers="tech sc1_3_1">
-<ul>
-<li>H71.2</li>
-</ul>
-</td>
-<td class="dimOnNa" id="1_3_1_27_examples" headers="ex sc1_3_1">
-<ul>
-<li><a href="./Eg/13">13</a></li>
-<li><a href="./Eg/14">14</a></li>
-</ul>
-</td>
-</tr>
-
-<tr class="error">
-<td class="assertType dimOnNa" id="1_3_1_25_type" headers="type sc1_3_1">
-Error</td>
-<td class="dimOnNa" id="1_3_1_25_name" headers="name sc1_3_1">
-<p>Check that this fieldset has a legend element that includes a description of that group.</p>
-<div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H71.3</div></td>
-<td class="dimOnNa" id="1_3_1_25_applies" headers="applies sc1_3_1">
-<p>Fieldset element without a legend</p>
-</td>
-<td class="dimOnNa" id="1_3_1_25_tech" headers="tech sc1_3_1">
-<ul>
-<li>H71.3</li>
-</ul>
-</td>
-<td class="dimOnNa" id="1_3_1_25_examples" headers="ex sc1_3_1">
-<ul>
-<li><a href="./Eg/15">15</a></li>
-<li><a href="./Eg/16">16</a></li>
-<li><a href="./Eg/17">17</a></li>
+<li><a href="./Eg/30">30</a></li>
 </ul>
 </td>
 </tr>
@@ -356,13 +142,13 @@ Error</td>
 Error</td>
 <td class="dimOnNa" id="1_3_1_0_name" headers="name sc1_3_1">
 <p>Use the label element to explicitly associate a form control with a label, through the use of the "for" attribute.</p>
-<div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H44.1</div></td>
+<div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H44.1.Implicit</div></td>
 <td class="dimOnNa" id="1_3_1_0_applies" headers="applies sc1_3_1">
-<p>Form fields with implicitly associated with a label (wrapped inside a label)</p>
+<p>Input field with an implicit label - ie. wrapped in a label element instead of being explicitly referred to in a "for" attribute.</p>
 </td>
 <td class="dimOnNa" id="1_3_1_0_tech" headers="tech sc1_3_1">
 <ul>
-<li>H44.1</li>
+<li>H44.1.Implicit</li>
 </ul>
 </td>
 <td class="dimOnNa" id="1_3_1_0_examples" headers="ex sc1_3_1">
@@ -373,50 +159,219 @@ Error</td>
 </tr>
 
 <tr class="error">
-<td class="assertType dimOnNa" id="1_3_1_14_type" headers="type sc1_3_1">
+<td class="assertType dimOnNa" id="1_3_1_13_type" headers="type sc1_3_1">
 Error</td>
-<td class="dimOnNa" id="1_3_1_14_name" headers="name sc1_3_1">
-<p>Incorrect headers attribute, expected "$expected" but found "$actual"</p>
-<div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H43</div></td>
-<td class="dimOnNa" id="1_3_1_14_applies" headers="applies sc1_3_1">
-<p>Table cell that uses the headers attribute, but does not match what HTML_CodeSniffer expects it to be</p>
+<td class="dimOnNa" id="1_3_1_13_name" headers="name sc1_3_1">
+<p>Check that all td elements contain a headers attribute that lists the id for all headers associated with that cell.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H43.MissingHeadersAttrs</div></td>
+<td class="dimOnNa" id="1_3_1_13_applies" headers="applies sc1_3_1">
+<p>A table where not all td elements contain a headers attribute, where headers attributes have been used.</p>
 </td>
-<td class="dimOnNa" id="1_3_1_14_tech" headers="tech sc1_3_1">
+<td class="dimOnNa" id="1_3_1_13_tech" headers="tech sc1_3_1">
 <ul>
-<li>H43</li>
+<li>H43.MissingHeadersAttrs</li>
 </ul>
 </td>
-<td class="dimOnNa" id="1_3_1_14_examples" headers="ex sc1_3_1">
+<td class="dimOnNa" id="1_3_1_13_examples" headers="ex sc1_3_1">
 <ul>
-<li><a href="./Eg/21">21</a></li>
-<li><a href="./Eg/23">23</a></li>
-<li><a href="./Eg/24">24</a></li>
-<li><a href="./Eg/25">25</a></li>
 <li><a href="./Eg/26">26</a></li>
-<li><a href="./Eg/28">28</a></li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_3_1_12_type" headers="type sc1_3_1">
+Error</td>
+<td class="dimOnNa" id="1_3_1_12_name" headers="name sc1_3_1">
+<p>Check that all th elements contain an id attribute, so that they may be referenced by the headers attribute.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H43.MissingHeaderIds</div></td>
+<td class="dimOnNa" id="1_3_1_12_applies" headers="applies sc1_3_1">
+<p>A table containing a th element without an id attribute, where headers attributes have been used.</p>
+</td>
+<td class="dimOnNa" id="1_3_1_12_tech" headers="tech sc1_3_1">
+<ul>
+<li>H43.MissingHeaderIds</li>
+</ul>
+</td>
+<td class="dimOnNa" id="1_3_1_12_examples" headers="ex sc1_3_1">
+<ul>
+<li><a href="./Eg/24">24</a></li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_3_1_16_type" headers="type sc1_3_1">
+Error</td>
+<td class="dimOnNa" id="1_3_1_16_name" headers="name sc1_3_1">
+<p>If both a summary attribute and a caption element are present for this data table, the summary should not duplicate the caption.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H39,H73.4</div></td>
+<td class="dimOnNa" id="1_3_1_16_applies" headers="applies sc1_3_1">
+<p>A table with both a caption element and a summary attribute, where the two match exactly.</p>
+</td>
+<td class="dimOnNa" id="1_3_1_16_tech" headers="tech sc1_3_1">
+<ul>
+<li>H39</li>
+<li>H73.4</li>
+</ul>
+</td>
+<td class="dimOnNa" id="1_3_1_16_examples" headers="ex sc1_3_1">
+<ul>
+<li><a href="./Eg/53">53</a></li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_3_1_17_type" headers="type sc1_3_1">
+Error</td>
+<td class="dimOnNa" id="1_3_1_17_name" headers="name sc1_3_1">
+<p>Check that this fieldset has a legend element that includes a description of that group.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H71.3</div></td>
+<td class="dimOnNa" id="1_3_1_17_applies" headers="applies sc1_3_1">
+<p>Fieldset element without a child legend element.</p>
+</td>
+<td class="dimOnNa" id="1_3_1_17_tech" headers="tech sc1_3_1">
+<ul>
+<li>H71.3</li>
+</ul>
+</td>
+<td class="dimOnNa" id="1_3_1_17_examples" headers="ex sc1_3_1">
+<ul>
+<li><a href="./Eg/15">15</a></li>
+<li><a href="./Eg/16">16</a></li>
+<li><a href="./Eg/17">17</a></li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_3_1_20_type" headers="type sc1_3_1">
+Error</td>
+<td class="dimOnNa" id="1_3_1_20_name" headers="name sc1_3_1">
+<p>Check that content that has the visual appearance of a numbered list is marked as an ordered list.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H48.2</div></td>
+<td class="dimOnNa" id="1_3_1_20_applies" headers="applies sc1_3_1">
+<p>Paragraph spaced by line breaks, where each line starts with a number and some spacing and/or punctuation.</p>
+</td>
+<td class="dimOnNa" id="1_3_1_20_tech" headers="tech sc1_3_1">
+<ul>
+<li>H48.2</li>
+</ul>
+</td>
+<td class="dimOnNa" id="1_3_1_20_examples" headers="ex sc1_3_1">
+<ul>
+<li><a href="./Eg/51">51</a></li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_3_1_19_type" headers="type sc1_3_1">
+Error</td>
+<td class="dimOnNa" id="1_3_1_19_name" headers="name sc1_3_1">
+<p>Check that content that has the visual appearance of a list (with or without bullets) is marked as an unordered list.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H48.1</div></td>
+<td class="dimOnNa" id="1_3_1_19_applies" headers="applies sc1_3_1">
+<p>Paragraph spaced by line breaks, where each line starts with a hyphen or asterisk.</p>
+</td>
+<td class="dimOnNa" id="1_3_1_19_tech" headers="tech sc1_3_1">
+<ul>
+<li>H48.1</li>
+</ul>
+</td>
+<td class="dimOnNa" id="1_3_1_19_examples" headers="ex sc1_3_1">
+<ul>
+<li><a href="./Eg/52">52</a></li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_3_1_18_type" headers="type sc1_3_1">
+Error</td>
+<td class="dimOnNa" id="1_3_1_18_name" headers="name sc1_3_1">
+<p>Check that any group of input elements of type="radio" or type="checkbox" with the same name attribute is contained within a fieldset element.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H71.2</div></td>
+<td class="dimOnNa" id="1_3_1_18_applies" headers="applies sc1_3_1">
+<p>Form with a set of radio buttons and/or checkboxes with the same name attribute.</p>
+</td>
+<td class="dimOnNa" id="1_3_1_18_tech" headers="tech sc1_3_1">
+<ul>
+<li>H71.2</li>
+</ul>
+</td>
+<td class="dimOnNa" id="1_3_1_18_examples" headers="ex sc1_3_1">
+<ul>
+<li><a href="./Eg/13">13</a></li>
+<li><a href="./Eg/14">14</a></li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_3_1_11_type" headers="type sc1_3_1">
+Error</td>
+<td class="dimOnNa" id="1_3_1_11_name" headers="name sc1_3_1">
+<p>Associate data cells with multi-level table headings using the headers attribute.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H43.HeadersRequired</div></td>
+<td class="dimOnNa" id="1_3_1_11_applies" headers="applies sc1_3_1">
+<p>A table where no td elements contain a headers attribute, where use of headers is required.</p>
+</td>
+<td class="dimOnNa" id="1_3_1_11_tech" headers="tech sc1_3_1">
+<ul>
+<li>H43.HeadersRequired</li>
+</ul>
+</td>
+<td class="dimOnNa" id="1_3_1_11_examples" headers="ex sc1_3_1">
+<ul>
+<li><a href="./Eg/23">23</a></li>
 <li><a href="./Eg/31">31</a></li>
 </ul>
 </td>
 </tr>
 
 <tr class="error">
-<td class="assertType dimOnNa" id="1_3_1_6_type" headers="type sc1_3_1">
+<td class="assertType dimOnNa" id="1_3_1_14_type" headers="type sc1_3_1">
 Error</td>
-<td class="dimOnNa" id="1_3_1_6_name" headers="name sc1_3_1">
-<p>Label element should not be used for this type of form control.</p>
-<div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H44</div></td>
-<td class="dimOnNa" id="1_3_1_6_applies" headers="applies sc1_3_1">
-<p>Button elements, and button-type input elements</p>
+<td class="dimOnNa" id="1_3_1_14_name" headers="name sc1_3_1">
+<p>Associate data cells with table headings using either the scope or headers attribute techniques.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H43,H63</div></td>
+<td class="dimOnNa" id="1_3_1_14_applies" headers="applies sc1_3_1">
+<p>A table with no heading association, where either the scope or headers attributes techniques are permitted.</p>
 </td>
-<td class="dimOnNa" id="1_3_1_6_tech" headers="tech sc1_3_1">
+<td class="dimOnNa" id="1_3_1_14_tech" headers="tech sc1_3_1">
 <ul>
-<li>H44</li>
+<li>H43</li>
+<li>H63</li>
 </ul>
 </td>
-<td class="dimOnNa" id="1_3_1_6_examples" headers="ex sc1_3_1">
+<td class="dimOnNa" id="1_3_1_14_examples" headers="ex sc1_3_1">
 <ul>
-<li><a href="./Eg/19">19</a></li>
-<li><a href="./Eg/20">20</a></li>
+<li><a href="./Eg/21">21</a></li>
+<li><a href="./Eg/22">22</a></li>
+<li><a href="./Eg/27">27</a></li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_3_1_4_type" headers="type sc1_3_1">
+Error</td>
+<td class="dimOnNa" id="1_3_1_4_name" headers="name sc1_3_1">
+<p>Attach a label to this form control through the use of the for attribute.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H44.2</div></td>
+<td class="dimOnNa" id="1_3_1_4_applies" headers="applies sc1_3_1">
+<p>Input field with no label.</p>
+</td>
+<td class="dimOnNa" id="1_3_1_4_tech" headers="tech sc1_3_1">
+<ul>
+<li>H44.2</li>
+</ul>
+</td>
+<td class="dimOnNa" id="1_3_1_4_examples" headers="ex sc1_3_1">
+<ul>
+<li><a href="./Eg/60">60</a></li>
 </ul>
 </td>
 </tr>
@@ -428,7 +383,7 @@ Error</td>
 <p>Check that the title attribute identifies the purpose of the control.</p>
 <div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H65.3</div></td>
 <td class="dimOnNa" id="1_3_1_3_applies" headers="applies sc1_3_1">
-<p>Element without label attribute, with an empty title attribute</p>
+<p>Input field with no label, but with a title attribute that takes its place - that is empty.</p>
 </td>
 <td class="dimOnNa" id="1_3_1_3_tech" headers="tech sc1_3_1">
 <ul>
@@ -447,16 +402,55 @@ Error</td>
 Error</td>
 <td class="dimOnNa" id="1_3_1_2_name" headers="name sc1_3_1">
 <p>Form control does not have an id, therefore it cannot have an explicit label.</p>
-<div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H44</div></td>
+<div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H44.NoId</div></td>
 <td class="dimOnNa" id="1_3_1_2_applies" headers="applies sc1_3_1">
-<p>Form field without an id attribute</p>
+<p>Input field with missing id attribute.</p>
 </td>
 <td class="dimOnNa" id="1_3_1_2_tech" headers="tech sc1_3_1">
 <ul>
-<li>H44</li>
+<li>H44.NoId</li>
 </ul>
 </td>
 <td class="dimOnNa" id="1_3_1_2_examples" headers="ex sc1_3_1">
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_3_1_10_type" headers="type sc1_3_1">
+Error</td>
+<td class="dimOnNa" id="1_3_1_10_name" headers="name sc1_3_1">
+<p>Incorrect headers attribute, expected "expected headers attr" but found "actual headers attr"</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H43.IncorrectAttr</div></td>
+<td class="dimOnNa" id="1_3_1_10_applies" headers="applies sc1_3_1">
+<p>A td element with a headers attribute that is not what is expected based on its position in the table.</p>
+</td>
+<td class="dimOnNa" id="1_3_1_10_tech" headers="tech sc1_3_1">
+<ul>
+<li>H43.IncorrectAttr</li>
+</ul>
+</td>
+<td class="dimOnNa" id="1_3_1_10_examples" headers="ex sc1_3_1">
+<ul>
+<li><a href="./Eg/25">25</a></li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_3_1_5_type" headers="type sc1_3_1">
+Error</td>
+<td class="dimOnNa" id="1_3_1_5_name" headers="name sc1_3_1">
+<p>Label element should not be used for this type of form control.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H44.NoLabelAllowed</div></td>
+<td class="dimOnNa" id="1_3_1_5_applies" headers="applies sc1_3_1">
+<p>Input field with a label, where a label should not exist - mainly, fields with the role of a button, and hidden fields.</p>
+</td>
+<td class="dimOnNa" id="1_3_1_5_tech" headers="tech sc1_3_1">
+<ul>
+<li>H44.NoLabelAllowed</li>
+</ul>
+</td>
+<td class="dimOnNa" id="1_3_1_5_examples" headers="ex sc1_3_1">
 <ul>
 <li><a href="./Eg/19">19</a></li>
 <li><a href="./Eg/20">20</a></li>
@@ -469,18 +463,75 @@ Error</td>
 Error</td>
 <td class="dimOnNa" id="1_3_1_1_name" headers="name sc1_3_1">
 <p>Multiple labels exist with the same "for" attribute. If these labels refer to different form controls, the controls should have unique "id" attributes.</p>
-<div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H93</div></td>
+<div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.</div></td>
 <td class="dimOnNa" id="1_3_1_1_applies" headers="applies sc1_3_1">
-<p>Labels with duplicate "for" attribute</p>
+<p>Label with a "for" attribute that duplicates another.</p>
 </td>
 <td class="dimOnNa" id="1_3_1_1_tech" headers="tech sc1_3_1">
 <ul>
-<li>H93</li>
+<li></li>
 </ul>
 </td>
 <td class="dimOnNa" id="1_3_1_1_examples" headers="ex sc1_3_1">
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_3_1_9_type" headers="type sc1_3_1">
+Error</td>
+<td class="dimOnNa" id="1_3_1_9_name" headers="name sc1_3_1">
+<p>Check that all scope attributes have the value row, col, rowgroup, or colgroup.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H63.3</div></td>
+<td class="dimOnNa" id="1_3_1_9_applies" headers="applies sc1_3_1">
+<p>A th element with a scope attribute that is invalid.</p>
+</td>
+<td class="dimOnNa" id="1_3_1_9_tech" headers="tech sc1_3_1">
 <ul>
-<li><a href="./Eg/55">55</a></li>
+<li>H63.3</li>
+</ul>
+</td>
+<td class="dimOnNa" id="1_3_1_9_examples" headers="ex sc1_3_1">
+<ul>
+<li><a href="./Eg/29">29</a></li>
+</ul>
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_3_1_6_type" headers="type sc1_3_1">
+Error</td>
+<td class="dimOnNa" id="1_3_1_6_name" headers="name sc1_3_1">
+<p>The label element for this control should be placed after this element.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H44.1.After</div></td>
+<td class="dimOnNa" id="1_3_1_6_applies" headers="applies sc1_3_1">
+<p>Input field with a label before the element, where it should be after - for fields with the role of a radio button or check box.</p>
+</td>
+<td class="dimOnNa" id="1_3_1_6_tech" headers="tech sc1_3_1">
+<ul>
+<li>H44.1.After</li>
+</ul>
+</td>
+<td class="dimOnNa" id="1_3_1_6_examples" headers="ex sc1_3_1">
+</td>
+</tr>
+
+<tr class="error">
+<td class="assertType dimOnNa" id="1_3_1_8_type" headers="type sc1_3_1">
+Error</td>
+<td class="dimOnNa" id="1_3_1_8_name" headers="name sc1_3_1">
+<p>Semantic markup should be used to mark emphasised or special text so that it can be programmatically determined.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H49</div></td>
+<td class="dimOnNa" id="1_3_1_8_applies" headers="applies sc1_3_1">
+<p>Certain presentational tags.</p>
+</td>
+<td class="dimOnNa" id="1_3_1_8_tech" headers="tech sc1_3_1">
+<ul>
+<li>H49</li>
+</ul>
+</td>
+<td class="dimOnNa" id="1_3_1_8_examples" headers="ex sc1_3_1">
+<ul>
+<li><a href="./Eg/56">56</a></li>
 </ul>
 </td>
 </tr>
@@ -489,122 +540,56 @@ Error</td>
 <td class="assertType dimOnNa" id="1_3_1_7_type" headers="type sc1_3_1">
 Error</td>
 <td class="dimOnNa" id="1_3_1_7_name" headers="name sc1_3_1">
-<p>The label element for this control should be placed after this element.</p>
-<div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H44.1</div></td>
+<p>The label element for this control should be placed before this element.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H44.1.Before</div></td>
 <td class="dimOnNa" id="1_3_1_7_applies" headers="applies sc1_3_1">
-<p>input type="radio" or input type="checkbox"</p>
+<p>Input field with a label after the element, where it should be before - for fields with the role of a text input or select box.</p>
 </td>
 <td class="dimOnNa" id="1_3_1_7_tech" headers="tech sc1_3_1">
 <ul>
-<li>H44.1</li>
+<li>H44.1.Before</li>
 </ul>
 </td>
 <td class="dimOnNa" id="1_3_1_7_examples" headers="ex sc1_3_1">
-<ul>
-<li><a href="./Eg/18">18</a></li>
-</ul>
 </td>
 </tr>
 
-<tr class="error">
-<td class="assertType dimOnNa" id="1_3_1_5_type" headers="type sc1_3_1">
-Error</td>
-<td class="dimOnNa" id="1_3_1_5_name" headers="name sc1_3_1">
-<p>Attach a label to this form control through the use of the for attribute.</p>
-<div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H44.2</div></td>
-<td class="dimOnNa" id="1_3_1_5_applies" headers="applies sc1_3_1">
-<p>Form field without label explicitly attached</p>
+<tr class="warning">
+<td class="assertType dimOnNa" id="1_3_1_27_type" headers="type sc1_3_1">
+Warning</td>
+<td class="dimOnNa" id="1_3_1_27_name" headers="name sc1_3_1">
+<p>Scope attributes on td elements that act as headers for other elements are obsolete in HTML5; use a th element instead.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H63.2</div></td>
+<td class="dimOnNa" id="1_3_1_27_applies" headers="applies sc1_3_1">
+<p>A td element with a scope attribute.</p>
 </td>
-<td class="dimOnNa" id="1_3_1_5_tech" headers="tech sc1_3_1">
+<td class="dimOnNa" id="1_3_1_27_tech" headers="tech sc1_3_1">
 <ul>
-<li>H44.2</li>
+<li>H63.2</li>
 </ul>
 </td>
-<td class="dimOnNa" id="1_3_1_5_examples" headers="ex sc1_3_1">
+<td class="dimOnNa" id="1_3_1_27_examples" headers="ex sc1_3_1">
 <ul>
-<li><a href="./Eg/60">60</a></li>
-</ul>
-</td>
-</tr>
-
-<tr class="error">
-<td class="assertType dimOnNa" id="1_3_1_8_type" headers="type sc1_3_1">
-Error</td>
-<td class="dimOnNa" id="1_3_1_8_name" headers="name sc1_3_1">
-<p>The label element for this control should be placed before this element.</p>
-<div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H44.1</div></td>
-<td class="dimOnNa" id="1_3_1_8_applies" headers="applies sc1_3_1">
-<p>Most input elements (and select, textarea) where the label should be placed before the element</p>
-</td>
-<td class="dimOnNa" id="1_3_1_8_tech" headers="tech sc1_3_1">
-<ul>
-<li>H44.1</li>
-</ul>
-</td>
-<td class="dimOnNa" id="1_3_1_8_examples" headers="ex sc1_3_1">
-<ul>
-<li><a href="./Eg/18">18</a></li>
-</ul>
-</td>
-</tr>
-
-<tr class="error">
-<td class="assertType dimOnNa" id="1_3_1_9_type" headers="type sc1_3_1">
-Error</td>
-<td class="dimOnNa" id="1_3_1_9_name" headers="name sc1_3_1">
-<p>Semantic markup should be used to mark emphasised or special text so that it can be programmatically determined.</p>
-<div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H49</div></td>
-<td class="dimOnNa" id="1_3_1_9_applies" headers="applies sc1_3_1">
-<p>b, i, u, s, strike, tt, big, small, center, font, any element with "align" attribute</p>
-</td>
-<td class="dimOnNa" id="1_3_1_9_tech" headers="tech sc1_3_1">
-<ul>
-<li>H49</li>
-</ul>
-</td>
-<td class="dimOnNa" id="1_3_1_9_examples" headers="ex sc1_3_1">
-<ul>
-<li><a href="./Eg/56">56</a></li>
-</ul>
-</td>
-</tr>
-
-<tr class="error">
-<td class="assertType dimOnNa" id="1_3_1_11_type" headers="type sc1_3_1">
-Error</td>
-<td class="dimOnNa" id="1_3_1_11_name" headers="name sc1_3_1">
-<p>Check that all scope attributes have the value row, col, rowgroup, or colgroup.</p>
-<div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H63.3</div></td>
-<td class="dimOnNa" id="1_3_1_11_applies" headers="applies sc1_3_1">
-<p>Table cell with an invalid scope attribute</p>
-</td>
-<td class="dimOnNa" id="1_3_1_11_tech" headers="tech sc1_3_1">
-<ul>
-<li>H63.3</li>
-</ul>
-</td>
-<td class="dimOnNa" id="1_3_1_11_examples" headers="ex sc1_3_1">
-<ul>
-<li><a href="./Eg/29">29</a></li>
+<li><a href="./Eg/32">32</a></li>
 </ul>
 </td>
 </tr>
 
 <tr class="warning">
-<td class="assertType dimOnNa" id="1_3_1_4_type" headers="type sc1_3_1">
+<td class="assertType dimOnNa" id="1_3_1_25_type" headers="type sc1_3_1">
 Warning</td>
-<td class="dimOnNa" id="1_3_1_4_name" headers="name sc1_3_1">
+<td class="dimOnNa" id="1_3_1_25_name" headers="name sc1_3_1">
 <p>Check that the title attribute identifies the purpose of the control, and that a label element is not appropriate.</p>
 <div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H65</div></td>
-<td class="dimOnNa" id="1_3_1_4_applies" headers="applies sc1_3_1">
-<p>Element without label attribute, with a correctly specified title attribute</p>
+<td class="dimOnNa" id="1_3_1_25_applies" headers="applies sc1_3_1">
+<p>Input field with no label, but with a correctly filled title attribute that takes its place.</p>
 </td>
-<td class="dimOnNa" id="1_3_1_4_tech" headers="tech sc1_3_1">
+<td class="dimOnNa" id="1_3_1_25_tech" headers="tech sc1_3_1">
 <ul>
 <li>H65</li>
 </ul>
 </td>
-<td class="dimOnNa" id="1_3_1_4_examples" headers="ex sc1_3_1">
+<td class="dimOnNa" id="1_3_1_25_examples" headers="ex sc1_3_1">
 <ul>
 <li><a href="./Eg/61">61</a></li>
 </ul>
@@ -612,70 +597,22 @@ Warning</td>
 </tr>
 
 <tr class="warning">
-<td class="assertType dimOnNa" id="1_3_1_10_type" headers="type sc1_3_1">
+<td class="assertType dimOnNa" id="1_3_1_29_type" headers="type sc1_3_1">
 Warning</td>
-<td class="dimOnNa" id="1_3_1_10_name" headers="name sc1_3_1">
-<p>Heading markup should be used if this content is intended as a heading.</p>
-<div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H42</div></td>
-<td class="dimOnNa" id="1_3_1_10_applies" headers="applies sc1_3_1">
-<p>P or div element where its only child is one of (strong, em, b, i, u)</p>
+<td class="dimOnNa" id="1_3_1_29_name" headers="name sc1_3_1">
+<p>If this selection list contains groups of related options, they should be grouped with optgroup.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H85.2</div></td>
+<td class="dimOnNa" id="1_3_1_29_applies" headers="applies sc1_3_1">
+<p>Select elements.</p>
 </td>
-<td class="dimOnNa" id="1_3_1_10_tech" headers="tech sc1_3_1">
+<td class="dimOnNa" id="1_3_1_29_tech" headers="tech sc1_3_1">
 <ul>
-<li>H42</li>
+<li>H85.2</li>
 </ul>
 </td>
-<td class="dimOnNa" id="1_3_1_10_examples" headers="ex sc1_3_1">
+<td class="dimOnNa" id="1_3_1_29_examples" headers="ex sc1_3_1">
 <ul>
-<li><a href="./Eg/57">57</a></li>
-</ul>
-</td>
-</tr>
-
-<tr class="warning">
-<td class="assertType dimOnNa" id="1_3_1_13_type" headers="type sc1_3_1">
-Warning</td>
-<td class="dimOnNa" id="1_3_1_13_name" headers="name sc1_3_1">
-<p>Scope attributes are ambiguous in a multi-level structure. Use the headers attribute on td elements instead.</p>
-<div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H43</div></td>
-<td class="dimOnNa" id="1_3_1_13_applies" headers="applies sc1_3_1">
-<p>Table that requires the headers attribute, but uses scope instead</p>
-</td>
-<td class="dimOnNa" id="1_3_1_13_tech" headers="tech sc1_3_1">
-<ul>
-<li>H43</li>
-</ul>
-</td>
-<td class="dimOnNa" id="1_3_1_13_examples" headers="ex sc1_3_1">
-<ul>
-<li><a href="./Eg/21">21</a></li>
-<li><a href="./Eg/23">23</a></li>
-<li><a href="./Eg/24">24</a></li>
-<li><a href="./Eg/25">25</a></li>
-<li><a href="./Eg/26">26</a></li>
-<li><a href="./Eg/28">28</a></li>
-<li><a href="./Eg/31">31</a></li>
-</ul>
-</td>
-</tr>
-
-<tr class="warning">
-<td class="assertType dimOnNa" id="1_3_1_12_type" headers="type sc1_3_1">
-Warning</td>
-<td class="dimOnNa" id="1_3_1_12_name" headers="name sc1_3_1">
-<p>Scope attributes on td elements that act as headers for other elements are obsolete in HTML5; use a th element instead.</p>
-<div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H63.2</div></td>
-<td class="dimOnNa" id="1_3_1_12_applies" headers="applies sc1_3_1">
-<p>Table cell (td element) that uses the scope attribute (HTML5 only allows it on th elements)</p>
-</td>
-<td class="dimOnNa" id="1_3_1_12_tech" headers="tech sc1_3_1">
-<ul>
-<li>H63.2</li>
-</ul>
-</td>
-<td class="dimOnNa" id="1_3_1_12_examples" headers="ex sc1_3_1">
-<ul>
-<li><a href="./Eg/32">32</a></li>
+<li><a href="./Eg/35">35</a></li>
 </ul>
 </td>
 </tr>
@@ -684,19 +621,40 @@ Warning</td>
 <td class="assertType dimOnNa" id="1_3_1_26_type" headers="type sc1_3_1">
 Warning</td>
 <td class="dimOnNa" id="1_3_1_26_name" headers="name sc1_3_1">
-<p>If this selection list contains groups of related options, they should be grouped with optgroup.</p>
-<div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H85.2</div></td>
+<p>Heading markup should be used if this content is intended as a heading.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H42</div></td>
 <td class="dimOnNa" id="1_3_1_26_applies" headers="applies sc1_3_1">
-<p>Select element</p>
+<p>Paragraph where the entire text is formatted.</p>
 </td>
 <td class="dimOnNa" id="1_3_1_26_tech" headers="tech sc1_3_1">
 <ul>
-<li>H85.2</li>
+<li>H42</li>
 </ul>
 </td>
 <td class="dimOnNa" id="1_3_1_26_examples" headers="ex sc1_3_1">
 <ul>
-<li><a href="./Eg/35">35</a></li>
+<li><a href="./Eg/57">57</a></li>
+</ul>
+</td>
+</tr>
+
+<tr class="warning">
+<td class="assertType dimOnNa" id="1_3_1_28_type" headers="type sc1_3_1">
+Warning</td>
+<td class="dimOnNa" id="1_3_1_28_name" headers="name sc1_3_1">
+<p>Scope attributes are ambiguous in a multi-level structure. Use the headers attribute on td elements instead.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H43.ScopeAmbiguous</div></td>
+<td class="dimOnNa" id="1_3_1_28_applies" headers="applies sc1_3_1">
+<p>A table containing scope attributes, where there are at least two separate levels of column or row headers.</p>
+</td>
+<td class="dimOnNa" id="1_3_1_28_tech" headers="tech sc1_3_1">
+<ul>
+<li>H43.ScopeAmbiguous</li>
+</ul>
+</td>
+<td class="dimOnNa" id="1_3_1_28_examples" headers="ex sc1_3_1">
+<ul>
+<li><a href="./Eg/31">31</a></li>
 </ul>
 </td>
 </tr>
@@ -706,13 +664,13 @@ Warning</td>
 Notice</td>
 <td class="dimOnNa" id="1_3_1_23_name" headers="name sc1_3_1">
 <p>Check that the caption attribute accurately describes this table.</p>
-<div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H39.3</div></td>
+<div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H39.3.Check</div></td>
 <td class="dimOnNa" id="1_3_1_23_applies" headers="applies sc1_3_1">
-<p>Table with a caption element</p>
+<p>Table with a caption attribute.</p>
 </td>
 <td class="dimOnNa" id="1_3_1_23_tech" headers="tech sc1_3_1">
 <ul>
-<li>H39.3</li>
+<li>H39.3.Check</li>
 </ul>
 </td>
 <td class="dimOnNa" id="1_3_1_23_examples" headers="ex sc1_3_1">
@@ -728,13 +686,13 @@ Notice</td>
 Notice</td>
 <td class="dimOnNa" id="1_3_1_21_name" headers="name sc1_3_1">
 <p>Check that the summary attribute describes the table's organization or explains how to use the table.</p>
-<div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H73.3</div></td>
+<div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H73.3.Check</div></td>
 <td class="dimOnNa" id="1_3_1_21_applies" headers="applies sc1_3_1">
-<p>Table with a summary attribute</p>
+<p>Table with summary attribute.</p>
 </td>
 <td class="dimOnNa" id="1_3_1_21_tech" headers="tech sc1_3_1">
 <ul>
-<li>H73.3</li>
+<li>H73.3.Check</li>
 </ul>
 </td>
 <td class="dimOnNa" id="1_3_1_21_examples" headers="ex sc1_3_1">
@@ -749,19 +707,16 @@ Notice</td>
 Notice</td>
 <td class="dimOnNa" id="1_3_1_22_name" headers="name sc1_3_1">
 <p>Consider using the summary attribute of the table element to give an overview of this data table.</p>
-<div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H73.3</div></td>
+<div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H73.3.NoSummary</div></td>
 <td class="dimOnNa" id="1_3_1_22_applies" headers="applies sc1_3_1">
-<p>Table without a summary attribute</p>
+<p>Table without a summary attribute.</p>
 </td>
 <td class="dimOnNa" id="1_3_1_22_tech" headers="tech sc1_3_1">
 <ul>
-<li>H73.3</li>
+<li>H73.3.NoSummary</li>
 </ul>
 </td>
 <td class="dimOnNa" id="1_3_1_22_examples" headers="ex sc1_3_1">
-<ul>
-<li><a href="./Eg/34">34</a></li>
-</ul>
 </td>
 </tr>
 
@@ -770,20 +725,16 @@ Notice</td>
 Notice</td>
 <td class="dimOnNa" id="1_3_1_24_name" headers="name sc1_3_1">
 <p>Consider using a caption element to the table element to identify this data table.</p>
-<div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H39.3</div></td>
+<div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H39.3.NoCaption</div></td>
 <td class="dimOnNa" id="1_3_1_24_applies" headers="applies sc1_3_1">
-<p>Table without a caption element</p>
+<p>Table without a caption attribute.</p>
 </td>
 <td class="dimOnNa" id="1_3_1_24_tech" headers="tech sc1_3_1">
 <ul>
-<li>H39.3</li>
+<li>H39.3.NoCaption</li>
 </ul>
 </td>
 <td class="dimOnNa" id="1_3_1_24_examples" headers="ex sc1_3_1">
-<ul>
-<li><a href="./Eg/33">33</a></li>
-<li><a href="./Eg/34">34</a></li>
-</ul>
 </td>
 </tr>
 

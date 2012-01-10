@@ -31,7 +31,7 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
     ];
 
     var expectedOmissions = [
-        '[Standard].Principle3.Guideline3_1.3_1_6.H62.1', '[Standard].Principle3.Guideline3_1.3_1_6.H62.2'
+        '[Standard].Principle3.Guideline3_1.3_1_6.H62.1.HTML5', '[Standard].Principle3.Guideline3_1.3_1_6.H62.1.XHTML11', '[Standard].Principle3.Guideline3_1.3_1_6.H62.2'
     ];
 
     function runHTMLCSExample() {
@@ -43,7 +43,10 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
 </head>
 <body>
 <h1>HTML_CodeSniffer Test Example 70</h1>
-<div class="subhead"><p>One of the methods to potentially satisfy <a href="../3_1_6">Success Criterion 3.1.6 (Pronunciation)</a> is to use ruby markup - introduced in XHTML 1.1 and thus not widely used, but included in the HTML5 standard. Ruby markup consists of smaller text around a run of text, indicating its pronunciation.</p>
+<div class="subhead">
+<p style="text-align: center">
+<a href="69">&larr; Example 69</a> | <a href="71">Example 71 &rarr;</a></p>
+<p>One of the methods to potentially satisfy <a href="../3_1_6">Success Criterion 3.1.6 (Pronunciation)</a> is to use ruby markup - introduced in XHTML 1.1 and thus not widely used, but included in the HTML5 standard. Ruby markup consists of smaller text around a run of text, indicating its pronunciation.</p>
 
 <p>This demonstrates a <strong>correct</strong> and properly accessible usage of ruby text, in both markup dialects. For each run of "base" text, there should be an "rt" element with the ruby text itself. In XHTML 1.1, the "base" text is defined by the "rb" element. In HTML5, it is specified as the body text of the ruby element. It also includes the "rp" element, which will be ignored by browsers supporting ruby, but the contents of which will be shown if the browser does not.</p>
 </div>
@@ -59,13 +62,13 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
 
 &lt;ruby&gt;&lt;rb&gt;XHTML 1.1 version&lt;/rb&gt;&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;Ruby text&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;</textarea><select id="level" name="level">
 <option value="WCAG2A">Level A</option>
-<option value="WCAG2AA" selected="selected">Level AA</option>
-<option value="WCAG2AAA">Level AAA</option>
+<option value="WCAG2AA">Level AA</option>
+<option value="WCAG2AAA" selected="selected">Level AAA</option>
 </select>
 <button type="button" onclick="javascript:runHTMLCSExample();">Run HTML_CodeSniffer</button>
 <div id="resultsWrapper"></div>
 
 <h2>Expected Messages</h2>
 
-<h3>Messages that should NOT appear</h3><ul><li>[Standard].Principle3.Guideline3_1.3_1_6.H62.1</li><li>[Standard].Principle3.Guideline3_1.3_1_6.H62.2</li></ul></body>
+<h3>Messages that should NOT appear</h3><ul><li>[Standard].Principle3.Guideline3_1.3_1_6.H62.1.HTML5</li><li>[Standard].Principle3.Guideline3_1.3_1_6.H62.1.XHTML11</li><li>[Standard].Principle3.Guideline3_1.3_1_6.H62.2</li></ul></body>
 </html>

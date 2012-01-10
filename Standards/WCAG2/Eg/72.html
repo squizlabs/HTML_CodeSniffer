@@ -43,11 +43,14 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
 </head>
 <body>
 <h1>HTML_CodeSniffer Test Example 72</h1>
-<div class="subhead"><p><a href="../3_2_5">Success Criterion 3.2.5 (Change on Request)</a> says that the content must have the mode available which requires no automatic <a href="http://www.w3.org/TR/2008/REC-WCAG20-20081211/#context-changedef">change of context</a> for the functionality to be completed. All changes of context should be initiated by the user, or a mechanism is available to turn off any automated changes.</p>
+<div class="subhead">
+<p style="text-align: center">
+<a href="71">&larr; Example 71</a> | <a href="73">Example 73 &rarr;</a></p>
+<p><a href="../3_2_5">Success Criterion 3.2.5 (Change on Request)</a> says that the content must have the mode available which requires no automatic <a href="http://www.w3.org/TR/2008/REC-WCAG20-20081211/#context-changedef">change of context</a> for the functionality to be completed. All changes of context should be initiated by the user, or a mechanism is available to turn off any automated changes.</p>
 
 <p>One possible issue with links is that they may open in a new window without warning, thus failing this Success Criterion. If a user is told the link opens in a new window, it is OK.</p>
 
-<p>If HTML<em>CodeSniffer sees a link with a target of "</em>blank", it will check for the mention of "new window" in the link text. If it cannot.</p>
+<p>If HTML&#95;CodeSniffer sees a link with a target of "_blank", it will check for the mention of "new window" in the link text. If it cannot.</p>
 
 <p>Note that the "new window" mention has to be in the link text, since this is a <abbr title="Triple A">AAA</abbr> test, and thus <a href="../2_4_9">Success Crterion 2.4.9 (Link Purpose: Link Only)</a> also applies.</p>
 </div>
@@ -59,8 +62,8 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
 <h2>Test</h2>
 <textarea id="source" style="display: none">&lt;a href=&quot;htmlcs.html&quot; target=&quot;_blank&quot;&gt;Click me&lt;/a&gt;</textarea><select id="level" name="level">
 <option value="WCAG2A">Level A</option>
-<option value="WCAG2AA" selected="selected">Level AA</option>
-<option value="WCAG2AAA">Level AAA</option>
+<option value="WCAG2AA">Level AA</option>
+<option value="WCAG2AAA" selected="selected">Level AAA</option>
 </select>
 <button type="button" onclick="javascript:runHTMLCSExample();">Run HTML_CodeSniffer</button>
 <div id="resultsWrapper"></div>

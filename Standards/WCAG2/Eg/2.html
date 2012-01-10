@@ -27,7 +27,7 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
 <script type="text/javascript" src="https://raw.github.com/squizlabs/HTML_CodeSniffer/master/HTMLCS.js"></script>
 <script>
     var expectedMsgs = [
-        '[Standard].Principle2.Guideline2_4.2_4_2.H25.1'
+        '[Standard].Principle2.Guideline2_4.2_4_2.H25.1.NoHeadEl'
     ];
 
     var expectedOmissions = [
@@ -43,7 +43,12 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
 </head>
 <body>
 <h1>HTML_CodeSniffer Test Example 2</h1>
-<div class="subhead"><p>Documents should be properly titled as per <a href="../2_4_2">Success Criterion 2.4.2: Page Titled</a>. This test handles a situation where not only is there no page title, but there is not even a head section to place it into.</p>
+<div class="subhead">
+<p style="text-align: center">
+<a href="1">&larr; Example 1</a> | <a href="3">Example 3 &rarr;</a></p>
+<p>Documents should be properly titled as per <a href="../2_4_2">Success Criterion 2.4.2: Page Titled</a>. This test handles a situation where not only is there no page title, but there is not even a head section to place it into.</p>
+
+<p><em>Note:</em> the expected error is "No head element", but the more likely response will be "No <em>title</em> element". This is because the parsed DOM will likely insert an empty head section in lieu of it being missing, therefore making the head element exist.</p>
 </div>
 
 <h2>Code</h2>
@@ -65,13 +70,13 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
 &lt;/html&gt;
 </textarea><select id="level" name="level">
 <option value="WCAG2A">Level A</option>
-<option value="WCAG2AA" selected="selected">Level AA</option>
-<option value="WCAG2AAA">Level AAA</option>
+<option value="WCAG2AA">Level AA</option>
+<option value="WCAG2AAA" selected="selected">Level AAA</option>
 </select>
 <button type="button" onclick="javascript:runHTMLCSExample();">Run HTML_CodeSniffer</button>
 <div id="resultsWrapper"></div>
 
 <h2>Expected Messages</h2>
 
-<h3>Errors</h3><ul><li>[Standard].Principle2.Guideline2_4.2_4_2.H25.1</li></ul></body>
+<h3>Errors</h3><ul><li>[Standard].Principle2.Guideline2_4.2_4_2.H25.1.NoHeadEl</li></ul></body>
 </html>

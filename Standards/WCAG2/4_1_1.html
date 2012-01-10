@@ -36,19 +36,19 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
 </div>
 <h2>Valid vs. Well-formed</h2>
 
-<p>Keep in mind that "valid" and "well-formed" are two different things, at least in XML. In an XML document (including XHTML), it only needs to be well-formed to satisfy this Success Criterion - not necessarily valid (technique <a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H75">H75: Ensuring that Web pages are well-formed</a>).</p>
+<p>Keep in mind that "valid" and "well-formed" are two different things, at least in XML. In an XML document (including XHTML), it only needs to be well-formed to satisfy this Success Criterion - not necessarily valid (technique <a href="http://www.w3.org/TR/WCAG20-TECHS/H75">H75: Ensuring that Web pages are well-formed</a>).</p>
 
 <h3>Replacements for well-formedness requirements in HTML</h3>
 
-<p>Because HTML serialisation does not have a concept of being "well-formed" so to speak, following technique <a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H88">H88: Using HTML according to spec</a> is sufficient. Otherwise, at an absolute minimum, the following three techniques must be followed:</p>
+<p>Because HTML serialisation does not have a concept of being "well-formed" so to speak, following technique <a href="http://www.w3.org/TR/WCAG20-TECHS/H88">H88: Using HTML according to spec</a> is sufficient. Otherwise, at an absolute minimum, the following three techniques must be followed:</p>
 
 <ul>
-<li><a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H74">H74: Ensuring that opening and closing tags are used according to specification</a></li>
-<li><a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H93">H93: Ensuring that id attributes are unique on a Web page</a></li>
-<li><a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H94">H94: Ensuring that elements do not contain duplicate attributes</a></li>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/H74">H74: Ensuring that opening and closing tags are used according to specification</a></li>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/H93">H93: Ensuring that id attributes are unique on a Web page</a></li>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/H94">H94: Ensuring that elements do not contain duplicate attributes</a></li>
 </ul>
 
-<p>HTML_CodeSniffer is limited to information it can receive through the DOM, which will have likely processed out duplicate attributes, and certainly opening/closing tags in the generation process of the DOM tree. Therefore, it can only detect duplicate ID attributes. These errors are flagged as a Common Failure - <a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/F77">Failure of Success Criterion 4.1.1 due to duplicate values of type ID</a>.</p>
+<p>HTML_CodeSniffer is limited to information it can receive through the DOM, which will have likely processed out duplicate attributes, and certainly opening/closing tags in the generation process of the DOM tree. Therefore, it can only detect duplicate ID attributes. These errors are flagged as a Common Failure - <a href="http://www.w3.org/TR/WCAG20-TECHS/F77">Failure of Success Criterion 4.1.1 due to duplicate values of type ID</a>.</p>
 
 <p>A lack of failures of this kind can only be considered authoritative if a complete document is processed. A document fragment can be tested for duplicate IDs, but there is nothing to say that it will duplicate the IDs of elements outside of that fragment.</p>
 
@@ -80,7 +80,7 @@ Error</td>
 <p>Check that all id attribute values are unique on the web page.</p>
 <div class="fullcode">[Standard].Principle4.Guideline4_1.4_1_1.F77</div></td>
 <td class="dimOnNa" id="4_1_1_0_applies" headers="applies sc4_1_1">
-<p>Any element with an id element</p>
+<p>Elements with duplicate IDs.</p>
 </td>
 <td class="dimOnNa" id="4_1_1_0_tech" headers="tech sc4_1_1">
 <ul>

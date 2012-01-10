@@ -34,7 +34,7 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
 </div>
 <h2>About opening links in a new window</h2>
 
-<p>When links are opened in a new window, the user ought to know about it before they select it. One method of doing this is to use technique <a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H83">H83: Using the target attribute to open a new window on user request and indicating this in link text</a>.</p>
+<p>When links are opened in a new window, the user ought to know about it before they select it. One method of doing this is to use technique <a href="http://www.w3.org/TR/WCAG20-TECHS/H83">H83: Using the target attribute to open a new window on user request and indicating this in link text</a>.</p>
 
 <p>Not all HTML document types officially support the target attribute - notably, it was removed from HTML 4.0 Strict and XHTML 1.0 Strict. Users should always be in control of where their next link is placed, and then-current generations of user agents did not handle these well (before the inclusion of, for instance, in-built popup blockers). However, it has been reinstated into HTML5. "Use of the target attribute provides an unambiguously machine-readable indication that a new window will open", and modern user agents can deny or modify this behaviour (such as placing it into another tab instead, or blocking entirely).</p>
 
@@ -42,7 +42,7 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
 
 <p>Since this is a AAA-level test, the fact that something opens in a new window should be part of the link title, and not part of the context - ie. the surrounding sentence or list item. This is because <a href="./2_4_9">Success Criterion 2.4.9</a> would also apply, which requires the link text to describe the purpose without assistance from its context.</p>
 
-<p>Where target is not supported, other methods would include technique <a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/SCR24">SCR24: Using progressive enhancement to open new windows on user request</a>. HTML&#95;CodeSniffer cannot detect links which open up a new window using JavaScript.</p>
+<p>Where target is not supported, other methods would include technique <a href="http://www.w3.org/TR/WCAG20-TECHS/SCR24">SCR24: Using progressive enhancement to open new windows on user request</a>. HTML&#95;CodeSniffer cannot detect links which open up a new window using JavaScript.</p>
 <h2>Messages emitted by this Success Criterion's tests</h2>
 
 <table>
@@ -69,7 +69,7 @@ Warning</td>
 <p>Check that this link's link text contains information indicating that the link will open in a new window.</p>
 <div class="fullcode">WCAG2AAA.Principle3.Guideline3_2.3_2_5.H83.3</div></td>
 <td class="dimOnNa" id="3_2_5_0_applies" headers="applies sc3_2_5">
-<p>Anchor ("a" element) with target="_blank"</p>
+<p>Link with a target attribute of "_blank", where the link text does not mention a new window.</p>
 </td>
 <td class="dimOnNa" id="3_2_5_0_tech" headers="tech sc3_2_5">
 <ul>

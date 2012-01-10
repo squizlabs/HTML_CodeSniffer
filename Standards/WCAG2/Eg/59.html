@@ -27,7 +27,7 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
 <script type="text/javascript" src="https://raw.github.com/squizlabs/HTML_CodeSniffer/master/HTMLCS.js"></script>
 <script>
     var expectedMsgs = [
-        '[Standard].Principle4.Guideline4_1.4_1_2.H91'
+        '[Standard].Principle4.Guideline4_1.4_1_2.H91.Name', '[Standard].Principle4.Guideline4_1.4_1_2.H91.Value'
     ];
 
     var expectedOmissions = [
@@ -43,7 +43,10 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
 </head>
 <body>
 <h1>HTML_CodeSniffer Test Example 59</h1>
-<div class="subhead"><p>According to <a href="../4_1_2">Success Criterion 4.1.2: Name, Role, Value</a>, input fields should have a name and value (and optionally, state) that is available to an accessibility API, for the role that the field takes. Standard HTML input fields have defined locations where these can be found.</p>
+<div class="subhead">
+<p style="text-align: center">
+<a href="58">&larr; Example 58</a> | <a href="60">Example 60 &rarr;</a></p>
+<p>According to <a href="../4_1_2">Success Criterion 4.1.2: Name, Role, Value</a>, input fields should have a name and value (and optionally, state) that is available to an accessibility API, for the role that the field takes. Standard HTML input fields have defined locations where these can be found.</p>
 
 <p>These provide various examples of missing names and values.</p>
 </div>
@@ -91,13 +94,13 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
     &lt;a id=&quot;test&quot;&gt;Test&lt;/a&gt;
 &lt;/form&gt;</textarea><select id="level" name="level">
 <option value="WCAG2A">Level A</option>
-<option value="WCAG2AA" selected="selected">Level AA</option>
-<option value="WCAG2AAA">Level AAA</option>
+<option value="WCAG2AA">Level AA</option>
+<option value="WCAG2AAA" selected="selected">Level AAA</option>
 </select>
 <button type="button" onclick="javascript:runHTMLCSExample();">Run HTML_CodeSniffer</button>
 <div id="resultsWrapper"></div>
 
 <h2>Expected Messages</h2>
 
-<h3>Errors</h3><ul><li>[Standard].Principle4.Guideline4_1.4_1_2.H91</li></ul></body>
+<h3>Errors</h3><ul><li>[Standard].Principle4.Guideline4_1.4_1_2.H91.Name</li><li>[Standard].Principle4.Guideline4_1.4_1_2.H91.Value</li></ul></body>
 </html>

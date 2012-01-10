@@ -34,7 +34,7 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
 </div>
 <h2>About the link element</h2>
 
-<p>Using the link element to programmatically relate pages is covered in technique <a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H59">H59: Using the link element and navigation tools</a>. Some user agents provide methods for using these links, but this has suffered a little due to lack of consensus on some standard link relation types.</p>
+<p>Using the link element to programmatically relate pages is covered in technique <a href="http://www.w3.org/TR/WCAG20-TECHS/H59">H59: Using the link element and navigation tools</a>. Some user agents provide methods for using these links, but this has suffered a little due to lack of consensus on some standard link relation types.</p>
 
 <p>The link element includes several different relation types or roles. Beyond stylesheet and "alternate" representations (for RSS/Atom feeds, for instance), some relations are used for navigation purposes.</p>
 
@@ -65,9 +65,9 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
 <p>Beyond the link element, the following techniques are also sufficient for allowing a user to determine the location of a page, where appropriate:</p>
 
 <ul>
-<li><a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/G65">Providing a breadcrumb trail</a>.</li>
-<li><a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/G63">Providing a site map</a>.</li>
-<li><a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/G128">Indicating current location within navigation bars</a> - but, just changing the background colour is not sufficient (see <a href="./1_4_1">Success Criterion 1.4.1 (Use of Colour)</a>): something else should change, such as disabling the link, bolding the text, or adding an indicator such as an asterisk or bullet.</li>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/G65">Providing a breadcrumb trail</a>.</li>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/G63">Providing a site map</a>.</li>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/G128">Indicating current location within navigation bars</a> - but, just changing the background colour is not sufficient (see <a href="./1_4_1">Success Criterion 1.4.1 (Use of Colour)</a>): something else should change, such as disabling the link, bolding the text, or adding an indicator such as an asterisk or bullet.</li>
 </ul>
 <h2>Messages emitted by this Success Criterion's tests</h2>
 
@@ -95,7 +95,7 @@ Error</td>
 <p>Check that this link element contains a valid href attribute to locate the appropriate resource being linked.</p>
 <div class="fullcode">WCAG2AAA.Principle2.Guideline2_4.2_4_8.H59.2b</div></td>
 <td class="dimOnNa" id="2_4_8_2_applies" headers="applies sc2_4_8">
-<p>Link element without href attribute</p>
+<p>Link element without a href attribute.</p>
 </td>
 <td class="dimOnNa" id="2_4_8_2_tech" headers="tech sc2_4_8">
 <ul>
@@ -116,7 +116,7 @@ Error</td>
 <p>Check that this link element contains a rel attribute identifying the link type.</p>
 <div class="fullcode">WCAG2AAA.Principle2.Guideline2_4.2_4_8.H59.2a</div></td>
 <td class="dimOnNa" id="2_4_8_1_applies" headers="applies sc2_4_8">
-<p>Link element without rel attribute</p>
+<p>Link element without a rel attribute.</p>
 </td>
 <td class="dimOnNa" id="2_4_8_1_tech" headers="tech sc2_4_8">
 <ul>
@@ -137,7 +137,7 @@ Error</td>
 <p>Check that all link elements pertaining to navigation occur in the head section of the document.</p>
 <div class="fullcode">WCAG2AAA.Principle2.Guideline2_4.2_4_8.H59.1</div></td>
 <td class="dimOnNa" id="2_4_8_0_applies" headers="applies sc2_4_8">
-<p>Link element found outside of the head section</p>
+<p>Link element that is not a child of the head element.</p>
 </td>
 <td class="dimOnNa" id="2_4_8_0_tech" headers="tech sc2_4_8">
 <ul>

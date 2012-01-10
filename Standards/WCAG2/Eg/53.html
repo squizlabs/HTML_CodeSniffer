@@ -43,7 +43,10 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
 </head>
 <body>
 <h1>HTML_CodeSniffer Test Example 53</h1>
-<div class="subhead"><p>According to <a href="../1_3_1">Success Criterion 1.3.1: Info and Relationships</a>, providing a caption and/or summary can improve the usability of a table in different ways. A caption element titles the table and is seen by all users. A summary attribute (on the table element) provides additional information for users requiring assistance, who may be reading the table cell-by-cell and therefore cannot immediately grasp the concept of the table's organisation as a whole.</p>
+<div class="subhead">
+<p style="text-align: center">
+<a href="52">&larr; Example 52</a> | <a href="54">Example 54 &rarr;</a></p>
+<p>According to <a href="../1_3_1">Success Criterion 1.3.1: Info and Relationships</a>, providing a caption and/or summary can improve the usability of a table in different ways. A caption element titles the table and is seen by all users. A summary attribute (on the table element) provides additional information for users requiring assistance, who may be reading the table cell-by-cell and therefore cannot immediately grasp the concept of the table's organisation as a whole.</p>
 
 <p>This example demonstrates incorrect usage of the summary element where there is also a caption - they should not duplicate each other. If they are the same, the summary then provides no further information to users requiring assistance, and is likely to still be inadequate to them.</p>
 </div>
@@ -117,8 +120,8 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
     &lt;/tbody&gt;
 &lt;/table&gt;</textarea><select id="level" name="level">
 <option value="WCAG2A">Level A</option>
-<option value="WCAG2AA" selected="selected">Level AA</option>
-<option value="WCAG2AAA">Level AAA</option>
+<option value="WCAG2AA">Level AA</option>
+<option value="WCAG2AAA" selected="selected">Level AAA</option>
 </select>
 <button type="button" onclick="javascript:runHTMLCSExample();">Run HTML_CodeSniffer</button>
 <div id="resultsWrapper"></div>

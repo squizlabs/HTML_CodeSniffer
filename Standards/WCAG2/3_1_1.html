@@ -99,7 +99,7 @@ XHTML 1.0 also states that both are acceptable in its <a href="http://www.w3.org
 
 <h2>On server-side techniques</h2>
 
-<p>One advisory technique provided is implemented server-side: <a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/SVR5">SVR5: Specifying the default language in the HTTP header</a>. This suggests to use the <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.12">Content-Language HTTP header</a> to identify the default language for a web page.</p>
+<p>One advisory technique provided is implemented server-side: <a href="http://www.w3.org/TR/WCAG20-TECHS/SVR5">SVR5: Specifying the default language in the HTTP header</a>. This suggests to use the <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.12">Content-Language HTTP header</a> to identify the default language for a web page.</p>
 
 <p>Its main usage is to aid in content negotiation with the user agent (presuming correctly-set headers), to serve a version of the content in the appropriate language.</p>
 
@@ -131,13 +131,13 @@ XHTML 1.0 also states that both are acceptable in its <a href="http://www.w3.org
 Error</td>
 <td class="dimOnNa" id="3_1_1_2_name" headers="name sc3_1_1">
 <p>Ensure that any language tag used in an xml:lang attribute is well-formed according to the appropriate standard.</p>
-<div class="fullcode">[Standard].Principle3.Guideline3_1.3_1_1.H57.3</div></td>
+<div class="fullcode">[Standard].Principle3.Guideline3_1.3_1_1.H57.3.XmlLang</div></td>
 <td class="dimOnNa" id="3_1_1_2_applies" headers="applies sc3_1_1">
-<p>html element</p>
+<p>A html element of a complete document, with an xml:lang attribute where its contents are not a well-formed language tag.</p>
 </td>
 <td class="dimOnNa" id="3_1_1_2_tech" headers="tech sc3_1_1">
 <ul>
-<li>H57.3</li>
+<li>H57.3.XmlLang</li>
 </ul>
 </td>
 <td class="dimOnNa" id="3_1_1_2_examples" headers="ex sc3_1_1">
@@ -149,13 +149,13 @@ Error</td>
 Error</td>
 <td class="dimOnNa" id="3_1_1_1_name" headers="name sc3_1_1">
 <p>Ensure that any language tag used in a lang attribute is well-formed according to the appropriate standard.</p>
-<div class="fullcode">[Standard].Principle3.Guideline3_1.3_1_1.H57.3</div></td>
+<div class="fullcode">[Standard].Principle3.Guideline3_1.3_1_1.H57.3.Lang</div></td>
 <td class="dimOnNa" id="3_1_1_1_applies" headers="applies sc3_1_1">
-<p>html element</p>
+<p>A html element of a complete document, with a lang attribute where its contents are not a well-formed language tag.</p>
 </td>
 <td class="dimOnNa" id="3_1_1_1_tech" headers="tech sc3_1_1">
 <ul>
-<li>H57.3</li>
+<li>H57.3.Lang</li>
 </ul>
 </td>
 <td class="dimOnNa" id="3_1_1_1_examples" headers="ex sc3_1_1">
@@ -169,7 +169,7 @@ Error</td>
 <p>The html element should have a lang or xml:lang attribute which describes the language of the document.</p>
 <div class="fullcode">[Standard].Principle3.Guideline3_1.3_1_1.H57.2</div></td>
 <td class="dimOnNa" id="3_1_1_0_applies" headers="applies sc3_1_1">
-<p>html element</p>
+<p>A html element of a complete document.</p>
 </td>
 <td class="dimOnNa" id="3_1_1_0_tech" headers="tech sc3_1_1">
 <ul>

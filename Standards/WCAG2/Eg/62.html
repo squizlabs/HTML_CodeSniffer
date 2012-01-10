@@ -27,7 +27,7 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
 <script type="text/javascript" src="https://raw.github.com/squizlabs/HTML_CodeSniffer/master/HTMLCS.js"></script>
 <script>
     var expectedMsgs = [
-        '', '[Standard].Principle2.Guideline2_1.2_1_1.SCR2'
+        '', '[Standard].Principle2.Guideline2_1.2_1_1.SCR2.MouseDown', '[Standard].Principle2.Guideline2_1.2_1_1.SCR2.MouseUp', '[Standard].Principle2.Guideline2_1.2_1_1.SCR2.MouseMove', '[Standard].Principle2.Guideline2_1.2_1_1.SCR2.DblClick', '[Standard].Principle2.Guideline2_1.2_1_1.SCR2.MouseOver', '[Standard].Principle2.Guideline2_1.2_1_1.SCR2.MouseOut'
     ];
 
     var expectedOmissions = [
@@ -43,7 +43,10 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
 </head>
 <body>
 <h1>HTML_CodeSniffer Test Example 62</h1>
-<div class="subhead"><p><a href="../2_1_1">Success Criterion 2.1.1 (Keyboard)</a> states that all functionality provided by the content should be operable using the keyboard, "except where the underlying function requires input that depends on the path of the user's movement and not just the endpoints". The <abbr title="Triple A">AAA</abbr> version of this is <a href="../2_1_3">Success Criterion 2.1.3 (Keyboard: No Exception)</a>, which precludes content requiring the quoted exception from reaching <abbr title="Triple A">AAA</abbr> conformance.</p>
+<div class="subhead">
+<p style="text-align: center">
+<a href="61">&larr; Example 61</a> | <a href="63">Example 63 &rarr;</a></p>
+<p><a href="../2_1_1">Success Criterion 2.1.1 (Keyboard)</a> states that all functionality provided by the content should be operable using the keyboard, "except where the underlying function requires input that depends on the path of the user's movement and not just the endpoints". The <abbr title="Triple A">AAA</abbr> version of this is <a href="../2_1_3">Success Criterion 2.1.3 (Keyboard: No Exception)</a>, which precludes content requiring the quoted exception from reaching <abbr title="Triple A">AAA</abbr> conformance.</p>
 
 <p>This example should fire warnings relating to the usage of mouse-specific events for performing functionality. Authors should check that the functionality provided by these events are also provided by keyboard events in some fashion, or consider using device-neutral events. The messages provide suggested alternative events, but these do not have to be followed exactly as long as the functionality is available.</p>
 
@@ -67,13 +70,13 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
     &lt;div onmouseover=&quot;alert('Moused In');&quot; onmouseout=&quot;alert('Moused Out');&quot;&gt;Move into and out me!&lt;/div&gt;
 &lt;/form&gt;</textarea><select id="level" name="level">
 <option value="WCAG2A">Level A</option>
-<option value="WCAG2AA" selected="selected">Level AA</option>
-<option value="WCAG2AAA">Level AAA</option>
+<option value="WCAG2AA">Level AA</option>
+<option value="WCAG2AAA" selected="selected">Level AAA</option>
 </select>
 <button type="button" onclick="javascript:runHTMLCSExample();">Run HTML_CodeSniffer</button>
 <div id="resultsWrapper"></div>
 
 <h2>Expected Messages</h2>
 
-<h3>Warnings</h3><ul><li>[Standard].Principle2.Guideline2_1.2_1_1.SCR2</li></ul></body>
+<h3>Warnings</h3><ul><li>[Standard].Principle2.Guideline2_1.2_1_1.SCR2.MouseDown</li><li>[Standard].Principle2.Guideline2_1.2_1_1.SCR2.MouseUp</li><li>[Standard].Principle2.Guideline2_1.2_1_1.SCR2.MouseMove</li><li>[Standard].Principle2.Guideline2_1.2_1_1.SCR2.DblClick</li><li>[Standard].Principle2.Guideline2_1.2_1_1.SCR2.MouseOver</li><li>[Standard].Principle2.Guideline2_1.2_1_1.SCR2.MouseOut</li></ul></body>
 </html>

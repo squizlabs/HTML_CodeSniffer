@@ -27,7 +27,7 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
 <script type="text/javascript" src="https://raw.github.com/squizlabs/HTML_CodeSniffer/master/HTMLCS.js"></script>
 <script>
     var expectedMsgs = [
-        '[Standard].Principle2.Guideline2_4.2_4_2.H25.1'
+        '[Standard].Principle2.Guideline2_4.2_4_2.H25.1.EmptyTitle'
     ];
 
     var expectedOmissions = [
@@ -43,7 +43,10 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
 </head>
 <body>
 <h1>HTML_CodeSniffer Test Example 1</h1>
-<div class="subhead"><p>Tests a full document without a title. Documents should be properly titled as per <a href="../2_4_2">Success Criterion 2.4.2: Page Titled</a>.</p>
+<div class="subhead">
+<p style="text-align: center">
+Already at first example | <a href="2">Example 2 &rarr;</a></p>
+<p>Tests a full document without a title. Documents should be properly titled as per <a href="../2_4_2">Success Criterion 2.4.2: Page Titled</a>.</p>
 </div>
 
 <h2>Code</h2>
@@ -71,13 +74,13 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
 &lt;/html&gt;
 </textarea><select id="level" name="level">
 <option value="WCAG2A">Level A</option>
-<option value="WCAG2AA" selected="selected">Level AA</option>
-<option value="WCAG2AAA">Level AAA</option>
+<option value="WCAG2AA">Level AA</option>
+<option value="WCAG2AAA" selected="selected">Level AAA</option>
 </select>
 <button type="button" onclick="javascript:runHTMLCSExample();">Run HTML_CodeSniffer</button>
 <div id="resultsWrapper"></div>
 
 <h2>Expected Messages</h2>
 
-<h3>Errors</h3><ul><li>[Standard].Principle2.Guideline2_4.2_4_2.H25.1</li></ul></body>
+<h3>Errors</h3><ul><li>[Standard].Principle2.Guideline2_4.2_4_2.H25.1.EmptyTitle</li></ul></body>
 </html>

@@ -40,11 +40,11 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
 
 <p>For HTML, the browser usually communicates with an OS-level accessibility API, which then exposes information to assistive technology. For a list of accessibility APIs in common use, the <a href="http://dev.w3.org/html5/html-api-map/">HTML to Platform Accessibility APIs Implementation Guide</a>, covering HTML 4 and 5, is a good start. This is not limited to HTML; other technologies such as Java and (presumably) Flash have techniques that expose their interfaces to accessibility APIs.</p>
 
-<p>Using technique <a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H91">H91: Using HTML form controls and links</a> successfully ensures that ordinary HTML form controls and links are accessible. If you are creating custom controls and widgets, it may not be so easy to expose such controls to an accessibility API - for instance, that a two-state on/off toggle button (like that found in Squiz Framework, or the iOS interface) has the role of a check box, and should be exposed to assistive technology as such. The <a href="http://www.w3.org/TR/wai-aria"><acronym title="Web Accessibility Intiative: Accessible Rich Internet Applications">WAI-ARIA</acronym> document</a> attempts to address this with a common vocabulary, but this is only at Candidate Recommendation stage, pending further implementation and testing. An implementation report was expected by July 2011, but an <a href="http://www.w3.org/WAI/aria/faq#update">August 2011 update in the FAQ for WAI-ARIA</a> states the relevant group "expects it will take several months to complete the tests".</p>
+<p>Using technique <a href="http://www.w3.org/TR/WCAG20-TECHS/H91">H91: Using HTML form controls and links</a> successfully ensures that ordinary HTML form controls and links are accessible. If you are creating custom controls and widgets, it may not be so easy to expose such controls to an accessibility API - for instance, that a two-state on/off toggle button (like that found in Squiz Framework, or the iOS interface) has the role of a check box, and should be exposed to assistive technology as such. The <a href="http://www.w3.org/TR/wai-aria"><acronym title="Web Accessibility Intiative: Accessible Rich Internet Applications">WAI-ARIA</acronym> document</a> attempts to address this with a common vocabulary, but this is only at Candidate Recommendation stage, pending further implementation and testing. An implementation report was expected by July 2011, but an <a href="http://www.w3.org/WAI/aria/faq#update">August 2011 update in the FAQ for WAI-ARIA</a> states the relevant group "expects it will take several months to complete the tests".</p>
 
 <h2>Roles, Names, States and Values table</h2>
 
-<p>Adapted from technique <a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H91">H91: Using HTML form controls and links</a>. HTML_CodeSniffer will emit errors on form fields that do not have a required source for the "name" and, if applicable, "value" fields under this model.</p>
+<p>Adapted from technique <a href="http://www.w3.org/TR/WCAG20-TECHS/H91">H91: Using HTML form controls and links</a>. HTML_CodeSniffer will emit errors on form fields that do not have a required source for the "name" and, if applicable, "value" fields under this model.</p>
 
 <table>
 <colgroup>
@@ -102,7 +102,7 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
 <td></td>
 </tr><tr>
 <td>input with type "password"</td>
-<td>Editbale text</td>
+<td>Editable text</td>
 <td>associated label element or title attribute</td>
 <td></td>
 <td>checked attribute</td>
@@ -158,13 +158,13 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
 Error</td>
 <td class="dimOnNa" id="4_1_2_1_name" headers="name sc4_1_2">
 <p>Check that this form control has a value that is available to an accessibility API.</p>
-<div class="fullcode">[Standard].Principle4.Guideline4_1.4_1_2.H91</div></td>
+<div class="fullcode">[Standard].Principle4.Guideline4_1.4_1_2.H91.Value</div></td>
 <td class="dimOnNa" id="4_1_2_1_applies" headers="applies sc4_1_2">
-<p>a, input type="text", select, textarea</p>
+<p>Form control (including links) where a "value" is not provided. See provided table for which content counts as a "value".</p>
 </td>
 <td class="dimOnNa" id="4_1_2_1_tech" headers="tech sc4_1_2">
 <ul>
-<li>H91</li>
+<li>H91.Value</li>
 </ul>
 </td>
 <td class="dimOnNa" id="4_1_2_1_examples" headers="ex sc4_1_2">
@@ -179,13 +179,13 @@ Error</td>
 Error</td>
 <td class="dimOnNa" id="4_1_2_0_name" headers="name sc4_1_2">
 <p>Check that this form control has a name that is available to an accessibility API.</p>
-<div class="fullcode">[Standard].Principle4.Guideline4_1.4_1_2.H91</div></td>
+<div class="fullcode">[Standard].Principle4.Guideline4_1.4_1_2.H91.Name</div></td>
 <td class="dimOnNa" id="4_1_2_0_applies" headers="applies sc4_1_2">
-<p>a, button, fieldset, input, select, textarea</p>
+<p>Form control (including links) where a "name" is not provided. See provided table for which content counts as a "name".</p>
 </td>
 <td class="dimOnNa" id="4_1_2_0_tech" headers="tech sc4_1_2">
 <ul>
-<li>H91</li>
+<li>H91.Name</li>
 </ul>
 </td>
 <td class="dimOnNa" id="4_1_2_0_examples" headers="ex sc4_1_2">

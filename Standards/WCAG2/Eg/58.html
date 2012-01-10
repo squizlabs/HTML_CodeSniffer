@@ -43,11 +43,14 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
 </head>
 <body>
 <h1>HTML_CodeSniffer Test Example 58</h1>
-<div class="subhead"><p>According to <a href="../2_4_1">Success Criterion 2.4.1: Bypass Blocks</a>, a logical set of links (such as a navigation bar, or list of footer links) should be marked up as a unit and given a title, to allow users with assistive technology to skip the whole set as appropriate. The suggested element is map - this is usually used for marking up a client-side image map. However, the map element allows block content as well as area elements, and so this element can also be used for marking up a list of links as a unit. The HTML5 specification encourages this as an option "to increase maintenance".</p>
+<div class="subhead">
+<p style="text-align: center">
+<a href="57">&larr; Example 57</a> | <a href="59">Example 59 &rarr;</a></p>
+<p>According to <a href="../2_4_1">Success Criterion 2.4.1: Bypass Blocks</a>, a logical set of links (such as a navigation bar, or list of footer links) should be marked up as a unit and given a title, to allow users with assistive technology to skip the whole set as appropriate. The suggested element is map - this is usually used for marking up a client-side image map. However, the map element allows block content as well as area elements, and so this element can also be used for marking up a list of links as a unit. The HTML5 specification encourages this as an option "to increase maintenance".</p>
 
 <p>Where a paragraph, list or div element contains at least two links, this warning will be emitted so that the author can consider wrapping them in a map element.</p>
 
-<p>Alternatives include technique <a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H48">H48: Using ol, ul and dl for lists or groups of links</a>, to group lists of links into actual semantic lists. In theory, HTML4 and HTML5 support title attributes on most elements (including P and lists), but assistive technology support for titles on these elements is unknown.</p>
+<p>Alternatives include technique <a href="http://www.w3.org/TR/WCAG20-TECHS/H48">H48: Using ol, ul and dl for lists or groups of links</a>, to group lists of links into actual semantic lists. In theory, HTML4 and HTML5 support title attributes on most elements (including P and lists), but assistive technology support for titles on these elements is unknown.</p>
 </div>
 
 <h2>Code</h2>
@@ -73,8 +76,8 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
     &lt;a href=&quot;screenshots.html&quot;&gt;Screenshots&lt;/a&gt;
 &lt;/p&gt;</textarea><select id="level" name="level">
 <option value="WCAG2A">Level A</option>
-<option value="WCAG2AA" selected="selected">Level AA</option>
-<option value="WCAG2AAA">Level AAA</option>
+<option value="WCAG2AA">Level AA</option>
+<option value="WCAG2AAA" selected="selected">Level AAA</option>
 </select>
 <button type="button" onclick="javascript:runHTMLCSExample();">Run HTML_CodeSniffer</button>
 <div id="resultsWrapper"></div>

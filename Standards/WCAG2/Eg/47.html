@@ -43,7 +43,10 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
 </head>
 <body>
 <h1>HTML_CodeSniffer Test Example 47</h1>
-<div class="subhead"><p>According to <a href="../1_1_1">Success Criterion 1.1.1: Non-text Content</a>, all non-text content, including embedded objects, should contain a text alternative.</p>
+<div class="subhead">
+<p style="text-align: center">
+<a href="46">&larr; Example 46</a> | <a href="48">Example 48 &rarr;</a></p>
+<p>According to <a href="../1_1_1">Success Criterion 1.1.1: Non-text Content</a>, all non-text content, including embedded objects, should contain a text alternative.</p>
 
 <p>This example demonstrates the usage of both text and non-text alternatives - in this case, a static placeholder image if the QuickTime movie cannot be loaded. However, it should emit an error for having an empty text alternative, which should be in the body of the innermost element. The error should fire on the innermost object.</p>
 </div>
@@ -61,8 +64,8 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
     &lt;/object&gt;
 &lt;/object&gt;</textarea><select id="level" name="level">
 <option value="WCAG2A">Level A</option>
-<option value="WCAG2AA" selected="selected">Level AA</option>
-<option value="WCAG2AAA">Level AAA</option>
+<option value="WCAG2AA">Level AA</option>
+<option value="WCAG2AAA" selected="selected">Level AAA</option>
 </select>
 <button type="button" onclick="javascript:runHTMLCSExample();">Run HTML_CodeSniffer</button>
 <div id="resultsWrapper"></div>

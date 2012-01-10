@@ -41,11 +41,11 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
 </div>
 <h2>Redundant event handlers</h2>
 
-<p>The relevant technique is <a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/SCR2">SCR2: Using redundant keyboard and mouse event handlers</a>. This technique specifically refers to an example changing an image when it receives the focus - that an image change on a link using onmouseover and onmouseout should also be implemented using onfocus and onblur, so it is activated using the keyboard (by tabbing to the element).</p>
+<p>The relevant technique is <a href="http://www.w3.org/TR/WCAG20-TECHS/SCR2">SCR2: Using redundant keyboard and mouse event handlers</a>. This technique specifically refers to an example changing an image when it receives the focus - that an image change on a link using onmouseover and onmouseout should also be implemented using onfocus and onblur, so it is activated using the keyboard (by tabbing to the element).</p>
 
 <p>However, it equally applies to other functionality that would be accessible only via the mouse. Events which will emit messages if found include mouseover, mouseout, mousemove, mousedown, mouseup, and dblclick.</p>
 
-<p>Using the onclick event does not trigger a message under the SCR2 technique. The <a href="http://www.w3.org/TR/DOM-Level-3-Events/">current working draft of DOM Events Level 3 Specification</a> states "Though the click event type has its origins in pointer devices (e.g., a mouse), subsequent implementation enhancements have extended it beyond that association, and it can be considered a device-independent event type for element activation." Certain elements will typically generate a click event on a certain key press - notably links and buttons (see <a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/SCR35">technique SCR35</a>).</p>
+<p>Using the onclick event does not trigger a message under the SCR2 technique. The <a href="http://www.w3.org/TR/DOM-Level-3-Events/">current working draft of DOM Events Level 3 Specification</a> states "Though the click event type has its origins in pointer devices (e.g., a mouse), subsequent implementation enhancements have extended it beyond that association, and it can be considered a device-independent event type for element activation." Certain elements will typically generate a click event on a certain key press - notably links and buttons (see <a href="http://www.w3.org/TR/WCAG20-TECHS/SCR35">technique SCR35</a>).</p>
 
 <p>As events can be implemented using a variety of different methods - ranging from via HTML attributes, through to DOM events, to being set through frameworks like jQuery or Prototype.js. On the flipside, even if a corresponding event is provided in code as an HTML attribute, there is no guarantee that it exposes the same functionality as the mouse event.</p>
 
@@ -75,13 +75,13 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
 Warning</td>
 <td class="dimOnNa" id="2_1_1_4_name" headers="name sc2_1_1">
 <p>Ensure the functionality provided by mousing down on this element is available through the keyboard; for instance, using the keydown event.</p>
-<div class="fullcode">[Standard].Principle2.Guideline2_1.2_1_1.SCR2</div></td>
+<div class="fullcode">[Standard].Principle2.Guideline2_1.2_1_1.SCR2.MouseDown</div></td>
 <td class="dimOnNa" id="2_1_1_4_applies" headers="applies sc2_1_1">
-<p>Elements with onmousedown event attribute</p>
+<p>Any element with an onmousedown attribute.</p>
 </td>
 <td class="dimOnNa" id="2_1_1_4_tech" headers="tech sc2_1_1">
 <ul>
-<li>SCR2</li>
+<li>SCR2.MouseDown</li>
 </ul>
 </td>
 <td class="dimOnNa" id="2_1_1_4_examples" headers="ex sc2_1_1">
@@ -96,13 +96,13 @@ Warning</td>
 Warning</td>
 <td class="dimOnNa" id="2_1_1_5_name" headers="name sc2_1_1">
 <p>Ensure the functionality provided by mousing up on this element is available through the keyboard; for instance, using the keyup event.</p>
-<div class="fullcode">[Standard].Principle2.Guideline2_1.2_1_1.SCR2</div></td>
+<div class="fullcode">[Standard].Principle2.Guideline2_1.2_1_1.SCR2.MouseUp</div></td>
 <td class="dimOnNa" id="2_1_1_5_applies" headers="applies sc2_1_1">
-<p>Elements with onmouseup event attribute</p>
+<p>Any element with an onmouseup attribute.</p>
 </td>
 <td class="dimOnNa" id="2_1_1_5_tech" headers="tech sc2_1_1">
 <ul>
-<li>SCR2</li>
+<li>SCR2.MouseUp</li>
 </ul>
 </td>
 <td class="dimOnNa" id="2_1_1_5_examples" headers="ex sc2_1_1">
@@ -117,13 +117,13 @@ Warning</td>
 Warning</td>
 <td class="dimOnNa" id="2_1_1_3_name" headers="name sc2_1_1">
 <p>Ensure the functionality provided by moving the mouse on this element is available through the keyboard.</p>
-<div class="fullcode">[Standard].Principle2.Guideline2_1.2_1_1.SCR2</div></td>
+<div class="fullcode">[Standard].Principle2.Guideline2_1.2_1_1.SCR2.MouseMove</div></td>
 <td class="dimOnNa" id="2_1_1_3_applies" headers="applies sc2_1_1">
-<p>Elements with onmousemove event attribute</p>
+<p>Any element with an onmousemove attribute.</p>
 </td>
 <td class="dimOnNa" id="2_1_1_3_tech" headers="tech sc2_1_1">
 <ul>
-<li>SCR2</li>
+<li>SCR2.MouseMove</li>
 </ul>
 </td>
 <td class="dimOnNa" id="2_1_1_3_examples" headers="ex sc2_1_1">
@@ -138,13 +138,13 @@ Warning</td>
 Warning</td>
 <td class="dimOnNa" id="2_1_1_2_name" headers="name sc2_1_1">
 <p>Ensure the functionality provided by mousing out of this element is available through the keyboard; for instance, using the blur event.</p>
-<div class="fullcode">[Standard].Principle2.Guideline2_1.2_1_1.SCR2</div></td>
+<div class="fullcode">[Standard].Principle2.Guideline2_1.2_1_1.SCR2.MouseOut</div></td>
 <td class="dimOnNa" id="2_1_1_2_applies" headers="applies sc2_1_1">
-<p>Elements with onmouseout event element</p>
+<p>Any element with an onmouseout attribute.</p>
 </td>
 <td class="dimOnNa" id="2_1_1_2_tech" headers="tech sc2_1_1">
 <ul>
-<li>SCR2</li>
+<li>SCR2.MouseOut</li>
 </ul>
 </td>
 <td class="dimOnNa" id="2_1_1_2_examples" headers="ex sc2_1_1">
@@ -159,13 +159,13 @@ Warning</td>
 Warning</td>
 <td class="dimOnNa" id="2_1_1_1_name" headers="name sc2_1_1">
 <p>Ensure the functionality provided by mousing over this element is available through the keyboard; for instance, using the focus event.</p>
-<div class="fullcode">[Standard].Principle2.Guideline2_1.2_1_1.SCR2</div></td>
+<div class="fullcode">[Standard].Principle2.Guideline2_1.2_1_1.SCR2.MouseOver</div></td>
 <td class="dimOnNa" id="2_1_1_1_applies" headers="applies sc2_1_1">
-<p>Elements with onmouseover event attribute</p>
+<p>Any element with an onmouseover attribute.</p>
 </td>
 <td class="dimOnNa" id="2_1_1_1_tech" headers="tech sc2_1_1">
 <ul>
-<li>SCR2</li>
+<li>SCR2.MouseOver</li>
 </ul>
 </td>
 <td class="dimOnNa" id="2_1_1_1_examples" headers="ex sc2_1_1">
@@ -180,13 +180,13 @@ Warning</td>
 Warning</td>
 <td class="dimOnNa" id="2_1_1_0_name" headers="name sc2_1_1">
 <p>Ensure the functionality provided by double-clicking on this element is available through the keyboard.</p>
-<div class="fullcode">[Standard].Principle2.Guideline2_1.2_1_1.SCR2</div></td>
+<div class="fullcode">[Standard].Principle2.Guideline2_1.2_1_1.SCR2.DblClick</div></td>
 <td class="dimOnNa" id="2_1_1_0_applies" headers="applies sc2_1_1">
-<p>Elements with ondblclick event attribute</p>
+<p>Any element with an ondblclick attribute.</p>
 </td>
 <td class="dimOnNa" id="2_1_1_0_tech" headers="tech sc2_1_1">
 <ul>
-<li>SCR2</li>
+<li>SCR2.DblClick</li>
 </ul>
 </td>
 <td class="dimOnNa" id="2_1_1_0_examples" headers="ex sc2_1_1">

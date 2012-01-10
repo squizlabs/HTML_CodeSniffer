@@ -34,7 +34,7 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
 </div>
 <h2>About Ruby text</h2>
 
-<p>One method of providing pronunciation of words is ruby text, as detailed in technique <a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/H62">H62: Using the ruby element</a>. It is currently not necessarily the best method at the moment due to its lack of broad support (see the "Additional sufficient techniques" below), but it is one that can be programmatically checked for errors. It is also one that may become more used in the future if support improves, particularly given its acceptance into HTML5.</p>
+<p>One method of providing pronunciation of words is ruby text, as detailed in technique <a href="http://www.w3.org/TR/WCAG20-TECHS/H62">H62: Using the ruby element</a>. It is currently not necessarily the best method at the moment due to its lack of broad support (see the "Additional sufficient techniques" below), but it is one that can be programmatically checked for errors. It is also one that may become more used in the future if support improves, particularly given its acceptance into HTML5.</p>
 
 <p>One method of marking pronounciation, particularly in Asian scripts like Chinese characters or Japanese kanji, is to use smaller characters above, below, or beside the text - either simpler characters (such as hiragana in Japanese), or Latin romanisation (such as romaji or pinyin).</p>
 
@@ -63,9 +63,9 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
 <p>If ruby text is not available as an option for fulfilling this Success Criterion, the following techniques are also considered sufficient, but require a manual test:</p>
 
 <ul>
-<li><a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/G120">Providing the pronunciation directly after the word</a>. If ruby text is used and the rp element is used properly, it should fall back to this case in browsers without ruby support.</li>
-<li><a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/G121">Linking to a definition</a> (including in a dictionary or <a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/G62">glossary</a>) that contains the pronunciation</li>
-<li><a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/G163">Using standard diacritical marks that can be turned off</a> (where applicable). The W3C offers an <a href="http://www.hawaii.edu/site/info/diacritics.php">example from the University of Hawai'i</a>, which allows the switching of Hawai'ian language diacritical marks.</li>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/G120">Providing the pronunciation directly after the word</a>. If ruby text is used and the rp element is used properly, it should fall back to this case in browsers without ruby support.</li>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/G121">Linking to a definition</a> (including in a dictionary or <a href="http://www.w3.org/TR/WCAG20-TECHS/G62">glossary</a>) that contains the pronunciation</li>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/G163">Using standard diacritical marks that can be turned off</a> (where applicable). The W3C offers an <a href="http://www.hawaii.edu/site/info/diacritics.php">example from the University of Hawai'i</a>, which allows the switching of Hawai'ian language diacritical marks.</li>
 </ul>
 <h2>Messages emitted by this Success Criterion's tests</h2>
 
@@ -93,7 +93,7 @@ Error</td>
 <p>If simple Ruby markup is used, check that the rp element is present to indicate to user agents that do not support Ruby annotations that the text in the rt element provides the pronunciation information.</p>
 <div class="fullcode">WCAG2AAA.Principle3.Guideline3_1.3_1_6.H62.2</div></td>
 <td class="dimOnNa" id="3_1_6_2_applies" headers="applies sc3_1_6">
-<p>Ruby element</p>
+<p>Ruby element without a child rp element.</p>
 </td>
 <td class="dimOnNa" id="3_1_6_2_tech" headers="tech sc3_1_6">
 <ul>
@@ -113,13 +113,13 @@ Error</td>
 Error</td>
 <td class="dimOnNa" id="3_1_6_1_name" headers="name sc3_1_6">
 <p>Check that a rt element contains pronunciation information for each run of text defined by the rb element.</p>
-<div class="fullcode">WCAG2AAA.Principle3.Guideline3_1.3_1_6.H62.1</div></td>
+<div class="fullcode">WCAG2AAA.Principle3.Guideline3_1.3_1_6.H62.1.XHTML11</div></td>
 <td class="dimOnNa" id="3_1_6_1_applies" headers="applies sc3_1_6">
-<p>Ruby element as defined in XHTML 1.1 markup (with rb element)</p>
+<p>Ruby element without a child rt element. (This version fired when an rb element was found, which is XHTML 1.1 "simple markup" format.)</p>
 </td>
 <td class="dimOnNa" id="3_1_6_1_tech" headers="tech sc3_1_6">
 <ul>
-<li>H62.1</li>
+<li>H62.1.XHTML11</li>
 </ul>
 </td>
 <td class="dimOnNa" id="3_1_6_1_examples" headers="ex sc3_1_6">
@@ -136,13 +136,13 @@ Error</td>
 Error</td>
 <td class="dimOnNa" id="3_1_6_0_name" headers="name sc3_1_6">
 <p>Check that a rt element contains pronunciation information for each run of text defined by the body of the ruby element.</p>
-<div class="fullcode">WCAG2AAA.Principle3.Guideline3_1.3_1_6.H62.1</div></td>
+<div class="fullcode">WCAG2AAA.Principle3.Guideline3_1.3_1_6.H62.1.HTML5</div></td>
 <td class="dimOnNa" id="3_1_6_0_applies" headers="applies sc3_1_6">
-<p>Ruby element as defined in HTML5 markup (no rb element; base text is body text of ruby element)</p>
+<p>Ruby element without a child rt element. (This version fired when no rb element found, which is HTML5 format.)</p>
 </td>
 <td class="dimOnNa" id="3_1_6_0_tech" headers="tech sc3_1_6">
 <ul>
-<li>H62.1</li>
+<li>H62.1.HTML5</li>
 </ul>
 </td>
 <td class="dimOnNa" id="3_1_6_0_examples" headers="ex sc3_1_6">

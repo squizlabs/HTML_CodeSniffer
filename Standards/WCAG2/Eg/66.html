@@ -27,7 +27,7 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
 <script type="text/javascript" src="https://raw.github.com/squizlabs/HTML_CodeSniffer/master/HTMLCS.js"></script>
 <script>
     var expectedMsgs = [
-        '[Standard].Principle3.Guideline3_1.3_1_2.H58.1'
+        '[Standard].Principle3.Guideline3_1.3_1_2.H58.1.Lang', '[Standard].Principle3.Guideline3_1.3_1_2.H58.1.XmlLang'
     ];
 
     var expectedOmissions = [
@@ -43,7 +43,10 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
 </head>
 <body>
 <h1>HTML_CodeSniffer Test Example 66</h1>
-<div class="subhead"><p><a href="../3_1_2">Success Criterion 3.1.2 (Language of Parts)</a> states that the changes in language should be marked using language attributes to qualify for <abbr title="Double A">AA</abbr> conformance.</p>
+<div class="subhead">
+<p style="text-align: center">
+<a href="65">&larr; Example 65</a> | <a href="67">Example 67 &rarr;</a></p>
+<p><a href="../3_1_2">Success Criterion 3.1.2 (Language of Parts)</a> states that the changes in language should be marked using language attributes to qualify for <abbr title="Double A">AA</abbr> conformance.</p>
 
 <p>This example should test the usage of non-well-formed lang and xml:lang attributes on a normal element. Two errors should appear: one for the lang element and one for the xml:lang.</p>
 </div>
@@ -59,13 +62,13 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
 &lt;div lang=&quot;x&quot; xml:lang=&quot;x&quot;&gt;&quot;x&quot; on its own. Private use section needs data after it.&lt;/div&gt;
 &lt;div lang=&quot;i&quot; xml:lang=&quot;i&quot;&gt;&quot;i&quot; on its own. Irregular tag identifer needs data after it.&lt;/div&gt;</textarea><select id="level" name="level">
 <option value="WCAG2A">Level A</option>
-<option value="WCAG2AA" selected="selected">Level AA</option>
-<option value="WCAG2AAA">Level AAA</option>
+<option value="WCAG2AA">Level AA</option>
+<option value="WCAG2AAA" selected="selected">Level AAA</option>
 </select>
 <button type="button" onclick="javascript:runHTMLCSExample();">Run HTML_CodeSniffer</button>
 <div id="resultsWrapper"></div>
 
 <h2>Expected Messages</h2>
 
-<h3>Errors</h3><ul><li>[Standard].Principle3.Guideline3_1.3_1_2.H58.1</li></ul></body>
+<h3>Errors</h3><ul><li>[Standard].Principle3.Guideline3_1.3_1_2.H58.1.Lang</li><li>[Standard].Principle3.Guideline3_1.3_1_2.H58.1.XmlLang</li></ul></body>
 </html>

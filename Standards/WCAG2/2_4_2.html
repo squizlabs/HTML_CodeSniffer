@@ -34,13 +34,13 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
 </div>
 <h2>About descriptive titles</h2>
 
-<p>Page titles should be descriptive. Quoting the general technique for descriptive titles (<a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/G88">G88: Providing descriptive titles for Web pages</a>):</p>
+<p>Page titles should be descriptive. Quoting the general technique for descriptive titles (<a href="http://www.w3.org/TR/WCAG20-TECHS/G88">G88: Providing descriptive titles for Web pages</a>):</p>
 
 <blockquote>
   <p>Descriptive titles help users find content, orient themselves within it, and navigate through it. A descriptive title allows a user to easily identify what Web page they are using and to tell when the Web page has changed. The title can be used to identify the Web page without requiring users to read or interpret page content.</p>
 </blockquote>
 
-<p>This technique suggests that titles be short, and make sense when read out of context (such as in a search result). It can also be helpful for it to identify structure in a site (or other resource to which a web page belongs) - especially where there is no other technique used (such as a <a href="http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/G65">breadcrumb trail</a>) - and potentially be unique within a site.</p>
+<p>This technique suggests that titles be short, and make sense when read out of context (such as in a search result). It can also be helpful for it to identify structure in a site (or other resource to which a web page belongs) - especially where there is no other technique used (such as a <a href="http://www.w3.org/TR/WCAG20-TECHS/G65">breadcrumb trail</a>) - and potentially be unique within a site.</p>
 <h2>Messages emitted by this Success Criterion's tests</h2>
 
 <p>Note that "[Standard]" will be replaced with "WCAG2A", "WCAG2AA" or "WCAG2AAA", depending on the level being tested.</p>
@@ -66,20 +66,18 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
 Error</td>
 <td class="dimOnNa" id="2_4_2_2_name" headers="name sc2_4_2">
 <p>The title element in the head section should be non-empty.</p>
-<div class="fullcode">[Standard].Principle2.Guideline2_4.2_4_2.H25.1</div></td>
+<div class="fullcode">[Standard].Principle2.Guideline2_4.2_4_2.H25.1.EmptyTitle</div></td>
 <td class="dimOnNa" id="2_4_2_2_applies" headers="applies sc2_4_2">
-<p>Title element that is empty</p>
+<p>Title element with no contents.</p>
 </td>
 <td class="dimOnNa" id="2_4_2_2_tech" headers="tech sc2_4_2">
 <ul>
-<li>H25.1</li>
+<li>H25.1.EmptyTitle</li>
 </ul>
 </td>
 <td class="dimOnNa" id="2_4_2_2_examples" headers="ex sc2_4_2">
 <ul>
 <li><a href="./Eg/1">1</a></li>
-<li><a href="./Eg/2">2</a></li>
-<li><a href="./Eg/3">3</a></li>
 </ul>
 </td>
 </tr>
@@ -89,19 +87,17 @@ Error</td>
 Error</td>
 <td class="dimOnNa" id="2_4_2_1_name" headers="name sc2_4_2">
 <p>A title should be provided for the document, using a non-empty title element in the head section.</p>
-<div class="fullcode">[Standard].Principle2.Guideline2_4.2_4_2.H25.1</div></td>
+<div class="fullcode">[Standard].Principle2.Guideline2_4.2_4_2.H25.1.NoTitleEl</div></td>
 <td class="dimOnNa" id="2_4_2_1_applies" headers="applies sc2_4_2">
-<p>Head element without a title element</p>
+<p>A head element without a child title element.</p>
 </td>
 <td class="dimOnNa" id="2_4_2_1_tech" headers="tech sc2_4_2">
 <ul>
-<li>H25.1</li>
+<li>H25.1.NoTitleEl</li>
 </ul>
 </td>
 <td class="dimOnNa" id="2_4_2_1_examples" headers="ex sc2_4_2">
 <ul>
-<li><a href="./Eg/1">1</a></li>
-<li><a href="./Eg/2">2</a></li>
 <li><a href="./Eg/3">3</a></li>
 </ul>
 </td>
@@ -112,20 +108,18 @@ Error</td>
 Error</td>
 <td class="dimOnNa" id="2_4_2_0_name" headers="name sc2_4_2">
 <p>There is no head section in which to place a descriptive title element.</p>
-<div class="fullcode">[Standard].Principle2.Guideline2_4.2_4_2.H25.1</div></td>
+<div class="fullcode">[Standard].Principle2.Guideline2_4.2_4_2.H25.1.NoHeadEl</div></td>
 <td class="dimOnNa" id="2_4_2_0_applies" headers="applies sc2_4_2">
-<p>html element without a head section</p>
+<p>A html element without a child head element.</p>
 </td>
 <td class="dimOnNa" id="2_4_2_0_tech" headers="tech sc2_4_2">
 <ul>
-<li>H25.1</li>
+<li>H25.1.NoHeadEl</li>
 </ul>
 </td>
 <td class="dimOnNa" id="2_4_2_0_examples" headers="ex sc2_4_2">
 <ul>
-<li><a href="./Eg/1">1</a></li>
 <li><a href="./Eg/2">2</a></li>
-<li><a href="./Eg/3">3</a></li>
 </ul>
 </td>
 </tr>
@@ -137,7 +131,7 @@ Notice</td>
 <p>Check that the title element describes the document.</p>
 <div class="fullcode">[Standard].Principle2.Guideline2_4.2_4_2.H25.2</div></td>
 <td class="dimOnNa" id="2_4_2_3_applies" headers="applies sc2_4_2">
-<p>Title element</p>
+<p>Validly filled title element.</p>
 </td>
 <td class="dimOnNa" id="2_4_2_3_tech" headers="tech sc2_4_2">
 <ul>
