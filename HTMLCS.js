@@ -486,7 +486,7 @@ var HTMLCS = new function()
         element      = element || document;
         var elements = element.getElementsByTagName('*');
 
-        // Convert to array. We can't use
+        // Convert to array. We can't use array features on a DOMNodeList.
         var elArray = [];
         for (var i = 0; i < elements.length; i++) {
             elArray.push(elements[i]);
