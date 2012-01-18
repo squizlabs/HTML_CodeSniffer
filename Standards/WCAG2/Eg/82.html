@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Test Example 74 - HTML_CodeSniffer</title>
+<title>Test Example 82 - HTML_CodeSniffer</title>
 <style type="text/css">
 h1 {border-bottom: 5px solid #56a8f9; background-color: #333; color: white; padding: 15px 10px; margin: -10px -10px 10px -10px}
 body {padding: 10px; margin: 0}
@@ -27,7 +27,7 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
 <script type="text/javascript" src="https://raw.github.com/squizlabs/HTML_CodeSniffer/master/HTMLCS.js"></script>
 <script>
     var expectedMsgs = [
-        '', '[Standard].Principle1.Guideline1_1.1_1_1.H45.2', '[Standard].Principle1.Guideline1_1.1_1_1.H45.3'
+        '', '[Standard].Principle1.Guideline1_3.1_3_1.H44.1.Before'
     ];
 
     var expectedOmissions = [
@@ -42,23 +42,35 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
 <script type="text/javascript" src="http://squizlabs.github.com/HTML_CodeSniffer/eg.js"></script>
 </head>
 <body>
-<h1>HTML_CodeSniffer Test Example 74</h1>
+<h1>HTML_CodeSniffer Test Example 82</h1>
 <div class="subhead">
 <p style="text-align: center">
-<a href="73">&larr; Example 73</a> | <a href="75">Example 75 &rarr;</a></p>
-<p>According to <a href="../1_1_1">Success Criterion 1.1.1 (Non-text Content)</a>, all non-text content should contain at least a short text alternative, such as through alt text. However, if the short text alternative is not enough to fully describe the non-text content, a long description should be provided. An example may be the contents of a graph: the alt text may say "Graph of sales by quarter" but it does not describe the points of the graph.</p>
-
-<p>In this example, the longdesc attribute is used, however it is used incorrectly. The longdesc attribute is supposed to point to a URL of a HTML page, containing the description of the image.</p>
-
-<p>It is possible for most non-conforming long alternatives to also be a valid relative URL, or to at least be interpreted by user agents as such. Therefore, HTML&#95;CodeSniffer emits a warning to make the author check that the value of the longdesc attribute is correct. This warning will not appear if HTML&#95;CodeSniffer detects a scheme at the beginning of the URL (such as "http:"), as this signals that it contains an absolute path, or at least something that resembles an absolute path.</p>
+<a href="81">&larr; Example 81</a> | Already at last example</p>
+<p>This example demonstrates an incorrect placement of the label element, for a radio button or checkbox. The expected location of a label for a text-type form control or a select box is a</p>
 </div>
 
 <h2>Code</h2>
 
-<pre><code id="examplecode">&lt;img src=&quot;htmlcs.png&quot; alt=&quot;HTML_CodeSniffer Image&quot; longdesc=&quot;Test&quot; /&gt;</code></pre>
+<pre><code id="examplecode">&lt;form&gt;
+    &lt;input type=&quot;text&quot; id=&quot;textbox&quot; value=&quot;&quot; /&gt; &lt;label for=&quot;textbox&quot;&gt;Text Box&lt;/label&gt;
+    &lt;input type=&quot;password&quot; id=&quot;password&quot; value=&quot;&quot; /&gt; &lt;label for=&quot;password&quot;&gt;Password&lt;/label&gt;
+    &lt;select id=&quot;select&quot;&gt;
+        &lt;option value=&quot;1&quot;&gt;One&lt;/option&gt;
+        &lt;option value=&quot;2&quot;&gt;Two&lt;/option&gt;
+    &lt;/select&gt; &lt;label for=&quot;select&quot;&gt;Select One.&lt;/label&gt;
+    &lt;textarea id=&quot;textarea&quot;&gt;&lt;/textarea&gt; &lt;label for=&quot;textarea&quot;&gt;Text Area&lt;/label&gt;
+&lt;/form&gt;</code></pre>
 
 <h2>Test</h2>
-<textarea id="source" style="display: none">&lt;img src=&quot;htmlcs.png&quot; alt=&quot;HTML_CodeSniffer Image&quot; longdesc=&quot;Test&quot; /&gt;</textarea><select id="level" name="level">
+<textarea id="source" style="display: none">&lt;form&gt;
+    &lt;input type=&quot;text&quot; id=&quot;textbox&quot; value=&quot;&quot; /&gt; &lt;label for=&quot;textbox&quot;&gt;Text Box&lt;/label&gt;
+    &lt;input type=&quot;password&quot; id=&quot;password&quot; value=&quot;&quot; /&gt; &lt;label for=&quot;password&quot;&gt;Password&lt;/label&gt;
+    &lt;select id=&quot;select&quot;&gt;
+        &lt;option value=&quot;1&quot;&gt;One&lt;/option&gt;
+        &lt;option value=&quot;2&quot;&gt;Two&lt;/option&gt;
+    &lt;/select&gt; &lt;label for=&quot;select&quot;&gt;Select One.&lt;/label&gt;
+    &lt;textarea id=&quot;textarea&quot;&gt;&lt;/textarea&gt; &lt;label for=&quot;textarea&quot;&gt;Text Area&lt;/label&gt;
+&lt;/form&gt;</textarea><select id="level" name="level">
 <option value="WCAG2A">Level A</option>
 <option value="WCAG2AA">Level AA</option>
 <option value="WCAG2AAA" selected="selected">Level AAA</option>
@@ -68,5 +80,5 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
 
 <h2>Expected Messages</h2>
 
-<h3>Warnings</h3><ul><li>[Standard].Principle1.Guideline1_1.1_1_1.H45.2</li></ul><h3>Notices</h3><ul><li>[Standard].Principle1.Guideline1_1.1_1_1.H45.3</li></ul></body>
+<h3>Notices</h3><ul><li>[Standard].Principle1.Guideline1_3.1_3_1.H44.1.Before</li></ul></body>
 </html>
