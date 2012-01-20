@@ -43,7 +43,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
         }
 
         var requiredValues = {
-            a: '@title',
+            a: '@href',
             input_text: '@value',
             select: 'option_selected',
         };
@@ -104,8 +104,6 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
 
         var requiredValue = requiredValues[nodeName];
         var valueFound    = false;
-
-        console.info(requiredValue);
 
         if (requiredValue === undefined) {
             // Nothing required of us.
