@@ -63,43 +63,45 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
         var requiredValue = requiredValues[nodeName];
 
         // Check all possible combinations of names to ensure that one exists.
-        for (var i = 0; i < requiredNames[nodeName].length; i++) {
-            var requiredName = requiredNames[nodeName][i];
-            if (requiredName === '_content') {
-                // Work with content.
-                var content = this._getElementTextContent(element);
-                if (/^\s*$/.test(content) === false) {
-                    break;
-                }
-            } else if (requiredName === 'label') {
-                // Label element.
-                if (element.hasAttribute('id')) {
-                    var label = top.querySelector('label[for=' + element.getAttribute('id') + ']');
-                    if (label !== null) {
-                        break;
-                    }
-                }
-            } if (requiredName.charAt(0) === '@') {
-                // Attribute.
-                requiredName = requiredName.substr(1, requiredName.length);
-                if ((element.hasAttribute(requiredName) === true) && (/^\s*$/.test(element.getAttribute(requiredName)) === false)) {
-                    break;
-                }
-            } else {
-                // Sub-element contents.
-                var subEl = element.querySelector(requiredName);
-                if (subEl !== null) {
-                    var content = this._getElementTextContent(subEl);
+        if (requiredName) {
+            for (var i = 0; i < requiredNames[nodeName].length; i++) {
+                var requiredName = requiredNames[nodeName][i];
+                if (requiredName === '_content') {
+                    // Work with content.
+                    var content = this._getElementTextContent(element);
                     if (/^\s*$/.test(content) === false) {
                         break;
                     }
-                }
-            }//end if
-        }//end for
+                } else if (requiredName === 'label') {
+                    // Label element.
+                    if (element.hasAttribute('id')) {
+                        var label = top.querySelector('label[for=' + element.getAttribute('id') + ']');
+                        if (label !== null) {
+                            break;
+                        }
+                    }
+                } if (requiredName.charAt(0) === '@') {
+                    // Attribute.
+                    requiredName = requiredName.substr(1, requiredName.length);
+                    if ((element.hasAttribute(requiredName) === true) && (/^\s*$/.test(element.getAttribute(requiredName)) === false)) {
+                        break;
+                    }
+                } else {
+                    // Sub-element contents.
+                    var subEl = element.querySelector(requiredName);
+                    if (subEl !== null) {
+                        var content = this._getElementTextContent(subEl);
+                        if (/^\s*$/.test(content) === false) {
+                            break;
+                        }
+                    }
+                }//end if
+            }//end for
 
-        if (i === requiredNames[nodeName].length) {
-            HTMLCS.addMessage(HTMLCS.ERROR, element, 'Check that this form control has a name that is available to an accessibility API.', 'H91.Name');
-        }
+            if (i === requiredNames[nodeName].length) {
+                HTMLCS.addMessage(HTMLCS.ERROR, element, 'Check that this form control has a name that is available to an accessibility API.', 'H91.Name');
+            }
+        }//end if
 
         var requiredValue = requiredValues[nodeName];
         var valueFound    = false;
