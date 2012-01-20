@@ -46,7 +46,6 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
             a: '@title',
             input_text: '@value',
             select: 'option_selected',
-            textarea: '_content',
         };
 
         var nodeName = element.nodeName.toLowerCase();
@@ -124,7 +123,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
         } else if (requiredValue.charAt(0) === '@') {
             // Attribute.
             requiredValue = requiredValue.substr(1, requiredValue.length);
-            if ((element.hasAttribute(requiredValue) === true) && (/^\s*$/.test(element.getAttribute(requiredValue)) === false)) {
+            if ((element.hasAttribute(requiredValue) === true)) {
                 valueFound = true;
             }
         }//end if
