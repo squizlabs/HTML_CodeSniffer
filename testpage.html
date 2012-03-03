@@ -19,6 +19,13 @@
             runHTMLCS(document.getElementById('level').value, document.getElementById('source').value, document.getElementById('resultsWrapper'));
         }
     }
+
+    function closeAuditor() {
+        var wrapper = document.getElementById('HTMLCS-wrapper');
+        if (wrapper) {
+            document.body.removeNode(wrapper);
+        }
+    }
     </script>
 
 </head>
@@ -46,7 +53,8 @@
     <option value="WCAG2AA" selected="selected">Level AA</option>
     <option value="WCAG2AAA">Level AAA</option>
     </select>
-    <button type="button" onclick="javascript:runHTMLCSTest(true);">Run HTML_CS Auditor</button>
+    <button type="button" onclick="javascript:runHTMLCSTest(true);">Open HTML_CS Auditor</button>
+    <button type="button" onclick="javascript:closeAuditor();">Close</button>
 </fieldset><fieldset>
     <legend>Bookmarklet</legend>
     <div><a href="javascript:(function(){if(window['HTMLCS']) {HTMLCS.process('WCAG2AAA', document.body, function() {if (console.table) {console.table(HTMLCS.getMessages());} else {console.info(HTMLCS.getMessages());}}); return;} var s=document.createElement('script');s.type='text/javascript';s.src='https://raw.github.com/squizlabs/HTML_CodeSniffer/master/HTMLCS.js';document.body.appendChild(s); var t = setInterval(function() {if(!window['HTMLCS']) {return;} clearInterval(t);HTMLCS.process('WCAG2AAA', document.body, function() {console.table(HTMLCS.getMessages());});}, 100); })()">HTMLCS This Page</a><br/>
