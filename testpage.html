@@ -4,28 +4,61 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <title>HTML_CodeSniffer Test Page</title>
     <link rel="stylesheet" media="screen" href="./main.css">
-    <script type="text/javascript" src="https://raw.github.com/squizlabs/HTML_CodeSniffer/master/HTMLCS.js"></script>
+    <link rel="stylesheet" media="screen" href="./format_template.css">
+    <script type="text/javascript" src="https://raw.github.com/squizlabs/HTML_CodeSniffer/master/HTML_CodeSniffer/HTMLCS.js"></script>
+    <script type="text/javascript" src="https://raw.github.com/squizlabs/HTML_CodeSniffer/master/HTML_CodeSniffer/HTMLCSAuditor.js"></script>
+    <script type="text/javascript" src="./eg.js"></script>
     <script>
-    function runHTMLCSTest() {
-        runHTMLCS(document.getElementById('level').value, document.getElementById('source').value, document.getElementById('resultsWrapper'))
+    function runHTMLCSTest(popup) {
+        if (popup) {
+            var options = {
+                alwaysShowNotices: false
+            }
+            HTMLCSAuditor.run(document.getElementById('levelpopup').value, document.getElementById('source').value, options);
+        } else {
+            runHTMLCS(document.getElementById('level').value, document.getElementById('source').value, document.getElementById('resultsWrapper'));
+        }
     }
     </script>
-    <script type="text/javascript" src="http://squizlabs.github.com/HTML_CodeSniffer/eg.js"></script>
+
 </head>
 <body>
+<h1>HTML_CodeSniffer Test Page</h1>
 <form id="runHTMLCS">
+<fieldset>
+    <legend>Source to test</legend>
 <textarea id="source" style="width:100%; height:200px;"></textarea>
-<select id="level" name="level">
-<option value="WCAG2A">Level A</option>
-<option value="WCAG2AA" selected="selected">Level AA</option>
-<option value="WCAG2AAA">Level AAA</option>
-</select>
-<button type="button" onclick="javascript:runHTMLCSTest();">Run HTML_CodeSniffer</button>&nbsp;
-<a href="javascript:(function(){if(window['HTMLCS']) {HTMLCS.process('WCAG2AAA', document.body, function() {if (console.table) {console.table(HTMLCS.getMessages());} else {console.info(HTMLCS.getMessages());}}); return;} var s=document.createElement('script');s.type='text/javascript';s.src='https://raw.github.com/squizlabs/HTML_CodeSniffer/master/HTMLCS.js';document.body.appendChild(s); var t = setInterval(function() {if(!window['HTMLCS']) {return;} clearInterval(t);HTMLCS.process('WCAG2AAA', document.body, function() {console.table(HTMLCS.getMessages());});}, 100); })()">HTMLCS This Page</a> &lt;-- bookmarklet (at Level AAA)
-</form>
-<hr />
-<div id="resultsWrapper">
-
+</fieldset>
+<div id="options">
+<fieldset>
+    <legend>HTML table</legend>
+    <div><select id="level" name="level">
+    <option value="WCAG2A">Level A</option>
+    <option value="WCAG2AA" selected="selected">Level AA</option>
+    <option value="WCAG2AAA">Level AAA</option>
+    </select>
+    <button type="button" onclick="javascript:runHTMLCSTest(false);">Run HTML_CodeSniffer</button>
+    <br/><em>Test results will appear in the section &quot;Test Results&quot; below.</em></div>
+</fieldset><fieldset>
+    <legend>Popup auditor</legend>
+    <select id="levelpopup" name="levelpopup">
+    <option value="WCAG2A">Level A</option>
+    <option value="WCAG2AA" selected="selected">Level AA</option>
+    <option value="WCAG2AAA">Level AAA</option>
+    </select>
+    <button type="button" onclick="javascript:runHTMLCSTest(true);">Run HTML_CS Auditor</button>
+</fieldset><fieldset>
+    <legend>Bookmarklet</legend>
+    <div><a href="javascript:(function(){if(window['HTMLCS']) {HTMLCS.process('WCAG2AAA', document.body, function() {if (console.table) {console.table(HTMLCS.getMessages());} else {console.info(HTMLCS.getMessages());}}); return;} var s=document.createElement('script');s.type='text/javascript';s.src='https://raw.github.com/squizlabs/HTML_CodeSniffer/master/HTMLCS.js';document.body.appendChild(s); var t = setInterval(function() {if(!window['HTMLCS']) {return;} clearInterval(t);HTMLCS.process('WCAG2AAA', document.body, function() {console.table(HTMLCS.getMessages());});}, 100); })()">HTMLCS This Page</a><br/>
+    <em>This bookmarklet runs at WCAG2 Level AAA, and tests this test page (not the source in the text area). Returns issues as an entry in your browser's web console - either in a table if available (eg. Firebug), otherwise as a logged array.</em></div>
+</fieldset>
 </div>
+</form>
+<fieldset>
+    <legend>Test Results</legend>
+    <div id="resultsWrapper">
+
+    </div>
+</fieldset>
 </body>
 </html>
