@@ -243,6 +243,17 @@ var HTMLCSAuditor = new function()
         var issueCount = document.createTextNode('Issue ' + issue + ' of ' + totalIssues);
         leftPane.appendChild(issueCount);
 
+        // Element pointer.
+        rightPane.appendChild(buildSummaryButton(_prefix + 'button-settings', 'pointer', 'Point to Element', function() {
+            var msg = _messages[Number(issue)];
+            if (!msg.element) {
+                return;
+            }
+
+            pointer.container = document.getElementById('HTMLCS-wrapper');
+            pointer.pointTo(msg.element);
+        }));
+
         rightPane.appendChild(buildSummaryButton(_prefix + 'button-settings', 'previous', 'Previous Issue', function() {
             var newIssue = Number(issue) - 1;
 
@@ -781,5 +792,385 @@ var HTMLCSAuditor = new function()
             document.body.replaceChild(newWrapper, wrapper);
         });
     };
+
+    var pointer =
+    {
+        pointer: null,
+        pointerDim: {},
+        container: null,
+
+        getBoundingRectangle: function(element)
+        {
+            if (!element) {
+                return null;
+            }
+
+            // Retrieve the coordinates and dimensions of the element.
+            var coords     = this.getElementCoords(element);
+            var dimensions = this.getElementDimensions(element);
+            var result     = {
+                'x1' : coords.x,
+                'y1' : coords.y,
+                'x2' : coords.x + dimensions.width,
+                'y2' : coords.y + dimensions.height
+            };
+            return result;
+
+        },
+
+        getElementDimensions: function(element)
+        {
+            var result = {
+                width: element.offsetWidth,
+                height: element.offsetHeight
+            };
+
+            return result;
+
+        },
+
+        getElementCoords: function(element)
+        {
+            var left = 0;
+            var top  = 0;
+
+            // Get parent window coords.
+            var window = null;
+            if (element.ownerDocument.defaultView) {
+                window = element.ownerDocument.defaultView;
+            } else {
+                window = element.ownerDocument.parentWindow;
+            }
+
+            if (window && window.frameElement) {
+                var elem = window.frameElement;
+                do {
+                    left += elem.offsetLeft;
+                    top  += elem.offsetTop;
+                } while (elem = elem.offsetParent)
+            }
+
+            do {
+                left += element.offsetLeft;
+                top  += element.offsetTop;
+            } while (element = element.offsetParent)
+
+            return {
+                x: left,
+                y: top
+            };
+
+        },
+
+        getWindowDimensions: function(elem)
+        {
+            var window = this.getElementWindow(elem);
+            var windowWidth  = 0;
+            var windowHeight = 0;
+            if (window.innerWidth) {
+                // Will work on Mozilla, Opera and Safari etc.
+                windowWidth  = window.innerWidth;
+                windowHeight = window.innerHeight;
+                // If the scrollbar is showing (it is always showing in IE) then its'
+                // width needs to be subtracted from the height and/or width.
+                var scrollWidth = this.getScrollbarWidth(elem);
+                // The documentElement.scrollHeight.
+                if (document.documentElement.scrollHeight > windowHeight) {
+                    // Scrollbar is shown.
+                    if (typeof scrollWidth === 'number') {
+                        windowWidth -= scrollWidth;
+                    }
+                }
+
+                if (document.body.scrollWidth > windowWidth) {
+                    // Scrollbar is shown.
+                    if (typeof scrollWidth === 'number') {
+                        windowHeight -= scrollWidth;
+                    }
+                }
+            } else if (document.documentElement && (document.documentElement.clientWidth || document.documentElement.clientHeight)) {
+                // Internet Explorer.
+                windowWidth  = document.documentElement.clientWidth;
+                windowHeight = document.documentElement.clientHeight;
+            } else if (document.body && (document.body.clientWidth || document.body.clientHeight)) {
+                // Browsers that are in quirks mode or weird examples fall through here.
+                windowWidth  = document.body.clientWidth;
+                windowHeight = document.body.clientHeight;
+            }//end if
+
+            var result = {
+                'width'  : windowWidth,
+                'height' : windowHeight
+            };
+            return result;
+
+        },
+
+        getScrollbarWidth: function()
+        {
+            if (this.scrollBarWidth) {
+                return this.scrollBarWidth;
+            }
+
+            var wrapDiv            = null;
+            var childDiv           = null;
+            var widthNoScrollBar   = 0;
+            var widthWithScrollBar = 0;
+            // Outer scrolling div.
+            wrapDiv                = document.createElement('div');
+            wrapDiv.style.position = 'absolute';
+            wrapDiv.style.top      = '-1000px';
+            wrapDiv.style.left     = '-1000px';
+            wrapDiv.style.width    = '100px';
+            wrapDiv.style.height   = '50px';
+            // Start with no scrollbar.
+            wrapDiv.style.overflow = 'hidden';
+
+            // Inner content div.
+            childDiv              = document.createElement('div');
+            childDiv.style.width  = '100%';
+            childDiv.style.height = '200px';
+
+            // Put the inner div in the scrolling div.
+            wrapDiv.appendChild(childDiv);
+            // Append the scrolling div to the doc.
+            document.body.appendChild(wrapDiv);
+
+            // Width of the inner div sans scrollbar.
+            widthNoScrollBar = childDiv.offsetWidth;
+            // Add the scrollbar.
+            wrapDiv.style.overflow = 'auto';
+            // Width of the inner div width scrollbar.
+            widthWithScrollBar = childDiv.offsetWidth;
+
+            // Remove the scrolling div from the doc.
+            document.body.removeChild(document.body.lastChild);
+
+            // Pixel width of the scroller.
+            var scrollBarWidth = (widthNoScrollBar - widthWithScrollBar);
+            // Set the DOM variable so we don't have to run this again.
+            this.scrollBarWidth = scrollBarWidth;
+            return scrollBarWidth;
+
+        },
+
+        getScrollCoords: function(elem)
+        {
+            var window = this.getElementWindow(elem);
+
+            var scrollX = 0;
+            var scrollY = 0;
+            if (window.pageYOffset) {
+                // Mozilla, Firefox, Safari and Opera will fall into here.
+                scrollX = window.pageXOffset;
+                scrollY = window.pageYOffset;
+            } else if (document.body && (document.body.scrollLeft || document.body.scrollTop)) {
+                // This is the DOM compliant method of retrieving the scroll position.
+                // Safari and OmniWeb supply this, but report wrongly when the window
+                // is not scrolled. They are caught by the first condition however, so
+                // this is not a problem.
+                scrollX = document.body.scrollLeft;
+                scrollY = document.body.scrollTop;
+            } else {
+                // Internet Explorer will get into here when in strict mode.
+                scrollX = document.documentElement.scrollLeft;
+                scrollY = document.documentElement.scrollTop;
+            }
+
+            var coords = {
+                x: scrollX,
+                y: scrollY
+            };
+            return coords;
+
+        },
+
+        getElementWindow: function(element)
+        {
+            element = element || document.body;
+
+            var window = null;
+            if (element.ownerDocument.defaultView) {
+                window = element.ownerDocument.defaultView;
+            } else {
+                window = element.ownerDocument.parentWindow;
+            }
+
+            return window;
+
+        },
+
+        pointTo: function(elem) {
+            // If the specified elem is not in the DOM then we cannot point to it.
+            if (!elem) {
+                return;
+            }
+
+            // Do not point to elem if its hidden.
+            if (elem.style.visibility === 'hidden') {
+                return;
+            }
+
+            var pointer = this.getPointer(elem);
+
+            pointer.style.display = 'block';
+            pointer.style.opacity = 1;
+
+            var pointerRect = this.getBoundingRectangle(pointer);
+            var pointerH    = (pointerRect.y2 - pointerRect.y1);
+            var pointerW    = (pointerRect.x2 - pointerRect.x1);
+
+            this.pointerDim.height = pointerH;
+            this.pointerDim.width  = pointerW;
+
+            var bounceHeight = 20;
+            var scroll       = this.getScrollCoords();
+            var iframeScroll = this.getScrollCoords(elem);
+
+            // Get element coords.
+            var rect = this.getBoundingRectangle(elem);
+
+            // If we cannot get the position then dont do anything,
+            // most likely element is hidden.
+            if (rect.x1 === 0
+                && rect.x2 === 0
+                || rect.x1 === rect.x2
+                || rect.y1 === rect.y2
+            ) {
+                return;
+            }
+
+            // Determine where to show the arrow.
+            var winDim = this.getWindowDimensions(elem);
+
+            // Scroll in to view if not visible.
+            if (elem.scrollIntoView && (rect.y1 < iframeScroll.y || rect.y1 > iframeScroll.y + winDim.height)) {
+                elem.scrollIntoView(false);
+            }
+
+            // Try to position the pointer.
+            if ((rect.y1 - pointerH - bounceHeight) > iframeScroll.y) {
+                // Arrow direction down.
+                this.showPointer(elem, 'down');
+            } else if ((rect.y2 + pointerH) < (winDim.height - iframeScroll.y)) {
+                // Up.
+                this.showPointer(elem, 'up');
+            } else if ((rect.y2 + pointerW) < winDim.width) {
+                // Left.
+                this.showPointer(elem, 'left');
+            } else if ((rect.y1 - pointerW) > 0) {
+                // Right.
+                this.showPointer(elem, 'right');
+            }
+        },
+
+        getPointer: function(targetElement) {
+            if (this.pointer && this.pointer.parentNode) {
+                this.pointer.parentNode.removeChild(this.pointer);
+            }
+
+            this.pointer = document.createElement('div');
+            var c        = 'HTMLCS';
+            this.pointer.className = c + '-pointer ' + c + '-pointer-hidden';
+            document.body.appendChild(this.pointer);
+            //targetElement.ownerDocument.body.appendChild(this.pointer);
+
+            return this.pointer;
+        },
+
+        showPointer: function(elem, direction) {
+            var c = 'HTMLCS';
+
+            this._removeDirectionClasses();
+
+            this.pointer.className += ' ' + c + '-pointer-' + direction;
+            this.pointer.className  = this.pointer.className.replace(c + '-pointer-hidden', '');
+
+            var rect         = this.getBoundingRectangle(elem);
+            var top          = 0;
+            var left         = 0;
+            var bounceHeight = 20;
+            switch (direction) {
+                case 'up':
+                    bounceHeight = (-bounceHeight);
+                    top          = rect.y2;
+                    if ((rect.x2 - rect.x1) < 250) {
+                        left = (this.getRectMidPnt(rect) - (this.pointerDim.width / 2));
+                    } else {
+                        left = rect.x1;
+                    }
+                break;
+
+                case 'left':
+                    left = rect.x2;
+                    top  = this.getRectMidPnt(rect, true);
+                break;
+
+                case 'right':
+                    left = (rect.x1 - this.pointerDim.width);
+                    top  = this.getRectMidPnt(rect, true);
+                break;
+
+                case 'down':
+                default:
+                    top = (rect.y1 - this.pointerDim.height);
+                    if ((rect.x2 - rect.x1) < 250) {
+                        left = (this.getRectMidPnt(rect) - (this.pointerDim.width / 2));
+                    } else {
+                        left = rect.x1;
+                    }
+                break;
+            }//end switch
+
+            var frameScroll = this.getScrollCoords(elem);
+
+            this.pointer.style.top  = top - frameScroll.y + 'px';
+            this.pointer.style.left = left - frameScroll.x + 'px';
+
+            // Check if the help window is under the pointer then re-position it.
+            // Unless it is an element within the HTMLCS pop-up.
+            var coords    = this.getBoundingRectangle(this.container);
+            rect          = this.getBoundingRectangle(this.pointer);
+            var posOffset = 20;
+            var newPos    = null;
+            var midX      = (rect.x1 + ((rect.x2 - rect.x1) / 2));
+            var midY      = (rect.y1 + ((rect.y2 - rect.y1) / 2));
+            if (coords.x1 <= midX
+                && coords.x2 >= midX
+                && coords.y1 <= midY
+                && coords.y2 >= midY
+            ) {
+                var self = this;
+                this.container.style.opactiy = 0.5;
+                setTimeout(function() {
+                    self.container.style.opactiy = 1;
+                }, 4000);
+            }
+
+            // TODO: Add bounce animation.
+
+        },
+
+        getRectMidPnt: function(rect, height) {
+            var midPnt = 0;
+            if (height === true) {
+                midPnt = (rect.y1 + ((rect.y2 - rect.y1) / 2));
+            } else {
+                midPnt = (rect.x1 + ((rect.x2 - rect.x1) / 2));
+            }
+
+            return midPnt;
+        },
+
+        _removeDirectionClasses: function() {
+            var c = 'HTMLCS';
+            var d = ['down', 'up', 'left', 'right'];
+            var l = d.length;
+            for (var i = 0; i < l; i++) {
+                this.pointer.className = this.pointer.className.replace(c + '-pointer-' + d[i], '');
+            }
+        }
+
+    }
 
 };

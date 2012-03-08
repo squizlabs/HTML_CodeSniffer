@@ -576,3 +576,16 @@
     -moz-transition: margin 0s ease 0s;
     -webkit-transition: margin 0s ease 0s;
 }
+
+/*
+    Pointer
+*/
+.HTMLCS-pointer {
+    background-color: yellow;
+    height: 62px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 50px;
+    z-index: 9999;
+}
