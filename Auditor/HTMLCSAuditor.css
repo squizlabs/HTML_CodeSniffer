@@ -1,5 +1,6 @@
 #HTMLCS-wrapper {
     -moz-transition-timing-function: ease;
+    -webkit-transition-timing-function: ease;
 
     position: absolute;
     top: 36px;
@@ -31,11 +32,12 @@
     border-bottom: 1px solid transparent;
 }
 
-.HTMLCS-summary {
+.HTMLCS-summary,
+.HTMLCS-summary-detail {
     text-align: center;
     padding: 0.4em 0.5em 0.9em;
     line-height: 1.3em;
-
+    background: -webkit-gradient(linear, left top, left bottom, from(#919097), to(#727179));
     background: -moz-linear-gradient(center top , #919097, #727179) repeat scroll 0 0 transparent;
     border-top: 1px solid #A2A1A8;
     display: block;
@@ -83,6 +85,9 @@
     vertical-align: top;
     width: 35em;
     overflow: hidden;
+    -moz-transition: margin 0.2s ease-in 0s;
+    -webkit-transition: margin 0.2s ease-in 0s;
+
 }
 
 .HTMLCS-details {
@@ -101,6 +106,7 @@
     padding: 0;
     vertical-align: top;
     -moz-transition: margin 0.2s ease-in 0s;
+    -webkit-transition: margin 0.2s ease-in 0s;
 }
 
 .HTMLCS-issue-list {
@@ -203,8 +209,13 @@
     border-top: 1px solid #4B4B4B;
     color: #FFFFFF;
     width: 35em;
+    max-height: 15em;
     position: relative;
     text-shadow: none;
+}
+
+.HTMLCS-issue-detail-list > li.current {
+    max-height: inherit;
 }
 
 .HTMLCS-issue-detail-list > li > div {
@@ -296,6 +307,7 @@
 }
 
 .HTMLCS-button {
+    background: -webkit-gradient(linear, left top, left bottom, from(#E9E9EB), to(#C2C2CB));
     background: -moz-linear-gradient(center top , #E9E9EB, #C2C2CB) repeat scroll 0 0 transparent;
     border: medium none;
     box-shadow: 0 -2px 2px -2px rgba(0, 0, 0, 0.4), 0 2px 2px -2px rgba(0, 0, 0, 0.4), 0 1px 0 rgba(255, 255, 255, 0.8) inset, 1px 0 0 rgba(255, 255, 255, 0.5) inset;
@@ -513,6 +525,54 @@
     display: block;
 }
 
-/*#HTMLCS-issues-detail-wrapper.transition-disabled {
-    -moz-transition-duration: 0s;
-}*/
+.HTMLCS-summary-detail {
+    display: none;
+}
+
+.HTMLCS-summary-detail .HTMLCS-summary-left {
+    color: #000000;
+    font-weight: bold;
+    line-height: 1.35em;
+    padding-left: 0.3em;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+    overflow: visible;
+}
+
+.HTMLCS-summary-detail a.HTMLCS-back-home,
+.HTMLCS-summary-detail a.HTMLCS-back-home:visited {
+    color: #000000;
+    display: inline-block;
+    padding: 0.45em 20px 0.25em 0;
+    position: relative;
+    text-decoration: none;
+}
+
+.HTMLCS-issue-nav-divider {
+    visibility: hidden;
+}
+
+.HTMLCS-summary-detail a.HTMLCS-back-home:before {
+    background: url("Images/HTMLCS-tools.png") no-repeat scroll 0 -53px transparent;
+    content: "";
+    display: inline-block;
+    height: 11px;
+    margin-bottom: -1px;
+    margin-right: 0.5em;
+    width: 10px;
+}
+
+.HTMLCS-summary-detail a.HTMLCS-back-home:after {
+    background: url("Images/HTMLCS-tools.png") no-repeat scroll 0 -64px transparent;
+    content: "";
+    height: 32px;
+    margin-top: -15px;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: 12px;
+}
+
+.HTMLCS-issue-detail-list.transition-disabled {
+    -moz-transition: margin 0s ease 0s;
+    -webkit-transition: margin 0s ease 0s;
+}
