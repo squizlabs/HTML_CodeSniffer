@@ -562,34 +562,39 @@ var HTMLCSAuditor = new function()
         }
 
         // Restack the messages so they are sorted by message type.
-        var errors   = [];
-        var warnings = [];
-        var notices  = [];
+        var showNotices = true;
         for (var i = 0; i < messages.length; i++) {
+            if (messages[i].type !== HTMLCS.NOTICE) {
+                showNotices = options.alwaysShowNotices;
+                break;
+            }//end if
+        }//end if
+
+        var errors   = 0;
+        var warnings = 0;
+        var notices  = 0;
+
+        for (i = 0; i < messages.length; i++) {
             switch (messages[i].type) {
                 case HTMLCS.ERROR:
-                    errors.push(messages[i]);
+                    errors++;
                 break;
 
                 case HTMLCS.WARNING:
-                    warnings.push(messages[i]);
+                    warnings++;
                 break;
 
                 case HTMLCS.NOTICE:
-                    notices.push(messages[i]);
-                break;
-
-                default:
-                    // Not defined.
+                    if (showNotices === false) {
+                        messages.splice(i, 1);
+                        i--;
+                    } else {
+                        notices++;
+                    }
                 break;
             }//end switch
-        }
+        }//end for
 
-        if (((errors.length > 0) || (warnings.length > 0)) && (options.alwaysShowNotices === false)) {
-            notices = [];
-        }
-
-        messages  = errors.concat(warnings, notices);
         _messages = messages;
 
         var settingsContents = '';
@@ -625,7 +630,7 @@ var HTMLCSAuditor = new function()
         var header = buildHeaderSection(standard);
         wrapper.appendChild(header);
 
-        var summary = buildSummarySection(errors.length, warnings.length, notices.length);
+        var summary = buildSummarySection(errors, warnings, notices);
         wrapper.appendChild(summary);
 
         var settings = buildSettingsSection();
