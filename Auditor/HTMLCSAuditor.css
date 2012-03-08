@@ -2,12 +2,12 @@
     -moz-transition-timing-function: ease;
 
     position: absolute;
-    top: 36.6px;
-    left: 1187.35px;
+    top: 36px;
+    right: 3em;
     width: 35em;
-
+    overflow: hidden;
     background-color: #2B2B2B;
-    border-color: #2B2B2B;
+    border: 1px solid #2B2B2B;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.7), 0 1px 0 #555555 inset;
     color: #2B2B2B;
     text-shadow: 0 1px 0 #FFFFFF;
@@ -70,19 +70,27 @@
   text-align: right;
 }
 
+.HTMLCS-outer-wrapper {
+    width: 70em;
+    overflow: hidden;
+}
+
 .HTMLCS-inner-wrapper {
     background: url("Images/bgTexture1.gif") repeat scroll 0 0 #54535A;
-    border-radius: 0 0 9px 9px;
+    border-radius: 0 0 0.75em 0.75em;
     text-align: left;
-
+    display: inline-block;
+    vertical-align: top;
+    width: 35em;
     overflow: hidden;
 }
 
 .HTMLCS-details {
-  line-height: 2em;
-  width: 35em;
-  overflow: hidden;
-  border-top: 1px solid #2B2B2B;
+    display: none;
+    line-height: 2em;
+    width: 35em;
+    overflow: hidden;
+    border-top: 1px solid #2B2B2B;
 }
 
 .HTMLCS-issue-list,
@@ -92,8 +100,12 @@
     margin: 0;
     padding: 0;
     vertical-align: top;
-    width: 35em;
     -moz-transition: margin 0.2s ease-in 0s;
+}
+
+.HTMLCS-issue-list {
+    width: 35em;
+    z-index: 1;
 }
 
 .HTMLCS-issue-list > li {
@@ -245,6 +257,7 @@
     line-height: 2em;
     padding: 0.5em 0 0.6em;
     text-align: center;
+    display: none;
 }
 
 .HTMLCS-page-number {
@@ -270,11 +283,16 @@
 }
 
 .HTMLCS-nav-button.previous {
-    background-position: -58px -78px;
+    background-position: -58px -74px;
 }
 
 .HTMLCS-nav-button.next {
-    background-position: -59px -51px;
+    background-position: -59px -47px;
+}
+
+.HTMLCS-nav-button.disabled {
+    cursor: default;
+    opacity: 0.3;
 }
 
 .HTMLCS-button {
@@ -352,12 +370,13 @@
 }
 
 .HTMLCS-settings {
+    display: none;
     background-color: #2B2B2B;
     color: #EEEEEE;
     text-shadow: none;
     width: 35em;
 
-    border-radius: 0 0 9px 9px;
+    border-radius: 0 0 0.75em 0.75em;
     position: relative;
     text-align: left;
     z-index: 1;
@@ -415,11 +434,11 @@
     display: inline-block;
     width: 20px;
     height: 20px;
-    background: url("Images/HTMLCS-tools.png") no-repeat scroll -88px 0px transparent;
+    background: url("Images/HTMLCS-tools.png") no-repeat scroll -96px 0px transparent;
 }
 
 .HTMLCS-checkbox > .input-container.checked {
-    background-position: -88px -20px;
+    background-position: -96px -20px;
 }
 
 .HTMLCS-checkbox > .input-container > input {
@@ -440,13 +459,13 @@
     display: inline-block;
     width: 20px;
     height: 20px;
-    background: url("Images/HTMLCS-tools.png") no-repeat scroll -88px -40px transparent;
+    background: url("Images/HTMLCS-tools.png") no-repeat scroll -96px -40px transparent;
     position: relative;
     top: -3px;
 }
 
 .HTMLCS-radio > .input-container.checked {
-    background-position: -88px -60px;
+    background-position: -96px -60px;
 }
 
 .HTMLCS-radio > label {
@@ -463,3 +482,37 @@
     top: 4px;
     left: 3px;
 }
+
+.HTMLCS-message-box {
+    background: url("Images/msg-spinner.gif") no-repeat scroll 3px 0.25em #646468;
+    border: 1px solid #747379;
+    border-radius: 0.4em 0.4em 0.4em 0.4em;
+    color: #CACAD1;
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-top: 0.4em;
+    padding: 0.3em 0.3em 0.3em 22px;
+    text-align: left;
+    text-shadow: none;
+    display: none;
+}
+
+#HTMLCS-wrapper.showing-message-box .HTMLCS-message-box {
+    display: block;
+}
+
+#HTMLCS-wrapper.showing-issue-list .HTMLCS-details {
+    display: block;
+}
+
+#HTMLCS-wrapper.showing-issue-list .HTMLCS-navigation {
+    display: block;
+}
+
+#HTMLCS-wrapper.showing-settings .HTMLCS-settings {
+    display: block;
+}
+
+/*#HTMLCS-issues-detail-wrapper.transition-disabled {
+    -moz-transition-duration: 0s;
+}*/
