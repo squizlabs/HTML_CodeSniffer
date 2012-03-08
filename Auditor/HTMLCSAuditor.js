@@ -178,7 +178,7 @@ var HTMLCSAuditor = new function()
         }
 
         if (leftContents.length === 0) {
-            leftPane.innerHTML = 'No errors found';
+            leftPane.innerHTML = '';
         } else {
             leftPane.innerHTML = leftContents.join(divider);
         }
@@ -209,7 +209,7 @@ var HTMLCSAuditor = new function()
         var self = this;
 
         var summary       = document.createElement('div');
-        summary.className = _prefix + 'summary';
+        summary.className = _prefix + 'summary-detail';
 
         var leftPane       = document.createElement('div');
         leftPane.className = _prefix + 'summary-left';
@@ -219,31 +219,58 @@ var HTMLCSAuditor = new function()
         rightPane.className = _prefix + 'summary-right';
         summary.appendChild(rightPane);
 
-        var showList       = document.createElement('a');
-        showList.className = _prefix + 'back-home';
-        showList.href      = 'javascript:';
-        showList.innerHTML = 'Home';
+        var showList         = document.createElement('a');
+        showList.className   = _prefix + 'back-home';
+        showList.href        = 'javascript:';
+        showList.innerHTML   = 'List';
+        showList.onmousedown = function() {
+            var list = document.getElementsByClassName('HTMLCS-inner-wrapper')[0];
+            list.style.marginLeft = '0em';
+            list.style.maxHeight  = null;
+
+            summary.style.display = 'none';
+            var listSummary = document.getElementsByClassName('HTMLCS-summary')[0];
+            listSummary.style.display = 'block';
+        };
+
         leftPane.appendChild(showList);
 
-        leftPane.innerHTML += '<span class="' + _prefix + 'issue-nav-divider"></span>';
-        leftPane.innerHTML += 'Issue ' + issue + ' of ' + totalIssues;
+        var navDivider = document.createElement('span');
+        navDivider.className = _prefix + 'issue-nav-divider';
+        navDivider.innerHTML = ' &gt; ';
+        leftPane.appendChild(navDivider);
+
+        var issueCount = document.createTextNode('Issue ' + issue + ' of ' + totalIssues);
+        leftPane.appendChild(issueCount);
 
         rightPane.appendChild(buildSummaryButton(_prefix + 'button-settings', 'previous', 'Previous Issue', function() {
-            wrapper = summary.parentNode;
-            var newSummary = buildDetailSummarySection(Number(issue) - 1, totalIssues);
-            wrapper.replaceChild(newSummary, summary);
+            var newIssue = Number(issue) - 1;
 
-            var issueList = document.getElementsByClassName('HTMLCS-issue-detail-list')[0];
-            issueList.style.marginLeft = (parseInt(issueList.style.marginLeft, 10) + 35) + 'em';
+            if (newIssue >= 1) {
+                setCurrentDetailIssue(newIssue - 1);
+                wrapper = summary.parentNode;
+                var newSummary = buildDetailSummarySection(newIssue, totalIssues);
+                wrapper.replaceChild(newSummary, summary);
+                newSummary.style.display = 'block';
+
+                var issueList = document.getElementsByClassName('HTMLCS-issue-detail-list')[0];
+                issueList.style.marginLeft = (parseInt(issueList.style.marginLeft, 10) + 35) + 'em';
+            }
         }));
 
         rightPane.appendChild(buildSummaryButton(_prefix + 'button-rerun', 'next', 'Next Issue', function() {
-            wrapper = summary.parentNode;
-            var newSummary = buildDetailSummarySection(Number(issue) + 1, totalIssues);
-            wrapper.replaceChild(newSummary, summary);
+            var newIssue = Number(issue) + 1;
 
-            var issueList = document.getElementsByClassName('HTMLCS-issue-detail-list')[0];
-            issueList.style.marginLeft = (parseInt(issueList.style.marginLeft, 10) - 35) + 'em';
+            if (newIssue <= _messages.length) {
+                setCurrentDetailIssue(newIssue - 1);
+                wrapper = summary.parentNode;
+                var newSummary = buildDetailSummarySection(newIssue, totalIssues);
+                wrapper.replaceChild(newSummary, summary);
+                newSummary.style.display = 'block';
+
+                var issueList = document.getElementsByClassName('HTMLCS-issue-detail-list')[0];
+                issueList.style.marginLeft = (parseInt(issueList.style.marginLeft, 10) - 35) + 'em';
+            }
         }));
 
         return summary;
@@ -403,28 +430,43 @@ var HTMLCSAuditor = new function()
         msg.appendChild(msgTitle);
 
         msg.onclick = function() {
-            var id   = this.id.replace(new RegExp(_prefix + 'msg-'), '');
+            var id = this.id.replace(new RegExp(_prefix + 'msg-'), '');
+            setCurrentDetailIssue(id);
 
-            var detailList = document.getElementById(_prefix + 'issues-detail-wrapper');
+            var detailList = document.getElementsByClassName('HTMLCS-issue-detail-list')[0];
             detailList.className += ' transition-disabled';
+            detailList.style.marginLeft = (id * -35) + 'em';
 
-            var list = document.getElementsByClassName('HTMLCS-issue-detail-list')[0];
-            list.style.marginLeft = ((id - 1) * -35) + 'em';
-            detailList.className = detailList.className.replace(/ transition-disabled/, '');
+            setTimeout(function() {
+                detailList.className = detailList.className.replace(/ transition-disabled/, '');
+            }, 500);
 
             var list = document.getElementsByClassName('HTMLCS-inner-wrapper')[0];
             list.style.marginLeft = '-35em';
+            list.style.maxHeight  = '15em';
 
-            var list = document.getElementById('HTMLCS-issues-wrapper');
-            list.style.display = 'none';
-
-            summary = document.getElementsByClassName('HTMLCS-summary')[0];
-            var newSummary = buildDetailSummarySection(id + 1, _messages.length);
+            summary = document.getElementsByClassName('HTMLCS-summary-detail')[0];
+            var newSummary = buildDetailSummarySection(parseInt(id) + 1, _messages.length);
             summary.parentNode.replaceChild(newSummary, summary);
+            newSummary.style.display = 'block';
+
+            var oldSummary = document.getElementsByClassName('HTMLCS-summary')[0];
+            oldSummary.style.display = 'none';
         }
 
         return msg;
     };
+
+    var setCurrentDetailIssue = function(id) {
+        var detailList = document.getElementsByClassName('HTMLCS-issue-detail-list')[0];
+        var items      = detailList.getElementsByTagName('li');
+        for (var i = 0; i < items.length; i++) {
+            items[i].className = items[i].className.replace(/ current/, '');
+        }
+
+        var currentItem = document.getElementById('HTMLCS-msg-detail-' + id);
+        currentItem.className += ' current';
+    }
 
     var buildMessageDetail = function(id, message, standard) {
         var msg       = '';
@@ -632,6 +674,9 @@ var HTMLCSAuditor = new function()
 
         var summary = buildSummarySection(errors, warnings, notices);
         wrapper.appendChild(summary);
+
+        var summaryDetail = buildDetailSummarySection(1, messages.length);
+        wrapper.appendChild(summaryDetail);
 
         var settings = buildSettingsSection();
         wrapper.appendChild(settings);
