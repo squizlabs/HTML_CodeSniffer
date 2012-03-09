@@ -47,25 +47,22 @@ var HTMLCSAuditor = new function()
             checked = false;
         }
 
-        var div       = document.createElement('div');
-        div.className = _prefix + 'checkbox';
+        var label   = document.createElement('label');
+        label.className = _prefix + 'checkbox';
+        var content = '<span class="' + _prefix + 'checkbox-title">' + title + '</span>';
+        content    += '<span class="' + _prefix + 'checkbox-switch">';
+        content    += '<span class="' + _prefix + 'checkbox-slider"></span>';
+        content    += '<input id="' + id + '" type="checkbox"';
 
-        var span       = document.createElement('span');
-        span.className = 'input-container';
-        div.appendChild(span);
+        if (checked === true) {
+            content += ' checked="checked"';
+        }
 
-        var input     = document.createElement('input');
-        input.id      = id;
-        input.checked = checked;
-        input.setAttribute('type', 'checkbox');
-        span.appendChild(input);
+        content += '/></span>';
 
-        var label       = document.createElement('label');
-        label.innerHTML = title;
-        label.setAttribute('for', input.id);
-        div.appendChild(label);
+        label.innerHTML = content;
 
-        return div;
+        return label;
     };
 
     /**
@@ -78,26 +75,24 @@ var HTMLCSAuditor = new function()
             checked = false;
         }
 
-        var div       = document.createElement('div');
-        div.className = _prefix + 'radio';
+        var label   = document.createElement('label');
+        label.className = _prefix + 'radio';
+        var content = '<span class="' + _prefix + 'radio-title">' + title + '</span>';
+        content    += '<span class="' + _prefix + 'radio-switch">';
+        content    += '<span class="' + _prefix + 'radio-slider"></span>';
+        content    += '<input type="radio" name="' + _prefix + groupName + '" ';
+        content    += 'class="' + _prefix + 'radiobtn"';
+        content    += 'value="' + value + '"';
 
-        var span       = document.createElement('span');
-        span.className = 'input-container';
-        div.appendChild(span);
+        if (checked === true) {
+            content    += ' checked="true"';
+        }
 
-        var input     = document.createElement('input');
-        input.id      = _prefix + '-' + groupName + '-' + value;
-        input.name    = groupName;
-        input.checked = checked;
-        input.setAttribute('type', 'radio');
-        span.appendChild(input);
+        content += ' /></span>';
 
-        var label       = document.createElement('label');
-        label.innerHTML = title;
-        label.setAttribute('for', input.id);
-        div.appendChild(label);
+        label.innerHTML = content;
 
-        return div;
+        return label;
     };
 
     /**
@@ -234,7 +229,7 @@ var HTMLCSAuditor = new function()
             }
         }));
         rightPane.appendChild(buildSummaryButton(_prefix + 'button-rerun', 'refresh', 'Re-run Audit', function() {
-            HTMLCSAuditor.run(_standard, _source);
+            HTMLCSAuditor.run(_standard, _source, _options);
         }));
 
         return summary;
@@ -401,7 +396,7 @@ var HTMLCSAuditor = new function()
         listFiltersExp.innerHTML = 'Errors and Warnings are always shown and cannot be hidden. Notices will be automatically shown if there are not other issues.';
         listFiltersDiv.appendChild(listFiltersExp);
 
-        var showNoticesCheckbox = buildCheckbox(_prefix + 'include-notices', 'Always include Notices');
+        var showNoticesCheckbox = buildCheckbox(_prefix + 'include-notices', 'Always include Notices', (_options && _options.alwaysShowNotices === true));
         listFiltersDiv.appendChild(showNoticesCheckbox);
 
         var useStandardDiv = document.createElement('div');
@@ -434,7 +429,23 @@ var HTMLCSAuditor = new function()
         recheckButton.className = _prefix + 'button';
         recheckButton.innerHTML = 'Re-check Content';
         recheckButton.onclick   = function() {
-            HTMLCSAuditor.run(_standard);
+            var newStandard = _standard;
+            var radioBtns   = document.getElementsByName(_prefix + 'standard');
+            var value       = null;
+            for (var i = 0; i < radioBtns.length; i++) {
+                if (radioBtns[i].checked === true) {
+                    newStandard = radioBtns[i].value;
+                    break;
+                }
+            }
+
+            var options = {
+                alwaysShowNotices: document.getElementById(_prefix + 'include-notices').checked
+            };
+
+            _options = options;
+
+            HTMLCSAuditor.run(newStandard, _source, options);
         };
         recheckDiv.appendChild(recheckButton);
 
@@ -813,6 +824,7 @@ var HTMLCSAuditor = new function()
         _source   = source;
         _options  = options;
         _page     = 1;
+        _screen   = '';
 
         var self    = this;
         var target  = document.getElementById(_prefix + 'wrapper');
