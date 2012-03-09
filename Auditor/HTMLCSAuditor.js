@@ -62,6 +62,15 @@ var HTMLCSAuditor = new function()
 
         label.innerHTML = content;
 
+        var input = label.getElementsByTagName('input')[0];
+        input.addEventListener('click', function() {
+            if (input.checked === true) {
+                label.className += ' active';
+            } else {
+                label.className = label.className.replace('active', '');
+            }
+        }, false);
+
         return label;
     };
 
