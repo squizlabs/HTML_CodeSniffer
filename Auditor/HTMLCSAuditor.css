@@ -2,7 +2,7 @@
     -moz-transition-timing-function: ease;
     -webkit-transition-timing-function: ease;
 
-    position: absolute;
+    position: fixed;
     top: 36px;
     right: 3em;
     width: 35em;
