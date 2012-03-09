@@ -1045,14 +1045,20 @@ var HTMLCSAuditor = new function()
 
             // Scroll in to view if not visible.
             if (elem.scrollIntoView && (rect.y1 < iframeScroll.y || rect.y1 > iframeScroll.y + winDim.height)) {
-                elem.scrollIntoView(false);
+                if (rect.y1 > 100) {
+                    this.getElementWindow(elem).scroll(rect.x1, rect.y1 - 100);
+                } else {
+                    this.getElementWindow(elem).scroll(rect.x1, 0);
+                }
+
+                iframeScroll = this.getScrollCoords(elem);
             }
 
             // Try to position the pointer.
-            if ((rect.y1 - pointerH - bounceHeight) > iframeScroll.y) {
+            //if ((rect.y1 - pointerH - bounceHeight) > iframeScroll.y) {
                 // Arrow direction down.
                 this.showPointer(elem, 'down');
-            } else if ((rect.y2 + pointerH) < (winDim.height - iframeScroll.y)) {
+           /* } else if ((rect.y2 + pointerH) < (winDim.height - iframeScroll.y)) {
                 // Up.
                 this.showPointer(elem, 'up');
             } else if ((rect.y2 + pointerW) < winDim.width) {
@@ -1061,7 +1067,7 @@ var HTMLCSAuditor = new function()
             } else if ((rect.y1 - pointerW) > 0) {
                 // Right.
                 this.showPointer(elem, 'right');
-            }
+            }*/
         },
 
         getPointer: function(targetElement) {
@@ -1147,7 +1153,49 @@ var HTMLCSAuditor = new function()
                 }, 4000);
             }
 
-            // TODO: Add bounce animation.
+            var pointer = this.pointer;
+            this.bounce(function() {
+                setTimeout(function() {
+                    pointer.parentNode.removeChild(pointer);
+                }, 1500);
+            });
+
+        },
+
+        bounce: function(callback)
+        {
+            var pointer = this.pointer;
+            var initialTop = Number(pointer.style.top.replace('px', ''));
+            var currentTop = initialTop;
+            var dist       = 30;
+            var lowerLimit = (initialTop - dist);
+            var maxBounce  = 5;
+
+            var bounces   = 0;
+            var direction = 'up';
+            var i = setInterval(function() {
+                if (direction === 'up') {
+                    currentTop--;
+                    pointer.style.top = currentTop + 'px';
+                    if (currentTop < lowerLimit) {
+                        direction = 'down';
+                    }
+                } else if (direction === 'down') {
+                    currentTop++;
+                    pointer.style.top = currentTop + 'px';
+
+                    if (currentTop >= initialTop) {
+                        direction = 'up';
+                        bounces++;
+
+                        if (bounces === maxBounce) {
+                            clearInterval(i);
+                            callback.call(this);
+                            return;
+                        }
+                    }
+                }
+            }, 10);
 
         },
 
