@@ -411,13 +411,13 @@ var HTMLCSAuditor = new function()
         useStandardExp.innerHTML = 'Choose which standard you would like to check your content against.';
         useStandardDiv.appendChild(useStandardExp);
 
-        var radioButton = buildRadioButton('standard', 'WCAG2AAA', 'WCAG 2.0 AAA');
+        var radioButton = buildRadioButton('standard', 'WCAG2AAA', 'WCAG 2.0 AAA', (_standard === 'WCAG2AAA'));
         useStandardDiv.appendChild(radioButton);
 
-        var radioButton = buildRadioButton('standard', 'WCAG2AA', 'WCAG 2.0 AA');
+        var radioButton = buildRadioButton('standard', 'WCAG2AA', 'WCAG 2.0 AA', (_standard === 'WCAG2AA'));
         useStandardDiv.appendChild(radioButton);
 
-        var radioButton = buildRadioButton('standard', 'WCAG2A', 'WCAG 2.0 A');
+        var radioButton = buildRadioButton('standard', 'WCAG2A', 'WCAG 2.0 A', (_standard === 'WCAG2A'));
         useStandardDiv.appendChild(radioButton);
 
         var recheckDiv = document.createElement('div');
