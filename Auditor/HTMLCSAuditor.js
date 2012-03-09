@@ -120,10 +120,53 @@ var HTMLCSAuditor = new function()
      *
      * @return {HTMLDivElement}
      */
-    var buildHeaderSection = function(standard) {
+    var buildHeaderSection = function(standard, wrapper) {
         var header       = document.createElement('div');
         header.className = _prefix + 'header';
         header.innerHTML = 'Accessibility Auditor - ' + standard;
+
+        var dragging = false;
+        var prevX    = 0;
+        var prevY    = 0;
+        var mouseX   = 0;
+        var mouseY   = 0;
+
+        header.addEventListener('mousedown', function(e) {
+            dragging = true;
+            mouseX   = e.clientX;
+            mouseY   = e.clientY;
+            return false;
+        }, false);
+
+        document.addEventListener('mousemove', function(e) {
+            if (dragging === true) {
+                var top = wrapper.offsetTop;
+                var left = wrapper.offsetLeft;
+
+                if (mouseY < e.clientY) {
+                    top += (e.clientY - mouseY);
+                    wrapper.style.top = top + 'px';
+                } else if (mouseY > e.clientY) {
+                    top -= (mouseY - e.clientY);
+                    wrapper.style.top = top + 'px';
+                }
+
+                if (mouseX < e.clientX) {
+                    left += (e.clientX - mouseX);
+                    wrapper.style.left = left + 'px';
+                } else if (mouseX > e.clientX) {
+                    left -= (mouseX - e.clientX);
+                    wrapper.style.left = left + 'px';
+                }
+
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+            }//end if
+        }, false);
+
+        document.addEventListener('mouseup', function(e) {
+            dragging = false;
+        }, false);
 
         return header;
     };
@@ -680,7 +723,7 @@ var HTMLCSAuditor = new function()
         wrapper.id        = _prefix + 'wrapper';
         wrapper.className = 'showing-' + options.initialScreen;
 
-        var header = buildHeaderSection(standard);
+        var header = buildHeaderSection(standard, wrapper);
         wrapper.appendChild(header);
 
         var summary = buildSummarySection(errors, warnings, notices);

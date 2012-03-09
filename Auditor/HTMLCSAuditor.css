@@ -30,6 +30,14 @@
     text-align: center;
 
     border-bottom: 1px solid transparent;
+
+    cursor: move;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
 }
 
 .HTMLCS-summary,
