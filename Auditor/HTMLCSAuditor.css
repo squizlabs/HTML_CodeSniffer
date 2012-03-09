@@ -150,7 +150,7 @@
 }
 
 .HTMLCS-issue-list > li:after {
-  background: url("Images/HTMLCS-tools.png") no-repeat scroll -14px -3px transparent;
+  background: url("Images/HTMLCS-tools.png") no-repeat scroll 0 -96px transparent;
   content: "";
   height: 14px;
   margin-top: -7px;
@@ -282,7 +282,6 @@
 }
 
 .HTMLCS-nav-button {
-    background-image: url("Images/HTMLCS-tools.png");
     background-color: rgba(0, 0, 0, 0.3);
     border-radius: 0.3em 0.3em 0.3em 0.3em;
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
@@ -291,6 +290,23 @@
     height: 2.2em;
     position: relative;
     width: 2.5em;
+}
+
+.HTMLCS-nav-button.previous:after,
+.HTMLCS-nav-button.next:after {
+    background: url("Images/HTMLCS-tools.png") no-repeat scroll 0 -224px transparent;
+    content: "";
+    height: 14px;
+    left: 50%;
+    margin: -7px 0 0 -6px;
+    position: absolute;
+    top: 50%;
+    width: 11px;
+}
+
+.HTMLCS-nav-button.next:after {
+    background-position: 0 -238px;
+    margin-left: -5px;
 }
 
 .HTMLCS-nav-button.previous {
@@ -366,19 +382,23 @@
 }
 
 .HTMLCS-button-icon.refresh {
-    background-position: -30px -2px;
+    background-position: -12px -224px;
 }
 
 .HTMLCS-button-icon.settings {
-    background-position: -30px -28px;
+    background-position: -37px -224px;
 }
 
 .HTMLCS-button-icon.next {
-    background-position: -30px -51px;
+    background-position: -12px -244px;
 }
 
 .HTMLCS-button-icon.previous {
-    background-position: -29px -78px;
+    background-position: -37px -244px;
+}
+
+.HTMLCS-button-icon.pointer {
+    background-position: -12px -264px;
 }
 
 .HTMLCS-settings {
@@ -581,11 +601,22 @@
     Pointer
 */
 .HTMLCS-pointer {
-    background-color: yellow;
     height: 62px;
     left: 0;
     position: absolute;
     top: 0;
     width: 50px;
     z-index: 9999;
+    background: transparent url("Images/HTMLCS-tools.png") -14px -62px no-repeat;
+}
+.HTMLCS-pointer-up {
+    background-position: -14px 0;
+}
+
+.HTMLCS-pointer-left {
+    background-position: 0 -124px;
+}
+
+.HTMLCS-pointer-right {
+    background-position: 0 -174px;
 }
