@@ -197,11 +197,20 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
      */
     testPresentationMarkup: function(top)
     {
-        // Presentation tags and attributes that should have no place in modern HTML.
-        var tags = top.querySelectorAll('b, i, u, s, strike, tt, big, small, center, font, *[align]');
+        // Presentation tags that should have no place in modern HTML.
+        var tags = top.querySelectorAll('b, i, u, s, strike, tt, big, small, center, font');
 
         for (var i = 0; i < tags.length; i++) {
-            HTMLCS.addMessage(HTMLCS.ERROR, tags[i], 'Semantic markup should be used to mark emphasised or special text so that it can be programmatically determined.', 'H49');
+            var msgCode = 'H49.' + tags[i].nodeName.substr(0, 1).toUpperCase() + tags[i].nodeName.substr(1).toLowerCase();
+            HTMLCS.addMessage(HTMLCS.ERROR, tags[i], 'Semantic markup should be used to mark emphasised or special text so that it can be programmatically determined.', msgCode);
+        }
+
+        // Align attributes, too.
+        var tags = top.querySelectorAll('*[align]');
+
+        for (var i = 0; i < tags.length; i++) {
+            var msgCode = 'H49.AlignAttr';
+            HTMLCS.addMessage(HTMLCS.ERROR, tags[i], 'Semantic markup should be used to mark emphasised or special text so that it can be programmatically determined.', msgCode);
         }
     },
 
