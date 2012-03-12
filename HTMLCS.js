@@ -519,4 +519,178 @@ var HTMLCS = new function()
         return empty;
     };
 
+    this.util = new function() {
+        this.isStringEmpty = function(string) {
+            var empty = true;
+
+            if (string.indexOf(String.fromCharCode(160)) !== -1) {
+                // Has an NBSP, therefore cannot be empty.
+                empty = false;
+            } else if (/^\s*$/.test(string) === false) {
+                // Not spacing.
+                empty = false;
+            }
+
+            return empty;
+        };
+
+        this.isLayoutTable = function(table) {
+            return false;
+        }
+
+        /**
+         * Return expected cell headers from a table.
+         *
+         * Returns null if not in a table, or the cell doesn't appear to be a cell
+         * at all.
+         *
+         * If there are missing IDs on relevant table header (th) elements, this
+         * method won't complain about it - it will just return them as empty. Its
+         * job is to take the IDs it can get, not to complain about it (see, eg. the
+         * test in WCAG2's sniff 1_3_1).
+         *
+         * @param {Object} cell The cell to test.
+         *
+         * @returns {String}
+         */
+        this.getCellHeaders = function(cell) {
+            if (typeof cell !== 'object') {
+                return null;
+            }
+
+            // Firstly check whether we are in a table.
+            var table = cell;
+            while (table !== null) {
+                table = table.parentNode;
+                if (table.nodeName.toLowerCase() === 'table') {
+                    break;
+                }
+            }
+
+            if (table === null) {
+                // Somehow not in a table.
+                return null;
+            }
+
+            var row       = cell.parentNode;
+            var currCell  = cell.previousSibling;
+
+            // Get the cell number of the cell being passed.
+            var cellIndex = 0;
+            while (currCell !== null) {
+                if (currCell.nodeType === 1) {
+                    if (currCell.hasAttribute('colspan') === true) {
+                        cellIndex += Number(currCell.getAttribute('colspan'));
+                    } else {
+                        cellIndex++;
+                    }
+                }
+
+                currCell = currCell.previousSibling;
+            }//end while
+
+            var lastCell = cellIndex;
+            if (cell.hasAttribute('colspan') === true) {
+                lastCell += Number(cell.getAttribute('colspan')) - 1;
+            }
+
+            // Get the row number.
+            var currRow  = row;
+            var rowIndex = 0;
+            while (currRow !== null) {
+                if (currRow.nodeType === 1) {
+                    rowIndex++;
+                }
+
+                currRow = currRow.previousSibling;
+            }//end while
+
+            var lastRow = rowIndex;
+            if (cell.hasAttribute('rowspan') === true) {
+                lastRow += Number(cell.getAttribute('rowspan')) - 1;
+            }
+
+            var rows       = table.getElementsByTagName('tr');
+            var skipCells  = [];
+            var headingIds = {
+                rows: {},
+                cols: {}
+            };
+
+            // Now determine the row and column headers for the table.
+            for (var rownum = 0; rownum < rows.length; rownum++) {
+                var row    = rows[rownum];
+                var colnum = 0;
+
+                for (var item = 0; item < row.childNodes.length; item++) {
+                    var thisCell = row.childNodes[item];
+                    if (thisCell.nodeType === 1) {
+                        // Skip columns that are skipped due to rowspan.
+                        if (skipCells[rownum]) {
+                            while (skipCells[rownum][0] === colnum) {
+                                skipCells[rownum].shift();
+                                colnum++;
+                            }
+                        }
+
+                        var nodeName = thisCell.nodeName.toLowerCase();
+                        var rowspan  = Number(thisCell.getAttribute('rowspan')) || 1;
+                        var colspan  = Number(thisCell.getAttribute('colspan')) || 1;
+
+                        // If rowspanned, mark columns as skippable in the following
+                        // row(s).
+                        if (rowspan > 1) {
+                            for (var i = rownum + 1; i < rownum + rowspan; i++) {
+                                if (!skipCells[i]) {
+                                    skipCells[i] = [];
+                                }
+
+                                for (var j = colnum; j < colnum + colspan; j++) {
+                                    skipCells[i].push(j);
+                                }
+                            }
+                        }
+
+                        if (nodeName === 'th') {
+                            var id = (thisCell.getAttribute('id') || '');
+
+                            for (var i = rownum; i < rownum + rowspan; i++) {
+                                headingIds.rows[i] = headingIds.rows[i] || [];
+                                headingIds.rows[i].push(id);
+                            }
+
+                            for (var i = colnum; i < colnum + colspan; i++) {
+                                headingIds.cols[i] = headingIds.cols[i] || [];
+                                headingIds.cols[i].push(id);
+                            }
+                        }
+
+                        colnum += colspan;
+                    }//end if
+                }//end for
+            }//end for
+
+            // Add the column and row headers that we expect.
+            var expected = [];
+            for (var i = cellIndex; i <= lastCell; i++) {
+                if (headingIds.cols[i]) {
+                    expected = expected.concat(headingIds.cols[i]);
+                }
+            }
+
+            for (var i = rowIndex; i <= lastRow; i++) {
+                if (headingIds.rows[i]) {
+                    expected = expected.concat(headingIds.rows[i]);
+                }
+            }
+
+            // Construct a "normalised" expected headers list: sorted, trimmed,
+            // duplicates and excess spaces removed.
+            var exp    = ' ' + expected.sort().join(' ') + ' ';
+            exp        = exp.replace(/\s+/g, ' ').replace(/(\w+\s)\1+/g, '$1').replace(/^\s*(.*?)\s*$/g, '$1');
+
+            return exp;
+        };
+    };
+
 };
