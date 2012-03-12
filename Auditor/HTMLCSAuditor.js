@@ -292,13 +292,7 @@ var HTMLCSAuditor = new function()
 
         // Element pointer.
         rightPane.appendChild(buildSummaryButton(_prefix + 'button-settings', 'pointer', 'Point to Element', function() {
-            var msg = _messages[Number(issue)];
-            if (!msg.element) {
-                return;
-            }
-
-            pointer.container = document.getElementById('HTMLCS-wrapper');
-            pointer.pointTo(msg.element);
+            pointToIssueElement(issue);
         }));
 
         rightPane.appendChild(buildSummaryButton(_prefix + 'button-settings', 'previous', 'Previous Issue', function() {
@@ -313,6 +307,8 @@ var HTMLCSAuditor = new function()
 
                 var issueList = document.getElementsByClassName('HTMLCS-issue-detail-list')[0];
                 issueList.style.marginLeft = (parseInt(issueList.style.marginLeft, 10) + 35) + 'em';
+
+                pointToIssueElement(newIssue);
             }
         }));
 
@@ -328,6 +324,8 @@ var HTMLCSAuditor = new function()
 
                 var issueList = document.getElementsByClassName('HTMLCS-issue-detail-list')[0];
                 issueList.style.marginLeft = (parseInt(issueList.style.marginLeft, 10) - 35) + 'em';
+
+                pointToIssueElement(newIssue);
             }
         }));
 
@@ -511,6 +509,8 @@ var HTMLCSAuditor = new function()
             detailList.className += ' transition-disabled';
             detailList.style.marginLeft = (id * -35) + 'em';
 
+            pointToIssueElement(id);
+
             setTimeout(function() {
                 detailList.className = detailList.className.replace(/ transition-disabled/, '');
             }, 500);
@@ -667,6 +667,17 @@ var HTMLCSAuditor = new function()
 
         return navDiv;
     }
+
+    var pointToIssueElement = function(issue) {
+        var msg = _messages[Number(issue)];
+        if (!msg.element) {
+            return;
+        }
+
+        pointer.container = document.getElementById('HTMLCS-wrapper');
+        pointer.pointTo(msg.element);
+
+    };
 
     this.build = function(standard, messages, options) {
         if (options.alwaysShowNotices === undefined) {
@@ -1075,6 +1086,19 @@ var HTMLCSAuditor = new function()
                 return;
             }
 
+            // Get element coords.
+            var rect = this.getBoundingRectangle(elem);
+
+            // If we cannot get the position then dont do anything,
+            // most likely element is hidden.
+            if (rect.x1 === 0
+                && rect.x2 === 0
+                || rect.x1 === rect.x2
+                || rect.y1 === rect.y2
+            ) {
+                return;
+            }
+
             var pointer = this.getPointer(elem);
 
             pointer.style.display = 'block';
@@ -1091,32 +1115,9 @@ var HTMLCSAuditor = new function()
             var scroll       = this.getScrollCoords();
             var iframeScroll = this.getScrollCoords(elem);
 
-            // Get element coords.
-            var rect = this.getBoundingRectangle(elem);
-
-            // If we cannot get the position then dont do anything,
-            // most likely element is hidden.
-            if (rect.x1 === 0
-                && rect.x2 === 0
-                || rect.x1 === rect.x2
-                || rect.y1 === rect.y2
-            ) {
-                return;
-            }
-
             // Determine where to show the arrow.
             var winDim = this.getWindowDimensions(elem);
-
-            // Scroll in to view if not visible.
-            if (elem.scrollIntoView && (rect.y1 < iframeScroll.y || rect.y1 > iframeScroll.y + winDim.height)) {
-                if (rect.y1 > 100) {
-                    this.getElementWindow(elem).scroll(rect.x1, rect.y1 - 100);
-                } else {
-                    this.getElementWindow(elem).scroll(rect.x1, 0);
-                }
-
-                iframeScroll = this.getScrollCoords(elem);
-            }
+            window.scrollTo(0, rect.y1 - 100);
 
             // Try to position the pointer.
             //if ((rect.y1 - pointerH - bounceHeight) > iframeScroll.y) {
@@ -1192,10 +1193,10 @@ var HTMLCSAuditor = new function()
                 break;
             }//end switch
 
-            var frameScroll = this.getScrollCoords(elem);
+            var frameScroll = this.getScrollCoords();
 
-            this.pointer.style.top  = top - frameScroll.y + 'px';
-            this.pointer.style.left = left - frameScroll.x + 'px';
+            this.pointer.style.top  = top  + 'px';
+            this.pointer.style.left = left + 'px';
 
             // Check if the help window is under the pointer then re-position it.
             // Unless it is an element within the HTMLCS pop-up.
@@ -1220,7 +1221,9 @@ var HTMLCSAuditor = new function()
             var pointer = this.pointer;
             this.bounce(function() {
                 setTimeout(function() {
-                    pointer.parentNode.removeChild(pointer);
+                    if (pointer.parentNode) {
+                        pointer.parentNode.removeChild(pointer);
+                    }
                 }, 1500);
             });
 
