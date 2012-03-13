@@ -30,6 +30,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
 
         if (element === top) {
             this.testPresentationMarkup(top);
+            this.testEmptyDupeLabelForAttrs(top);
         } else {
             switch (nodeName) {
                 case 'input':
@@ -63,6 +64,34 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
                 break;
             }//end switch
         }//end if
+    },
+
+    /**
+     * Top-level test for labels that have no for attribute, or duplicate ones.
+     *
+     * @param {DOMNode} top The top element of the tested code.
+     */
+    testEmptyDupeLabelForAttrs: function(top)
+    {
+        this._labelNames = {};
+        var labels = top.getElementsByTagName('label');
+        for (var i = 0; i < labels.length; i++) {
+            if ((labels[i].hasAttribute('for') === true) && (labels[i].getAttribute('for') !== '')) {
+                var labelFor = labels[i].getAttribute('for');
+                if ((this._labelNames[labelFor]) && (this._labelNames[labelFor] !== null)) {
+                    // Multiple labels with same "for" attribute shouldn't exist.
+                    // They could be a sign of duplicate form controls, and ife
+                    // they are not, it's not good practice to have multiple labels
+                    // for the one control.
+                    HTMLCS.addMessage(HTMLCS.ERROR, labels[i], 'Multiple labels exist with the same "for" attribute. If these labels refer to different form controls, the controls should have unique "id" attributes.', 'H93');
+                    this._labelNames[labelFor] = null;
+                } else {
+                    this._labelNames[labelFor] = labels[i];
+                }
+            } else {
+                HTMLCS.addMessage(HTMLCS.ERROR, labels[i], 'Label found without a "for" attribute, and therefore not explicitly associated with a form control.', 'H44.NoForAttr');
+            }//end if
+        }//end for
     },
 
     /**
@@ -100,15 +129,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
         for (var i = 0; i < labels.length; i++) {
             if (labels[i].hasAttribute('for') === true) {
                 var labelFor = labels[i].getAttribute('for');
-                if (this._labelNames[labelFor]) {
-                    // Multiple labels with same "for" attribute shouldn't exist.
-                    // They could be a sign of duplicate form controls, and ife
-                    // they are not, it's not good practice to have multiple labels
-                    // for the one control.
-                    HTMLCS.addMessage(HTMLCS.ERROR, element, 'Multiple labels exist with the same "for" attribute. If these labels refer to different form controls, the controls should have unique "id" attributes.', 'H93');
-                } else {
-                    this._labelNames[labelFor] = labels[i];
-                }
+                this._labelNames[labelFor] = labels[i];
             }//end if
         }//end for
 

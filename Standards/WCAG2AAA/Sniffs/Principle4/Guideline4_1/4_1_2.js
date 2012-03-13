@@ -103,7 +103,12 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
             }//end for
 
             if (i === requiredNames[nodeName].length) {
-                HTMLCS.addMessage(HTMLCS.ERROR, element, 'Check that this form control has a name that is available to an accessibility API.', 'H91.Name');
+                var msgNodeType = 'form control';
+                if (nodeName === 'a') {
+                    msgNodeType = 'link';
+                }
+
+                HTMLCS.addMessage(HTMLCS.ERROR, element, 'Check that this ' + msgNodeType + ' has a name that is available to an accessibility API.', 'H91.Name');
             }
         }//end if
 
@@ -134,7 +139,12 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
         }//end if
 
         if (valueFound === false) {
-            HTMLCS.addMessage(HTMLCS.ERROR, element, 'Check that this form control has a value that is available to an accessibility API.', 'H91.Value');
+            var msgNodeType = 'form control';
+            if (nodeName === 'a') {
+                msgNodeType = 'link';
+            }
+
+            HTMLCS.addMessage(HTMLCS.ERROR, element, 'Check that this ' + msgNodeType + ' has a value that is available to an accessibility API.', 'H91.Value');
         }
     },
 
