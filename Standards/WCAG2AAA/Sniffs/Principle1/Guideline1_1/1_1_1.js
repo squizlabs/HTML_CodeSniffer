@@ -211,6 +211,10 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
                 }
             }
 
+            if (nodes.anchor.alt === null) {
+                nodes.anchor.alt = '';
+            }
+
             if ((nodes.anchor.alt !== null) && (nodes.anchor.alt !== '')) {
                 if (nodes.anchor.alt.trim().toLowerCase() === nodes.anchor.text.trim().toLowerCase()) {
                     // H2 "Failure Example 5": they're in one link, but the alt text
@@ -237,6 +241,10 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
                         text: this._getElementTextContent(prevLink, false),
                         alt: this._getLinkAltText(prevLink)
                     }
+
+                    if (nodes.previous.alt === null) {
+                        nodes.previous.alt = '';
+                    }
                 }
 
                 if (nextLink !== null) {
@@ -245,12 +253,16 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
                         text: this._getElementTextContent(nextLink, false),
                         alt: this._getLinkAltText(nextLink)
                     }
+
+                    if (nodes.next.alt === null) {
+                        nodes.next.alt = '';
+                    }
                 }
 
                 // Test against the following link, if any.
                 if (nodes.next && (nodes.next.href !== '') && (nodes.next.href !== null) && (nodes.anchor.href === nodes.next.href)) {
                     if ((nodes.next.text !== '') && (nodes.anchor.alt === '')) {
-                        HTMLCS.addMessage(HTMLCS.ERROR, element, 'Img element inside a link has empty alt text when a link beside it contains link text; consider combining the links.', 'H2.EG4');
+                        HTMLCS.addMessage(HTMLCS.ERROR, element, 'Img element inside a link has empty or missing alt text when a link beside it contains link text; consider combining the links.', 'H2.EG4');
                     } else if (nodes.next.text.toLowerCase() === nodes.anchor.alt.toLowerCase()) {
                         HTMLCS.addMessage(HTMLCS.ERROR, element, 'Img element inside a link must not use alt text that duplicates the content of a text link beside it.', 'H2.EG3');
                     }
@@ -259,7 +271,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
                 // Test against the preceding link, if any.
                 if (nodes.previous && (nodes.previous.href !== '') && (nodes.previous.href !== null) && (nodes.anchor.href === nodes.previous.href)) {
                     if ((nodes.previous.text !== '') && (nodes.anchor.alt === '')) {
-                        HTMLCS.addMessage(HTMLCS.ERROR, element, 'Img element inside a link has empty alt text when a link beside it contains link text; consider combining the links.', 'H2.EG4');
+                        HTMLCS.addMessage(HTMLCS.ERROR, element, 'Img element inside a link has empty or missing alt text when a link beside it contains link text; consider combining the links.', 'H2.EG4');
                     } else if (nodes.previous.text.toLowerCase() === nodes.anchor.alt.toLowerCase()) {
                         HTMLCS.addMessage(HTMLCS.ERROR, element, 'Img element inside a link must not use alt text that duplicates the content of a text link beside it.', 'H2.EG3');
                     }

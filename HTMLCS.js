@@ -74,14 +74,20 @@ var HTMLCS = new function()
         var element = null;
         if (typeof content === 'string') {
             if (this.isFullDoc(content) === true) {
-                element = document.createElement('iframe');
-                element.style.display = 'none';
-                element = document.body.insertBefore(element, null);
+                var elementFrame = document.createElement('iframe');
+                elementFrame.style.display = 'none';
+                elementFrame = document.body.insertBefore(elementFrame, null);
 
-                if (element.contentDocument) {
-                    element = element.contentDocument;
+                if (elementFrame.contentDocument) {
+                    element = elementFrame.contentDocument;
                 } else if (element.contentWindow) {
-                    element = element.contentWindow.document;
+                    element = elementFrame.contentWindow.document;
+                }
+
+                elementFrame.onload = function() {
+                    var elements = _getAllTags(element);
+                    elements.unshift(element);
+                    _run(elements, element, callback);
                 }
 
                 element.write(content);
@@ -108,7 +114,9 @@ var HTMLCS = new function()
         elements.unshift(element);
 
         // Run the sniffs.
-        _run(elements, element, callback);
+        if (this.isFullDoc(content) === false) {
+            _run(elements, element, callback);
+        }
     };
 
     /**

@@ -50,7 +50,12 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
 
         var nodeName = element.nodeName.toLowerCase();
         if (nodeName === 'input') {
-            nodeName += '_' + element.getAttribute('type').toLowerCase();
+            if (element.hasAttribute('type') === false) {
+                // If no type attribute, default to text.
+                nodeName += '_text';
+            } else {
+                nodeName += '_' + element.getAttribute('type').toLowerCase();
+            }
 
             // Treat all input buttons as the same
             if ((nodeName === 'input_submit') || (nodeName === 'input_reset')) {

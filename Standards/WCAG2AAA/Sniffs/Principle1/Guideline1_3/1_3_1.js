@@ -98,12 +98,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
         this._labelNames = {};
         var labels = top.getElementsByTagName('label');
         for (var i = 0; i < labels.length; i++) {
-            if (labels[i].hasAttribute('for') === false) {
-                // Implicit labels (ie. labels with no "for" attribute but instead
-                // surround a label) fail this test, due to not having enough
-                // support from assistive technology.
-                HTMLCS.addMessage(HTMLCS.ERROR, element, 'Use the label element to explicitly associate a form control with a label, through the use of the "for" attribute.', 'H44.1.Implicit');
-            } else {
+            if (labels[i].hasAttribute('for') === true) {
                 var labelFor = labels[i].getAttribute('for');
                 if (this._labelNames[labelFor]) {
                     // Multiple labels with same "for" attribute shouldn't exist.
