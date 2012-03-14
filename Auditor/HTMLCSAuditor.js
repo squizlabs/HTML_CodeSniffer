@@ -680,6 +680,8 @@ var HTMLCSAuditor = new function()
     };
 
     this.build = function(standard, messages, options) {
+        var wrapper = document.getElementById(_prefix + 'wrapper');
+
         if (options.alwaysShowNotices === undefined) {
             options.alwaysShowNotices = false;
         }
@@ -702,24 +704,43 @@ var HTMLCSAuditor = new function()
         var notices  = 0;
 
         for (i = 0; i < messages.length; i++) {
-            switch (messages[i].type) {
-                case HTMLCS.ERROR:
-                    errors++;
-                break;
+            // Firstly, ignore warnings arising from the Advisor interface itself.
+            var ignore = false;
+            if (wrapper) {
+                if (wrapper === messages[i].element) {
+                    ignore = true;
+                } else if ((wrapper.contains) && (wrapper.contains(messages[i].element) === true)) {
+                    ignore = true;
+                } else if ((wrapper.compareDocumentPosition) && ((wrapper.compareDocumentPosition(messages[i].element) & 16) > 0)) {
+                    ignore = true;
+                }
+            }
 
-                case HTMLCS.WARNING:
-                    warnings++;
-                break;
+            // Then count errors, warnings and ignore notices as necessary.
+            if (ignore === false) {
+                switch (messages[i].type) {
+                    case HTMLCS.ERROR:
+                        errors++;
+                    break;
 
-                case HTMLCS.NOTICE:
-                    if (showNotices === false) {
-                        messages.splice(i, 1);
-                        i--;
-                    } else {
-                        notices++;
-                    }
-                break;
-            }//end switch
+                    case HTMLCS.WARNING:
+                        warnings++;
+                    break;
+
+                    case HTMLCS.NOTICE:
+                        if (showNotices === false) {
+                            ignore = true;
+                        } else {
+                            notices++;
+                        }
+                    break;
+                }//end switch
+            }
+
+            if (ignore === true) {
+                messages.splice(i, 1);
+                i--;
+            }
         }//end for
 
         _messages = messages;
