@@ -247,7 +247,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
         var tag = element.nodeName.toLowerCase();
         if (tag === 'p' || tag === 'div') {
             var children = element.childNodes;
-            if ((children.length === 1) && (children[0].nodeType === Node.ELEMENT_NODE)) {
+            if ((children.length === 1) && (children[0].nodeType === 1)) {
                 var childTag = children[0].nodeName.toLowerCase();
 
                 if (/^(strong|em|b|i|u)$/.test(childTag) === true) {
