@@ -133,9 +133,9 @@ var HTMLCS = new function()
     this.isFullDoc = function(content) {
         var fullDoc = false;
         if (typeof content === 'string') {
-            if (content.indexOf('<html') !== -1) {
+            if (content.toLowerCase().indexOf('<html') !== -1) {
                 fullDoc = true;
-            } else if ((content.indexOf('<head') !== -1) && (content.indexOf('<body') !== -1)) {
+            } else if ((content.toLowerCase().indexOf('<head') !== -1) && (content.toLowerCase().indexOf('<body') !== -1)) {
                 fullDoc = true;
             }
         } else {
