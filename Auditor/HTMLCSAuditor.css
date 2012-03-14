@@ -16,6 +16,7 @@
 
     font-family: Arial,Sans Serif;
     font-size: 9px;
+    z-index: 100000;
 }
 
 .HTMLCS-header {
