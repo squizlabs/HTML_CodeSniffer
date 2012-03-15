@@ -16,6 +16,9 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_6 = {
     /**
      * Process the registered element.
      *
+     * NOTE: The separate test file for failure F24 (foreground colour without
+     * background colour, or vice versa) also applies to 1.4.6 at Triple-A level.
+     *
      * @param {DOMNode} element The element registered.
      * @param {DOMNode} top     The top element of the tested code.
      */
