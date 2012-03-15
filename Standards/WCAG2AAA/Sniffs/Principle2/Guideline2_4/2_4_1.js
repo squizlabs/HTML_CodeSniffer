@@ -79,8 +79,29 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_4_2_4_1 = {
      */
     testMapElement: function(element)
     {
-        var links = element.querySelectorAll('a');
-        if (links.length >= 2) {
+        var nodeName    = element.nodeName.toLowerCase();
+        var linksLength = 0;
+
+        if (nodeName === 'li') {
+            // List item. Don't fire on these.
+            linksLength = 0;
+        } else if (/^(ul|ol|dl)$/.test(nodeName) === true) {
+            // List container. Test on everything underneath.
+            linksLength = element.querySelectorAll('a').length;
+        } else {
+            // Everything else. Test direct links only.
+            var childNodes  = element.childNodes;
+            for (var i = 0; i < childNodes.length; i++) {
+                if ((childNodes[i].nodeType === 1) && (childNodes[i].nodeName.toLowerCase() === 'a')) {
+                    linksLength++;
+                    if (linksLength > 1) {
+                        break;
+                    }
+                }
+            }//end for
+        }//end if
+
+        if (linksLength > 1) {
             // Going to throw a warning here, mainly because we cannot easily tell
             // whether it is just a paragraph with multiple links, or a navigation
             // structure.
