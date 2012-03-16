@@ -39,9 +39,10 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_2_2_2_2 = {
                 if (/blink/.test(computedStyle['text-decoration']) === true) {
                     HTMLCS.addMessage(HTMLCS.WARNING, element, 'Ensure there is a mechanism available to stop this blinking element in less than five seconds.', 'F4');
                 }
+            }//end for
         } else if (element.nodeName.toLowerCase() === 'blink') {
             HTMLCS.addMessage(HTMLCS.ERROR, element, 'Blink elements cannot satisfy the requirement that blinking information can be stopped within five seconds.', 'F47');
-        }
+        }//end if
 
     }
 };
