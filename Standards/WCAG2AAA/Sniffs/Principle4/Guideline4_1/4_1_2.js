@@ -34,6 +34,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
             fieldset: ['legend'],
             input_button: ['@value'],
             input_text: ['label', '@title'],
+            input_file: ['label', '@title'],
             input_password: ['label', '@title'],
             input_checkbox: ['label', '@title'],
             input_radio: ['label', '@title'],
