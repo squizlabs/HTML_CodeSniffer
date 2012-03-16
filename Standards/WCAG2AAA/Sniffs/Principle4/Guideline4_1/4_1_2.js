@@ -15,7 +15,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
             'fieldset',
             'input',
             'select',
-            'textarea',
+            'textarea'
         ];
 
     },
@@ -40,13 +40,13 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
             input_radio: ['label', '@title'],
             input_image: ['@alt', '@title'],
             select: ['label', '@title'],
-            textarea: ['label', '@title'],
+            textarea: ['label', '@title']
         }
 
         var requiredValues = {
             a: '@href',
             input_text: '@value',
-            select: 'option_selected',
+            select: 'option_selected'
         };
 
         var nodeName = element.nodeName.toLowerCase();
@@ -186,5 +186,5 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
         // Push the text nodes together and trim.
         text = text.join('').replace(/^\s+|\s+$/g,'');
         return text;
-    },
+    }
 };

@@ -10,7 +10,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_1 = {
     register: function()
     {
         return [
-            '_top',
+            '_top'
         ];
 
     },
@@ -38,5 +38,5 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_1 = {
                 }
             }
         }
-    },
+    }
 };

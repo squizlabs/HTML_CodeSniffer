@@ -13,7 +13,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
             'button',
             'table',
             'fieldset',
-            'form',
+            'form'
         ];
 
     },
@@ -465,7 +465,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
             allowScope: true,
             missingThId: [],
             missingTd: [],
-            wrongHeaders: [],
+            wrongHeaders: []
         }
 
         var tdCells    = {};
