@@ -33,7 +33,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_2_2_2_2 = {
                 if (element[i].currentStyle) {
                     computedStyle = element[i].currentStyle;
                 } else {
-                    computerStyle = element[i].getComputedStyle();
+                    computedStyle = element[i].getComputedStyle();
                 }
 
                 if (/blink/.test(computedStyle['text-decoration']) === true) {
