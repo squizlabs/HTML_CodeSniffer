@@ -30,14 +30,14 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_2_2_2_2 = {
             var elements = top.querySelectorAll('*');
             for (var i = 0; i < elements.length; i++) {
                 var computedStyle = null;
-                if (element[i].currentStyle) {
-                    computedStyle = element[i].currentStyle;
+                if (elements[i].currentStyle) {
+                    computedStyle = elements[i].currentStyle;
                 } else {
-                    computedStyle = element[i].getComputedStyle();
+                    computedStyle = window.getComputedStyle(elements[i], null);
                 }
 
                 if (/blink/.test(computedStyle['text-decoration']) === true) {
-                    HTMLCS.addMessage(HTMLCS.WARNING, element, 'Ensure there is a mechanism available to stop this blinking element in less than five seconds.', 'F4');
+                    HTMLCS.addMessage(HTMLCS.WARNING, elements[i], 'Ensure there is a mechanism available to stop this blinking element in less than five seconds.', 'F4');
                 }
             }//end for
         } else if (element.nodeName.toLowerCase() === 'blink') {
