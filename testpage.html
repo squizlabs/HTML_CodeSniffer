@@ -4,9 +4,8 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <title>HTML_CodeSniffer Test Page</title>
     <link rel="stylesheet" media="screen" type="text/css" href="./main.css" />
-    <link rel="stylesheet" media="screen" type="text/css" href="./Auditor/HTMLCSAuditor.css" />
-    <script type="text/javascript" src="https://raw.github.com/squizlabs/HTML_CodeSniffer/master/HTMLCS.js"></script>
-    <script type="text/javascript" src="https://raw.github.com/squizlabs/HTML_CodeSniffer/master/Auditor/HTMLCSAuditor.js"></script>
+    <link rel="stylesheet" media="screen" type="text/css" href="./build/HTMLCS.css" />
+    <script type="text/javascript" src="./build/HTMLCS.js"></script>
     <script type="text/javascript" src="./eg.js"></script>
     <script>
     function runHTMLCSTest(popup) {
@@ -58,6 +57,7 @@
 </fieldset><fieldset>
     <legend>Bookmarklet</legend>
     <div><a href="javascript:(function(){if(window['HTMLCS']) {HTMLCS.process('WCAG2AAA', document.body, function() {if (console.table) {console.table(HTMLCS.getMessages());} else {console.info(HTMLCS.getMessages());}}); return;} var s=document.createElement('script');s.type='text/javascript';s.src='https://raw.github.com/squizlabs/HTML_CodeSniffer/master/HTMLCS.js';document.body.appendChild(s); var t = setInterval(function() {if(!window['HTMLCS']) {return;} clearInterval(t);HTMLCS.process('WCAG2AAA', document.body, function() {console.table(HTMLCS.getMessages());});}, 100); })()">HTMLCS This Page</a><br/>
+    <div><a href="javascript:var _p='http://squizlabs.github.com/HTML_CodeSniffer/build/';var _i=function(s,cb) {var sc=document.createElement('script');sc.onload = function() {sc.onload = null;sc.onreadystatechange = null;cb.call(this);};sc.onreadystatechange = function(){if(/^(complete|loaded)$/.test(this.readyState) === true){sc.onreadystatechange = null;sc.onload();}};sc.src=s;if (document.head) {document.head.appendChild(sc);} else {document.getElementsByTagName('head')[0].appendChild(sc);}};var _l=document.createElement('link');_l.rel='stylesheet';type='text/css';_l.href=_p+'HTMLCS.css';document.head.appendChild(_l);_i(_p+'HTMLCS.js',function(){HTMLCSAuditor.run('WCAG2AAA',document);});">HTMLCS Auditor</a><br/>
     <em>This bookmarklet runs at WCAG2 Level AAA, and tests this test page (not the source in the text area). Returns issues as an entry in your browser's web console - either in a table if available (eg. Firebug), otherwise as a logged array.</em></div>
 </fieldset>
 </div>
