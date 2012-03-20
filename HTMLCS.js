@@ -249,11 +249,18 @@ var HTMLCS = new function()
             standard = _getStandardPath(standard);
         }//end id
 
-        // Include the standard's ruleset JS file.
-        _includeScript(standard, function() {
-            // Script is included now register the standard.
+        // See if the ruleset object is already included (eg. if minified).
+        var parts   = standard.split('/');
+        var ruleSet = window['HTMLCS_' + parts[(parts.length - 2)]];
+        if (ruleSet) {
+            // Already included.
             _registerStandard(standard, callback, options);
-        });
+        } else {
+            _includeScript(standard, function() {
+                // Script is included now register the standard.
+                _registerStandard(standard, callback, options);
+            });
+        }//end if
     };
 
     /**
@@ -325,10 +332,18 @@ var HTMLCS = new function()
      */
     var _loadSniffFile = function(standard, sniff, callback) {
         if (typeof sniff === 'string') {
-            _includeScript(_getSniffPath(standard, sniff), function() {
+            var sniffObj = _getSniff(standard, sniff);
+            var cb       = function() {
                 _registerSniff(standard, sniff);
                 callback.call(this);
-            });
+            }
+
+            // Already loaded.
+            if (sniffObj) {
+                cb();
+            } else {
+                _includeScript(_getSniffPath(standard, sniff), cb);
+            }
         } else {
             // Including a whole other standard.
             _includeStandard(sniff.standard, function() {
@@ -528,6 +543,10 @@ var HTMLCS = new function()
     };
 
     this.util = new function() {
+        this.trim = function(string) {
+            return str.replace(/^\s*(.*)\s*$/g, '$1');
+        }
+
         this.isStringEmpty = function(string) {
             var empty = true;
 
@@ -557,66 +576,17 @@ var HTMLCS = new function()
          * job is to take the IDs it can get, not to complain about it (see, eg. the
          * test in WCAG2's sniff 1_3_1).
          *
-         * @param {Object} cell The cell to test.
+         * @param {Object} table The table to test.
          *
          * @returns {String}
          */
-        this.getCellHeaders = function(cell) {
-            if (typeof cell !== 'object') {
+        this.getCellHeaders = function(table) {
+            if (typeof table !== 'object') {
+                return null;
+            } else if (table.nodeName.toLowerCase() !== 'table') {
                 return null;
             }
 
-            // Firstly check whether we are in a table.
-            var table = cell;
-            while (table !== null) {
-                table = table.parentNode;
-                if (table.nodeName.toLowerCase() === 'table') {
-                    break;
-                }
-            }
-
-            if (table === null) {
-                // Somehow not in a table.
-                return null;
-            }
-
-            var row       = cell.parentNode;
-            var currCell  = cell.previousSibling;
-
-            // Get the cell number of the cell being passed.
-            var cellIndex = 0;
-            while (currCell !== null) {
-                if (currCell.nodeType === 1) {
-                    if (currCell.hasAttribute('colspan') === true) {
-                        cellIndex += Number(currCell.getAttribute('colspan'));
-                    } else {
-                        cellIndex++;
-                    }
-                }
-
-                currCell = currCell.previousSibling;
-            }//end while
-
-            var lastCell = cellIndex;
-            if (cell.hasAttribute('colspan') === true) {
-                lastCell += Number(cell.getAttribute('colspan')) - 1;
-            }
-
-            // Get the row number.
-            var currRow  = row;
-            var rowIndex = 0;
-            while (currRow !== null) {
-                if (currRow.nodeType === 1) {
-                    rowIndex++;
-                }
-
-                currRow = currRow.previousSibling;
-            }//end while
-
-            var lastRow = rowIndex;
-            if (cell.hasAttribute('rowspan') === true) {
-                lastRow += Number(cell.getAttribute('rowspan')) - 1;
-            }
 
             var rows       = table.getElementsByTagName('tr');
             var skipCells  = [];
@@ -678,26 +648,21 @@ var HTMLCS = new function()
                 }//end for
             }//end for
 
-            // Add the column and row headers that we expect.
+            // Build the column and row headers that we expect.
             var expected = [];
-            for (var i = cellIndex; i <= lastCell; i++) {
-                if (headingIds.cols[i]) {
-                    expected = expected.concat(headingIds.cols[i]);
-                }
-            }
+            for (var row = 0; row <= headingIds.rows.length; row++) {
+                for (var col = 0; col <= headingIds.cols.length; col++) {
+                    var exp = [];
+                    exp     = exp.concat(headingIds.cols[col]);
+                    exp     = exp.concat(headingIds.rows[row]);
+                    exp     = ' ' + exp.sort().join(' ') + ' ';
+                    exp     = exp.replace(/\s+/g, ' ').replace(/(\w+\s)\1+/g, '$1').replace(/^\s*(.*?)\s*$/g, '$1');
 
-            for (var i = rowIndex; i <= lastRow; i++) {
-                if (headingIds.rows[i]) {
-                    expected = expected.concat(headingIds.rows[i]);
-                }
-            }
+                    expected[row][col] = exp;
+                }//end for
+            }//end for
 
-            // Construct a "normalised" expected headers list: sorted, trimmed,
-            // duplicates and excess spaces removed.
-            var exp    = ' ' + expected.sort().join(' ') + ' ';
-            exp        = exp.replace(/\s+/g, ' ').replace(/(\w+\s)\1+/g, '$1').replace(/^\s*(.*?)\s*$/g, '$1');
-
-            return exp;
+            return expected;
         };
     };
 

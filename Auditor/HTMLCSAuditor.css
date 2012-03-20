@@ -169,29 +169,29 @@
   width: 9px;
 }
 
-#HTMLCS-wrapper .HTMLCS-issue-list > li > .HTMLCS-issue-type.warning,
-#HTMLCS-wrapper .HTMLCS-issue-detail-list > li .HTMLCS-issue-type.warning {
+#HTMLCS-wrapper .HTMLCS-issue-list > li > .HTMLCS-issue-type.HTMLCS-warning,
+#HTMLCS-wrapper .HTMLCS-issue-detail-list > li .HTMLCS-issue-type.HTMLCS-warning {
     background-color: #C5A00C;
     border-top-color: #F2D560;
 }
 
-#HTMLCS-wrapper .HTMLCS-issue-type.warning:before {
+#HTMLCS-wrapper .HTMLCS-issue-type.HTMLCS-warning:before {
     background-position: 0 -14px;
 }
 
-#HTMLCS-wrapper .HTMLCS-issue-list > li > .HTMLCS-issue-type.error,
-#HTMLCS-wrapper .HTMLCS-issue-detail-list > li .HTMLCS-issue-type.error {
+#HTMLCS-wrapper .HTMLCS-issue-list > li > .HTMLCS-issue-type.HTMLCS-error,
+#HTMLCS-wrapper .HTMLCS-issue-detail-list > li .HTMLCS-issue-type.HTMLCS-error {
     background-color: #952424;
     border-top-color: #C76161;
 }
 
-#HTMLCS-wrapper .HTMLCS-issue-list > li > .HTMLCS-issue-type.notice,
-#HTMLCS-wrapper .HTMLCS-issue-detail-list > li .HTMLCS-issue-type.notice {
+#HTMLCS-wrapper .HTMLCS-issue-list > li > .HTMLCS-issue-type.HTMLCS-notice,
+#HTMLCS-wrapper .HTMLCS-issue-detail-list > li .HTMLCS-issue-type.HTMLCS-notice {
     background-color: #6C6B72;
     border-top-color: #828188;
 }
 
-#HTMLCS-wrapper .HTMLCS-issue-type.notice:before {
+#HTMLCS-wrapper .HTMLCS-issue-type.HTMLCS-notice:before {
     background-position: 0 -28px;
 }
 
@@ -223,7 +223,7 @@
     text-shadow: none;
 }
 
-#HTMLCS-wrapper .HTMLCS-issue-detail-list > li.current {
+#HTMLCS-wrapper .HTMLCS-issue-detail-list > li.HTMLCS-current {
     max-height: inherit;
 }
 
@@ -301,8 +301,8 @@
     width: 2.5em;
 }
 
-#HTMLCS-wrapper .HTMLCS-nav-button.previous:after,
-#HTMLCS-wrapper .HTMLCS-nav-button.next:after {
+#HTMLCS-wrapper .HTMLCS-nav-button.HTMLCS-previous:after,
+#HTMLCS-wrapper .HTMLCS-nav-button.HTMLCS-next:after {
     background: url("Images/HTMLCS-tools.png") no-repeat scroll 0 -224px transparent;
     content: "";
     height: 14px;
@@ -313,20 +313,20 @@
     width: 11px;
 }
 
-#HTMLCS-wrapper .HTMLCS-nav-button.next:after {
+#HTMLCS-wrapper .HTMLCS-nav-button.HTMLCS-next:after {
     background-position: 0 -238px;
     margin-left: -5px;
 }
 
-#HTMLCS-wrapper .HTMLCS-nav-button.previous {
+#HTMLCS-wrapper .HTMLCS-nav-button.HTMLCS-previous {
     background-position: -58px -74px;
 }
 
-#HTMLCS-wrapper .HTMLCS-nav-button.next {
+#HTMLCS-wrapper .HTMLCS-nav-button.HTMLCS-next {
     background-position: -59px -47px;
 }
 
-#HTMLCS-wrapper .HTMLCS-nav-button.disabled {
+#HTMLCS-wrapper .HTMLCS-nav-button.HTMLCS-disabled {
     cursor: default;
     opacity: 0.3;
 }
@@ -390,23 +390,23 @@
     width: 25px;
 }
 
-#HTMLCS-wrapper .HTMLCS-button-icon.refresh {
+#HTMLCS-wrapper .HTMLCS-button-icon.HTMLCS-button-refresh {
     background-position: -12px -224px;
 }
 
-#HTMLCS-wrapper .HTMLCS-button-icon.settings {
+#HTMLCS-wrapper .HTMLCS-button-icon.HTMLCS-button-settings {
     background-position: -37px -224px;
 }
 
-#HTMLCS-wrapper .HTMLCS-button-icon.next {
+#HTMLCS-wrapper .HTMLCS-button-icon.HTMLCS-button-next {
     background-position: -12px -244px;
 }
 
-#HTMLCS-wrapper .HTMLCS-button-icon.previous {
+#HTMLCS-wrapper .HTMLCS-button-icon.HTMLCS-button-previous {
     background-position: -37px -244px;
 }
 
-#HTMLCS-wrapper .HTMLCS-button-icon.pointer {
+#HTMLCS-wrapper .HTMLCS-button-icon.HTMLCS-button-pointer {
     background-position: -12px -264px;
 }
 
@@ -550,7 +550,7 @@
     margin: 5px 0;
 }
 
-#HTMLCS-wrapper .HTMLCS-radio > .input-container {
+#HTMLCS-wrapper .HTMLCS-radio > .HTMLCS-input-container {
     display: inline-block;
     width: 20px;
     height: 20px;
@@ -559,7 +559,7 @@
     top: -3px;
 }
 
-#HTMLCS-wrapper .HTMLCS-radio > .input-container.checked {
+#HTMLCS-wrapper .HTMLCS-radio > .HTMLCS-input-container.HTMLCS-checked {
     background-position: -96px -60px;
 }
 
@@ -569,7 +569,7 @@
     color: #EEEEEE;
 }
 
-#HTMLCS-wrapper .HTMLCS-radio > .input-container > input {
+#HTMLCS-wrapper .HTMLCS-radio > .HTMLCS-input-container > input {
     padding: 0;
     margin: 0;
     opacity: 0;
@@ -655,7 +655,7 @@
     width: 12px;
 }
 
-#HTMLCS-wrapper .HTMLCS-issue-detail-list.transition-disabled {
+#HTMLCS-wrapper .HTMLCS-issue-detail-list.HTMLCS-transition-disabled {
     -moz-transition: margin 0s ease 0s;
     -webkit-transition: margin 0s ease 0s;
 }
@@ -663,7 +663,7 @@
 /*
     Pointer
 */
-#HTMLCS-wrapper .HTMLCS-pointer {
+.HTMLCS-pointer {
     height: 62px;
     left: 0;
     position: absolute;
@@ -672,14 +672,14 @@
     z-index: 9999;
     background: transparent url("Images/HTMLCS-tools.png") -14px -62px no-repeat;
 }
-#HTMLCS-wrapper .HTMLCS-pointer-up {
+.HTMLCS-pointer-up {
     background-position: -14px 0;
 }
 
-#HTMLCS-wrapper .HTMLCS-pointer-left {
+.HTMLCS-pointer-left {
     background-position: 0 -124px;
 }
 
-#HTMLCS-wrapper .HTMLCS-pointer-right {
+.HTMLCS-pointer-right {
     background-position: 0 -174px;
 }

@@ -20,7 +20,7 @@ var HTMLCSAuditor = new function()
         button.setAttribute('title', title);
 
         var buttonInner       = document.createElement('span');
-        buttonInner.className = _prefix + 'button-icon ' + className;
+        buttonInner.className = _prefix + 'button-icon ' + _prefix + 'button-' + className;
         button.appendChild(buttonInner);
 
         var nbsp = document.createTextNode(String.fromCharCode(160));
@@ -492,7 +492,7 @@ var HTMLCSAuditor = new function()
         msg.id  = _prefix + 'msg-' + id;
 
         var typeIcon       = document.createElement('span');
-        typeIcon.className = _prefix + 'issue-type ' + typeClass;
+        typeIcon.className = _prefix + 'issue-type ' + _prefix + typeClass;
         typeIcon.setAttribute('title', typeText);
         msg.appendChild(typeIcon);
 
@@ -506,13 +506,13 @@ var HTMLCSAuditor = new function()
             setCurrentDetailIssue(id);
 
             var detailList = document.getElementsByClassName('HTMLCS-issue-detail-list')[0];
-            detailList.className += ' transition-disabled';
+            detailList.className += ' ' + _prefix + 'transition-disabled';
             detailList.style.marginLeft = (id * -35) + 'em';
 
             pointToIssueElement(id);
 
             setTimeout(function() {
-                detailList.className = detailList.className.replace(/ transition-disabled/, '');
+                detailList.className = detailList.className.replace(new RegExp(' ' + _prefix + 'transition-disabled'), '');
             }, 500);
 
             var list = document.getElementsByClassName('HTMLCS-inner-wrapper')[0];
@@ -535,11 +535,11 @@ var HTMLCSAuditor = new function()
         var detailList = document.getElementsByClassName('HTMLCS-issue-detail-list')[0];
         var items      = detailList.getElementsByTagName('li');
         for (var i = 0; i < items.length; i++) {
-            items[i].className = items[i].className.replace(/ current/, '');
+            items[i].className = items[i].className.replace(new RegExp(_prefix + ' current'), '');
         }
 
         var currentItem = document.getElementById('HTMLCS-msg-detail-' + id);
-        currentItem.className += ' current';
+        currentItem.className += ' ' + _prefix + 'current';
     }
 
     var buildMessageDetail = function(id, message, standard) {
@@ -583,7 +583,7 @@ var HTMLCSAuditor = new function()
             break;
         }//end switch
 
-        var typeClass     = typeText.toLowerCase();
+        var typeClass     = _prefix + typeText.toLowerCase();
         var msgCodeParts  = message.code.split('.', 5);
         var principle     = msgCodeParts[1];
         var techniques    = msgCodeParts[4].split(',');
@@ -611,11 +611,11 @@ var HTMLCSAuditor = new function()
         navDiv.className = _prefix + 'navigation';
 
         var prev       = document.createElement('span');
-        prev.className = _prefix + 'nav-button previous';
+        prev.className = _prefix + 'nav-button ' + _prefix + 'previous';
         prev.innerHTML = String.fromCharCode(160);
 
         if (page === 1) {
-            prev.className += ' disabled';
+            prev.className += ' ' + _prefix + 'disabled';
         }
 
         navDiv.appendChild(prev);
@@ -626,11 +626,11 @@ var HTMLCSAuditor = new function()
         navDiv.appendChild(pageNum);
 
         var next       = document.createElement('span');
-        next.className = _prefix + 'nav-button next';
+        next.className = _prefix + 'nav-button ' + _prefix + 'next';
         next.innerHTML = String.fromCharCode(160);
 
         if (page === totalPages) {
-            next.className += ' disabled';
+            next.className += ' ' + _prefix + 'disabled';
         }
 
         navDiv.appendChild(next);
@@ -639,11 +639,11 @@ var HTMLCSAuditor = new function()
             if (_page > 1) {
                 _page--;
                 if (_page === 1) {
-                    prev.className += ' disabled';
+                    prev.className += ' ' + _prefix + 'disabled';
                 }
             }
 
-            next.className    = next.className.replace(/ disabled/, '');
+            next.className    = next.className.replace(new RegExp(' ' + _prefix + 'disabled'), '');
             pageNum.innerHTML = 'Page ' + _page + ' of ' + totalPages;
 
             var issueList = document.getElementsByClassName('HTMLCS-issue-list')[0];
@@ -654,11 +654,11 @@ var HTMLCSAuditor = new function()
             if (_page < totalPages) {
                 _page++;
                 if (_page === totalPages) {
-                    next.className += ' disabled';
+                    next.className += ' ' + _prefix + 'disabled';
                 }
             }
 
-            prev.className    = prev.className.replace(/ disabled/, '');
+            prev.className    = prev.className.replace(new RegExp(' ' + _prefix + 'disabled'), '');
             pageNum.innerHTML = 'Page ' + _page + ' of ' + totalPages;
 
             var issueList = document.getElementsByClassName('HTMLCS-issue-list')[0];
