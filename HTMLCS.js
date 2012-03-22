@@ -299,7 +299,8 @@ var HTMLCS = new function()
         }//end if
 
         // Register the sniffs for this standard.
-        _registerSniffs(standard, ruleSet.sniffs, callback);
+        var sniffs = ruleSet.sniffs.slice(0, ruleSet.sniffs.length);
+        _registerSniffs(standard, sniffs, callback);
     };
 
     /**
