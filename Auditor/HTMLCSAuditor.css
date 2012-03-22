@@ -19,6 +19,10 @@
     z-index: 100000;
 }
 
+#HTMLCS-wrapper * {
+    -ms-box-sizing: content-box;
+}
+
 #HTMLCS-wrapper .HTMLCS-header {
     color: #AAAAAA;
     text-shadow: 0 -1px 0 #000000;
@@ -46,6 +50,7 @@
     text-align: center;
     padding: 0.4em 0.5em 0.9em;
     line-height: 1.3em;
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#919097, endColorstr=#727179);
     background: -webkit-gradient(linear, left top, left bottom, from(#919097), to(#727179));
     background: -moz-linear-gradient(center top , #919097, #727179) repeat scroll 0 0 transparent;
     border-top: 1px solid #A2A1A8;
@@ -212,6 +217,10 @@
     vertical-align: top;
 }
 
+#HTMLCS-wrapper .HTMLCS-issue-detail-list {
+    font-size: 0px;
+}
+
 #HTMLCS-wrapper .HTMLCS-issue-detail-list > li {
     background-color: #2B2B2B;
     border-bottom: 1px solid #2B2B2B;
@@ -221,6 +230,9 @@
     max-height: 15em;
     position: relative;
     text-shadow: none;
+    font-size: 9px;
+    -moz-transition: margin 0.2s ease-in 0s;
+    -webkit-transition: margin 0.2s ease-in 0s;
 }
 
 #HTMLCS-wrapper .HTMLCS-issue-detail-list > li.HTMLCS-current {
@@ -328,10 +340,12 @@
 
 #HTMLCS-wrapper .HTMLCS-nav-button.HTMLCS-disabled {
     cursor: default;
+    filter: alpha(opacity=30);
     opacity: 0.3;
 }
 
 #HTMLCS-wrapper .HTMLCS-button {
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#E9E9EB, endColorstr=#C2C2CB);
     background: -webkit-gradient(linear, left top, left bottom, from(#E9E9EB), to(#C2C2CB));
     background: -moz-linear-gradient(center top , #E9E9EB, #C2C2CB) repeat scroll 0 0 transparent;
     border: medium none;
@@ -527,10 +541,11 @@
   content: "";
   display: block;
   opacity: 0;
+  filter: alpha(opacity=0);
   position: absolute;
   width: 10px;
   height: 7px;
-  background: transparent url(Images/viperToolsSprite.png) 0 -233px no-repeat;
+  background: transparent url("Images/HTMLCS-tools.png") 0 -233px no-repeat;
   left: 0.5em;
   top: 51%;
   margin-top: -3px;
@@ -572,6 +587,7 @@
 #HTMLCS-wrapper .HTMLCS-radio > .HTMLCS-input-container > input {
     padding: 0;
     margin: 0;
+    filter: alpha(opacity=0);
     opacity: 0;
     position: relative;
     top: 4px;
@@ -655,7 +671,7 @@
     width: 12px;
 }
 
-#HTMLCS-wrapper .HTMLCS-issue-detail-list.HTMLCS-transition-disabled {
+#HTMLCS-wrapper .HTMLCS-issue-detail-list.HTMLCS-transition-disabled > li {
     -moz-transition: margin 0s ease 0s;
     -webkit-transition: margin 0s ease 0s;
 }

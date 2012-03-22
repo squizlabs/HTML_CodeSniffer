@@ -63,13 +63,13 @@ var HTMLCSAuditor = new function()
         label.innerHTML = content;
 
         var input = label.getElementsByTagName('input')[0];
-        input.addEventListener('click', function() {
+        input.onclick = function() {
             if (input.checked === true) {
                 label.className += ' active';
             } else {
                 label.className = label.className.replace('active', '');
             }
-        }, false);
+        };
 
         return label;
     };
@@ -135,14 +135,14 @@ var HTMLCSAuditor = new function()
         var mouseX   = 0;
         var mouseY   = 0;
 
-        header.addEventListener('mousedown', function(e) {
+        header.onmousedown = function(e) {
             dragging = true;
             mouseX   = e.clientX;
             mouseY   = e.clientY;
             return false;
-        }, false);
+        };
 
-        document.addEventListener('mousemove', function(e) {
+        document.onmousemove = function(e) {
             if (dragging === true) {
                 var top = wrapper.offsetTop;
                 var left = wrapper.offsetLeft;
@@ -166,11 +166,11 @@ var HTMLCSAuditor = new function()
                 mouseX = e.clientX;
                 mouseY = e.clientY;
             }//end if
-        }, false);
+        };
 
-        document.addEventListener('mouseup', function(e) {
+        document.onmouseup = function(e) {
             dragging = false;
-        }, false);
+        };
 
         return header;
     };
@@ -271,12 +271,12 @@ var HTMLCSAuditor = new function()
         showList.href        = 'javascript:';
         showList.innerHTML   = 'List';
         showList.onmousedown = function() {
-            var list = document.getElementsByClassName('HTMLCS-inner-wrapper')[0];
+            var list = document.querySelectorAll('.HTMLCS-inner-wrapper')[0];
             list.style.marginLeft = '0em';
             list.style.maxHeight  = null;
 
             summary.style.display = 'none';
-            var listSummary = document.getElementsByClassName('HTMLCS-summary')[0];
+            var listSummary = document.querySelectorAll('.HTMLCS-summary')[0];
             listSummary.style.display = 'block';
         };
 
@@ -305,10 +305,10 @@ var HTMLCSAuditor = new function()
                 wrapper.replaceChild(newSummary, summary);
                 newSummary.style.display = 'block';
 
-                var issueList = document.getElementsByClassName('HTMLCS-issue-detail-list')[0];
-                issueList.style.marginLeft = (parseInt(issueList.style.marginLeft, 10) + 35) + 'em';
+                var issueList = document.querySelectorAll('.HTMLCS-issue-detail-list')[0];
+                issueList.firstChild.style.marginLeft = (parseInt(issueList.firstChild.style.marginLeft, 10) + 35) + 'em';
 
-                pointToIssueElement(newIssue);
+                pointToIssueElement(newIssue - 1);
             }
         }));
 
@@ -322,10 +322,10 @@ var HTMLCSAuditor = new function()
                 wrapper.replaceChild(newSummary, summary);
                 newSummary.style.display = 'block';
 
-                var issueList = document.getElementsByClassName('HTMLCS-issue-detail-list')[0];
-                issueList.style.marginLeft = (parseInt(issueList.style.marginLeft, 10) - 35) + 'em';
+                var issueList = document.querySelectorAll('.HTMLCS-issue-detail-list')[0];
+                issueList.firstChild.style.marginLeft = (parseInt(issueList.firstChild.style.marginLeft, 10) - 35) + 'em';
 
-                pointToIssueElement(newIssue);
+                pointToIssueElement(newIssue - 1);
             }
         }));
 
@@ -505,9 +505,9 @@ var HTMLCSAuditor = new function()
             var id = this.id.replace(new RegExp(_prefix + 'msg-'), '');
             setCurrentDetailIssue(id);
 
-            var detailList = document.getElementsByClassName('HTMLCS-issue-detail-list')[0];
+            var detailList = document.querySelectorAll('.HTMLCS-issue-detail-list')[0];
             detailList.className += ' ' + _prefix + 'transition-disabled';
-            detailList.style.marginLeft = (id * -35) + 'em';
+            detailList.firstChild.style.marginLeft = (id * -35) + 'em';
 
             pointToIssueElement(id);
 
@@ -515,16 +515,16 @@ var HTMLCSAuditor = new function()
                 detailList.className = detailList.className.replace(new RegExp(' ' + _prefix + 'transition-disabled'), '');
             }, 500);
 
-            var list = document.getElementsByClassName('HTMLCS-inner-wrapper')[0];
+            var list = document.querySelectorAll('.HTMLCS-inner-wrapper')[0];
             list.style.marginLeft = '-35em';
             list.style.maxHeight  = '15em';
 
-            summary = document.getElementsByClassName('HTMLCS-summary-detail')[0];
+            summary = document.querySelectorAll('.HTMLCS-summary-detail')[0];
             var newSummary = buildDetailSummarySection(parseInt(id) + 1, _messages.length);
             summary.parentNode.replaceChild(newSummary, summary);
             newSummary.style.display = 'block';
 
-            var oldSummary = document.getElementsByClassName('HTMLCS-summary')[0];
+            var oldSummary = document.querySelectorAll('.HTMLCS-summary')[0];
             oldSummary.style.display = 'none';
         }
 
@@ -532,10 +532,10 @@ var HTMLCSAuditor = new function()
     };
 
     var setCurrentDetailIssue = function(id) {
-        var detailList = document.getElementsByClassName('HTMLCS-issue-detail-list')[0];
+        var detailList = document.querySelectorAll('.HTMLCS-issue-detail-list')[0];
         var items      = detailList.getElementsByTagName('li');
         for (var i = 0; i < items.length; i++) {
-            items[i].className = items[i].className.replace(new RegExp(_prefix + ' current'), '');
+            items[i].className = items[i].className.replace(new RegExp(' ' + _prefix + 'current'), '');
         }
 
         var currentItem = document.getElementById('HTMLCS-msg-detail-' + id);
@@ -646,7 +646,7 @@ var HTMLCSAuditor = new function()
             next.className    = next.className.replace(new RegExp(' ' + _prefix + 'disabled'), '');
             pageNum.innerHTML = 'Page ' + _page + ' of ' + totalPages;
 
-            var issueList = document.getElementsByClassName('HTMLCS-issue-list')[0];
+            var issueList = document.querySelectorAll('.HTMLCS-issue-list')[0];
             issueList.style.marginLeft = ((_page - 1) * -35) + 'em';
         }
 
@@ -661,7 +661,7 @@ var HTMLCSAuditor = new function()
             prev.className    = prev.className.replace(new RegExp(' ' + _prefix + 'disabled'), '');
             pageNum.innerHTML = 'Page ' + _page + ' of ' + totalPages;
 
-            var issueList = document.getElementsByClassName('HTMLCS-issue-list')[0];
+            var issueList = document.querySelectorAll('.HTMLCS-issue-list')[0];
             issueList.style.marginLeft = ((_page - 1) * -35) + 'em';
         }
 
@@ -709,6 +709,10 @@ var HTMLCSAuditor = new function()
             if (wrapper) {
                 if (wrapper === messages[i].element) {
                     ignore = true;
+                } else if (document === messages[i].element) {
+                    // Don't ignore document. This is to short-circuit calls to
+                    // contains() because IE doesn't like document being the argument.
+                    ignore = false;
                 } else if ((wrapper.contains) && (wrapper.contains(messages[i].element) === true)) {
                     ignore = true;
                 } else if ((wrapper.compareDocumentPosition) && ((wrapper.compareDocumentPosition(messages[i].element) & 16) > 0)) {
@@ -836,7 +840,7 @@ var HTMLCSAuditor = new function()
         if ((source === null) || (source === undefined)) {
             // If not defined (or no longer existing?), check the document.
             source = document;
-        } else if (source instanceof Node) {
+        } else if (source.nodeName) {
             // See if we are being sent a text box or text area; if so then
             // examine its contents rather than the node itself.
             if (source.nodeName.toLowerCase() === 'input') {
