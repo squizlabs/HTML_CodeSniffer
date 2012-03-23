@@ -31,7 +31,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
         if (element.nodeName.toLowerCase() === 'a') {
             this._processLinks(element);
         } else {
-            this._processFormControls(element);
+            this._processFormControls(element, top);
         }
     },
 
@@ -92,7 +92,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
         }
     },
 
-    _processFormControls: function(element)
+    _processFormControls: function(element, top)
     {
         var requiredNames = {
             button: ['@title', '_content'],
