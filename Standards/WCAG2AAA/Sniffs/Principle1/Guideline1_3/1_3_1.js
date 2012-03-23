@@ -148,7 +148,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
                     if (element.hasAttribute('title') === true) {
                         if (/^\s*$/.test(element.getAttribute('title')) === true) {
                             // But the title attribute is empty. Whoops.
-                            HTMLCS.addMessage(HTMLCS.ERROR, element, 'Check that the title attribute identifies the purpose of the control.', 'H65.3');
+                            HTMLCS.addMessage(HTMLCS.ERROR, element, 'Form control without a label contains an empty title attribute. The title attribute should identify the purpose of the control.', 'H65.3');
                         } else {
                             // Manual check required as to the title. Making this a
                             // warning because a manual tester also needs to confirm
@@ -156,7 +156,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
                             HTMLCS.addMessage(HTMLCS.WARNING, element, 'Check that the title attribute identifies the purpose of the control, and that a label element is not appropriate.', 'H65');
                         }
                     } else {
-                        HTMLCS.addMessage(HTMLCS.ERROR, element, 'Attach a label to this form control through the use of the for attribute.', 'H44.2');
+                        HTMLCS.addMessage(HTMLCS.ERROR, element, 'Form control does not have an explicit label or title attribute, identifying the purpose of the control.', 'H44.2');
                     }
                 }
             } else {
@@ -285,13 +285,13 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
 
         // Invalid scope attribute - emit always if scope tested.
         for (var i = 0; i < scopeAttr.invalid.length; i++) {
-            HTMLCS.addMessage(HTMLCS.ERROR, scopeAttr.invalid[i], 'Check that all scope attributes have the value row, col, rowgroup, or colgroup.', 'H63.3');
+            HTMLCS.addMessage(HTMLCS.ERROR, scopeAttr.invalid[i], 'Table cell has an invalid scope attribute. Valid values are row, col, rowgroup, or colgroup.', 'H63.3');
         }
 
         // TDs with scope attributes are obsolete in HTML5 - emit warnings if
         // scope tested, but not as errors as they are valid HTML4.
         for (var i = 0; i < scopeAttr.obsoleteTd.length; i++) {
-            HTMLCS.addMessage(HTMLCS.WARNING, scopeAttr.obsoleteTd[i], 'Scope attributes on td elements that act as headers for other elements are obsolete in HTML5; use a th element instead.', 'H63.2');
+            HTMLCS.addMessage(HTMLCS.WARNING, scopeAttr.obsoleteTd[i], 'Scope attributes on td elements that act as headers for other elements are obsolete in HTML5. Use a th element instead.', 'H63.2');
         }
 
         if (headersAttr.allowScope === true) {
@@ -321,12 +321,12 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
             } else {
                 // Missing TH IDs - error; emit at this stage only if headers are compulsory.
                 if (headersAttr.missingThId.length > 0) {
-                    HTMLCS.addMessage(HTMLCS.ERROR, table, 'Check that all th elements contain an id attribute, so that they may be referenced by the headers attribute.', 'H43.MissingHeaderIds');
+                    HTMLCS.addMessage(HTMLCS.ERROR, table, 'Not all th elements in this table contain an id attribute, so that they may be referenced by td elements\' headers attributes.', 'H43.MissingHeaderIds');
                 }
 
                 // Missing TD headers attributes - error; emit at this stage only if headers are compulsory.
                 if (headersAttr.missingTd.length > 0) {
-                    HTMLCS.addMessage(HTMLCS.ERROR, table, 'Check that all td elements contain a headers attribute that lists the id for all headers associated with that cell.', 'H43.MissingHeadersAttrs');
+                    HTMLCS.addMessage(HTMLCS.ERROR, table, 'Not all td elements contain a headers attribute, which list the ids of all headers associated with that cell.', 'H43.MissingHeadersAttrs');
                 }
             }//end if
         }//end if
@@ -343,16 +343,16 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
             } else if ((scopeAttr.used === false) && ((headersAttr.missingThId.length > 0) || (headersAttr.missingTd.length > 0))) {
                 // Headers attribute is used, but not all th elements have ids.
                 if (headersAttr.missingThId.length > 0) {
-                    HTMLCS.addMessage(HTMLCS.ERROR, table, 'Check that all th elements contain an id attribute, so that they may be referenced by the headers attribute.', 'H43.MissingHeaderIds');
+                    HTMLCS.addMessage(HTMLCS.ERROR, table, 'Not all th elements in this table contain an id attribute, so that they may be referenced by td elements\' headers attributes.', 'H43.MissingHeaderIds');
                 }
 
                 // Headers attribute is used, but not all td elements have headers attrs.
                 if (headersAttr.missingTd.length > 0) {
-                    HTMLCS.addMessage(HTMLCS.ERROR, table, 'Check that all td elements contain a headers attribute that lists the id for all headers associated with that cell.', 'H43.MissingHeadersAttrs');
+                    HTMLCS.addMessage(HTMLCS.ERROR, table, 'Not all td elements contain a headers attribute, which list the ids of all headers associated with that cell.', 'H43.MissingHeadersAttrs');
                 }
             } else if ((scopeAttr.missing.length > 0) && (headersAttr.used === false)) {
                 // Scope is used rather than headers, but not all th elements have them.
-                HTMLCS.addMessage(HTMLCS.ERROR, table, 'Check that all th elements have a scope attribute.', 'H63.1');
+                HTMLCS.addMessage(HTMLCS.ERROR, table, 'Not all th elements have a scope attribute, identifying the purpose of the header.', 'H63.1');
             } else if ((scopeAttr.missing.length > 0) && ((headersAttr.missingThId.length > 0) || (headersAttr.missingTd.length > 0))) {
                 // Both are used and both were done incorrectly. Provide generic message.
                 HTMLCS.addMessage(HTMLCS.ERROR, table, 'Associate data cells with table headings using either the scope or headers attribute techniques.', 'H43,H63');
@@ -693,7 +693,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
         var legend = fieldset.querySelector('legend');
 
         if ((legend === null) || (legend.parentNode !== fieldset)) {
-            HTMLCS.addMessage(HTMLCS.ERROR, fieldset, 'Check that this fieldset has a legend element that includes a description of that group.', 'H71.3');
+            HTMLCS.addMessage(HTMLCS.ERROR, fieldset, 'Fieldset does not contain a legend element that includes a description of that group.', 'H71.3');
         }
     },
 
@@ -752,7 +752,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
                 // Multiple names detected = should be in a fieldset.
                 // Either first instance or this one wasn't in a fieldset, or they
                 // are in different fieldsets.
-                HTMLCS.addMessage(HTMLCS.ERROR, form, 'Check that any group of input elements of type="radio" or type="checkbox" with the same name attribute is contained within a fieldset element.', 'H71.2');
+                HTMLCS.addMessage(HTMLCS.ERROR, form, 'Radio buttons or check boxes with the same name attribute must be contained within a fieldset element.', 'H71.2');
                 break;
             }//end if
         }//end for
@@ -806,11 +806,11 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
             for (var i = 0; i < items.length; i++) {
                 if (/^[\-*]\s+/.test(items[0]) === true) {
                     // Test for "- " or "* " cases.
-                    HTMLCS.addMessage(HTMLCS.ERROR, element, 'Check that content that has the visual appearance of a list (with or without bullets) is marked as an unordered list.', 'H48.1');
+                    HTMLCS.addMessage(HTMLCS.WARNING, element, 'Content appears to have the visual appearance of a bulleted list. It may be appropriate to mark this content up using a ul element.', 'H48.1');
                     break;
                 } if (/^\d+[:\/\-.]?\s+/.test(items[0]) === true) {
                     // Test for "1 " cases (or "1. ", "1: ", "1- ").
-                    HTMLCS.addMessage(HTMLCS.ERROR, element, 'Check that content that has the visual appearance of a numbered list is marked as an ordered list.', 'H48.2');
+                    HTMLCS.addMessage(HTMLCS.WARNING, element, 'Content appears to have the visual appearance of a numbered list. It may be appropriate to mark this content up using an ol element.', 'H48.2');
                     break;
                 }
             }//end for

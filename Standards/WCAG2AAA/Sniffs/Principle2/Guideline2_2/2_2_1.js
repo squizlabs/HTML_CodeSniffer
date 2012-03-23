@@ -28,7 +28,13 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_2_2_2_1 = {
         if (element.hasAttribute('http-equiv') === true) {
             if ((String(element.getAttribute('http-equiv'))).toLowerCase() === 'refresh') {
                 if (/^[1-9]\d*/.test(element.getAttribute('content').toLowerCase()) === true) {
-                    HTMLCS.addMessage(HTMLCS.ERROR, element, 'When using meta refresh to periodically refresh pages or cause a client-side redirect, the time-out must be zero.', 'F41.2');
+                    if (/url=/.test(element.getAttribute('content').toLowerCase()) === true) {
+                        // Redirect.
+                        HTMLCS.addMessage(HTMLCS.ERROR, element, 'Meta refresh tag used to redirect to another page, with a time limit that is not zero. Users cannot control this time limit.', 'F40.2');
+                    } else {
+                        // Just a refresh.
+                        HTMLCS.addMessage(HTMLCS.ERROR, element, 'Meta refresh tag used to refresh the current page. Users cannot control the time limit for this refresh.', 'F41.2');
+                    }
                 }
             }//end if
         }//end if

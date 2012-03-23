@@ -99,9 +99,9 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
                     // Img tags cannot have an empty alt text if it is the
                     // only content in a link (as the link would not have a text
                     // alternative).
-                    HTMLCS.addMessage(HTMLCS.ERROR, element, 'If an img element is the only content of the a element, check that its text alternative describes the purpose of the link.', 'H30.2');
+                    HTMLCS.addMessage(HTMLCS.ERROR, element.parentNode, 'Img element is the only content of the link, but is missing alt text. The alt text should describe the purpose of the link.', 'H30.2');
                 } else if (missingAlt === true) {
-                    HTMLCS.addMessage(HTMLCS.ERROR, element, 'When using the img element, specify a short text alternative with the alt attribute.', 'H37');
+                    HTMLCS.addMessage(HTMLCS.ERROR, element, 'Img element missing an alt attribute. Use the alt attribute to specify a short text alternative.', 'H37');
                 } else if (nullAlt === true) {
                     if ((element.hasAttribute('title') === true) && (HTMLCS.isStringEmpty(element.getAttribute('title')) === false)) {
                         // Title attribute present and not empty. This is wrong when
@@ -118,7 +118,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
             case 'input':
                 // Image submit buttons.
                 if ((missingAlt === true) || (nullAlt === true)) {
-                    HTMLCS.addMessage(HTMLCS.ERROR, element, 'When using an image submit button, specify a short text alternative with the alt attribute that describes the function of the button.', 'H36');
+                    HTMLCS.addMessage(HTMLCS.ERROR, element, 'Image submit button missing an alt attribute. Specify a text alternative using the alt attribute, that describes the button\'s function.', 'H36');
                 } else {
                     HTMLCS.addMessage(HTMLCS.NOTICE, element, 'Ensure that the image submit button\'s alt text identifies the purpose of the button.', 'G94.Button');
                 }
@@ -127,7 +127,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
             case 'area':
                 // Area tags in a client-side image map.
                 if ((missingAlt === true) || (nullAlt === true)) {
-                    HTMLCS.addMessage(HTMLCS.ERROR, element, 'For each area element in an image map, check that the area element has a text alternative (using the alt attribute) that serves the same purpose as the part of image map image it references.', 'H24');
+                    HTMLCS.addMessage(HTMLCS.ERROR, element, 'Area element in an image map missing an alt attribute. Each area element must have a text alternative that describes the function of the image map area.', 'H24');
                 } else {
                     HTMLCS.addMessage(HTMLCS.NOTICE, element, 'Ensure that the area element\'s text alternative serves the same purpose as the part of image map image it references.', 'H24.2');
                 }
@@ -262,7 +262,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
                 // Test against the following link, if any.
                 if (nodes.next && (nodes.next.href !== '') && (nodes.next.href !== null) && (nodes.anchor.href === nodes.next.href)) {
                     if ((nodes.next.text !== '') && (nodes.anchor.alt === '')) {
-                        HTMLCS.addMessage(HTMLCS.ERROR, element, 'Img element inside a link has empty or missing alt text when a link beside it contains link text; consider combining the links.', 'H2.EG4');
+                        HTMLCS.addMessage(HTMLCS.ERROR, element, 'Img element inside a link has empty or missing alt text when a link beside it contains link text. Consider combining the links.', 'H2.EG4');
                     } else if (nodes.next.text.toLowerCase() === nodes.anchor.alt.toLowerCase()) {
                         HTMLCS.addMessage(HTMLCS.ERROR, element, 'Img element inside a link must not use alt text that duplicates the content of a text link beside it.', 'H2.EG3');
                     }
@@ -271,7 +271,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
                 // Test against the preceding link, if any.
                 if (nodes.previous && (nodes.previous.href !== '') && (nodes.previous.href !== null) && (nodes.anchor.href === nodes.previous.href)) {
                     if ((nodes.previous.text !== '') && (nodes.anchor.alt === '')) {
-                        HTMLCS.addMessage(HTMLCS.ERROR, element, 'Img element inside a link has empty or missing alt text when a link beside it contains link text; consider combining the links.', 'H2.EG4');
+                        HTMLCS.addMessage(HTMLCS.ERROR, element, 'Img element inside a link has empty or missing alt text when a link beside it contains link text. Consider combining the links.', 'H2.EG4');
                     } else if (nodes.previous.text.toLowerCase() === nodes.anchor.alt.toLowerCase()) {
                         HTMLCS.addMessage(HTMLCS.ERROR, element, 'Img element inside a link must not use alt text that duplicates the content of a text link beside it.', 'H2.EG3');
                     }
@@ -301,7 +301,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
         if (childObject === null) {
             var textAlt = this._getElementTextContent(element, true);
             if (textAlt === '') {
-                HTMLCS.addMessage(HTMLCS.ERROR, element, 'Check that the body of each object element contains a text alternative for the object.', 'H53');
+                HTMLCS.addMessage(HTMLCS.ERROR, element, 'Object elements must contain a text alternative after all other alternatives are exhausted.', 'H53');
             } else {
                 HTMLCS.addMessage(HTMLCS.NOTICE, element, 'Check that short (and if appropriate, long) text alternatives are available for non-text content that serve the same purpose and presents the same information.', 'G94,G92.Object');
             }
@@ -333,14 +333,14 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
         if (childObject === null) {
             var textAlt = this._getElementTextContent(element, true);
             if (HTMLCS.isStringEmpty(textAlt) === true) {
-                HTMLCS.addMessage(HTMLCS.ERROR, element, 'Check that the applet element contains a text alternative for the applet in the body of the applet element.', 'H35.3');
+                HTMLCS.addMessage(HTMLCS.ERROR, element, 'Applet elements must contain a text alternative in the element\'s body, for browsers without support for the applet element.', 'H35.3');
                 hasError = true;
             }
         }//end if
 
         var altAttr = element.getAttribute('alt') || '';
         if (HTMLCS.isStringEmpty(altAttr) === true) {
-            HTMLCS.addMessage(HTMLCS.ERROR, element, 'Check that the applet element contains an alt attribute with a text alternative for the applet.', 'H35.2');
+            HTMLCS.addMessage(HTMLCS.ERROR, element, 'Applet elements must contain an alt attribute, to provide a text alternative to browsers supporting the element but are unable to load the applet.', 'H35.2');
             hasError = true;
         }
 

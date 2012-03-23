@@ -39,7 +39,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_2_3_2_2 = {
         var submitButton = form.querySelector('input[type=submit], input[type=image], button[type=submit]');
 
         if (submitButton === null) {
-            HTMLCS.addMessage(HTMLCS.ERROR, form, 'Check that this form has a submit button (input type="submit", input type="image", or button type="submit").', 'H32.2');
+            HTMLCS.addMessage(HTMLCS.ERROR, form, 'Form does not contain a submit button (input type="submit", input type="image", or button type="submit").', 'H32.2');
         }
     }
 };

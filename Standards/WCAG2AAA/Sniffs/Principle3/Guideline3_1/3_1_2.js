@@ -45,14 +45,14 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_1_3_1_2 = {
                 if (langEl.hasAttribute('lang') === true) {
                     var lang = langEl.getAttribute('lang');
                     if (sc3_1_1.isValidLanguageTag(lang) === false) {
-                        HTMLCS.addMessage(HTMLCS.ERROR, langEl, 'Ensure that any language tag used in a lang attribute is well-formed according to the appropriate standard.', 'H58.1.Lang');
+                        HTMLCS.addMessage(HTMLCS.ERROR, langEl, 'The language specified in the lang attribute of this element does not appear to be well-formed.', 'H58.1.Lang');
                     }
                 }
 
                 if (langEl.hasAttribute('xml:lang') === true) {
                     var lang = langEl.getAttribute('xml:lang');
                     if (sc3_1_1.isValidLanguageTag(lang) === false) {
-                        HTMLCS.addMessage(HTMLCS.ERROR, langEl, 'Ensure that any language tag used in an xml:lang attribute is well-formed according to the appropriate standard.', 'H58.1.XmlLang');
+                        HTMLCS.addMessage(HTMLCS.ERROR, langEl, 'The language specified in the xml:lang attribute of this element does not appear to be well-formed.', 'H58.1.XmlLang');
                     }
                 }
             }//end if

@@ -104,12 +104,25 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
             }//end for
 
             if (i === requiredNames[nodeName].length) {
-                var msgNodeType = 'form control';
+                var msgNodeType = nodeName + ' element';
                 if (nodeName === 'a') {
                     msgNodeType = 'link';
+                } else if (nodeName.substr(0, 6) === 'input_') {
+                    msgNodeType = nodeName.substr(6) + ' input element';
                 }
 
-                HTMLCS.addMessage(HTMLCS.ERROR, element, 'Check that this ' + msgNodeType + ' has a name that is available to an accessibility API.', 'H91.Name');
+                var builtAttrs = requiredNames[nodeName].slice(0, requiredNames[nodeName].length);
+                for (var a = 0; a < builtAttrs.length; a++) {
+                    if (builtAttrs[a] === '_content') {
+                        builtAttrs[a] = 'element content';
+                    } else if (builtAttrs[a].charAt(0) === '@') {
+                        builtAttrs[a] = builtAttrs[a].substr(1) + ' attribute';
+                    } else {
+                        builtAttrs[a] = builtAttrs[a] + ' element';
+                    }
+                }
+
+                HTMLCS.addMessage(HTMLCS.ERROR, element, 'This ' + msgNodeType + ' does not have a name available to an accessibility API. Valid names are: ' + builtAttrs.join(', ') + '.', 'H91.Name');
             }
         }//end if
 
@@ -140,12 +153,23 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
         }//end if
 
         if (valueFound === false) {
-            var msgNodeType = 'form control';
+            var msgNodeType = nodeName + ' element';
             if (nodeName === 'a') {
                 msgNodeType = 'link';
+            } else if (nodeName.substr(0, 6) === 'input_') {
+                msgNodeType = nodeName.substr(6) + ' input element';
             }
 
-            HTMLCS.addMessage(HTMLCS.ERROR, element, 'Check that this ' + msgNodeType + ' has a value that is available to an accessibility API.', 'H91.Value');
+            var builtAttr = '';
+            if (requiredValue === '_content') {
+                builtAttr = 'element content';
+            } else if (requiredValue.charAt(0) === '@') {
+                builtAttr = requiredValue + ' attribute';
+            } else {
+                builtAttr = requiredValue + ' element';
+            }
+
+            HTMLCS.addMessage(HTMLCS.ERROR, element, 'This ' + msgNodeType + ' does not have a value available to an accessibility API, using the ' + builtAttr + '.', 'H91.Name');
         }
     },
 
