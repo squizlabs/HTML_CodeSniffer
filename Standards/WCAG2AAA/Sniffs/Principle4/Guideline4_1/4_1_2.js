@@ -28,8 +28,73 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
      */
     process: function(element, top)
     {
+        if (element.nodeName.toLowerCase() === 'a') {
+            this._processLinks(element);
+        } else {
+            this._processFormControls(element);
+        }
+    },
+
+    _processLinks: function(element)
+    {
+        // Name is title attr or content
+        // Value is href
+
+        var nameFound = false;
+        var hrefFound = false;
+        var content   = this._getElementTextContent(element);
+
+        if ((element.hasAttribute('title') === true) && (/^\s*$/.test(element.getAttribute('title')) === false)) {
+            nameFound = true;
+        } else if (/^\s*$/.test(content) === false) {
+            nameFound = true;
+        }
+
+        if ((element.hasAttribute('href') === true) && (/^\s*$/.test(element.getAttribute('href')) === false)) {
+            hrefFound = true;
+        }
+
+        if (hrefFound === false) {
+            // No href. We don't want these because, although they are commonly used
+            // to create targets, they can be picked up by screen readers and
+            // displayed to the user as empty links. A elements are defined by H91 as
+            // having an (ARIA) role of "link", and using them as targets are
+            // essentially misusing them. Place an ID on a parent element instead.
+            if (/^\s*$/.test(content) === true) {
+                // Also no content. (eg. <a id=""></a>)
+                if (element.hasAttribute('id') === true) {
+                    HTMLCS.addMessage(HTMLCS.ERROR, element, 'Empty anchor elements should not be used for defining a in-page link target. Consider moving its ID to a parent or nearby element.', 'H91.A.Empty');
+                } else {
+                    HTMLCS.addMessage(HTMLCS.ERROR, element, 'Empty anchor element found.', 'H91.A.EmptyNoId');
+                }
+            } else {
+                // Giving a benefit of the doubt here - if a link has text and also
+                // an ID, but no href, it might be because it is being manipulated by
+                // a script. Also,
+                if (element.hasAttribute('id') === true) {
+                    HTMLCS.addMessage(HTMLCS.WARNING, element, 'Anchor elements should not be used for defining an in-page link target. If not using the ID for other purposes (such as scripting), consider moving it to a parent element.', 'H91.A.NoHref');
+                } else {
+                    // HTML5 allows A elements with text but no href, "for where a
+                    // link might otherwise have been placed, if it had been relevant".
+                    HTMLCS.addMessage(HTMLCS.WARNING, element, 'Link found with text, but no href and ID. If this is not "where a link would have been placed if relevant", the A element should be removed.', 'H91.A.Placeholder');
+                }
+            }
+        } else {
+            if (/^\s*$/.test(content) === true) {
+                // Href provided, but no content.
+                // We only fire this message when there are no images in the content.
+                // A link around an image with no alt text is already covered in SC
+                // 1.1.1 (test H30).
+                if (element.querySelectorAll('img').length === 0) {
+                    HTMLCS.addMessage(HTMLCS.ERROR, element, 'Link contains a valid href attribute, but no content.', 'H91.A.NoContent');
+                }
+            }
+        }
+    },
+
+    _processFormControls: function(element)
+    {
         var requiredNames = {
-            a: ['@title', '_content'],
             button: ['@title', '_content'],
             fieldset: ['legend'],
             input_button: ['@value'],
@@ -44,7 +109,6 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
         }
 
         var requiredValues = {
-            a: '@href',
             input_text: '@value',
             select: 'option_selected'
         };
@@ -105,9 +169,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
 
             if (i === requiredNames[nodeName].length) {
                 var msgNodeType = nodeName + ' element';
-                if (nodeName === 'a') {
-                    msgNodeType = 'link';
-                } else if (nodeName.substr(0, 6) === 'input_') {
+                if (nodeName.substr(0, 6) === 'input_') {
                     msgNodeType = nodeName.substr(6) + ' input element';
                 }
 
@@ -154,22 +216,20 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
 
         if (valueFound === false) {
             var msgNodeType = nodeName + ' element';
-            if (nodeName === 'a') {
-                msgNodeType = 'link';
-            } else if (nodeName.substr(0, 6) === 'input_') {
+            if (nodeName.substr(0, 6) === 'input_') {
                 msgNodeType = nodeName.substr(6) + ' input element';
             }
 
             var builtAttr = '';
             if (requiredValue === '_content') {
-                builtAttr = 'element content';
+                builtAttr = 'element\'s content';
             } else if (requiredValue.charAt(0) === '@') {
                 builtAttr = requiredValue + ' attribute';
             } else {
                 builtAttr = requiredValue + ' element';
             }
 
-            HTMLCS.addMessage(HTMLCS.ERROR, element, 'This ' + msgNodeType + ' does not have a value available to an accessibility API, using the ' + builtAttr + '.', 'H91.Name');
+            HTMLCS.addMessage(HTMLCS.ERROR, element, 'This ' + msgNodeType + ' does not have a value available to an accessibility API. Add one using the ' + builtAttr + '.', 'H91.Name');
         }
     },
 
