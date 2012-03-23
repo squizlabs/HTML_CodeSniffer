@@ -206,7 +206,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
             var nodes = {
                 anchor: {
                     href: anchor.getAttribute('href'),
-                    text: this._getElementTextContent(anchor, false),
+                    text: HTMLCS.util.getElementTextContent(anchor, false),
                     alt: this._getLinkAltText(anchor)
                 }
             }
@@ -238,7 +238,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
                 if (prevLink !== null) {
                     nodes.previous = {
                         href: prevLink.getAttribute('href'),
-                        text: this._getElementTextContent(prevLink, false),
+                        text: HTMLCS.util.getElementTextContent(prevLink, false),
                         alt: this._getLinkAltText(prevLink)
                     }
 
@@ -250,7 +250,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
                 if (nextLink !== null) {
                     nodes.next = {
                         href: nextLink.getAttribute('href'),
-                        text: this._getElementTextContent(nextLink, false),
+                        text: HTMLCS.util.getElementTextContent(nextLink, false),
                         alt: this._getLinkAltText(nextLink)
                     }
 
@@ -299,7 +299,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
         // If we have an object as our alternative, skip it. Pass the blame onto
         // the child.
         if (childObject === null) {
-            var textAlt = this._getElementTextContent(element, true);
+            var textAlt = HTMLCS.util.getElementTextContent(element, true);
             if (textAlt === '') {
                 HTMLCS.addMessage(HTMLCS.ERROR, element, 'Object elements must contain a text alternative after all other alternatives are exhausted.', 'H53');
             } else {
@@ -331,7 +331,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
         // the child. (This is a special case: those that don't understand APPLET
         // may understand OBJECT, but APPLET shouldn't be nested.)
         if (childObject === null) {
-            var textAlt = this._getElementTextContent(element, true);
+            var textAlt = HTMLCS.util.getElementTextContent(element, true);
             if (HTMLCS.isStringEmpty(textAlt) === true) {
                 HTMLCS.addMessage(HTMLCS.ERROR, element, 'Applet elements must contain a text alternative in the element\'s body, for browsers without support for the applet element.', 'H35.3');
                 hasError = true;
@@ -348,53 +348,6 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
             // No error? Remind of obligations about equivalence of alternatives.
             HTMLCS.addMessage(HTMLCS.NOTICE, element, 'Check that short (and if appropriate, long) text alternatives are available for non-text content that serve the same purpose and presents the same information.', 'G94,G92.Applet');
         }
-    },
-
-    /**
-     * Gets the text contents of an element.
-     *
-     * @param {DOMNode} element           The element being inspected.
-     * @param {Boolean} [includeAlt=true] Include alt text from images.
-     *
-     * @returns {String} The text contents.
-     */
-    _getElementTextContent: function(element, includeAlt)
-    {
-        if (includeAlt === undefined) {
-            includeAlt = true;
-        }
-
-        var element = element.cloneNode(true);
-        var nodes  = [];
-        for (var i = 0; i < element.childNodes.length; i++) {
-            nodes.push(element.childNodes[i]);
-        }
-
-        var text = [];
-        while (nodes.length > 0) {
-            var node = nodes.shift();
-
-            // If it's an element, add any sub-nodes to the process list.
-            if (node.nodeType === 1) {
-                if (node.nodeName.toLowerCase() === 'img') {
-                    // If an image, include the alt text unless we are blocking it.
-                    if ((includeAlt === true) && (node.hasAttribute('alt') === true)) {
-                        text.push(node.getAttribute('alt'));
-                    }
-                } else {
-                    for (var i = 0; i < node.childNodes.length; i++) {
-                        nodes.push(node.childNodes[i]);
-                    }
-                }
-            } else if (node.nodeType === 3) {
-                // Text node.
-                text.push(node.nodeValue);
-            }
-        }
-
-        // Push the text nodes together and trim.
-        text = text.join('').replace(/^\s+|\s+$/g,'');
-        return text;
     },
 
     /**

@@ -184,25 +184,22 @@ var HTMLCS = new function()
      * @param {function} callback The function to call once all tests are run.
      */
     var _run = function(elements, topElement, callback) {
-        if (elements.length === 0) {
+        while (elements.length > 0) {
+            var element = elements.shift();
+
+            if (element === topElement) {
+                var tagName = '_top';
+            } else {
+                var tagName = element.tagName.toLowerCase();
+            }
+
+            if (_tags[tagName] && _tags[tagName].length > 0) {
+                _processSniffs(element, _tags[tagName].concat([]), topElement);
+            }
+        }//end while
+
+        if (callback instanceof Function === true) {
             callback.call(this);
-            return;
-        }
-
-        var element = elements.shift();
-
-        if (element === topElement) {
-            var tagName = '_top';
-        } else {
-            var tagName = element.tagName.toLowerCase();
-        }
-
-        if (_tags[tagName] && _tags[tagName].length > 0) {
-            _processSniffs(element, _tags[tagName].concat([]), topElement, function() {
-                _run(elements, topElement, callback);
-            });
-        } else {
-            _run(elements, topElement, callback);
         }
     };
 
@@ -214,26 +211,28 @@ var HTMLCS = new function()
      * @param {function} callback The function to call once the processing is completed.
      */
     var _processSniffs = function(element, sniffs, topElement, callback) {
-        if (sniffs.length === 0) {
+        while (sniffs.length > 0) {
+            var sniff     = sniffs.shift();
+            _currentSniff = sniff;
+
+            if (sniff.useCallback === true) {
+                // If the useCallback property is set:
+                // - Process the sniff.
+                // - Recurse into ourselves with remaining sniffs, with no callback.
+                // - Clear out the list of sniffs (so they aren't run again), so the
+                //   callback (if not already recursed) can run afterwards.
+                sniff.process(element, topElement, function() {
+                    _processSniffs(element, sniffs, topElement);
+                    sniffs = [];
+                });
+            } else {
+                // Process the sniff.
+                sniff.process(element, topElement);
+            }
+        }//end while
+
+        if (callback instanceof Function === true) {
             callback.call(this);
-            return;
-        }
-
-        var sniff     = sniffs.shift();
-        _currentSniff = sniff;
-
-        if (sniff.useCallback === true) {
-            // If the useCallback property is set to true then wait for process method
-            // to call the function and then continue processing sniffs.
-            sniff.process(element, topElement, function() {
-                _processSniffs(element, sniffs, topElement, callback);
-            });
-        } else {
-            // Process the sniff.
-            sniff.process(element, topElement);
-
-            // Continue processing the rest of the sniffs.
-            _processSniffs(element, sniffs, topElement, callback);
         }
     };
 
@@ -546,7 +545,7 @@ var HTMLCS = new function()
     this.util = new function() {
         this.trim = function(string) {
             return str.replace(/^\s*(.*)\s*$/g, '$1');
-        }
+        };
 
         this.isStringEmpty = function(string) {
             var empty = true;
@@ -564,7 +563,54 @@ var HTMLCS = new function()
 
         this.isLayoutTable = function(table) {
             return false;
-        }
+        };
+
+        /**
+         * Gets the text contents of an element.
+         *
+         * @param {DOMNode} element           The element being inspected.
+         * @param {Boolean} [includeAlt=true] Include alt text from images.
+         *
+         * @returns {String} The text contents.
+         */
+        this.getElementTextContent = function(element, includeAlt)
+        {
+            if (includeAlt === undefined) {
+                includeAlt = true;
+            }
+
+            var element = element.cloneNode(true);
+            var nodes  = [];
+            for (var i = 0; i < element.childNodes.length; i++) {
+                nodes.push(element.childNodes[i]);
+            }
+
+            var text = [];
+            while (nodes.length > 0) {
+                var node = nodes.shift();
+
+                // If it's an element, add any sub-nodes to the process list.
+                if (node.nodeType === 1) {
+                    if (node.nodeName.toLowerCase() === 'img') {
+                        // If an image, include the alt text unless we are blocking it.
+                        if ((includeAlt === true) && (node.hasAttribute('alt') === true)) {
+                            text.push(node.getAttribute('alt'));
+                        }
+                    } else {
+                        for (var i = 0; i < node.childNodes.length; i++) {
+                            nodes.push(node.childNodes[i]);
+                        }
+                    }
+                } else if (node.nodeType === 3) {
+                    // Text node.
+                    text.push(node.nodeValue);
+                }
+            }
+
+            // Push the text nodes together and trim.
+            text = text.join('').replace(/^\s+|\s+$/g,'');
+            return text;
+        };
 
         /**
          * Return expected cell headers from a table.

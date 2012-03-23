@@ -42,7 +42,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
 
         var nameFound = false;
         var hrefFound = false;
-        var content   = this._getElementTextContent(element);
+        var content   = HTMLCS.util.getElementTextContent(element);
 
         if ((element.hasAttribute('title') === true) && (/^\s*$/.test(element.getAttribute('title')) === false)) {
             nameFound = true;
@@ -141,7 +141,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
                 var requiredName = requiredNames[nodeName][i];
                 if (requiredName === '_content') {
                     // Work with content.
-                    var content = this._getElementTextContent(element);
+                    var content = HTMLCS.util.getElementTextContent(element);
                     if (/^\s*$/.test(content) === false) {
                         break;
                     }
@@ -163,7 +163,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
                     // Sub-element contents.
                     var subEl = element.querySelector(requiredName);
                     if (subEl !== null) {
-                        var content = this._getElementTextContent(subEl);
+                        var content = HTMLCS.util.getElementTextContent(subEl);
                         if (/^\s*$/.test(content) === false) {
                             break;
                         }
@@ -200,7 +200,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
             valueFound = true;
         } else if (requiredValue === '_content') {
             // Work with content.
-            var content = this._getElementTextContent(element);
+            var content = HTMLCS.util.getElementTextContent(element);
             if (/^\s*$/.test(content) === false) {
                 valueFound = true;
             }
@@ -235,44 +235,5 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
 
             HTMLCS.addMessage(HTMLCS.ERROR, element, 'This ' + msgNodeType + ' does not have a value available to an accessibility API. Add one using the ' + builtAttr + '.', 'H91.' + msgSubCode + '.Value');
         }
-    },
-
-    _getElementTextContent: function(element, includeAlt)
-    {
-        if (includeAlt === undefined) {
-            includeAlt = true;
-        }
-
-        var element = element.cloneNode(true);
-        var nodes  = [];
-        for (var i = 0; i < element.childNodes.length; i++) {
-            nodes.push(element.childNodes[i]);
-        }
-
-        var text = [];
-        while (nodes.length > 0) {
-            var node = nodes.shift();
-
-            // If it's an element, add any sub-nodes to the process list.
-            if (node.nodeType === 1) {
-                if (node.nodeName.toLowerCase() === 'img') {
-                    // If an image, include the alt text unless we are blocking it.
-                    if ((includeAlt === true) && (node.hasAttribute('alt') === true)) {
-                        text.push(node.getAttribute('alt'));
-                    }
-                } else {
-                    for (var i = 0; i < node.childNodes.length; i++) {
-                        nodes.push(node.childNodes[i]);
-                    }
-                }
-            } else if (node.nodeType === 3) {
-                // Text node.
-                text.push(node.nodeValue);
-            }
-        }
-
-        // Push the text nodes together and trim.
-        text = text.join('').replace(/^\s+|\s+$/g,'');
-        return text;
     }
 };
