@@ -113,7 +113,8 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
             select: 'option_selected'
         };
 
-        var nodeName = element.nodeName.toLowerCase();
+        var nodeName   = element.nodeName.toLowerCase();
+        var msgSubCode = element.nodeName.substr(0, 1).toUpperCase() + element.nodeName.substr(1).toLowerCase();
         if (nodeName === 'input') {
             if (element.hasAttribute('type') === false) {
                 // If no type attribute, default to text.
@@ -126,6 +127,9 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
             if ((nodeName === 'input_submit') || (nodeName === 'input_reset')) {
                 nodeName = 'input_button';
             }
+
+            // Get a format like "InputText".
+            var msgSubCode = 'Input' + nodeName.substr(6, 1).toUpperCase() + nodeName.substr(7).toLowerCase();
         }//end if
 
         var requiredName  = requiredNames[nodeName];
@@ -184,7 +188,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
                     }
                 }
 
-                HTMLCS.addMessage(HTMLCS.ERROR, element, 'This ' + msgNodeType + ' does not have a name available to an accessibility API. Valid names are: ' + builtAttrs.join(', ') + '.', 'H91.Name');
+                HTMLCS.addMessage(HTMLCS.ERROR, element, 'This ' + msgNodeType + ' does not have a name available to an accessibility API. Valid names are: ' + builtAttrs.join(', ') + '.', 'H91.' + msgSubCode + '.Name');
             }
         }//end if
 
@@ -229,7 +233,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
                 builtAttr = requiredValue + ' element';
             }
 
-            HTMLCS.addMessage(HTMLCS.ERROR, element, 'This ' + msgNodeType + ' does not have a value available to an accessibility API. Add one using the ' + builtAttr + '.', 'H91.Name');
+            HTMLCS.addMessage(HTMLCS.ERROR, element, 'This ' + msgNodeType + ' does not have a value available to an accessibility API. Add one using the ' + builtAttr + '.', 'H91.' + msgSubCode + '.Value');
         }
     },
 
