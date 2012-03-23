@@ -31,6 +31,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
         if (element === top) {
             this.testPresentationMarkup(top);
             this.testEmptyDupeLabelForAttrs(top);
+            this.testHeadingOrder(top);
         } else {
             switch (nodeName) {
                 case 'input':
@@ -815,5 +816,26 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
                 }
             }//end for
         }//end if
+    },
+
+    testHeadingOrder: function(top) {
+        var lastHeading = 0;
+        var headings    = top.querySelectorAll('h1, h2, h3, h4, h5, h6');
+
+        for (var i = 0; i < headings.length; i++) {
+            var headingNum = parseInt(headings[i].nodeName.substr(1, 1));
+            if (headingNum - lastHeading > 1) {
+                var exampleMsg = 'h' + lastHeading + ' followed by h' + (lastHeading + 1);
+                if (lastHeading === 0) {
+                    // If last heading is empty, we are at document top and we are
+                    // expecting a H1, generally speaking.
+                    exampleMsg = 'primary document heading should be h1';
+                }
+
+                HTMLCS.addMessage(HTMLCS.WARNING, headings[i], 'Authors should use properly nested headings (eg. ' + exampleMsg + ') to facilitate navigation and understanding of document structure.', 'G141');
+            }
+
+            lastHeading = headingNum;
+        }
     }
 };
