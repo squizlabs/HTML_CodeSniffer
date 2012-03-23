@@ -70,9 +70,9 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
             } else {
                 // Giving a benefit of the doubt here - if a link has text and also
                 // an ID, but no href, it might be because it is being manipulated by
-                // a script. Also,
+                // a script.
                 if (element.hasAttribute('id') === true) {
-                    HTMLCS.addMessage(HTMLCS.WARNING, element, 'Anchor elements should not be used for defining an in-page link target. If not using the ID for other purposes (such as scripting), consider moving it to a parent element.', 'H91.A.NoHref');
+                    HTMLCS.addMessage(HTMLCS.WARNING, element, 'Anchor elements should not be used for defining an in-page link target. If not using the ID for other purposes (such as CSS or scripting), consider moving it to a parent element.', 'H91.A.NoHref');
                 } else {
                     // HTML5 allows A elements with text but no href, "for where a
                     // link might otherwise have been placed, if it had been relevant".
