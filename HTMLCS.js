@@ -615,17 +615,24 @@ var HTMLCS = new function()
         /**
          * Return expected cell headers from a table.
          *
-         * Returns null if not in a table, or the cell doesn't appear to be a cell
-         * at all.
+         * Returns null if not a table.
+         *
+         * Returns an array of objects with two properties:
+         * - cell (Object) - the TD element referred to,
+         * - headers (String) - the normalised list of expected headers.
+         *
+         * Cells are returned in DOM order. This may mean cells in a tfoot (which
+         * normally precedes tbody if used) would come before tbody cells.
          *
          * If there are missing IDs on relevant table header (th) elements, this
          * method won't complain about it - it will just return them as empty. Its
          * job is to take the IDs it can get, not to complain about it (see, eg. the
-         * test in WCAG2's sniff 1_3_1).
+         * test in WCAG2's sniff 1_3_1). If there are no headers for a cell, it
+         * won't be included.
          *
          * @param {Object} table The table to test.
          *
-         * @returns {String}
+         * @returns {Array}
          */
         this.getCellHeaders = function(table) {
             if (typeof table !== 'object') {
@@ -642,74 +649,92 @@ var HTMLCS = new function()
                 cols: {}
             };
 
+            // List of cells and headers. Each item should be a two-property object:
+            // a "cell" object, and a normalised string of "headers".
+            var cells = [];
+
             // Now determine the row and column headers for the table.
-            for (var rownum = 0; rownum < rows.length; rownum++) {
-                var row    = rows[rownum];
-                var colnum = 0;
+            // Go through once, first finding the th's to load up the header names,
+            // then finding the td's to dump them off.
+            var targetNodeNames = ['th', 'td'];
+            for (var k = 0; k < targetNodeNames.length; k++) {
+                var targetNode = targetNodeNames[k];
+                for (var rownum = 0; rownum < rows.length; rownum++) {
+                    var row    = rows[rownum];
+                    var colnum = 0;
 
-                for (var item = 0; item < row.childNodes.length; item++) {
-                    var thisCell = row.childNodes[item];
-                    if (thisCell.nodeType === 1) {
-                        // Skip columns that are skipped due to rowspan.
-                        if (skipCells[rownum]) {
-                            while (skipCells[rownum][0] === colnum) {
-                                skipCells[rownum].shift();
-                                colnum++;
-                            }
-                        }
-
-                        var nodeName = thisCell.nodeName.toLowerCase();
-                        var rowspan  = Number(thisCell.getAttribute('rowspan')) || 1;
-                        var colspan  = Number(thisCell.getAttribute('colspan')) || 1;
-
-                        // If rowspanned, mark columns as skippable in the following
-                        // row(s).
-                        if (rowspan > 1) {
-                            for (var i = rownum + 1; i < rownum + rowspan; i++) {
-                                if (!skipCells[i]) {
-                                    skipCells[i] = [];
-                                }
-
-                                for (var j = colnum; j < colnum + colspan; j++) {
-                                    skipCells[i].push(j);
+                    for (var item = 0; item < row.childNodes.length; item++) {
+                        var thisCell = row.childNodes[item];
+                        if (thisCell.nodeType === 1) {
+                            // Skip columns that are skipped due to rowspan.
+                            if (skipCells[rownum]) {
+                                while (skipCells[rownum][0] === colnum) {
+                                    skipCells[rownum].shift();
+                                    colnum++;
                                 }
                             }
-                        }
 
-                        if (nodeName === 'th') {
-                            var id = (thisCell.getAttribute('id') || '');
+                            var nodeName = thisCell.nodeName.toLowerCase();
+                            var rowspan  = Number(thisCell.getAttribute('rowspan')) || 1;
+                            var colspan  = Number(thisCell.getAttribute('colspan')) || 1;
 
-                            for (var i = rownum; i < rownum + rowspan; i++) {
-                                headingIds.rows[i] = headingIds.rows[i] || [];
-                                headingIds.rows[i].push(id);
+                            // If rowspanned, mark columns as skippable in the following
+                            // row(s).
+                            if (rowspan > 1) {
+                                for (var i = rownum + 1; i < rownum + rowspan; i++) {
+                                    if (!skipCells[i]) {
+                                        skipCells[i] = [];
+                                    }
+
+                                    for (var j = colnum; j < colnum + colspan; j++) {
+                                        skipCells[i].push(j);
+                                    }
+                                }
                             }
 
-                            for (var i = colnum; i < colnum + colspan; i++) {
-                                headingIds.cols[i] = headingIds.cols[i] || [];
-                                headingIds.cols[i].push(id);
-                            }
-                        }
+                            if (nodeName === targetNode) {
+                                if (nodeName === 'th') {
+                                    // Build up the cell headers.
+                                    var id = (thisCell.getAttribute('id') || '');
 
-                        colnum += colspan;
-                    }//end if
+                                    for (var i = rownum; i < rownum + rowspan; i++) {
+                                        headingIds.rows[i] = headingIds.rows[i] || [];
+                                        headingIds.rows[i].push(id);
+                                    }
+
+                                    for (var i = colnum; i < colnum + colspan; i++) {
+                                        headingIds.cols[i] = headingIds.cols[i] || [];
+                                        headingIds.cols[i].push(id);
+                                    }
+                                } else if (nodeName === 'td') {
+                                    // Dump out the headers and cells.
+                                    var exp = [];
+                                    for (var i = rownum; i < rownum + rowspan; i++) {
+                                        for (var j = colnum; j < colnum + colspan; j++) {
+                                            exp = exp.concat(headingIds.rows[i]);
+                                            exp = exp.concat(headingIds.cols[j]);
+                                        }//end for
+                                    }//end for
+
+                                    if (exp.length > 0) {
+                                        exp = ' ' + exp.sort().join(' ') + ' ';
+                                        exp = exp.replace(/\s+/g, ' ').replace(/(\w+\s)\1+/g, '$1').replace(/^\s*(.*?)\s*$/g, '$1');
+                                        cells.push({
+                                            cell: thisCell,
+                                            headers: exp
+                                        });
+                                    }
+                                }
+                            }
+
+                            colnum += colspan;
+                        }//end if
+                    }//end for
                 }//end for
             }//end for
 
             // Build the column and row headers that we expect.
-            var expected = [];
-            for (var row = 0; row <= headingIds.rows.length; row++) {
-                for (var col = 0; col <= headingIds.cols.length; col++) {
-                    var exp = [];
-                    exp     = exp.concat(headingIds.cols[col]);
-                    exp     = exp.concat(headingIds.rows[row]);
-                    exp     = ' ' + exp.sort().join(' ') + ' ';
-                    exp     = exp.replace(/\s+/g, ' ').replace(/(\w+\s)\1+/g, '$1').replace(/^\s*(.*?)\s*$/g, '$1');
-
-                    expected[row][col] = exp;
-                }//end for
-            }//end for
-
-            return expected;
+            return cells;
         };
     };
 
