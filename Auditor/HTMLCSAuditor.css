@@ -5,7 +5,7 @@
     position: fixed;
     top: 36px;
     right: 3em;
-    width: 35em;
+    width: 300px;
     overflow: hidden;
     background-color: #2B2B2B;
     border: 1px solid #2B2B2B;
@@ -20,7 +20,17 @@
 }
 
 #HTMLCS-wrapper * {
-    -ms-box-sizing: content-box;
+    margin: 0;
+    border: 0;
+    padding: 0;
+    font-size: inherit;
+    line-height: inherit;
+    background: transparent;
+    color: inherit;
+}
+
+#HTMLCS-wrapper strong {
+    font-weight: bold;
 }
 
 #HTMLCS-wrapper .HTMLCS-header {
@@ -97,7 +107,7 @@
     text-align: left;
     display: inline-block;
     vertical-align: top;
-    width: 35em;
+    width: 300px;
     overflow: hidden;
     -moz-transition: margin 0.2s ease-in 0s;
     -webkit-transition: margin 0.2s ease-in 0s;
@@ -107,7 +117,7 @@
 #HTMLCS-wrapper .HTMLCS-details {
     display: none;
     line-height: 2em;
-    width: 35em;
+    width: 300px;
     overflow: hidden;
     border-top: 1px solid #2B2B2B;
 }
@@ -124,7 +134,7 @@
 }
 
 #HTMLCS-wrapper .HTMLCS-issue-list {
-    width: 35em;
+    width: 300px;
     z-index: 1;
 }
 
@@ -226,7 +236,7 @@
     border-bottom: 1px solid #2B2B2B;
     border-top: 1px solid #4B4B4B;
     color: #FFFFFF;
-    width: 35em;
+    width: 300px;
     max-height: 15em;
     position: relative;
     text-shadow: none;
@@ -429,7 +439,7 @@
     background-color: #2B2B2B;
     color: #EEEEEE;
     text-shadow: none;
-    width: 35em;
+    width: 300px;
 
     border-radius: 0 0 0.75em 0.75em;
     position: relative;

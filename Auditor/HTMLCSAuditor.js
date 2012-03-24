@@ -272,7 +272,7 @@ var HTMLCSAuditor = new function()
         showList.innerHTML   = 'List';
         showList.onmousedown = function() {
             var list = document.querySelectorAll('.HTMLCS-inner-wrapper')[0];
-            list.style.marginLeft = '0em';
+            list.style.marginLeft = '0px';
             list.style.maxHeight  = null;
 
             summary.style.display = 'none';
@@ -306,7 +306,7 @@ var HTMLCSAuditor = new function()
                 newSummary.style.display = 'block';
 
                 var issueList = document.querySelectorAll('.HTMLCS-issue-detail-list')[0];
-                issueList.firstChild.style.marginLeft = (parseInt(issueList.firstChild.style.marginLeft, 10) + 35) + 'em';
+                issueList.firstChild.style.marginLeft = (parseInt(issueList.firstChild.style.marginLeft, 10) + 300) + 'px';
 
                 pointToIssueElement(newIssue - 1);
             }
@@ -323,7 +323,7 @@ var HTMLCSAuditor = new function()
                 newSummary.style.display = 'block';
 
                 var issueList = document.querySelectorAll('.HTMLCS-issue-detail-list')[0];
-                issueList.firstChild.style.marginLeft = (parseInt(issueList.firstChild.style.marginLeft, 10) - 35) + 'em';
+                issueList.firstChild.style.marginLeft = (parseInt(issueList.firstChild.style.marginLeft, 10) - 300) + 'px';
 
                 pointToIssueElement(newIssue - 1);
             }
@@ -341,11 +341,11 @@ var HTMLCSAuditor = new function()
      * @return {HTMLDivElement}
      */
     var buildIssueListSection = function(messages) {
-        var issueListWidth = (Math.ceil(messages.length / 5) * 35);
+        var issueListWidth = (Math.ceil(messages.length / 5) * 300);
         var issueList      = document.createElement('div');
         issueList.id        = _prefix + 'issues';
         issueList.className = _prefix + 'details';
-        issueList.setAttribute('style', 'width: ' + issueListWidth + 'em');
+        issueList.setAttribute('style', 'width: ' + issueListWidth + 'px');
 
         var listSection = document.createElement('ol');
         listSection.className = _prefix + 'issue-list';
@@ -368,11 +368,11 @@ var HTMLCSAuditor = new function()
     };
 
     var buildIssueDetailSection = function(messages) {
-        var issueListWidth  = (messages.length * 35);
+        var issueListWidth  = (messages.length * 300);
         var issueList       = document.createElement('div');
         issueList.id        = _prefix + 'issues-detail';
         issueList.className = _prefix + 'details';
-        issueList.setAttribute('style', 'width: ' + issueListWidth + 'em');
+        issueList.setAttribute('style', 'width: ' + issueListWidth + 'px');
 
         var listSection = document.createElement('ol');
         listSection.className = _prefix + 'issue-detail-list';
@@ -507,7 +507,7 @@ var HTMLCSAuditor = new function()
 
             var detailList = document.querySelectorAll('.HTMLCS-issue-detail-list')[0];
             detailList.className += ' ' + _prefix + 'transition-disabled';
-            detailList.firstChild.style.marginLeft = (id * -35) + 'em';
+            detailList.firstChild.style.marginLeft = (id * -300) + 'px';
 
             pointToIssueElement(id);
 
@@ -516,7 +516,7 @@ var HTMLCSAuditor = new function()
             }, 500);
 
             var list = document.querySelectorAll('.HTMLCS-inner-wrapper')[0];
-            list.style.marginLeft = '-35em';
+            list.style.marginLeft = '-300px';
             list.style.maxHeight  = '15em';
 
             summary = document.querySelectorAll('.HTMLCS-summary-detail')[0];
@@ -647,7 +647,7 @@ var HTMLCSAuditor = new function()
             pageNum.innerHTML = 'Page ' + _page + ' of ' + totalPages;
 
             var issueList = document.querySelectorAll('.HTMLCS-issue-list')[0];
-            issueList.style.marginLeft = ((_page - 1) * -35) + 'em';
+            issueList.style.marginLeft = ((_page - 1) * -300) + 'px';
         }
 
         next.onclick = function() {
@@ -662,7 +662,7 @@ var HTMLCSAuditor = new function()
             pageNum.innerHTML = 'Page ' + _page + ' of ' + totalPages;
 
             var issueList = document.querySelectorAll('.HTMLCS-issue-list')[0];
-            issueList.style.marginLeft = ((_page - 1) * -35) + 'em';
+            issueList.style.marginLeft = ((_page - 1) * -300) + 'px';
         }
 
         return navDiv;
@@ -773,7 +773,7 @@ var HTMLCSAuditor = new function()
             detailContents  += buildMessageDetail(i, messages[i], standard);
         }
 
-        var detailWidth  = (i * 35);
+        var detailWidth  = (i * 300);
 
         var wrapper       = document.createElement('div');
         wrapper.id        = _prefix + 'wrapper';
@@ -791,14 +791,9 @@ var HTMLCSAuditor = new function()
         var settings = buildSettingsSection();
         wrapper.appendChild(settings);
 
-        var outerWrapper       = document.createElement('div');
-        outerWrapper.className = _prefix + 'outer-wrapper';
-        wrapper.appendChild(outerWrapper);
-
         var innerWrapper       = document.createElement('div');
         innerWrapper.id        = _prefix + 'issues-wrapper';
         innerWrapper.className = _prefix + 'inner-wrapper';
-        outerWrapper.appendChild(innerWrapper);
 
         var issueList = buildIssueListSection(messages);
         innerWrapper.appendChild(issueList);
@@ -807,13 +802,18 @@ var HTMLCSAuditor = new function()
         var navDiv     = buildNavigation(1, totalPages);
         innerWrapper.appendChild(navDiv);
 
+        var outerWrapper       = document.createElement('div');
+        outerWrapper.className = _prefix + 'outer-wrapper';
+        wrapper.appendChild(outerWrapper);
+        outerWrapper.appendChild(innerWrapper);
+
         var innerWrapper       = document.createElement('div');
         innerWrapper.id        = _prefix + 'issues-detail-wrapper';
         innerWrapper.className = _prefix + 'inner-wrapper';
-        outerWrapper.appendChild(innerWrapper);
 
         var issueDetail = buildIssueDetailSection(messages);
         innerWrapper.appendChild(issueDetail);
+        outerWrapper.appendChild(innerWrapper);
 
         var processingDiv = buildMessageBox('Processing...');
         wrapper.appendChild(processingDiv);
@@ -883,13 +883,14 @@ var HTMLCSAuditor = new function()
             document.body.appendChild(wrapper);
         }
 
-
         // Process and replace with the issue list when finished.
         HTMLCS.process(standard, source, function() {
-            options.initialScreen = 'issue-list';
-            _messages      = HTMLCS.getMessages();
-            var newWrapper = self.build(standard, _messages, options);
-            document.body.replaceChild(newWrapper, wrapper);
+            setTimeout(function() {
+                options.initialScreen = 'issue-list';
+                _messages      = HTMLCS.getMessages();
+                var newWrapper = self.build(standard, _messages, options);
+                document.body.replaceChild(newWrapper, wrapper);
+            }, 100);
         });
     };
 
