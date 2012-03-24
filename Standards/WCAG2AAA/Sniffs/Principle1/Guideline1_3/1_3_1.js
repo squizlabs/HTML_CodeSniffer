@@ -469,13 +469,19 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
             wrongHeaders: []
         }
 
-        var tdCells    = {};
-        var rows       = element.getElementsByTagName('tr');
-        var skipCells  = [];
-        var headingIds = {
+        var tdCells      = {};
+        var rows         = element.getElementsByTagName('tr');
+        var skipCells    = [];
+
+        // Header IDs already used.
+        var headerIds = {
             rows: {},
             cols: {}
         };
+        var multiHeader = {
+            row: null,
+            col: null
+        }
         var missingIds = false;
 
         for (var rownum = 0; rownum < rows.length; rownum++) {
@@ -518,32 +524,34 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
                         if (id === '') {
                             retval.correct = false;
                             retval.missingThId.push(cell);
-                        }
+                        } else if ((rowspan > 1) || (colspan > 1)) {
+                            // Multi-column OR multi-row header. Abandon all hope,
+                            // As it must span across more than one row+column
+                            retval.allowScope = false;
+                        } else if (retval.allowScope === true) {
+                            // If we haven't had a th in this column (row) yet,
+                            // record it. if we find another th in this column (row),
+                            // record that has multi-ths. If we already have a column
+                            // (row) with multi-ths, we cannot use scope.
+                            if (headerIds.cols[colnum] === undefined) {
+                                headerIds.cols[colnum] = rownum;
+                            } else if (multiHeader.col === null) {
+                                multiHeader.col = colnum;
+                            } else if (multiHeader.col !== colnum) {
+                                retval.allowScope = false;
+                            }
 
-                        for (var i = rownum; i < rownum + rowspan; i++) {
-                            headingIds.rows[i] = headingIds.rows[i] || [];
-                            headingIds.rows[i].push(id);
-                        }
-
-                        for (var i = colnum; i < colnum + colspan; i++) {
-                            headingIds.cols[i] = headingIds.cols[i] || [];
-                            headingIds.cols[i].push(id);
-                        }
-                    } else if (nodeName === 'td') {
-                        var headers = (cell.getAttribute('headers') || '').split(/\s+/);
-
-                        if ((headers.length > 1) || (headers[0] !== '')) {
+                            if (headerIds.rows[rownum] === undefined) {
+                                headerIds.rows[rownum] = colnum;
+                            } else if (multiHeader.row === null) {
+                                multiHeader.row = rownum;
+                            } else if (multiHeader.row !== rownum) {
+                                retval.allowScope = false;
+                            }
+                        }//end if
+                    } else if ((nodeName === 'td')) {
+                        if ((cell.hasAttribute('headers') === true) && (/^\s*$/.test(cell.getAttribute('headers')) === false)) {
                             retval.used = true;
-                        } else {
-                            headers = [];
-                        }
-
-                        tdCells[rownum]         = tdCells[rownum] || [];
-                        tdCells[rownum][colnum] = {
-                            cellObj: cell,
-                            rowspan: rowspan,
-                            colspan: colspan,
-                            headers: headers
                         }
                     }//end if
 
@@ -552,101 +560,40 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
             }//end for
         }//end for
 
-        // Next, work out whether we need headers to pass this technique.
-        // With only one single row OR column of headers, nothing is required.
-        // .. one row -and- one column, accept either headers or scope.
-        // .. 2+ rows or 2+ columns, accept headers only. (Break out once we know
-        //    that one of the two is true - we don't need to go any further.)
-        var requiresHeaders = true;
-        var multiHeaders    = {
-            rows: 0,
-            cols: 0
-        }
 
-        for (var rownum in headingIds.rows) {
-            if (headingIds.rows.hasOwnProperty(rownum) === true) {
-                if (headingIds.rows[rownum].length > 1) {
-                    multiHeaders.rows++;
-                    if (multiHeaders.rows >= 2) {
-                        break;
-                    }
-                }
-            }
-        }//end for
-
-        if (multiHeaders.rows < 2) {
-            for (var colnum in headingIds.cols) {
-                if (headingIds.cols.hasOwnProperty(colnum) === true) {
-                    if (headingIds.cols[colnum].length > 1) {
-                        multiHeaders.cols++;
-                        if (multiHeaders.cols >= 2) {
-                            break;
-                        }
-                    }
-                }
-            }//end for
-        }//end if
-
-        if (multiHeaders.cols + multiHeaders.rows <= 1) {
+        if ((multiHeader.row === null) || (multiHeader.col === null)) {
             // If only one column OR one row header.
             retval.required = false;
-        } else if ((multiHeaders.cols > 1) || (multiHeaders.rows > 1)) {
-            // If more than one column, disable checking of scope attribute.
-            retval.allowScope = false;
         }//end if
 
         // Calculate expected heading IDs. If they are not there or incorrect, flag
-        // them
-        for (var rownum in tdCells) {
-            if (tdCells.hasOwnProperty(rownum) === true) {
-                for (var colnum in tdCells[rownum]) {
-                    if (tdCells[rownum].hasOwnProperty(colnum) === true) {
-                        // Valid cell.
-                        var cell     = tdCells[rownum][colnum];
-                        var expected = [];
+        // them.
+        var cells = HTMLCS.util.getCellHeaders(element);
+        for (var i = 0; i < cells.length; i++) {
+            var cell     = cells[i].cell;
+            var expected = cells[i].headers;
 
-                        rownum = Number(rownum);
-                        colnum = Number(colnum);
-
-                        if (cell.headers.length === 0) {
-                            // Headers attribute is not there.
-                            retval.correct = false;
-                            retval.missingTd.push(cell);
-                        } else {
-                            // Add the column and row headers that we expect.
-                            for (var i = colnum; i < colnum + cell.colspan; i++) {
-                                if (headingIds.cols[i]) {
-                                    expected = expected.concat(headingIds.cols[i]);
-                                }
-                            }
-
-                            for (var i = rownum; i < rownum + cell.rowspan; i++) {
-                                if (headingIds.rows[i]) {
-                                    expected = expected.concat(headingIds.rows[i]);
-                                }
-                            }
-
-                            // Constructed a normalised expected and actual headers list:
-                            // a sorted, trimmed, space-normalised list of IDs with
-                            // duplicates removed (in case of colspans).
-                            var exp    = ' ' + expected.sort().join(' ') + ' ';
-                            var actual = ' ' + cell.headers.sort().join(' ') + ' ';
-                            exp        = exp.replace(/\s+/g, ' ').replace(/(\w+\s)\1+/g, '$1').replace(/^\s*(.*?)\s*$/g, '$1');
-                            actual     = actual.replace(/\s+/g, ' ').replace(/(\w+\s)\1+/g, '$1').replace(/^\s*(.*?)\s*$/g, '$1');
-
-                            if (actual !== exp) {
-                                // Incorrect headers.
-                                retval.correct = false;
-                                var val = {
-                                    element: cell.cellObj,
-                                    expected: exp,
-                                    actual: (cell.cellObj.getAttribute('headers') || '')
-                                }
-                                retval.wrongHeaders.push(val);
-                            }
-                        }//end if
-                    }//end if
-                }//end for
+            if (cell.hasAttribute('headers') === false) {
+                retval.correct = false;
+                retval.missingTd.push(cell);
+            } else {
+                var actual = (cell.getAttribute('headers') || '').split(/\s+/);
+                if (actual.length === 0) {
+                    retval.correct = false;
+                    retval.missingTd.push(cell);
+                } else {
+                    actual = ' ' + actual.sort().join(' ') + ' ';
+                    actual = actual.replace(/\s+/g, ' ').replace(/(\w+\s)\1+/g, '$1').replace(/^\s*(.*?)\s*$/g, '$1');
+                    if (expected !== actual) {
+                        retval.correct = false;
+                        var val = {
+                            element: cell,
+                            expected: expected,
+                            actual: (cell.getAttribute('headers') || '')
+                        }
+                        retval.wrongHeaders.push(val);
+                    }
+                }//end if
             }//end if
         }//end for
 
