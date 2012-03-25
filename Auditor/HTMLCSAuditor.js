@@ -337,7 +337,7 @@ var HTMLCSAuditor = new function()
 
         // Element pointer.
         rightPane.appendChild(buildSummaryButton(_prefix + 'button-settings', 'pointer', 'Point to Element', function() {
-            pointToIssueElement(issue);
+            pointToIssueElement(issue - 1);
         }));
 
         rightPane.appendChild(buildSummaryButton(_prefix + 'button-settings', 'previous', 'Previous Issue', function() {
