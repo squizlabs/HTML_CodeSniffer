@@ -8,6 +8,8 @@ var HTMLCSAuditor = new function()
     var _messages = [];
     var _page     = 1;
 
+    var self = this;
+
     /**
      * Build the "summary section" square button.
      *
@@ -42,23 +44,30 @@ var HTMLCSAuditor = new function()
      *
      * @return {HTMLDivElement}
      */
-    var buildCheckbox = function(id, title, checked) {
+    var buildCheckbox = function(id, title, checked, disabled, onclick) {
         if (checked === undefined) {
             checked = false;
         }
 
         var label   = document.createElement('label');
+        var content = '';
         label.className = _prefix + 'checkbox';
-        var content = '<span class="' + _prefix + 'checkbox-title">' + title + '</span>';
+
         content    += '<span class="' + _prefix + 'checkbox-switch">';
         content    += '<span class="' + _prefix + 'checkbox-slider"></span>';
         content    += '<input id="' + id + '" type="checkbox"';
 
         if (checked === true) {
             content += ' checked="checked"';
+            label.className += ' active';
         }
 
-        content += '/></span>';
+        if (disabled === true) {
+            content += ' disabled="disabled"';
+            label.className += ' disabled';
+        }
+
+        content += ' title="' + title + '" /></span>';
 
         label.innerHTML = content;
 
@@ -68,6 +77,10 @@ var HTMLCSAuditor = new function()
                 label.className += ' active';
             } else {
                 label.className = label.className.replace('active', '');
+            }
+
+            if (onclick instanceof Function === true) {
+                onclick(input);
             }
         };
 
@@ -184,8 +197,6 @@ var HTMLCSAuditor = new function()
      * @return {HTMLDivElement}
      */
     var buildSummarySection = function(errors, warnings, notices) {
-        var self = this;
-
         var summary       = document.createElement('div');
         summary.className = _prefix + 'summary';
 
@@ -198,7 +209,8 @@ var HTMLCSAuditor = new function()
         summary.appendChild(rightPane);
 
         var leftContents = [];
-        var divider      = '<span class="' + _prefix + 'divider"></span>';
+
+        var divider = '<span class="' + _prefix + 'divider"></span>';
 
         if (errors > 0) {
             var typeName = 'Errors';
@@ -224,19 +236,25 @@ var HTMLCSAuditor = new function()
             leftContents.push('<strong>' + notices + '</strong> ' + typeName);
         }
 
-        if (leftContents.length === 0) {
-            leftPane.innerHTML = '';
-        } else {
+        if (leftContents.length > 0) {
             leftPane.innerHTML = leftContents.join(divider);
         }
 
-        rightPane.appendChild(buildSummaryButton(_prefix + 'button-settings', 'settings', 'Audit Settings', function() {
-            if (_screen === 'settings') {
-                HTMLCSAuditor.changeScreen('issue-list');
-            } else {
-                HTMLCSAuditor.changeScreen('settings');
-            }
-        }));
+        var showHome         = document.createElement('a');
+        showHome.className   = _prefix + 'back-home';
+        showHome.href        = 'javascript:';
+        showHome.setAttribute('title', 'Summary');
+        showHome.onmousedown = function() {
+            HTMLCSAuditor.run(_standard, _source, _options);
+        };
+
+        leftPane.insertBefore(showHome, leftPane.firstChild);
+
+        var navDivider = document.createElement('span');
+        navDivider.className = _prefix + 'issue-nav-divider';
+        navDivider.innerHTML = ' &gt; ';
+        leftPane.insertBefore(navDivider, showHome.nextSibling);
+
         rightPane.appendChild(buildSummaryButton(_prefix + 'button-rerun', 'refresh', 'Re-run Audit', function() {
             HTMLCSAuditor.run(_standard, _source, _options);
         }));
@@ -253,23 +271,34 @@ var HTMLCSAuditor = new function()
      * @return {HTMLDivElement}
      */
     var buildDetailSummarySection = function(issue, totalIssues) {
-        var self = this;
-
         var summary       = document.createElement('div');
         summary.className = _prefix + 'summary-detail';
 
         var leftPane       = document.createElement('div');
         leftPane.className = _prefix + 'summary-left';
-        summary.appendChild(leftPane);
 
         var rightPane       = document.createElement('div');
         rightPane.className = _prefix + 'summary-right';
-        summary.appendChild(rightPane);
+
+        var showHome         = document.createElement('a');
+        showHome.className   = _prefix + 'back-home';
+        showHome.href        = 'javascript:';
+        showHome.setAttribute('title', 'Summary');
+        showHome.onmousedown = function() {
+            HTMLCSAuditor.run(_standard, _source, _options);
+        };
+
+        leftPane.appendChild(showHome);
+
+        var navDivider = document.createElement('span');
+        navDivider.className = _prefix + 'issue-nav-divider';
+        navDivider.innerHTML = ' &gt; ';
+        leftPane.appendChild(navDivider);
 
         var showList         = document.createElement('a');
-        showList.className   = _prefix + 'back-home';
+        showList.className   = _prefix + 'back-to-report';
         showList.href        = 'javascript:';
-        showList.innerHTML   = 'List';
+        showList.innerHTML   = 'Report';
         showList.onmousedown = function() {
             var list = document.querySelectorAll('.HTMLCS-inner-wrapper')[0];
             list.style.marginLeft = '0px';
@@ -287,7 +316,7 @@ var HTMLCSAuditor = new function()
         navDivider.innerHTML = ' &gt; ';
         leftPane.appendChild(navDivider);
 
-        var issueCount = document.createTextNode('Issue ' + issue + ' of ' + totalIssues);
+        var issueCount = document.createTextNode(issue + ' of ' + totalIssues);
         leftPane.appendChild(issueCount);
 
         // Element pointer.
@@ -328,6 +357,9 @@ var HTMLCSAuditor = new function()
                 pointToIssueElement(newIssue - 1);
             }
         }));
+
+        summary.appendChild(leftPane);
+        summary.appendChild(rightPane);
 
         return summary;
     };
@@ -379,7 +411,8 @@ var HTMLCSAuditor = new function()
         listSection.setAttribute('style', 'margin-left: 0');
 
         for (var i = 0; i < messages.length; i++) {
-            listSection.innerHTML += buildMessageDetail(i, messages[i]);
+            var msg = buildMessageDetail(i, messages[i]);
+            listSection.appendChild(msg);
         }
 
         issueList.appendChild(listSection);
@@ -391,70 +424,157 @@ var HTMLCSAuditor = new function()
         var settingsDiv       = document.createElement('div');
         settingsDiv.className = _prefix + 'settings';
 
-        var listFiltersDiv = document.createElement('div');
-        listFiltersDiv.id  = _prefix + 'settings-list-filters';
-        settingsDiv.appendChild(listFiltersDiv);
-
-        var listFiltersHdr       = document.createElement('h1');
-        listFiltersHdr.innerHTML = 'List Filters';
-        listFiltersDiv.appendChild(listFiltersHdr);
-
-        var listFiltersExp       = document.createElement('p');
-        listFiltersExp.innerHTML = 'Errors and Warnings are always shown and cannot be hidden. Notices will be automatically shown if there are not other issues.';
-        listFiltersDiv.appendChild(listFiltersExp);
-
-        var showNoticesCheckbox = buildCheckbox(_prefix + 'include-notices', 'Always include Notices', (_options && _options.alwaysShowNotices === true));
-        listFiltersDiv.appendChild(showNoticesCheckbox);
-
         var useStandardDiv = document.createElement('div');
         useStandardDiv.id = _prefix + 'settings-use-standard';
-        settingsDiv.appendChild(useStandardDiv);
 
-        var useStandardHdr       = document.createElement('h1');
-        useStandardHdr.innerHTML = 'Accessibility Standard';
-        useStandardDiv.appendChild(useStandardHdr);
+        var useStandardLabel       = document.createElement('label');
+        useStandardLabel.innerHTML = 'Standards:';
+        useStandardLabel.setAttribute('for', _prefix + 'settings-use-standard-select');
 
-        var useStandardExp       = document.createElement('p');
-        useStandardExp.innerHTML = 'Choose which standard you would like to check your content against.';
-        useStandardDiv.appendChild(useStandardExp);
+        var useStandardSelect       = document.createElement('select');
+        useStandardSelect.id        = _prefix + 'settings-use-standard-select';
+        useStandardSelect.innerHTML = '';
 
-        var radioButton = buildRadioButton('standard', 'WCAG2AAA', 'WCAG 2.0 AAA', (_standard === 'WCAG2AAA'));
-        useStandardDiv.appendChild(radioButton);
+        var standards = ['WCAG2AAA', 'WCAG2AA', 'WCAG2A'];
+        for (var i = 0; i < standards.length; i++) {
+            var standard     = standards[i];
+            var option       = document.createElement('option');
+            option.value     = standard;
+            option.innerHTML = window['HTMLCS_' + standard].name;
 
-        var radioButton = buildRadioButton('standard', 'WCAG2AA', 'WCAG 2.0 AA', (_standard === 'WCAG2AA'));
-        useStandardDiv.appendChild(radioButton);
+            if (standard === _standard) {
+                option.selected = true;
+            }
 
-        var radioButton = buildRadioButton('standard', 'WCAG2A', 'WCAG 2.0 A', (_standard === 'WCAG2A'));
-        useStandardDiv.appendChild(radioButton);
+            useStandardSelect.appendChild(option);
+            useStandardSelect.onchange = function() {
+                _standard = this.options[this.selectedIndex].value;
+                self.run(_standard, _source, _options);
+            }
+        }
 
-        var recheckDiv = document.createElement('div');
-        recheckDiv.id  = _prefix + 'settings-recheck';
-        settingsDiv.appendChild(recheckDiv);
+        var issueCountDiv = document.createElement('div');
+        issueCountDiv.id  = _prefix + 'settings-issue-count';
 
-        var recheckButton       = document.createElement('button');
-        recheckButton.id        = _prefix + 'recheck-content';
-        recheckButton.className = _prefix + 'button';
-        recheckButton.innerHTML = 'Re-check Content';
-        recheckButton.onclick   = function() {
-            var newStandard = _standard;
-            var radioBtns   = document.getElementsByName(_prefix + 'standard');
-            var value       = null;
-            for (var i = 0; i < radioBtns.length; i++) {
-                if (radioBtns[i].checked === true) {
-                    newStandard = radioBtns[i].value;
-                    break;
+        var issueCountHelpDiv       = document.createElement('div');
+        issueCountHelpDiv.id        = _prefix + 'settings-issue-count-help';
+        issueCountHelpDiv.innerHTML = 'Select issue types to include in Report';
+
+        var viewReportDiv       = document.createElement('div');
+        viewReportDiv.id        = _prefix + 'settings-view-report';
+        viewReportDiv.innerHTML = 'View Report';
+        viewReportDiv.onclick   = function() {
+            if (/disabled/.test(this.className) === false) {
+                _options.show = {
+                    error: document.getElementById(_prefix + 'include-error').checked,
+                    warning: document.getElementById(_prefix + 'include-warning').checked,
+                    notice: document.getElementById(_prefix + 'include-notice').checked
+                }
+
+                var wrapper = document.getElementById(_prefix + 'wrapper');
+                var newWrapper        = self.build(_standard, _messages, _options);
+                newWrapper.style.left = wrapper.style.left;
+                newWrapper.style.top  = wrapper.style.top;
+                document.body.replaceChild(newWrapper, wrapper);
+            }//end if
+        };
+
+        var levels = {
+            error: 0,
+            warning: 0,
+            notice: 0
+        };
+
+        var wrapper  = document.getElementById(_prefix + 'wrapper');
+        var messages = HTMLCS.getMessages();
+        for (var i = 0; i < messages.length; i++) {
+            var ignore = false;
+            if (wrapper) {
+                if (wrapper === messages[i].element) {
+                    ignore = true;
+                } else if (document === messages[i].element) {
+                    // Don't ignore document. This is to short-circuit calls to
+                    // contains() because IE doesn't like document being the argument.
+                    ignore = false;
+                } else if ((wrapper.contains) && (wrapper.contains(messages[i].element) === true)) {
+                    ignore = true;
+                } else if ((wrapper.compareDocumentPosition) && ((wrapper.compareDocumentPosition(messages[i].element) & 16) > 0)) {
+                    ignore = true;
                 }
             }
 
-            var options = {
-                alwaysShowNotices: document.getElementById(_prefix + 'include-notices').checked
-            };
+            if (ignore === false) {
+                switch (messages[i].type) {
+                    case HTMLCS.ERROR:
+                        levels.error++;
+                    break;
 
-            _options = options;
+                    case HTMLCS.WARNING:
+                        levels.warning++;
+                    break;
 
-            HTMLCSAuditor.run(newStandard, _source, options);
-        };
-        recheckDiv.appendChild(recheckButton);
+                    case HTMLCS.NOTICE:
+                        levels.notice++;
+                    break;
+
+                    default:
+                        // No default case.
+                    break;
+                }//end switch
+            }//end if
+        }//end for
+
+        for (var level in levels) {
+            var msgCount       = levels[level];
+            var levelDiv       = document.createElement('div');
+            levelDiv.className = _prefix + 'issue-tile ' + _prefix + level.toLowerCase();
+
+            var levelCountDiv       = document.createElement('div');
+            levelCountDiv.className = 'HTMLCS-tile-text';
+
+            var content = '<strong>' + msgCount + '</strong> ' + level.substr(0, 1).toUpperCase() + level.substr(1);
+            if (msgCount !== 1) {
+                content += 's';
+            }
+
+            levelCountDiv.innerHTML = content;
+
+            var checked  = true;
+            var disabled = false;
+            if (level === 'notice') {
+                if ((levels.error === 0) && (levels.warning === 0)) {
+                    checked = true;
+                } else {
+                    checked = _options.alwaysShowNotices;
+                }
+            } else if (msgCount === 0) {
+                checked  = false;
+                disabled = true;
+            }
+
+            var levelSwitch = buildCheckbox(_prefix + 'include-' + level, 'Toggle display of ' + level + ' messages', checked, disabled, function() {
+                var enable = document.getElementById(_prefix + 'include-error').checked;
+                enable     = enable || document.getElementById(_prefix + 'include-warning').checked;
+                enable     = enable || document.getElementById(_prefix + 'include-notice').checked;
+                if (enable === true) {
+                    viewReportDiv.className = viewReportDiv.className.replace(/ disabled/, '');
+                } else {
+                    viewReportDiv.className += ' disabled';
+                }
+            });
+
+            levelDiv.appendChild(levelCountDiv);
+            levelDiv.appendChild(levelSwitch);
+            issueCountDiv.appendChild(levelDiv);
+        }
+
+        useStandardDiv.appendChild(useStandardLabel);
+        useStandardDiv.appendChild(useStandardSelect);
+
+        settingsDiv.appendChild(useStandardDiv);
+        settingsDiv.appendChild(issueCountDiv);
+        settingsDiv.appendChild(issueCountHelpDiv);
+        settingsDiv.appendChild(viewReportDiv);
 
         return settingsDiv;
     };
@@ -543,7 +663,6 @@ var HTMLCSAuditor = new function()
     }
 
     var buildMessageDetail = function(id, message, standard) {
-        var msg       = '';
         var typeText  = '';
 
         var principles = {
@@ -594,14 +713,27 @@ var HTMLCSAuditor = new function()
             techniquesStr.push('<a href="http://www.w3.org/TR/WCAG20-TECHS/' + techniques[i][0] + '">' + techniques[i][0] + '</a>');
         }
 
-        msg += '<li id="HTMLCS-msg-detail-' + id + '"><div>';
-        msg += '<span class="HTMLCS-issue-type ' + typeClass + '" title="' + typeText + '"></span>';
-        msg += '<div class="HTMLCS-issue-title">' + message.msg + '</div>';
-        msg += '<div class="HTMLCS-issue-wcag-ref">';
-        msg += '<em>Principle:</em> <a href="' + principles[principle].link + '">' + principles[principle].name + '</a><br/>';
-        msg += '<em>Technique:</em> ' + techniquesStr.join(' '); + '<br/>';
-        msg += '</div>';
-        msg += '</div></li>';
+        var msg = document.createElement('li');
+        msg.id  = _prefix + 'msg-detail-' + id;
+
+        var msgType       = document.createElement('span');
+        msgType.className = _prefix + 'issue-type ' + typeClass;
+        msgType.setAttribute('title', typeText);
+
+        var msgTitle       = document.createElement('div');
+        msgTitle.className = _prefix + 'issue-title';
+        msgTitle.innerHTML = message.msg;
+
+        var msgWcagRef       = document.createElement('div');
+        msgWcagRef.className = _prefix + 'issue-wcag-ref';
+
+        var refContent       = '<em>Principle:</em> <a href="' + principles[principle].link + '">' + principles[principle].name + '</a><br/>';
+        refContent          += '<em>Technique:</em> ' + techniquesStr.join(' '); + '<br/>';
+        msgWcagRef.innerHTML = refContent;
+
+        msg.appendChild(msgType);
+        msg.appendChild(msgTitle);
+        msg.appendChild(msgWcagRef);
 
         return msg;
     };
@@ -682,64 +814,38 @@ var HTMLCSAuditor = new function()
     this.build = function(standard, messages, options) {
         var wrapper = document.getElementById(_prefix + 'wrapper');
 
-        if (options.alwaysShowNotices === undefined) {
-            options.alwaysShowNotices = false;
-        }
-
-        if (options.initialScreen === undefined) {
-            options.initialScreen = 'settings';
-        }
-
-        // Restack the messages so they are sorted by message type.
-        var showNotices = true;
-        for (var i = 0; i < messages.length; i++) {
-            if (messages[i].type !== HTMLCS.NOTICE) {
-                showNotices = options.alwaysShowNotices;
-                break;
-            }//end if
-        }//end if
-
         var errors   = 0;
         var warnings = 0;
         var notices  = 0;
 
-        for (i = 0; i < messages.length; i++) {
-            // Firstly, ignore warnings arising from the Advisor interface itself.
+        for (var i = 0; i < messages.length; i++) {
+            // Filter only the wanted error types.
             var ignore = false;
-            if (wrapper) {
-                if (wrapper === messages[i].element) {
-                    ignore = true;
-                } else if (document === messages[i].element) {
-                    // Don't ignore document. This is to short-circuit calls to
-                    // contains() because IE doesn't like document being the argument.
-                    ignore = false;
-                } else if ((wrapper.contains) && (wrapper.contains(messages[i].element) === true)) {
-                    ignore = true;
-                } else if ((wrapper.compareDocumentPosition) && ((wrapper.compareDocumentPosition(messages[i].element) & 16) > 0)) {
-                    ignore = true;
-                }
-            }
-
-            // Then count errors, warnings and ignore notices as necessary.
-            if (ignore === false) {
-                switch (messages[i].type) {
-                    case HTMLCS.ERROR:
+            switch (messages[i].type) {
+                case HTMLCS.ERROR:
+                    if (options.show.error === false) {
+                        ignore = true;
+                    } else {
                         errors++;
-                    break;
+                    }
+                break;
 
-                    case HTMLCS.WARNING:
+                case HTMLCS.WARNING:
+                    if (options.show.warning === false) {
+                        ignore = true;
+                    } else {
                         warnings++;
-                    break;
+                    }
+                break;
 
-                    case HTMLCS.NOTICE:
-                        if (showNotices === false) {
-                            ignore = true;
-                        } else {
-                            notices++;
-                        }
-                    break;
-                }//end switch
-            }
+                case HTMLCS.NOTICE:
+                    if (options.show.notice === false) {
+                        ignore = true;
+                    } else {
+                        notices++;
+                    }
+                break;
+            }//end switch
 
             if (ignore === true) {
                 messages.splice(i, 1);
@@ -777,19 +883,11 @@ var HTMLCSAuditor = new function()
 
         var wrapper       = document.createElement('div');
         wrapper.id        = _prefix + 'wrapper';
-        wrapper.className = 'showing-' + options.initialScreen;
+        wrapper.className = 'showing-issue-list';
 
-        var header = buildHeaderSection(standard, wrapper);
-        wrapper.appendChild(header);
-
-        var summary = buildSummarySection(errors, warnings, notices);
-        wrapper.appendChild(summary);
-
+        var header        = buildHeaderSection(standard, wrapper);
+        var summary       = buildSummarySection(errors, warnings, notices);
         var summaryDetail = buildDetailSummarySection(1, messages.length);
-        wrapper.appendChild(summaryDetail);
-
-        var settings = buildSettingsSection();
-        wrapper.appendChild(settings);
 
         var innerWrapper       = document.createElement('div');
         innerWrapper.id        = _prefix + 'issues-wrapper';
@@ -804,7 +902,6 @@ var HTMLCSAuditor = new function()
 
         var outerWrapper       = document.createElement('div');
         outerWrapper.className = _prefix + 'outer-wrapper';
-        wrapper.appendChild(outerWrapper);
         outerWrapper.appendChild(innerWrapper);
 
         var innerWrapper       = document.createElement('div');
@@ -816,7 +913,26 @@ var HTMLCSAuditor = new function()
         outerWrapper.appendChild(innerWrapper);
 
         var processingDiv = buildMessageBox('Processing...');
+
+        wrapper.appendChild(header);
+        wrapper.appendChild(summary);
+        wrapper.appendChild(summaryDetail);
+        wrapper.appendChild(outerWrapper);
         wrapper.appendChild(processingDiv);
+
+        return wrapper;
+    };
+
+    this.buildSummaryPage = function() {
+        var wrapper       = document.createElement('div');
+        wrapper.id        = _prefix + 'wrapper';
+        wrapper.className = 'showing-settings';
+
+        var header = buildHeaderSection(_standard, wrapper);
+        wrapper.appendChild(header);
+
+        var summary = buildSettingsSection();
+        wrapper.appendChild(summary);
 
         return wrapper;
     };
@@ -871,13 +987,14 @@ var HTMLCSAuditor = new function()
         _page     = 1;
         _screen   = '';
 
-        var self    = this;
-        var target  = document.getElementById(_prefix + 'wrapper');
+        var target = document.getElementById(_prefix + 'wrapper');
 
         // Load the "processing" screen.
-        options.initialScreen = 'message-box';
-        var wrapper = self.build(standard, _messages, options);
+        var wrapper = self.buildSummaryPage();
+        wrapper.className += ' processing';
         if (target) {
+            wrapper.style.left = target.style.left;
+            wrapper.style.top  = target.style.top;
             document.body.replaceChild(wrapper, target);
         } else {
             document.body.appendChild(wrapper);
@@ -885,10 +1002,34 @@ var HTMLCSAuditor = new function()
 
         // Process and replace with the issue list when finished.
         HTMLCS.process(standard, source, function() {
+            // Before then, ignore warnings arising from the Advisor interface itself.
+            _messages = HTMLCS.getMessages();
+            for (var i = 0; i < _messages.length; i++) {
+                var ignore = false;
+                if (wrapper) {
+                    if (wrapper === _messages[i].element) {
+                        ignore = true;
+                    } else if (document === _messages[i].element) {
+                        // Don't ignore document. This is to short-circuit calls to
+                        // contains() because IE doesn't like document being the argument.
+                        ignore = false;
+                    } else if ((wrapper.contains) && (wrapper.contains(_messages[i].element) === true)) {
+                        ignore = true;
+                    } else if ((wrapper.compareDocumentPosition) && ((wrapper.compareDocumentPosition(_messages[i].element) & 16) > 0)) {
+                        ignore = true;
+                    }
+                }//end if
+
+                if (ignore === true) {
+                    _messages.splice(i, 1);
+                    i--;
+                }
+            }//end for
+
             setTimeout(function() {
-                options.initialScreen = 'issue-list';
-                _messages      = HTMLCS.getMessages();
-                var newWrapper = self.build(standard, _messages, options);
+                var newWrapper = self.buildSummaryPage();
+                newWrapper.style.left = wrapper.style.left;
+                newWrapper.style.top  = wrapper.style.top;
                 document.body.replaceChild(newWrapper, wrapper);
             }, 100);
         });

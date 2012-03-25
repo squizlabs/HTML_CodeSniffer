@@ -19,7 +19,8 @@
     z-index: 100000;
 }
 
-#HTMLCS-wrapper * {
+#HTMLCS-wrapper strong, #HTMLCS-wrapper em, #HTMLCS-wrapper div,
+#HTMLCS-wrapper span {
     margin: 0;
     border: 0;
     padding: 0;
@@ -27,6 +28,11 @@
     line-height: inherit;
     background: transparent;
     color: inherit;
+}*/
+
+#HTMLCS-wrapper select {
+    background: auto;
+    color: auto;
 }
 
 #HTMLCS-wrapper strong {
@@ -67,6 +73,11 @@
     display: block;
 }
 
+#HTMLCS-wrapper.showing-settings .HTMLCS-summary,
+#HTMLCS-wrapper.showing-settings .HTMLCS-summary-detail {
+    display: none;
+}
+
 #HTMLCS-wrapper .HTMLCS-summary-left {
   color: #000000;
   float: left;
@@ -105,7 +116,7 @@
     background: url("Images/bgTexture1.gif") repeat scroll 0 0 #54535A;
     border-radius: 0 0 0.75em 0.75em;
     text-align: left;
-    display: inline-block;
+    display: none;
     vertical-align: top;
     width: 300px;
     overflow: hidden;
@@ -436,24 +447,15 @@
 
 #HTMLCS-wrapper .HTMLCS-settings {
     display: none;
-    background-color: #2B2B2B;
+    background: url("Images/bgTexture1.gif") repeat scroll 0 0 #54535A;
     color: #EEEEEE;
     text-shadow: none;
-    width: 300px;
 
     border-radius: 0 0 0.75em 0.75em;
+    padding: 5px;
     position: relative;
-    text-align: left;
+    text-align: center;
     z-index: 1;
-}
-
-#HTMLCS-wrapper .HTMLCS-settings > div {
-    padding: 10px;
-    border-bottom: 1px solid #000000;
-}
-
-#HTMLCS-wrapper .HTMLCS-settings > div:last-child {
-    border-bottom: none;
 }
 
 #HTMLCS-settings-recheck {
@@ -492,6 +494,11 @@
   padding: 0 0.8em;
   font-size: 1.2em;
   cursor: pointer;
+}
+
+#HTMLCS-wrapper .HTMLCS-checkbox.disabled {
+    opacity: 0.4;
+    cursor: auto;
 }
 
 #HTMLCS-wrapper .HTMLCS-checkbox-title {
@@ -555,7 +562,7 @@
   position: absolute;
   width: 10px;
   height: 7px;
-  background: transparent url("Images/HTMLCS-tools.png") 0 -233px no-repeat;
+  background: transparent url("Images/HTMLCS-tools.png") 0 -262px no-repeat;
   left: 0.5em;
   top: 51%;
   margin-top: -3px;
@@ -569,39 +576,6 @@
 
 #HTMLCS-wrapper .HTMLCS-checkbox input {
   visibility: hidden;
-}
-
-#HTMLCS-wrapper .HTMLCS-settings .HTMLCS-radio {
-    margin: 5px 0;
-}
-
-#HTMLCS-wrapper .HTMLCS-radio > .HTMLCS-input-container {
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    background: url("Images/HTMLCS-tools.png") no-repeat scroll -96px -40px transparent;
-    position: relative;
-    top: -3px;
-}
-
-#HTMLCS-wrapper .HTMLCS-radio > .HTMLCS-input-container.HTMLCS-checked {
-    background-position: -96px -60px;
-}
-
-#HTMLCS-wrapper .HTMLCS-radio > label {
-    font-size: 12px;
-    padding-left: 10px;
-    color: #EEEEEE;
-}
-
-#HTMLCS-wrapper .HTMLCS-radio > .HTMLCS-input-container > input {
-    padding: 0;
-    margin: 0;
-    filter: alpha(opacity=0);
-    opacity: 0;
-    position: relative;
-    top: 4px;
-    left: 3px;
 }
 
 #HTMLCS-wrapper .HTMLCS-message-box {
@@ -622,6 +596,10 @@
     display: block;
 }
 
+#HTMLCS-wrapper.showing-issue-list .HTMLCS-inner-wrapper {
+    display: inline-block;
+}
+
 #HTMLCS-wrapper.showing-issue-list .HTMLCS-details {
     display: block;
 }
@@ -638,17 +616,22 @@
     display: none;
 }
 
-#HTMLCS-wrapper .HTMLCS-summary-detail .HTMLCS-summary-left {
+#HTMLCS-wrapper .HTMLCS-summary-left {
     color: #000000;
-    font-weight: bold;
     line-height: 1.35em;
     padding-left: 0.3em;
     text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
     overflow: visible;
 }
 
-#HTMLCS-wrapper .HTMLCS-summary-detail a.HTMLCS-back-home,
-#HTMLCS-wrapper .HTMLCS-summary-detail a.HTMLCS-back-home:visited {
+#HTMLCS-wrapper .HTMLCS-summary-detail .HTMLCS-summary-left {
+    font-weight: bold;
+}
+
+#HTMLCS-wrapper a.HTMLCS-back-home,
+#HTMLCS-wrapper a.HTMLCS-back-to-report,
+#HTMLCS-wrapper a.HTMLCS-back-home:visited,
+#HTMLCS-wrapper a.HTMLCS-back-report:visited {
     color: #000000;
     display: inline-block;
     padding: 0.45em 20px 0.25em 0;
@@ -660,7 +643,7 @@
     visibility: hidden;
 }
 
-#HTMLCS-wrapper .HTMLCS-summary-detail a.HTMLCS-back-home:before {
+#HTMLCS-wrapper a.HTMLCS-back-home:before {
     background: url("Images/HTMLCS-tools.png") no-repeat scroll 0 -53px transparent;
     content: "";
     display: inline-block;
@@ -670,7 +653,8 @@
     width: 10px;
 }
 
-#HTMLCS-wrapper .HTMLCS-summary-detail a.HTMLCS-back-home:after {
+#HTMLCS-wrapper a.HTMLCS-back-home:after,
+#HTMLCS-wrapper a.HTMLCS-back-to-report:after {
     background: url("Images/HTMLCS-tools.png") no-repeat scroll 0 -64px transparent;
     content: "";
     height: 32px;
@@ -708,4 +692,190 @@
 
 .HTMLCS-pointer-right {
     background-position: 0 -174px;
+}
+
+#HTMLCS-wrapper #HTMLCS-settings-use-standard > select {
+    float: right;
+}
+
+#HTMLCS-wrapper #HTMLCS-settings-use-standard:after {
+    clear: both;
+    display: block;
+}
+
+#HTMLCS-settings-use-standard {
+    -moz-box-sizing: border-box;
+    border: 1px solid #393939;
+    border-radius: 0.4em 0.4em 0.4em 0.4em;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2) inset, 0 1px 0 rgba(255, 255, 255, 0.1);
+    color: #FFFFFF;
+    font-size: 1.3em;
+    margin: 0 0 1em;
+    padding: 0.7em 0.7em 0.8em;
+    text-align: left;
+    text-shadow: 0 -1px rgba(0, 0, 0, 0.3);
+}
+
+#HTMLCS-settings-view-report {
+    background-color: #3A3940;
+    border: 1px solid #2B2B2B;
+    border-radius: 0.3em 0.3em 0.3em 0.3em;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 0 rgba(255, 255, 255, 0.15), 0 -1.4em 0.9em rgba(0, 0, 0, 0.4) inset;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-size: 1.9em;
+    line-height: 3em;
+    position: relative;
+    text-shadow: 0 -1px 0 #000000;
+}
+
+#HTMLCS-settings-view-report:after {
+    background: url("Images/HTMLCS-tools.png") no-repeat scroll 0 -96px transparent;
+    content: "";
+    height: 14px;
+    margin-top: -7px;
+    position: absolute;
+    right: 1em;
+    top: 50%;
+    width: 9px;
+}
+
+#HTMLCS-settings-view-report:hover {
+    background-color: #2B2B2B;
+}
+
+#HTMLCS-wrapper.processing #HTMLCS-settings-view-report,
+#HTMLCS-settings-view-report.disabled {
+    opacity: 0.4;
+}
+
+#HTMLCS-wrapper .HTMLCS-issue-count {
+    display: block;
+    position: relative;
+    color: white;
+    text-shadow: 0 -1px rgba(0, 0, 0, 0.3);
+    font-size: 1.7em;
+    line-height: 1.5em;
+    padding: 0.9em 0 1.8em;
+    border: 1px solid #393939;
+    border-bottom: none;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset;
+    border-radius: 0.3em 0.3em 0 0;
+}
+
+#HTMLCS-wrapper.processing .HTMLCS-tile-text > strong {
+    visibility: hidden;
+}
+
+#HTMLCS-wrapper.processing .HTMLCS-tile-text:before {
+    background: url("Images/summaryLoader-error.gif") no-repeat scroll 50% 50% transparent;
+    content: "";
+    display: block;
+    height: 30px;
+    left: 50%;
+    margin-left: -15px;
+    position: absolute;
+    top: 0.5em;
+    width: 30px;
+}
+
+#HTMLCS-wrapper.processing .HTMLCS-issue-tile.HTMLCS-warning .HTMLCS-tile-text:before {
+    background-image: url("Images/summaryLoader-warning.gif");
+}
+
+#HTMLCS-wrapper.processing .HTMLCS-issue-tile.HTMLCS-notice .HTMLCS-tile-text:before {
+    background-image: url("Images/summaryLoader-notice.gif");
+}
+
+#HTMLCS-wrapper #HTMLCS-settings-issue-count-help {
+    clear: both;
+    color: #AAAAAA;
+    display: block;
+    font-size: 1.3em;
+    padding: 1em 0;
+    text-shadow: 0 -1px rgba(0, 0, 0, 0.3);
+}
+
+#HTMLCS-wrapper .HTMLCS-issue-tile {
+    -moz-box-sizing: border-box;
+    display: inline-block;
+    margin-left: 0.5em;
+    width: 31%;
+}
+
+#HTMLCS-wrapper .HTMLCS-issue-tile:first-child {
+    margin-left: 0;
+}
+
+#HTMLCS-wrapper .HTMLCS-issue-tile.HTMLCS-error > .HTMLCS-tile-text {
+    background-color: #8B2222;
+}
+
+#HTMLCS-wrapper .HTMLCS-issue-tile.HTMLCS-warning > .HTMLCS-tile-text {
+    background-color: #B3913A;
+}
+
+#HTMLCS-wrapper .HTMLCS-issue-tile.HTMLCS-notice > .HTMLCS-tile-text {
+    background-color: #66656B;
+}
+
+#HTMLCS-wrapper .HTMLCS-issue-tile > .HTMLCS-tile-text:after {
+    background: url("Images/HTMLCS-tools.png") no-repeat scroll 0 0 transparent;
+    bottom: 0.6em;
+    content: "";
+    height: 14px;
+    left: 50%;
+    margin: -7px 0 0 -7px;
+    position: absolute;
+    width: 14px;
+}
+
+#HTMLCS-wrapper .HTMLCS-issue-tile.HTMLCS-warning > .HTMLCS-tile-text:after {
+    background-position: 0 -14px;
+}
+
+#HTMLCS-wrapper .HTMLCS-issue-tile.HTMLCS-notice > .HTMLCS-tile-text:after {
+    background-position: 0 -28px;
+}
+
+#HTMLCS-wrapper .HTMLCS-tile-text > strong {
+    font-size: 1.7em;
+    display: block;
+}
+
+#HTMLCS-wrapper .HTMLCS-issue-tile > .HTMLCS-tile-text {
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #393939 #393939 -moz-use-text-color;
+    border-radius: 0.3em 0.3em 0 0;
+    border-style: solid solid none;
+    border-width: 1px 1px medium;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset;
+    color: #FFFFFF;
+    display: block;
+    font-size: 1.7em;
+    line-height: 1.5em;
+    padding: 0.9em 0 1.8em;
+    position: relative;
+    text-shadow: 0 -1px rgba(0, 0, 0, 0.3);
+}
+
+#HTMLCS-wrapper .HTMLCS-issue-tile > .HTMLCS-checkbox {
+    border-radius: 0 0 0.4em 0.4em;
+    margin: 0;
+    min-height: 2.7em;
+}
+
+#HTMLCS-wrapper .HTMLCS-issue-tile > .HTMLCS-checkbox:after {
+    clear: both;
+    content: "";
+    display: block;
+}
+
+#HTMLCS-wrapper .HTMLCS-issue-tile .HTMLCS-checkbox-switch {
+    margin-right: -1.6em;
+    right: 50%;
 }
