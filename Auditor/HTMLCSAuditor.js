@@ -237,28 +237,34 @@ var HTMLCSAuditor = new function()
             leftContents.push('<strong>' + notices + '</strong> ' + typeName);
         }
 
-        if (leftContents.length > 0) {
-            leftPane.innerHTML = leftContents.join(divider);
-        }
+        // Start lineage in left pane.
+        var lineage       = document.createElement('ol');
+        lineage.className = _prefix + 'lineage';
 
-        var showHome         = document.createElement('a');
-        showHome.className   = _prefix + 'back-home';
-        showHome.href        = 'javascript:';
-        showHome.setAttribute('title', 'Summary');
-        showHome.onmousedown = function() {
+        // Back to summary item.
+        var lineageHomeItem       = document.createElement('li');
+        lineageHomeItem.className = _prefix + 'lineage-item';
+
+        var lineageHomeLink       = document.createElement('a');
+        lineageHomeLink.className = _prefix + 'lineage-link';
+        lineageHomeLink.href      = 'javascript:';
+        lineageHomeLink.setAttribute('title', 'Summary');
+
+        lineageHomeLink.onmousedown = function() {
             HTMLCSAuditor.run(_standard, _source, _options);
         };
 
-        leftPane.insertBefore(showHome, leftPane.firstChild);
+        // Issue totals.
+        var lineageTotalsItem       = document.createElement('li');
+        lineageTotalsItem.className = _prefix + 'lineage-item';
+        lineageTotalsItem.innerHTML = leftContents.join(divider);
 
-        var navDivider = document.createElement('span');
-        navDivider.className = _prefix + 'issue-nav-divider';
-        navDivider.innerHTML = ' &gt; ';
-        leftPane.insertBefore(navDivider, showHome.nextSibling);
+        lineageHomeItem.appendChild(lineageHomeLink);
+        lineage.appendChild(lineageHomeItem);
+        lineage.appendChild(lineageTotalsItem);
+        leftPane.appendChild(lineage);
 
-        rightPane.appendChild(buildSummaryButton(_prefix + 'button-rerun', 'refresh', 'Re-run Audit', function() {
-            HTMLCSAuditor.run(_standard, _source, _options);
-        }));
+        rightPane.appendChild(document.createTextNode(String.fromCharCode(160)));
 
         return summary;
     };
@@ -281,26 +287,33 @@ var HTMLCSAuditor = new function()
         var rightPane       = document.createElement('div');
         rightPane.className = _prefix + 'summary-right';
 
-        var showHome         = document.createElement('a');
-        showHome.className   = _prefix + 'back-home';
-        showHome.href        = 'javascript:';
-        showHome.setAttribute('title', 'Summary');
-        showHome.onmousedown = function() {
+        // Start lineage.
+        var lineage       = document.createElement('ol');
+        lineage.className = _prefix + 'lineage';
+
+        var lineageHomeItem       = document.createElement('li');
+        lineageHomeItem.className = _prefix + 'lineage-item';
+
+        var lineageHomeLink       = document.createElement('a');
+        lineageHomeLink.className = _prefix + 'lineage-link';
+        lineageHomeLink.href      = 'javascript:';
+        lineageHomeLink.setAttribute('title', 'Summary');
+
+        lineageHomeLink.onmousedown = function() {
             HTMLCSAuditor.run(_standard, _source, _options);
         };
 
-        leftPane.appendChild(showHome);
+        // Back to Report item.
+        var lineageReportItem       = document.createElement('li');
+        lineageReportItem.className = _prefix + 'lineage-item';
 
-        var navDivider = document.createElement('span');
-        navDivider.className = _prefix + 'issue-nav-divider';
-        navDivider.innerHTML = ' &gt; ';
-        leftPane.appendChild(navDivider);
+        var lineageReportLink       = document.createElement('a');
+        lineageReportLink.className = _prefix + 'lineage-link';
+        lineageReportLink.href      = 'javascript:';
+        lineageReportLink.innerHTML = 'Report';
+        lineageReportLink.setAttribute('title', 'Back to Report');
 
-        var showList         = document.createElement('a');
-        showList.className   = _prefix + 'back-to-report';
-        showList.href        = 'javascript:';
-        showList.innerHTML   = 'Report';
-        showList.onmousedown = function() {
+        lineageReportLink.onmousedown = function() {
             var list = document.querySelectorAll('.HTMLCS-inner-wrapper')[0];
             list.style.marginLeft = '0px';
             list.style.maxHeight  = null;
@@ -310,15 +323,17 @@ var HTMLCSAuditor = new function()
             listSummary.style.display = 'block';
         };
 
-        leftPane.appendChild(showList);
+        // Issue Count item.
+        var lineageTotalsItem       = document.createElement('li');
+        lineageTotalsItem.className = _prefix + 'lineage-item';
+        lineageTotalsItem.innerHTML = issue + ' of ' + totalIssues;
 
-        var navDivider = document.createElement('span');
-        navDivider.className = _prefix + 'issue-nav-divider';
-        navDivider.innerHTML = ' &gt; ';
-        leftPane.appendChild(navDivider);
-
-        var issueCount = document.createTextNode(issue + ' of ' + totalIssues);
-        leftPane.appendChild(issueCount);
+        lineageHomeItem.appendChild(lineageHomeLink);
+        lineageReportItem.appendChild(lineageReportLink);
+        lineage.appendChild(lineageHomeItem);
+        lineage.appendChild(lineageReportItem);
+        lineage.appendChild(lineageTotalsItem);
+        leftPane.appendChild(lineage);
 
         // Element pointer.
         rightPane.appendChild(buildSummaryButton(_prefix + 'button-settings', 'pointer', 'Point to Element', function() {
