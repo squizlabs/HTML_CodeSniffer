@@ -273,8 +273,9 @@ var HTMLCS = new function()
         // Get the object name.
         var parts = standard.split('/');
 
-        // Get the ruleset object.
-        var ruleSet = window['HTMLCS_' + parts[(parts.length - 2)]];
+        // Get a copy of the ruleset object.
+        var ruleSet = JSON.parse(JSON.stringify(window['HTMLCS_' + parts[(parts.length - 2)]]));
+
         if (!ruleSet) {
             return false;
         }
