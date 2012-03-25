@@ -703,7 +703,7 @@
     display: block;
 }
 
-#HTMLCS-settings-use-standard {
+#HTMLCS-wrapper #HTMLCS-settings-use-standard {
     -moz-box-sizing: border-box;
     border: 1px solid #393939;
     border-radius: 0.4em 0.4em 0.4em 0.4em;
@@ -716,7 +716,7 @@
     text-shadow: 0 -1px rgba(0, 0, 0, 0.3);
 }
 
-#HTMLCS-settings-view-report {
+#HTMLCS-wrapper #HTMLCS-settings-view-report {
     background-color: #3A3940;
     border: 1px solid #2B2B2B;
     border-radius: 0.3em 0.3em 0.3em 0.3em;
@@ -729,7 +729,7 @@
     text-shadow: 0 -1px 0 #000000;
 }
 
-#HTMLCS-settings-view-report:after {
+#HTMLCS-wrapper #HTMLCS-settings-view-report:after {
     background: url("Images/HTMLCS-tools.png") no-repeat scroll 0 -96px transparent;
     content: "";
     height: 14px;
@@ -740,12 +740,12 @@
     width: 9px;
 }
 
-#HTMLCS-settings-view-report:hover {
+#HTMLCS-wrapper #HTMLCS-settings-view-report:hover {
     background-color: #2B2B2B;
 }
 
 #HTMLCS-wrapper.processing #HTMLCS-settings-view-report,
-#HTMLCS-settings-view-report.disabled {
+#HTMLCS-wrapper #HTMLCS-settings-view-report.disabled {
     opacity: 0.4;
 }
 
@@ -844,15 +844,9 @@
 }
 
 #HTMLCS-wrapper .HTMLCS-issue-tile > .HTMLCS-tile-text {
-    -moz-border-bottom-colors: none;
-    -moz-border-image: none;
-    -moz-border-left-colors: none;
-    -moz-border-right-colors: none;
-    -moz-border-top-colors: none;
-    border-color: #393939 #393939 -moz-use-text-color;
+    border: 1px solid #393939;
+    border-bottom: none;
     border-radius: 0.3em 0.3em 0 0;
-    border-style: solid solid none;
-    border-width: 1px 1px medium;
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset;
     color: #FFFFFF;
     display: block;
