@@ -140,7 +140,8 @@ var HTMLCSAuditor = new function()
     var buildHeaderSection = function(standard, wrapper) {
         var header       = document.createElement('div');
         header.className = _prefix + 'header';
-        header.innerHTML = 'Accessibility Auditor - ' + standard;
+        header.innerHTML = 'HTML_CodeSniffer by Squiz';
+        header.setAttribute('title', 'Using standard ' + standard);
 
         var dragging = false;
         var prevX    = 0;
@@ -1031,7 +1032,7 @@ var HTMLCSAuditor = new function()
                 newWrapper.style.left = wrapper.style.left;
                 newWrapper.style.top  = wrapper.style.top;
                 document.body.replaceChild(newWrapper, wrapper);
-            }, 100);
+            }, 400);
         });
     };
 
