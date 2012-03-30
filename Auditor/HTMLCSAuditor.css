@@ -1,7 +1,6 @@
 #HTMLCS-wrapper {
     -moz-transition-timing-function: ease;
     -webkit-transition-timing-function: ease;
-
     position: fixed;
     top: 36px;
     right: 3em;
@@ -13,7 +12,6 @@
     color: #2B2B2B;
     text-shadow: 0 1px 0 #FFFFFF;
     border-radius: 0.8em 0.8em 0.8em 0.8em;
-
     font-family: Arial,Sans Serif;
     font-size: 9px;
     z-index: 100000;
@@ -28,7 +26,7 @@
     line-height: inherit;
     background: transparent;
     color: inherit;
-}*/
+}
 
 #HTMLCS-wrapper select {
     background: auto;
@@ -239,7 +237,7 @@
 }
 
 #HTMLCS-wrapper .HTMLCS-issue-detail-list {
-    font-size: 0px;
+/*     font-size: 0px; */
 }
 
 #HTMLCS-wrapper .HTMLCS-issue-detail-list > li {
@@ -251,7 +249,7 @@
     max-height: 15em;
     position: relative;
     text-shadow: none;
-    font-size: 9px;
+    font-size: 1.4em;
     -moz-transition: margin 0.2s ease-in 0s;
     -webkit-transition: margin 0.2s ease-in 0s;
 }
@@ -260,15 +258,11 @@
     max-height: inherit;
 }
 
-#HTMLCS-wrapper .HTMLCS-issue-detail-list > li > div {
-    font-size: 1.36em;
-    padding: 1.2em 2.8em;
-}
-
 #HTMLCS-wrapper .HTMLCS-issue-detail-list > li .HTMLCS-issue-title {
-    font-size: 1.1em;
-    padding-bottom: 1em;
+/*     font-size: 1.1em; */
     border-bottom: 1px solid #000000;
+    padding: 1.2em 0 1.4em;
+    margin: 0 1.4em 0 2.8em;
 }
 
 #HTMLCS-wrapper .HTMLCS-issue-detail-list > li .HTMLCS-issue-wcag-ref {
@@ -276,6 +270,8 @@
     padding-top: 1em;
     text-shadow: none;
     color: #FFFFFF;
+    padding: 0.7em 0 1.5em;
+    margin: 0 1.4em 0 2.8em;
 }
 
 #HTMLCS-wrapper .HTMLCS-issue-detail-list > li .HTMLCS-issue-wcag-ref > em {
@@ -325,7 +321,7 @@
 
 #HTMLCS-wrapper .HTMLCS-nav-button {
     background-color: rgba(0, 0, 0, 0.3);
-    border-radius: 0.3em 0.3em 0.3em 0.3em;
+    border-radius: 0.3em;
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
     cursor: pointer;
     display: inline-block;
@@ -366,15 +362,18 @@
 }
 
 #HTMLCS-wrapper .HTMLCS-button {
-    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#E9E9EB, endColorstr=#C2C2CB);
-    background: -webkit-gradient(linear, left top, left bottom, from(#E9E9EB), to(#C2C2CB));
-    background: -moz-linear-gradient(center top , #E9E9EB, #C2C2CB) repeat scroll 0 0 transparent;
-    border: medium none;
-    box-shadow: 0 -2px 2px -2px rgba(0, 0, 0, 0.4), 0 2px 2px -2px rgba(0, 0, 0, 0.4), 0 1px 0 rgba(255, 255, 255, 0.8) inset, 1px 0 0 rgba(255, 255, 255, 0.5) inset;
+/*     filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#E9E9EB, endColorstr=#C2C2CB); */
+/*     background: -webkit-gradient(linear, left top, left bottom, from(#E9E9EB), to(#C2C2CB)); */
+/*     background: -moz-linear-gradient(center top , #E9E9EB, #C2C2CB) repeat scroll 0 0 transparent; */
+    border: none;
+    box-shadow:
+        0 0 2px 0 rgba(0, 0, 0, 0.5),
+        0 1px 0 rgba(255, 255, 255, 0.8) inset,
+        0 -14px 16px -8px rgba(0,0,0,0.3) inset;
     color: #2B2B2B;
+    background-color: #e9e9eb;
     text-shadow: 0 1px 0 #FFFFFF;
-
-    border-radius: 0.25em 0.25em 0.25em 0.25em;
+    border-radius: 0.3em;
     cursor: pointer;
     display: inline-block;
     font-size: 1.6em;
@@ -634,13 +633,17 @@
 #HTMLCS-wrapper a.HTMLCS-back-report:visited {
     color: #000000;
     display: inline-block;
-    padding: 0.45em 20px 0.25em 0;
+    padding: 0.45em 19px 0.25em 0;
     position: relative;
     text-decoration: none;
 }
 
 #HTMLCS-wrapper .HTMLCS-issue-nav-divider {
     visibility: hidden;
+    display: inline-block;
+    overflow: hidden;
+    visibility: hidden;
+    width: 4px;
 }
 
 #HTMLCS-wrapper a.HTMLCS-back-home:before {
@@ -649,7 +652,7 @@
     display: inline-block;
     height: 11px;
     margin-bottom: -1px;
-    margin-right: 0.5em;
+    margin-right: 0;
     width: 10px;
 }
 
