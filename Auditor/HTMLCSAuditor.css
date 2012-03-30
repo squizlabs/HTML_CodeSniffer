@@ -237,16 +237,14 @@
 }
 
 #HTMLCS-wrapper .HTMLCS-issue-detail-list {
-/*     font-size: 0px; */
 }
 
 #HTMLCS-wrapper .HTMLCS-issue-detail-list > li {
     background-color: #2B2B2B;
-    border-bottom: 1px solid #2B2B2B;
     border-top: 1px solid #4B4B4B;
     color: #FFFFFF;
     width: 300px;
-    max-height: 15em;
+    max-height: 10em;
     position: relative;
     text-shadow: none;
     font-size: 1.4em;
@@ -259,7 +257,6 @@
 }
 
 #HTMLCS-wrapper .HTMLCS-issue-detail-list > li .HTMLCS-issue-title {
-/*     font-size: 1.1em; */
     border-bottom: 1px solid #000000;
     padding: 1.2em 0 1.4em;
     margin: 0 1.4em 0 2.8em;
@@ -362,9 +359,6 @@
 }
 
 #HTMLCS-wrapper .HTMLCS-button {
-/*     filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#E9E9EB, endColorstr=#C2C2CB); */
-/*     background: -webkit-gradient(linear, left top, left bottom, from(#E9E9EB), to(#C2C2CB)); */
-/*     background: -moz-linear-gradient(center top , #E9E9EB, #C2C2CB) repeat scroll 0 0 transparent; */
     border: none;
     box-shadow:
         0 0 2px 0 rgba(0, 0, 0, 0.5),
@@ -373,7 +367,7 @@
     color: #2B2B2B;
     background-color: #e9e9eb;
     text-shadow: 0 1px 0 #FFFFFF;
-    border-radius: 0.3em;
+    border-radius: 0.25em;
     cursor: pointer;
     display: inline-block;
     font-size: 1.6em;
@@ -723,7 +717,7 @@
     background-color: #3A3940;
     border: 1px solid #2B2B2B;
     border-radius: 0.3em 0.3em 0.3em 0.3em;
-    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 0 rgba(255, 255, 255, 0.15), 0 -1.4em 0.9em rgba(0, 0, 0, 0.4) inset;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 0 rgba(255, 255, 255, 0.15), 0 -1.4em 1.6em rgba(0, 0, 0, 0.4) inset;
     color: #FFFFFF;
     cursor: pointer;
     font-size: 1.9em;
