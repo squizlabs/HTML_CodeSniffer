@@ -129,6 +129,8 @@
     width: 300px;
     overflow: hidden;
     border-top: 1px solid #2B2B2B;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid #656565;
 }
 
 #HTMLCS-wrapper .HTMLCS-issue-list,
@@ -153,8 +155,8 @@
     border-bottom: 1px solid #000000;
     border-top: 1px solid #4B4B4B;
     line-height: 1.3em;
-    min-height: 4.2em;
-    padding: 0.6em 2em 0.6em 2.2em;
+    min-height: 4em;
+    padding: 0.8em 2em 0.6em 2.2em;
     position: relative;
     text-shadow: 0 -1px 0 #000000;
     margin: 0;
@@ -223,6 +225,9 @@
 #HTMLCS-wrapper .HTMLCS-issue-detail-list > li .HTMLCS-issue-title {
     color: #FFFFFF;
     display: block;
+}
+#HTMLCS-wrapper .HTMLCS-issue-list > li > .HTMLCS-issue-title {
+    line-height: 1.2em;
 }
 
 #HTMLCS-wrapper .HTMLCS-details > .HTMLCS-issue-list > li:hover {
