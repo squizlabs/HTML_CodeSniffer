@@ -125,7 +125,7 @@ var HTMLCSAuditor = new function()
     var buildHeaderSection = function(standard, wrapper) {
         var header       = document.createElement('div');
         header.className = _prefix + 'header';
-        header.innerHTML = 'HTML_CodeSniffer by Squiz';
+        header.innerHTML = 'HTML CodeSniffer by Squiz';
         header.setAttribute('title', 'Using standard ' + standard);
 
         var dragging = false;
@@ -215,7 +215,7 @@ var HTMLCSAuditor = new function()
             if (errors === 1) {
                 typeName = 'Error';
             }
-            leftContents.push('<strong>' + errors + '</strong> ' + typeName);
+            leftContents.push('<strong>' + errors + '</strong> ' + typeName + ', &nbsp;');
         }
 
         if (warnings > 0) {
@@ -231,7 +231,7 @@ var HTMLCSAuditor = new function()
             if (notices === 1) {
                 typeName = 'Notice';
             }
-            leftContents.push('<strong>' + notices + '</strong> ' + typeName);
+            leftContents.push(', &nbsp;<strong>' + notices + '</strong> ' + typeName);
         }
 
         // Start lineage in left pane.
@@ -245,6 +245,7 @@ var HTMLCSAuditor = new function()
         var lineageHomeLink       = document.createElement('a');
         lineageHomeLink.className = _prefix + 'lineage-link';
         lineageHomeLink.href      = 'javascript:';
+        lineageHomeLink.innerHTML = '&nbsp;';
         lineageHomeLink.setAttribute('title', 'Summary');
 
         lineageHomeLink.onmousedown = function() {
@@ -294,6 +295,7 @@ var HTMLCSAuditor = new function()
         var lineageHomeLink       = document.createElement('a');
         lineageHomeLink.className = _prefix + 'lineage-link';
         lineageHomeLink.href      = 'javascript:';
+        lineageHomeLink.innerHTML = '&nbsp;';
         lineageHomeLink.setAttribute('title', 'Summary');
 
         lineageHomeLink.onmousedown = function() {
