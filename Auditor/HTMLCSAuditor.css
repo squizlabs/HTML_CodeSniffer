@@ -41,28 +41,51 @@
     color: #AAAAAA;
     text-shadow: 0 -1px 0 #000000;
     text-transform: uppercase;
-
+    position: relative;
     width: 100%;
     font-size: 1.2em;
-    line-height: 1.8em;
-    padding-top: 0.5em;
+    line-height: 2em;
+    padding-top: 0.2em;
     text-align: center;
-
     border-bottom: 1px solid transparent;
-
     cursor: move;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
 
+#HTMLCS-wrapper .HTMLCS-close {
+    position: absolute;
+    cursor: pointer;
+    height: 2.2em;
+    opacity: 0.5;
+    right: 0;
+    top: 0;
+    width: 2.2em;
+}
+
+#HTMLCS-wrapper .HTMLCS-close:hover {
+    opacity: 1;
+}
+
+#HTMLCS-wrapper .HTMLCS-close:after {
+    position: absolute;
+    background: transparent url("Images/HTMLCS-tools.png") 0 -61px no-repeat;
+    content: "";
+    display: block;
+    height: 10px;
+    left: 50%;
+    margin: -5px 0 0 -5px;
+    top: 50%;
+    width: 10px;
 }
 
 #HTMLCS-wrapper .HTMLCS-summary,
 #HTMLCS-wrapper .HTMLCS-summary-detail {
     text-align: center;
-    padding: 0.4em 0.5em 0.9em;
+    padding: 0.6em 0.5em 0.7em;
     line-height: 1.3em;
     filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#919097, endColorstr=#727179);
     background: -webkit-gradient(linear, left top, left bottom, from(#919097), to(#727179));
@@ -71,34 +94,75 @@
     display: block;
 }
 
-#HTMLCS-wrapper.showing-settings .HTMLCS-summary,
-#HTMLCS-wrapper.showing-settings .HTMLCS-summary-detail {
-    display: none;
+#HTMLCS-wrapper .HTMLCS-summary:after,
+#HTMLCS-wrapper .HTMLCS-summary-detail:after {
+    content: "";
+    display: block;
+    clear: both;
 }
 
 #HTMLCS-wrapper .HTMLCS-summary-left {
-  color: #000000;
+  color: #000;
   float: left;
   font-size: 1.35em;
-  line-height: 2em;
+  line-height: 2.1em;
   max-width: 240px;
-  overflow: hidden;
-  padding-left: 0.3em;
+  padding-left: 0.2em;
   text-overflow: ellipsis;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
   white-space: nowrap;
 }
-
-#HTMLCS-wrapper .HTMLCS-summary-left strong {
-  font-size: 1.1em;
+#HTMLCS-wrapper .HTMLCS-summary .HTMLCS-summary-left {
+    color: #2b2b2b;
 }
 
-#HTMLCS-wrapper .HTMLCS-summary-left .HTMLCS-divider {
-  border-left: 1px solid #666666;
-  border-right: 1px solid #999999;
-  display: inline-block;
-  height: 26px;
-  margin: 0 0.7em -0.8em 0.5em;
+#HTMLCS-wrapper .HTMLCS-summary strong {
+    color: #000;
+}
+
+#HTMLCS-wrapper .HTMLCS-lineage {
+    list-style: none;
+}
+
+#HTMLCS-wrapper .HTMLCS-lineage .HTMLCS-lineage-item {
+    position: relative;
+    display: inline-block;
+    height: 26px;
+    padding: 0 0.6em 0 17px;
+}
+
+#HTMLCS-wrapper .HTMLCS-lineage .HTMLCS-lineage-link {
+    color: #000;
+    text-decoration: none;
+}
+
+#HTMLCS-wrapper .HTMLCS-lineage .HTMLCS-lineage-item:first-child {
+    padding-left: 0;
+}
+
+#HTMLCS-wrapper .HTMLCS-lineage .HTMLCS-lineage-item:before {
+    background: url("Images/HTMLCS-tools.png") no-repeat scroll 0 -74px transparent;
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: -16px;
+    height: 32px;
+    width: 10px;
+}
+
+#HTMLCS-wrapper .HTMLCS-lineage .HTMLCS-lineage-item:first-child:before {
+    display: none;
+}
+
+#HTMLCS-wrapper .HTMLCS-lineage .HTMLCS-lineage-item:first-child .HTMLCS-lineage-link:after {
+    background: url("Images/HTMLCS-tools.png") no-repeat scroll -40px -281px transparent;
+    content: "";
+    display: inline-block;
+    margin-bottom: -0.2em;
+    height: 13px;
+    width: 12px;
+    overflow: hidden;
 }
 
 #HTMLCS-wrapper .HTMLCS-summary-right {
@@ -185,7 +249,7 @@
 }
 
 #HTMLCS-wrapper .HTMLCS-issue-list > li:after {
-  background: url("Images/HTMLCS-tools.png") no-repeat scroll 0 -96px transparent;
+  background: url("Images/HTMLCS-tools.png") no-repeat scroll 0 -108px transparent;
   content: "";
   height: 14px;
   margin-top: -7px;
@@ -202,7 +266,7 @@
 }
 
 #HTMLCS-wrapper .HTMLCS-issue-type.HTMLCS-warning:before {
-    background-position: 0 -14px;
+    background-position: 0 -16px;
 }
 
 #HTMLCS-wrapper .HTMLCS-issue-list > li > .HTMLCS-issue-type.HTMLCS-error,
@@ -218,7 +282,7 @@
 }
 
 #HTMLCS-wrapper .HTMLCS-issue-type.HTMLCS-notice:before {
-    background-position: 0 -28px;
+    background-position: 0 -32px;
 }
 
 #HTMLCS-wrapper .HTMLCS-issue-list > li > .HTMLCS-issue-title,
@@ -295,7 +359,7 @@
 }
 
 #HTMLCS-wrapper .HTMLCS-issue-detail-list > li .HTMLCS-issue-wcag-ref > a:after {
-    background: url("Images/HTMLCS-tools.png") no-repeat scroll 0 -42px transparent;
+    background: url("Images/HTMLCS-tools.png") no-repeat scroll 0 -48px transparent;
     content: "";
     display: inline-block;
     height: 11px;
@@ -353,7 +417,7 @@
 
 #HTMLCS-wrapper .HTMLCS-nav-button.HTMLCS-previous:after,
 #HTMLCS-wrapper .HTMLCS-nav-button.HTMLCS-next:after {
-    background: url("Images/HTMLCS-tools.png") no-repeat scroll 0 -224px transparent;
+    background: url("Images/HTMLCS-tools.png") no-repeat scroll 0 -237px transparent;
     content: "";
     height: 14px;
     left: 50%;
@@ -364,16 +428,8 @@
 }
 
 #HTMLCS-wrapper .HTMLCS-nav-button.HTMLCS-next:after {
-    background-position: 0 -238px;
+    background-position: 0 -253px;
     margin-left: -5px;
-}
-
-#HTMLCS-wrapper .HTMLCS-nav-button.HTMLCS-previous {
-    background-position: -58px -74px;
-}
-
-#HTMLCS-wrapper .HTMLCS-nav-button.HTMLCS-next {
-    background-position: -59px -47px;
 }
 
 #HTMLCS-wrapper .HTMLCS-nav-button.HTMLCS-disabled {
@@ -442,24 +498,16 @@
     width: 25px;
 }
 
-#HTMLCS-wrapper .HTMLCS-button-icon.HTMLCS-button-refresh {
-    background-position: -12px -224px;
-}
-
-#HTMLCS-wrapper .HTMLCS-button-icon.HTMLCS-button-settings {
-    background-position: -37px -224px;
-}
-
 #HTMLCS-wrapper .HTMLCS-button-icon.HTMLCS-button-next {
-    background-position: -12px -244px;
+    background-position: -13px -259px;
 }
 
 #HTMLCS-wrapper .HTMLCS-button-icon.HTMLCS-button-previous {
-    background-position: -37px -244px;
+    background-position: -40px -259px;
 }
 
 #HTMLCS-wrapper .HTMLCS-button-icon.HTMLCS-button-pointer {
-    background-position: -12px -264px;
+    background-position: -13px -281px;
 }
 
 #HTMLCS-wrapper .HTMLCS-settings {
@@ -579,7 +627,7 @@
   position: absolute;
   width: 10px;
   height: 7px;
-  background: transparent url("Images/HTMLCS-tools.png") 0 -262px no-repeat;
+  background: transparent url("Images/HTMLCS-tools.png") 0 -124px no-repeat;
   left: 0.5em;
   top: 51%;
   margin-top: -3px;
@@ -593,24 +641,6 @@
 
 #HTMLCS-wrapper .HTMLCS-checkbox input {
   visibility: hidden;
-}
-
-#HTMLCS-wrapper .HTMLCS-message-box {
-    background: url("Images/msg-spinner.gif") no-repeat scroll 3px 0.25em #646468;
-    border: 1px solid #747379;
-    border-radius: 0.4em 0.4em 0.4em 0.4em;
-    color: #CACAD1;
-    font-size: 1.1em;
-    font-weight: bold;
-    margin-top: 0.4em;
-    padding: 0.3em 0.3em 0.3em 22px;
-    text-align: left;
-    text-shadow: none;
-    display: none;
-}
-
-#HTMLCS-wrapper.showing-message-box .HTMLCS-message-box {
-    display: block;
 }
 
 #HTMLCS-wrapper.showing-issue-list .HTMLCS-inner-wrapper {
@@ -633,57 +663,8 @@
     display: none;
 }
 
-#HTMLCS-wrapper .HTMLCS-summary-left {
-    color: #000000;
-    line-height: 1.35em;
-    padding-left: 0.3em;
-    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
-    overflow: visible;
-}
-
 #HTMLCS-wrapper .HTMLCS-summary-detail .HTMLCS-summary-left {
     font-weight: bold;
-}
-
-#HTMLCS-wrapper a.HTMLCS-back-home,
-#HTMLCS-wrapper a.HTMLCS-back-to-report,
-#HTMLCS-wrapper a.HTMLCS-back-home:visited,
-#HTMLCS-wrapper a.HTMLCS-back-report:visited {
-    color: #000000;
-    display: inline-block;
-    padding: 0.45em 19px 0.25em 0;
-    position: relative;
-    text-decoration: none;
-}
-
-#HTMLCS-wrapper .HTMLCS-issue-nav-divider {
-    visibility: hidden;
-    display: inline-block;
-    overflow: hidden;
-    visibility: hidden;
-    width: 4px;
-}
-
-#HTMLCS-wrapper a.HTMLCS-back-home:before {
-    background: url("Images/HTMLCS-tools.png") no-repeat scroll 0 -53px transparent;
-    content: "";
-    display: inline-block;
-    height: 11px;
-    margin-bottom: -1px;
-    margin-right: 0;
-    width: 10px;
-}
-
-#HTMLCS-wrapper a.HTMLCS-back-home:after,
-#HTMLCS-wrapper a.HTMLCS-back-to-report:after {
-    background: url("Images/HTMLCS-tools.png") no-repeat scroll 0 -64px transparent;
-    content: "";
-    height: 32px;
-    margin-top: -15px;
-    position: absolute;
-    right: 0;
-    top: 50%;
-    width: 12px;
 }
 
 #HTMLCS-wrapper .HTMLCS-issue-detail-list.HTMLCS-transition-disabled > li {
@@ -701,18 +682,18 @@
     top: 0;
     width: 50px;
     z-index: 9999;
-    background: transparent url("Images/HTMLCS-tools.png") -14px -62px no-repeat;
+    background: transparent url("Images/HTMLCS-tools.png") -16px -64px no-repeat;
 }
 .HTMLCS-pointer-up {
-    background-position: -14px 0;
+    background-position: -16px 0;
 }
 
 .HTMLCS-pointer-left {
-    background-position: 0 -124px;
+    background-position: 0 -133px;
 }
 
 .HTMLCS-pointer-right {
-    background-position: 0 -174px;
+    background-position: 0 -185px;
 }
 
 #HTMLCS-wrapper #HTMLCS-settings-use-standard > select {
@@ -748,10 +729,13 @@
     line-height: 3em;
     position: relative;
     text-shadow: 0 -1px 0 #000000;
+    -moz-transition: opacity 0.3s ease;
+    -webkit-transition: opacity 0.3s ease;
+    opacity: 1;
 }
 
 #HTMLCS-wrapper #HTMLCS-settings-view-report:after {
-    background: url("Images/HTMLCS-tools.png") no-repeat scroll 0 -96px transparent;
+    background: url("Images/HTMLCS-tools.png") no-repeat scroll 0 -108px transparent;
     content: "";
     height: 14px;
     margin-top: -7px;
@@ -852,11 +836,11 @@
 }
 
 #HTMLCS-wrapper .HTMLCS-issue-tile.HTMLCS-warning > .HTMLCS-tile-text:after {
-    background-position: 0 -14px;
+    background-position: 0 -16px;
 }
 
 #HTMLCS-wrapper .HTMLCS-issue-tile.HTMLCS-notice > .HTMLCS-tile-text:after {
-    background-position: 0 -28px;
+    background-position: 0 -32px;
 }
 
 #HTMLCS-wrapper .HTMLCS-tile-text > strong {
