@@ -303,6 +303,25 @@
     width: 12px;
 }
 
+#HTMLCS-wrapper .HTMLCS-issue-source {
+    background: url("Images/bgTexture1.gif") repeat scroll 0 0 #54535A;
+    border-top: 1px solid #6C6C6D;
+    font-size: 1em;
+    padding: 0.5em 0.8em;
+    position: relative;
+}
+
+#HTMLCS-wrapper .HTMLCS-issue-source-inner {
+  background: none repeat scroll 0 0 #222222;
+  border: 1px solid black;
+  color: #DDDDDD;
+  font-family: monospace;
+  font-size: 0.9em;
+  line-height: 1.2em;
+  margin: 0;
+  padding: 0.2em;
+}
+
 #HTMLCS-wrapper .HTMLCS-navigation {
     font-size: 1.5em;
     line-height: 2em;

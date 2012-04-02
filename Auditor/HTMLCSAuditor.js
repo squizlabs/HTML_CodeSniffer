@@ -118,21 +118,6 @@ var HTMLCSAuditor = new function()
     };
 
     /**
-     * Build the "message box" interface.
-     *
-     * This is displayed while the tests are running.
-     *
-     * @return {HTMLDivElement}
-     */
-    var buildMessageBox = function(text) {
-        var runningDiv       = document.createElement('div');
-        runningDiv.className = _prefix + 'message-box';
-        runningDiv.innerHTML = text;
-
-        return runningDiv;
-    };
-
-    /**
      * Build the header section at the absolute top of the interface.
      *
      * @return {HTMLDivElement}
@@ -185,6 +170,11 @@ var HTMLCSAuditor = new function()
         document.onmouseup = function(e) {
             dragging = false;
         };
+
+        var closeIcon       = document.createElement('div');
+        closeIcon.className = _prefix + 'close';
+        closeIcon.setAttribute('title', 'Close');
+        header.appendChild(closeIcon);
 
         return header;
     };
@@ -751,6 +741,71 @@ var HTMLCSAuditor = new function()
         msg.appendChild(msgTitle);
         msg.appendChild(msgWcagRef);
 
+        if (message.element.outerHTML) {
+            var preText = '';
+            var postText = '';
+
+            if (message.element.innerHTML.length > 31) {
+                var outerHTML = message.element.outerHTML.replace(message.element.innerHTML, message.element.innerHTML.substr(0, 31) + '...');
+            } else {
+                var outerHTML = message.element.outerHTML;
+            }
+
+            // Find previous siblings.
+            var preNode = message.element.previousSibling;
+            while (preText.length <= 31) {
+                if (preNode === null) {
+                    break;
+                } else {
+                    if (preNode.nodeType === 1) {
+                        // Element node.
+                        preText = preNode.outerHTML.replace(preNode.innerHTML, '') + preText;
+                    } else if (preNode.nodeType === 3) {
+                        // Text node.
+                        preText = preNode.textContent + preText;
+                    }
+
+                    if (preText.length > 31) {
+                        preText = '...' + preText.substr(preText.length - 31);
+                    }
+                }
+
+                preNode = preNode.previousSibling;
+            }//end while
+
+            // Find following siblings.
+            var postNode = message.element.nextSibling;
+            while (postText.length <= 31) {
+                if (postNode === null) {
+                    break;
+                } else {
+                    if (postNode.nodeType === 1) {
+                        // Element node.
+                        postText += postNode.outerHTML.replace(postNode.innerHTML, '');
+                    } else if (postNode.nodeType === 3) {
+                        // Text node.
+                        postText += postNode.textContent;
+                    }
+
+                    if (postText.length > 31) {
+                        postText = postText.substr(0, 31);
+                    }
+                }
+
+                postNode = postNode.nextSibling;
+            }//end while
+
+            var msgElementSource       = document.createElement('div');
+            msgElementSource.className = _prefix + 'issue-source';
+
+            var msgElementSourceInner       = document.createElement('div');
+            msgElementSourceInner.className = _prefix + 'issue-source-inner';
+            msgElementSourceInner.appendChild(document.createTextNode(preNode + outerHTML + postNode));
+
+            msgElementSource.appendChild(msgElementSourceInner);
+            msg.appendChild(msgElementSource);
+        }
+
         return msg;
     };
 
@@ -928,13 +983,10 @@ var HTMLCSAuditor = new function()
         innerWrapper.appendChild(issueDetail);
         outerWrapper.appendChild(innerWrapper);
 
-        var processingDiv = buildMessageBox('Processing...');
-
         wrapper.appendChild(header);
         wrapper.appendChild(summary);
         wrapper.appendChild(summaryDetail);
         wrapper.appendChild(outerWrapper);
-        wrapper.appendChild(processingDiv);
 
         return wrapper;
     };
