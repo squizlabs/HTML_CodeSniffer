@@ -174,6 +174,13 @@ var HTMLCSAuditor = new function()
         var closeIcon       = document.createElement('div');
         closeIcon.className = _prefix + 'close';
         closeIcon.setAttribute('title', 'Close');
+        closeIcon.onmousedown = function() {
+            var wrapper = document.getElementById('HTMLCS-wrapper');
+            if (wrapper) {
+                document.body.removeChild(wrapper);
+            }
+        }
+
         header.appendChild(closeIcon);
 
         return header;
