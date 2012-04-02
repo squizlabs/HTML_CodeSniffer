@@ -125,7 +125,7 @@ var HTMLCSAuditor = new function()
     var buildHeaderSection = function(standard, wrapper) {
         var header       = document.createElement('div');
         header.className = _prefix + 'header';
-        header.innerHTML = 'HTML CodeSniffer by Squiz';
+        header.innerHTML = 'HTML_CodeSniffer by Squiz';
         header.setAttribute('title', 'Using standard ' + standard);
 
         var dragging = false;
@@ -725,7 +725,7 @@ var HTMLCSAuditor = new function()
 
         for (var i = 0; i < techniques.length; i++) {
             techniques[i]  = techniques[i].split('.');
-            techniquesStr.push('<a href="http://www.w3.org/TR/WCAG20-TECHS/' + techniques[i][0] + '">' + techniques[i][0] + '</a>');
+            techniquesStr.push('<a href="http://www.w3.org/TR/WCAG20-TECHS/' + techniques[i][0] + '" target="_blank">' + techniques[i][0] + '</a>');
         }
 
         var msg = document.createElement('li');
@@ -742,7 +742,7 @@ var HTMLCSAuditor = new function()
         var msgWcagRef       = document.createElement('div');
         msgWcagRef.className = _prefix + 'issue-wcag-ref';
 
-        var refContent       = '<em>Principle:</em> <a href="' + principles[principle].link + '">' + principles[principle].name + '</a><br/>';
+        var refContent       = '<em>Principle:</em> <a href="' + principles[principle].link + '" target="_blank">' + principles[principle].name + '</a><br/>';
         refContent          += '<em>Technique:</em> ' + techniquesStr.join(' '); + '<br/>';
         msgWcagRef.innerHTML = refContent;
 
