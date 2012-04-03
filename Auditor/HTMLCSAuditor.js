@@ -343,6 +343,9 @@ var HTMLCSAuditor = new function()
         lineage.appendChild(lineageTotalsItem);
         leftPane.appendChild(lineage);
 
+        var buttonGroup       = document.createElement('div');
+        buttonGroup.className = _prefix + 'button-group';
+
         var prevButton = buildSummaryButton(_prefix + 'button-previous-issue', 'previous', 'Previous Issue', function(target) {
             var newIssue = Number(issue) - 1;
 
@@ -381,8 +384,9 @@ var HTMLCSAuditor = new function()
             nextButton.className += ' disabled';
         }
 
-        rightPane.appendChild(prevButton);
-        rightPane.appendChild(nextButton);
+        buttonGroup.appendChild(prevButton);
+        buttonGroup.appendChild(nextButton);
+        rightPane.appendChild(buttonGroup);
 
         summary.appendChild(leftPane);
         summary.appendChild(rightPane);
