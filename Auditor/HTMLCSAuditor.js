@@ -473,7 +473,7 @@ var HTMLCSAuditor = new function()
 
         var issueCountHelpDiv       = document.createElement('div');
         issueCountHelpDiv.id        = _prefix + 'settings-issue-count-help';
-        issueCountHelpDiv.innerHTML = 'Select issue types to include in Report';
+        issueCountHelpDiv.innerHTML = 'Select the types of issues to include in the report';
 
         var viewReportDiv       = document.createElement('div');
         viewReportDiv.id        = _prefix + 'settings-view-report';
