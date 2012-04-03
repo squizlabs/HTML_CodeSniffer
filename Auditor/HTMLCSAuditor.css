@@ -140,6 +140,14 @@
     padding-left: 0;
 }
 
+#HTMLCS-wrapper .HTMLCS-lineage .HTMLCS-lineage-item:first-child span {
+    display: inline-block;
+    line-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    width: 0.2em;
+}
+
 #HTMLCS-wrapper .HTMLCS-lineage .HTMLCS-lineage-item:before {
     background: url("Images/HTMLCS-tools.png") no-repeat scroll 0 -74px transparent;
     content: "";
@@ -325,9 +333,15 @@
     max-height: inherit;
 }
 
+#HTMLCS-wrapper .HTMLCS-issue-detail-list .HTMLCS-issue-details {
+    position: relative;
+    display: block;
+}
+
 #HTMLCS-wrapper .HTMLCS-issue-detail-list > li .HTMLCS-issue-title {
-    border-bottom: 1px solid #000000;
-    padding: 1.2em 0 1.4em;
+    font-size: 1.1em;
+    border-bottom: 1px solid #000;
+    padding: 0.8em 0 1.1em;
     margin: 0 1.4em 0 2.8em;
 }
 
@@ -368,22 +382,46 @@
 }
 
 #HTMLCS-wrapper .HTMLCS-issue-source {
+    position: relative;
+    display: block;
     background: url("Images/bgTexture1.gif") repeat scroll 0 0 #54535A;
     border-top: 1px solid #6C6C6D;
     font-size: 1em;
-    padding: 0.5em 0.8em;
-    position: relative;
+    padding: 0.5em;
+}
+
+#HTMLCS-wrapper .HTMLCS-issue-source .HTMLCS-issue-source-header {
+    text-align: right;
+    font-size: 0.7em;
+    margin: 0 0 0.7em 0;
+}
+
+#HTMLCS-wrapper .HTMLCS-issue-source .HTMLCS-issue-source-header strong {
+    color: #9B99A5;
+    display: inline-block;
+    float: left;
+    font-size: 1.49em;
+    line-height: 1.8em;
+    padding-left: 0.2em;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.6);
 }
 
 #HTMLCS-wrapper .HTMLCS-issue-source-inner {
-  background: none repeat scroll 0 0 #222222;
-  border: 1px solid black;
-  color: #DDDDDD;
-  font-family: monospace;
-  font-size: 0.9em;
-  line-height: 1.2em;
-  margin: 0;
-  padding: 0.2em;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 0.4em;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.4) inset, 0 1px 0 rgba(255, 255, 255, 0.15);
+    color: #787878;
+    font-family: Monaco, monospace;
+    font-size: 0.9em;
+    line-height: 1.4em;
+    margin: 0;
+    padding: 0.6em;
+    overflow: auto;
+}
+
+#HTMLCS-wrapper .HTMLCS-issue-source-inner strong {
+    font-weight: normal;
+    color: #FFF;
 }
 
 #HTMLCS-wrapper .HTMLCS-navigation {
@@ -508,6 +546,10 @@
 
 #HTMLCS-wrapper .HTMLCS-button-icon.HTMLCS-button-pointer {
     background-position: -13px -281px;
+}
+
+#HTMLCS-wrapper .HTMLCS-button-icon.HTMLCS-button-copy {
+    background-position: -13px -304px;
 }
 
 #HTMLCS-wrapper .HTMLCS-settings {
