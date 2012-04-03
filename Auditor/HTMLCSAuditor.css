@@ -563,7 +563,7 @@
 
 #HTMLCS-wrapper .HTMLCS-checkbox.disabled {
     opacity: 0.4;
-    cursor: auto;
+    cursor: default;
 }
 
 #HTMLCS-wrapper .HTMLCS-checkbox-title {
@@ -751,6 +751,7 @@
 
 #HTMLCS-wrapper.processing #HTMLCS-settings-view-report,
 #HTMLCS-wrapper #HTMLCS-settings-view-report.disabled {
+    cursor: default;
     opacity: 0.4;
 }
 

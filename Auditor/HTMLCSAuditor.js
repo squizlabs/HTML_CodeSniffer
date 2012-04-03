@@ -493,6 +493,15 @@ var HTMLCSAuditor = new function()
         var viewReportDiv       = document.createElement('div');
         viewReportDiv.id        = _prefix + 'settings-view-report';
         viewReportDiv.innerHTML = 'View Report';
+
+        // Only disable if we have "currently showing" setting on.
+        if (_options.show !== undefined) {
+            var enable = (_options.show.error || _options.show.warning || _options.show.notice);
+            if (enable === false) {
+                viewReportDiv.className += ' disabled';
+            }
+        }
+
         viewReportDiv.onclick   = function() {
             if (/disabled/.test(this.className) === false) {
                 _options.show = {
@@ -554,6 +563,20 @@ var HTMLCSAuditor = new function()
             }//end if
         }//end for
 
+        // Set default show options based on the first run. Don't re-do these, let
+        // the user's settings take priority, unless there is no message.
+        if (_options.show === undefined) {
+            _options.show = {
+                error: true,
+                warning: true,
+                notice: false
+            }
+
+            if ((levels.error === 0) && (levels.warning === 0)) {
+                _options.show.notice = true;
+            }
+        }
+
         for (var level in levels) {
             var msgCount       = levels[level];
             var levelDiv       = document.createElement('div');
@@ -569,23 +592,32 @@ var HTMLCSAuditor = new function()
 
             levelCountDiv.innerHTML = content;
 
-            var checked  = true;
+            var checked  = _options.show[level];
             var disabled = false;
-            if (level === 'notice') {
-                if ((levels.error === 0) && (levels.warning === 0)) {
-                    checked = true;
-                } else {
-                    checked = _options.alwaysShowNotices;
-                }
-            } else if (msgCount === 0) {
-                checked  = false;
+
+            if (msgCount === 0) {
                 disabled = true;
             }
 
-            var levelSwitch = buildCheckbox(_prefix + 'include-' + level, 'Toggle display of ' + level + ' messages', checked, disabled, function() {
-                var enable = document.getElementById(_prefix + 'include-error').checked;
-                enable     = enable || document.getElementById(_prefix + 'include-warning').checked;
-                enable     = enable || document.getElementById(_prefix + 'include-notice').checked;
+            var levelSwitch = buildCheckbox(_prefix + 'include-' + level, 'Toggle display of ' + level + ' messages', checked, disabled, function(input) {
+                // Only change checkboxes that haven't been disabled.
+                var enable = false;
+
+                if (document.getElementById(_prefix + 'include-error').disabled === false) {
+                    _options.show.error = document.getElementById(_prefix + 'include-error').checked;
+                    enable = enable || _options.show.error;
+                }
+
+                if (document.getElementById(_prefix + 'include-warning').disabled === false) {
+                    _options.show.warning = document.getElementById(_prefix + 'include-warning').checked;
+                    enable = enable || _options.show.warning;
+                }
+
+                if (document.getElementById(_prefix + 'include-notice').disabled === false) {
+                    _options.show.notice = document.getElementById(_prefix + 'include-notice').checked;
+                    enable = enable || _options.show.notice;
+                }
+
                 if (enable === true) {
                     viewReportDiv.className = viewReportDiv.className.replace(/ disabled/, '');
                 } else {
