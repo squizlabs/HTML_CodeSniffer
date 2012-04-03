@@ -1403,7 +1403,8 @@ var HTMLCSAuditor = new function()
 
         pointTo: function(elem) {
             // If the specified elem is not in the DOM then we cannot point to it.
-            if (!elem) {
+            // Also, cannot point to the document itself.
+            if (!elem || (elem === document)) {
                 return;
             }
 
