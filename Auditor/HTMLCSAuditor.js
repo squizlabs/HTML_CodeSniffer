@@ -731,6 +731,9 @@ var HTMLCSAuditor = new function()
         var msg = document.createElement('li');
         msg.id  = _prefix + 'msg-detail-' + id;
 
+        var msgDetailsDiv       = document.createElement('div');
+        msgDetailsDiv.className = _prefix + 'issue-details';
+
         var msgType       = document.createElement('span');
         msgType.className = _prefix + 'issue-type ' + typeClass;
         msgType.setAttribute('title', typeText);
@@ -746,12 +749,15 @@ var HTMLCSAuditor = new function()
         refContent          += '<em>Technique:</em> ' + techniquesStr.join(' '); + '<br/>';
         msgWcagRef.innerHTML = refContent;
 
-        msg.appendChild(msgType);
-        msg.appendChild(msgTitle);
-        msg.appendChild(msgWcagRef);
+        msgDetailsDiv.appendChild(msgType);
+        msgDetailsDiv.appendChild(msgTitle);
+        msgDetailsDiv.appendChild(msgWcagRef);
+        msg.appendChild(msgDetailsDiv);
 
+        // Build the source view, if outerHTML exists (Firefox >= 11, Webkit, IE),
+        // and applies to the particular element (ie. document doesn't have it).
         if (message.element.outerHTML) {
-            var preText = '';
+            var preText  = '';
             var postText = '';
 
             if (message.element.innerHTML.length > 31) {
@@ -768,7 +774,7 @@ var HTMLCSAuditor = new function()
                 } else {
                     if (preNode.nodeType === 1) {
                         // Element node.
-                        preText = preNode.outerHTML.replace(preNode.innerHTML, '') + preText;
+                        preText = preNode.outerHTML;
                     } else if (preNode.nodeType === 3) {
                         // Text node.
                         preText = preNode.textContent + preText;
@@ -790,14 +796,14 @@ var HTMLCSAuditor = new function()
                 } else {
                     if (postNode.nodeType === 1) {
                         // Element node.
-                        postText += postNode.outerHTML.replace(postNode.innerHTML, '');
+                        postText += postNode.outerHTML;
                     } else if (postNode.nodeType === 3) {
                         // Text node.
                         postText += postNode.textContent;
                     }
 
                     if (postText.length > 31) {
-                        postText = postText.substr(0, 31);
+                        postText = postText.substr(0, 31) + '...';
                     }
                 }
 
@@ -807,10 +813,31 @@ var HTMLCSAuditor = new function()
             var msgElementSource       = document.createElement('div');
             msgElementSource.className = _prefix + 'issue-source';
 
+            // Header row.
+            var msgElementSourceHeader       = document.createElement('div');
+            msgElementSourceHeader.className = _prefix + 'issue-source-header';
+
+            var msgSourceHeaderText         = document.createElement('strong');
+            msgSourceHeaderText.textContent = 'Code Snippet';
+
+            var btnPointTo = buildSummaryButton(_prefix + 'point-to-element', 'pointer', 'Point to Element');
+            var btnCopy    = buildSummaryButton(_prefix + 'copy-to-clipboard', 'copy', 'Copy to Clipboard');
+
+            msgElementSourceHeader.appendChild(msgSourceHeaderText);
+            msgElementSourceHeader.appendChild(btnPointTo);
+            msgElementSourceHeader.appendChild(btnCopy);
+
+            // Actual source code, highlighting offending element.
             var msgElementSourceInner       = document.createElement('div');
             msgElementSourceInner.className = _prefix + 'issue-source-inner';
-            msgElementSourceInner.appendChild(document.createTextNode(preNode + outerHTML + postNode));
 
+            var msgElementSourceMain         = document.createElement('strong');
+            msgElementSourceMain.textContent = outerHTML;
+            msgElementSourceInner.appendChild(document.createTextNode(preText));
+            msgElementSourceInner.appendChild(msgElementSourceMain);
+            msgElementSourceInner.appendChild(document.createTextNode(postText));
+
+            msgElementSource.appendChild(msgElementSourceHeader);
             msgElementSource.appendChild(msgElementSourceInner);
             msg.appendChild(msgElementSource);
         }
