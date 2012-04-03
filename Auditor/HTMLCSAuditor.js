@@ -29,9 +29,18 @@ var HTMLCSAuditor = new function()
         button.appendChild(nbsp);
 
         if ((onclick instanceof Function) === true) {
-            button.onclick = function() {
+            button.onclick = function(event) {
                 if (/disabled/.test(button.className) === false) {
-                    onclick();
+                    var target = event.target;
+                    var regexp = new RegExp(_prefix + 'button');
+                    while (target !== null) {
+                        if ((target.nodeName.toLowerCase() === 'div') && (regexp.test(target.className) === true)) {
+                            break;
+                        }
+                        target = target.parentNode;
+                    }
+
+                    onclick(target);
                 }
             };
         }
@@ -334,12 +343,7 @@ var HTMLCSAuditor = new function()
         lineage.appendChild(lineageTotalsItem);
         leftPane.appendChild(lineage);
 
-        // Element pointer.
-        rightPane.appendChild(buildSummaryButton(_prefix + 'button-settings', 'pointer', 'Point to Element', function() {
-            pointToIssueElement(issue - 1);
-        }));
-
-        rightPane.appendChild(buildSummaryButton(_prefix + 'button-settings', 'previous', 'Previous Issue', function() {
+        var prevButton = buildSummaryButton(_prefix + 'button-previous-issue', 'previous', 'Previous Issue', function(target) {
             var newIssue = Number(issue) - 1;
 
             if (newIssue >= 1) {
@@ -351,12 +355,11 @@ var HTMLCSAuditor = new function()
 
                 var issueList = document.querySelectorAll('.HTMLCS-issue-detail-list')[0];
                 issueList.firstChild.style.marginLeft = (parseInt(issueList.firstChild.style.marginLeft, 10) + 300) + 'px';
-
                 pointToIssueElement(newIssue - 1);
-            }
-        }));
+            }//end if
+        });
 
-        rightPane.appendChild(buildSummaryButton(_prefix + 'button-rerun', 'next', 'Next Issue', function() {
+        var nextButton = buildSummaryButton(_prefix + 'button-next-issue', 'next', 'Next Issue', function(target) {
             var newIssue = Number(issue) + 1;
 
             if (newIssue <= _messages.length) {
@@ -368,10 +371,18 @@ var HTMLCSAuditor = new function()
 
                 var issueList = document.querySelectorAll('.HTMLCS-issue-detail-list')[0];
                 issueList.firstChild.style.marginLeft = (parseInt(issueList.firstChild.style.marginLeft, 10) - 300) + 'px';
-
                 pointToIssueElement(newIssue - 1);
-            }
-        }));
+            }//end if
+        });
+
+        if (issue === 1) {
+            prevButton.className += ' disabled';
+        } else if (issue === totalIssues) {
+            nextButton.className += ' disabled';
+        }
+
+        rightPane.appendChild(prevButton);
+        rightPane.appendChild(nextButton);
 
         summary.appendChild(leftPane);
         summary.appendChild(rightPane);
@@ -728,8 +739,8 @@ var HTMLCSAuditor = new function()
             techniquesStr.push('<a href="http://www.w3.org/TR/WCAG20-TECHS/' + techniques[i][0] + '" target="_blank">' + techniques[i][0] + '</a>');
         }
 
-        var msg = document.createElement('li');
-        msg.id  = _prefix + 'msg-detail-' + id;
+        var msgDiv = document.createElement('li');
+        msgDiv.id  = _prefix + 'msg-detail-' + id;
 
         var msgDetailsDiv       = document.createElement('div');
         msgDetailsDiv.className = _prefix + 'issue-details';
@@ -752,7 +763,7 @@ var HTMLCSAuditor = new function()
         msgDetailsDiv.appendChild(msgType);
         msgDetailsDiv.appendChild(msgTitle);
         msgDetailsDiv.appendChild(msgWcagRef);
-        msg.appendChild(msgDetailsDiv);
+        msgDiv.appendChild(msgDetailsDiv);
 
         // Build the source view, if outerHTML exists (Firefox >= 11, Webkit, IE),
         // and applies to the particular element (ie. document doesn't have it).
@@ -820,8 +831,12 @@ var HTMLCSAuditor = new function()
             var msgSourceHeaderText         = document.createElement('strong');
             msgSourceHeaderText.textContent = 'Code Snippet';
 
-            var btnPointTo = buildSummaryButton(_prefix + 'point-to-element', 'pointer', 'Point to Element');
-            var btnCopy    = buildSummaryButton(_prefix + 'copy-to-clipboard', 'copy', 'Copy to Clipboard');
+            var btnPointTo = buildSummaryButton(_prefix + 'button-point-to-element', 'pointer', 'Point to Element', function() {
+                pointer.container = document.getElementById(_prefix + 'wrapper');
+                pointer.pointTo(message.element);
+            })
+
+            var btnCopy = buildSummaryButton(_prefix + 'copy-to-clipboard', 'copy', 'Copy to Clipboard');
 
             msgElementSourceHeader.appendChild(msgSourceHeaderText);
             msgElementSourceHeader.appendChild(btnPointTo);
@@ -839,10 +854,10 @@ var HTMLCSAuditor = new function()
 
             msgElementSource.appendChild(msgElementSourceHeader);
             msgElementSource.appendChild(msgElementSourceInner);
-            msg.appendChild(msgElementSource);
+            msgDiv.appendChild(msgElementSource);
         }
 
-        return msg;
+        return msgDiv;
     };
 
     var buildNavigation = function(page, totalPages) {
