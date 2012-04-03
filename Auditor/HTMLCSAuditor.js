@@ -254,8 +254,10 @@ var HTMLCSAuditor = new function()
         var lineageHomeLink       = document.createElement('a');
         lineageHomeLink.className = _prefix + 'lineage-link';
         lineageHomeLink.href      = 'javascript:';
-        lineageHomeLink.innerHTML = '&nbsp;';
-        lineageHomeLink.setAttribute('title', 'Summary');
+
+        var lineageHomeSpan       = document.createElement('span');
+        lineageHomeSpan.innerHTML = 'Home';
+        lineageHomeLink.appendChild(lineageHomeSpan);
 
         lineageHomeLink.onmousedown = function() {
             HTMLCSAuditor.run(_standard, _source, _options);
@@ -304,8 +306,10 @@ var HTMLCSAuditor = new function()
         var lineageHomeLink       = document.createElement('a');
         lineageHomeLink.className = _prefix + 'lineage-link';
         lineageHomeLink.href      = 'javascript:';
-        lineageHomeLink.innerHTML = '&nbsp;';
-        lineageHomeLink.setAttribute('title', 'Summary');
+
+        var lineageHomeSpan       = document.createElement('span');
+        lineageHomeSpan.innerHTML = 'Home';
+        lineageHomeLink.appendChild(lineageHomeSpan);
 
         lineageHomeLink.onmousedown = function() {
             HTMLCSAuditor.run(_standard, _source, _options);
@@ -334,7 +338,7 @@ var HTMLCSAuditor = new function()
         // Issue Count item.
         var lineageTotalsItem       = document.createElement('li');
         lineageTotalsItem.className = _prefix + 'lineage-item';
-        lineageTotalsItem.innerHTML = issue + ' of ' + totalIssues;
+        lineageTotalsItem.innerHTML = 'Issue ' + issue + ' of ' + totalIssues;
 
         lineageHomeItem.appendChild(lineageHomeLink);
         lineageReportItem.appendChild(lineageReportLink);
