@@ -208,14 +208,14 @@ var HTMLCSAuditor = new function()
 
         var leftContents = [];
 
-        var divider = '<span class="' + _prefix + 'divider"></span>';
+        var divider = ', &nbsp;<span class="' + _prefix + 'divider"></span>';
 
         if (errors > 0) {
             var typeName = 'Errors';
             if (errors === 1) {
                 typeName = 'Error';
             }
-            leftContents.push('<strong>' + errors + '</strong> ' + typeName + ', &nbsp;');
+            leftContents.push('<strong>' + errors + '</strong> ' + typeName);
         }
 
         if (warnings > 0) {
@@ -231,7 +231,7 @@ var HTMLCSAuditor = new function()
             if (notices === 1) {
                 typeName = 'Notice';
             }
-            leftContents.push(', &nbsp;<strong>' + notices + '</strong> ' + typeName);
+            leftContents.push('<strong>' + notices + '</strong> ' + typeName);
         }
 
         // Start lineage in left pane.
