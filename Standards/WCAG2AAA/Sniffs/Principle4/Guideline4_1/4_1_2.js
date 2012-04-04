@@ -226,14 +226,16 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
 
             var builtAttr = '';
             if (requiredValue === '_content') {
-                builtAttr = 'element\'s content';
+                builtAttr = 'by adding content to the element';
+            } else if (requiredValue === 'option_selected') {
+                builtAttr = 'by adding a "selected" attribute to one of its options';
             } else if (requiredValue.charAt(0) === '@') {
-                builtAttr = requiredValue + ' attribute';
+                builtAttr = 'using the ' + requiredValue + ' attribute';
             } else {
-                builtAttr = requiredValue + ' element';
+                builtAttr = 'using the ' +requiredValue + ' element';
             }
 
-            HTMLCS.addMessage(HTMLCS.ERROR, element, 'This ' + msgNodeType + ' does not have a value available to an accessibility API. Add one using the ' + builtAttr + '.', 'H91.' + msgSubCode + '.Value');
+            HTMLCS.addMessage(HTMLCS.ERROR, element, 'This ' + msgNodeType + ' does not have a value available to an accessibility API. Add one ' + builtAttr + '.', 'H91.' + msgSubCode + '.Value');
         }
     }
 };
