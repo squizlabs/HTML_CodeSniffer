@@ -10,11 +10,18 @@
     width: auto;
     font-size: inherit;
     line-height: inherit;
+    box-sizing: content-box;
+    -moz-box-sizing: content-box;
 }
 
 #HTMLCS-wrapper a,
 #HTMLCS-wrapper a:visited {
     border: none;
+    background: none;
+}
+
+#HTMLCS-wrapper a:hover {
+    background: none;
 }
 
 /* Start HTMLCS */
@@ -198,6 +205,7 @@
 #HTMLCS-wrapper .HTMLCS-outer-wrapper {
     width: 70em;
     overflow: hidden;
+    text-align: left;
 }
 
 #HTMLCS-wrapper .HTMLCS-inner-wrapper {
@@ -386,20 +394,33 @@
 
 #HTMLCS-wrapper .HTMLCS-issue-detail-list > li .HTMLCS-issue-wcag-ref > a,
 #HTMLCS-wrapper .HTMLCS-issue-detail-list > li .HTMLCS-issue-wcag-ref > a:visited {
-    border-bottom: 1px solid #87878E;
+    border-bottom: 1px solid #777;
     color: #DBDBE1;
     display: inline-block;
     font-style: normal;
     text-decoration: none;
+    line-height: 1.2em;
+    margin-right: 0.3em;
+}
+
+#HTMLCS-wrapper .HTMLCS-issue-detail-list > li .HTMLCS-issue-wcag-ref > a:hover {
+    border-bottom-color: #87878E;
 }
 
 #HTMLCS-wrapper .HTMLCS-issue-detail-list > li .HTMLCS-issue-wcag-ref > a:after {
     background: url("Images/HTMLCS-tools.png") no-repeat scroll 0 -48px transparent;
     content: "";
     display: inline-block;
+    opacity: 0.6;
+    filter: alpha(opacity=60);
     height: 11px;
     margin: 0 0 0 0.5em;
     width: 12px;
+}
+
+#HTMLCS-wrapper .HTMLCS-issue-detail-list > li .HTMLCS-issue-wcag-ref > a:hover:after {
+    opacity: 1;
+    filter: alpha(opacity=100);
 }
 
 #HTMLCS-wrapper .HTMLCS-issue-source {
