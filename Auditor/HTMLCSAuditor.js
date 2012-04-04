@@ -29,18 +29,9 @@ var HTMLCSAuditor = new function()
         button.appendChild(nbsp);
 
         if ((onclick instanceof Function) === true) {
-            button.onclick = function(event) {
+            button.onclick = function() {
                 if (/disabled/.test(button.className) === false) {
-                    var target = event.target;
-                    var regexp = new RegExp(_prefix + 'button');
-                    while (target !== null) {
-                        if ((target.nodeName.toLowerCase() === 'div') && (regexp.test(target.className) === true)) {
-                            break;
-                        }
-                        target = target.parentNode;
-                    }
-
-                    onclick(target);
+                    onclick(button);
                 }
             };
         }
@@ -57,6 +48,8 @@ var HTMLCSAuditor = new function()
         if (checked === undefined) {
             checked = false;
         }
+
+        var isIE = new RegExp('msie', 'i').test(navigator.userAgent);
 
         var label   = document.createElement('label');
         var content = '';
@@ -92,6 +85,12 @@ var HTMLCSAuditor = new function()
                 onclick(input);
             }
         };
+
+        if (isIE === true) {
+            label.onclick = function() {
+                input.click();
+            }
+        }
 
         return label;
     };
@@ -828,7 +827,11 @@ var HTMLCSAuditor = new function()
                         preText = preNode.outerHTML;
                     } else if (preNode.nodeType === 3) {
                         // Text node.
-                        preText = preNode.textContent + preText;
+                        if (preNode.textContent !== undefined) {
+                            preText = preNode.textContent + preText;
+                        } else {
+                            preText = preNode.nodeValue + preText;
+                        }
                     }
 
                     if (preText.length > 31) {
@@ -850,7 +853,11 @@ var HTMLCSAuditor = new function()
                         postText += postNode.outerHTML;
                     } else if (postNode.nodeType === 3) {
                         // Text node.
-                        postText += postNode.textContent;
+                        if (postNode.textContent !== undefined) {
+                            postText += postNode.textContent;
+                        } else {
+                            postText += postNode.nodeValue;
+                        }
                     }
 
                     if (postText.length > 31) {
@@ -868,15 +875,24 @@ var HTMLCSAuditor = new function()
             var msgElementSourceHeader       = document.createElement('div');
             msgElementSourceHeader.className = _prefix + 'issue-source-header';
 
-            var msgSourceHeaderText         = document.createElement('strong');
-            msgSourceHeaderText.textContent = 'Code Snippet';
+            var msgSourceHeaderText       = document.createElement('strong');
+            msgSourceHeaderText.innerHTML = 'Code Snippet';
 
             var btnPointTo = buildSummaryButton(_prefix + 'button-point-to-element', 'pointer', 'Point to Element', function() {
                 pointer.container = document.getElementById(_prefix + 'wrapper');
                 pointer.pointTo(message.element);
             })
 
-            var btnCopy = buildSummaryButton(_prefix + 'copy-to-clipboard', 'copy', 'Copy to Clipboard');
+            if (pointer.isPointable(message.element) === false) {
+                btnPointTo.className += ' ' + _prefix + 'disabled';
+            }
+
+            var btnCopy = buildSummaryButton(_prefix + 'copy-to-clipboard', 'copy', 'Copy to Clipboard', function() {
+            });
+
+            if (!window.clipboardData) {
+                btnCopy.className += ' ' + _prefix + 'disabled';
+            }
 
             msgElementSourceHeader.appendChild(msgSourceHeaderText);
             msgElementSourceHeader.appendChild(btnPointTo);
@@ -886,8 +902,14 @@ var HTMLCSAuditor = new function()
             var msgElementSourceInner       = document.createElement('div');
             msgElementSourceInner.className = _prefix + 'issue-source-inner';
 
-            var msgElementSourceMain         = document.createElement('strong');
-            msgElementSourceMain.textContent = outerHTML;
+            var msgElementSourceMain       = document.createElement('strong');
+            if (msgElementSourceMain.textContent !== undefined) {
+                msgElementSourceMain.textContent = outerHTML;
+            } else {
+                // IE8 uses innerText instead. Oh well.
+                msgElementSourceMain.innerText = outerHTML;
+            }
+
             msgElementSourceInner.appendChild(document.createTextNode(preText));
             msgElementSourceInner.appendChild(msgElementSourceMain);
             msgElementSourceInner.appendChild(document.createTextNode(postText));
@@ -1401,15 +1423,24 @@ var HTMLCSAuditor = new function()
 
         },
 
-        pointTo: function(elem) {
+        isPointable: function(elem) {
             // If the specified elem is not in the DOM then we cannot point to it.
             // Also, cannot point to the document itself.
             if (!elem || (elem === document)) {
-                return;
+                return false;
             }
 
             // Do not point to elem if its hidden.
-            if (elem.style.visibility === 'hidden') {
+            if ((elem.style.visibility === 'hidden') || (elem.style.display === 'none')) {
+                return false;
+            }
+
+            return true;
+        },
+
+        pointTo: function(elem) {
+            // Do not point to elem if its hidden.
+            if (this.isPointable(elem) === false) {
                 return;
             }
 
