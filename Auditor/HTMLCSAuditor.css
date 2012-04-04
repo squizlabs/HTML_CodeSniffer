@@ -1,3 +1,24 @@
+/* set defaults
+********************************************************/
+
+#HTMLCS-wrapper * {
+    margin: 0;
+    padding: 0;
+    float: none;
+    height: inherit;
+    height: auto;
+    width: auto;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+#HTMLCS-wrapper a,
+#HTMLCS-wrapper a:visited {
+    border: none;
+}
+
+/* Start HTMLCS */
+
 #HTMLCS-wrapper {
     -moz-transition-timing-function: ease;
     -webkit-transition-timing-function: ease;
@@ -15,22 +36,6 @@
     font-family: Arial,Sans Serif;
     font-size: 9px;
     z-index: 100000;
-}
-
-#HTMLCS-wrapper strong, #HTMLCS-wrapper em, #HTMLCS-wrapper div,
-#HTMLCS-wrapper span {
-    margin: 0;
-    border: 0;
-    padding: 0;
-    font-size: inherit;
-    line-height: inherit;
-    background: transparent;
-    color: inherit;
-}
-
-#HTMLCS-wrapper select {
-    background: auto;
-    color: auto;
 }
 
 #HTMLCS-wrapper strong {
@@ -122,6 +127,7 @@
 
 #HTMLCS-wrapper .HTMLCS-lineage {
     list-style: none;
+    color: #000;
 }
 
 #HTMLCS-wrapper .HTMLCS-lineage .HTMLCS-lineage-item {
@@ -146,12 +152,15 @@
     overflow: hidden;
     width: 1.6em;
     height: 1.4em;
-    margin-bottom: -0.5em;
+    line-height: 1em;
 }
 
 #HTMLCS-wrapper .HTMLCS-lineage .HTMLCS-lineage-item:first-child span {
     opacity: 0;
-    display: none;
+    position: absolute;
+    left: -9999px;
+    width: 0;
+    height: 0;
 }
 
 #HTMLCS-wrapper .HTMLCS-lineage .HTMLCS-lineage-item:before {
@@ -176,7 +185,7 @@
     position: absolute;
     left: 46%;
     top: 50%;
-    margin: -7px 0 0 -6px;
+    margin: -6px 0 0 -6px;
     height: 13px;
     width: 12px;
     overflow: hidden;
@@ -206,6 +215,7 @@
 #HTMLCS-wrapper .HTMLCS-details {
     display: none;
     line-height: 2em;
+    text-align: left;
     width: 300px;
     overflow: hidden;
     border-top: 1px solid #2B2B2B;
@@ -308,6 +318,7 @@
 }
 #HTMLCS-wrapper .HTMLCS-issue-list > li > .HTMLCS-issue-title {
     line-height: 1.2em;
+    text-align: left;
 }
 
 #HTMLCS-wrapper .HTMLCS-details > .HTMLCS-issue-list > li:hover {
@@ -344,6 +355,7 @@
 #HTMLCS-wrapper .HTMLCS-issue-detail-list .HTMLCS-issue-details {
     position: relative;
     display: block;
+    border-bottom: 1px solid #2b2b2b;
 }
 
 #HTMLCS-wrapper .HTMLCS-issue-detail-list > li .HTMLCS-issue-title {
@@ -364,6 +376,7 @@
 
 #HTMLCS-wrapper .HTMLCS-issue-detail-list > li .HTMLCS-issue-wcag-ref > em {
     color: #8F8F94;
+    background: none;
     display: inline-block;
     font-style: normal;
     font-weight: bold;
@@ -746,8 +759,12 @@
     background-position: 0 -185px;
 }
 
+#HTMLCS-wrapper #HTMLCS-settings-use-standard label {
+    color: #FFF;
+}
 #HTMLCS-wrapper #HTMLCS-settings-use-standard > select {
     float: right;
+    margin-top: -0.1em;
 }
 
 #HTMLCS-wrapper #HTMLCS-settings-use-standard:after {
@@ -773,15 +790,16 @@
     border: 1px solid #2B2B2B;
     border-radius: 0.3em 0.3em 0.3em 0.3em;
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 0 rgba(255, 255, 255, 0.15), 0 -1.4em 1.6em rgba(0, 0, 0, 0.4) inset;
-    color: #FFFFFF;
+    color: #FFF;
     cursor: pointer;
     font-size: 1.9em;
     line-height: 3em;
     position: relative;
-    text-shadow: 0 -1px 0 #000000;
+    text-shadow: 0 -1px 0 #000;
     -moz-transition: opacity 0.3s ease;
     -webkit-transition: opacity 0.3s ease;
     opacity: 1;
+    text-align: center;
 }
 
 #HTMLCS-wrapper #HTMLCS-settings-view-report:after {
@@ -810,18 +828,8 @@
     opacity: 0.3;
 }
 
-#HTMLCS-wrapper .HTMLCS-issue-count {
-    display: block;
-    position: relative;
-    color: white;
-    text-shadow: 0 -1px rgba(0, 0, 0, 0.3);
-    font-size: 1.7em;
-    line-height: 1.5em;
-    padding: 0.9em 0 1.8em;
-    border: 1px solid #393939;
-    border-bottom: none;
-    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset;
-    border-radius: 0.3em 0.3em 0 0;
+#HTMLCS-wrapper #HTMLCS-settings-issue-count {
+    text-align: center;
 }
 
 #HTMLCS-wrapper.processing .HTMLCS-tile-text > strong {
@@ -853,6 +861,7 @@
     color: #AAAAAA;
     display: block;
     font-size: 1.3em;
+    text-align: center;
     padding: 1em 0;
     text-shadow: 0 -1px rgba(0, 0, 0, 0.3);
 }
@@ -862,6 +871,7 @@
     display: inline-block;
     margin-left: 0.5em;
     width: 31%;
+    text-align: center;
 }
 
 #HTMLCS-wrapper .HTMLCS-issue-tile:first-child {
@@ -901,7 +911,9 @@
 
 #HTMLCS-wrapper .HTMLCS-tile-text > strong {
     font-size: 1.7em;
+    color: #FFF;
     display: block;
+    text-align: center;
 }
 
 #HTMLCS-wrapper .HTMLCS-issue-tile > .HTMLCS-tile-text {
@@ -916,6 +928,7 @@
     padding: 0.9em 0 1.8em;
     position: relative;
     text-shadow: 0 -1px rgba(0, 0, 0, 0.3);
+    text-align: center;
 }
 
 #HTMLCS-wrapper .HTMLCS-issue-tile > .HTMLCS-checkbox {
