@@ -5,7 +5,7 @@ html {
 
 body {
 	margin:0;
-	font-family:verdana, arial, sans-serif;
+	font-family:helvetica, arial, sans-serif;
 	color:#4e4e4e;
 	background: url(../images/gn-bg.png) #fbfbfb;
 }
@@ -21,7 +21,7 @@ h1,h2,h3,h4,h5,h6 {
 h1 {
 	color:#ffffff;
 	font-weight:bold;
-	font-size:34px;
+	font-size:36px;
 	text-shadow:0 -1px 0 rgba(0,0,0,.6), 0 1px 0 rgba(255,255,255,1);
 }
 
@@ -82,15 +82,15 @@ table {
 	background: linear-gradient(top,  rgba(203,105,40,1) 0%,rgba(157,82,35,1) 90%,rgba(147,76,33,1) 100%); /* W3C */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cb6928', endColorstr='#934c21',GradientType=0 ); /* IE6-9 */
 	border-bottom:1px solid #7d411c;
-	height:80px;
-	padding-top:30px;
+	height:77px;
+	padding-top:35px;
 }
 
 #header #sprites {
 	position:absolute;
 	right:0;
-	top:4px;
-	width:280px;
+	top:3px;
+	width:250px;
 	list-style:none;
 	margin:0;
 	padding:0;
@@ -194,11 +194,7 @@ table {
 }
 
 #introduction #content {
-	width:480px;
-}
-
-#introduction #content p {
-	margin-left:1px;
+	width:470px;
 }
 
 #introduction #bookmarklet {
@@ -283,9 +279,57 @@ table {
 	z-index:3;
 }
 
+#test-area {
+	background: url(images/introduction-bg.png) #fbfbfb;
+	display:relative;
+	z-index:2;
+	padding-top:20px;
+	border:1px solid red;
+
+}
+
+#test-area th{
+	background-color:#dddcdc;
+	padding:6px;
+	font-weight:bold; 
+	font-size:15px;
+	text-align:left;
+	text-shadow:0 -1px 0 rgba(0,0,0,0), 0 1px 0 rgba(255,255,255,.9);
+	border-right:1px solid #cccccc;
+}
+
+#test-area td{
+	padding:6px;
+	text-align:left;
+	text-shadow:0 -1px 0 rgba(0,0,0,0), 0 1px 0 rgba(255,255,255,1);
+	border-right:1px solid #cccccc;
+}
+
+#test-area tr:nth-child(even) {
+	background: #fafafa;
+}
+#test-area tr:nth-child(odd) {
+	background: #f0f0f0;
+}
+
+
+#code-overlay {
+	background-color:rgba(0,0,0,.65);
+	width:1000px;
+	height:260px;
+	color:#ffffff;
+	font-size:25px; 
+	font-weight:bold;
+	text-align:center;
+	text-shadow:0 -1px 0 rgba(0,0,0,0), 0 1px 0 rgba(255,255,255,.2);
+	padding-top:70px;
+	box-sizing:border-box;
+	box-shadow:0 0 80px rgba(0,0,0,.4) inset;
+}
+
 #footer {
 	position:relative;
-	background: url(../images/gn-bg.png) #fbfbfb;
+	background: #ffffff url(../images/gn-bg.png);
 	text-align:center;
 	padding:20px 0;
 	z-index:10;
