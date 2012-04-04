@@ -497,15 +497,7 @@ var HTMLCSAuditor = new function()
         viewReportDiv.id        = _prefix + 'settings-view-report';
         viewReportDiv.innerHTML = 'View Report';
 
-        // Only disable if we have "currently showing" setting on.
-        if (_options.show !== undefined) {
-            var enable = (_options.show.error || _options.show.warning || _options.show.notice);
-            if (enable === false) {
-                viewReportDiv.className += ' disabled';
-            }
-        }
-
-        viewReportDiv.onclick   = function() {
+        viewReportDiv.onclick = function() {
             if (/disabled/.test(this.className) === false) {
                 _options.show = {
                     error: document.getElementById(_prefix + 'include-error').checked,
@@ -568,7 +560,7 @@ var HTMLCSAuditor = new function()
 
         // Set default show options based on the first run. Don't re-do these, let
         // the user's settings take priority, unless there is no message.
-        if (_options.show === undefined) {
+        if ((_options.show === undefined) && (_messages.length > 0)) {
             _options.show = {
                 error: true,
                 warning: true,
@@ -595,11 +587,16 @@ var HTMLCSAuditor = new function()
 
             levelCountDiv.innerHTML = content;
 
-            var checked  = _options.show[level];
-            var disabled = false;
+            if (_options.show === undefined) {
+                var checked  = false;
+                var disabled = true;
+            } else {
+                var checked  = _options.show[level];
+                var disabled = false;
 
-            if (msgCount === 0) {
-                disabled = true;
+                if (msgCount === 0) {
+                    disabled = true;
+                }
             }
 
             var levelSwitch = buildCheckbox(_prefix + 'include-' + level, 'Toggle display of ' + level + ' messages', checked, disabled, function(input) {
@@ -631,6 +628,16 @@ var HTMLCSAuditor = new function()
             levelDiv.appendChild(levelCountDiv);
             levelDiv.appendChild(levelSwitch);
             issueCountDiv.appendChild(levelDiv);
+        }
+
+        // Only disable if we have "currently showing" setting on.
+        if (_options.show !== undefined) {
+            var enable = (_options.show.error || _options.show.warning || _options.show.notice);
+            if (enable === false) {
+                viewReportDiv.className += ' disabled';
+            }
+        } else {
+            viewReportDiv.className += ' disabled';
         }
 
         useStandardDiv.appendChild(useStandardLabel);
@@ -999,7 +1006,7 @@ var HTMLCSAuditor = new function()
             var ignore = false;
             switch (messages[i].type) {
                 case HTMLCS.ERROR:
-                    if (options.show.error === false) {
+                    if (_options.show.error === false) {
                         ignore = true;
                     } else {
                         errors++;
@@ -1007,7 +1014,7 @@ var HTMLCSAuditor = new function()
                 break;
 
                 case HTMLCS.WARNING:
-                    if (options.show.warning === false) {
+                    if (_options.show.warning === false) {
                         ignore = true;
                     } else {
                         warnings++;
@@ -1015,7 +1022,7 @@ var HTMLCSAuditor = new function()
                 break;
 
                 case HTMLCS.NOTICE:
-                    if (options.show.notice === false) {
+                    if (_options.show.notice === false) {
                         ignore = true;
                     } else {
                         notices++;
