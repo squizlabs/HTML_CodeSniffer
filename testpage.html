@@ -56,11 +56,13 @@
     <button type="button" onclick="javascript:closeAuditor();">Close</button>
 </fieldset><fieldset>
     <legend>Bookmarklet</legend>
-    <p><a href="javascript:(function(){if(window['HTMLCS']) {HTMLCS.process('WCAG2AAA', document.body, function() {if (console.table) {console.table(HTMLCS.getMessages());} else {console.info(HTMLCS.getMessages());}}); return;} var s=document.createElement('script');s.type='text/javascript';s.src='https://raw.github.com/squizlabs/HTML_CodeSniffer/master/HTMLCS.js';document.body.appendChild(s); var t = setInterval(function() {if(!window['HTMLCS']) {return;} clearInterval(t);HTMLCS.process('WCAG2AAA', document.body, function() {console.table(HTMLCS.getMessages());});}, 100); })()">HTMLCS This Page</a><br/>
+    <div>
+    <p style="margin-top: 0;"><a href="javascript:(function(){if(window['HTMLCS']) {HTMLCS.process('WCAG2AAA', document.body, function() {if (console.table) {console.table(HTMLCS.getMessages());} else {console.info(HTMLCS.getMessages());}}); return;} var s=document.createElement('script');s.type='text/javascript';s.src='https://raw.github.com/squizlabs/HTML_CodeSniffer/master/HTMLCS.js';document.body.appendChild(s); var t = setInterval(function() {if(!window['HTMLCS']) {return;} clearInterval(t);HTMLCS.process('WCAG2AAA', document.body, function() {console.table(HTMLCS.getMessages());});}, 100); })()">HTMLCS This Page</a><br/>
     <em>This bookmarklet runs at WCAG2 Level AAA, and tests this test page (not the source in the text area). Returns issues as an entry in your browser's web console - either in a table if available (eg. Firebug), otherwise as a logged array.</em></div>
 
     <p><a href="javascript:var _p='http://squizlabs.github.com/HTML_CodeSniffer/build/';var h=document.getElementsByTagName('head')[0];var _i=function(s,cb) {var sc=document.createElement('script');sc.onload = function() {sc.onload = null;sc.onreadystatechange = null;cb.call(this);};sc.onreadystatechange = function(){if(/^(complete|loaded)$/.test(this.readyState) === true){sc.onreadystatechange = null;sc.onload();}};sc.src=s;h.appendChild(sc);};var _l=document.createElement('link');_l.rel='stylesheet';type='text/css';_l.href=_p+'HTMLCS.css';h.appendChild(_l);_i(_p+'HTMLCS.js',function(){HTMLCSAuditor.run('WCAG2AA',document);});">HTMLCS Auditor</a><br/>
     <em>Uses the auditor popup, initially set to WCAG2 Level AA.</em></p>
+    </div>
 </fieldset>
 </div>
 </form>
