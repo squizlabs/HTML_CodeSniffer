@@ -884,19 +884,11 @@ var HTMLCSAuditor = new function()
             })
 
             if (pointer.isPointable(message.element) === false) {
-                btnPointTo.className += ' ' + _prefix + 'disabled';
-            }
-
-            var btnCopy = buildSummaryButton(_prefix + 'copy-to-clipboard', 'copy', 'Copy to Clipboard', function() {
-            });
-
-            if (!window.clipboardData) {
-                btnCopy.className += ' ' + _prefix + 'disabled';
+                btnPointTo.className += ' disabled';
             }
 
             msgElementSourceHeader.appendChild(msgSourceHeaderText);
             msgElementSourceHeader.appendChild(btnPointTo);
-            msgElementSourceHeader.appendChild(btnCopy);
 
             // Actual source code, highlighting offending element.
             var msgElementSourceInner       = document.createElement('div');
@@ -1430,8 +1422,28 @@ var HTMLCSAuditor = new function()
                 return false;
             }
 
-            // Do not point to elem if its hidden.
-            if ((elem.style.visibility === 'hidden') || (elem.style.display === 'none')) {
+            // Do not point to elem if its hidden. Use computed styles.
+            if (elem.currentStyle) {
+                // IE 8.
+                var style = elem.currentStyle;
+            } else {
+                var style = window.getComputedStyle(elem);
+            }
+
+            if ((style.visibility === 'hidden') || (style.display === 'none')) {
+                return false;
+            }
+
+            // Get element coords.
+            var rect = this.getBoundingRectangle(elem);
+
+            // If we cannot get the position then dont do anything,
+            // most likely element is hidden.
+            if (rect.x1 === 0
+                && rect.x2 === 0
+                || rect.x1 === rect.x2
+                || rect.y1 === rect.y2
+            ) {
                 return false;
             }
 
@@ -1445,18 +1457,7 @@ var HTMLCSAuditor = new function()
             }
 
             // Get element coords.
-            var rect = this.getBoundingRectangle(elem);
-
-            // If we cannot get the position then dont do anything,
-            // most likely element is hidden.
-            if (rect.x1 === 0
-                && rect.x2 === 0
-                || rect.x1 === rect.x2
-                || rect.y1 === rect.y2
-            ) {
-                return;
-            }
-
+            var rect    = this.getBoundingRectangle(elem);
             var pointer = this.getPointer(elem);
 
             pointer.style.display = 'block';
