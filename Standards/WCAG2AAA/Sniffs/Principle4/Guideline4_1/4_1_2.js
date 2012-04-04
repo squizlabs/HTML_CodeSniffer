@@ -150,13 +150,14 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
                 } else if (requiredName === 'label') {
                     // Label element.
                     if ((element.hasAttribute('id')) && (/^\s*$/.test(element.getAttribute('id')) === false)) {
-                        // Only test if the ID is valid, otherwise querySelector will complain.
-                        // That is, if the ID starts with a letter.
-                        if (/^[A-Za-z]$/.test(element.getAttribute('id').charAt(0)) === true) {
+                        // Only test if the ID is valid CSS identifier, otherwise querySelector will complain.
+                        if (/^\-?[A-Za-z][A-Za-z0-9\-_]*$/.test(element.getAttribute('id')) === true) {
                             var label = top.querySelector('label[for=' + element.getAttribute('id') + ']');
                             if (label !== null) {
                                 break;
                             }
+                        } else {
+                            HTMLCS.addMessage(HTMLCS.ERROR, element, 'Unable to automatically test for a label for element ID "' + element.getAttribute('id') + '".', 'H91.' + msgSubCode + '.NameInvalid');
                         }
                     }
                 } if (requiredName.charAt(0) === '@') {

@@ -677,7 +677,7 @@ var HTMLCSAuditor = new function()
         var typeClass  = typeText.toLowerCase();
         var messageMsg = message.msg;
         if (messageMsg.length > 115) {
-            messageMsg = messageMsg.substr(0, 115) + '…';
+            messageMsg = messageMsg.substr(0, 115) + '...';
         }
 
         var msg = document.createElement('li');
