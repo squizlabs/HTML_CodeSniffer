@@ -62,8 +62,10 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
             // essentially misusing them. Place an ID on a parent element instead.
             if (/^\s*$/.test(content) === true) {
                 // Also no content. (eg. <a id=""></a> or <a name=""></a>)
-                if ((element.hasAttribute('id') === true) || (element.hasAttribute('name') === true)) {
+                if (element.hasAttribute('id') === true) {
                     HTMLCS.addMessage(HTMLCS.ERROR, element, 'Empty anchor elements should not be used for defining a in-page link target. Consider moving its ID to a parent or nearby element.', 'H91.A.Empty');
+                } else if (element.hasAttribute('name') === true) {
+                    HTMLCS.addMessage(HTMLCS.ERROR, element, 'Empty anchor elements should not be used for defining a in-page link target. Consider moving the name attribute to become an ID of a parent or nearby element.', 'H91.A.EmptyWithName');
                 } else {
                     HTMLCS.addMessage(HTMLCS.ERROR, element, 'Empty anchor element found.', 'H91.A.EmptyNoId');
                 }
@@ -147,7 +149,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
                     }
                 } else if (requiredName === 'label') {
                     // Label element.
-                    if (element.hasAttribute('id')) {
+                    if ((element.hasAttribute('id')) && (/^\s*$/.test(element.getAttribute('id')) === false)) {
                         var label = top.querySelector('label[for=' + element.getAttribute('id') + ']');
                         if (label !== null) {
                             break;
