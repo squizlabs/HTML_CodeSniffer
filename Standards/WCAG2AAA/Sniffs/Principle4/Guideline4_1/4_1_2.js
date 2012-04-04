@@ -150,9 +150,13 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
                 } else if (requiredName === 'label') {
                     // Label element.
                     if ((element.hasAttribute('id')) && (/^\s*$/.test(element.getAttribute('id')) === false)) {
-                        var label = top.querySelector('label[for=' + element.getAttribute('id') + ']');
-                        if (label !== null) {
-                            break;
+                        // Only test if the ID is valid, otherwise querySelector will complain.
+                        // That is, if the ID starts with a letter.
+                        if (/^[A-Za-z]$/.test(element.getAttribute('id').charAt(0)) === true) {
+                            var label = top.querySelector('label[for=' + element.getAttribute('id') + ']');
+                            if (label !== null) {
+                                break;
+                            }
                         }
                     }
                 } if (requiredName.charAt(0) === '@') {
