@@ -61,8 +61,8 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
             // having an (ARIA) role of "link", and using them as targets are
             // essentially misusing them. Place an ID on a parent element instead.
             if (/^\s*$/.test(content) === true) {
-                // Also no content. (eg. <a id=""></a>)
-                if (element.hasAttribute('id') === true) {
+                // Also no content. (eg. <a id=""></a> or <a name=""></a>)
+                if ((element.hasAttribute('id') === true) || (element.hasAttribute('name') === true)) {
                     HTMLCS.addMessage(HTMLCS.ERROR, element, 'Empty anchor elements should not be used for defining a in-page link target. Consider moving its ID to a parent or nearby element.', 'H91.A.Empty');
                 } else {
                     HTMLCS.addMessage(HTMLCS.ERROR, element, 'Empty anchor element found.', 'H91.A.EmptyNoId');
