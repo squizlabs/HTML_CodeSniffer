@@ -138,14 +138,20 @@
 
 #HTMLCS-wrapper .HTMLCS-lineage .HTMLCS-lineage-item:first-child {
     padding-left: 0;
+    padding-right: 0.3em;
+}
+
+#HTMLCS-wrapper .HTMLCS-lineage .HTMLCS-lineage-item:first-child .HTMLCS-lineage-link {
+    display: inline-block;
+    overflow: hidden;
+    width: 1.6em;
+    height: 1.4em;
+    margin-bottom: -0.5em;
 }
 
 #HTMLCS-wrapper .HTMLCS-lineage .HTMLCS-lineage-item:first-child span {
-    display: inline-block;
-    line-height: 0;
     opacity: 0;
-    overflow: hidden;
-    width: 0.2em;
+    display: none;
 }
 
 #HTMLCS-wrapper .HTMLCS-lineage .HTMLCS-lineage-item:before {
@@ -153,8 +159,8 @@
     content: "";
     position: absolute;
     left: 0;
-    top: 50%;
-    margin-top: -16px;
+    top: 40%;
+    margin-top: -14px;
     height: 32px;
     width: 10px;
 }
@@ -166,8 +172,11 @@
 #HTMLCS-wrapper .HTMLCS-lineage .HTMLCS-lineage-item:first-child .HTMLCS-lineage-link:after {
     background: url("Images/HTMLCS-tools.png") no-repeat scroll -40px -281px transparent;
     content: "";
-    display: inline-block;
-    margin-bottom: -0.2em;
+    display: block;
+    position: absolute;
+    left: 46%;
+    top: 50%;
+    margin: -7px 0 0 -6px;
     height: 13px;
     width: 12px;
     overflow: hidden;
@@ -192,7 +201,6 @@
     overflow: hidden;
     -moz-transition: margin 0.2s ease-in 0s;
     -webkit-transition: margin 0.2s ease-in 0s;
-
 }
 
 #HTMLCS-wrapper .HTMLCS-details {
@@ -339,7 +347,7 @@
 }
 
 #HTMLCS-wrapper .HTMLCS-issue-detail-list > li .HTMLCS-issue-title {
-    font-size: 1.1em;
+    font-size: 1.07em;
     border-bottom: 1px solid #000;
     padding: 0.8em 0 1.1em;
     margin: 0 1.4em 0 2.8em;
