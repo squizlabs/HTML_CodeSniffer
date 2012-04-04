@@ -1486,10 +1486,10 @@ var HTMLCSAuditor = new function()
             window.scrollTo(0, rect.y1 - 100);
 
             // Try to position the pointer.
-            //if ((rect.y1 - pointerH - bounceHeight) > iframeScroll.y) {
+            if ((rect.y1 - pointerH - bounceHeight) > iframeScroll.y) {
                 // Arrow direction down.
                 this.showPointer(elem, 'down');
-           /* } else if ((rect.y2 + pointerH) < (winDim.height - iframeScroll.y)) {
+            } else if ((rect.y2 + pointerH) < (winDim.height - iframeScroll.y)) {
                 // Up.
                 this.showPointer(elem, 'up');
             } else if ((rect.y2 + pointerW) < winDim.width) {
@@ -1498,7 +1498,7 @@ var HTMLCSAuditor = new function()
             } else if ((rect.y1 - pointerW) > 0) {
                 // Right.
                 this.showPointer(elem, 'right');
-            }*/
+            }
         },
 
         getPointer: function(targetElement) {
