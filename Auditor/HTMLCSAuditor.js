@@ -891,6 +891,7 @@ var HTMLCSAuditor = new function()
             })
 
             if (pointer.isPointable(message.element) === false) {
+                pointer.className += ' HTMLCS-pointer-hidden';
                 btnPointTo.className += ' disabled';
             }
 
