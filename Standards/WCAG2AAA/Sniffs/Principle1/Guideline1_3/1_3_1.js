@@ -626,7 +626,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
         }//end if
 
         if (caption !== '') {
-            HTMLCS.addMessage(HTMLCS.NOTICE, table, 'Check that the caption attribute accurately describes this table.', 'H39.3.Check');
+            HTMLCS.addMessage(HTMLCS.NOTICE, table, 'Check that the caption element accurately describes this table.', 'H39.3.Check');
         } else {
             HTMLCS.addMessage(HTMLCS.WARNING, table, 'Consider using a caption element to the table element to identify this data table.', 'H39.3.NoCaption');
         }
