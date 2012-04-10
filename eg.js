@@ -20,7 +20,15 @@ function updateResults(resultsWrapper, expectedMsgs, expectedOmissions)
     expectedMsgs      = expectedMsgs || [];
     expectedOmissions = expectedOmissions || [];
 
-    var content = '<table border="1" cellpadding="5"><tr>';
+    var content = '<h3>Test results</h3>';
+
+    content += '<ul id="results-overview">';
+    content += '<li><span class="result-count result-count-errors">2</span> <span class="result-type">errors</span></li>';
+    content += '<li><span class="result-count result-count-warnings">3</span> <span class="result-type">warnings</span></li>';
+    content += '<li><span class="result-count result-count-notices">33</span> <span class="result-type">notices</span></li>';
+    content += '</ul>';
+
+    content    += '<table><tr>';
     content    += '<th>#</th><th>Type</th><th>Message</th><th>Code</th></tr>';
 
     for (var i = 0; i < msgs.length; i++) {
