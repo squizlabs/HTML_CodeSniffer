@@ -507,9 +507,14 @@ var HTMLCSAuditor = new function()
 
                 var wrapper = document.getElementById(_prefix + 'wrapper');
                 var newWrapper        = self.build(_standard, _messages, _options);
-                newWrapper.style.left = wrapper.style.left;
-                newWrapper.style.top  = wrapper.style.top;
-                document.body.replaceChild(newWrapper, wrapper);
+
+                if (_options.parentElement) {
+                    _options.parentElement.replaceChild(newWrapper, wrapper);
+                } else {
+                    newWrapper.style.left = wrapper.style.left;
+                    newWrapper.style.top  = wrapper.style.top;
+                    document.body.replaceChild(newWrapper, wrapper);
+                }
             }//end if
         };
 
@@ -813,7 +818,12 @@ var HTMLCSAuditor = new function()
 
         // Build the source view, if outerHTML exists (Firefox >= 11, Webkit, IE),
         // and applies to the particular element (ie. document doesn't have it).
-        if (message.element.outerHTML) {
+        if (_options.customIssueSource) {
+            var msgElementSource       = document.createElement('div');
+            msgElementSource.className = _prefix + 'issue-source';
+            msgDiv.appendChild(msgElementSource);
+            _options.customIssueSource.call(this, id, message, standard, msgElementSource, msgDetailsDiv);
+        } else if (message.element.outerHTML) {
             var preText  = '';
             var postText = '';
 
@@ -995,6 +1005,19 @@ var HTMLCSAuditor = new function()
 
     };
 
+    var loadStandards = function(standards, callback) {
+        if (standards.length === 0) {
+            callback.call(this);
+            return;
+        }
+
+        var standard = standards.shift();
+        HTMLCS.loadStandard(standard, function() {
+            loadStandards(standards, callback);
+        });
+
+    };
+
     this.build = function(standard, messages, options) {
         var wrapper = document.getElementById(_prefix + 'wrapper');
 
@@ -1069,7 +1092,11 @@ var HTMLCSAuditor = new function()
         wrapper.id        = _prefix + 'wrapper';
         wrapper.className = 'showing-issue-list';
 
-        var header        = buildHeaderSection(standard, wrapper);
+        if (_options.noHeader !== true) {
+            var header = buildHeaderSection(standard, wrapper);
+            wrapper.appendChild(header);
+        }
+
         var summary       = buildSummarySection(errors, warnings, notices);
         var summaryDetail = buildDetailSummarySection(1, messages.length);
 
@@ -1096,7 +1123,6 @@ var HTMLCSAuditor = new function()
         innerWrapper.appendChild(issueDetail);
         outerWrapper.appendChild(innerWrapper);
 
-        wrapper.appendChild(header);
         wrapper.appendChild(summary);
         wrapper.appendChild(summaryDetail);
         wrapper.appendChild(outerWrapper);
@@ -1109,8 +1135,10 @@ var HTMLCSAuditor = new function()
         wrapper.id        = _prefix + 'wrapper';
         wrapper.className = 'showing-settings';
 
-        var header = buildHeaderSection(_standard, wrapper);
-        wrapper.appendChild(header);
+        if (_options.noHeader !== true) {
+            var header = buildHeaderSection(_standard, wrapper);
+            wrapper.appendChild(header);
+        }
 
         var summary = buildSettingsSection();
         wrapper.appendChild(summary);
@@ -1134,6 +1162,21 @@ var HTMLCSAuditor = new function()
      * @returns undefined
      */
     this.run = function(standard, source, options) {
+        var standards       = ['WCAG2AAA', 'WCAG2AA', 'WCAG2A'];
+        var standardsToLoad = [];
+        for (var i = 0; i < standards.length; i++) {
+            if (!window['HTMLCS_' + standards[i]]) {
+                standardsToLoad.push(standards[i]);
+            }
+        }
+
+        if (standardsToLoad.length > 0) {
+            loadStandards(standardsToLoad, function() {
+                self.run(standard, source, options);
+            });
+            return;
+        }
+
         if ((source === null) || (source === undefined)) {
             // If not defined (or no longer existing?), check the document.
             source = document;
@@ -1173,12 +1216,21 @@ var HTMLCSAuditor = new function()
         // Load the "processing" screen.
         var wrapper = self.buildSummaryPage();
         wrapper.className += ' processing';
-        if (target) {
-            wrapper.style.left = target.style.left;
-            wrapper.style.top  = target.style.top;
-            document.body.replaceChild(wrapper, target);
+
+        if (_options.parentElement) {
+            if (target) {
+                _options.parentElement.replaceChild(wrapper, target);
+            } else {
+                _options.parentElement.appendChild(wrapper);
+            }
         } else {
-            document.body.appendChild(wrapper);
+            if (target) {
+                wrapper.style.left = target.style.left;
+                wrapper.style.top  = target.style.top;
+                document.body.replaceChild(wrapper, target);
+            } else {
+                document.body.appendChild(wrapper);
+            }
         }
 
         // Process and replace with the issue list when finished.
@@ -1209,11 +1261,21 @@ var HTMLCSAuditor = new function()
 
             setTimeout(function() {
                 var newWrapper = self.buildSummaryPage();
-                newWrapper.style.left = wrapper.style.left;
-                newWrapper.style.top  = wrapper.style.top;
-                document.body.replaceChild(newWrapper, wrapper);
+                if (_options.parentElement) {
+                    _options.parentElement.replaceChild(newWrapper, wrapper);
+                } else {
+                    newWrapper.style.left = wrapper.style.left;
+                    newWrapper.style.top  = wrapper.style.top;
+                    document.body.replaceChild(newWrapper, wrapper);
+                }
             }, 400);
         });
+    };
+
+    this.pointToElement = function(element) {
+        pointer.container = document.getElementById('HTMLCS-wrapper');
+        pointer.pointTo(element);
+
     };
 
     var pointer =
