@@ -822,7 +822,7 @@ var HTMLCSAuditor = new function()
             var msgElementSource       = document.createElement('div');
             msgElementSource.className = _prefix + 'issue-source';
             msgDiv.appendChild(msgElementSource);
-            _options.customIssueSource.call(this, id, message, standard, msgElementSource);
+            _options.customIssueSource.call(this, id, message, standard, msgElementSource, msgDetailsDiv);
         } else if (message.element.outerHTML) {
             var preText  = '';
             var postText = '';
