@@ -21,13 +21,13 @@ function updateResults(resultsWrapper, expectedMsgs, expectedOmissions)
     expectedOmissions = expectedOmissions || [];
 
     var content = '<h3>Test results</h3>';
-
+/*
     content += '<ul id="results-overview">';
     content += '<li><span class="result-count result-count-errors">2</span> <span class="result-type">errors</span></li>';
     content += '<li><span class="result-count result-count-warnings">3</span> <span class="result-type">warnings</span></li>';
     content += '<li><span class="result-count result-count-notices">33</span> <span class="result-type">notices</span></li>';
     content += '</ul>';
-
+*/
     content    += '<table><tr>';
     content    += '<th>#</th><th>Type</th><th>Message</th><th>Code</th></tr>';
 

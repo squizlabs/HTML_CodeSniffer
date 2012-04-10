@@ -35,21 +35,29 @@ h1 {
 
 h2 {
 	font-size:30px;
+	line-height:35px;
+	letter-spacing:-1px;
+	text-align:left;
+}
+
+#test-area h3 {
+	color:#3a5180;
+	text-shadow:0 -1px 0 rgba(0,0,0,.2), 0 1px 0 rgba(255,255,255,.7); 
 }
 
 h3 {
 	font-size:23px;
 }
 
-.grey-heading {
-	color:#3a5180;
-	text-shadow:0 -1px 0 rgba(0,0,0,.2), 0 1px 0 rgba(255,255,255,.7); 
-}
-
 fieldset {
 	margin:0;
 	padding:0;
 	border:none;
+}
+
+legend {
+	margin:0;
+	padding:0;
 }
 
 p { 
@@ -164,6 +172,10 @@ table {
 	box-shadow: 0 -4px 8px rgba(0,0,0,.1);
 }
 
+#introduction p {
+	margin:26px 0;
+}
+
 #introduction ul {
 	margin:0;
 	padding:0;
@@ -217,7 +229,7 @@ table {
 }
 
 #introduction #content {
-	width:445px;
+	width:440px;
 	text-align:justify;
 }
 
@@ -230,7 +242,7 @@ table {
 	position:absolute;
 	top:-45px;
 	right:0;
-	height:150%	;
+	height:130%;
 	z-index:1;
 	background: #2f4269 url(../images/bookmarklet-feature-bg.jpg);
 	box-shadow: 0 0 10px rgba(0,0,0,.3), 0 1px 5px rgba(0,0,0,.3) inset;

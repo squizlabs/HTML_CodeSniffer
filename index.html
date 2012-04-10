@@ -13,7 +13,7 @@
     <script type="text/javascript" src="./eg.js"></script>
 
     <script type="text/javascript">
-        function runHTMLCSTest(popup) {
+          function runHTMLCSTest(popup) {
             if (popup) {
                 var options = {
                     alwaysShowNotices: false
@@ -71,10 +71,6 @@
 
                 <p>To get you started, HTML_CodeSniffer comes with a set of 3 standards that enforce the <a href="http://www.w3.org/TR/WCAG/">Web Content Accessibility Guidelines (WCAG) 2.0</a>. An auditor interface is provided by a bookmarklet to let you try out the WCAG 2.0 checks on any web page.</p>
 
-                <h3>Sniffer Test Page</h3>
-
-                <p>Visit the <a href="testpage.html">Test Page</a> to check against the latest version of the HTML_CodeSniffer codeLorem ipsum dolor sit amet, consectetur adipiscing elit. Duis in massa dui. Vivamus condimentum, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis in massa dui.</p>
-
                 <h3>List of standards and sniff coverage</h3>
 
                 <map name="Coverage List">
@@ -108,7 +104,7 @@
         <div class="max-width">
             <h3 class="grey-heading">Your very own sniff test, go on, give it a go</h3>
 
-            <p>Want to see the sniffer at work? Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis in massa dui. Vivamus condimentum, felis a pulvinar rhoncus, eros turpis vulputate est, eu blandit tellus quam vitae mi. Lorem ipsum dolor sit amet, consectetur ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis in massa dui.</p>
+            <p>Visit the <a href="testpage.html">Test Page</a>. Want to see the sniffer at work? Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis in massa dui. Vivamus condimentum, felis a pulvinar rhoncus, eros turpis vulputate est, eu blandit tellus quam vitae mi. Lorem ipsum dolor sit amet, consectetur ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis in massa dui.</p>
 
             <div id="code-input">
                 <form id="runHTMLCS">
@@ -116,23 +112,33 @@
                         <div id="test-area-graphic"></div>Paste your code here
                     </div>
 
-                    <textarea id="source" title="Enter your test code here"></textarea>
+                    <textarea id="source"></textarea>   
 
                     <div id="test-options">
-                        <ul>
-                            <li><label for="Level A"><input type="radio" class="radio-input" name="level" title="WCAG2A"id="WCAG2A" value="WCAG2A"><span class="radio-gen  radio-off"></span> Level A</label></li>
-                            <li><label for="Level AA"><input type="radio" class="radio-input" name="level" title="WCAG2AA" id="WCAG2AA" value="WCAG2AA"><span class="radio-gen radio-off"></span> Level AA</label></li>
-                            <li><label for="Level AAA"><input type="radio" class="radio-input" name="level" title="WCAG2AAA" id="WCAG2AAA" value="WCAG2AAA"><span class="radio-gen radio-on"></span> Level AAA</label></li>
-                        </ul>
+                
+                        <select id="level" name="level" style="margin-left:10px;">
+                            <option value="WCAG2A">Level A</option>
+                            <option value="WCAG2AA" selected="selected">Level AA</option>
+                            <option value="WCAG2AAA">Level AAA</option>
+                        </select>  
 
-                        <button type="submit" onclick="javascript:runHTMLCSTest(false);">Run HTML_CodeSniffer</button>
+                        <!-- <ul>
+                            <li><label><input type="radio" value="WCAG2A" id="level" name="level"> Level A</label></li>
+                      
+                            <li><label><input type="radio" value="WCAG2AA" id="level" name="level"> Level AA</label></li>
+                      
+                            <li><label><input type="radio" value="WCAG2AAA" id="level" name="level"> Level AAA</label></li>
+                        </ul> -->
+                      
+                        <button type="button" onclick="javascript:runHTMLCSTest(false);">Run HTML_CodeSniffer</button>
+                    
                     </div>
                 </form>
             </div> <!-- close code-input -->
 
             <div id="test-results">
-                <div id="resultsWrapper"> <!-- Filled by js file -->
-                </div> <!-- close #resultsWrapper --> 
+                <div id="resultsWrapper">
+                </div>
             </div> <!-- close #test-results -->
         </div> <!-- close .max-width -->
 
