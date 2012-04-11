@@ -1,108 +1,155 @@
-
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html lang="en">
 
 <head>
+    <title>HTML_CodeSniffer</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="Shortcut Icon" href="images/favicon.png">
+    <link rel="stylesheet" type="text/css" href="css/home.css">
+    <link rel="stylesheet" media="screen" type="text/css" href="./main.css" />
+    <link rel="stylesheet" media="screen" type="text/css" href="./build/HTMLCS.css" />
 
-<title>HTML_CodeSniffer</title>
+    <script type="text/javascript" src="./build/HTMLCS.js"></script>
+    <script type="text/javascript" src="./eg.js"></script>
 
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script type="text/javascript">
+          function runHTMLCSTest(popup) {
+            if (popup) {
+                var options = {
+                    alwaysShowNotices: false
+                }
+                HTMLCSAuditor.run(document.getElementById('levelpopup').value, document.getElementById('source').value, options);
+            } else {
+                runHTMLCS(document.getElementById('level').value, document.getElementById('source').value, document.getElementById('resultsWrapper'));
+            }
+        }
 
-<link href="css/home.css" rel="stylesheet" type="text/css">
-<link rel="Shortcut Icon" href="images/favicon.png">
+        function closeAuditor() {
+            var wrapper = document.getElementById('HTMLCS-wrapper');
+            if (wrapper) {
+                document.body.removeChild(wrapper);
+            }
+        }
 
-<script type="text/javascript">
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-359178-16']);
-  _gaq.push(['_trackPageview']);
+        function hideDiv() {
+            document.getElementById('code-overlay').style.visibility = "hidden";
+        }
+    </script>
 
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-</script>
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-359178-16']);
+        _gaq.push(['_trackPageview']);
 
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
 </head>
-
 <body>
+    <div id="header">
+        <div class="max-width">
+            <h1>HTML_CodeSniffer</h1>
+            <map name="External Links">
+                <ul id="sprites">
+                    <li><a href="http://squiz.com.au" class="header-sprite squiz-logo"><span class="screen-hide">Squiz</span></a></li>
+                    <li><a href="https://github.com/squizlabs/HTML_CodeSniffer" class="header-sprite github-logo"><span class="screen-hide">HTML_CodeSniffer on GitHub</span></a></li>
+                    <li><a href="http://twitter.com/htmlcs" class="header-sprite twitter-logo"><span class="screen-hide">Follow us on Twitter</span></a></li>
+                </ul>
+            </map>
+        </div>
+    </div>
 
-	<div id="header">
-		
-		<div class="max-width">
+    <div id="introduction">
+        <div class="max-width">
+            <div id="content">
+                <h2>Check that your HTML code conforms to your coding standard</h2>
 
-			<h1>HTML_CodeSniffer</h1>
+                <p>HTML_CodeSniffer is a client-side script that checks HTML source code and detects violations of a defined coding standard. HTML_CodeSniffer is written entirely in JavaScript, does not require any server-side processing and can be extended by developers to enforce custom coding standards by creating your own "sniffs".</p>
 
-			<map name="External Links">
+                <p>To get you started, HTML_CodeSniffer comes with a set of 3 standards that enforce the <a href="http://www.w3.org/TR/WCAG/">Web Content Accessibility Guidelines (WCAG) 2.0</a>. An auditor interface is provided by a bookmarklet to let you try out the WCAG 2.0 checks on any web page.</p>
 
-			<ul id="sprites">
-				<li><a href="http://squiz.com.au" class="header-sprite squiz-logo"><span class="screen-hide">Squiz</span></a></li>
-				<li><a href="https://github.com/squizlabs/HTML_CodeSniffer" class="header-sprite github-logo"><span class="screen-hide">HTML_CodeSniffer on GitHub</span></a></li>
-				<li><a href="http://twitter.com/htmlcs" class="header-sprite twitter-logo"><span class="screen-hide">Follow us on Twitter</span></a></li>
-			</ul>
+                <h3>List of standards and sniff coverage</h3>
 
-			</map>
+                <map name="Coverage List">
+                    <ul>
+                        <li><a href="Standards/WCAG2/AAA.html">WCAG 2.0 Level AAA</a></li>
+                        <li><a href="Standards/WCAG2/AA.html">WCAG 2.0 Level AA</a></li>
+                        <li><a href="Standards/WCAG2/A.html">WCAG 2.0 Level A</a></li>
+                    </ul>
+                </map>
+            </div>
 
-		</div>
+            <div id="bookmarklet">
+                <h2 class="screen-hide">WCAG 2.0 Bookmarklet</h2>
+                <div id="bookmarklet-feature"></div>
+                <div class="button" onclick="alert('Drag this to your Bookmark Bar to install.');">
+                    <a id="add-bookmarklet" onmousedown="_gaq.push(['_trackEvent', 'Viper', 'bookmarklet.clicked']);" href="javascript:var _p='http://squizlabs.github.com/HTML_CodeSniffer/build/';var h=document.getElementsByTagName('head')[0];var _i=function(s,cb) {var sc=document.createElement('script');sc.onload = function() {sc.onload = null;sc.onreadystatechange = null;cb.call(this);};sc.onreadystatechange = function(){if(/^(complete|loaded)$/.test(this.readyState) === true){sc.onreadystatechange = null;sc.onload();}};sc.src=s;h.appendChild(sc);};var _l=document.createElement('link');_l.rel='stylesheet';type='text/css';_l.href=_p+'HTMLCS.css';h.appendChild(_l);_i(_p+'HTMLCS.js',function(){HTMLCSAuditor.run('WCAG2AA',document);});"><span class="screen-hide">HTML_CodeSniffer</span></a>
 
-	</div>
+                    <div id="button-title">Get the <strong>WCAG 2.0 Bookmarklet</strong><br>
+                    <span class="button-ins">Drag this link to your bookmarks bar to install</span></div>
+                </div>
 
-	<div id="introduction">
+                <div class="requirements">This bookmarklet has been designed to work with Google Chrome, Firefox 10+, Safari 5+ and Internet Explorer 8+
+                </div>
+            </div>
+         </div><!-- end max-width -->
 
-		<div class="max-width">
+         <div class="zigzag"></div>
+     </div> <!-- end introduction -->
 
-			<div id="content">		
+     <div id="test-area">
+        <div class="max-width">
+            <h3 class="grey-heading">Your very own sniff test, go on, give it a go</h3>
 
-				<h2>Detects violations of a defined set of standards.</h2>
+            <p>Visit the <a href="testpage.html">Test Page</a>. Want to see the sniffer at work? Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis in massa dui. Vivamus condimentum, felis a pulvinar rhoncus, eros turpis vulputate est, eu blandit tellus quam vitae mi. Lorem ipsum dolor sit amet, consectetur ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis in massa dui.</p>
 
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Duis in massa dui. Vivamus condimentum, felis a pulvinar rhoncus, eros turpis vulputate est, eu blandit tellus quam vitae mi.</strong> Nam aliquet, ligula nec sodales tempus, tortor sapien elementum quam, bibendum tempor quam magna a nisl. Nam aliquet, ligula nec sodales tempus, tortor sapien elementum quam, bibendum tempor quam magna a nisl.</p>
+            <div id="code-input">
+                <form id="runHTMLCS">
+                    <div id="code-overlay" onclick="hideDiv()">
+                        <div id="test-area-graphic"></div>Paste your code here
+                    </div>
 
-				<h3>Sniffer Test Page</h3>
+                    <textarea id="source"></textarea>   
 
-				<p>Visit the <a href="testpage.html">Test Page</a> to check against the latest version of the HTML_CodeSniffer codeLorem ipsum dolor sit amet, consectetur adipiscing elit. Duis in massa dui. Vivamus condimentum, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis in massa dui.</p>
+                    <div id="test-options">
+                
+                        <select id="level" name="level" style="margin-left:10px;">
+                            <option value="WCAG2A">Level A</option>
+                            <option value="WCAG2AA" selected="selected">Level AA</option>
+                            <option value="WCAG2AAA">Level AAA</option>
+                        </select>  
 
-				<h3 class="grey-heading">List of standards and sniff coverage</h3>
+                        <!-- <ul>
+                            <li><label><input type="radio" value="WCAG2A" id="level" name="level"> Level A</label></li>
+                      
+                            <li><label><input type="radio" value="WCAG2AA" id="level" name="level"> Level AA</label></li>
+                      
+                            <li><label><input type="radio" value="WCAG2AAA" id="level" name="level"> Level AAA</label></li>
+                        </ul> -->
+                      
+                        <button type="button" onclick="javascript:runHTMLCSTest(false);">Run HTML_CodeSniffer</button>
+                    
+                    </div>
+                </form>
+            </div> <!-- close code-input -->
 
-				<map name="Coverage List">
-					
-				<ul>
-					<li><a href="Standards/WCAG2/AAA.html">WCAG 2.0 Level AAA</a></li>
-					<li><a href="Standards/WCAG2/AA.html">WCAG 2.0 Level AA</a></li>
-					<li><a href="Standards/WCAG2/A.html">WCAG 2.0 Level A</a></li>
-				</ul>
+            <div id="test-results">
+                <div id="resultsWrapper">
+                </div>
+            </div> <!-- close #test-results -->
+        </div> <!-- close .max-width -->
 
-				</map>
+        <div class="zigzag zigzag-grey"></div>
 
-			</div>
+    </div> <!-- close #text-area -->
 
-			<div id="bookmarklet">
-
-			<h2 class="screen-hide">WCAG Bookmarklet</h2>
-
-				<div class="button" onclick="alert('Drag this to your Bookmark Bar to install.');">
-
-					<a id="add-bookmarklet" href="javascript:var _p='http://squizlabs.github.com/HTML_CodeSniffer/build/';var h=document.getElementsByTagName('head')[0];var _i=function(s,cb) {var sc=document.createElement('script');sc.onload = function() {sc.onload = null;sc.onreadystatechange = null;cb.call(this);};sc.onreadystatechange = function(){if(/^(complete|loaded)$/.test(this.readyState) === true){sc.onreadystatechange = null;sc.onload();}};sc.src=s;h.appendChild(sc);};var _l=document.createElement('link');_l.rel='stylesheet';type='text/css';_l.href=_p+'HTMLCS.css';h.appendChild(_l);_i(_p+'HTMLCS.js',function(){HTMLCSAuditor.run('WCAG2AAA',document);});"><span class="screen-hide">HTML_CodeSniffer</span></a>
-					
-					Get the <strong>WCAG Bookmarklet</strong><br>
-					<span class="button-ins">Drag this link to your bookmarks bar to install</span>
-
-				</div>
-			
-				<div class="requirements">This Bookmarklet has been designed to work with FireFox, Safari, Chrome and Internet Explorer 8 and up.
-				</div>
-
-			</div>
-		
-		</div> <!-- end max-width -->
-
-		<div class="zigzag">
-
-		</div>
-
-	</div> <!-- end introduction -->
-
-	<div id="footer">
-	</div>
-
+    <div id="footer">
+        <div class="max-width">
+            <p><strong>HTML_CodeSniffer</strong> developed by <strong><a href="http://www.squiz.com.au">Squiz</a></strong> Content Management Solutions</p>
+        </div>
+    </div>
 </body>
 </html>
