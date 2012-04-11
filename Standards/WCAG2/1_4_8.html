@@ -1,35 +1,89 @@
-<html>
-<head>
-<title>WCAG 2.0 Success Criterion 1.4.8 - HTML_CodeSniffer</title>
-<style type="text/css">
-h1 {border-bottom: 5px solid #56a8f9; background-color: #333; color: white; padding: 15px 10px; margin: -10px -10px 10px -10px}
-body {padding: 10px; margin: 0}
-body, th, td {font: 10.5pt 'verdana', sans-serif}
-table h4 {margin: 0; padding:0.2em 0; background-color: #eef}
-table p {margin: 0; margin-top: 0;}
-table h4 + p, p + p {margin-top: 0.5em;}
-table {width: 100%; background-color: #ccc}
-table td {background-color: #fff; vertical-align: top; border-collapse: collapse; padding: 5px; margin: 1px}
-table th {background-color: #ddd; font-weight: bold; border-collapse: collapse; padding: 5px; margin: 1px}
-table tr.na td.dimOnNa {background-color: #f5f5f5; color: #999; text-decoration: line-through;}
-table td.assertType {font-weight: bold;}
-table tr.error td.assertType {background-color: #c00; color: white;}
-table tr.warning td.assertType {background-color: #ff0; color: black;}
-table tr.notice td.assertType {background-color: #666; color: white;}
-div.edsnote {background-color: #ffd; border: 1px solid #dd0; margin: 5px; padding: 5px; line-height: 1.5em}
-div.subhead {font-size: 1.2em; line-height: 1.5em; background-color: #eee; color: #333; border-bottom: 2px solid #666; padding: 15px 20px; margin: -10px -10px 10px -10px}
-div.fullcode {font-size: 0.85em; font-style: italic; background-color: #f8f8f8; color: #333; margin: 5px 0px; padding: 5px 0px}
-.na div.fullcode {color: inherit; background-color: inherit}
-blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px 0 5px 10px}
-</style>
-</head>
-<body>
-<h1>WCAG 2.0 Success Criterion 1.4.8: Visual Presentation (Level <abbr title="Triple A">AAA</abbr>)</h1>
-<div class="subhead">
-<p>Back to: <a href="../../">Home</a> - <a href="./AAA">Level AAA Summary</a></p>
 
-<h2>Definition</h2>
-<p>For the visual presentation of blocks of text, a mechanism is available to achieve the following:</p>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+
+<head>
+
+<title>Success Criterion 1.4.8: Visual Presentation - WCAG 2.0 Standard - HTML_CodeSniffer</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<link href="../../css/home.css" rel="stylesheet" type="text/css">
+<link rel="Shortcut Icon" href="../../images/favicon.png">
+
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-359178-16']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+<style type="text/css">
+/* Needed until an inside.css is built */
+#introduction li, #introduction li:hover {
+  background: transparent;
+  border: none;
+  border-radius: none;
+  box-shadow: none;
+  color: inherit;
+  display: list-item;
+  font-size: inherit;
+  font-weight: normal;
+  margin-top: inherit;
+  text-shadow: inherit;
+}
+
+#introduction li a {
+  color: #174b91;
+  display: inline;
+  padding: 0;
+}
+
+#test-area td p:first-child, #test-area td ul:first-child {
+  margin-top: 0;
+}
+
+#test-area td ul {
+  padding-left: 13px;
+}
+</style>
+
+</head>
+
+<body>
+
+    <div id="header">
+
+        <div class="max-width">
+
+            <h1>HTML_CodeSniffer</h1>
+
+            <map name="External Links">
+
+            <ul id="sprites">
+                <li><a href="http://squiz.com.au" class="header-sprite squiz-logo"><span class="screen-hide">Squiz</span></a></li>
+                <li><a href="https://github.com/squizlabs/HTML_CodeSniffer" class="header-sprite github-logo"><span class="screen-hide">HTML_CodeSniffer on GitHub</span></a></li>
+                <li><a href="http://twitter.com/htmlcs" class="header-sprite twitter-logo"><span class="screen-hide">Follow us on Twitter</span></a></li>
+            </ul>
+
+            </map>
+
+        </div>
+
+    </div>
+
+    <div id="introduction" style="min-height: 0px">
+
+        <div class="max-width">
+
+            <h2>Success Criterion 1.4.8: Visual Presentation (Level <abbr title="Triple A">AAA</abbr>)</h2>
+
+            <p>For the visual presentation of blocks of text, a mechanism is available to achieve the following:</p>
 
 <ol>
 <li>Foreground and background colors can be selected by the user.</li>
@@ -38,124 +92,43 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
 <li>Line spacing (leading) is at least space-and-a-half within paragraphs, and paragraph spacing is at least 1.5 times larger than the line spacing.</li>
 <li>Text can be resized without assistive technology up to 200 percent in a way that does not require the user to scroll horizontally to read a line of text on a full-screen window.</li>
 </ol>
-<p><em>More discussion from W3C:</em> <strong><a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-visual-presentation.html">Understanding Success Criterion 1.4.8</a></strong></p>
-</div>
-<h2>Messages emitted by this Success Criterion's tests</h2>
 
-<table>
-<colgroup>
-<col width="6%">
-<col width="35%">
-<col width="12%">
-<col width="12%">
-<col width="35%">
-</colgroup>
-<tbody>
-<tr>
-<th id="type">Type</th>
-<th id="name">Message Name</th>
-<th id="applies">Applies To</th>
-<th id="tech">Techniques</th>
-<th id="ex">Examples</th>
-</tr>
 
-<tr class="notice">
-<td class="assertType dimOnNa" id="1_4_8_4_type" headers="type sc1_4_8">
-Notice</td>
-<td class="dimOnNa" id="1_4_8_4_name" headers="name sc1_4_8">
-<p>Check that text can be resized without assistive technology up to 200 percent without requiring the user to scroll horizontally on a full-screen window.</p>
-<div class="fullcode">WCAG2AAA.Principle1.Guideline1_4.1_4_8.H87,G146,C26</div></td>
-<td class="dimOnNa" id="1_4_8_4_applies" headers="applies sc1_4_8">
-<p>Top element.</p>
-</td>
-<td class="dimOnNa" id="1_4_8_4_tech" headers="tech sc1_4_8">
-<ul>
-<li>H87</li>
-<li>G146</li>
-<li>C26</li>
-</ul>
-</td>
-<td class="dimOnNa" id="1_4_8_4_examples" headers="ex sc1_4_8">
-</td>
-</tr>
+            <p>(From <em>Understanding WCAG 2.0</em>: <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-visual-presentation.html">Understanding Success Criterion 1.4.8</a>)</p>
 
-<tr class="notice">
-<td class="assertType dimOnNa" id="1_4_8_3_type" headers="type sc1_4_8">
-Notice</td>
-<td class="dimOnNa" id="1_4_8_3_name" headers="name sc1_4_8">
-<p>Check that line spacing in blocks of text are at least 150% in paragraphs, and paragraph spacing is at least 1.5 times the line spacing, or that a mechanism is available to achieve this.</p>
-<div class="fullcode">WCAG2AAA.Principle1.Guideline1_4.1_4_8.G188,C21</div></td>
-<td class="dimOnNa" id="1_4_8_3_applies" headers="applies sc1_4_8">
-<p>Top element.</p>
-</td>
-<td class="dimOnNa" id="1_4_8_3_tech" headers="tech sc1_4_8">
-<ul>
-<li>G188</li>
-<li>C21</li>
-</ul>
-</td>
-<td class="dimOnNa" id="1_4_8_3_examples" headers="ex sc1_4_8">
-</td>
-</tr>
+            
 
-<tr class="notice">
-<td class="assertType dimOnNa" id="1_4_8_2_type" headers="type sc1_4_8">
-Notice</td>
-<td class="dimOnNa" id="1_4_8_2_name" headers="name sc1_4_8">
-<p>Check that blocks of text are not fully justified - that is, to both left and right edges - or a mechanism exists to remove full justification.</p>
-<div class="fullcode">WCAG2AAA.Principle1.Guideline1_4.1_4_8.C19,G172,G169</div></td>
-<td class="dimOnNa" id="1_4_8_2_applies" headers="applies sc1_4_8">
-<p>Top element.</p>
-</td>
-<td class="dimOnNa" id="1_4_8_2_tech" headers="tech sc1_4_8">
-<ul>
-<li>C19</li>
-<li>G172</li>
-<li>G169</li>
-</ul>
-</td>
-<td class="dimOnNa" id="1_4_8_2_examples" headers="ex sc1_4_8">
-</td>
-</tr>
+        </div>
 
-<tr class="notice">
-<td class="assertType dimOnNa" id="1_4_8_1_type" headers="type sc1_4_8">
-Notice</td>
-<td class="dimOnNa" id="1_4_8_1_name" headers="name sc1_4_8">
-<p>Check that a mechanism exists to reduce the width of a block of text to no more than 80 characters (or 40 in Chinese, Japanese or Korean script).</p>
-<div class="fullcode">WCAG2AAA.Principle1.Guideline1_4.1_4_8.H87,C20</div></td>
-<td class="dimOnNa" id="1_4_8_1_applies" headers="applies sc1_4_8">
-<p>Top element.</p>
-</td>
-<td class="dimOnNa" id="1_4_8_1_tech" headers="tech sc1_4_8">
-<ul>
-<li>H87</li>
-<li>C20</li>
-</ul>
-</td>
-<td class="dimOnNa" id="1_4_8_1_examples" headers="ex sc1_4_8">
-</td>
-</tr>
+        <div class="zigzag">
 
-<tr class="notice">
-<td class="assertType dimOnNa" id="1_4_8_0_type" headers="type sc1_4_8">
-Notice</td>
-<td class="dimOnNa" id="1_4_8_0_name" headers="name sc1_4_8">
-<p>Check that a mechanism is available for the user to select foreground and background colours for blocks of text, either through the Web page or the browser.</p>
-<div class="fullcode">WCAG2AAA.Principle1.Guideline1_4.1_4_8.G148,G156,G175</div></td>
-<td class="dimOnNa" id="1_4_8_0_applies" headers="applies sc1_4_8">
-<p>Top element.</p>
-</td>
-<td class="dimOnNa" id="1_4_8_0_tech" headers="tech sc1_4_8">
-<ul>
-<li>G148</li>
-<li>G156</li>
-<li>G175</li>
-</ul>
-</td>
-<td class="dimOnNa" id="1_4_8_0_examples" headers="ex sc1_4_8">
-</td>
-</tr>
+        </div>
 
-</tbody></table></body>
+    </div>
+
+    <div id="test-area">
+
+        <div class="max-width">
+
+                
+
+                <h3>Sniff Coverage</h3>
+
+                <p>Note that "[Standard]" will be replaced with "WCAG2A", "WCAG2AA" or "WCAG2AAA", depending on the level being tested.</p>
+
+                
+
+                
+
+                
+
+        </div> <!-- end max-width -->
+
+
+    </div> <!-- end introduction -->
+
+    <div id="footer">
+    </div>
+
+</body>
 </html>

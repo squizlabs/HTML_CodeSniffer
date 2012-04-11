@@ -1,35 +1,89 @@
-<html>
-<head>
-<title>WCAG 2.0 Success Criterion 1.4.7 - HTML_CodeSniffer</title>
-<style type="text/css">
-h1 {border-bottom: 5px solid #56a8f9; background-color: #333; color: white; padding: 15px 10px; margin: -10px -10px 10px -10px}
-body {padding: 10px; margin: 0}
-body, th, td {font: 10.5pt 'verdana', sans-serif}
-table h4 {margin: 0; padding:0.2em 0; background-color: #eef}
-table p {margin: 0; margin-top: 0;}
-table h4 + p, p + p {margin-top: 0.5em;}
-table {width: 100%; background-color: #ccc}
-table td {background-color: #fff; vertical-align: top; border-collapse: collapse; padding: 5px; margin: 1px}
-table th {background-color: #ddd; font-weight: bold; border-collapse: collapse; padding: 5px; margin: 1px}
-table tr.na td.dimOnNa {background-color: #f5f5f5; color: #999; text-decoration: line-through;}
-table td.assertType {font-weight: bold;}
-table tr.error td.assertType {background-color: #c00; color: white;}
-table tr.warning td.assertType {background-color: #ff0; color: black;}
-table tr.notice td.assertType {background-color: #666; color: white;}
-div.edsnote {background-color: #ffd; border: 1px solid #dd0; margin: 5px; padding: 5px; line-height: 1.5em}
-div.subhead {font-size: 1.2em; line-height: 1.5em; background-color: #eee; color: #333; border-bottom: 2px solid #666; padding: 15px 20px; margin: -10px -10px 10px -10px}
-div.fullcode {font-size: 0.85em; font-style: italic; background-color: #f8f8f8; color: #333; margin: 5px 0px; padding: 5px 0px}
-.na div.fullcode {color: inherit; background-color: inherit}
-blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px 0 5px 10px}
-</style>
-</head>
-<body>
-<h1>WCAG 2.0 Success Criterion 1.4.7: Low or No Background Audio (Level <abbr title="Triple A">AAA</abbr>)</h1>
-<div class="subhead">
-<p>Back to: <a href="../../">Home</a> - <a href="./AAA">Level AAA Summary</a></p>
 
-<h2>Definition</h2>
-<p>For prerecorded audio-only content that (1) contains primarily speech in the foreground, (2) is not an audio CAPTCHA or audio logo, and (3) is not vocalization intended to be primarily musical expression such as singing or rapping, at least one of the following is true:</p>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+
+<head>
+
+<title>Success Criterion 1.4.7: Low or No Background Audio - WCAG 2.0 Standard - HTML_CodeSniffer</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<link href="../../css/home.css" rel="stylesheet" type="text/css">
+<link rel="Shortcut Icon" href="../../images/favicon.png">
+
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-359178-16']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+<style type="text/css">
+/* Needed until an inside.css is built */
+#introduction li, #introduction li:hover {
+  background: transparent;
+  border: none;
+  border-radius: none;
+  box-shadow: none;
+  color: inherit;
+  display: list-item;
+  font-size: inherit;
+  font-weight: normal;
+  margin-top: inherit;
+  text-shadow: inherit;
+}
+
+#introduction li a {
+  color: #174b91;
+  display: inline;
+  padding: 0;
+}
+
+#test-area td p:first-child, #test-area td ul:first-child {
+  margin-top: 0;
+}
+
+#test-area td ul {
+  padding-left: 13px;
+}
+</style>
+
+</head>
+
+<body>
+
+    <div id="header">
+
+        <div class="max-width">
+
+            <h1>HTML_CodeSniffer</h1>
+
+            <map name="External Links">
+
+            <ul id="sprites">
+                <li><a href="http://squiz.com.au" class="header-sprite squiz-logo"><span class="screen-hide">Squiz</span></a></li>
+                <li><a href="https://github.com/squizlabs/HTML_CodeSniffer" class="header-sprite github-logo"><span class="screen-hide">HTML_CodeSniffer on GitHub</span></a></li>
+                <li><a href="http://twitter.com/htmlcs" class="header-sprite twitter-logo"><span class="screen-hide">Follow us on Twitter</span></a></li>
+            </ul>
+
+            </map>
+
+        </div>
+
+    </div>
+
+    <div id="introduction" style="min-height: 0px">
+
+        <div class="max-width">
+
+            <h2>Success Criterion 1.4.7: Low or No Background Audio (Level <abbr title="Triple A">AAA</abbr>)</h2>
+
+            <p>For prerecorded audio-only content that (1) contains primarily speech in the foreground, (2) is not an audio CAPTCHA or audio logo, and (3) is not vocalization intended to be primarily musical expression such as singing or rapping, at least one of the following is true:</p>
 
 <ul>
 <li><em>No Background:</em> The audio does not contain background sounds.</li>
@@ -38,46 +92,44 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
 </ul>
 
 <p><em>Note:</em> Per the definition of "decibel," background sound that meets this requirement will be approximately four times quieter than the foreground speech content. </p>
-<div class="edsnote"><strong>Editor's Note:</strong> <p>The note may be confusing (as normally a 3 dB increase in power in anything, such as signal strength, is a 2x increase), but psychoacoustic models suggest a 10x increase in sound pressure (hence, 10 dB) is required for a 2x increase in loudness.</p>
-</div>
-<p><em>More discussion from W3C:</em> <strong><a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-noaudio.html">Understanding Success Criterion 1.4.7</a></strong></p>
-</div>
-<h2>Messages emitted by this Success Criterion's tests</h2>
 
-<table>
-<colgroup>
-<col width="6%">
-<col width="35%">
-<col width="12%">
-<col width="12%">
-<col width="35%">
-</colgroup>
-<tbody>
-<tr>
-<th id="type">Type</th>
-<th id="name">Message Name</th>
-<th id="applies">Applies To</th>
-<th id="tech">Techniques</th>
-<th id="ex">Examples</th>
-</tr>
 
-<tr class="notice">
-<td class="assertType dimOnNa" id="1_4_7_0_type" headers="type sc1_4_7">
-Notice</td>
-<td class="dimOnNa" id="1_4_7_0_name" headers="name sc1_4_7">
-<p>For pre-recorded audio-only content that is primarily speech (such as narration), any background sounds should be muteable, or be at least 20 dB (or about 4 times) quieter than the speech.</p>
-<div class="fullcode">WCAG2AAA.Principle1.Guideline1_4.1_4_7.G56</div></td>
-<td class="dimOnNa" id="1_4_7_0_applies" headers="applies sc1_4_7">
-<p>Top element.</p>
-</td>
-<td class="dimOnNa" id="1_4_7_0_tech" headers="tech sc1_4_7">
-<ul>
-<li>G56</li>
-</ul>
-</td>
-<td class="dimOnNa" id="1_4_7_0_examples" headers="ex sc1_4_7">
-</td>
-</tr>
+            <p>(From <em>Understanding WCAG 2.0</em>: <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-noaudio.html">Understanding Success Criterion 1.4.7</a>)</p>
 
-</tbody></table></body>
+            <h3 class="grey-heading">Note</h3><p>The note may be confusing (as normally a 3 dB increase in power in anything, such as signal strength, is a 2x increase), but psychoacoustic models suggest a 10x increase in sound pressure (hence, 10 dB) is required for a 2x increase in loudness.</p>
+
+
+        </div>
+
+        <div class="zigzag">
+
+        </div>
+
+    </div>
+
+    <div id="test-area">
+
+        <div class="max-width">
+
+                
+
+                <h3>Sniff Coverage</h3>
+
+                <p>Note that "[Standard]" will be replaced with "WCAG2A", "WCAG2AA" or "WCAG2AAA", depending on the level being tested.</p>
+
+                
+
+                
+
+                
+
+        </div> <!-- end max-width -->
+
+
+    </div> <!-- end introduction -->
+
+    <div id="footer">
+    </div>
+
+</body>
 </html>

@@ -1,45 +1,114 @@
-<html>
-<head>
-<title>WCAG 2.0 Success Criterion 2.1.1 - HTML_CodeSniffer</title>
-<style type="text/css">
-h1 {border-bottom: 5px solid #56a8f9; background-color: #333; color: white; padding: 15px 10px; margin: -10px -10px 10px -10px}
-body {padding: 10px; margin: 0}
-body, th, td {font: 10.5pt 'verdana', sans-serif}
-table h4 {margin: 0; padding:0.2em 0; background-color: #eef}
-table p {margin: 0; margin-top: 0;}
-table h4 + p, p + p {margin-top: 0.5em;}
-table {width: 100%; background-color: #ccc}
-table td {background-color: #fff; vertical-align: top; border-collapse: collapse; padding: 5px; margin: 1px}
-table th {background-color: #ddd; font-weight: bold; border-collapse: collapse; padding: 5px; margin: 1px}
-table tr.na td.dimOnNa {background-color: #f5f5f5; color: #999; text-decoration: line-through;}
-table td.assertType {font-weight: bold;}
-table tr.error td.assertType {background-color: #c00; color: white;}
-table tr.warning td.assertType {background-color: #ff0; color: black;}
-table tr.notice td.assertType {background-color: #666; color: white;}
-div.edsnote {background-color: #ffd; border: 1px solid #dd0; margin: 5px; padding: 5px; line-height: 1.5em}
-div.subhead {font-size: 1.2em; line-height: 1.5em; background-color: #eee; color: #333; border-bottom: 2px solid #666; padding: 15px 20px; margin: -10px -10px 10px -10px}
-div.fullcode {font-size: 0.85em; font-style: italic; background-color: #f8f8f8; color: #333; margin: 5px 0px; padding: 5px 0px}
-.na div.fullcode {color: inherit; background-color: inherit}
-blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px 0 5px 10px}
-</style>
-</head>
-<body>
-<h1>WCAG 2.0 Success Criterion 2.1.1: Keyboard (Level <abbr title="Single A">A</abbr>)</h1>
-<div class="subhead">
-<p>Back to: <a href="../../">Home</a> - <a href="./AAA">Level AAA Summary</a> - <a href="./AA">Level AA Summary</a> - <a href="./A">Level A Summary</a></p>
 
-<h2>Definition</h2>
-<p>All functionality of the content is operable through a keyboard interface without requiring specific timings for individual keystrokes, except where the underlying function requires input that depends on the path of the user's movement and not just the endpoints.</p>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+
+<head>
+
+<title>Success Criterion 2.1.1: Keyboard - WCAG 2.0 Standard - HTML_CodeSniffer</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<link href="../../css/home.css" rel="stylesheet" type="text/css">
+<link rel="Shortcut Icon" href="../../images/favicon.png">
+
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-359178-16']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+<style type="text/css">
+/* Needed until an inside.css is built */
+#introduction li, #introduction li:hover {
+  background: transparent;
+  border: none;
+  border-radius: none;
+  box-shadow: none;
+  color: inherit;
+  display: list-item;
+  font-size: inherit;
+  font-weight: normal;
+  margin-top: inherit;
+  text-shadow: inherit;
+}
+
+#introduction li a {
+  color: #174b91;
+  display: inline;
+  padding: 0;
+}
+
+#test-area td p:first-child, #test-area td ul:first-child {
+  margin-top: 0;
+}
+
+#test-area td ul {
+  padding-left: 13px;
+}
+</style>
+
+</head>
+
+<body>
+
+    <div id="header">
+
+        <div class="max-width">
+
+            <h1>HTML_CodeSniffer</h1>
+
+            <map name="External Links">
+
+            <ul id="sprites">
+                <li><a href="http://squiz.com.au" class="header-sprite squiz-logo"><span class="screen-hide">Squiz</span></a></li>
+                <li><a href="https://github.com/squizlabs/HTML_CodeSniffer" class="header-sprite github-logo"><span class="screen-hide">HTML_CodeSniffer on GitHub</span></a></li>
+                <li><a href="http://twitter.com/htmlcs" class="header-sprite twitter-logo"><span class="screen-hide">Follow us on Twitter</span></a></li>
+            </ul>
+
+            </map>
+
+        </div>
+
+    </div>
+
+    <div id="introduction" style="min-height: 0px">
+
+        <div class="max-width">
+
+            <h2>Success Criterion 2.1.1: Keyboard (Level <abbr title="Single A">A</abbr>)</h2>
+
+            <p>All functionality of the content is operable through a keyboard interface without requiring specific timings for individual keystrokes, except where the underlying function requires input that depends on the path of the user's movement and not just the endpoints.</p>
 
 <ul>
 <li><p><em>Note 1:</em> This exception relates to the underlying function, not the input technique. For example, if using handwriting to enter text, the input technique (handwriting) requires path-dependent input but the underlying function (text input) does not.</p></li>
 <li><p><em>Note 2:</em> This does not forbid and should not discourage providing mouse input or other input methods in addition to keyboard operation.</p></li>
 </ul>
-<div class="edsnote"><strong>Editor's Note:</strong> <p>Technically superseded by <a href="./2_1_3">Success Criterion 2.1.3</a> at level AAA. To avoid redundancy, keyboard-related warnings will appear to come from Success Criterion 2.1.1 regardless of level.</p>
-</div>
-<p><em>More discussion from W3C:</em> <strong><a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/keyboard-operation-keyboard-operable.html">Understanding Success Criterion 2.1.1</a></strong></p>
-</div>
-<h2>Redundant event handlers</h2>
+
+
+            <p>(From <em>Understanding WCAG 2.0</em>: <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/keyboard-operation-keyboard-operable.html">Understanding Success Criterion 2.1.1</a>)</p>
+
+            <h3 class="grey-heading">Note</h3><p>Technically superseded by <a href="#sc2_1_3">Success Criterion 2.1.3</a> at level AAA. To avoid redundancy, keyboard-related warnings will appear to come from Success Criterion 2.1.1 regardless of level.</p>
+
+
+        </div>
+
+        <div class="zigzag">
+
+        </div>
+
+    </div>
+
+    <div id="test-area">
+
+        <div class="max-width">
+
+                <h3>Discussion</h3><h4 class="grey-heading">Redundant event handlers</h4>
 
 <p>The relevant technique is <a href="http://www.w3.org/TR/WCAG20-TECHS/SCR2">SCR2: Using redundant keyboard and mouse event handlers</a>. This technique specifically refers to an example changing an image when it receives the focus - that an image change on a link using onmouseover and onmouseout should also be implemented using onfocus and onblur, so it is activated using the keyboard (by tabbing to the element).</p>
 
@@ -50,151 +119,25 @@ blockquote {border-left: 5px solid #99c; background-color: #f8f8ff; padding: 5px
 <p>As events can be implemented using a variety of different methods - ranging from via HTML attributes, through to DOM events, to being set through frameworks like jQuery or Prototype.js. On the flipside, even if a corresponding event is provided in code as an HTML attribute, there is no guarantee that it exposes the same functionality as the mouse event.</p>
 
 <p>Therefore, a warning will be generated on elements that contain the mouse-specific attributes. It will be up to the author to ensure that the functionality is provided to keyboard users in an appropriate manner.</p>
-<h2>Messages emitted by this Success Criterion's tests</h2>
 
-<p>Note that "[Standard]" will be replaced with "WCAG2A", "WCAG2AA" or "WCAG2AAA", depending on the level being tested.</p>
-<table>
-<colgroup>
-<col width="6%">
-<col width="35%">
-<col width="12%">
-<col width="12%">
-<col width="35%">
-</colgroup>
-<tbody>
-<tr>
-<th id="type">Type</th>
-<th id="name">Message Name</th>
-<th id="applies">Applies To</th>
-<th id="tech">Techniques</th>
-<th id="ex">Examples</th>
-</tr>
 
-<tr class="warning">
-<td class="assertType dimOnNa" id="2_1_1_4_type" headers="type sc2_1_1">
-Warning</td>
-<td class="dimOnNa" id="2_1_1_4_name" headers="name sc2_1_1">
-<p>Ensure the functionality provided by mousing down on this element is available through the keyboard; for instance, using the keydown event.</p>
-<div class="fullcode">[Standard].Principle2.Guideline2_1.2_1_1.SCR2.MouseDown</div></td>
-<td class="dimOnNa" id="2_1_1_4_applies" headers="applies sc2_1_1">
-<p>Any element with an onmousedown attribute.</p>
-</td>
-<td class="dimOnNa" id="2_1_1_4_tech" headers="tech sc2_1_1">
-<ul>
-<li>SCR2.MouseDown</li>
-</ul>
-</td>
-<td class="dimOnNa" id="2_1_1_4_examples" headers="ex sc2_1_1">
-<ul>
-<li><a href="./Eg/62">62</a></li>
-</ul>
-</td>
-</tr>
+                <h3>Sniff Coverage</h3>
 
-<tr class="warning">
-<td class="assertType dimOnNa" id="2_1_1_5_type" headers="type sc2_1_1">
-Warning</td>
-<td class="dimOnNa" id="2_1_1_5_name" headers="name sc2_1_1">
-<p>Ensure the functionality provided by mousing up on this element is available through the keyboard; for instance, using the keyup event.</p>
-<div class="fullcode">[Standard].Principle2.Guideline2_1.2_1_1.SCR2.MouseUp</div></td>
-<td class="dimOnNa" id="2_1_1_5_applies" headers="applies sc2_1_1">
-<p>Any element with an onmouseup attribute.</p>
-</td>
-<td class="dimOnNa" id="2_1_1_5_tech" headers="tech sc2_1_1">
-<ul>
-<li>SCR2.MouseUp</li>
-</ul>
-</td>
-<td class="dimOnNa" id="2_1_1_5_examples" headers="ex sc2_1_1">
-<ul>
-<li><a href="./Eg/62">62</a></li>
-</ul>
-</td>
-</tr>
+                <p>Note that "[Standard]" will be replaced with "WCAG2A", "WCAG2AA" or "WCAG2AAA", depending on the level being tested.</p>
 
-<tr class="warning">
-<td class="assertType dimOnNa" id="2_1_1_3_type" headers="type sc2_1_1">
-Warning</td>
-<td class="dimOnNa" id="2_1_1_3_name" headers="name sc2_1_1">
-<p>Ensure the functionality provided by moving the mouse on this element is available through the keyboard.</p>
-<div class="fullcode">[Standard].Principle2.Guideline2_1.2_1_1.SCR2.MouseMove</div></td>
-<td class="dimOnNa" id="2_1_1_3_applies" headers="applies sc2_1_1">
-<p>Any element with an onmousemove attribute.</p>
-</td>
-<td class="dimOnNa" id="2_1_1_3_tech" headers="tech sc2_1_1">
-<ul>
-<li>SCR2.MouseMove</li>
-</ul>
-</td>
-<td class="dimOnNa" id="2_1_1_3_examples" headers="ex sc2_1_1">
-<ul>
-<li><a href="./Eg/62">62</a></li>
-</ul>
-</td>
-</tr>
+                
 
-<tr class="warning">
-<td class="assertType dimOnNa" id="2_1_1_2_type" headers="type sc2_1_1">
-Warning</td>
-<td class="dimOnNa" id="2_1_1_2_name" headers="name sc2_1_1">
-<p>Ensure the functionality provided by mousing out of this element is available through the keyboard; for instance, using the blur event.</p>
-<div class="fullcode">[Standard].Principle2.Guideline2_1.2_1_1.SCR2.MouseOut</div></td>
-<td class="dimOnNa" id="2_1_1_2_applies" headers="applies sc2_1_1">
-<p>Any element with an onmouseout attribute.</p>
-</td>
-<td class="dimOnNa" id="2_1_1_2_tech" headers="tech sc2_1_1">
-<ul>
-<li>SCR2.MouseOut</li>
-</ul>
-</td>
-<td class="dimOnNa" id="2_1_1_2_examples" headers="ex sc2_1_1">
-<ul>
-<li><a href="./Eg/62">62</a></li>
-</ul>
-</td>
-</tr>
+                
 
-<tr class="warning">
-<td class="assertType dimOnNa" id="2_1_1_1_type" headers="type sc2_1_1">
-Warning</td>
-<td class="dimOnNa" id="2_1_1_1_name" headers="name sc2_1_1">
-<p>Ensure the functionality provided by mousing over this element is available through the keyboard; for instance, using the focus event.</p>
-<div class="fullcode">[Standard].Principle2.Guideline2_1.2_1_1.SCR2.MouseOver</div></td>
-<td class="dimOnNa" id="2_1_1_1_applies" headers="applies sc2_1_1">
-<p>Any element with an onmouseover attribute.</p>
-</td>
-<td class="dimOnNa" id="2_1_1_1_tech" headers="tech sc2_1_1">
-<ul>
-<li>SCR2.MouseOver</li>
-</ul>
-</td>
-<td class="dimOnNa" id="2_1_1_1_examples" headers="ex sc2_1_1">
-<ul>
-<li><a href="./Eg/62">62</a></li>
-</ul>
-</td>
-</tr>
+                
 
-<tr class="warning">
-<td class="assertType dimOnNa" id="2_1_1_0_type" headers="type sc2_1_1">
-Warning</td>
-<td class="dimOnNa" id="2_1_1_0_name" headers="name sc2_1_1">
-<p>Ensure the functionality provided by double-clicking on this element is available through the keyboard.</p>
-<div class="fullcode">[Standard].Principle2.Guideline2_1.2_1_1.SCR2.DblClick</div></td>
-<td class="dimOnNa" id="2_1_1_0_applies" headers="applies sc2_1_1">
-<p>Any element with an ondblclick attribute.</p>
-</td>
-<td class="dimOnNa" id="2_1_1_0_tech" headers="tech sc2_1_1">
-<ul>
-<li>SCR2.DblClick</li>
-</ul>
-</td>
-<td class="dimOnNa" id="2_1_1_0_examples" headers="ex sc2_1_1">
-<ul>
-<li><a href="./Eg/62">62</a></li>
-</ul>
-</td>
-</tr>
+        </div> <!-- end max-width -->
 
-</tbody></table></body>
+
+    </div> <!-- end introduction -->
+
+    <div id="footer">
+    </div>
+
+</body>
 </html>
