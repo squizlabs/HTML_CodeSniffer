@@ -3,6 +3,14 @@ html {
  margin:0;
 }
 
+::-moz-selection{
+background: #87d1f5;
+} 
+
+::selection {
+background: #87d1f5;
+}
+
 body {
  margin:0;
  min-width:1000px;
@@ -204,6 +212,7 @@ p a:hover {
 #introduction #content {
  width:440px;
  text-align:justify;
+ overflow:hidden;
 }
 
 #introduction #bookmarklet {
