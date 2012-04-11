@@ -1537,16 +1537,17 @@ var HTMLCSAuditor = new function()
             var pointerH    = (pointerRect.y2 - pointerRect.y1);
             var pointerW    = (pointerRect.x2 - pointerRect.x1);
 
-            this.pointerDim.height = pointerH;
-            this.pointerDim.width  = pointerW;
+            this.pointerDim.height = 62;
+            this.pointerDim.width  = 62;
 
             var bounceHeight = 20;
             var scroll       = this.getScrollCoords();
-            var iframeScroll = this.getScrollCoords(elem);
 
             // Determine where to show the arrow.
             var winDim = this.getWindowDimensions(elem);
             window.scrollTo(0, rect.y1 - 100);
+
+            var iframeScroll = this.getScrollCoords(elem);
 
             // Try to position the pointer.
             if ((rect.y1 - pointerH - bounceHeight) > iframeScroll.y) {
@@ -1601,6 +1602,16 @@ var HTMLCSAuditor = new function()
                     }
                 break;
 
+                case 'down':
+                default:
+                    top = (rect.y1 - this.pointerDim.height);
+                    if ((rect.x2 - rect.x1) < 250) {
+                        left = (this.getRectMidPnt(rect) - (this.pointerDim.width / 2));
+                    } else {
+                        left = rect.x1;
+                    }
+                break;
+
                 case 'left':
                     left = rect.x2;
                     top  = this.getRectMidPnt(rect, true);
@@ -1611,15 +1622,6 @@ var HTMLCSAuditor = new function()
                     top  = this.getRectMidPnt(rect, true);
                 break;
 
-                case 'down':
-                default:
-                    top = (rect.y1 - this.pointerDim.height);
-                    if ((rect.x2 - rect.x1) < 250) {
-                        left = (this.getRectMidPnt(rect) - (this.pointerDim.width / 2));
-                    } else {
-                        left = rect.x1;
-                    }
-                break;
             }//end switch
 
             var frameScroll = this.getScrollCoords();
