@@ -1654,37 +1654,64 @@ var HTMLCSAuditor = new function()
                         pointer.parentNode.removeChild(pointer);
                     }
                 }, 1500);
-            });
+            }, direction);
 
         },
 
-        bounce: function(callback)
+        bounce: function(callback, direction)
         {
-            var pointer = this.pointer;
-            var initialTop = Number(pointer.style.top.replace('px', ''));
-            var currentTop = initialTop;
-            var dist       = 30;
-            var lowerLimit = (initialTop - dist);
-            var maxBounce  = 5;
+            var currentDirection = direction;
+            var pointer          = this.pointer;
+            var initialPos       = 0;
+            var style            = '';
+            var initalPosOffset  = 0;
+            var dist             = 30;
+            var maxBounce        = 5;
 
-            var bounces   = 0;
-            var direction = 'up';
+            switch (direction) {
+                case 'up':
+                    currentDirection = direction + '-op';
+                    initalPosOffset  = dist;
+                case 'down':
+                    style = 'top';
+                break;
+
+                case 'left':
+                    currentDirection = direction + '-op';
+                    initalPosOffset  = dist;
+                case 'right':
+                    style = 'left';
+                break;
+            }
+
+            initialPos = (Number(pointer.style[style].replace('px', '')) + initalPosOffset);
+
+            var currentPos = initialPos;
+            var lowerLimit = (initialPos - dist);
+            var bounces    = 0;
+
             var i = setInterval(function() {
-                if (direction === 'up') {
-                    currentTop--;
-                    pointer.style.top = currentTop + 'px';
-                    if (currentTop < lowerLimit) {
-                        direction = 'down';
+                if (currentDirection === direction) {
+                    currentPos--;
+                    pointer.style[style] = currentPos + 'px';
+                    if (currentPos < lowerLimit) {
+                        currentDirection = direction + '-op';
+                        if (bounces === maxBounce && initalPosOffset !== 0) {
+                            clearInterval(i);
+                            callback.call(this);
+                            return;
+                        }
                     }
-                } else if (direction === 'down') {
-                    currentTop++;
-                    pointer.style.top = currentTop + 'px';
 
-                    if (currentTop >= initialTop) {
-                        direction = 'up';
+                } else {
+                    currentPos++;
+                    pointer.style[style] = currentPos + 'px';
+
+                    if (currentPos >= initialPos) {
+                        currentDirection = direction;
                         bounces++;
 
-                        if (bounces === maxBounce) {
+                        if (bounces === maxBounce && initalPosOffset === 0) {
                             clearInterval(i);
                             callback.call(this);
                             return;

@@ -773,10 +773,14 @@
 }
 
 .HTMLCS-pointer-left {
+    width: 62px;
+    height: 50px;
     background-position: 0 -133px;
 }
 
 .HTMLCS-pointer-right {
+    width: 62px;
+    height: 50px;
     background-position: 0 -185px;
 }
 
