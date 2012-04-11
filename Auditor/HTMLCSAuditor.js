@@ -515,6 +515,10 @@ var HTMLCSAuditor = new function()
                     newWrapper.style.top  = wrapper.style.top;
                     document.body.replaceChild(newWrapper, wrapper);
                 }
+
+                if (_options.listUpdateCallback) {
+                    _options.listUpdateCallback.call(this, _messages);
+                }
             }//end if
         };
 
@@ -1018,6 +1022,12 @@ var HTMLCSAuditor = new function()
 
     };
 
+    this.getIssue = function(issueNumber)
+    {
+        return _messages[issueNumber];
+
+    };
+
     this.build = function(standard, messages, options) {
         var wrapper = document.getElementById(_prefix + 'wrapper');
 
@@ -1258,6 +1268,10 @@ var HTMLCSAuditor = new function()
                     i--;
                 }
             }//end for
+
+            if (_options.runCallback) {
+                _messages = _options.runCallback.call(this, _messages);
+            }
 
             setTimeout(function() {
                 var newWrapper = self.buildSummaryPage();
