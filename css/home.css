@@ -352,7 +352,7 @@ p a:hover {
 
 #code-overlay {
  background-color:#2e2d33;
- background-image:url(../images/overlay-bg.jpg) repeat top left;
+ background:url(../images/overlay-bg.jpg) repeat top left;
  width:964px;
  height:188px;
  color:#848484;
