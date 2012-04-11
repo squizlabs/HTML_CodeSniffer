@@ -138,11 +138,332 @@
 
                 <p>Note that "[Standard]" will be replaced with "WCAG2A", "WCAG2AA" or "WCAG2AAA", depending on the level being tested.</p>
 
-                
+                <h4 class="grey-heading">Errors</h4><table>
+<colgroup>
+<col width="42%">
+<col width="42%">
+<col width="16%">
+</colgroup>
+<tbody>
+<tr>
+<th id="name_1_1_1">Message Name</th>
+<th id="applies_1_1_1">Applies To</th>
+<th id="tech_1_1_1">Techniques</th>
+</tr>
 
-                
+<tr class="">
+<td class="dimOnNa" id="1_1_1_0_name" headers="name_1_1_1 sc1_1_1">
+<p>Applet elements must contain a text alternative in the element's body, for browsers without support for the applet element.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_1.1_1_1.H35.3</div></td>
+<td class="dimOnNa" id="1_1_1_0_applies" headers="applies_1_1_1 sc1_1_1">
+<p>Applet element without a body text alternative.</p>
+</td>
+<td class="dimOnNa" id="1_1_1_0_tech" headers="tech_1_1_1 sc1_1_1">
+<ul>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/H35">H35</a></li>
+</ul>
+</td>
+</tr>
 
-                
+<tr class="">
+<td class="dimOnNa" id="1_1_1_1_name" headers="name_1_1_1 sc1_1_1">
+<p>Applet elements must contain an alt attribute, to provide a text alternative to browsers supporting the element but are unable to load the applet.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_1.1_1_1.H35.2</div></td>
+<td class="dimOnNa" id="1_1_1_1_applies" headers="applies_1_1_1 sc1_1_1">
+<p>Applet element without an altt attribute.</p>
+</td>
+<td class="dimOnNa" id="1_1_1_1_tech" headers="tech_1_1_1 sc1_1_1">
+<ul>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/H35">H35</a></li>
+</ul>
+</td>
+</tr>
+
+<tr class="">
+<td class="dimOnNa" id="1_1_1_2_name" headers="name_1_1_1 sc1_1_1">
+<p>Area element in an image map missing an alt attribute. Each area element must have a text alternative that describes the function of the image map area.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_1.1_1_1.H24</div></td>
+<td class="dimOnNa" id="1_1_1_2_applies" headers="applies_1_1_1 sc1_1_1">
+<p>Area elements in an image map that have an empty or missing alt attribute.</p>
+</td>
+<td class="dimOnNa" id="1_1_1_2_tech" headers="tech_1_1_1 sc1_1_1">
+<ul>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/H24">H24</a></li>
+</ul>
+</td>
+</tr>
+
+<tr class="">
+<td class="dimOnNa" id="1_1_1_3_name" headers="name_1_1_1 sc1_1_1">
+<p>Image submit button missing an alt attribute. Specify a text alternative using the alt attribute, that describes the button's function.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_1.1_1_1.H36</div></td>
+<td class="dimOnNa" id="1_1_1_3_applies" headers="applies_1_1_1 sc1_1_1">
+<p>Image submit button that has a missing or empty alt attribute.</p>
+</td>
+<td class="dimOnNa" id="1_1_1_3_tech" headers="tech_1_1_1 sc1_1_1">
+<ul>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/H36">H36</a></li>
+</ul>
+</td>
+</tr>
+
+<tr class="">
+<td class="dimOnNa" id="1_1_1_4_name" headers="name_1_1_1 sc1_1_1">
+<p>Img element inside a link has empty or missing alt text when a link beside it contains link text. Consider combining the links.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_1.1_1_1.H2.EG4</div></td>
+<td class="dimOnNa" id="1_1_1_4_applies" headers="applies_1_1_1 sc1_1_1">
+<p>As described in error message. Incorrect resolution of this technique.</p>
+</td>
+<td class="dimOnNa" id="1_1_1_4_tech" headers="tech_1_1_1 sc1_1_1">
+<ul>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/H2">H2</a></li>
+</ul>
+</td>
+</tr>
+
+<tr class="">
+<td class="dimOnNa" id="1_1_1_5_name" headers="name_1_1_1 sc1_1_1">
+<p>Img element inside a link must not use alt text that duplicates the content of a text link beside it.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_1.1_1_1.H2.EG3</div></td>
+<td class="dimOnNa" id="1_1_1_5_applies" headers="applies_1_1_1 sc1_1_1">
+<p>Image inside a link, that is next to a link that has the same text content (after trimming). "Next to" means the only thing between them is whitespace.</p>
+</td>
+<td class="dimOnNa" id="1_1_1_5_tech" headers="tech_1_1_1 sc1_1_1">
+<ul>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/H2">H2</a></li>
+</ul>
+</td>
+</tr>
+
+<tr class="">
+<td class="dimOnNa" id="1_1_1_6_name" headers="name_1_1_1 sc1_1_1">
+<p>Img element inside a link must not use alt text that duplicates the text content of the link.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_1.1_1_1.H2.EG5</div></td>
+<td class="dimOnNa" id="1_1_1_6_applies" headers="applies_1_1_1 sc1_1_1">
+<p>Image inside a link along with text content, where the alt attribute duplicates the text content (after trimming). Incorrect resolution of this technique.</p>
+</td>
+<td class="dimOnNa" id="1_1_1_6_tech" headers="tech_1_1_1 sc1_1_1">
+<ul>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/H2">H2</a></li>
+</ul>
+</td>
+</tr>
+
+<tr class="">
+<td class="dimOnNa" id="1_1_1_7_name" headers="name_1_1_1 sc1_1_1">
+<p>Img element is the only content of the link, but is missing alt text. The alt text should describe the purpose of the link.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_1.1_1_1.H30.2</div></td>
+<td class="dimOnNa" id="1_1_1_7_applies" headers="applies_1_1_1 sc1_1_1">
+<p>Image elements with an absent or empty alt attribute, that is the only non-blank content of a link.</p>
+</td>
+<td class="dimOnNa" id="1_1_1_7_tech" headers="tech_1_1_1 sc1_1_1">
+<ul>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/H30">H30</a></li>
+</ul>
+</td>
+</tr>
+
+<tr class="">
+<td class="dimOnNa" id="1_1_1_8_name" headers="name_1_1_1 sc1_1_1">
+<p>Img element missing an alt attribute. Use the alt attribute to specify a short text alternative.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_1.1_1_1.H37</div></td>
+<td class="dimOnNa" id="1_1_1_8_applies" headers="applies_1_1_1 sc1_1_1">
+<p>Image element (outside of a link) that is completely missing an alt attribute.</p>
+</td>
+<td class="dimOnNa" id="1_1_1_8_tech" headers="tech_1_1_1 sc1_1_1">
+<ul>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/H37">H37</a></li>
+</ul>
+</td>
+</tr>
+
+<tr class="">
+<td class="dimOnNa" id="1_1_1_9_name" headers="name_1_1_1 sc1_1_1">
+<p>Img element with empty alt text must have absent or empty title attribute.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_1.1_1_1.H67.1</div></td>
+<td class="dimOnNa" id="1_1_1_9_applies" headers="applies_1_1_1 sc1_1_1">
+<p>Image element (outside of a link) that is marked with an empty alt attribute (intending it to be ignored), but has a non-empty title attribute.</p>
+</td>
+<td class="dimOnNa" id="1_1_1_9_tech" headers="tech_1_1_1 sc1_1_1">
+<ul>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/H67">H67</a></li>
+</ul>
+</td>
+</tr>
+
+<tr class="">
+<td class="dimOnNa" id="1_1_1_10_name" headers="name_1_1_1 sc1_1_1">
+<p>Object elements must contain a text alternative after all other alternatives are exhausted.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_1.1_1_1.H53</div></td>
+<td class="dimOnNa" id="1_1_1_10_applies" headers="applies_1_1_1 sc1_1_1">
+<p>Object element (or group of nested object elements) that does not contain a text alternative at the deepest level. Message will fire on the innermost Object element.</p>
+</td>
+<td class="dimOnNa" id="1_1_1_10_tech" headers="tech_1_1_1 sc1_1_1">
+<ul>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/H53">H53</a></li>
+</ul>
+</td>
+</tr>
+
+</tbody></table>
+
+                <h4 class="grey-heading">Warnings</h4><table>
+<colgroup>
+<col width="42%">
+<col width="42%">
+<col width="16%">
+</colgroup>
+<tbody>
+<tr>
+<th id="name_1_1_1">Message Name</th>
+<th id="applies_1_1_1">Applies To</th>
+<th id="tech_1_1_1">Techniques</th>
+</tr>
+
+<tr class="">
+<td class="dimOnNa" id="1_1_1_17_name" headers="name_1_1_1 sc1_1_1">
+<p>Check that the value of the longdesc attribute is a valid URI of an existing resource.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_1.1_1_1.H45.2</div></td>
+<td class="dimOnNa" id="1_1_1_17_applies" headers="applies_1_1_1 sc1_1_1">
+<p>Image with a longdesc attribute that is not an absolute URI (as determined by having a protocol in the URI). It is fired as a warning because it is impossible to test whether it is a valid relative path, or plain text.</p>
+</td>
+<td class="dimOnNa" id="1_1_1_17_tech" headers="tech_1_1_1 sc1_1_1">
+<ul>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/H45">H45</a></li>
+</ul>
+</td>
+</tr>
+
+<tr class="">
+<td class="dimOnNa" id="1_1_1_18_name" headers="name_1_1_1 sc1_1_1">
+<p>If this image cannot be described in a short text alternative, provide a long text alternative, either using the longdesc attribute or another sufficient technique.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_1.1_1_1.H45.1</div></td>
+<td class="dimOnNa" id="1_1_1_18_applies" headers="applies_1_1_1 sc1_1_1">
+<p>Images with alt text, in general.</p>
+</td>
+<td class="dimOnNa" id="1_1_1_18_tech" headers="tech_1_1_1 sc1_1_1">
+<ul>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/H45">H45</a></li>
+</ul>
+</td>
+</tr>
+
+<tr class="">
+<td class="dimOnNa" id="1_1_1_19_name" headers="name_1_1_1 sc1_1_1">
+<p>Img element is marked so that it is ignored by Assistive Technology.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_1.1_1_1.H67.2</div></td>
+<td class="dimOnNa" id="1_1_1_19_applies" headers="applies_1_1_1 sc1_1_1">
+<p>Image element (outside of a link) that is marked with an empty alt attribute, and its title attribute is empty or absent.</p>
+</td>
+<td class="dimOnNa" id="1_1_1_19_tech" headers="tech_1_1_1 sc1_1_1">
+<ul>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/H67">H67</a></li>
+</ul>
+</td>
+</tr>
+
+</tbody></table>
+
+                <h4 class="grey-heading">Notices</h4><table>
+<colgroup>
+<col width="42%">
+<col width="42%">
+<col width="16%">
+</colgroup>
+<tbody>
+<tr>
+<th id="name_1_1_1">Message Name</th>
+<th id="applies_1_1_1">Applies To</th>
+<th id="tech_1_1_1">Techniques</th>
+</tr>
+
+<tr class="">
+<td class="dimOnNa" id="1_1_1_11_name" headers="name_1_1_1 sc1_1_1">
+<p>Check that short (and if appropriate, long) text alternatives are available for non-text content that serve the same purpose and presents the same information.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_1.1_1_1.G94,G92.Applet</div></td>
+<td class="dimOnNa" id="1_1_1_11_applies" headers="applies_1_1_1 sc1_1_1">
+<p>Applet elements (with correctly specified text alternatives) in general.</p>
+</td>
+<td class="dimOnNa" id="1_1_1_11_tech" headers="tech_1_1_1 sc1_1_1">
+<ul>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/G94">G94</a></li>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/G92">G92</a></li>
+</ul>
+</td>
+</tr>
+
+<tr class="">
+<td class="dimOnNa" id="1_1_1_12_name" headers="name_1_1_1 sc1_1_1">
+<p>Check that short (and if appropriate, long) text alternatives are available for non-text content that serve the same purpose and presents the same information.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_1.1_1_1.G94,G92.Object</div></td>
+<td class="dimOnNa" id="1_1_1_12_applies" headers="applies_1_1_1 sc1_1_1">
+<p>Object elements (with a correctly specified text alternative) in general.</p>
+</td>
+<td class="dimOnNa" id="1_1_1_12_tech" headers="tech_1_1_1 sc1_1_1">
+<ul>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/G94">G94</a></li>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/G92">G92</a></li>
+</ul>
+</td>
+</tr>
+
+<tr class="">
+<td class="dimOnNa" id="1_1_1_13_name" headers="name_1_1_1 sc1_1_1">
+<p>Check that the content at the target of the longdesc URI contains a long description describing the original non-text content associated with it.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_1.1_1_1.H45.3</div></td>
+<td class="dimOnNa" id="1_1_1_13_applies" headers="applies_1_1_1 sc1_1_1">
+<p>Image with a valid longdesc attribute (that is an absolute URI).</p>
+</td>
+<td class="dimOnNa" id="1_1_1_13_tech" headers="tech_1_1_1 sc1_1_1">
+<ul>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/H45">H45</a></li>
+</ul>
+</td>
+</tr>
+
+<tr class="">
+<td class="dimOnNa" id="1_1_1_14_name" headers="name_1_1_1 sc1_1_1">
+<p>Ensure that the area element's text alternative serves the same purpose as the part of image map image it references.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_1.1_1_1.H24.2</div></td>
+<td class="dimOnNa" id="1_1_1_14_applies" headers="applies_1_1_1 sc1_1_1">
+<p>Area elements with alt text, in general.</p>
+</td>
+<td class="dimOnNa" id="1_1_1_14_tech" headers="tech_1_1_1 sc1_1_1">
+<ul>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/H24">H24</a></li>
+</ul>
+</td>
+</tr>
+
+<tr class="">
+<td class="dimOnNa" id="1_1_1_15_name" headers="name_1_1_1 sc1_1_1">
+<p>Ensure that the image submit button's alt text identifies the purpose of the button.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_1.1_1_1.G94.Button</div></td>
+<td class="dimOnNa" id="1_1_1_15_applies" headers="applies_1_1_1 sc1_1_1">
+<p>Image submit buttons in general. In the case of these, they should describe the function of the button, not necessarily the image in general (although they should be the same).</p>
+</td>
+<td class="dimOnNa" id="1_1_1_15_tech" headers="tech_1_1_1 sc1_1_1">
+<ul>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/G94">G94</a></li>
+</ul>
+</td>
+</tr>
+
+<tr class="">
+<td class="dimOnNa" id="1_1_1_16_name" headers="name_1_1_1 sc1_1_1">
+<p>Ensure that the img element's alt text serves the same purpose and presents the same information as the image.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_1.1_1_1.G94.Image</div></td>
+<td class="dimOnNa" id="1_1_1_16_applies" headers="applies_1_1_1 sc1_1_1">
+<p>Images with alt text, in general.</p>
+</td>
+<td class="dimOnNa" id="1_1_1_16_tech" headers="tech_1_1_1 sc1_1_1">
+<ul>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/G94">G94</a></li>
+</ul>
+</td>
+</tr>
+
+</tbody></table>
 
         </div> <!-- end max-width -->
 

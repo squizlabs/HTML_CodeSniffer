@@ -209,9 +209,161 @@
 
                 <p>Note that "[Standard]" will be replaced with "WCAG2A", "WCAG2AA" or "WCAG2AAA", depending on the level being tested.</p>
 
-                
+                <h4 class="grey-heading">Errors</h4><table>
+<colgroup>
+<col width="42%">
+<col width="42%">
+<col width="16%">
+</colgroup>
+<tbody>
+<tr>
+<th id="name_4_1_2">Message Name</th>
+<th id="applies_4_1_2">Applies To</th>
+<th id="tech_4_1_2">Techniques</th>
+</tr>
 
-                
+<tr class="">
+<td class="dimOnNa" id="4_1_2_0_name" headers="name_4_1_2 sc4_1_2">
+<p>Empty anchor element found.</p>
+<div class="fullcode">[Standard].Principle4.Guideline4_1.4_1_2.H91.A.EmptyNoId</div></td>
+<td class="dimOnNa" id="4_1_2_0_applies" headers="applies_4_1_2 sc4_1_2">
+<p>Completely empty anchor element (no text, no href, no ID).</p>
+</td>
+<td class="dimOnNa" id="4_1_2_0_tech" headers="tech_4_1_2 sc4_1_2">
+<ul>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/H91">H91</a></li>
+</ul>
+</td>
+</tr>
+
+<tr class="">
+<td class="dimOnNa" id="4_1_2_1_name" headers="name_4_1_2 sc4_1_2">
+<p>Empty anchor elements should not be used for defining a in-page link target. Consider moving its ID to a parent or nearby element.</p>
+<div class="fullcode">[Standard].Principle4.Guideline4_1.4_1_2.H91.A.Empty</div></td>
+<td class="dimOnNa" id="4_1_2_1_applies" headers="applies_4_1_2 sc4_1_2">
+<p>Empty anchor element (no text, no href) but with an ID. This breaks the intended role of an "A" element being a link. The ID should be placed on something more concrete, unless the ID is used for reasons like scripting.</p>
+</td>
+<td class="dimOnNa" id="4_1_2_1_tech" headers="tech_4_1_2 sc4_1_2">
+<ul>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/H91">H91</a></li>
+</ul>
+</td>
+</tr>
+
+<tr class="">
+<td class="dimOnNa" id="4_1_2_2_name" headers="name_4_1_2 sc4_1_2">
+<p>Empty anchor elements should not be used for defining a in-page link target. Consider moving the name attribute to become an ID of a parent or nearby element.</p>
+<div class="fullcode">[Standard].Principle4.Guideline4_1.4_1_2.H91.A.EmptyWithName</div></td>
+<td class="dimOnNa" id="4_1_2_2_applies" headers="applies_4_1_2 sc4_1_2">
+<p>Empty anchor element (no text, no href) but with a name attribute. This breaks the intended role of an "A" element being a link. This is the older method of creating an in-page link target, using the name attribute instead of ID.</p>
+</td>
+<td class="dimOnNa" id="4_1_2_2_tech" headers="tech_4_1_2 sc4_1_2">
+<ul>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/H91">H91</a></li>
+</ul>
+</td>
+</tr>
+
+<tr class="">
+<td class="dimOnNa" id="4_1_2_3_name" headers="name_4_1_2 sc4_1_2">
+<p>Link contains a valid href attribute, but no content.</p>
+<div class="fullcode">[Standard].Principle4.Guideline4_1.4_1_2.H91.A.NoContent</div></td>
+<td class="dimOnNa" id="4_1_2_3_applies" headers="applies_4_1_2 sc4_1_2">
+<p>Link with a href attribute, but without link text. This means it does not have an accessibility API "name".</p>
+</td>
+<td class="dimOnNa" id="4_1_2_3_tech" headers="tech_4_1_2 sc4_1_2">
+<ul>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/H91">H91</a></li>
+</ul>
+</td>
+</tr>
+
+<tr class="">
+<td class="dimOnNa" id="4_1_2_4_name" headers="name_4_1_2 sc4_1_2">
+<p>This [element type] does not have a name available to an accessibility API. Valid names are [valid names for this element].</p>
+<div class="fullcode">[Standard].Principle4.Guideline4_1.4_1_2.H91.[NodeName].Name</div></td>
+<td class="dimOnNa" id="4_1_2_4_applies" headers="applies_4_1_2 sc4_1_2">
+<p>Form control which does not have a valid accessibility API "name". The message states which items count as a valid "name".</p>
+</td>
+<td class="dimOnNa" id="4_1_2_4_tech" headers="tech_4_1_2 sc4_1_2">
+<ul>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/H91">H91</a></li>
+</ul>
+</td>
+</tr>
+
+<tr class="">
+<td class="dimOnNa" id="4_1_2_5_name" headers="name_4_1_2 sc4_1_2">
+<p>This [element type] does not have a value available to an accessibility API. Add one [using a element-specific method].</p>
+<div class="fullcode">[Standard].Principle4.Guideline4_1.4_1_2.H91.[NodeName].Value</div></td>
+<td class="dimOnNa" id="4_1_2_5_applies" headers="applies_4_1_2 sc4_1_2">
+<p>Form control which does not have a valid accessibility API "value". The message states how to add a valid value.</p>
+</td>
+<td class="dimOnNa" id="4_1_2_5_tech" headers="tech_4_1_2 sc4_1_2">
+<ul>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/H91">H91</a></li>
+</ul>
+</td>
+</tr>
+
+<tr class="">
+<td class="dimOnNa" id="4_1_2_6_name" headers="name_4_1_2 sc4_1_2">
+<p>Unable to automatically test for a label for element ID "[Element ID]".</p>
+<div class="fullcode">[Standard].Principle4.Guideline4_1.4_1_2.H91.[NodeName].NameInvalid</div></td>
+<td class="dimOnNa" id="4_1_2_6_applies" headers="applies_4_1_2 sc4_1_2">
+<p>Form control where the ID is not a valid CSS selector.</p>
+</td>
+<td class="dimOnNa" id="4_1_2_6_tech" headers="tech_4_1_2 sc4_1_2">
+<ul>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/H91">H91</a></li>
+</ul>
+</td>
+</tr>
+
+</tbody></table>
+
+                <h4 class="grey-heading">Warnings</h4><table>
+<colgroup>
+<col width="42%">
+<col width="42%">
+<col width="16%">
+</colgroup>
+<tbody>
+<tr>
+<th id="name_4_1_2">Message Name</th>
+<th id="applies_4_1_2">Applies To</th>
+<th id="tech_4_1_2">Techniques</th>
+</tr>
+
+<tr class="">
+<td class="dimOnNa" id="4_1_2_7_name" headers="name_4_1_2 sc4_1_2">
+<p>Anchor elements should not be used for defining an in-page link target. If not using the ID for other purposes (such as CSS or scripting), consider moving it to a parent element.</p>
+<div class="fullcode">[Standard].Principle4.Guideline4_1.4_1_2.H91.A.NoHref</div></td>
+<td class="dimOnNa" id="4_1_2_7_applies" headers="applies_4_1_2 sc4_1_2">
+<p>Anchor element with no href, but with an ID and text. This breaks the intended role of an "A" element being a link. It will usually be around text inside another parent element (such as a heading); the ID should be moved up for the same effect.</p>
+</td>
+<td class="dimOnNa" id="4_1_2_7_tech" headers="tech_4_1_2 sc4_1_2">
+<ul>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/H91">H91</a></li>
+</ul>
+</td>
+</tr>
+
+<tr class="">
+<td class="dimOnNa" id="4_1_2_8_name" headers="name_4_1_2 sc4_1_2">
+<p>Link found with text, but no href and ID. If this is not "where a link would have been placed if relevant", the A element should be removed.</p>
+<div class="fullcode">[Standard].Principle4.Guideline4_1.4_1_2.H91.A.Placeholder</div></td>
+<td class="dimOnNa" id="4_1_2_8_applies" headers="applies_4_1_2 sc4_1_2">
+<p>Link with text, but no href or ID. This means it does not have an accessibility API "value". The quoted text comes from the HTML5 definition of what an "A" element without a href represents.</p>
+</td>
+<td class="dimOnNa" id="4_1_2_8_tech" headers="tech_4_1_2 sc4_1_2">
+<ul>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/H91">H91</a></li>
+</ul>
+</td>
+</tr>
+
+</tbody></table>
 
                 
 
