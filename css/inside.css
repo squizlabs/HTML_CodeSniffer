@@ -3,7 +3,7 @@ html {
 }
 
 body {
- padding: 0px 20px 60px 20px; 
+ padding: 0px 20px 20px 20px; 
  margin: 0; color:#2e2d33; 
  background-color:#fbfbfb;
  min-width:620px;
@@ -168,14 +168,12 @@ li {
 #header {
  margin: 0px -20px 10px -20px;
  border-bottom:1px solid #dfe7ef;
- height:100px;
  padding:11px 20px 0 20px;
  position:relative;
  z-index:10;
 
  border-bottom:1px solid #dfe7ef;
- height:77px;
- padding-top:35px;
+ height:101px;
 
  background: rgb(223,98,25); /* Old browsers */
  background: -moz-linear-gradient(top,  rgba(223,98,25,1) 0%, rgba(196,84,19,1) 100%); /* FF3.6+ */
@@ -190,7 +188,7 @@ li {
 #header #sprites {
  position:absolute;
  right:30px;
- top:0;
+ top:2px;
  width:250px;
  list-style:none;
  margin:0;
@@ -285,6 +283,7 @@ li {
  z-index:10;
  height:50px;
  text-shadow: 0 -1px rgba(0,0,0,.2), 0 1px rgba(255,255,255,.8);
+ margin: 40px -20px -20px -20px;
 }
 
 #footer p {
