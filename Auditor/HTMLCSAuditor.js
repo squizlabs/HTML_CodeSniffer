@@ -515,6 +515,10 @@ var HTMLCSAuditor = new function()
                     newWrapper.style.top  = wrapper.style.top;
                     document.body.replaceChild(newWrapper, wrapper);
                 }
+
+                if (_options.listUpdateCallback) {
+                    _options.listUpdateCallback.call(this, _messages);
+                }
             }//end if
         };
 
@@ -1018,6 +1022,12 @@ var HTMLCSAuditor = new function()
 
     };
 
+    this.getIssue = function(issueNumber)
+    {
+        return _messages[issueNumber];
+
+    };
+
     this.build = function(standard, messages, options) {
         var wrapper = document.getElementById(_prefix + 'wrapper');
 
@@ -1258,6 +1268,10 @@ var HTMLCSAuditor = new function()
                     i--;
                 }
             }//end for
+
+            if (_options.runCallback) {
+                _messages = _options.runCallback.call(this, _messages);
+            }
 
             setTimeout(function() {
                 var newWrapper = self.buildSummaryPage();
@@ -1537,16 +1551,17 @@ var HTMLCSAuditor = new function()
             var pointerH    = (pointerRect.y2 - pointerRect.y1);
             var pointerW    = (pointerRect.x2 - pointerRect.x1);
 
-            this.pointerDim.height = pointerH;
-            this.pointerDim.width  = pointerW;
+            this.pointerDim.height = 62;
+            this.pointerDim.width  = 62;
 
             var bounceHeight = 20;
             var scroll       = this.getScrollCoords();
-            var iframeScroll = this.getScrollCoords(elem);
 
             // Determine where to show the arrow.
             var winDim = this.getWindowDimensions(elem);
             window.scrollTo(0, rect.y1 - 100);
+
+            var iframeScroll = this.getScrollCoords(elem);
 
             // Try to position the pointer.
             if ((rect.y1 - pointerH - bounceHeight) > iframeScroll.y) {
@@ -1601,6 +1616,16 @@ var HTMLCSAuditor = new function()
                     }
                 break;
 
+                case 'down':
+                default:
+                    top = (rect.y1 - this.pointerDim.height);
+                    if ((rect.x2 - rect.x1) < 250) {
+                        left = (this.getRectMidPnt(rect) - (this.pointerDim.width / 2));
+                    } else {
+                        left = rect.x1;
+                    }
+                break;
+
                 case 'left':
                     left = rect.x2;
                     top  = this.getRectMidPnt(rect, true);
@@ -1611,15 +1636,6 @@ var HTMLCSAuditor = new function()
                     top  = this.getRectMidPnt(rect, true);
                 break;
 
-                case 'down':
-                default:
-                    top = (rect.y1 - this.pointerDim.height);
-                    if ((rect.x2 - rect.x1) < 250) {
-                        left = (this.getRectMidPnt(rect) - (this.pointerDim.width / 2));
-                    } else {
-                        left = rect.x1;
-                    }
-                break;
             }//end switch
 
             var frameScroll = this.getScrollCoords();
@@ -1654,37 +1670,64 @@ var HTMLCSAuditor = new function()
                         pointer.parentNode.removeChild(pointer);
                     }
                 }, 1500);
-            });
+            }, direction);
 
         },
 
-        bounce: function(callback)
+        bounce: function(callback, direction)
         {
-            var pointer = this.pointer;
-            var initialTop = Number(pointer.style.top.replace('px', ''));
-            var currentTop = initialTop;
-            var dist       = 30;
-            var lowerLimit = (initialTop - dist);
-            var maxBounce  = 5;
+            var currentDirection = direction;
+            var pointer          = this.pointer;
+            var initialPos       = 0;
+            var style            = '';
+            var initalPosOffset  = 0;
+            var dist             = 30;
+            var maxBounce        = 5;
 
-            var bounces   = 0;
-            var direction = 'up';
+            switch (direction) {
+                case 'up':
+                    currentDirection = direction + '-op';
+                    initalPosOffset  = dist;
+                case 'down':
+                    style = 'top';
+                break;
+
+                case 'left':
+                    currentDirection = direction + '-op';
+                    initalPosOffset  = dist;
+                case 'right':
+                    style = 'left';
+                break;
+            }
+
+            initialPos = (Number(pointer.style[style].replace('px', '')) + initalPosOffset);
+
+            var currentPos = initialPos;
+            var lowerLimit = (initialPos - dist);
+            var bounces    = 0;
+
             var i = setInterval(function() {
-                if (direction === 'up') {
-                    currentTop--;
-                    pointer.style.top = currentTop + 'px';
-                    if (currentTop < lowerLimit) {
-                        direction = 'down';
+                if (currentDirection === direction) {
+                    currentPos--;
+                    pointer.style[style] = currentPos + 'px';
+                    if (currentPos < lowerLimit) {
+                        currentDirection = direction + '-op';
+                        if (bounces === maxBounce && initalPosOffset !== 0) {
+                            clearInterval(i);
+                            callback.call(this);
+                            return;
+                        }
                     }
-                } else if (direction === 'down') {
-                    currentTop++;
-                    pointer.style.top = currentTop + 'px';
 
-                    if (currentTop >= initialTop) {
-                        direction = 'up';
+                } else {
+                    currentPos++;
+                    pointer.style[style] = currentPos + 'px';
+
+                    if (currentPos >= initialPos) {
+                        currentDirection = direction;
                         bounces++;
 
-                        if (bounces === maxBounce) {
+                        if (bounces === maxBounce && initalPosOffset === 0) {
                             clearInterval(i);
                             callback.call(this);
                             return;
