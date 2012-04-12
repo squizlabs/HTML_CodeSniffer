@@ -6,33 +6,74 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link rel="Shortcut Icon" href="images/favicon.png">
     <link rel="stylesheet" type="text/css" href="css/home.css">
-    <link rel="stylesheet" media="screen" type="text/css" href="./main.css" />
     <link rel="stylesheet" media="screen" type="text/css" href="./build/HTMLCS.css" />
 
     <script type="text/javascript" src="./build/HTMLCS.js"></script>
     <script type="text/javascript" src="./eg.js"></script>
 
     <script type="text/javascript">
-          function runHTMLCSTest(popup) {
-            if (popup) {
-                var options = {
-                    alwaysShowNotices: false
-                }
-                HTMLCSAuditor.run(document.getElementById('levelpopup').value, document.getElementById('source').value, options);
-            } else {
-                runHTMLCS(document.getElementById('level').value, document.getElementById('source').value, document.getElementById('resultsWrapper'));
+          function runHTMLCSTest() {
+            var source = document.getElementById('source').value;
+            if (source !== '') {
+                runHTMLCS(document.getElementById('level').value, source, document.getElementById('resultsWrapper'));
+                scrollTo(document.getElementById('test-area'));
             }
         }
 
-        function closeAuditor() {
-            var wrapper = document.getElementById('HTMLCS-wrapper');
-            if (wrapper) {
-                document.body.removeChild(wrapper);
-            }
+        function activateHTMLCS() {
+            var runBtn = document.getElementById('run-button');
+            runBtn.className = 'test-options-active';
         }
 
         function hideDiv() {
-            document.getElementById('code-overlay').style.visibility = "hidden";
+            document.getElementById('source').focus();
+            var overlayDiv = document.getElementById('code-overlay');
+
+            if (overlayDiv.style.opacity !== undefined) {
+                overlayDiv.style.opacity = 0;
+                setTimeout(function() {
+                    overlayDiv.style.visibility = "hidden";
+                }, 400);
+            } else {
+                overlayDiv.style.visibility = "hidden";
+            }
+        }
+
+        function scrollTo(element) {
+            var currScrollY   = null;
+
+            var targetScrollY = 0;
+            var op = element;
+            while (op.offsetParent !== null) {
+                targetScrollY += op.offsetTop;
+                op = op.offsetParent;
+            }
+
+            if (window.pageYOffset !== undefined) {
+                currScrollY = window.pageYOffset;
+            } else if (document.scrollTop !== undefined) {
+                currScrollY = document.scrollTop;
+            } else if (document.body.scrollTop !== undefined) {
+                currScrollY = document.body.scrollTop;
+            }
+
+
+            var maxTick  = 1;
+            var interval = setInterval(function() {
+                var sign = 1;
+                if (currScrollY > targetScrollY) {
+                    sign = -1;
+                }
+                var scrollBy = sign * Math.ceil(Math.max(1, Math.min(maxTick, (Math.abs(targetScrollY - currScrollY) * 0.25))));
+                currScrollY += scrollBy;
+                window.scrollBy(0, scrollBy);
+
+                if (currScrollY === targetScrollY) {
+                    clearInterval(interval);
+                } else {
+                    maxTick = Math.min(maxTick + 0.5, Math.abs(targetScrollY - currScrollY));
+                }
+            }, 20);
         }
     </script>
 
@@ -112,26 +153,26 @@
                         <div id="test-area-graphic"></div>Paste your code here
                     </div>
 
-                    <textarea id="source"></textarea>   
+                    <textarea id="source" title="Source code to test" onkeypress="activateHTMLCS()"></textarea>
 
                     <div id="test-options">
-                
-                        <select id="level" name="level" style="margin-left:10px;">
+
+                        <select id="level" name="level" title="Standard to test" style="margin-left:10px;">
                             <option value="WCAG2A">Level A</option>
                             <option value="WCAG2AA" selected="selected">Level AA</option>
                             <option value="WCAG2AAA">Level AAA</option>
-                        </select>  
+                        </select>
 
                         <!-- <ul>
                             <li><label><input type="radio" value="WCAG2A" id="level" name="level"> Level A</label></li>
-                      
+
                             <li><label><input type="radio" value="WCAG2AA" id="level" name="level"> Level AA</label></li>
-                      
+
                             <li><label><input type="radio" value="WCAG2AAA" id="level" name="level"> Level AAA</label></li>
                         </ul> -->
-                      
-                        <button type="button" onclick="javascript:runHTMLCSTest(false);">Run HTML_CodeSniffer</button>
-                    
+
+                        <button type="button" id="run-button" onclick="javascript:runHTMLCSTest(false);" class="test-options-disabled">Run HTML_CodeSniffer</button>
+
                     </div>
                 </form>
             </div> <!-- close code-input -->
