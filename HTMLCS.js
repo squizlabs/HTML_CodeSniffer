@@ -171,10 +171,13 @@ var HTMLCS = new function()
     /**
      * Returns all the messages for the last run.
      *
+     * Return a copy of the array so the class variable doesn't get modified by
+     * future modification (eg. splicing).
+     *
      * @return {array} Array of message objects.
      */
     this.getMessages = function() {
-        return _messages;
+        return _messages.concat([]);
     };
 
     /**
