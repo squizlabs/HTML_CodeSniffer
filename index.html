@@ -51,29 +51,31 @@
 
             if (window.pageYOffset !== undefined) {
                 currScrollY = window.pageYOffset;
-            } else if (document.scrollTop !== undefined) {
-                currScrollY = document.scrollTop;
+            } else if (document.documentElement.scrollTop !== undefined) {
+                currScrollY = document.documentElement.scrollTop;
             } else if (document.body.scrollTop !== undefined) {
                 currScrollY = document.body.scrollTop;
             }
 
 
-            var maxTick  = 1;
-            var interval = setInterval(function() {
-                var sign = 1;
-                if (currScrollY > targetScrollY) {
-                    sign = -1;
-                }
-                var scrollBy = sign * Math.ceil(Math.max(1, Math.min(maxTick, (Math.abs(targetScrollY - currScrollY) * 0.25))));
-                currScrollY += scrollBy;
-                window.scrollBy(0, scrollBy);
+            if (currScrollY !== targetScrollY) {
+                var maxTick  = 1;
+                var interval = setInterval(function() {
+                    var sign = 1;
+                    if (currScrollY > targetScrollY) {
+                        sign = -1;
+                    }
+                    var scrollBy = sign * Math.ceil(Math.max(1, Math.min(maxTick, (Math.abs(targetScrollY - currScrollY) * 0.25))));
+                    currScrollY += scrollBy;
+                    window.scrollBy(0, scrollBy);
 
-                if (currScrollY === targetScrollY) {
-                    clearInterval(interval);
-                } else {
-                    maxTick = Math.min(maxTick + 0.5, Math.abs(targetScrollY - currScrollY));
-                }
-            }, 20);
+                    if (currScrollY === targetScrollY) {
+                        clearInterval(interval);
+                    } else {
+                        maxTick = Math.min(maxTick + 0.5, Math.abs(targetScrollY - currScrollY));
+                    }
+                }, 20);
+            }//end if
         }
     </script>
 
