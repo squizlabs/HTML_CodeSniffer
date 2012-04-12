@@ -8,7 +8,7 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-<link href="../../css/home.css" rel="stylesheet" type="text/css">
+<link href="../../css/inside.css" rel="stylesheet" type="text/css">
 <link rel="Shortcut Icon" href="../../images/favicon.png">
 
 <script type="text/javascript">
@@ -29,70 +29,6 @@
         }
     }
 </script>
-
-<style type="text/css">
-/* Needed until an inside.css is built */
-#introduction li, #introduction li:hover {
-  background: transparent;
-  border: none;
-  border-radius: none;
-  box-shadow: none;
-  color: inherit;
-  display: list-item;
-  font-size: inherit;
-  font-weight: normal;
-  margin-top: inherit;
-  text-shadow: inherit;
-}
-
-#introduction li a {
-  color: #174b91;
-  display: inline;
-  padding: 0;
-}
-
-#test-area td p:first-child, #test-area td ul:first-child {
-  margin-top: 0;
-}
-
-#test-area td ul {
-  padding-left: 13px;
-}
-
-.HTMLCS-sc-table td {
-    background-color: #EEE;
-    color: #666;
-}
-
-.HTMLCS-sc-table td.scrow,
-body.showA .HTMLCS-sc-table td.lvlA,
-body.showAA .HTMLCS-sc-table td.lvlAA,
-body.showAAA .HTMLCS-sc-table td.lvlAAA {
-    background-color: #FFF;
-    color: #000;
-}
-
-body .HTMLCS-sc-table td.error {
-    border-left: 3px solid #8B2222;
-}
-
-body .HTMLCS-sc-table td.warning {
-    border-left: 3px solid #B3913A;
-}
-
-body .HTMLCS-sc-table td.notice {
-    border-left: 3px solid #66656B;
-}
-
-.HTMLCS-sc-table td {
-    border-top: 1px solid #DDD;
-}
-
-.HTMLCS-sc-table tr.top-row td {
-    border-top: 1px solid #CCC;
-}
-
-</style>
 
 </head>
 
@@ -120,16 +56,23 @@ body .HTMLCS-sc-table td.notice {
 
     <div id="introduction" style="min-height: 0px">
 
+        <ul id="nav">
+            <li><a href="../../index.html"><img src="../../images/home.png" alt="HTML_CodeSniffer Home"></a></li>
+            <li><a href="./AAA">Level AAA Summary</a></li>
+            <li><a href="./AA">Level AA Summary</a></li>
+            <li><a href="./A">Level A Summary</a></li>
+        </ul>
+
         <div class="max-width">
 
-            <h2>WCAG 2.0 Standard: Level <abbr title="Triple A">AAA</abbr></h2>
+            <h2>WCAG 2.0 Standard: Level <abbr title="Triple A">AAA</abbr> Summary</h2>
 
             <p>A summary of the Success Criteria that apply to Level <abbr title="Triple A">AAA</abbr> of the <a href="http://www.w3.org/TR/WCAG20">W3C Web Content Accessibility Guidelines, version 2.0</a> ("WCAG 2.0").</p>
 
             <p>Keep in mind when you read these success criteria, that any claim of conformance must meet the <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/conformance.html">Conformance Requirements</a>, of which meeting a certain level of conformance (eg. meeting all of the applicable Success Criteria for the target level and lower) is merely one. Other things to keep in mind:</p>
 
             <ul>
-            <li>No statement of conformance can be made of a document fragment - only full web pages can be claimed to be conforming (<abbr title="Conformance Requirement">C.R.</abbr> 2). However, any failures in a document fragment would mean that any page containing this fragment could not claim conformance.</li>
+            <li>Conformance can only be claimed for full web pages (<abbr title="Conformance Requirement">C.R.</abbr> 2). Document fragments do not qualify for conformance in and of themselves, however any failures in them would mean failure to conform in pages including them.</li>
             <li>When a web page is part of a multiple-step process, all pages in that process must conform to the specified level (<abbr title="Conformance Requirement">C.R.</abbr> 3).</li>
             <li>Only <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/conformance.html#uc-accessibility-support-head">accessibility-supported technologies</a> should be relied upon to achieve conformance (<abbr title="Conformance Requirement">C.R.</abbr> 4), or alternative versions are provided using an accessibility-supported technology.</li>
             <li>Where a technology are not used in an accessibility-supported way, it must not interfere with the user being able to use the rest of the page (<abbr title="Conformance Requirement">C.R.</abbr> 5).</li>
