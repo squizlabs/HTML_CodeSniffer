@@ -5,7 +5,7 @@ html {
 
 ::-moz-selection{
 background: #87d1f5;
-} 
+}
 
 ::selection {
 background: #87d1f5;
@@ -46,14 +46,14 @@ h3 {
 
 #test-area h3 {
  color:#3a5180;
- text-shadow: 0 1px 0 rgba(255,255,255,1); 
+ text-shadow: 0 1px 0 rgba(255,255,255,1);
 }
 
 textarea:focus {
-	 outline: none;
+     outline: none;
 }
 
-p { 
+p {
  font-size:14px;
  line-height:19px;
  text-shadow: 0 -1px rgba(0,0,0,0), 0 1px rgba(255,255,255,.6);
@@ -149,7 +149,7 @@ p a:hover {
  z-index:1;
  padding:35px 0 50px 0;
  background: #d7dbe0 url(../images/introduction-bg.jpg) repeat-x top;
- font-size:13px;	
+ font-size:13px;
  min-height:410px;
  border-top:1px solid #dedede;
  box-shadow: 0 -4px 8px rgba(0,0,0,.1);
@@ -180,12 +180,12 @@ p a:hover {
  background: -o-linear-gradient(top,  rgba(198,204,213,1) 0%,rgba(165,174,189,1) 100%); /* Opera 11.10+ */
  background: -ms-linear-gradient(top,  rgba(198,204,213,1) 0%,rgba(165,174,189,1) 100%); /* IE10+ */
  background: linear-gradient(top,  rgba(198,204,213,1) 0%,rgba(165,174,189,1) 100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c6ccd5', endColorstr='#a5aebd',GradientType=0 ); /* IE6-9 */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c6ccd5', endColorstr='#a5aebd',GradientType=0 ); /* IE6-9 */
 }
 
 #introduction li:hover {
  border:1px solid #7f8ba0;
- 
+
  background: rgb(174,183,196); /* Old browsers */
  background: -moz-linear-gradient(top,  rgba(174,183,196,1) 0%, rgba(148,158,176,1) 100%); /* FF3.6+ */
  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(174,183,196,1)), color-stop(100%,rgba(148,158,176,1))); /* Chrome,Safari4+ */
@@ -252,7 +252,7 @@ p a:hover {
  text-shadow:0 -1px 0 rgba(0,0,0,.6), 0 1px 0 rgba(255,255,255,0), 0 1px 1px rgba(0,0,0,0);
  border-radius:3px;
  box-shadow: 0 1px rgba(255,255,255,.4) inset,  0 1px 0 rgba(0,0,0,.5);
- 
+
  background: rgb(223,98,25); /* Old browsers */
  background: -moz-linear-gradient(top,  rgba(223,98,25,1) 0%, rgba(163,71,24,1) 100%); /* FF3.6+ */
  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(223,98,25,1)), color-stop(100%,rgba(163,71,24,1))); /* Chrome,Safari4+ */
@@ -329,7 +329,7 @@ p a:hover {
 #test-area th{
  background:#d2d7dd;
  padding:9px 10px;
- font-weight:bold; 
+ font-weight:bold;
  font-size:15px;
  text-shadow: 0 1px 0 rgba(255,255,255,.9);
  border-right:1px solid #d2d7dd;
@@ -364,7 +364,7 @@ p a:hover {
  width:964px;
  height:188px;
  color:#848484;
- font-size:25px; 
+ font-size:25px;
  text-align:center;
  text-shadow: 0 1px 0 rgba(255,255,255,.5);
  padding-top:70px;
@@ -375,6 +375,9 @@ p a:hover {
  z-index:10;
  clear:both;
  display:block;
+
+ -moz-transition: opacity 0.4s ease 0s;
+ -webkit-transition: opacity 0.4s ease 0s;
 }
 
 #test-area-graphic {
@@ -493,8 +496,8 @@ p a:hover {
 }
 
 .radio-gen.radio-on {
-	position:relative;
-	top:-2px;
+    position:relative;
+    top:-2px;
 }
 
 .radio-gen.radio-on:after {
