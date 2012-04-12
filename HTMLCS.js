@@ -277,7 +277,14 @@ var HTMLCS = new function()
         var parts = standard.split('/');
 
         // Get a copy of the ruleset object.
-        var ruleSet = JSON.parse(JSON.stringify(window['HTMLCS_' + parts[(parts.length - 2)]]));
+        var oldRuleSet = window['HTMLCS_' + parts[(parts.length - 2)]];
+        var ruleSet    = {};
+
+        for (var x in oldRuleSet) {
+            if (oldRuleSet.hasOwnProperty(x) === true) {
+                ruleSet[x] = oldRuleSet[x];
+            }
+        }
 
         if (!ruleSet) {
             return false;

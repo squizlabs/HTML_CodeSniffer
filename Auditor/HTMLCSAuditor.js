@@ -529,42 +529,25 @@ var HTMLCSAuditor = new function()
         };
 
         var wrapper  = document.getElementById(_prefix + 'wrapper');
-        var messages = HTMLCS.getMessages();
-        for (var i = 0; i < messages.length; i++) {
-            var ignore = false;
-            if (wrapper) {
-                if (wrapper === messages[i].element) {
-                    ignore = true;
-                } else if (document === messages[i].element) {
-                    // Don't ignore document. This is to short-circuit calls to
-                    // contains() because IE doesn't like document being the argument.
-                    ignore = false;
-                } else if ((wrapper.contains) && (wrapper.contains(messages[i].element) === true)) {
-                    ignore = true;
-                } else if ((wrapper.compareDocumentPosition) && ((wrapper.compareDocumentPosition(messages[i].element) & 16) > 0)) {
-                    ignore = true;
-                }
-            }
 
-            if (ignore === false) {
-                switch (messages[i].type) {
-                    case HTMLCS.ERROR:
-                        levels.error++;
-                    break;
+        for (var i = 0; i < _messages.length; i++) {
+            switch (_messages[i].type) {
+                case HTMLCS.ERROR:
+                    levels.error++;
+                break;
 
-                    case HTMLCS.WARNING:
-                        levels.warning++;
-                    break;
+                case HTMLCS.WARNING:
+                    levels.warning++;
+                break;
 
-                    case HTMLCS.NOTICE:
-                        levels.notice++;
-                    break;
+                case HTMLCS.NOTICE:
+                    levels.notice++;
+                break;
 
-                    default:
-                        // No default case.
-                    break;
-                }//end switch
-            }//end if
+                default:
+                    // No default case.
+                break;
+            }//end switch
         }//end for
 
         // Set default show options based on the first run. Don't re-do these, let
@@ -1220,6 +1203,7 @@ var HTMLCSAuditor = new function()
         _options  = options;
         _page     = 1;
         _screen   = '';
+        _messages = [];
 
         var target = document.getElementById(_prefix + 'wrapper');
 
