@@ -16,6 +16,16 @@ h1 {
  text-shadow: 0 -1px 0 rgba(0,0,0,1);
 }
 
+h1 a {
+ color:#ffffff;
+ text-decoration:none;
+}
+
+h1 a:hover {
+ color:#a64912;
+ text-shadow:0 -1px 0 rgba(0,0,0,.7), 0 1px 0 rgba(255,255,255,.5)
+}
+
 h2 {
  color:#cf5a16;
  font-size:28px;
@@ -285,7 +295,7 @@ li {
  padding:25px 0 10px 0;
  z-index:10;
  height:50px;
- text-shadow: 0 -1px rgba(0,0,0,.2), 0 1px rgba(255,255,255,.8);
+ text-shadow: 0 1px rgba(255,255,255,.8);
  margin: 40px -20px -20px -20px;
 }
 
