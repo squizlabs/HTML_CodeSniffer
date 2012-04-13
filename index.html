@@ -124,7 +124,7 @@
 <body>
     <div id="header">
         <div class="max-width">
-            <h1>HTML_CodeSniffer</h1>
+            <h1><a href="http://squizlabs.github.com/HTML_CodeSniffer">HTML_CodeSniffer</a></h1>
             <map name="External Links">
                 <ul id="sprites">
                     <li><a href="http://squiz.com.au" class="header-sprite squiz-logo"><span class="screen-hide">Squiz</span></a></li>
@@ -158,7 +158,7 @@
             <div id="bookmarklet">
                 <h2 class="screen-hide">WCAG 2.0 Bookmarklet</h2>
                 <div id="bookmarklet-feature"></div>
-                <div class="button" onclick="alert('Drag this to your Bookmark Bar to install.');">
+                <div class="button" alert('Drag this button to your Bookmarks Bar to install.');">
                     <a id="add-bookmarklet" onmousedown="_gaq.push(['_trackEvent', 'Viper', 'bookmarklet.clicked']);" href="javascript:var _p='http://squizlabs.github.com/HTML_CodeSniffer/build/';var h=document.getElementsByTagName('head')[0];var _i=function(s,cb) {var sc=document.createElement('script');sc.onload = function() {sc.onload = null;sc.onreadystatechange = null;cb.call(this);};sc.onreadystatechange = function(){if(/^(complete|loaded)$/.test(this.readyState) === true){sc.onreadystatechange = null;sc.onload();}};sc.src=s;h.appendChild(sc);};var _l=document.createElement('link');_l.rel='stylesheet';type='text/css';_l.href=_p+'HTMLCS.css';h.appendChild(_l);_i(_p+'HTMLCS.js',function(){HTMLCSAuditor.run('WCAG2AA',document);});"><span class="screen-hide">HTML_CodeSniffer</span></a>
 
                     <div id="button-title">Get the <strong>WCAG 2.0 Bookmarklet</strong><br>
@@ -177,7 +177,7 @@
         <div class="max-width">
             <h3 class="grey-heading">Run your code through the sniffer</h3>
 
-            <p>Run HTML_CodeSniffer on your own code to see how it works. Enter your code below and select a guideline to test against. Results will be shown underneath the code block. Visit the <a href="testpage.html">Test Page</a>.</p>
+            <p>Run HTML_CodeSniffer over your own code to see how it works. The sniffer below will test your source code against your selected guideline. Test results will be shown underneath the code block. Visit the previous <a href="testpage.html">Test Page</a>.</p>
 
             <div id="code-input">
                 <form id="runHTMLCS">
@@ -185,7 +185,7 @@
                         <div id="test-area-graphic"></div>Paste your code here
                     </div>
 
-                    <textarea id="source" title="Source code to test" onkeypress="activateHTMLCS()"></textarea>
+                    <textarea id="source" title="Source code to be tested" onkeypress="activateHTMLCS()"></textarea>
 
                     <div id="test-options">
                         <fieldset>
