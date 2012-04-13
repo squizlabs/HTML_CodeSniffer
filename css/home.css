@@ -31,7 +31,17 @@ h1 {
  color:#ffffff;
  font-weight:bold;
  font-size:36px;
- text-shadow:0 -1px 0 rgba(0,0,0,1);
+ text-shadow:0 -1px 0 rgba(0,0,0,.8);
+}
+
+h1 a {
+     color:#ffffff;
+     text-decoration:none;
+}
+
+h1 a:hover {
+     color:#a64912;
+      text-shadow:0 -1px 0 rgba(0,0,0,.7), 0 1px 0 rgba(255,255,255,.5)
 }
 
 h2 {
