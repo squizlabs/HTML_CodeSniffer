@@ -15,8 +15,17 @@
           function runHTMLCSTest() {
             var source = document.getElementById('source').value;
             if (source !== '') {
-                runHTMLCS(document.getElementById('level').value, source, document.getElementById('resultsWrapper'));
-                scrollTo(document.getElementById('test-area'));
+                var level = '';
+                for (var i = 0; i < document.getElementById('runHTMLCS').level.length; i++) {
+                    var option = document.getElementById('runHTMLCS').level[i];
+                    if (option.checked === true) {
+                        level = option.value;
+                        break;
+                    }
+                }
+
+                runHTMLCS(level, source, document.getElementById('resultsWrapper'));
+                scrollToElement(document.getElementById('test-area'));
             }
         }
 
@@ -39,7 +48,7 @@
             }
         }
 
-        function scrollTo(element) {
+        function scrollToElement(element) {
             var currScrollY   = null;
 
             var targetScrollY = 0;
