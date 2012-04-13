@@ -110,16 +110,6 @@ table tr td.na {
  text-decoration: line-through;
 }
 
-td.scrow h5 {
- font-size: 1em;
- font-weight: bold;
- margin: 0 0 1.38em;
-}
-
-td.scrow h5 a {
- font-weight: inherit;
-}
-
 td.error {
  border-left: 5px solid #921e1f;
 }
