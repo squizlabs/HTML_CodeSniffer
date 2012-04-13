@@ -515,6 +515,7 @@ tr.notice td.assertType {
  background: -ms-linear-gradient(top,  rgba(165,174,189,1) 0%,rgba(198,204,213,1) 100%); /* IE10+ */
  background: linear-gradient(top,  rgba(165,174,189,1) 0%,rgba(198,204,213,1) 100%); /* W3C */
  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a5aebd', endColorstr='#c6ccd5',GradientType=0 ); /* IE6-9 */
+ cursor: pointer;
 }
 
 .radio-gen.radio-on {
@@ -565,6 +566,17 @@ tr.notice td.assertType {
  top:7px;
  right:0;
  cursor:pointer;
+}
+
+#test-options fieldset {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+#test-options legend {
+    visibility: hidden;
+    line-height: 0px;
 }
 
 .test-options-disabled {

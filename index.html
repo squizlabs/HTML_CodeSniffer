@@ -77,6 +77,27 @@
                 }, 20);
             }//end if
         }
+
+        window.onload = function() {
+            var radios = document.querySelectorAll('.radio-gen');
+            for (var i = 0; i < radios.length; i++) {
+                radios[i].onclick = function(event) {
+                    event.target.previousSibling.click();
+                }
+            }
+
+            var inputs = document.querySelectorAll('.radio-input');
+            for (var i = 0; i < inputs.length; i++) {
+                inputs[i].onclick = function(event) {
+                    var radios = document.querySelectorAll('.radio-gen');
+                    for (var j = 0; j < radios.length; j++) {
+                        radios[j].className = radios[j].className.replace(/ radio-on/, '');
+                    }
+
+                    event.target.nextSibling.className += ' radio-on';
+                }
+            }
+        }
     </script>
 
     <script type="text/javascript">
@@ -94,7 +115,7 @@
 <body>
     <div id="header">
         <div class="max-width">
-            <h1><a href="http://squizlabs.github.com/HTML_CodeSniffer">HTML_CodeSniffer</a></h1>
+            <h1>HTML_CodeSniffer</h1>
             <map name="External Links">
                 <ul id="sprites">
                     <li><a href="http://squiz.com.au" class="header-sprite squiz-logo"><span class="screen-hide">Squiz</span></a></li>
@@ -158,24 +179,16 @@
                     <textarea id="source" title="Source code to test" onkeypress="activateHTMLCS()"></textarea>
 
                     <div id="test-options">
-
-                        <select id="level" name="level" title="Standard to test" style="margin-left:10px;">
-                            <option value="WCAG2A">Level A</option>
-                            <option value="WCAG2AA" selected="selected">Level AA</option>
-                            <option value="WCAG2AAA">Level AAA</option>
-                        </select> 
-
-                        <!--
-
+                        <fieldset>
+                            <legend>Standard:</legend>
                         <ul>
-                            <li><label><input type="radio" value="WCAG2A" name="level" id="WCAG2A"><span class="radio-gen"></span> Level A</label></li>
+                            <li><input type="radio" value="WCAG2A" name="level" id="WCAG2A" class="radio-input"><span class="radio-gen"></span> <label for="WCAG2A">Level A</label></li>
 
-                            <li><label><input type="radio" value="WCAG2AA" name="level" id="WCAG2AA"><span class="radio-gen"></span> Level A</label></li>
+                            <li><input type="radio" value="WCAG2AA" name="level" id="WCAG2AA" class="radio-input"><span class="radio-gen"></span> <label for="WCAG2AA">Level AA</label></li>
 
-                            <li><label><input type="radio" value="WCAG2AAA" name="level" id="WCAG2AAA"><span class="radio-gen radio-on"></span> Level AAA</label></li>
+                            <li><input type="radio" value="WCAG2AAA" name="level" id="WCAG2AAA" class="radio-input"><span class="radio-gen radio-on"></span> <label for="WCAG2AAA">Level AAA</label></li>
                         </ul>
-
-                        -->
+                        </fieldset>
 
                         <button type="button" id="run-button" onclick="javascript:runHTMLCSTest(false);" class="test-options-disabled">Run HTML_CodeSniffer</button>
 
