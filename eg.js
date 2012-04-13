@@ -17,8 +17,8 @@ function updateResults(resultsWrapper)
         return;
     }
 
-    var content = '<table><tr>';
-    content    += '<th>#</th><th></th><th>Message</th><th>Code</th></tr>';
+    var content = '<table id="test-results"><tr>';
+    content    += '<th>#</th><th>Message</th><th>Code</th></tr>';
 
     var errors   = 0;
     var warnings = 0;
@@ -59,7 +59,6 @@ function updateResults(resultsWrapper)
 
         content += '<tr class="' + type.toLowerCase() + '">';
         content += '<td class="number">' + (i + 1) + '</td>';
-        content += '<td class="assertType"></td>'
         content += '<td class="messageText"><strong>' + type + ':</strong> ' + msg.msg + '</td>';
         content += '<td class="messageCode">' + msg.code + '</td></tr>';
     }
