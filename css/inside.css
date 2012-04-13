@@ -3,15 +3,15 @@ html {
 }
 
 body {
- padding: 0px 20px 60px 20px; 
- margin: 0; color:#2e2d33; 
+ padding: 0px 20px 60px 20px;
+ margin: 0; color:#2e2d33;
  background-color:#fbfbfb;
  min-width:620px;
  font: 14px 'helvetica','arial', sans-serif;
 }
 
 h1 {
- color:#ffffff;  
+ color:#ffffff;
  font-size:36px;
  text-shadow: 0 -1px 0 rgba(0,0,0,1);
 }
@@ -55,7 +55,7 @@ a {
 }
 
 table p {
- margin: 0; 
+ margin: 0;
 }
 
 table h4 + p, p + p {
@@ -63,76 +63,79 @@ table h4 + p, p + p {
 }
 
 table {
- width: 100%; 
- margin-top:10px; 
- background-color: #fafafa; 
- border-collapse: collapse; 
+ width: 100%;
+ margin-top:10px;
+ background-color: #fafafa;
+ border-collapse: collapse;
  border:1px solid #d2d7dd;
 }
 
 table td {
-vertical-align: top; 
-padding: 5px 8px; 
-margin: 0px; 
+vertical-align: top;
+padding: 5px 8px;
+margin: 0px;
 border:1px solid #d2d7dd;
 }
 
 table th {
  background:#d2d7dd;
  padding:9px 10px;
- font-weight:bold; 
+ font-weight:bold;
  font-size:15px;
  text-align:left;
  text-shadow:0 -1px 0 rgba(0,0,0,0), 0 1px 0 rgba(255,255,255,.9);
  border-right:1px solid #9fa8b6;}
 
- table th:last-child {
-    border-right:none;   
- }
-
-table tr:nth-child(odd) {
-    background: #e8ebee;
+table th:last-child {
+ border-right:none;
 }
 
-table tr.na td.dimOnNa {
- background-color: #f5f5f5; 
- color: #999; 
+table tr:nth-child(odd) {
+ background: #e8ebee;
+}
+
+table tr td.na {
+ background-color: #f5f5f5;
+ color: #999;
  text-decoration: line-through;
 }
 
-table td.assertType {
+td.scrow h5 {
+ font-size: 1em;
  font-weight: bold;
+ margin: 0 0 1.38em;
 }
 
-table tr.error td.assertType {
- background-color: #921e1f; 
- color: #ffffff;
+td.scrow h5 a {
+ font-weight: inherit;
 }
 
-table tr.warning td.assertType {
-background-color: #b99538; 
-color: #ffffff;
+td.error {
+ border-left: 5px solid #921e1f;
 }
 
-table tr.notice td.assertType {
- background-color: #68676e; 
- color: #ffffff;
+td.warning {
+ border-left: 5px solid #b99538;
+}
+
+td.notice {
+ border-left: 5px solid #68676e;
 }
 
 div.edsnote {
- background-color: #ffd; 
- border: 1px solid #dd0; 
- margin: 5px; 
- padding: 5px; 
+ background-color: #ffd;
+ border: 1px solid #dd0;
+ margin: 5px;
+ padding: 5px;
  line-height: 1.5em
 }
 
 div#introduction {
- font-size: 14px; 
- line-height: 1.5em; 
- background-color: #e4e7e9; 
- color: #333; 
- padding: 15px 20px; 
+ font-size: 14px;
+ line-height: 1.5em;
+ background-color: #e4e7e9;
+ color: #333;
+ padding: 15px 20px;
  margin: -20px -20px 20px -20px;
  border-top:1px solid #dedede;
  box-shadow: 0 -4px 8px rgba(0,0,0,.1);
@@ -142,22 +145,22 @@ div#introduction {
 }
 
 div.fullcode {
- font-size: 0.85em; 
- font-style: italic; 
+ font-size: 0.85em;
+ font-style: italic;
  color: #333;
  margin: 5px 0px;
  padding: 5px 0px
 }
 
 .na div.fullcode {
- color: inherit; 
+ color: inherit;
  background-color: inherit
 }
 
 blockquote {
- border-left: 2px solid #c15228; 
- background-color: #eaecee; 
- padding: 5px 10px 5px 10px; 
+ border-left: 2px solid #c15228;
+ background-color: #eaecee;
+ padding: 5px 10px 5px 10px;
  margin-left:25px;}
 
 li {
@@ -256,9 +259,9 @@ li {
  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c6ccd5', endColorstr='#a5aebd',GradientType=0 ); /* IE6-9 */
 }
 
-#nav li:hover {    
+#nav li:hover {
  border:1px solid #7f8ba0;
- 
+
  background: rgb(174,183,196); /* Old browsers */
  background: -moz-linear-gradient(top,  rgba(174,183,196,1) 0%, rgba(148,158,176,1) 100%); /* FF3.6+ */
  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(174,183,196,1)), color-stop(100%,rgba(148,158,176,1))); /* Chrome,Safari4+ */
@@ -266,7 +269,7 @@ li {
  background: -o-linear-gradient(top,  rgba(174,183,196,1) 0%,rgba(148,158,176,1) 100%); /* Opera 11.10+ */
  background: -ms-linear-gradient(top,  rgba(174,183,196,1) 0%,rgba(148,158,176,1) 100%); /* IE10+ */
  background: linear-gradient(top,  rgba(174,183,196,1) 0%,rgba(148,158,176,1) 100%); /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#aeb7c4', endColorstr='#949eb0',GradientType=0 ); /* IE6-9 */   
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#aeb7c4', endColorstr='#949eb0',GradientType=0 ); /* IE6-9 */
 }
 
 #nav li a {

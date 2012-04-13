@@ -594,6 +594,18 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e0a482', end
  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#205caf', endColorstr='#17407a',GradientType=0 ); /* IE6-9 */
 }
 
+#test-results tr.error td.messageText {
+ border-left: 5px solid #921e1f;
+}
+
+#test-results tr.warning td.messageText {
+ border-left: 5px solid #b99538;
+}
+
+#test-results tr.notice td.messageText {
+ border-left: 5px solid #68676e;
+}
+
 #footer {
  position:relative;
  background: #ffffff url(../images/introduction-bg.jpg);
