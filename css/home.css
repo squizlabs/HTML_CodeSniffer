@@ -252,8 +252,8 @@ p a:hover {
 #introduction #bookmarklet .button {
  position:relative;
  width:395px;
- height:60px;
- padding-top:10px;
+ height:58px;
+ padding-top:12px;
  background:#cc6633;
  margin:340px auto 0 auto;
  text-align:center;
@@ -289,6 +289,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#91bed4', end
  font-size:12px;
  font-weight:bold;
  line-height:18px;
+ position:relative;
+ top:-5px;
 }
 
 #bookmarklet .requirements {
