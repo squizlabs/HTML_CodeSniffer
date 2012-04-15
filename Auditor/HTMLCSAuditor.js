@@ -143,6 +143,8 @@ var HTMLCSAuditor = new function()
         var mouseY   = 0;
 
         header.onmousedown = function(e) {
+            e = e || window.event;
+
             dragging = true;
             mouseX   = e.clientX;
             mouseY   = e.clientY;
@@ -150,6 +152,8 @@ var HTMLCSAuditor = new function()
         };
 
         document.onmousemove = function(e) {
+            e = e || window.event;
+
             if (dragging === true) {
                 var top = wrapper.offsetTop;
                 var left = wrapper.offsetLeft;
