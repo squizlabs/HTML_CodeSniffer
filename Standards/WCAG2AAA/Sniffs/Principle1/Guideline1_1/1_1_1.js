@@ -216,7 +216,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
             }
 
             if ((nodes.anchor.alt !== null) && (nodes.anchor.alt !== '')) {
-                if (nodes.anchor.alt.trim().toLowerCase() === nodes.anchor.text.trim().toLowerCase()) {
+                if (HTMLCS.util.trim(nodes.anchor.alt).toLowerCase() === HTMLCS.util.trim(nodes.anchor.text).toLowerCase()) {
                     // H2 "Failure Example 5": they're in one link, but the alt text
                     // duplicates the link text. Trimmed and lowercased because they
                     // would sound the same to a screen reader.
