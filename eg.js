@@ -64,8 +64,9 @@ function updateResults(resultsWrapper)
     }
 
 
+    var heading = '<hr>'
 
-    var heading = '<h3>Test results</h3>';
+    heading += '<h3>Test results</h3>';
 
     heading += '<ul id="results-overview">';
     heading += '<li><span class="result-count result-count-errors">' + errors + '</span> <span class="result-type">errors</span></li>';
