@@ -270,8 +270,9 @@ p a:hover {
  background: -o-linear-gradient(top,  rgba(223,98,25,1) 0%,rgba(196,84,19,1) 100%); /* Opera 11.10+ */
  background: -ms-linear-gradient(top,  rgba(223,98,25,1) 0%,rgba(196,84,19,1) 100%); /* IE10+ */
  background: linear-gradient(top,  rgba(223,98,25,1) 0%,rgba(196,84,19,1) 100%); /* W3C */
- 
-/* 
+}
+
+#introduction #bookmarklet .button:hover {
 background: rgb(35,98,170); 
 background: -moz-linear-gradient(top,  rgba(35,98,170,1) 0%, rgba(25,73,126,1) 100%); 
 background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(35,98,170,1)), color-stop(100%,rgba(25,73,126,1))); 
@@ -279,19 +280,6 @@ background: -webkit-linear-gradient(top,  rgba(35,98,170,1) 0%,rgba(25,73,126,1)
 background: -o-linear-gradient(top,  rgba(35,98,170,1) 0%,rgba(25,73,126,1) 100%); 
 background: -ms-linear-gradient(top,  rgba(35,98,170,1) 0%,rgba(25,73,126,1) 100%); 
 background: linear-gradient(top,  rgba(35,98,170,1) 0%,rgba(25,73,126,1) 100%); 
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2362aa', endColorstr='#19497e',GradientType=0 ); 
-*/
-
-}
-
-#introduction #bookmarklet .button:hover {
- background: rgb(145,190,212); /* Old browsers */
-background: -moz-linear-gradient(top,  rgba(145,190,212,1) 0%, rgba(89,129,148,1) 100%); /* FF3.6+ */
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(145,190,212,1)), color-stop(100%,rgba(89,129,148,1))); /* Chrome,Safari4+ */
-background: -webkit-linear-gradient(top,  rgba(145,190,212,1) 0%,rgba(89,129,148,1) 100%); /* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(top,  rgba(145,190,212,1) 0%,rgba(89,129,148,1) 100%); /* Opera 11.10+ */
-background: -ms-linear-gradient(top,  rgba(145,190,212,1) 0%,rgba(89,129,148,1) 100%); /* IE10+ */
-background: linear-gradient(top,  rgba(145,190,212,1) 0%,rgba(89,129,148,1) 100%); /* W3C */
 
 }
 
