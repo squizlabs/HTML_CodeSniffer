@@ -772,14 +772,14 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
         for (var i = 0; i < headings.length; i++) {
             var headingNum = parseInt(headings[i].nodeName.substr(1, 1));
             if (headingNum - lastHeading > 1) {
-                var exampleMsg = 'h' + lastHeading + ' followed by h' + (lastHeading + 1);
+                var exampleMsg = 'should be a h' + (lastHeading + 1) + 'element to be properly nested';
                 if (lastHeading === 0) {
                     // If last heading is empty, we are at document top and we are
                     // expecting a H1, generally speaking.
-                    exampleMsg = 'primary document heading should be h1';
+                    exampleMsg = 'appears to be the primary document heading, so should be a h1 element';
                 }
 
-                HTMLCS.addMessage(HTMLCS.WARNING, headings[i], 'Authors should use properly nested headings (eg. ' + exampleMsg + ') to facilitate navigation and understanding of document structure.', 'G141');
+                HTMLCS.addMessage(HTMLCS.ERROR, headings[i], 'The heading structure is not logically nested. This h' + headingNum + ' heading ' + exampleMsg + '.', 'G141');
             }
 
             lastHeading = headingNum;
