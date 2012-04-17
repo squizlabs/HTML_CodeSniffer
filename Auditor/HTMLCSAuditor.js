@@ -5,6 +5,7 @@ var HTMLCSAuditor = new function()
     var _standard = '';
     var _source   = '';
     var _options  = {};
+    var _doc      = null;
     var _messages = [];
     var _page     = 1;
 
@@ -16,16 +17,16 @@ var HTMLCSAuditor = new function()
      * @return {HTMLDivElement}
      */
     var buildSummaryButton = function(id, className, title, onclick) {
-        var button       = document.createElement('div');
+        var button       = _doc.createElement('div');
         button.id        = id;
         button.className = _prefix + 'button';
         button.setAttribute('title', title);
 
-        var buttonInner       = document.createElement('span');
+        var buttonInner       = _doc.createElement('span');
         buttonInner.className = _prefix + 'button-icon ' + _prefix + 'button-' + className;
         button.appendChild(buttonInner);
 
-        var nbsp = document.createTextNode(String.fromCharCode(160));
+        var nbsp = _doc.createTextNode(String.fromCharCode(160));
         button.appendChild(nbsp);
 
         if ((onclick instanceof Function) === true) {
@@ -51,7 +52,7 @@ var HTMLCSAuditor = new function()
 
         var isIE = new RegExp('msie', 'i').test(navigator.userAgent);
 
-        var label   = document.createElement('label');
+        var label   = _doc.createElement('label');
         var content = '';
         label.className = _prefix + 'checkbox';
 
@@ -105,7 +106,7 @@ var HTMLCSAuditor = new function()
             checked = false;
         }
 
-        var label   = document.createElement('label');
+        var label   = _doc.createElement('label');
         label.className = _prefix + 'radio';
         var content = '<span class="' + _prefix + 'radio-title">' + title + '</span>';
         content    += '<span class="' + _prefix + 'radio-switch">';
@@ -131,7 +132,7 @@ var HTMLCSAuditor = new function()
      * @return {HTMLDivElement}
      */
     var buildHeaderSection = function(standard, wrapper) {
-        var header       = document.createElement('div');
+        var header       = _doc.createElement('div');
         header.className = _prefix + 'header';
         header.innerHTML = 'HTML_CodeSniffer by Squiz';
         header.setAttribute('title', 'Using standard ' + standard);
@@ -151,7 +152,7 @@ var HTMLCSAuditor = new function()
             return false;
         };
 
-        document.onmousemove = function(e) {
+        _doc.onmousemove = function(e) {
             e = e || window.event;
 
             if (dragging === true) {
@@ -179,17 +180,21 @@ var HTMLCSAuditor = new function()
             }//end if
         };
 
-        document.onmouseup = function(e) {
+        _doc.onmouseup = function(e) {
             dragging = false;
         };
 
-        var closeIcon       = document.createElement('div');
+        var closeIcon       = _doc.createElement('div');
         closeIcon.className = _prefix + 'close';
         closeIcon.setAttribute('title', 'Close');
         closeIcon.onmousedown = function() {
-            var wrapper = document.getElementById('HTMLCS-wrapper');
+            var wrapper = _doc.getElementById('HTMLCS-wrapper');
             if (wrapper) {
-                document.body.removeChild(wrapper);
+                _doc.body.removeChild(wrapper);
+            }
+
+            if (_options.closeCallback) {
+                _messages = _options.closeCallback.call(this);
             }
         }
 
@@ -207,14 +212,14 @@ var HTMLCSAuditor = new function()
      * @return {HTMLDivElement}
      */
     var buildSummarySection = function(errors, warnings, notices) {
-        var summary       = document.createElement('div');
+        var summary       = _doc.createElement('div');
         summary.className = _prefix + 'summary';
 
-        var leftPane       = document.createElement('div');
+        var leftPane       = _doc.createElement('div');
         leftPane.className = _prefix + 'summary-left';
         summary.appendChild(leftPane);
 
-        var rightPane       = document.createElement('div');
+        var rightPane       = _doc.createElement('div');
         rightPane.className = _prefix + 'summary-right';
         summary.appendChild(rightPane);
 
@@ -247,18 +252,18 @@ var HTMLCSAuditor = new function()
         }
 
         // Start lineage in left pane.
-        var lineage       = document.createElement('ol');
+        var lineage       = _doc.createElement('ol');
         lineage.className = _prefix + 'lineage';
 
         // Back to summary item.
-        var lineageHomeItem       = document.createElement('li');
+        var lineageHomeItem       = _doc.createElement('li');
         lineageHomeItem.className = _prefix + 'lineage-item';
 
-        var lineageHomeLink       = document.createElement('a');
+        var lineageHomeLink       = _doc.createElement('a');
         lineageHomeLink.className = _prefix + 'lineage-link';
         lineageHomeLink.href      = 'javascript:';
 
-        var lineageHomeSpan       = document.createElement('span');
+        var lineageHomeSpan       = _doc.createElement('span');
         lineageHomeSpan.innerHTML = 'Home';
         lineageHomeLink.appendChild(lineageHomeSpan);
 
@@ -267,7 +272,7 @@ var HTMLCSAuditor = new function()
         };
 
         // Issue totals.
-        var lineageTotalsItem       = document.createElement('li');
+        var lineageTotalsItem       = _doc.createElement('li');
         lineageTotalsItem.className = _prefix + 'lineage-item';
         lineageTotalsItem.innerHTML = leftContents.join(divider);
 
@@ -276,7 +281,7 @@ var HTMLCSAuditor = new function()
         lineage.appendChild(lineageTotalsItem);
         leftPane.appendChild(lineage);
 
-        rightPane.appendChild(document.createTextNode(String.fromCharCode(160)));
+        rightPane.appendChild(_doc.createTextNode(String.fromCharCode(160)));
 
         return summary;
     };
@@ -290,27 +295,27 @@ var HTMLCSAuditor = new function()
      * @return {HTMLDivElement}
      */
     var buildDetailSummarySection = function(issue, totalIssues) {
-        var summary       = document.createElement('div');
+        var summary       = _doc.createElement('div');
         summary.className = _prefix + 'summary-detail';
 
-        var leftPane       = document.createElement('div');
+        var leftPane       = _doc.createElement('div');
         leftPane.className = _prefix + 'summary-left';
 
-        var rightPane       = document.createElement('div');
+        var rightPane       = _doc.createElement('div');
         rightPane.className = _prefix + 'summary-right';
 
         // Start lineage.
-        var lineage       = document.createElement('ol');
+        var lineage       = _doc.createElement('ol');
         lineage.className = _prefix + 'lineage';
 
-        var lineageHomeItem       = document.createElement('li');
+        var lineageHomeItem       = _doc.createElement('li');
         lineageHomeItem.className = _prefix + 'lineage-item';
 
-        var lineageHomeLink       = document.createElement('a');
+        var lineageHomeLink       = _doc.createElement('a');
         lineageHomeLink.className = _prefix + 'lineage-link';
         lineageHomeLink.href      = 'javascript:';
 
-        var lineageHomeSpan       = document.createElement('span');
+        var lineageHomeSpan       = _doc.createElement('span');
         lineageHomeSpan.innerHTML = 'Home';
         lineageHomeLink.appendChild(lineageHomeSpan);
 
@@ -319,27 +324,27 @@ var HTMLCSAuditor = new function()
         };
 
         // Back to Report item.
-        var lineageReportItem       = document.createElement('li');
+        var lineageReportItem       = _doc.createElement('li');
         lineageReportItem.className = _prefix + 'lineage-item';
 
-        var lineageReportLink       = document.createElement('a');
+        var lineageReportLink       = _doc.createElement('a');
         lineageReportLink.className = _prefix + 'lineage-link';
         lineageReportLink.href      = 'javascript:';
         lineageReportLink.innerHTML = 'Report';
         lineageReportLink.setAttribute('title', 'Back to Report');
 
         lineageReportLink.onmousedown = function() {
-            var list = document.querySelectorAll('.HTMLCS-inner-wrapper')[0];
+            var list = _doc.querySelectorAll('.HTMLCS-inner-wrapper')[0];
             list.style.marginLeft = '0px';
             list.style.maxHeight  = null;
 
             summary.style.display = 'none';
-            var listSummary = document.querySelectorAll('.HTMLCS-summary')[0];
+            var listSummary = _doc.querySelectorAll('.HTMLCS-summary')[0];
             listSummary.style.display = 'block';
         };
 
         // Issue Count item.
-        var lineageTotalsItem       = document.createElement('li');
+        var lineageTotalsItem       = _doc.createElement('li');
         lineageTotalsItem.className = _prefix + 'lineage-item';
         lineageTotalsItem.innerHTML = 'Issue ' + issue + ' of ' + totalIssues;
 
@@ -350,7 +355,7 @@ var HTMLCSAuditor = new function()
         lineage.appendChild(lineageTotalsItem);
         leftPane.appendChild(lineage);
 
-        var buttonGroup       = document.createElement('div');
+        var buttonGroup       = _doc.createElement('div');
         buttonGroup.className = _prefix + 'button-group';
 
         var prevButton = buildSummaryButton(_prefix + 'button-previous-issue', 'previous', 'Previous Issue', function(target) {
@@ -363,7 +368,7 @@ var HTMLCSAuditor = new function()
                 wrapper.replaceChild(newSummary, summary);
                 newSummary.style.display = 'block';
 
-                var issueList = document.querySelectorAll('.HTMLCS-issue-detail-list')[0];
+                var issueList = _doc.querySelectorAll('.HTMLCS-issue-detail-list')[0];
                 issueList.firstChild.style.marginLeft = (parseInt(issueList.firstChild.style.marginLeft, 10) + 300) + 'px';
                 pointToIssueElement(newIssue - 1);
             }//end if
@@ -379,7 +384,7 @@ var HTMLCSAuditor = new function()
                 wrapper.replaceChild(newSummary, summary);
                 newSummary.style.display = 'block';
 
-                var issueList = document.querySelectorAll('.HTMLCS-issue-detail-list')[0];
+                var issueList = _doc.querySelectorAll('.HTMLCS-issue-detail-list')[0];
                 issueList.firstChild.style.marginLeft = (parseInt(issueList.firstChild.style.marginLeft, 10) - 300) + 'px';
                 pointToIssueElement(newIssue - 1);
             }//end if
@@ -411,19 +416,19 @@ var HTMLCSAuditor = new function()
      */
     var buildIssueListSection = function(messages) {
         var issueListWidth = (Math.ceil(messages.length / 5) * 300);
-        var issueList      = document.createElement('div');
+        var issueList      = _doc.createElement('div');
         issueList.id        = _prefix + 'issues';
         issueList.className = _prefix + 'details';
         issueList.setAttribute('style', 'width: ' + issueListWidth + 'px');
 
-        var listSection = document.createElement('ol');
+        var listSection = _doc.createElement('ol');
         listSection.className = _prefix + 'issue-list';
         listSection.setAttribute('style', 'margin-left: 0');
 
         for (var i = 0; i < messages.length; i++) {
             if ((i > 0) && ((i % 5) === 0)) {
                 issueList.appendChild(listSection);
-                var listSection = document.createElement('ol');
+                var listSection = _doc.createElement('ol');
                 listSection.className = _prefix + 'issue-list';
             }
 
@@ -438,12 +443,12 @@ var HTMLCSAuditor = new function()
 
     var buildIssueDetailSection = function(messages) {
         var issueListWidth  = (messages.length * 300);
-        var issueList       = document.createElement('div');
+        var issueList       = _doc.createElement('div');
         issueList.id        = _prefix + 'issues-detail';
         issueList.className = _prefix + 'details';
         issueList.setAttribute('style', 'width: ' + issueListWidth + 'px');
 
-        var listSection = document.createElement('ol');
+        var listSection = _doc.createElement('ol');
         listSection.className = _prefix + 'issue-detail-list';
         listSection.setAttribute('style', 'margin-left: 0');
 
@@ -458,24 +463,24 @@ var HTMLCSAuditor = new function()
     };
 
     var buildSettingsSection = function() {
-        var settingsDiv       = document.createElement('div');
+        var settingsDiv       = _doc.createElement('div');
         settingsDiv.className = _prefix + 'settings';
 
-        var useStandardDiv = document.createElement('div');
+        var useStandardDiv = _doc.createElement('div');
         useStandardDiv.id = _prefix + 'settings-use-standard';
 
-        var useStandardLabel       = document.createElement('label');
+        var useStandardLabel       = _doc.createElement('label');
         useStandardLabel.innerHTML = 'Standards:';
         useStandardLabel.setAttribute('for', _prefix + 'settings-use-standard-select');
 
-        var useStandardSelect       = document.createElement('select');
+        var useStandardSelect       = _doc.createElement('select');
         useStandardSelect.id        = _prefix + 'settings-use-standard-select';
         useStandardSelect.innerHTML = '';
 
         var standards = ['WCAG2AAA', 'WCAG2AA', 'WCAG2A'];
         for (var i = 0; i < standards.length; i++) {
             var standard     = standards[i];
-            var option       = document.createElement('option');
+            var option       = _doc.createElement('option');
             option.value     = standard;
             option.innerHTML = window['HTMLCS_' + standard].name;
 
@@ -490,26 +495,26 @@ var HTMLCSAuditor = new function()
             }
         }
 
-        var issueCountDiv = document.createElement('div');
+        var issueCountDiv = _doc.createElement('div');
         issueCountDiv.id  = _prefix + 'settings-issue-count';
 
-        var issueCountHelpDiv       = document.createElement('div');
+        var issueCountHelpDiv       = _doc.createElement('div');
         issueCountHelpDiv.id        = _prefix + 'settings-issue-count-help';
         issueCountHelpDiv.innerHTML = 'Select the types of issues to include in the report';
 
-        var viewReportDiv       = document.createElement('div');
+        var viewReportDiv       = _doc.createElement('div');
         viewReportDiv.id        = _prefix + 'settings-view-report';
         viewReportDiv.innerHTML = 'View Report';
 
         viewReportDiv.onclick = function() {
             if (/disabled/.test(this.className) === false) {
                 _options.show = {
-                    error: document.getElementById(_prefix + 'include-error').checked,
-                    warning: document.getElementById(_prefix + 'include-warning').checked,
-                    notice: document.getElementById(_prefix + 'include-notice').checked
+                    error: _doc.getElementById(_prefix + 'include-error').checked,
+                    warning: _doc.getElementById(_prefix + 'include-warning').checked,
+                    notice: _doc.getElementById(_prefix + 'include-notice').checked
                 }
 
-                var wrapper = document.getElementById(_prefix + 'wrapper');
+                var wrapper = _doc.getElementById(_prefix + 'wrapper');
                 var newWrapper        = self.build(_standard, _messages, _options);
 
                 if (_options.parentElement) {
@@ -517,7 +522,7 @@ var HTMLCSAuditor = new function()
                 } else {
                     newWrapper.style.left = wrapper.style.left;
                     newWrapper.style.top  = wrapper.style.top;
-                    document.body.replaceChild(newWrapper, wrapper);
+                    _doc.body.replaceChild(newWrapper, wrapper);
                 }
 
                 if (_options.listUpdateCallback) {
@@ -532,7 +537,7 @@ var HTMLCSAuditor = new function()
             notice: 0
         };
 
-        var wrapper  = document.getElementById(_prefix + 'wrapper');
+        var wrapper  = _doc.getElementById(_prefix + 'wrapper');
 
         for (var i = 0; i < _messages.length; i++) {
             switch (_messages[i].type) {
@@ -570,10 +575,10 @@ var HTMLCSAuditor = new function()
 
         for (var level in levels) {
             var msgCount       = levels[level];
-            var levelDiv       = document.createElement('div');
+            var levelDiv       = _doc.createElement('div');
             levelDiv.className = _prefix + 'issue-tile ' + _prefix + level.toLowerCase();
 
-            var levelCountDiv       = document.createElement('div');
+            var levelCountDiv       = _doc.createElement('div');
             levelCountDiv.className = 'HTMLCS-tile-text';
 
             var content = '<strong>' + msgCount + '</strong> ' + level.substr(0, 1).toUpperCase() + level.substr(1);
@@ -599,18 +604,18 @@ var HTMLCSAuditor = new function()
                 // Only change checkboxes that haven't been disabled.
                 var enable = false;
 
-                if (document.getElementById(_prefix + 'include-error').disabled === false) {
-                    _options.show.error = document.getElementById(_prefix + 'include-error').checked;
+                if (_doc.getElementById(_prefix + 'include-error').disabled === false) {
+                    _options.show.error = _doc.getElementById(_prefix + 'include-error').checked;
                     enable = enable || _options.show.error;
                 }
 
-                if (document.getElementById(_prefix + 'include-warning').disabled === false) {
-                    _options.show.warning = document.getElementById(_prefix + 'include-warning').checked;
+                if (_doc.getElementById(_prefix + 'include-warning').disabled === false) {
+                    _options.show.warning = _doc.getElementById(_prefix + 'include-warning').checked;
                     enable = enable || _options.show.warning;
                 }
 
-                if (document.getElementById(_prefix + 'include-notice').disabled === false) {
-                    _options.show.notice = document.getElementById(_prefix + 'include-notice').checked;
+                if (_doc.getElementById(_prefix + 'include-notice').disabled === false) {
+                    _options.show.notice = _doc.getElementById(_prefix + 'include-notice').checked;
                     enable = enable || _options.show.notice;
                 }
 
@@ -676,15 +681,15 @@ var HTMLCSAuditor = new function()
             messageMsg = messageMsg.substr(0, 115) + '...';
         }
 
-        var msg = document.createElement('li');
+        var msg = _doc.createElement('li');
         msg.id  = _prefix + 'msg-' + id;
 
-        var typeIcon       = document.createElement('span');
+        var typeIcon       = _doc.createElement('span');
         typeIcon.className = _prefix + 'issue-type ' + _prefix + typeClass;
         typeIcon.setAttribute('title', typeText);
         msg.appendChild(typeIcon);
 
-        var msgTitle       = document.createElement('span');
+        var msgTitle       = _doc.createElement('span');
         msgTitle.className = _prefix + 'issue-title';
         msgTitle.innerHTML = messageMsg;
         msg.appendChild(msgTitle);
@@ -693,7 +698,7 @@ var HTMLCSAuditor = new function()
             var id = this.id.replace(new RegExp(_prefix + 'msg-'), '');
             setCurrentDetailIssue(id);
 
-            var detailList = document.querySelectorAll('.HTMLCS-issue-detail-list')[0];
+            var detailList = _doc.querySelectorAll('.HTMLCS-issue-detail-list')[0];
             detailList.className += ' ' + _prefix + 'transition-disabled';
             detailList.firstChild.style.marginLeft = (id * -300) + 'px';
 
@@ -703,16 +708,16 @@ var HTMLCSAuditor = new function()
                 detailList.className = detailList.className.replace(new RegExp(' ' + _prefix + 'transition-disabled'), '');
             }, 500);
 
-            var list = document.querySelectorAll('.HTMLCS-inner-wrapper')[0];
+            var list = _doc.querySelectorAll('.HTMLCS-inner-wrapper')[0];
             list.style.marginLeft = '-300px';
             list.style.maxHeight  = '15em';
 
-            summary = document.querySelectorAll('.HTMLCS-summary-detail')[0];
+            summary = _doc.querySelectorAll('.HTMLCS-summary-detail')[0];
             var newSummary = buildDetailSummarySection(parseInt(id) + 1, _messages.length);
             summary.parentNode.replaceChild(newSummary, summary);
             newSummary.style.display = 'block';
 
-            var oldSummary = document.querySelectorAll('.HTMLCS-summary')[0];
+            var oldSummary = _doc.querySelectorAll('.HTMLCS-summary')[0];
             oldSummary.style.display = 'none';
         }
 
@@ -720,13 +725,13 @@ var HTMLCSAuditor = new function()
     };
 
     var setCurrentDetailIssue = function(id) {
-        var detailList = document.querySelectorAll('.HTMLCS-issue-detail-list')[0];
+        var detailList = _doc.querySelectorAll('.HTMLCS-issue-detail-list')[0];
         var items      = detailList.getElementsByTagName('li');
         for (var i = 0; i < items.length; i++) {
             items[i].className = items[i].className.replace(new RegExp(' ' + _prefix + 'current'), '');
         }
 
-        var currentItem = document.getElementById('HTMLCS-msg-detail-' + id);
+        var currentItem = _doc.getElementById('HTMLCS-msg-detail-' + id);
         currentItem.className += ' ' + _prefix + 'current';
     }
 
@@ -781,21 +786,21 @@ var HTMLCSAuditor = new function()
             techniquesStr.push('<a href="http://www.w3.org/TR/WCAG20-TECHS/' + techniques[i][0] + '" target="_blank">' + techniques[i][0] + '</a>');
         }
 
-        var msgDiv = document.createElement('li');
+        var msgDiv = _doc.createElement('li');
         msgDiv.id  = _prefix + 'msg-detail-' + id;
 
-        var msgDetailsDiv       = document.createElement('div');
+        var msgDetailsDiv       = _doc.createElement('div');
         msgDetailsDiv.className = _prefix + 'issue-details';
 
-        var msgType       = document.createElement('span');
+        var msgType       = _doc.createElement('span');
         msgType.className = _prefix + 'issue-type ' + typeClass;
         msgType.setAttribute('title', typeText);
 
-        var msgTitle       = document.createElement('div');
+        var msgTitle       = _doc.createElement('div');
         msgTitle.className = _prefix + 'issue-title';
         msgTitle.innerHTML = message.msg;
 
-        var msgWcagRef       = document.createElement('div');
+        var msgWcagRef       = _doc.createElement('div');
         msgWcagRef.className = _prefix + 'issue-wcag-ref';
 
         var refContent       = '<em>Principle:</em> <a href="' + principles[principle].link + '" target="_blank">' + principles[principle].name + '</a><br/>';
@@ -810,7 +815,7 @@ var HTMLCSAuditor = new function()
         // Build the source view, if outerHTML exists (Firefox >= 11, Webkit, IE),
         // and applies to the particular element (ie. document doesn't have it).
         if (_options.customIssueSource) {
-            var msgElementSource       = document.createElement('div');
+            var msgElementSource       = _doc.createElement('div');
             msgElementSource.className = _prefix + 'issue-source';
             msgDiv.appendChild(msgElementSource);
             _options.customIssueSource.call(this, id, message, standard, msgElementSource, msgDetailsDiv);
@@ -876,18 +881,18 @@ var HTMLCSAuditor = new function()
                 postNode = postNode.nextSibling;
             }//end while
 
-            var msgElementSource       = document.createElement('div');
+            var msgElementSource       = _doc.createElement('div');
             msgElementSource.className = _prefix + 'issue-source';
 
             // Header row.
-            var msgElementSourceHeader       = document.createElement('div');
+            var msgElementSourceHeader       = _doc.createElement('div');
             msgElementSourceHeader.className = _prefix + 'issue-source-header';
 
-            var msgSourceHeaderText       = document.createElement('strong');
+            var msgSourceHeaderText       = _doc.createElement('strong');
             msgSourceHeaderText.innerHTML = 'Code Snippet';
 
             var btnPointTo = buildSummaryButton(_prefix + 'button-point-to-element', 'pointer', 'Point to Element', function() {
-                pointer.container = document.getElementById(_prefix + 'wrapper');
+                pointer.container = _doc.getElementById(_prefix + 'wrapper');
                 pointer.pointTo(message.element);
             })
 
@@ -900,10 +905,10 @@ var HTMLCSAuditor = new function()
             msgElementSourceHeader.appendChild(btnPointTo);
 
             // Actual source code, highlighting offending element.
-            var msgElementSourceInner       = document.createElement('div');
+            var msgElementSourceInner       = _doc.createElement('div');
             msgElementSourceInner.className = _prefix + 'issue-source-inner';
 
-            var msgElementSourceMain       = document.createElement('strong');
+            var msgElementSourceMain       = _doc.createElement('strong');
             if (msgElementSourceMain.textContent !== undefined) {
                 msgElementSourceMain.textContent = outerHTML;
             } else {
@@ -911,9 +916,9 @@ var HTMLCSAuditor = new function()
                 msgElementSourceMain.innerText = outerHTML;
             }
 
-            msgElementSourceInner.appendChild(document.createTextNode(preText));
+            msgElementSourceInner.appendChild(_doc.createTextNode(preText));
             msgElementSourceInner.appendChild(msgElementSourceMain);
-            msgElementSourceInner.appendChild(document.createTextNode(postText));
+            msgElementSourceInner.appendChild(_doc.createTextNode(postText));
 
             msgElementSource.appendChild(msgElementSourceHeader);
             msgElementSource.appendChild(msgElementSourceInner);
@@ -924,10 +929,10 @@ var HTMLCSAuditor = new function()
     };
 
     var buildNavigation = function(page, totalPages) {
-        var navDiv       = document.createElement('div');
+        var navDiv       = _doc.createElement('div');
         navDiv.className = _prefix + 'navigation';
 
-        var prev       = document.createElement('span');
+        var prev       = _doc.createElement('span');
         prev.className = _prefix + 'nav-button ' + _prefix + 'previous';
         prev.innerHTML = String.fromCharCode(160);
 
@@ -937,12 +942,12 @@ var HTMLCSAuditor = new function()
 
         navDiv.appendChild(prev);
 
-        var pageNum       = document.createElement('span');
+        var pageNum       = _doc.createElement('span');
         pageNum.className = _prefix + 'page-number';
         pageNum.innerHTML = 'Page ' + page + ' of ' + totalPages;
         navDiv.appendChild(pageNum);
 
-        var next       = document.createElement('span');
+        var next       = _doc.createElement('span');
         next.className = _prefix + 'nav-button ' + _prefix + 'next';
         next.innerHTML = String.fromCharCode(160);
 
@@ -963,7 +968,7 @@ var HTMLCSAuditor = new function()
             next.className    = next.className.replace(new RegExp(' ' + _prefix + 'disabled'), '');
             pageNum.innerHTML = 'Page ' + _page + ' of ' + totalPages;
 
-            var issueList = document.querySelectorAll('.HTMLCS-issue-list')[0];
+            var issueList = _doc.querySelectorAll('.HTMLCS-issue-list')[0];
             issueList.style.marginLeft = ((_page - 1) * -300) + 'px';
         }
 
@@ -978,7 +983,7 @@ var HTMLCSAuditor = new function()
             prev.className    = prev.className.replace(new RegExp(' ' + _prefix + 'disabled'), '');
             pageNum.innerHTML = 'Page ' + _page + ' of ' + totalPages;
 
-            var issueList = document.querySelectorAll('.HTMLCS-issue-list')[0];
+            var issueList = _doc.querySelectorAll('.HTMLCS-issue-list')[0];
             issueList.style.marginLeft = ((_page - 1) * -300) + 'px';
         }
 
@@ -991,7 +996,7 @@ var HTMLCSAuditor = new function()
             return;
         }
 
-        pointer.container = document.getElementById('HTMLCS-wrapper');
+        pointer.container = _doc.getElementById('HTMLCS-wrapper');
         pointer.pointTo(msg.element);
 
     };
@@ -1016,7 +1021,10 @@ var HTMLCSAuditor = new function()
     };
 
     this.build = function(standard, messages, options) {
-        var wrapper = document.getElementById(_prefix + 'wrapper');
+        var wrapper = null;
+        if (_doc) {
+            var wrapper = _doc.getElementById(_prefix + 'wrapper');
+        }
 
         var errors   = 0;
         var warnings = 0;
@@ -1085,7 +1093,7 @@ var HTMLCSAuditor = new function()
 
         var detailWidth  = (i * 300);
 
-        var wrapper       = document.createElement('div');
+        var wrapper       = _doc.createElement('div');
         wrapper.id        = _prefix + 'wrapper';
         wrapper.className = 'showing-issue-list';
 
@@ -1097,7 +1105,7 @@ var HTMLCSAuditor = new function()
         var summary       = buildSummarySection(errors, warnings, notices);
         var summaryDetail = buildDetailSummarySection(1, messages.length);
 
-        var innerWrapper       = document.createElement('div');
+        var innerWrapper       = _doc.createElement('div');
         innerWrapper.id        = _prefix + 'issues-wrapper';
         innerWrapper.className = _prefix + 'inner-wrapper';
 
@@ -1108,11 +1116,11 @@ var HTMLCSAuditor = new function()
         var navDiv     = buildNavigation(1, totalPages);
         innerWrapper.appendChild(navDiv);
 
-        var outerWrapper       = document.createElement('div');
+        var outerWrapper       = _doc.createElement('div');
         outerWrapper.className = _prefix + 'outer-wrapper';
         outerWrapper.appendChild(innerWrapper);
 
-        var innerWrapper       = document.createElement('div');
+        var innerWrapper       = _doc.createElement('div');
         innerWrapper.id        = _prefix + 'issues-detail-wrapper';
         innerWrapper.className = _prefix + 'inner-wrapper';
 
@@ -1128,7 +1136,7 @@ var HTMLCSAuditor = new function()
     };
 
     this.buildSummaryPage = function() {
-        var wrapper       = document.createElement('div');
+        var wrapper       = _doc.createElement('div');
         wrapper.id        = _prefix + 'wrapper';
         wrapper.className = 'showing-settings';
 
@@ -1144,7 +1152,7 @@ var HTMLCSAuditor = new function()
     };
 
     this.changeScreen = function(screen) {
-        var wrapper = document.getElementById(_prefix + 'wrapper');
+        var wrapper = _doc.getElementById(_prefix + 'wrapper');
 
         // Remove current "showing" section, add new one, then clean up the class name.
         wrapper.className  = wrapper.className.replace(new RegExp('showing-' + _screen), '');
@@ -1176,7 +1184,11 @@ var HTMLCSAuditor = new function()
 
         if ((source === null) || (source === undefined)) {
             // If not defined (or no longer existing?), check the document.
-            source = document;
+            if (window.frames.length > 0) {
+                source = window.frames[0].document;
+            } else {
+                source = document;
+            }
         } else if (source.nodeName) {
             // See if we are being sent a text box or text area; if so then
             // examine its contents rather than the node itself.
@@ -1209,26 +1221,78 @@ var HTMLCSAuditor = new function()
         _screen   = '';
         _messages = [];
 
-        var target = document.getElementById(_prefix + 'wrapper');
-
-        // Load the "processing" screen.
-        var wrapper = self.buildSummaryPage();
-        wrapper.className += ' processing';
+        var parentEl = null;
 
         if (_options.parentElement) {
-            if (target) {
-                _options.parentElement.replaceChild(wrapper, target);
+            parentEl = _options.parentElement;
+        } else if (window.frames.length > 0) {
+            var largestFrameSize = -1;
+            var largestFrame     = null;
+
+            for (var i = 0; i < window.frames.length; i++) {
+                try {
+                    if (window.frames[i].frameElement.nodeName.toLowerCase() === 'frame') {
+                        if (window.frames[i].document) {
+                            var frameSize = window.frames[i].innerWidth * window.frames[i].innerHeight;
+                            if (frameSize > largestFrameSize) {
+                                largestFrameSize = frameSize;
+                                largestFrame     = window.frames[i].document.body;
+                            }
+                        }//end if
+                    }//end if
+                } catch (ex) {
+                    // Skip cross-domain frames. Can't do much about those.
+                }//end try
+            }//end for
+
+            if (largestFrame === null) {
+                // They're all iframes. Just use the main document body.
+                parentEl = document.body;
             } else {
-                _options.parentElement.appendChild(wrapper);
+                parentEl = largestFrame;
             }
         } else {
-            if (target) {
-                wrapper.style.left = target.style.left;
-                wrapper.style.top  = target.style.top;
-                document.body.replaceChild(wrapper, target);
-            } else {
-                document.body.appendChild(wrapper);
+            parentEl = document.body;
+        }
+
+        _doc = parentEl;
+        if (_doc.ownerDocument) {
+            _doc = _doc.ownerDocument;
+        }
+
+        var exLinks  = _doc.head.getElementsByTagName('link');
+        var foundCss = false;
+        for (var i = 0; i < exLinks.length; i++) {
+            if (/HTMLCS\.css/.test(exLinks[i].getAttribute('href')) === true) {
+                foundCss = true;
+                break;
             }
+        }
+
+        if (!options.path) {
+            options.path = './';
+        }
+
+        if (foundCss === false) {
+            var cssLink  = _doc.createElement('link');
+            cssLink.rel  = 'stylesheet';
+            cssLink.type = 'text/css';
+            cssLink.href = options.path + 'HTMLCS.css';
+            _doc.head.appendChild(cssLink);
+        }
+
+        var target = _doc.getElementById(_prefix + 'wrapper');
+
+        // Load the "processing" screen.
+        var wrapper        = self.buildSummaryPage();
+        wrapper.className += ' processing';
+
+        if (target) {
+            wrapper.style.left = target.style.left;
+            wrapper.style.top  = target.style.top;
+            parentEl.replaceChild(wrapper, target);
+        } else {
+            parentEl.appendChild(wrapper);
         }
 
         // Process and replace with the issue list when finished.
@@ -1263,19 +1327,16 @@ var HTMLCSAuditor = new function()
 
             setTimeout(function() {
                 var newWrapper = self.buildSummaryPage();
-                if (_options.parentElement) {
-                    _options.parentElement.replaceChild(newWrapper, wrapper);
-                } else {
-                    newWrapper.style.left = wrapper.style.left;
-                    newWrapper.style.top  = wrapper.style.top;
-                    document.body.replaceChild(newWrapper, wrapper);
-                }
+
+                newWrapper.style.left = wrapper.style.left;
+                newWrapper.style.top  = wrapper.style.top;
+                parentEl.replaceChild(newWrapper, wrapper);
             }, 400);
         });
     };
 
     this.pointToElement = function(element) {
-        pointer.container = document.getElementById('HTMLCS-wrapper');
+        pointer.container = _doc.getElementById('HTMLCS-wrapper');
         pointer.pointTo(element);
 
     };
@@ -1362,27 +1423,27 @@ var HTMLCSAuditor = new function()
                 // width needs to be subtracted from the height and/or width.
                 var scrollWidth = this.getScrollbarWidth(elem);
                 // The documentElement.scrollHeight.
-                if (document.documentElement.scrollHeight > windowHeight) {
+                if (_doc.documentElement.scrollHeight > windowHeight) {
                     // Scrollbar is shown.
                     if (typeof scrollWidth === 'number') {
                         windowWidth -= scrollWidth;
                     }
                 }
 
-                if (document.body.scrollWidth > windowWidth) {
+                if (_doc.body.scrollWidth > windowWidth) {
                     // Scrollbar is shown.
                     if (typeof scrollWidth === 'number') {
                         windowHeight -= scrollWidth;
                     }
                 }
-            } else if (document.documentElement && (document.documentElement.clientWidth || document.documentElement.clientHeight)) {
+            } else if (_doc.documentElement && (_doc.documentElement.clientWidth || _doc.documentElement.clientHeight)) {
                 // Internet Explorer.
-                windowWidth  = document.documentElement.clientWidth;
-                windowHeight = document.documentElement.clientHeight;
-            } else if (document.body && (document.body.clientWidth || document.body.clientHeight)) {
+                windowWidth  = _doc.documentElement.clientWidth;
+                windowHeight = _doc.documentElement.clientHeight;
+            } else if (_doc.body && (_doc.body.clientWidth || _doc.body.clientHeight)) {
                 // Browsers that are in quirks mode or weird examples fall through here.
-                windowWidth  = document.body.clientWidth;
-                windowHeight = document.body.clientHeight;
+                windowWidth  = _doc.body.clientWidth;
+                windowHeight = _doc.body.clientHeight;
             }//end if
 
             var result = {
@@ -1404,7 +1465,7 @@ var HTMLCSAuditor = new function()
             var widthNoScrollBar   = 0;
             var widthWithScrollBar = 0;
             // Outer scrolling div.
-            wrapDiv                = document.createElement('div');
+            wrapDiv                = _doc.createElement('div');
             wrapDiv.style.position = 'absolute';
             wrapDiv.style.top      = '-1000px';
             wrapDiv.style.left     = '-1000px';
@@ -1414,14 +1475,14 @@ var HTMLCSAuditor = new function()
             wrapDiv.style.overflow = 'hidden';
 
             // Inner content div.
-            childDiv              = document.createElement('div');
+            childDiv              = _doc.createElement('div');
             childDiv.style.width  = '100%';
             childDiv.style.height = '200px';
 
             // Put the inner div in the scrolling div.
             wrapDiv.appendChild(childDiv);
             // Append the scrolling div to the doc.
-            document.body.appendChild(wrapDiv);
+            _doc.body.appendChild(wrapDiv);
 
             // Width of the inner div sans scrollbar.
             widthNoScrollBar = childDiv.offsetWidth;
@@ -1431,7 +1492,7 @@ var HTMLCSAuditor = new function()
             widthWithScrollBar = childDiv.offsetWidth;
 
             // Remove the scrolling div from the doc.
-            document.body.removeChild(document.body.lastChild);
+            _doc.body.removeChild(_doc.body.lastChild);
 
             // Pixel width of the scroller.
             var scrollBarWidth = (widthNoScrollBar - widthWithScrollBar);
@@ -1451,17 +1512,17 @@ var HTMLCSAuditor = new function()
                 // Mozilla, Firefox, Safari and Opera will fall into here.
                 scrollX = window.pageXOffset;
                 scrollY = window.pageYOffset;
-            } else if (document.body && (document.body.scrollLeft || document.body.scrollTop)) {
+            } else if (_doc.body && (_doc.body.scrollLeft || _doc.body.scrollTop)) {
                 // This is the DOM compliant method of retrieving the scroll position.
                 // Safari and OmniWeb supply this, but report wrongly when the window
                 // is not scrolled. They are caught by the first condition however, so
                 // this is not a problem.
-                scrollX = document.body.scrollLeft;
-                scrollY = document.body.scrollTop;
+                scrollX = _doc.body.scrollLeft;
+                scrollY = _doc.body.scrollTop;
             } else {
                 // Internet Explorer will get into here when in strict mode.
-                scrollX = document.documentElement.scrollLeft;
-                scrollY = document.documentElement.scrollTop;
+                scrollX = _doc.documentElement.scrollLeft;
+                scrollY = _doc.documentElement.scrollTop;
             }
 
             var coords = {
@@ -1474,7 +1535,7 @@ var HTMLCSAuditor = new function()
 
         getElementWindow: function(element)
         {
-            element = element || document.body;
+            element = element || _doc.body;
 
             var window = null;
             if (element.ownerDocument.defaultView) {
@@ -1490,7 +1551,7 @@ var HTMLCSAuditor = new function()
         isPointable: function(elem) {
             // If the specified elem is not in the DOM then we cannot point to it.
             // Also, cannot point to the document itself.
-            if (!elem || (elem === document)) {
+            if (elem.ownerDocument === null) {
                 return false;
             }
 
@@ -1572,10 +1633,10 @@ var HTMLCSAuditor = new function()
                 this.pointer.parentNode.removeChild(this.pointer);
             }
 
-            this.pointer = document.createElement('div');
+            this.pointer = _doc.createElement('div');
             var c        = 'HTMLCS';
             this.pointer.className = c + '-pointer ' + c + '-pointer-hidden';
-            document.body.appendChild(this.pointer);
+            _doc.body.appendChild(this.pointer);
             //targetElement.ownerDocument.body.appendChild(this.pointer);
 
             return this.pointer;
