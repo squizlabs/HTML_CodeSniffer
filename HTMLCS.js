@@ -555,7 +555,7 @@ var HTMLCS = new function()
 
     this.util = new function() {
         this.trim = function(string) {
-            return str.replace(/^\s*(.*)\s*$/g, '$1');
+            return string.replace(/^\s*(.*)\s*$/g, '$1');
         };
 
         this.isStringEmpty = function(string) {
