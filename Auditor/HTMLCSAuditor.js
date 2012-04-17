@@ -1292,6 +1292,11 @@ var HTMLCSAuditor = new function()
             wrapper.style.top  = target.style.top;
             parentEl.replaceChild(wrapper, target);
         } else {
+            // Being opened for the first time (in this frame).
+            if (_options.openCallback) {
+                _options.openCallback.call(this);
+            }
+
             parentEl.appendChild(wrapper);
         }
 
@@ -1413,6 +1418,8 @@ var HTMLCSAuditor = new function()
         getWindowDimensions: function(elem)
         {
             var window = this.getElementWindow(elem);
+            var doc    = elem.ownerDocument;
+
             var windowWidth  = 0;
             var windowHeight = 0;
             if (window.innerWidth) {
@@ -1423,27 +1430,27 @@ var HTMLCSAuditor = new function()
                 // width needs to be subtracted from the height and/or width.
                 var scrollWidth = this.getScrollbarWidth(elem);
                 // The documentElement.scrollHeight.
-                if (_doc.documentElement.scrollHeight > windowHeight) {
+                if (doc.documentElement.scrollHeight > windowHeight) {
                     // Scrollbar is shown.
                     if (typeof scrollWidth === 'number') {
                         windowWidth -= scrollWidth;
                     }
                 }
 
-                if (_doc.body.scrollWidth > windowWidth) {
+                if (doc.body.scrollWidth > windowWidth) {
                     // Scrollbar is shown.
                     if (typeof scrollWidth === 'number') {
                         windowHeight -= scrollWidth;
                     }
                 }
-            } else if (_doc.documentElement && (_doc.documentElement.clientWidth || _doc.documentElement.clientHeight)) {
+            } else if (doc.documentElement && (doc.documentElement.clientWidth || doc.documentElement.clientHeight)) {
                 // Internet Explorer.
-                windowWidth  = _doc.documentElement.clientWidth;
-                windowHeight = _doc.documentElement.clientHeight;
-            } else if (_doc.body && (_doc.body.clientWidth || _doc.body.clientHeight)) {
+                windowWidth  = doc.documentElement.clientWidth;
+                windowHeight = doc.documentElement.clientHeight;
+            } else if (doc.body && (doc.body.clientWidth || doc.body.clientHeight)) {
                 // Browsers that are in quirks mode or weird examples fall through here.
-                windowWidth  = _doc.body.clientWidth;
-                windowHeight = _doc.body.clientHeight;
+                windowWidth  = doc.body.clientWidth;
+                windowHeight = doc.body.clientHeight;
             }//end if
 
             var result = {
@@ -1454,18 +1461,20 @@ var HTMLCSAuditor = new function()
 
         },
 
-        getScrollbarWidth: function()
+        getScrollbarWidth: function(elem)
         {
             if (this.scrollBarWidth) {
                 return this.scrollBarWidth;
             }
+
+            doc = elem.ownerDocument;
 
             var wrapDiv            = null;
             var childDiv           = null;
             var widthNoScrollBar   = 0;
             var widthWithScrollBar = 0;
             // Outer scrolling div.
-            wrapDiv                = _doc.createElement('div');
+            wrapDiv                = doc.createElement('div');
             wrapDiv.style.position = 'absolute';
             wrapDiv.style.top      = '-1000px';
             wrapDiv.style.left     = '-1000px';
@@ -1475,7 +1484,7 @@ var HTMLCSAuditor = new function()
             wrapDiv.style.overflow = 'hidden';
 
             // Inner content div.
-            childDiv              = _doc.createElement('div');
+            childDiv              = doc.createElement('div');
             childDiv.style.width  = '100%';
             childDiv.style.height = '200px';
 
@@ -1492,7 +1501,7 @@ var HTMLCSAuditor = new function()
             widthWithScrollBar = childDiv.offsetWidth;
 
             // Remove the scrolling div from the doc.
-            _doc.body.removeChild(_doc.body.lastChild);
+            doc.body.removeChild(doc.body.lastChild);
 
             // Pixel width of the scroller.
             var scrollBarWidth = (widthNoScrollBar - widthWithScrollBar);
@@ -1505,6 +1514,7 @@ var HTMLCSAuditor = new function()
         getScrollCoords: function(elem)
         {
             var window = this.getElementWindow(elem);
+            doc        = elem.ownerDocument;
 
             var scrollX = 0;
             var scrollY = 0;
@@ -1512,17 +1522,17 @@ var HTMLCSAuditor = new function()
                 // Mozilla, Firefox, Safari and Opera will fall into here.
                 scrollX = window.pageXOffset;
                 scrollY = window.pageYOffset;
-            } else if (_doc.body && (_doc.body.scrollLeft || _doc.body.scrollTop)) {
+            } else if (doc.body && (doc.body.scrollLeft || doc.body.scrollTop)) {
                 // This is the DOM compliant method of retrieving the scroll position.
                 // Safari and OmniWeb supply this, but report wrongly when the window
                 // is not scrolled. They are caught by the first condition however, so
                 // this is not a problem.
-                scrollX = _doc.body.scrollLeft;
-                scrollY = _doc.body.scrollTop;
+                scrollX = doc.body.scrollLeft;
+                scrollY = doc.body.scrollTop;
             } else {
                 // Internet Explorer will get into here when in strict mode.
-                scrollX = _doc.documentElement.scrollLeft;
-                scrollY = _doc.documentElement.scrollTop;
+                scrollX = doc.documentElement.scrollLeft;
+                scrollY = doc.documentElement.scrollTop;
             }
 
             var coords = {
@@ -1604,7 +1614,7 @@ var HTMLCSAuditor = new function()
             this.pointerDim.width  = 62;
 
             var bounceHeight = 20;
-            var scroll       = this.getScrollCoords();
+            var scroll       = this.getScrollCoords(elem);
 
             // Determine where to show the arrow.
             var winDim = this.getWindowDimensions(elem);
@@ -1619,24 +1629,26 @@ var HTMLCSAuditor = new function()
             } else if ((rect.y2 + pointerH) < (winDim.height - iframeScroll.y)) {
                 // Up.
                 this.showPointer(elem, 'up');
-            } else if ((rect.y2 + pointerW) < winDim.width) {
+            } else if ((rect.x2 + pointerW) < winDim.width) {
                 // Left.
                 this.showPointer(elem, 'left');
-            } else if ((rect.y1 - pointerW) > 0) {
+            } else if ((rect.x1 - pointerW) > 0) {
                 // Right.
                 this.showPointer(elem, 'right');
             }
         },
 
         getPointer: function(targetElement) {
+            var doc = targetElement.ownerDocument;
+
             if (this.pointer && this.pointer.parentNode) {
                 this.pointer.parentNode.removeChild(this.pointer);
             }
 
-            this.pointer = _doc.createElement('div');
+            this.pointer = doc.createElement('div');
             var c        = 'HTMLCS';
             this.pointer.className = c + '-pointer ' + c + '-pointer-hidden';
-            _doc.body.appendChild(this.pointer);
+            doc.body.appendChild(this.pointer);
             //targetElement.ownerDocument.body.appendChild(this.pointer);
 
             return this.pointer;
@@ -1687,7 +1699,7 @@ var HTMLCSAuditor = new function()
 
             }//end switch
 
-            var frameScroll = this.getScrollCoords();
+            var frameScroll = this.getScrollCoords(elem);
 
             this.pointer.style.top  = top  + 'px';
             this.pointer.style.left = left + 'px';
