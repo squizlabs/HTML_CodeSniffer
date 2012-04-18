@@ -3,7 +3,7 @@ var HTMLCSAuditor = new function()
     var _prefix   = 'HTMLCS-';
     var _screen   = '';
     var _standard = '';
-    var _source   = '';
+    var _sources  = [];
     var _options  = {};
     var _doc      = null;
     var _messages = [];
@@ -268,7 +268,7 @@ var HTMLCSAuditor = new function()
         lineageHomeLink.appendChild(lineageHomeSpan);
 
         lineageHomeLink.onmousedown = function() {
-            HTMLCSAuditor.run(_standard, _source, _options);
+            HTMLCSAuditor.run(_standard, _sources, _options);
         };
 
         // Issue totals.
@@ -320,7 +320,7 @@ var HTMLCSAuditor = new function()
         lineageHomeLink.appendChild(lineageHomeSpan);
 
         lineageHomeLink.onmousedown = function() {
-            HTMLCSAuditor.run(_standard, _source, _options);
+            HTMLCSAuditor.run(_standard, _sources, _options);
         };
 
         // Back to Report item.
@@ -491,7 +491,7 @@ var HTMLCSAuditor = new function()
             useStandardSelect.appendChild(option);
             useStandardSelect.onchange = function() {
                 _standard = this.options[this.selectedIndex].value;
-                self.run(_standard, _source, _options);
+                self.run(_standard, _sources, _options);
             }
         }
 
@@ -1185,7 +1185,15 @@ var HTMLCSAuditor = new function()
         if ((source === null) || (source === undefined)) {
             // If not defined (or no longer existing?), check the document.
             if (window.frames.length > 0) {
-                source = window.frames[0].document;
+                source = [];
+                for (var i = 0; i < window.frames.length; i++) {
+                    try {
+                        source.push(window.frames[i].document);
+                    } catch (ex) {
+                        // If no access permitted to the document (eg.
+                        // cross-domain), then ignore.
+                    }
+                }
             } else {
                 source = document;
             }
@@ -1207,6 +1215,10 @@ var HTMLCSAuditor = new function()
                 // Text area.
                 source = source.value;
             }//end if
+        }
+
+        if ((source instanceof Array) === false) {
+            source = [source];
         }//end if
 
         if (options === undefined) {
@@ -1215,7 +1227,7 @@ var HTMLCSAuditor = new function()
 
         // Save the options at this point, so we can refresh with them.
         _standard = standard;
-        _source   = source;
+        _sources  = source;
         _options  = options;
         _page     = 1;
         _screen   = '';
@@ -1301,9 +1313,8 @@ var HTMLCSAuditor = new function()
         }
 
         // Process and replace with the issue list when finished.
-        HTMLCS.process(standard, source, function() {
+        var _finalise = function() {
             // Before then, ignore warnings arising from the Advisor interface itself.
-            _messages = HTMLCS.getMessages();
             for (var i = 0; i < _messages.length; i++) {
                 var ignore = false;
                 if (wrapper) {
@@ -1337,7 +1348,22 @@ var HTMLCSAuditor = new function()
                 newWrapper.style.top  = wrapper.style.top;
                 parentEl.replaceChild(newWrapper, wrapper);
             }, 400);
-        });
+        };
+
+        var _processSource = function(standard, sources) {
+            var source = sources.shift();
+
+            HTMLCS.process(standard, source, function() {
+                _messages = _messages.concat(HTMLCS.getMessages());
+                if (sources.length === 0) {
+                    _finalise();
+                } else {
+                    _processSource(standard, sources);
+                }
+            });
+        };
+
+        _processSource(standard, _sources.concat([]));
     };
 
     this.pointToElement = function(element) {
