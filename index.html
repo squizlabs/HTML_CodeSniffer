@@ -124,7 +124,7 @@
 <body>
     <div id="header">
         <div class="max-width">
-            <h1>HTML_CodeSniffer</h1>
+            <h1><img src="images/test-icon.png" style="padding-right:3px;"> HTML_CodeSniffer</h1>
             <map name="External Links">
                 <ul id="sprites">
                     <li><a href="http://squiz.com.au" class="header-sprite squiz-logo"><span class="screen-hide">Squiz</span></a></li>
@@ -133,6 +133,10 @@
                 </ul>
             </map>
         </div>
+    </div>
+
+    <div id="sub-header">
+
     </div>
 
     <div id="introduction">
@@ -144,7 +148,9 @@
 
                 <p>To get you started, HTML_CodeSniffer comes with a set of 3 standards that enforce the <a href="http://www.w3.org/TR/WCAG/">Web Content Accessibility Guidelines (WCAG) 2.0</a>. An auditor interface is provided by a bookmarklet to let you try out the WCAG 2.0 checks on any web page.</p>
 
-                <h3>List of standards and sniff coverage</h3>
+                <img src="images/divider.png" style="position:relative; left:2px">
+
+                <h3 class="dark-heading" style="padding-top:10px;">List of standards and sniff coverage</h3>
 
                 <map name="Coverage List">
                     <ul>
@@ -158,14 +164,14 @@
             <div id="bookmarklet">
                 <h2 class="screen-hide">WCAG 2.0 Bookmarklet</h2>
                 <div id="bookmarklet-feature"></div>
-                <div class="button" alert('Drag this button to your Bookmarks Bar to install.');">
+                <div class="button" onclick="alert('Drag this to your browser Bookmarks Bar to install.  Once installed, you can run the WCAG Bookmarklet over any page.'); return false;">
                     <a id="add-bookmarklet" onmousedown="_gaq.push(['_trackEvent', 'Viper', 'bookmarklet.clicked']);" href="javascript:(function() {var _p='http://squizlabs.github.com/HTML_CodeSniffer/build/';var _i=function(s,cb) {var sc=document.createElement('script');sc.onload = function() {sc.onload = null;sc.onreadystatechange = null;cb.call(this);};sc.onreadystatechange = function(){if(/^(complete|loaded)$/.test(this.readyState) === true){sc.onreadystatechange = null;sc.onload();}};sc.src=s;if (document.head) {document.head.appendChild(sc);} else {document.getElementsByTagName('head')[0].appendChild(sc);}}; var options={path:_p};_i(_p+'HTMLCS.js',function(){HTMLCSAuditor.run('WCAG2AA',null,options);});})();"><span class="screen-hide">HTML_CodeSniffer</span></a>
 
                     <div id="button-title">Get the <strong>WCAG 2.0 Bookmarklet</strong><br>
                     <span class="button-ins">Drag this link to your bookmarks bar to install</span></div>
                 </div>
 
-                <div class="requirements">This bookmarklet has been designed to work with Google Chrome, Firefox 10+, Safari 5+ and Internet Explorer 8+
+                <div class="requirements"><strong>Requirements:</strong> Latest versions of  Google Chrome or Firefox, Safari 5+, Internet Explorer 8+
                 </div>
             </div>
          </div><!-- end max-width -->
@@ -175,9 +181,10 @@
 
      <div id="test-area">
         <div class="max-width">
-            <h3 class="grey-heading">Run your code through the sniffer</h3>
+            <h3>Run your code through the Sniffer</h3>
 
-            <p>Run HTML_CodeSniffer over your own code to see how it works. The sniffer below will test your source code against your selected guideline. Test results will be shown underneath the code block. Visit the previous <a href="testpage.html">Test Page</a>.</p>
+            <p>Run HTML_CodeSniffer over your own code to see how it works. The sniffer below will test your source code against your selected guideline.<br>
+            Test results will be shown underneath the code block.</p>
 
             <div id="code-input">
                 <form id="runHTMLCS">
@@ -195,7 +202,7 @@
 
                             <li><input type="radio" value="WCAG2AA" name="level" id="WCAG2AA" class="radio-input"><span class="radio-gen"></span> <label for="WCAG2AA">Level AA</label></li>
 
-                            <li><input type="radio" value="WCAG2AAA" name="level" id="WCAG2AAA" class="radio-input"><span class="radio-gen radio-on"></span> <label for="WCAG2AAA">Level AAA</label></li>
+                            <li><input type="radio" value="WCAG2AAA" name="level" id="WCAG2AAA" class="radio-input" checked><span class="radio-gen radio-on"></span> <label for="WCAG2AAA">Level AAA</label></li>
                         </ul>
                         </fieldset>
 
@@ -203,19 +210,21 @@
 
                     </div>
                 </form>
-            </div> <!-- close code-input -->
 
-            <div id="test-results">
+                 <div id="test-results">
                 <div id="resultsWrapper">
                 </div>
             </div> <!-- close #test-results -->
+            </div> <!-- close code-input -->
+
+           
         </div> <!-- close .max-width -->
 
-        <div class="zigzag zigzag-grey"></div>
 
     </div> <!-- close #text-area -->
 
     <div id="footer">
+        <div class="zigzag-bottom"></div>
         <div class="max-width">
             <p><strong>HTML_CodeSniffer</strong> developed by <strong><a href="http://www.squiz.com.au">Squiz</a></strong> Content Management Solutions</p>
         </div>
