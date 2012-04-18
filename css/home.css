@@ -97,7 +97,7 @@ p a:hover {
 #header {
  height:73px;
  padding-top:35px;
- background: #cc5915 url(../images/_header-bg.png) top left repeat;
+ background: #cc5915 url(../images/header-bg.png) top left repeat;
 }
 
 #header #sprites {
@@ -160,7 +160,7 @@ p a:hover {
  position:relative;
  z-index:1;
  padding:30px 0 50px 0;
- background:url(../images/_intro-bg.png);
+ background:url(../images/intro-bg.png);
  font-size:13px;
  min-height:410px;
  border-top:2px solid #ffffff;
@@ -251,7 +251,7 @@ background: url(../images/bookmarklet-bg.jpg) repeat top left;
  position:absolute;
  top:5px;
  left:0;
- background: url(../images/_bookmarklet-feature.png) top left no-repeat;
+ background: url(../images/bookmarklet-feature.png) top left no-repeat;
  width:470px;
  height:328px;
 }
@@ -269,7 +269,7 @@ background: url(../images/bookmarklet-bg.jpg) repeat top left;
  text-shadow:0 -1px 0 rgba(0,0,0,.6), 0 1px 0 rgba(255,255,255,0), 0 1px 1px rgba(0,0,0,0);
  box-shadow: 0 1px rgba(255,255,255,.4) inset,  0 1px 0 rgba(0,0,0,.4);
 
- background: url(../images/_bookmark-button.png) left top no-repeat;
+ background: url(../images/bookmark-button.png) left top no-repeat;
 }
 
 #introduction #bookmarklet .button:before {
@@ -277,7 +277,7 @@ background: url(../images/bookmarklet-bg.jpg) repeat top left;
     display:block;
     width:12px;
     height:7px;
-    background: url(../images/_bookmark-fold.png) top left no-repeat;
+    background: url(../images/bookmark-fold.png) top left no-repeat;
     position:relative;
     top:-11px;
     left:1px;
@@ -285,7 +285,7 @@ background: url(../images/bookmarklet-bg.jpg) repeat top left;
 }
 
 #introduction #bookmarklet .button:hover {
- background: url(../images/_bookmark-button-hover.png);
+ background: url(../images/bookmark-button-hover.png);
 }
 
 #bookmarklet .button-ins {
@@ -334,7 +334,7 @@ background: url(../images/bookmarklet-bg.jpg) repeat top left;
 }
 
 #test-area {
- background:#d9e8f5 url(../images/_test-area-bg.png);
+ background:#d9e8f5 url(../images/test-area-bg.png);
  position:relative;
  z-index:10;
  padding:30px 0 15px 0;
@@ -420,7 +420,7 @@ background: url(../images/bookmarklet-bg.jpg) repeat top left;
 }
 
 #code-overlay {
- background: #2f4269 url(../images/_overlay-bg.png) repeat;
+ background: #2f4269 url(../images/overlay-bg.png) repeat;
  width:940px;
  height:179px;
  color:#ffffff;
@@ -444,7 +444,7 @@ background: url(../images/bookmarklet-bg.jpg) repeat top left;
 #test-area-graphic {
  width:44px;
  height:32px;
- background:url(../images/_test-area-html.png) top left no-repeat;
+ background:url(../images/test-area-html.png) top left no-repeat;
  margin:10px auto;
 }
 
@@ -603,7 +603,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d9e2e6', end
  border-radius:8px;
  border:1px solid #a45024;
  box-shadow: 0 1px rgba(255,255,255,.4) inset,  0 1px 0 rgba(255,255,255,.2);
- background: #cc5915 url(../images/_header-bg.png);
+ background: #cc5915 url(../images/header-bg.png);
 }
 
 .radio-input {
@@ -771,17 +771,17 @@ li label {
 }
 
 #test-results tr.warning td.number {
-    background-image: url(../images/_flag-yellow.png);
+    background-image: url(../images/flag-yellow.png);
     padding-left:15px;
 }
 
 #test-results tr.notice td.number {
-    background-image: url(../images/_flag-purple.png);
+    background-image: url(../images/flag-purple.png);
         padding-left:15px;
 }
 
 #test-results tr.error td.number {
-    background-image: url(../images/_flag-red.png);
+    background-image: url(../images/flag-red.png);
         padding-left:15px;
    
 }
