@@ -253,7 +253,7 @@ background: url(../images/bookmarklet-bg.jpg) repeat top left;
  left:0;
  background: url(../images/bookmarklet-feature.png) top left no-repeat;
  width:470px;
- height:328px;
+ height:500px;
 }
 
 #introduction #bookmarklet .button {
@@ -302,6 +302,7 @@ background: url(../images/bookmarklet-bg.jpg) repeat top left;
  text-align:center;
  padding:25px 80px;
  text-shadow: 0 -1px 0 rgba(0,0,0,1);
+ letter-spacing:1px;
 }
 
 /* IE 9 Hover Fix */
@@ -353,6 +354,7 @@ background: url(../images/bookmarklet-bg.jpg) repeat top left;
  border-radius:5px;
  width:939px;
  margin-left:14px;
+ text-shadow: 0 -1px 0 rgba(255,255,255,1);
 }
 
 #test-area tr {
@@ -567,8 +569,8 @@ tr.notice td.assertType {
 .radio-gen {
  display:inline-block;
  position:relative;
- height:18px;
- width:18px;
+ height:16px;
+ width:16px;
  border-radius:10px;
  box-shadow:0 1px rgba(255,255,255,1), 0 0px 40px rgba(255,255,255,.5), 0 0 1px rgba(0,0,0,.2) inset;
  top:4px;
@@ -589,14 +591,14 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d9e2e6', end
 
 .radio-gen.radio-on {
  position:relative;
- top:0px;
+ top:-1px;
 }
 
 .radio-gen.radio-on:after {
  content:'';
  display:inline-block;
- width:12px;
- height:12px;
+ width:10px;
+ height:10px;
  position:relative;
  top:2px;
  left:2px;
@@ -758,17 +760,6 @@ li label {
     letter-spacing:1px;
 }
 
-#test-results tr.error td.type {
-    background:#8b2020;
-}
-
-#test-results tr.warning td.type {
-    background:#b3913a;
-}
-
-#test-results tr.notice td.type {
-    background:#66656b;
-}
 
 #test-results tr.warning td.number {
     background-image: url(../images/flag-yellow.png);
