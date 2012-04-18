@@ -1434,14 +1434,6 @@ var HTMLCSAuditor = new function()
                 window = element.ownerDocument.parentWindow;
             }
 
-            if (window && window.frameElement) {
-                var elem = window.frameElement;
-                do {
-                    left += elem.offsetLeft;
-                    top  += elem.offsetTop;
-                } while (elem = elem.offsetParent)
-            }
-
             do {
                 left += element.offsetLeft;
                 top  += element.offsetTop;
@@ -1657,6 +1649,7 @@ var HTMLCSAuditor = new function()
 
             // Determine where to show the arrow.
             var winDim = this.getWindowDimensions(elem);
+            var window = this.getElementWindow(elem);
             window.scrollTo(0, rect.y1 - 100);
 
             var iframeScroll = this.getScrollCoords(elem);
