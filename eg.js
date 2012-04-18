@@ -58,7 +58,7 @@ function updateResults(resultsWrapper)
         var noStdMsgParts = msgParts.join('.');
 
         content += '<tr class="' + type.toLowerCase() + '">';
-        content += '<td class="number">' + (i + 1) + '</td>';
+        content += '<td class="number">' + (i + 1) + '<span class="flag"></span></td>';
         content += '<td class="messageText"><strong>' + type + ':</strong> ' + msg.msg + '</td>';
         content += '<td class="messageCode">' + msg.code + '</td></tr>';
     }
@@ -76,6 +76,7 @@ function updateResults(resultsWrapper)
 
     content  = heading + content;
     content += '</table>';
+    content += '<span class="footnote"><em>Add the WCAG bookmarklet to your browser to run this test on any web page.</em></span>';
     resultsWrapper.innerHTML = content;
 
 }
