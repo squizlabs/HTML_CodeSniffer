@@ -201,14 +201,7 @@ var HTMLCSAuditor = new function()
         closeIcon.className = _prefix + 'close';
         closeIcon.setAttribute('title', 'Close');
         closeIcon.onmousedown = function() {
-            var wrapper = _doc.getElementById('HTMLCS-wrapper');
-            if (wrapper) {
-                _doc.body.removeChild(wrapper);
-            }
-
-            if (_options.closeCallback) {
-                _messages = _options.closeCallback.call(this);
-            }
+            self.close.call(self);
         }
 
         header.appendChild(closeIcon);
@@ -1351,7 +1344,10 @@ var HTMLCSAuditor = new function()
             }//end for
 
             if (_options.runCallback) {
-                _messages = _options.runCallback.call(this, _messages);
+                var _newMsgs = _options.runCallback.call(this, _messages);
+                if ((_newMsgs instanceof Array) === true) {
+                    _messages = _newMsgs;
+                }
             }
 
             setTimeout(function() {
@@ -1377,6 +1373,22 @@ var HTMLCSAuditor = new function()
         };
 
         _processSource(standard, _sources.concat([]));
+    };
+
+    this.close = function() {
+        var wrapper = _doc.getElementById('HTMLCS-wrapper');
+        if (wrapper) {
+            _doc.body.removeChild(wrapper);
+        }
+
+        var pointer = _doc.querySelector('.HTMLCS-pointer');
+        if (pointer) {
+            _doc.body.removeChild(pointer);
+        }
+
+        if (_options.closeCallback) {
+            _messages = _options.closeCallback.call(this);
+        }
     };
 
     this.pointToElement = function(element) {
