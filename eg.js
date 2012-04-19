@@ -1,6 +1,6 @@
 function runHTMLCS(standard, source, resultsDiv, expectedMsgs, expectedOmissions)
 {
-    resultsDiv.innerHTML = '<em>Running...</em>';
+    resultsDiv.innerHTML = '<span class="loading"><img src="images/loading.gif" alt="Loading"> Sniffing...</span>';
 
     HTMLCS.process(standard, source, function() {
         updateResults(resultsDiv, expectedMsgs, expectedOmissions);
