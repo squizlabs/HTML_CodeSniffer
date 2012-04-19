@@ -31,7 +31,6 @@ h1 {
  font-weight:bold;
  font-size:36px;
  text-shadow:0 -1px 0 rgba(0,0,0,.9);
-
 }
 
 h2 {
@@ -46,7 +45,7 @@ h3 {
 }
 
 #introduction h3 {
-    margin-top:10px;
+ margin-top:10px;
 }
 
 #test-area h3 {
@@ -241,7 +240,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d7e7ef', end
  right:0;
  height:110%;
  z-index:10000;
-background: url(../images/bookmarklet-bg.jpg) repeat top left;
+background: #2c3e62  url(../images/bookmarklet-bg.jpg) repeat top left;
  box-shadow: 0 0 10px rgba(0,0,0,.3), 0 1px 5px rgba(0,0,0,.3) inset;
  padding:20px 0;
 
@@ -273,15 +272,15 @@ background: url(../images/bookmarklet-bg.jpg) repeat top left;
 }
 
 #introduction #bookmarklet .button:before {
-    content:'';
-    display:block;
-    width:12px;
-    height:7px;
-    background: url(../images/bookmark-fold.png) top left no-repeat;
-    position:relative;
-    top:-11px;
-    left:1px;
-    z-index:10000;
+ content:'';
+ display:block;
+ width:12px;
+ height:7px;
+ background: url(../images/bookmark-fold.png) top left no-repeat;
+ position:relative;
+ top:-11px;
+ left:1px;
+ z-index:10000;
 }
 
 #introduction #bookmarklet .button:hover {
@@ -348,12 +347,11 @@ background: url(../images/bookmarklet-bg.jpg) repeat top left;
  border:1px solid #e0e0e0;
  border-bottom:none;
  font-size:14px;
- margin:25px 0 10px; 0;
+ margin:-20px 0 0px 14px;
  text-align:left;
  box-shadow: 0 1px rgba(255,255,255,.8);
  border-radius:5px;
- width:939px;
- margin-left:14px;
+ width:939px; 
  text-shadow: 0 -1px 0 rgba(255,255,255,1);
 }
 
@@ -377,7 +375,7 @@ background: url(../images/bookmarklet-bg.jpg) repeat top left;
  font-size:15px;
  text-shadow: 0 1px 0 rgba(255,255,255,.9);
  border-left:1px solid #d8d7d7;
- box-shadow: 0 1px 0 #f1f1f1 inset;
+ box-shadow: 0 1px 0 #ebeaea inset;
  border-top:1px solid #e0e0e0;
 }
 
@@ -390,7 +388,6 @@ background: url(../images/bookmarklet-bg.jpg) repeat top left;
  text-align:left;
  text-shadow: 0 1px 0 rgba(255,255,255,1);
  border-right:1px solid #e0e0e0;
- border-left:1px solid #ffffff;
  color:#1c283f;
  vertical-align:top;
  box-shadow: 0 -1px 0 #e0e0e0 inset;
@@ -410,6 +407,7 @@ background: url(../images/bookmarklet-bg.jpg) repeat top left;
 #code-input {
  position:relative;
  width:968px;
+ padding-bottom:12px;
  background: #ffffff;
  margin:20px 0;
  border:1px solid #c6c6c6;
@@ -504,21 +502,21 @@ background: url(../images/bookmarklet-bg.jpg) repeat top left;
 
 #results-overview {
  display:inline-block;
- background: #f9f8f8;
+ background: #f6f6f6;
  box-shadow:0 -1px rgba(0,0,0,.20), 0 1px rgba(255,255,255,.8), 0 0 6px rgba(0,0,0,.10) inset;
  border-radius:4px;
  font-size:13px;
- position:absolute;
- right:15px;
- top:24px;
- margin:0;
+ position:relative;
+ top:-18px;
+ left:325px;
  padding:0 0 1px 0;
  border:1px solid #d2d7dd;
+
 }
 
 #results-overview li {
  display:inline-block;
- padding:5px 15px;
+ padding:10px 20px 5px 20px;
  border-right:1px solid #d8d8d8;
 }
 
@@ -563,7 +561,8 @@ tr.notice td.assertType {
 
 #test-results {
  position:relative;
- padding:5px 0;
+ padding:5px 0 0 0 ;
+
 }
 
 .radio-gen {
@@ -736,43 +735,59 @@ li label {
 }
 
 #resultsWrapper hr {
-    height:1px;
-    border:none;
-    background: #dcdddd;
-    box-shadow: 0 1px 0 #ffffff;
-    position:relative;
-    top:-3px;
+ height:1px;
+ border:none;
+ background: #dcdddd;
+ box-shadow: 0 1px 0 #ffffff;
+ position:relative;
+ top:-3px;
 }
 
 #resultsWrapper h3 {
-    position:relative;
-    left:16px;
-    top:8px;
+ position:relative;
+ left:16px;
+  margin:24px 0 0px 0;
 }
 
 .footnote {
-    display:block;
-    width:100%;
-    color:#c9c8c8;
-    text-align:center;
-    padding:15px 0 20px 0;
-    text-shadow: 0 1px 0 rgba(255,255,255,1);
-    letter-spacing:1px;
+ display:block;
+ width:100%;
+ color:#b0afaf;
+ text-align:center;
+ padding:15px 0 20px 0;
+ text-shadow: 0 1px 0 rgba(255,255,255,1);
+ letter-spacing:1px;
+ font-size:13px;
 }
 
 
 #test-results tr.warning td.number {
-    background-image: url(../images/flag-yellow.png);
-    padding-left:15px;
+ background-image: url(../images/flag-yellow.png);
+ padding-left:15px;
 }
 
 #test-results tr.notice td.number {
-    background-image: url(../images/flag-purple.png);
-        padding-left:15px;
+ background-image: url(../images/flag-purple.png);
+ padding-left:15px;
 }
 
 #test-results tr.error td.number {
-    background-image: url(../images/flag-red.png);
-        padding-left:15px;
-   
+ background-image: url(../images/flag-red.png);
+ padding-left:15px;
 }
+
+#resultsWrapper {
+ position:relative;
+ width:968px;
+ background: #ffffff;
+ margin:-10px 0 20px 0;
+ border:1px solid #c6c6c6;
+ clear:both;
+ border-radius:5px;
+ background: #f9f8f8;
+ box-shadow:0 1px rgba(255,255,255,1), 0 0px 40px rgba(255,255,255,.5), 0 0 6px rgba(0,0,0,.2) inset;
+ border-radius:4px;
+ font-size:13px;
+ overflow:hidden;
+}
+

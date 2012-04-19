@@ -17,7 +17,7 @@ function updateResults(resultsWrapper)
         return;
     }
 
-    var content = '<table id="test-results"><tr>';
+    var content = '<div id="test-results"><table id="test-results"><tr>';
     content    += '<th>#</th><th>Message</th><th>Code</th></tr>';
 
     var errors   = 0;
@@ -64,11 +64,9 @@ function updateResults(resultsWrapper)
     }
 
 
-    var heading = '<hr>'
+    var heading = '<span class="screen-hide"><h3>Test results</h3></span>';
 
-    heading += '<h3>Test results</h3>';
-
-    heading += '<ul id="results-overview">';
+    heading += '<ul id="results-overview">';  
     heading += '<li><span class="result-count result-count-errors">' + errors + '</span> <span class="result-type">errors</span></li>';
     heading += '<li><span class="result-count result-count-warnings">' + warnings + '</span> <span class="result-type">warnings</span></li>';
     heading += '<li><span class="result-count result-count-notices">' + notices + '</span> <span class="result-type">notices</span></li>';
@@ -76,7 +74,7 @@ function updateResults(resultsWrapper)
 
     content  = heading + content;
     content += '</table>';
-    content += '<span class="footnote"><em>Add the WCAG bookmarklet to your browser to run this test on any web page.</em></span>';
+    content += '<span class="footnote"><em>Add the WCAG bookmarklet to your browser to run this test on any web page.</em></span></div>';
     resultsWrapper.innerHTML = content;
 
 }
