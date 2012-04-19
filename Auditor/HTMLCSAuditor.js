@@ -1385,6 +1385,11 @@ var HTMLCSAuditor = new function()
 
     };
 
+    this.getCurrentStandard = function() {
+        return _standard;
+
+    };
+
     var pointer =
     {
         pointer: null,
