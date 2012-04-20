@@ -122,9 +122,12 @@
     </script>
 </head>
 <body>
+
+    <a href="https://github.com/squizlabs/HTML_CodeSniffer"><img style="position: absolute; top: 0; right: 0; border: 0; z-index:1000" src="https://a248.e.akamai.net/assets.github.com/img/71eeaab9d563c2b3c590319b398dd35683265e85/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub"></a>
+
     <div id="header">
         <div class="max-width">
-            <h1><img src="images/test-icon.png" style="padding-right:3px;"> HTML_CodeSniffer</h1>
+            <h1><span class="htmlcs-heading"></span><span class="screen-hide">HTML_CodeSniffer</span></h1>
             <map name="External Links">
                 <ul id="sprites">
                     <li><a href="http://squiz.com.au" class="header-sprite squiz-logo"><span class="screen-hide">Squiz</span></a></li>
@@ -148,9 +151,9 @@
 
                 <p>To get you started, HTML_CodeSniffer comes with a set of 3 standards that enforce the <a href="http://www.w3.org/TR/WCAG/">Web Content Accessibility Guidelines (WCAG) 2.0</a>. An auditor interface is provided by a bookmarklet to let you try out the WCAG 2.0 checks on any web page.</p>
 
-                <img src="images/divider.png" style="position:relative; left:2px">
+                <img src="images/divider.png" class="introduction-divider">
 
-                <h3 class="dark-heading" style="padding-top:10px;">List of standards and sniff coverage</h3>
+                <h3 class="dark-heading" >List of standards and sniff coverage</h3>
 
                 <map name="Coverage List">
                     <ul>
@@ -163,12 +166,14 @@
 
             <div id="bookmarklet">
                 <h2 class="screen-hide">WCAG 2.0 Bookmarklet</h2>
-                <div id="bookmarklet-feature"></div>
+                <div id="bookmarklet-feature">
+                </div>
                 <div class="button" onclick="alert('Drag this to your browser Bookmarks Bar to install.  Once installed, you can run the WCAG Bookmarklet over any page.'); return false;">
                     <a id="add-bookmarklet" onmousedown="_gaq.push(['_trackEvent', 'Viper', 'bookmarklet.clicked']);" href="javascript:(function() {var _p='http://squizlabs.github.com/HTML_CodeSniffer/build/';var _i=function(s,cb) {var sc=document.createElement('script');sc.onload = function() {sc.onload = null;sc.onreadystatechange = null;cb.call(this);};sc.onreadystatechange = function(){if(/^(complete|loaded)$/.test(this.readyState) === true){sc.onreadystatechange = null;sc.onload();}};sc.src=s;if (document.head) {document.head.appendChild(sc);} else {document.getElementsByTagName('head')[0].appendChild(sc);}}; var options={path:_p};_i(_p+'HTMLCS.js',function(){HTMLCSAuditor.run('WCAG2AA',null,options);});})();"><span class="screen-hide">HTML_CodeSniffer</span></a>
 
                     <div id="button-title">Get the <strong>WCAG 2.0 Bookmarklet</strong><br>
-                    <span class="button-ins">Drag this link to your bookmarks bar to install</span></div>
+                    <span class="button-ins">Drag this link to your bookmarks bar to install</span>
+                    </div>
                 </div>
 
                 <div class="requirements"><strong>Requirements:</strong> Latest versions of  Google Chrome or Firefox, Safari 5+, Internet Explorer 8+
@@ -211,13 +216,12 @@
                     </div>
                 </form>
 
-                 <div id="test-results">
-                <div id="resultsWrapper">
-                </div>
-            </div> <!-- close #test-results -->
+
             </div> <!-- close code-input -->
 
-           
+                <div id="resultsWrapper">
+
+            </div> <!-- close #test-results -->
         </div> <!-- close .max-width -->
 
 
