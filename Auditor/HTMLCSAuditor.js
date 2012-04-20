@@ -1278,7 +1278,8 @@ var HTMLCSAuditor = new function()
             _doc = _doc.ownerDocument;
         }
 
-        var exLinks  = _doc.head.getElementsByTagName('link');
+        var head     = _doc.querySelector('head');
+        var exLinks  = head.getElementsByTagName('link');
         var foundCss = false;
         for (var i = 0; i < exLinks.length; i++) {
             if (/HTMLCS\.css/.test(exLinks[i].getAttribute('href')) === true) {
@@ -1296,7 +1297,7 @@ var HTMLCSAuditor = new function()
             cssLink.rel  = 'stylesheet';
             cssLink.type = 'text/css';
             cssLink.href = options.path + 'HTMLCS.css';
-            _doc.head.appendChild(cssLink);
+            head.appendChild(cssLink);
         }
 
         var target = _doc.getElementById(_prefix + 'wrapper');
