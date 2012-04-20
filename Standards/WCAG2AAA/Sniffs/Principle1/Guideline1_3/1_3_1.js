@@ -482,18 +482,18 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
             wrongHeaders: []
         }
 
-        var tdCells      = {};
-        var rows         = element.getElementsByTagName('tr');
-        var skipCells    = [];
+        var rows      = element.getElementsByTagName('tr');
+        var tdCells   = {};
+        var skipCells = [];
 
         // Header IDs already used.
         var headerIds = {
-            rows: {},
-            cols: {}
+            rows: [],
+            cols: []
         };
-        var multiHeader = {
-            row: null,
-            col: null
+        var multiHeaders = {
+            rows: 0,
+            cols: 0
         }
         var missingIds = false;
 
@@ -547,20 +547,15 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
                             // record that has multi-ths. If we already have a column
                             // (row) with multi-ths, we cannot use scope.
                             if (headerIds.cols[colnum] === undefined) {
-                                headerIds.cols[colnum] = rownum;
-                            } else if (multiHeader.col === null) {
-                                multiHeader.col = colnum;
-                            } else if (multiHeader.col !== colnum) {
-                                retval.allowScope = false;
+                                headerIds.cols[colnum] = 0;
                             }
 
                             if (headerIds.rows[rownum] === undefined) {
-                                headerIds.rows[rownum] = colnum;
-                            } else if (multiHeader.row === null) {
-                                multiHeader.row = rownum;
-                            } else if (multiHeader.row !== rownum) {
-                                retval.allowScope = false;
+                                headerIds.rows[rownum] = 0;
                             }
+
+                            headerIds.rows[rownum] += colspan;
+                            headerIds.cols[colnum] += rowspan;
                         }//end if
                     } else if ((nodeName === 'td')) {
                         if ((cell.hasAttribute('headers') === true) && (/^\s*$/.test(cell.getAttribute('headers')) === false)) {
@@ -573,8 +568,21 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
             }//end for
         }//end for
 
+        for (var i = 0; i < headerIds.rows.length; i++) {
+            if (headerIds.rows[i] > 1) {
+                multiHeaders.rows++;
+            }
+        }
 
-        if ((multiHeader.row === null) || (multiHeader.col === null)) {
+        for (var i = 0; i < headerIds.cols.length; i++) {
+            if (headerIds.cols[i] > 1) {
+                multiHeaders.cols++;
+            }
+        }
+
+        if ((multiHeaders.rows > 1) && (multiHeaders.cols > 1)) {
+            retval.allowScope = false;
+        } else if ((multiHeaders.rows === 0) || (multiHeaders.cols === 0)) {
             // If only one column OR one row header.
             retval.required = false;
         }//end if

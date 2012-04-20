@@ -722,21 +722,32 @@ var HTMLCS = new function()
                                     var id = (thisCell.getAttribute('id') || '');
 
                                     for (var i = rownum; i < rownum + rowspan; i++) {
-                                        headingIds.rows[i] = headingIds.rows[i] || [];
-                                        headingIds.rows[i].push(id);
+                                        headingIds.rows[i] = headingIds.rows[i] || {
+                                            first: colnum,
+                                            ids: []
+                                        };
+                                        headingIds.rows[i].ids.push(id);
                                     }
 
                                     for (var i = colnum; i < colnum + colspan; i++) {
-                                        headingIds.cols[i] = headingIds.cols[i] || [];
-                                        headingIds.cols[i].push(id);
+                                        headingIds.cols[i] = headingIds.cols[i] || {
+                                            first: rownum,
+                                            ids: []
+                                        };
+                                        headingIds.cols[i].ids.push(id);
                                     }
                                 } else if (nodeName === 'td') {
                                     // Dump out the headers and cells.
                                     var exp = [];
                                     for (var i = rownum; i < rownum + rowspan; i++) {
                                         for (var j = colnum; j < colnum + colspan; j++) {
-                                            exp = exp.concat(headingIds.rows[i]);
-                                            exp = exp.concat(headingIds.cols[j]);
+                                            if ((headingIds.rows[i]) && (j >= headingIds.rows[i].first)) {
+                                                exp = exp.concat(headingIds.rows[i].ids);
+                                            }
+
+                                            if ((headingIds.cols[j]) && (i >= headingIds.cols[j].first)) {
+                                                exp = exp.concat(headingIds.cols[j].ids);
+                                            }
                                         }//end for
                                     }//end for
 
