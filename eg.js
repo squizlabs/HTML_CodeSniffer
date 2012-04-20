@@ -1,6 +1,10 @@
 function runHTMLCS(standard, source, resultsDiv, expectedMsgs, expectedOmissions)
 {
-    resultsDiv.innerHTML = '<em>Running...</em>';
+    if (/resultsWrapperActive/.test(resultsDiv) === false) {
+        resultsDiv.className += ' resultsWrapperActive';
+    }
+
+    resultsDiv.innerHTML  = '<em>Running...</em>';
 
     HTMLCS.process(standard, source, function() {
         updateResults(resultsDiv, expectedMsgs, expectedOmissions);
