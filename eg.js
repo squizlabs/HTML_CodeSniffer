@@ -68,12 +68,12 @@ function updateResults(resultsWrapper)
     }
 
 
-    var heading = '<span class="screen-hide"><h3>Test results</h3></span>';
+    var heading = '<h3>Test results</h3>';
 
     heading += '<ul id="results-overview">';  
     heading += '<li><span class="result-count result-count-errors">' + errors + '</span> <span class="result-type">errors</span></li>';
     heading += '<li><span class="result-count result-count-warnings">' + warnings + '</span> <span class="result-type">warnings</span></li>';
-    heading += '<li><span class="result-count result-count-notices">' + notices + '</span> <span class="result-type">notices</span></li>';
+    heading += '<li class="active"><span class="result-count result-count-notices">' + notices + '</span> <span class="result-type">notices</span></li>';
     heading += '</ul>';
 
     content  = heading + content;

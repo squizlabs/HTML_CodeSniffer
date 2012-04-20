@@ -238,7 +238,7 @@ p a:hover {
 .introduction-divider {
  position:relative; 
  left:2px;
- padding-bottom:10px;
+ padding-bottom:8px;
 }
 
 #introduction #bookmarklet {
@@ -368,7 +368,7 @@ p a:hover {
  border:1px solid #e0e0e0;
  border-bottom:none;
  font-size:14px;
- margin:-20px 0 0px 14px;
+ margin:20px 0 0px 14px;
  text-align:left;
  box-shadow: 0 1px rgba(255,255,255,.8);
  border-radius:5px;
@@ -441,7 +441,7 @@ p a:hover {
 }
 
 #code-overlay {
- background: #2f4269 url(../images/overlay-bg.png) repeat;
+ background: url(../images/overlay-bg.png) repeat;
  width:940px;
  height:179px;
  color:#ffffff;
@@ -524,21 +524,48 @@ p a:hover {
 #results-overview {
  display:inline-block;
  background: #f6f6f6;
- box-shadow:0 -1px rgba(0,0,0,.20), 0 1px rgba(255,255,255,.8), 0 0 6px rgba(0,0,0,.10) inset;
+ box-shadow:0 1px rgba(255,255,255,.8);
  border-radius:4px;
  font-size:13px;
- position:relative;
- top:-18px;
- left:325px;
- padding:0 0 1px 0;
+ position:absolute;
+ top:9px;
+ right:17px;
+ padding:0 0 0px 0;
  border:1px solid #d2d7dd;
+ text-shadow: 0 1px 0 rgba(255,255,255,.7);
 
+}
+
+#results-overview:before {
+  content:'Filter your results';
+  position:absolute;
+  left:-114px;
+  top:8px;
+  font-size:13px;
+  color:#5c5c5c;
+  text-shadow: 0 1px 0 rgba(255,255,255,1);
 }
 
 #results-overview li {
  display:inline-block;
- padding:10px 20px 5px 20px;
+ padding:5px 20px 5px 20px;
  border-right:1px solid #d8d8d8;
+ box-shadow: -1px 0 0 rgba(255,255,255,.5) inset;
+
+ background: rgb(249,248,248); /* Old browsers */
+background: -moz-linear-gradient(top,  rgba(249,248,248,1) 0%, rgba(237,236,236,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(249,248,248,1)), color-stop(100%,rgba(237,236,236,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(249,248,248,1) 0%,rgba(237,236,236,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(249,248,248,1) 0%,rgba(237,236,236,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(249,248,248,1) 0%,rgba(237,236,236,1) 100%); /* IE10+ */
+background: linear-gradient(top,  rgba(249,248,248,1) 0%,rgba(237,236,236,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9f8f8', endColorstr='#edecec',GradientType=0 ); /* IE6-9 */
+
+}
+
+#results-overview li.active {
+  background:#e6e6e6;
+  box-shadow: 0 0 6px rgba(0,0,0,.14) inset;
 }
 
 #results-overview li:last-child {
@@ -755,7 +782,7 @@ li label {
  padding:15px 0 20px 0;
  text-shadow: 0 1px 0 rgba(255,255,255,1);
  letter-spacing:1px;
- font-size:13px;
+ font-size:11px;
 }
 
 #test-results td.number {
@@ -782,6 +809,10 @@ li label {
 }
 
 #resultsWrapper {
+
+}
+
+.resultsWrapperActive {
  position:relative;
  width:968px;
  background: #ffffff;
@@ -796,6 +827,39 @@ li label {
  overflow:hidden;
 }
 
-.resultsWrapperActive {
- border:1px solid red;
+.loading {
+  font-size:13px;
+  padding-left:5px;
+  letter-spacing:1px;
 }
+
+.loading img {
+  position:relative;
+  top:5px;
+}
+
+#back-to-top {
+ background: url(../images/back-to-top.png) top left no-repeat;
+ width:66px;
+ height:35px;
+ position:absolute;
+ top:1440px;
+ right:0;
+ z-index:200;
+}
+
+#back-to-top span a {
+  z-index:300;
+  position:relative;
+  color:#ffffff;
+  text-decoration:none;
+  text-shadow: 0 -1px 0 rgba(0,0,0,.6);
+  top:7px;
+  left:25px;
+  font-size:16px;
+}
+
+
+
+
+
