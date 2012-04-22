@@ -1639,21 +1639,22 @@ var HTMLCSAuditor = new function()
                 return false;
             }
 
+            if (this.getPointerDirection(elem) === null) {
+                return false;
+            }
+
             return true;
         },
 
-        pointTo: function(elem) {
-            // Do not point to elem if its hidden.
-            if (this.isPointable(elem) === false) {
-                return;
-            }
+        getPointerDirection: function(elem) {
+            var direction = null;
 
             // Get element coords.
             var rect    = this.getBoundingRectangle(elem);
             var pointer = this.getPointer(elem);
 
             pointer.style.display = 'block';
-            pointer.style.opacity = 1;
+            pointer.style.opacity = 0;
 
             var pointerRect = this.getBoundingRectangle(pointer);
             var pointerH    = (pointerRect.y2 - pointerRect.y1);
@@ -1675,16 +1676,37 @@ var HTMLCSAuditor = new function()
             // Try to position the pointer.
             if ((rect.y1 - pointerH - bounceHeight) > iframeScroll.y) {
                 // Arrow direction down.
-                this.showPointer(elem, 'down');
+                direction = 'down';
             } else if ((rect.y2 + pointerH) < (winDim.height - iframeScroll.y)) {
                 // Up.
-                this.showPointer(elem, 'up');
+                direction = 'up';
             } else if ((rect.x2 + pointerW) < winDim.width) {
                 // Left.
-                this.showPointer(elem, 'left');
+                direction = 'left';
             } else if ((rect.x1 - pointerW) > 0) {
                 // Right.
-                this.showPointer(elem, 'right');
+                direction = 'right';
+            }
+
+            return direction;
+        },
+
+        pointTo: function(elem) {
+            // Do not point to elem if its hidden.
+            if (this.isPointable(elem) === false) {
+                return;
+            }
+
+            // Get element coords.
+            var direction = this.getPointerDirection(elem);
+            var pointer   = this.getPointer(elem);
+
+            if (direction === null) {
+                pointer.style.display = 'none';
+            } else {
+                pointer.style.display = 'block';
+                pointer.style.opacity = 1;
+                this.showPointer(elem, direction);
             }
         },
 
