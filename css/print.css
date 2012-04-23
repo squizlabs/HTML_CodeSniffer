@@ -6,10 +6,6 @@ a:link:after, a:visited:after {
  content:" [" attr(href) "] "; color:#305093;
 }
 
-#sprites {
- display:none;
-}
-
 h1 {
  top:0;
  left:0;
@@ -48,9 +44,13 @@ p {
  display:none;
 }
 
+/* GIT HUB BANNER */
+
 #git {
  display:none;
 }
+
+/* HEADER */
 
 #header {
     margin:10px 0 20px 0;
@@ -61,6 +61,10 @@ p {
  position:absolute;
  top:40px;
  right:15px;
+}
+
+#sprites {
+ display:none;
 }
 
 #introduction {
@@ -219,7 +223,6 @@ button {
  box-shadow:none;
 }
 
-
 #test-options {
  position:relative;
  width:960px;
@@ -243,17 +246,6 @@ button {
  font-weight:normal;
  text-shadow: none;
  padding-right:15px;
-}
-
-.footnote {
- display:none;
-}
-
-#footer {
- margin-top:0;
- padding-top:0px;
- text-decoration:none;
- color:#333333;
 }
 
 #test-results-heading {
@@ -311,4 +303,15 @@ button {
  position:relative;
  top:-60px;
  background:none;
+}
+
+.footnote {
+ display:none;
+}
+
+#footer {
+ margin-top:0;
+ padding-top:0px;
+ text-decoration:none;
+ color:#333333;
 }

@@ -541,8 +541,6 @@ p a:hover {
  padding:0 0 0px 0;
  border:1px solid #d2d7dd;
  text-shadow: 0 1px 0 rgba(255,255,255,.7);
- overflow:hidden;
-
 }
 
 #results-overview:before {
@@ -551,8 +549,9 @@ p a:hover {
  left:-114px;
  top:8px;
  font-size:13px;
- color:#5c5c5c;
+ color:#838383;
  text-shadow: 0 1px 0 rgba(255,255,255,1);
+ font-style:oblique;
 }
 
 #results-overview li {
