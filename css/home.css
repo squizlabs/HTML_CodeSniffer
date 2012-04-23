@@ -113,6 +113,36 @@ p a:hover {
  background: #cc5915 url(../images/header-bg.png) top left repeat;
 }
 
+#fork-me {
+ width:150px;
+ height:150px;
+ position:absolute;
+ top:0px;
+ right:0px;
+ z-index:200000;
+ overflow:hidden;
+}
+
+#git {
+ position: absolute; 
+ top: 0; 
+ right: 0; 
+ border: 0; 
+ z-index:1000;
+ -webkit-transition:all 1.0s ease-in-out;
+ -moz-transition:all 1.0s ease-in-out;
+ -o-transition:all 1.0s ease-in-out;
+ -ms-transition:all 1.0s ease-in-out;    
+ transition:all 1.0s ease-in-out;
+}
+
+@media all and (max-width:1200px) {
+#git {
+ top: -150px; 
+ right: -150px; 
+      }
+}
+
 #header #sprites {
  position:absolute;
  right:0;
@@ -818,10 +848,10 @@ li label {
 }
 
 #test-results td.number {
- font-size:15px;
+ font-size:14px;
  font-weight:bold;
  text-shadow: 0 1px 0 rgba(255,255,255,1);
- padding-top:8px;
+ padding-top:6px;
  padding:8px 5px;
 }
 
@@ -908,5 +938,4 @@ li label {
 #results-table a:hover {
   background:#e1eaf2;
 }
-
 
