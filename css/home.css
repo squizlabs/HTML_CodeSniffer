@@ -54,6 +54,10 @@ h3 {
  text-shadow: 0 1px 0 rgba(255,255,255,1);
 }
 
+#test-area h3 {
+  text-decoration:none;
+}
+
 #introduction h3 {
  margin-top:10px;
 }
@@ -873,6 +877,7 @@ li label {
  z-index:200;
  right:0;
  overflow:hidden;
+ bottom:100px;
 }
 
 #back-to-top.off {
@@ -894,7 +899,14 @@ li label {
   font-size:16px;
 }
 
+#results-table a {
+  border:1px solid #e0e0e0;
+  border-radius:2px;
+  background:#efefef;
+}
 
-
+#results-table a:hover {
+  background:#e1eaf2;
+}
 
 
