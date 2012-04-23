@@ -262,7 +262,7 @@ p a:hover {
 
 #bookmarklet-feature {
  position:absolute;
- top:5px;
+ top:0px;
  left:0;
  background: url(../images/bookmarklet-feature.png) top left no-repeat;
  width:470px;
