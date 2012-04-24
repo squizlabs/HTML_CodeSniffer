@@ -233,8 +233,8 @@ li {
 }
 
 #nav li a {
-    display: block;
-     padding:15px 10px 5px 10px;
+ display: block;
+ padding:15px 10px 5px 10px;
  border-radius:3px;
  margin-right:3px;
  text-shadow: 0 1px 0 rgba(255,255,255,.5);
@@ -249,12 +249,12 @@ li {
  background: -o-linear-gradient(top,  rgba(237,242,244,1) 0%,rgba(217,226,230,1) 100%); /* Opera 11.10+ */
  background: -ms-linear-gradient(top,  rgba(237,242,244,1) 0%,rgba(217,226,230,1) 100%); /* IE10+ */
  background: linear-gradient(top,  rgba(237,242,244,1) 0%,rgba(217,226,230,1) 100%); /* W3C */
-    text-decoration:none;
+  text-decoration:none;
 }
 
 #nav li a:hover {
-    color:#385287;
-     border:1px solid #e0e0e0;
+color:#385287;
+ border:1px solid #e0e0e0;
 background: rgb(215,231,239); /* Old browsers */
 background: -moz-linear-gradient(top,  rgba(215,231,239,1) 0%, rgba(204,220,228,1) 100%); /* FF3.6+ */
 background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(215,231,239,1)), color-stop(100%,rgba(204,220,228,1))); /* Chrome,Safari4+ */
@@ -269,11 +269,11 @@ background: linear-gradient(top,  rgba(215,231,239,1) 0%,rgba(204,220,228,1) 100
 #header {
  margin: 0px -20px 10px -20px;
  border-bottom:1px solid #dfe7ef;
- padding:22px 20px 0 20px;
+ padding:11px 20px 0 20px;
  position:relative;
  z-index:10;
  border-bottom:1px solid #dfe7ef;
- height:86px;
+ height:97px;
  background: #cc5915 url(../images/header-bg.png) top left repeat;
  box-shadow:0 -4px 8px rgba(0,0,0,.1) inset;
 }
@@ -281,7 +281,7 @@ background: linear-gradient(top,  rgba(215,231,239,1) 0%,rgba(204,220,228,1) 100
 #header #sprites {
  position:absolute;
  right:30px;
- top:-10px;
+ top:0px;
  width:250px;
  list-style:none;
  margin:0;
@@ -362,4 +362,62 @@ div#introduction {
  letter-spacing:1px;
  text-align:center;
 
+}
+
+
+#back-to-top {
+ background: url(../images/back-to-top.png) top left no-repeat;
+ height:35px;
+ position:fixed;
+ z-index:200;
+ right:0;
+ overflow:hidden;
+ bottom:95px;
+}
+
+#back-to-top:hover {
+    background: url(../images/back-to-top-hover.png) top left no-repeat; 
+}
+
+#back-to-top.off {
+ width:0;
+}
+
+#back-to-top.on{
+  width:66px;
+  -webkit-transition:all 0.2s ease-out;
+  -moz-transition:all 0.2s ease-out;
+  -o-transition:all 0.2s ease-out;
+  -ms-transition:all 0.2s ease-out;    
+  transition:all 0.2s ease-out;
+}
+
+#back-to-top span a {
+  z-index:300;
+  position:relative;
+  color:#ffffff;
+  text-decoration:none;
+  text-shadow: 0 -1px 0 rgba(0,0,0,.6);
+  top:7px;
+  left:25px;
+  font-size:16px;
+  width:100%;
+}
+
+#back-to-top span a:hover {
+    text-decoration:underline;
+}
+
+h1 a {
+ display:block;
+ padding-right:3px; 
+ position:relative; 
+ top:3px;
+ background: url(../images/html-code-sniffer.png) no-repeat top left;
+ width:385px;
+ height:34px;
+}
+
+h1 a:hover {
+ background: url(../images/html-code-sniffer-hover.png) no-repeat top left;
 }

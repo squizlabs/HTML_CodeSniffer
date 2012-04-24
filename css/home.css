@@ -236,6 +236,7 @@ p a:hover {
  background: -o-linear-gradient(top,  rgba(237,242,244,1) 0%,rgba(217,226,230,1) 100%); /* Opera 11.10+ */
  background: -ms-linear-gradient(top,  rgba(237,242,244,1) 0%,rgba(217,226,230,1) 100%); /* IE10+ */
  background: linear-gradient(top,  rgba(237,242,244,1) 0%,rgba(217,226,230,1) 100%); /* W3C */
+
 }
 
 #introduction li:hover {
@@ -321,6 +322,11 @@ p a:hover {
  text-shadow:0 -1px 0 rgba(0,0,0,.6), 0 1px 0 rgba(255,255,255,0), 0 1px 1px rgba(0,0,0,0);
  box-shadow: 0 1px rgba(255,255,255,.4) inset,  0 1px 0 rgba(0,0,0,.4);
  background: url(../images/bookmark-button.png) left top no-repeat;
+ -webkit-transition:all .2s ease-out;
+ -moz-transition:all 0.2s ease-out;
+ -o-transition:all 0.2s ease-out;
+ -ms-transition:all 0.2s ease-out;    
+  transition:all .2s ease-out;
 }
 
 #introduction #bookmarklet .button:before {
@@ -919,17 +925,21 @@ li label {
  bottom:95px;
 }
 
+#back-to-top:hover {
+    background: url(../images/back-to-top-hover.png) top left no-repeat; 
+}
+
 #back-to-top.off {
  width:0;
 }
 
 #back-to-top.on{
   width:66px;
-  -webkit-transition:all 0.3s ease-in-out;
-  -moz-transition:all 0.3s ease-in-out;
-  -o-transition:all 0.3s ease-in-out;
-  -ms-transition:all 0.3s ease-in-out;    
-  transition:all 0.3s ease-in-out;
+  -webkit-transition:all 0.2s ease-out;
+  -moz-transition:all 0.2s ease-out;
+  -o-transition:all 0.2s ease-out;
+  -ms-transition:all 0.2s ease-out;    
+  transition:all 0.2s ease-out;
 }
 
 #back-to-top span a {
@@ -941,6 +951,7 @@ li label {
   top:7px;
   left:25px;
   font-size:16px;
+  width:100%;
 }
 
 #back-to-top span a:hover {
