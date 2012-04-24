@@ -900,12 +900,7 @@ var HTMLCSAuditor = new function()
             var btnPointTo = buildSummaryButton(_prefix + 'button-point-to-element', 'pointer', 'Point to Element', function() {
                 pointer.container = _doc.getElementById(_prefix + 'wrapper');
                 pointer.pointTo(message.element);
-            })
-
-            if (pointer.isPointable(message.element) === false) {
-                pointer.className += ' HTMLCS-pointer-hidden';
-                btnPointTo.className += ' disabled';
-            }
+            });
 
             msgElementSourceHeader.appendChild(msgSourceHeaderText);
             msgElementSourceHeader.appendChild(btnPointTo);
@@ -1003,7 +998,12 @@ var HTMLCSAuditor = new function()
         }
 
         pointer.container = _doc.getElementById('HTMLCS-wrapper');
-        pointer.pointTo(msg.element);
+
+        if (pointer.isPointable(msg.element) === false) {
+            pointer.className += ' HTMLCS-pointer-hidden';
+        } else {
+            pointer.pointTo(msg.element);
+        }
 
     };
 
@@ -1167,6 +1167,30 @@ var HTMLCSAuditor = new function()
         _screen = screen;
     };
 
+    this.includeCss = function(prefix, doc) {
+        if (doc === undefined) {
+            doc = _doc;
+        }
+
+        var head     = doc.querySelector('head');
+        var exLinks  = head.getElementsByTagName('link');
+        var foundCss = false;
+        for (var i = 0; i < exLinks.length; i++) {
+            if (new RegExp(prefix + '\.css').test(exLinks[i].getAttribute('href')) === true) {
+                foundCss = true;
+                break;
+            }
+        }
+
+        if (foundCss === false) {
+            var cssLink  = doc.createElement('link');
+            cssLink.rel  = 'stylesheet';
+            cssLink.type = 'text/css';
+            cssLink.href = _options.path + prefix + '.css';
+            head.appendChild(cssLink);
+        }
+    }
+
     /**
      * Run HTML_CodeSniffer and place the results in the auditor.
      *
@@ -1278,27 +1302,11 @@ var HTMLCSAuditor = new function()
             _doc = _doc.ownerDocument;
         }
 
-        var head     = _doc.querySelector('head');
-        var exLinks  = head.getElementsByTagName('link');
-        var foundCss = false;
-        for (var i = 0; i < exLinks.length; i++) {
-            if (/HTMLCS\.css/.test(exLinks[i].getAttribute('href')) === true) {
-                foundCss = true;
-                break;
-            }
-        }
-
         if (!options.path) {
             options.path = './';
         }
 
-        if (foundCss === false) {
-            var cssLink  = _doc.createElement('link');
-            cssLink.rel  = 'stylesheet';
-            cssLink.type = 'text/css';
-            cssLink.href = options.path + 'HTMLCS.css';
-            head.appendChild(cssLink);
-        }
+        this.includeCss('HTMLCS');
 
         var target = _doc.getElementById(_prefix + 'wrapper');
 
@@ -1652,9 +1660,11 @@ var HTMLCSAuditor = new function()
             // Get element coords.
             var rect    = this.getBoundingRectangle(elem);
             var pointer = this.getPointer(elem);
+            var doc     = elem.ownerDocument;
 
             pointer.style.display = 'block';
             pointer.style.opacity = 0;
+            pointer.className     = pointer.className.replace('HTMLCS-pointer-hidden', '');
 
             var pointerRect = this.getBoundingRectangle(pointer);
             var pointerH    = (pointerRect.y2 - pointerRect.y1);
@@ -1664,20 +1674,19 @@ var HTMLCSAuditor = new function()
             this.pointerDim.width  = 62;
 
             var bounceHeight = 20;
-            var scroll       = this.getScrollCoords(elem);
 
             // Determine where to show the arrow.
             var winDim = this.getWindowDimensions(elem);
             var window = this.getElementWindow(elem);
-            window.scrollTo(0, rect.y1 - 100);
+            //window.scrollTo(0, rect.y1 - 100);
 
-            var iframeScroll = this.getScrollCoords(elem);
+            var scrollY = Math.max(0, Math.min(rect.y1 - 100, doc.documentElement.offsetHeight - winDim.height));
 
             // Try to position the pointer.
-            if ((rect.y1 - pointerH - bounceHeight) > iframeScroll.y) {
+            if ((rect.y1 - pointerH - bounceHeight) > scrollY) {
                 // Arrow direction down.
                 direction = 'down';
-            } else if ((rect.y2 + pointerH) < (winDim.height - iframeScroll.y)) {
+            } else if ((rect.y2 + pointerH) < (winDim.height - scrollY)) {
                 // Up.
                 direction = 'up';
             } else if ((rect.x2 + pointerW) < winDim.width) {
@@ -1706,12 +1715,18 @@ var HTMLCSAuditor = new function()
             } else {
                 pointer.style.display = 'block';
                 pointer.style.opacity = 1;
+
+                var rect   = this.getBoundingRectangle(elem);
+                var window = this.getElementWindow(elem);
+                window.scrollTo(0, rect.y1 - 100);
+
                 this.showPointer(elem, direction);
             }
         },
 
         getPointer: function(targetElement) {
             var doc = targetElement.ownerDocument;
+            HTMLCSAuditor.includeCss('HTMLCS', doc);
 
             if (this.pointer && this.pointer.parentNode) {
                 this.pointer.parentNode.removeChild(this.pointer);
