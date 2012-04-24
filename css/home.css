@@ -54,6 +54,10 @@ h3 {
  text-shadow: 0 1px 0 rgba(255,255,255,1);
 }
 
+#test-area h3 {
+  text-decoration:none;
+}
+
 #introduction h3 {
  margin-top:10px;
 }
@@ -107,6 +111,40 @@ p a:hover {
  height:73px;
  padding-top:35px;
  background: #cc5915 url(../images/header-bg.png) top left repeat;
+}
+
+#fork-me {
+ width:150px;
+ height:150px;
+ position:absolute;
+ top:0px;
+ right:0px;
+ z-index:200000;
+ overflow:hidden;
+}
+
+#git {
+ position: absolute; 
+ top: 0; 
+ right: 0; 
+ border: 0; 
+ z-index:1000;
+ -webkit-transition:all 1.0s ease-in-out;
+ -moz-transition:all 1.0s ease-in-out;
+ -o-transition:all 1.0s ease-in-out;
+ -ms-transition:all 1.0s ease-in-out;    
+ transition:all 1.0s ease-in-out;
+}
+
+#git img:a {
+    border:none;
+}
+
+@media all and (max-width:1200px) {
+#git {
+ top: -150px; 
+ right: -150px; 
+      }
 }
 
 #header #sprites {
@@ -236,6 +274,10 @@ p a:hover {
 }
 
 .introduction-divider {
+ display:block;
+ background: url(../images/divider.png) no-repeat top left;
+ width:433px;
+ height:14px;
  position:relative; 
  left:2px;
  padding-bottom:8px;
@@ -258,7 +300,7 @@ p a:hover {
 
 #bookmarklet-feature {
  position:absolute;
- top:5px;
+ top:0px;
  left:0;
  background: url(../images/bookmarklet-feature.png) top left no-repeat;
  width:470px;
@@ -270,7 +312,8 @@ p a:hover {
  left:-18px;
  width:499px;
  height:64px;
- padding-top:4px;
+ padding-top:6px;
+ line-height:24px;
  margin:345px auto 0 auto;
  text-align:center;
  font-size:22px;
@@ -287,7 +330,7 @@ p a:hover {
  height:7px;
  background: url(../images/bookmark-fold.png) top left no-repeat;
  position:relative;
- top:-11px;
+ top:-13px;
  left:1px;
  z-index:10000;
 }
@@ -303,7 +346,7 @@ p a:hover {
  height:7px;
  background: url(../images/bookmark-fold-hover.png) top left no-repeat;
  position:relative;
- top:-11px;
+ top:-13px;
  left:1px;
  z-index:10000;
 }
@@ -491,6 +534,7 @@ p a:hover {
  color:#ffffff;
  text-shadow: 0 -1px 0 rgba(0,0,0,1);
  border-radius:3px;
+ resize: none
 }
 
 #source::-webkit-scrollbar {
@@ -537,8 +581,6 @@ p a:hover {
  padding:0 0 0px 0;
  border:1px solid #d2d7dd;
  text-shadow: 0 1px 0 rgba(255,255,255,.7);
- overflow:hidden;
-
 }
 
 #results-overview:before {
@@ -547,8 +589,9 @@ p a:hover {
  left:-114px;
  top:8px;
  font-size:13px;
- color:#5c5c5c;
+ color:#838383;
  text-shadow: 0 1px 0 rgba(255,255,255,1);
+ font-style:oblique;
 }
 
 #results-overview li {
@@ -646,10 +689,8 @@ tr.notice td.assertType {
  position:relative;
  height:16px;
  width:16px;
- border-radius:10px;
+ border-radius:12px;
  box-shadow:0 1px rgba(255,255,255,1), 0 0px 40px rgba(255,255,255,.5), 0 0 1px rgba(0,0,0,.2) inset;
- top:4px;
- margin-right:2px;
  border:1px solid #c6c6c6;
  cursor: pointer;
  background: rgb(217,226,230); /* Old browsers */
@@ -659,21 +700,23 @@ tr.notice td.assertType {
  background: -o-linear-gradient(top,  rgba(217,226,230,1) 0%,rgba(237,242,244,1) 100%); /* Opera 11.10+ */
  background: -ms-linear-gradient(top,  rgba(217,226,230,1) 0%,rgba(237,242,244,1) 100%); /* IE10+ */
  background: linear-gradient(top,  rgba(217,226,230,1) 0%,rgba(237,242,244,1) 100%); /* W3C */
+top:4px;
 }
 
 .radio-gen.radio-on {
- position:relative;
- top:-1px;
 }
 
 .radio-gen.radio-on:after {
+ margin:0;
+ padding:0;
  content:'';
  display:inline-block;
  width:10px;
  height:10px;
- position:relative;
+ position:absolute;
  top:2px;
  left:2px;
+
  border-radius:8px;
  border:1px solid #a45024;
  box-shadow: 0 1px rgba(255,255,255,.4) inset,  0 1px 0 rgba(255,255,255,.2);
@@ -814,10 +857,10 @@ li label {
 }
 
 #test-results td.number {
- font-size:15px;
+ font-size:14px;
  font-weight:bold;
  text-shadow: 0 1px 0 rgba(255,255,255,1);
- padding-top:8px;
+ padding-top:6px;
  padding:8px 5px;
 }
 
@@ -869,10 +912,11 @@ li label {
 #back-to-top {
  background: url(../images/back-to-top.png) top left no-repeat;
  height:35px;
- position:absolute;
+ position:fixed;
  z-index:200;
  right:0;
  overflow:hidden;
+ bottom:95px;
 }
 
 #back-to-top.off {
@@ -881,6 +925,11 @@ li label {
 
 #back-to-top.on{
   width:66px;
+  -webkit-transition:all 0.3s ease-in-out;
+  -moz-transition:all 0.3s ease-in-out;
+  -o-transition:all 0.3s ease-in-out;
+  -ms-transition:all 0.3s ease-in-out;    
+  transition:all 0.3s ease-in-out;
 }
 
 #back-to-top span a {
@@ -894,7 +943,16 @@ li label {
   font-size:16px;
 }
 
+#back-to-top span a:hover {
+    text-decoration:underline;
+}
 
+#results-table a {
+  border:1px solid #e0e0e0;
+  border-radius:2px;
+  background:#efefef;
+}
 
-
-
+#results-table a:hover {
+  background:#e1eaf2;
+}

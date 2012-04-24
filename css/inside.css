@@ -9,6 +9,7 @@ body {
  background-color:#fbfbfb;
  min-width:820px;
  font: 14px 'helvetica','arial', sans-serif;
+ line-height: 19px;
 }
 
 /* HEADINGS */
@@ -67,8 +68,7 @@ a {
 }
 
 a:hover {
- color:#dc5e2d;
-    
+ color:#dc5e2d;  
 }
 
 a:link img {
@@ -80,6 +80,18 @@ a:link img {
  display:inline-block;
  padding-right:18px;
  background: url(../images/external-link.png) center right no-repeat;
+}
+
+#test-area table a[href^='http:'] {
+ display:inline-block;
+ padding-right:18px;
+ background: url(../images/external-link-table.png) center right no-repeat;
+}
+
+#introduction a[href^='http:']:hover, #test-area a[href^='http:']:hover {
+ display:inline-block;
+ padding-right:18px;
+ background: url(../images/external-link-hover.png) center right no-repeat;
 }
 
 
@@ -141,14 +153,14 @@ table tr td.na {
 }
 
 td:last-child ul {
-    margin:0;
-    padding:0;
+ margin:0;
+ padding:0;
 }
 
 td:last-child li {
-    list-style-type:none;
-    margin:0;
-    padding:0;
+ list-style-type:none;
+ margin:0;
+ padding:0;
 }
 
 td.error {
@@ -255,12 +267,11 @@ background: linear-gradient(top,  rgba(215,231,239,1) 0%,rgba(204,220,228,1) 100
 #header {
  margin: 0px -20px 10px -20px;
  border-bottom:1px solid #dfe7ef;
- padding:11px 20px 0 20px;
+ padding:22px 20px 0 20px;
  position:relative;
  z-index:10;
  border-bottom:1px solid #dfe7ef;
- height:101px;
- height:97px;
+ height:86px;
  background: #cc5915 url(../images/header-bg.png) top left repeat;
  box-shadow:0 -4px 8px rgba(0,0,0,.1) inset;
 }
@@ -268,7 +279,7 @@ background: linear-gradient(top,  rgba(215,231,239,1) 0%,rgba(204,220,228,1) 100
 #header #sprites {
  position:absolute;
  right:30px;
- top:2px;
+ top:-10px;
  width:250px;
  list-style:none;
  margin:0;
@@ -348,4 +359,5 @@ div#introduction {
  font-size:12px;
  letter-spacing:1px;
  text-align:center;
+
 }
