@@ -903,11 +903,11 @@ li label {
 #back-to-top {
  background: url(../images/back-to-top.png) top left no-repeat;
  height:35px;
- position:absolute;
+ position:fixed;
  z-index:200;
  right:0;
  overflow:hidden;
- bottom:100px;
+ bottom:95px;
 }
 
 #back-to-top.off {
@@ -916,6 +916,11 @@ li label {
 
 #back-to-top.on{
   width:66px;
+  -webkit-transition:all 0.3s ease-in-out;
+  -moz-transition:all 0.3s ease-in-out;
+  -o-transition:all 0.3s ease-in-out;
+  -ms-transition:all 0.3s ease-in-out;    
+  transition:all 0.3s ease-in-out;
 }
 
 #back-to-top span a {
