@@ -1779,12 +1779,13 @@ var HTMLCSAuditor = new function()
 
                 case 'left':
                     left = rect.x2;
-                    top  = this.getRectMidPnt(rect, true);
+                    top  = (this.getRectMidPnt(rect, true) - (this.pointerDim.height / 2));
                 break;
 
                 case 'right':
-                    left = (rect.x1 - this.pointerDim.width);
-                    top  = this.getRectMidPnt(rect, true);
+                    bounceHeight = (-bounceHeight);
+                    left         = (rect.x1 - this.pointerDim.width);
+                    top          = (this.getRectMidPnt(rect, true) - (this.pointerDim.height / 2));
                 break;
 
             }//end switch
