@@ -27,11 +27,14 @@
 
                     runHTMLCS(level, source, document.getElementById('resultsWrapper'));
                     scrollToElement(document.getElementById('test-area'));
+
+                    var runBtn       = document.getElementById('run-button');
+                    runBtn.className = 'test-options-disabled';
                 }
             }
 
             function activateHTMLCS() {
-                var runBtn = document.getElementById('run-button');
+                var runBtn       = document.getElementById('run-button');
                 runBtn.className = 'test-options-active';
             }
 
@@ -107,6 +110,15 @@
                         event.target.nextSibling.className += ' radio-on';
                     }
                 }
+
+                var source = document.getElementById('source');
+                source.onkeypress = function() {
+                    activateHTMLCS();
+                };
+
+                source.onpaste = function() {
+                    activateHTMLCS();
+                };
             }
         </script>
 
@@ -210,7 +222,7 @@
                             <div id="test-area-graphic"></div>Paste your code here
                         </div>
 
-                        <textarea id="source" title="Source code to be tested" onkeypress="activateHTMLCS()" spellcheck="false"></textarea>
+                        <textarea id="source" title="Source code to be tested" spellcheck="false"></textarea>
 
                         <div id="test-options">
                             <fieldset>
