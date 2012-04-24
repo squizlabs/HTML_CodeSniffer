@@ -1,4 +1,4 @@
-function runHTMLCS(standard, source, resultsDiv, expectedMsgs, expectedOmissions)
+function runHTMLCS(standard, source, resultsDiv, callback)
 {
     if (/resultsWrapperActive/.test(resultsDiv) === false) {
         resultsDiv.className += ' resultsWrapperActive';
@@ -7,7 +7,10 @@ function runHTMLCS(standard, source, resultsDiv, expectedMsgs, expectedOmissions
     resultsDiv.innerHTML = '<span class="loading"><img src="images/loading.gif" alt="Loading"> Sniffing...</span>';
 
     HTMLCS.process(standard, source, function() {
-        updateResults(resultsDiv, expectedMsgs, expectedOmissions);
+        updateResults(resultsDiv);
+        if (callback instanceof Function === true) {
+            callback.call();
+        }
     });
 }
 
@@ -70,7 +73,7 @@ function updateResults(resultsWrapper)
 
     var heading = '<h3>Test results</h3>';
 
-    heading += '<ul id="results-overview">';  
+    heading += '<ul id="results-overview">';
     heading += '<li><a href="#"><span class="result-count result-count-errors">' + errors + '</span> <span class="result-type">errors</span></a></li>';
     heading += '<li><a href="#"><span class="result-count result-count-warnings">' + warnings + '</span> <span class="result-type">warnings</span></a></li>';
     heading += '<li class="active"><a href="#"><span class="result-count result-count-notices">' + notices + '</span> <span class="result-type">notices</span></a></li>';

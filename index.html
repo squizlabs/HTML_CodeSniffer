@@ -25,8 +25,9 @@
                         }
                     }
 
-                    runHTMLCS(level, source, document.getElementById('resultsWrapper'));
-                    scrollToElement(document.getElementById('test-area'));
+                    runHTMLCS(level, source, document.getElementById('resultsWrapper'), function() {
+                        scrollToElement(document.getElementById('test-area'));
+                    });
 
                     var runBtn       = document.getElementById('run-button');
                     runBtn.className = 'test-options-disabled';
