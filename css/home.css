@@ -35,8 +35,8 @@ h1 {
 
 h1 .htmlcs-heading {
  display:block;
- padding-right:3px; 
- position:relative; 
+ padding-right:3px;
+ position:relative;
  top:3px;
  background: url(../images/html-code-sniffer.png) no-repeat top left;
  width:385px;
@@ -124,15 +124,15 @@ p a:hover {
 }
 
 #git {
- position: absolute; 
- top: 0; 
- right: 0; 
- border: 0; 
+ position: absolute;
+ top: 0;
+ right: 0;
+ border: 0;
  z-index:1000;
  -webkit-transition:all 1.0s ease-in-out;
  -moz-transition:all 1.0s ease-in-out;
  -o-transition:all 1.0s ease-in-out;
- -ms-transition:all 1.0s ease-in-out;    
+ -ms-transition:all 1.0s ease-in-out;
  transition:all 1.0s ease-in-out;
 }
 
@@ -142,8 +142,8 @@ p a:hover {
 
 @media all and (max-width:1200px) {
 #git {
- top: -150px; 
- right: -150px; 
+ top: -150px;
+ right: -150px;
       }
 }
 
@@ -196,7 +196,7 @@ p a:hover {
 }
 
 #sub-header {
- width:100%; 
+ width:100%;
  margin:0 auto;
  height:50px;
  background: #91bed4;
@@ -211,7 +211,7 @@ p a:hover {
  font-size:13px;
  min-height:410px;
  border-top:2px solid #ffffff;
- box-shadow: 0 -2px 2px rgba(0,0,0,.13); 
+ box-shadow: 0 -2px 2px rgba(0,0,0,.13);
 }
 
 #introduction p {
@@ -278,7 +278,7 @@ p a:hover {
  background: url(../images/divider.png) no-repeat top left;
  width:433px;
  height:14px;
- position:relative; 
+ position:relative;
  left:2px;
  padding-bottom:8px;
 }
@@ -415,7 +415,7 @@ p a:hover {
  text-align:left;
  box-shadow: 0 1px rgba(255,255,255,.8);
  border-radius:5px;
- width:939px; 
+ width:939px;
  text-shadow: 0 -1px 0 rgba(255,255,255,1);
 }
 
@@ -784,7 +784,7 @@ top:4px;
 }
 
 .test-options-active {
- box-shadow: 0 1px 0 rgba(255,255,255,.4) inset; 
+ box-shadow: 0 1px 0 rgba(255,255,255,.4) inset;
  color:#ffffff;
  text-shadow: 0 -1px 0 rgba(0,0,0,.4);
  border:1px solid #CB5319;
@@ -879,6 +879,12 @@ li label {
  background:#eedede;
 }
 
+#test-results.hide-error tr.error,
+#test-results.hide-warning tr.warning,
+#test-results.hide-notice tr.notice {
+    display: none;
+}
+
 #resultsWrapper {
 
 }
@@ -928,7 +934,7 @@ li label {
   -webkit-transition:all 0.3s ease-in-out;
   -moz-transition:all 0.3s ease-in-out;
   -o-transition:all 0.3s ease-in-out;
-  -ms-transition:all 0.3s ease-in-out;    
+  -ms-transition:all 0.3s ease-in-out;
   transition:all 0.3s ease-in-out;
 }
 

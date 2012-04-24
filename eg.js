@@ -24,7 +24,7 @@ function updateResults(resultsWrapper)
         return;
     }
 
-    var content = '<div id="test-results"><table id="test-results"><tr>';
+    var content = '<div id="test-results" class="hide-notice"><table id="test-results-table"><tr>';
     content    += '<th>#</th><th>Message</th><th>Code</th></tr>';
 
     var errors   = 0;
@@ -74,9 +74,9 @@ function updateResults(resultsWrapper)
     var heading = '<h3>Test results</h3>';
 
     heading += '<ul id="results-overview">';
-    heading += '<li><a href="#"><span class="result-count result-count-errors">' + errors + '</span> <span class="result-type">errors</span></a></li>';
-    heading += '<li><a href="#"><span class="result-count result-count-warnings">' + warnings + '</span> <span class="result-type">warnings</span></a></li>';
-    heading += '<li class="active"><a href="#"><span class="result-count result-count-notices">' + notices + '</span> <span class="result-type">notices</span></a></li>';
+    heading += '<li class="active"><a href="#" onclick="return toggleMsgTypes.call(this, \'error\');"><span class="result-count result-count-errors">' + errors + '</span> <span class="result-type">errors</span></a></li>';
+    heading += '<li class="active"><a href="#" onclick="return toggleMsgTypes.call(this, \'warning\');"><span class="result-count result-count-warnings">' + warnings + '</span> <span class="result-type">warnings</span></a></li>';
+    heading += '<li><a href="#" onclick="return toggleMsgTypes.call(this, \'notice\');"><span class="result-count result-count-notices">' + notices + '</span> <span class="result-type">notices</span></a></li>';
     heading += '</ul>';
 
     content  = heading + content;
@@ -84,4 +84,132 @@ function updateResults(resultsWrapper)
     content += '<span class="footnote"><em>Add the WCAG bookmarklet to your browser to run this test on any web page.</em></span></div>';
     resultsWrapper.innerHTML = content;
 
+}
+
+function runHTMLCSTest() {
+    var source = document.getElementById('source').value;
+    if (source !== '') {
+        var level = '';
+        for (var i = 0; i < document.getElementById('runHTMLCS').level.length; i++) {
+            var option = document.getElementById('runHTMLCS').level[i];
+            if (option.checked === true) {
+                level = option.value;
+                break;
+            }
+        }
+
+        runHTMLCS(level, source, document.getElementById('resultsWrapper'), function() {
+            scrollToElement(document.getElementById('test-area'));
+        });
+
+        var runBtn       = document.getElementById('run-button');
+        runBtn.className = 'test-options-disabled';
+    }
+}
+
+function activateHTMLCS() {
+    var runBtn       = document.getElementById('run-button');
+    runBtn.className = 'test-options-active';
+}
+
+function hideDiv() {
+    document.getElementById('source').focus();
+    var overlayDiv = document.getElementById('code-overlay');
+
+    if (overlayDiv.style.opacity !== undefined) {
+        overlayDiv.style.opacity = 0;
+        setTimeout(function() {
+            overlayDiv.style.visibility = "hidden";
+        }, 400);
+    } else {
+        overlayDiv.style.visibility = "hidden";
+    }
+}
+
+function scrollToElement(element) {
+    var currScrollY   = null;
+
+    var targetScrollY = 0;
+    var op = element;
+    while (op.offsetParent !== null) {
+        targetScrollY += op.offsetTop;
+        op = op.offsetParent;
+    }
+
+    if (window.pageYOffset !== undefined) {
+        currScrollY = window.pageYOffset;
+    } else if (document.documentElement.scrollTop !== undefined) {
+        currScrollY = document.documentElement.scrollTop;
+    } else if (document.body.scrollTop !== undefined) {
+        currScrollY = document.body.scrollTop;
+    }
+
+
+    if (currScrollY !== targetScrollY) {
+        var maxTick  = 1;
+        var interval = setInterval(function() {
+            var sign = 1;
+            if (currScrollY > targetScrollY) {
+                sign = -1;
+            }
+            var scrollBy = sign * Math.ceil(Math.max(1, Math.min(maxTick, (Math.abs(targetScrollY - currScrollY) * 0.25))));
+            currScrollY += scrollBy;
+            window.scrollBy(0, scrollBy);
+
+            if (currScrollY === targetScrollY) {
+                clearInterval(interval);
+            } else {
+                maxTick = Math.min(maxTick + 0.5, Math.abs(targetScrollY - currScrollY));
+            }
+        }, 20);
+    }//end if
+}
+
+function toggleMsgTypes(type) {
+    if (this.parentNode.className === 'active') {
+        this.parentNode.className = '';
+    } else {
+        this.parentNode.className = 'active';
+    }
+
+    var testResultsDiv = document.getElementById('test-results');
+    var className      = 'hide-' + type;
+
+    if (new RegExp(className).test(testResultsDiv.className) === true) {
+        testResultsDiv.className = testResultsDiv.className.replace(className, '');
+    } else {
+        testResultsDiv.className += ' ' + className;
+    }
+
+    return false;
+}
+
+window.onload = function() {
+    var radios = document.querySelectorAll('.radio-gen');
+    for (var i = 0; i < radios.length; i++) {
+        radios[i].onclick = function(event) {
+            event.target.previousSibling.click();
+        }
+    }
+
+    var inputs = document.querySelectorAll('.radio-input');
+    for (var i = 0; i < inputs.length; i++) {
+        inputs[i].onclick = function(event) {
+            var radios = document.querySelectorAll('.radio-gen');
+            for (var j = 0; j < radios.length; j++) {
+                radios[j].className = radios[j].className.replace(/ radio-on/, '');
+            }
+
+            event.target.nextSibling.className += ' radio-on';
+        }
+    }
+
+    var source = document.getElementById('source');
+    source.onkeypress = function() {
+        activateHTMLCS();
+    };
+
+    source.onpaste = function() {
+        activateHTMLCS();
+    };
 }
