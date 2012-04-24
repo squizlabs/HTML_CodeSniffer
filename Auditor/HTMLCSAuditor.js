@@ -897,7 +897,7 @@ var HTMLCSAuditor = new function()
             var msgSourceHeaderText       = _doc.createElement('strong');
             msgSourceHeaderText.innerHTML = 'Code Snippet';
 
-            var btnPointTo = buildSummaryButton(_prefix + 'button-point-to-element', 'pointer', 'Point to Element', function() {
+            var btnPointTo = buildSummaryButton(_prefix + 'button-point-to-element-' + id, 'pointer', 'Point to Element', function() {
                 pointer.container = _doc.getElementById(_prefix + 'wrapper');
                 pointer.pointTo(message.element);
             });
@@ -997,11 +997,14 @@ var HTMLCSAuditor = new function()
             return;
         }
 
+        var btnPointTo    = _doc.getElementById(_prefix + 'button-point-to-element-' + issue);
         pointer.container = _doc.getElementById('HTMLCS-wrapper');
 
         if (pointer.isPointable(msg.element) === false) {
-            pointer.className += ' HTMLCS-pointer-hidden';
+            pointer.className    += ' HTMLCS-pointer-hidden';
+            btnPointTo.className += ' disabled';
         } else {
+            btnPointTo.className =  btnPointTo.className.replace(' disabled', '');
             pointer.pointTo(msg.element);
         }
 
