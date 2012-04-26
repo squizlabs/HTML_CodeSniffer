@@ -71,7 +71,7 @@ function updateResults(resultsWrapper)
     }
 
 
-    var heading = '<h3>Test results</h3>';
+    var heading = '<h3 class="screen-hide">Test results</h3>';
 
     heading += '<ul id="results-overview">';
     heading += '<li class="active"><a href="#" onclick="return toggleMsgTypes.call(this, \'error\');"><span class="result-count result-count-errors">' + errors + '</span> <span class="result-type">errors</span></a></li>';

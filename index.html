@@ -6,8 +6,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <link rel="Shortcut Icon" href="images/favicon.png">
         <link rel="stylesheet" type="text/css" href="css/home.css">
-       <link rel="stylesheet" type="text/css" media="print" href="css/print.css">
-        <link rel="stylesheet" media="screen" type="text/css" href="./build/HTMLCS.css" />
+        <link rel="stylesheet" type="text/css" media="print" href="css/home-print.css">
+        <link rel="stylesheet" media="screen" type="text/css" href="./build/HTMLCS.css">
 
         <script type="text/javascript" src="./build/HTMLCS.js"></script>
         <script type="text/javascript" src="./home.js"></script>
@@ -61,9 +61,9 @@
 
                     <span class="introduction-divider"></span>
 
-                    <span id="standards-list">
+                    <div id="standards-list">
 
-                    <h3 class="dark-heading" >List of standards and sniff coverage</h3>
+                    <h3 class="dark-heading">List of standards and sniff coverage</h3>
 
                     <map name="Coverage List">
                         <ul>
@@ -73,7 +73,7 @@
                         </ul>
                     </map>
 
-                    </span>
+                    </div>
 
                 </div>
 
@@ -106,12 +106,12 @@
                 Test results will be shown underneath the code block.</p>
 
                 <div id="code-input">
-                    <form id="runHTMLCS">
+                    <form id="runHTMLCS" action="">
                         <div id="code-overlay" onclick="hideDiv()">
                             <div id="test-area-graphic"></div>Paste your code here
                         </div>
 
-                        <textarea id="source" title="Source code to be tested" spellcheck="false"></textarea>
+                        <textarea id="source" title="Enter the source code to be sniffed" rows="20" cols="100"></textarea>
 
                         <div id="test-options">
                             <fieldset>

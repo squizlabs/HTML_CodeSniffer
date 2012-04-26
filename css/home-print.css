@@ -9,7 +9,7 @@ a:link:after, a:visited:after {
 h1 {
  top:0;
  left:0;
-  color:#000000;
+ color:#000000;
 }
 
 h1:after {
@@ -30,8 +30,8 @@ h2,h3 {
 }
 
 #test-area h3 {
-    text-shadow:none;
-    color:#000000;
+ text-shadow:none;
+ color:#000000;
 }
 
 p {    
@@ -53,7 +53,7 @@ p {
 /* HEADER */
 
 #header {
-    margin:10px 0 20px 0;
+ margin:10px 0 20px 0;
 }
 
 #header:after {

@@ -14,21 +14,17 @@ body {
 
 /* HEADINGS */
 
-h1 {
- color:#ffffff;
- font-size:36px;
- text-shadow: 0 -1px 0 rgba(0,0,0,1);
-}
-
 h1 a {
- color:#ffffff;
- font-weight: inherit;
- text-decoration:none;
+ display:block;
+ padding-right:3px; 
+ position:relative; 
+ background: url(../images/html-code-sniffer.png) no-repeat top left;
+ width:385px;
+ height:34px;
 }
 
 h1 a:hover {
- color:#95410f;
- text-shadow:0 -1px 0 rgba(0,0,0,.7), 0 1px 0 rgba(255,255,255,.3)
+ background: url(../images/html-code-sniffer-hover.png) no-repeat top left;
 }
 
 h2 {
@@ -94,9 +90,8 @@ a:link img {
  background: url(../images/external-link-hover.png) center right no-repeat;
 }
 
-
 abbr {
-    border-bottom:1px dotted #cccccc;
+ border-bottom:1px dotted #cccccc;
 }
 
 .max-width {
@@ -183,7 +178,6 @@ table h4 + p, p + p {
  margin-top: 0.5em;
 }
 
-
 div.edsnote {
  background-color: #ffd;
  border: 1px solid #dd0;
@@ -269,11 +263,11 @@ background: linear-gradient(top,  rgba(215,231,239,1) 0%,rgba(204,220,228,1) 100
 #header {
  margin: 0px -20px 10px -20px;
  border-bottom:1px solid #dfe7ef;
- padding:11px 20px 0 20px;
+ padding:20px 20px 0 20px;
  position:relative;
  z-index:10;
  border-bottom:1px solid #dfe7ef;
- height:97px;
+ height:88px;
  background: #cc5915 url(../images/header-bg.png) top left repeat;
  box-shadow:0 -4px 8px rgba(0,0,0,.1) inset;
 }
@@ -375,10 +369,6 @@ div#introduction {
  bottom:95px;
 }
 
-#back-to-top:hover {
-    background: url(../images/back-to-top-hover.png) top left no-repeat; 
-}
-
 #back-to-top.off {
  width:0;
 }
@@ -406,18 +396,4 @@ div#introduction {
 
 #back-to-top span a:hover {
     text-decoration:underline;
-}
-
-h1 a {
- display:block;
- padding-right:3px; 
- position:relative; 
- top:3px;
- background: url(../images/html-code-sniffer.png) no-repeat top left;
- width:385px;
- height:34px;
-}
-
-h1 a:hover {
- background: url(../images/html-code-sniffer-hover.png) no-repeat top left;
 }
