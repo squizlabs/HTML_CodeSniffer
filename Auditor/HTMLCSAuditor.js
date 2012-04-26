@@ -739,6 +739,10 @@ var HTMLCSAuditor = new function()
 
         var currentItem = _doc.getElementById('HTMLCS-msg-detail-' + id);
         currentItem.className += ' ' + _prefix + 'current';
+
+        if (_options.showIssueCallback) {
+            _options.showIssueCallback.call(this, id);
+        }
     }
 
     var buildMessageDetail = function(id, message, standard) {
