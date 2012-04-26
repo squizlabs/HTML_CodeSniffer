@@ -1002,9 +1002,15 @@ var HTMLCSAuditor = new function()
 
         if (pointer.isPointable(msg.element) === false) {
             pointer.className    += ' HTMLCS-pointer-hidden';
-            btnPointTo.className += ' disabled';
+
+            if (btnPointTo) {
+                btnPointTo.className += ' disabled';
+            }
         } else {
-            btnPointTo.className =  btnPointTo.className.replace(' disabled', '');
+            if (btnPointTo) {
+                btnPointTo.className =  btnPointTo.className.replace(' disabled', '');
+            }
+
             pointer.pointTo(msg.element);
         }
 
