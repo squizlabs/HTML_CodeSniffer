@@ -1181,6 +1181,10 @@ var HTMLCSAuditor = new function()
     };
 
     this.includeCss = function(prefix, doc) {
+        if (_options.includeCss === false) {
+            return;
+        }
+
         if (doc === undefined) {
             doc = _doc;
         }
@@ -1315,8 +1319,12 @@ var HTMLCSAuditor = new function()
             _doc = _doc.ownerDocument;
         }
 
-        if (!options.path) {
-            options.path = './';
+        if (!_options.path) {
+            _options.path = './';
+        }
+
+        if (_options.includeCss === undefined) {
+            _options.includeCss = true;
         }
 
         this.includeCss('HTMLCS');
