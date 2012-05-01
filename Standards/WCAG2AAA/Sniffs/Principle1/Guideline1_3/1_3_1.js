@@ -796,7 +796,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
                 if (lastHeading === 0) {
                     // If last heading is empty, we are at document top and we are
                     // expecting a H1, generally speaking.
-                    exampleMsg = 'appears to be the primary document heading, so should be a h1 element';
+                    exampleMsg = 'appears to be the primary document heading, so should be an h1 element';
                 }
 
                 HTMLCS.addMessage(level, headings[i], 'The heading structure is not logically nested. This h' + headingNum + ' element ' + exampleMsg + '.', 'G141');
