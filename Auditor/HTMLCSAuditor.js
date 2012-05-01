@@ -1386,6 +1386,7 @@ var HTMLCSAuditor = new function()
                 newWrapper.style.left = wrapper.style.left;
                 newWrapper.style.top  = wrapper.style.top;
                 parentEl.replaceChild(newWrapper, wrapper);
+                wrapper = newWrapper;
             }, 400);
         };
 
