@@ -17,7 +17,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1_AAA = {
     register: function()
     {
         return [
-            '_top',
+            '_top'
         ];
 
     },
