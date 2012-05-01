@@ -44,7 +44,6 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
         if (element === top) {
             this.testPresentationMarkup(top);
             this.testEmptyDupeLabelForAttrs(top);
-            this.testHeadingOrder(top);
         } else {
             switch (nodeName) {
                 case 'input':
@@ -786,21 +785,21 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
         }//end if
     },
 
-    testHeadingOrder: function(top) {
+    testHeadingOrder: function(top, level) {
         var lastHeading = 0;
         var headings    = top.querySelectorAll('h1, h2, h3, h4, h5, h6');
 
         for (var i = 0; i < headings.length; i++) {
             var headingNum = parseInt(headings[i].nodeName.substr(1, 1));
             if (headingNum - lastHeading > 1) {
-                var exampleMsg = 'should be a h' + (lastHeading + 1) + 'element to be properly nested';
+                var exampleMsg = 'should be an h' + (lastHeading + 1) + ' to be properly nested';
                 if (lastHeading === 0) {
                     // If last heading is empty, we are at document top and we are
                     // expecting a H1, generally speaking.
                     exampleMsg = 'appears to be the primary document heading, so should be a h1 element';
                 }
 
-                HTMLCS.addMessage(HTMLCS.ERROR, headings[i], 'The heading structure is not logically nested. This h' + headingNum + ' heading ' + exampleMsg + '.', 'G141');
+                HTMLCS.addMessage(level, headings[i], 'The heading structure is not logically nested. This h' + headingNum + ' element ' + exampleMsg + '.', 'G141');
             }
 
             lastHeading = headingNum;

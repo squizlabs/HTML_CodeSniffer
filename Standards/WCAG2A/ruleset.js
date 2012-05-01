@@ -23,6 +23,7 @@ var HTMLCS_WCAG2A = {
                'Principle1.Guideline1_2.1_2_2',
                'Principle1.Guideline1_2.1_2_3',
                'Principle1.Guideline1_3.1_3_1',
+               'Principle1.Guideline1_3.1_3_1_A',
                'Principle1.Guideline1_3.1_3_2',
                'Principle1.Guideline1_3.1_3_3',
                'Principle1.Guideline1_4.1_4_1',
