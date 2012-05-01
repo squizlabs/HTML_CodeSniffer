@@ -170,7 +170,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
      */
     testLongdesc: function(element)
     {
-        HTMLCS.addMessage(HTMLCS.WARNING, element, 'If this image cannot be described in a short text alternative, ensure a long text alternative is available, such as in the body text or through a link.', 'H45.1');
+        HTMLCS.addMessage(HTMLCS.WARNING, element, 'If this image cannot be described in a short text alternative, ensure a long text alternative is available, such as in the body text or through a link.', 'G73,G74');
 
     },
 
