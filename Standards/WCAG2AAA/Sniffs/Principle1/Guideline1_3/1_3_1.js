@@ -536,7 +536,9 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
                         if (id === '') {
                             retval.correct = false;
                             retval.missingThId.push(cell);
-                        } else if ((rowspan > 1) || (colspan > 1)) {
+                        }
+
+                        if ((rowspan > 1) || (colspan > 1)) {
                             // Multi-column OR multi-row header. Abandon all hope,
                             // As it must span across more than one row+column
                             retval.allowScope = false;
@@ -579,9 +581,9 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
             }
         }
 
-        if ((multiHeaders.rows > 1) && (multiHeaders.cols > 1)) {
+        if ((multiHeaders.rows > 1) || (multiHeaders.cols > 1)) {
             retval.allowScope = false;
-        } else if ((multiHeaders.rows === 0) || (multiHeaders.cols === 0)) {
+        } else if ((retval.allowScope === true) && ((multiHeaders.rows === 0) || (multiHeaders.cols === 0))) {
             // If only one column OR one row header.
             retval.required = false;
         }//end if
