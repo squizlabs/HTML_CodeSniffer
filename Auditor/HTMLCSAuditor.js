@@ -1381,12 +1381,12 @@ var HTMLCSAuditor = new function()
             }
 
             setTimeout(function() {
+                var wrapper    = _doc.getElementById(_prefix + 'wrapper');
                 var newWrapper = self.buildSummaryPage();
 
                 newWrapper.style.left = wrapper.style.left;
                 newWrapper.style.top  = wrapper.style.top;
                 parentEl.replaceChild(newWrapper, wrapper);
-                wrapper = newWrapper;
             }, 400);
         };
 
