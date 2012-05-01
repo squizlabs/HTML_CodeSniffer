@@ -170,29 +170,8 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
      */
     testLongdesc: function(element)
     {
-        var missingLongdesc = false;
-        var longdescNotUri  = true;
+        HTMLCS.addMessage(HTMLCS.WARNING, element, 'If this image cannot be described in a short text alternative, ensure a long text alternative is available, such as in the body text or through a link.', 'H45.1');
 
-        if (element.hasAttribute('longdesc') === false) {
-            missingLongdesc = true;
-        } else if (/^[A-Za-z][A-Za-z0-9+-.]*:\/\//.test(element.getAttribute('longdesc')) === true) {
-            // Base our determination of whether it is a URI by the presence of
-            // a valid scheme at the beginning of the string.
-            longdescNotUri = false;
-        }
-
-        if (missingLongdesc === true) {
-            // No usage of longdesc. Throwing a warning because it is important for
-            // certain types of images (such as charts).
-            HTMLCS.addMessage(HTMLCS.WARNING, element, 'If this image cannot be described in a short text alternative, provide a long text alternative, either using the longdesc attribute or another sufficient technique.', 'H45.1');
-        } else if (longdescNotUri === true) {
-            // Not correct usage of longdesc. Only pass as a warning because we can't
-            // tell whether it is valid relative URL or junk.
-            HTMLCS.addMessage(HTMLCS.WARNING, element, 'Check that the value of the longdesc attribute is a valid URI of an existing resource.', 'H45.2');
-        } else {
-            // Correct usage of longdesc. The content should be appropriate.
-            HTMLCS.addMessage(HTMLCS.NOTICE, element, 'Check that the content at the target of the longdesc URI contains a long description describing the original non-text content associated with it.', 'H45.3');
-        }
     },
 
     /**
