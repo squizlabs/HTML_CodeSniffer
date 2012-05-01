@@ -637,18 +637,18 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
 
         if (summary !== '') {
             if (caption === summary) {
-                HTMLCS.addMessage(HTMLCS.ERROR, table, 'If both a summary attribute and a caption element are present for this data table, the summary should not duplicate the caption.', 'H39,H73.4');
+                HTMLCS.addMessage(HTMLCS.ERROR, table, 'If this table is a data table, and both a summary attribute and a caption element are present, the summary should not duplicate the caption.', 'H39,H73.4');
             }
 
-            HTMLCS.addMessage(HTMLCS.NOTICE, table, 'Check that the summary attribute describes the table\'s organization or explains how to use the table.', 'H73.3.Check');
+            HTMLCS.addMessage(HTMLCS.NOTICE, table, 'If this table is a data table, check that the summary attribute describes the table\'s organization or explains how to use the table.', 'H73.3.Check');
         } else {
-            HTMLCS.addMessage(HTMLCS.WARNING, table, 'Consider using the summary attribute of the table element to give an overview of this data table.', 'H73.3.NoSummary');
+            HTMLCS.addMessage(HTMLCS.WARNING, table, 'If this table is a data table, consider using the summary attribute of the table element to give an overview of this table.', 'H73.3.NoSummary');
         }//end if
 
         if (caption !== '') {
-            HTMLCS.addMessage(HTMLCS.NOTICE, table, 'Check that the caption element accurately describes this table.', 'H39.3.Check');
+            HTMLCS.addMessage(HTMLCS.NOTICE, table, 'If this table is a data table, check that the caption element accurately describes this table.', 'H39.3.Check');
         } else {
-            HTMLCS.addMessage(HTMLCS.WARNING, table, 'Consider using a caption element to the table element to identify this data table.', 'H39.3.NoCaption');
+            HTMLCS.addMessage(HTMLCS.WARNING, table, 'If this table is a data table, consider using a caption element to the table element to identify this table.', 'H39.3.NoCaption');
         }
     },
 
