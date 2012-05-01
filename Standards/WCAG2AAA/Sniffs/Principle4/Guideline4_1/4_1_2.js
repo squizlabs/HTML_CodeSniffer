@@ -76,22 +76,23 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
             if (/^\s*$/.test(content) === true) {
                 // Also no content. (eg. <a id=""></a> or <a name=""></a>)
                 if (element.hasAttribute('id') === true) {
-                    HTMLCS.addMessage(HTMLCS.ERROR, element, 'Empty anchor elements should not be used for defining a in-page link target. Consider moving its ID to a parent or nearby element.', 'H91.A.Empty');
+                    HTMLCS.addMessage(HTMLCS.ERROR, element, 'Empty anchor elements should not be used for defining in-page link targets. Consider moving its ID to a parent or nearby element.', 'H91.A.Empty');
                 } else if (element.hasAttribute('name') === true) {
-                    HTMLCS.addMessage(HTMLCS.ERROR, element, 'Empty anchor elements should not be used for defining a in-page link target. Consider moving the name attribute to become an ID of a parent or nearby element.', 'H91.A.EmptyWithName');
+                    HTMLCS.addMessage(HTMLCS.ERROR, element, 'Empty anchor elements should not be used for defining in-page link targets. Consider moving the name attribute to become an ID of a parent or nearby element.', 'H91.A.EmptyWithName');
                 } else {
-                    HTMLCS.addMessage(HTMLCS.ERROR, element, 'Empty anchor element found.', 'H91.A.EmptyNoId');
+                    HTMLCS.addMessage(HTMLCS.ERROR, element, 'Anchor element found with no link content and no name and/or ID attribute.', 'H91.A.EmptyNoId');
                 }
             } else {
                 // Giving a benefit of the doubt here - if a link has text and also
                 // an ID, but no href, it might be because it is being manipulated by
                 // a script.
                 if (element.hasAttribute('id') === true) {
-                    HTMLCS.addMessage(HTMLCS.WARNING, element, 'Anchor elements should not be used for defining an in-page link target. If not using the ID for other purposes (such as CSS or scripting), consider moving it to a parent element.', 'H91.A.NoHref');
+                    HTMLCS.addMessage(HTMLCS.WARNING, element, 'Anchor elements should not be used for defining in-page link targets. If not using the ID for other purposes (such as CSS or scripting), consider moving it to a parent element.', 'H91.A.NoHref');
                 } else {
                     // HTML5 allows A elements with text but no href, "for where a
                     // link might otherwise have been placed, if it had been relevant".
-                    HTMLCS.addMessage(HTMLCS.WARNING, element, 'Link found with text, but no href and ID. If this is not "where a link would have been placed if relevant", the A element should be removed.', 'H91.A.Placeholder');
+                    // Hence, thrown as a warning, not an error.
+                    HTMLCS.addMessage(HTMLCS.WARNING, element, 'Anchor element found with link content, but no href and/or ID attribute has been supplied.', 'H91.A.Placeholder');
                 }
             }
         } else {
@@ -101,7 +102,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
                 // A link around an image with no alt text is already covered in SC
                 // 1.1.1 (test H30).
                 if (element.querySelectorAll('img').length === 0) {
-                    HTMLCS.addMessage(HTMLCS.ERROR, element, 'Link contains a valid href attribute, but no content.', 'H91.A.NoContent');
+                    HTMLCS.addMessage(HTMLCS.ERROR, element, 'Anchor element found with a valid href attribute, but no link content has been supplied.', 'H91.A.NoContent');
                 }
             }
         }
