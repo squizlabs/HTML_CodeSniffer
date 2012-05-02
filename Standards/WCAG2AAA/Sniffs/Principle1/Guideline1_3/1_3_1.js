@@ -538,8 +538,8 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
                             retval.missingThId.push(cell);
                         }
 
-                        if ((rowspan > 1) || (colspan > 1)) {
-                            // Multi-column OR multi-row header. Abandon all hope,
+                        if ((rowspan > 1) && (colspan > 1)) {
+                            // Multi-column AND multi-row header. Abandon all hope,
                             // As it must span across more than one row+column
                             retval.allowScope = false;
                         } else if (retval.allowScope === true) {
