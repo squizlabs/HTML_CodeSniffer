@@ -367,6 +367,11 @@ div#introduction {
  right:0;
  overflow:hidden;
  bottom:95px;
+  -webkit-transition:all 0.2s ease-out;
+  -moz-transition:all 0.2s ease-out;
+  -o-transition:all 0.2s ease-out;
+  -ms-transition:all 0.2s ease-out;    
+  transition:all 0.2s ease-out;
 }
 
 #back-to-top.off {
@@ -375,11 +380,6 @@ div#introduction {
 
 #back-to-top.on{
   width:66px;
-  -webkit-transition:all 0.2s ease-out;
-  -moz-transition:all 0.2s ease-out;
-  -o-transition:all 0.2s ease-out;
-  -ms-transition:all 0.2s ease-out;    
-  transition:all 0.2s ease-out;
 }
 
 #back-to-top span a {

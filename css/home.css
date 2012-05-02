@@ -651,6 +651,11 @@ box-shadow: -1px 0 0 rgba(255,255,255,.5) inset, 1px 0 0 rgba(0,0,0,.08) inset;
    box-shadow: 0 0 6px rgba(0,0,0,.14) inset, 1px 0 0 rgba(0,0,0,0.04) inset;
 }
 
+#results-overview li.active a:hover:first-child{
+ background:#e1e1e1;
+   box-shadow: 0 0 6px rgba(0,0,0,.14) inset, 1px 0 0 rgba(0,0,0,0.04);
+}
+
 .result-count {
  font-weight:bold;
  font-size:18px;
@@ -931,6 +936,12 @@ li label {
  right:0;
  overflow:hidden;
  bottom:95px;
+ -webkit-transition:all 0.2s ease-out;
+ -moz-transition:all 0.2s ease-out;
+ -o-transition:all 0.2s ease-out;
+ -ms-transition:all 0.2s ease-out;
+ transition:all 0.2s ease-out;
+
 }
 
 #back-to-top:hover {
@@ -942,13 +953,7 @@ li label {
 }
 
 #back-to-top.on{
-  width:66px;
-  -webkit-transition:all 0.2s ease-out;
-  -moz-transition:all 0.2s ease-out;
-  -o-transition:all 0.2s ease-out;
-  -ms-transition:all 0.2s ease-out;
-  transition:all 0.2s ease-out;
-}
+  width:66px;}
 
 #back-to-top span a {
   z-index:300;
