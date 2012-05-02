@@ -100,11 +100,11 @@
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/H94">H94: Ensuring that elements do not contain duplicate attributes</a></li>
 </ul>
 
-<p>HTML_CodeSniffer is limited to information it can receive through the DOM, which will have likely processed out duplicate attributes, and certainly opening/closing tags in the generation process of the DOM tree. Therefore, it can only detect duplicate ID attributes. These errors are flagged as a Common Failure - <a href="http://www.w3.org/TR/WCAG20-TECHS/F77">Failure of Success Criterion 4.1.1 due to duplicate values of type ID</a>.</p>
+<p>In contrast to HTML&#95;CodeSniffer cannot check most of these errors, because it performs its check through information it receives from the Document Object Model (DOM). Browsers generally try to correct any invalid nesting, duplicate attributes and the like, so by the time HTML&#95;CodeSniffer gets to it, such analysis is not possible, because the DOM has been "cleaned". Further, if an XHTML document parsed as XML (rather than HTML as in most browsers) fails these techniques, a conforming parser would likely not load the document at all (as it is not well-formed), making analysis impossible.</p>
 
-<p>A lack of failures of this kind can only be considered authoritative if a complete document is processed. A document fragment can be tested for duplicate IDs, but there is nothing to say that it will duplicate the IDs of elements outside of that fragment.</p>
+<p>HTML&#95;CodeSniffer <strong>will</strong> check for duplicate ID attributes, however. These errors are flagged as a Common Failure - <a href="http://www.w3.org/TR/WCAG20-TECHS/F77">Failure of Success Criterion 4.1.1 due to duplicate values of type ID</a>. The failure is defined this way because the failure is generic, and attributes can be defined as "type ID" for other types of XML documents through a document type definition (DTD) or XML Schema.</p>
 
-<p>The failure F77 refers to "duplicate values of type ID". It is worded this way because it applies to any XML-based markup language, and ID attributes can be defined for other XML documents using either a DTD or XML Schema. This does not matter so much for HTML documents.</p>
+<p>A lack of failures of this kind can only be considered authoritative if a complete document is processed. A document fragment can be tested for duplicate IDs, but it does not guarantee conformance if a fragment is inserted into a document, as it may duplicate IDs used by the fragment.</p>
 
 
                 <h3>Sniff Coverage</h3>

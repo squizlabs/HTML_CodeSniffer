@@ -186,6 +186,19 @@
 </tbody>
 </table>
 
+<h4 class="grey-heading">Anchor elements without href attributes</h4>
+
+<p>Generally speaking, an anchor (A) element without a href is considered incorrect code, as it does not coincide with its ARIA role of being a link.
+However, in HTML5, an anchor element without a href attribute (but with content) is considered legal:</p>
+
+<blockquote>
+  <p>If the a element has no href attribute, then the element represents a placeholder for where a link might otherwise have been placed, if it had been relevant.</p>
+  
+  <p>(<a href="">http://dev.w3.org/html5/spec/the-a-element.html</a>)</p>
+</blockquote>
+
+<p>An example is given of a navigation section where the pages in a section are placed in anchor elements, but the current page's anchor does not contain a href, as a page pointing to itself in navigation is not considered good practice.</p>
+
 
                 <h3>Sniff Coverage</h3>
 
