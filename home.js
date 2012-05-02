@@ -18,6 +18,13 @@ function updateResults(resultsWrapper)
 {
     resultsWrapper.innerHTML = '';
 
+    var principles = {
+        'Principle1': 'Perceivable',
+        'Principle2': 'Operable',
+        'Principle3': 'Understandable',
+        'Principle4': 'Robust'
+    };
+
     var msgs = HTMLCS.getMessages();
     if (msgs.length === 0) {
         resultsWrapper.innerHTML = 'No violations found';
@@ -25,7 +32,7 @@ function updateResults(resultsWrapper)
     }
 
     var content = '<div id="test-results" class="hide-notice"><table id="test-results-table"><tr>';
-    content    += '<th>#</th><th>Message</th><th>Code</th></tr>';
+    content    += '<th>#</th><th>Message</th><th>Principle</th><th><acronym title="Success Criterion">SC</acronym></th><th>Techniques</th></tr>';
 
     var errors   = 0;
     var warnings = 0;
@@ -56,8 +63,11 @@ function updateResults(resultsWrapper)
         }
 
         // Get the success criterion so we can provide a link.
-        var msgParts = msg.code.split('.');
-        var sc = msgParts[3];
+        var msgParts   = msg.code.split('.');
+        var principle  = msgParts[1];
+        var sc         = msgParts[3];
+        var techniques = msgParts[4];
+        techniques     = techniques.split(',');
 
         // Build a message code without the standard name.
         msgParts.shift();
@@ -67,11 +77,22 @@ function updateResults(resultsWrapper)
         content += '<tr class="' + type.toLowerCase() + '">';
         content += '<td class="number">' + (i + 1) + '<span class="flag"></span></td>';
         content += '<td class="messageText"><strong>' + type + ':</strong> ' + msg.msg + '</td>';
-        content += '<td class="messageCode">' + msg.code + '</td></tr>';
+        content += '<td class="messagePrinciple">';
+        content += '<a href="http://www.w3.org/TR/WCAG20/#' + principles[principle].toLowerCase() + '">' + principles[principle] + '</a>';
+        content += '</td>';
+        content += '<td class="messageSC">';
+        content += '<a href="Standards/WCAG2/' + sc + '">' + sc.replace('_', '.', 'g') + '</a>';
+        content += '</td>';
+        content += '<td class="messageTechniques"><ul>';
+        for (var j = 0; j < techniques.length; j++) {
+            content += '<li><a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/' + techniques[j] + '">' + techniques[j] + '</a></li>';
+        }
+        content += '</ul></td>';
+        content += '</tr>';
     }
 
 
-    var heading = '<h3 class="screen-hide">Test results</h3>';
+    var heading = '<h3>Test results</h3>';
 
     heading += '<ul id="results-overview">';
     heading += '<li class="active"><a href="#" onclick="return toggleMsgTypes.call(this, \'error\');"><span class="result-count result-count-errors">' + errors + '</span> <span class="result-type">errors</span></a></li>';
