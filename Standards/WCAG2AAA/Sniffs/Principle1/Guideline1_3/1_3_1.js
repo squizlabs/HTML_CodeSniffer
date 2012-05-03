@@ -304,7 +304,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
         // TDs with scope attributes are obsolete in HTML5 - emit warnings if
         // scope tested, but not as errors as they are valid HTML4.
         for (var i = 0; i < scopeAttr.obsoleteTd.length; i++) {
-            HTMLCS.addMessage(HTMLCS.WARNING, scopeAttr.obsoleteTd[i], 'Scope attributes on td elements that act as headers for other elements are obsolete in HTML5. Use a th element instead.', 'H63.2');
+            HTMLCS.addMessage(HTMLCS.WARNING, scopeAttr.obsoleteTd[i], 'Scope attributes on td elements that act as headings for other elements are obsolete in HTML5. Use a th element instead.', 'H63.2');
         }
 
         if (headersAttr.allowScope === true) {
@@ -316,30 +316,30 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
             }
         } else {
             if (scopeAttr.used === true) {
-                HTMLCS.addMessage(HTMLCS.WARNING, table, 'Scope attributes are ambiguous in a multi-level structure. Use the headers attribute on td elements instead.', 'H43.ScopeAmbiguous');
+                HTMLCS.addMessage(HTMLCS.WARNING, table, 'Scope attributes on th elements are ambiguous in a table with multiple levels of headings. Use the headers attribute on td elements instead.', 'H43.ScopeAmbiguous');
                 scopeAttr = null;
             }
         }//end if
 
         // Incorrect usage of headers - error; emit always.
         for (var i = 0; i < headersAttr.wrongHeaders.length; i++) {
-            HTMLCS.addMessage(HTMLCS.ERROR, headersAttr.wrongHeaders[i].element, 'Incorrect headers attribute, expected "' + headersAttr.wrongHeaders[i].expected + '" but found "' + headersAttr.wrongHeaders[i].actual + '"', 'H43.IncorrectAttr');
+            HTMLCS.addMessage(HTMLCS.ERROR, headersAttr.wrongHeaders[i].element, 'Incorrect headers attribute on this td element. Expected "' + headersAttr.wrongHeaders[i].expected + '" but found "' + headersAttr.wrongHeaders[i].actual + '"', 'H43.IncorrectAttr');
         }
 
         // Errors where headers are compulsory.
         if ((headersAttr.required === true) && (headersAttr.allowScope === false)) {
             if (headersAttr.used === false) {
                 // Headers not used at all, and they are mandatory.
-                HTMLCS.addMessage(HTMLCS.ERROR, table, 'Associate data cells with multi-level table headings using the headers attribute.', 'H43.HeadersRequired');
+                HTMLCS.addMessage(HTMLCS.ERROR, table, 'The relationship between td elements and their associated th elements is not defined. As this table has multiple levels of th elements, you must use the headers attribute on td elements.', 'H43.HeadersRequired');
             } else {
                 // Missing TH IDs - error; emit at this stage only if headers are compulsory.
                 if (headersAttr.missingThId.length > 0) {
-                    HTMLCS.addMessage(HTMLCS.ERROR, table, 'Not all th elements in this table contain an id attribute, so that they may be referenced by td elements\' headers attributes.', 'H43.MissingHeaderIds');
+                    HTMLCS.addMessage(HTMLCS.ERROR, table, 'Not all th elements in this table contain an id attribute. These cells should contain ids so that they may be referenced by td elements\' headers attributes.', 'H43.MissingHeaderIds');
                 }
 
                 // Missing TD headers attributes - error; emit at this stage only if headers are compulsory.
                 if (headersAttr.missingTd.length > 0) {
-                    HTMLCS.addMessage(HTMLCS.ERROR, table, 'Not all td elements contain a headers attribute, which list the ids of all headers associated with that cell.', 'H43.MissingHeadersAttrs');
+                    HTMLCS.addMessage(HTMLCS.ERROR, table, 'Not all td elements in this table contain a headers attribute. Each headers attribute should list the ids of all th elements associated with that cell.', 'H43.MissingHeadersAttrs');
                 }
             }//end if
         }//end if
@@ -352,23 +352,23 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
         if ((headersAttr.required === true) && (headersAttr.allowScope === true) && (headersAttr.correct === false) && (scopeAttr.correct === false)) {
             if ((scopeAttr.used === false) && (headersAttr.used === false)) {
                 // Nothing used at all.
-                HTMLCS.addMessage(HTMLCS.ERROR, table, 'Associate data cells with table headings using either the scope or headers attribute techniques.', 'H43,H63');
+                HTMLCS.addMessage(HTMLCS.ERROR, table, 'The relationship between td elements and their associated th elements is not defined. Use either the scope attribute on th elements, or the headers attribute on td elements.', 'H43,H63');
             } else if ((scopeAttr.used === false) && ((headersAttr.missingThId.length > 0) || (headersAttr.missingTd.length > 0))) {
                 // Headers attribute is used, but not all th elements have ids.
                 if (headersAttr.missingThId.length > 0) {
-                    HTMLCS.addMessage(HTMLCS.ERROR, table, 'Not all th elements in this table contain an id attribute, so that they may be referenced by td elements\' headers attributes.', 'H43.MissingHeaderIds');
+                    HTMLCS.addMessage(HTMLCS.ERROR, table, 'Not all th elements in this table contain an id attribute. These cells should contain ids so that they may be referenced by td elements\' headers attributes.', 'H43.MissingHeaderIds');
                 }
 
                 // Headers attribute is used, but not all td elements have headers attrs.
                 if (headersAttr.missingTd.length > 0) {
-                    HTMLCS.addMessage(HTMLCS.ERROR, table, 'Not all td elements contain a headers attribute, which list the ids of all headers associated with that cell.', 'H43.MissingHeadersAttrs');
+                    HTMLCS.addMessage(HTMLCS.ERROR, table, 'Not all td elements in this table contain a headers attribute. Each headers attribute should list the ids of all th elements associated with that cell.', 'H43.MissingHeadersAttrs');
                 }
             } else if ((scopeAttr.missing.length > 0) && (headersAttr.used === false)) {
                 // Scope is used rather than headers, but not all th elements have them.
-                HTMLCS.addMessage(HTMLCS.ERROR, table, 'Not all th elements have a scope attribute, identifying the purpose of the header.', 'H63.1');
+                HTMLCS.addMessage(HTMLCS.ERROR, table, 'Not all th elements in this table have a scope attribute. These cells should contain a scope attribute to identify their association with td elements.', 'H63.1');
             } else if ((scopeAttr.missing.length > 0) && ((headersAttr.missingThId.length > 0) || (headersAttr.missingTd.length > 0))) {
                 // Both are used and both were done incorrectly. Provide generic message.
-                HTMLCS.addMessage(HTMLCS.ERROR, table, 'Associate data cells with table headings using either the scope or headers attribute techniques.', 'H43,H63');
+                HTMLCS.addMessage(HTMLCS.ERROR, table, 'The relationship between td elements and their associated th elements is not defined. Use either the scope attribute on th elements, or the headers attribute on td elements.', 'H43,H63');
             }
         }
     },
