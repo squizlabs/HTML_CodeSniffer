@@ -100,6 +100,21 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
                     this._labelNames[labelFor] = null;
                 } else {
                     this._labelNames[labelFor] = labels[i];
+
+                    if (top instanceof Document === true) {
+                        var refNode = top.getElementById(labelFor);
+                    } else {
+                        var refNode = top.ownerDocument.getElementById(labelFor);
+                    }
+
+                    if (refNode === null) {
+                        HTMLCS.addMessage(HTMLCS.ERROR, labels[i], 'This label\'s for attribute contains an ID that does not exist in the document.', 'H44.NonExistent');
+                    } else {
+                        var nodeName = refNode.nodeName.toLowerCase();
+                        if ((nodeName !== 'input') && (nodeName !== 'select') && (nodeName !== 'textarea')) {
+                            HTMLCS.addMessage(HTMLCS.ERROR, labels[i], 'This label\'s for attribute contains an ID that points to an element that is not a form control.', 'H44.NotFormControl');
+                        }
+                    }
                 }
             } else {
                 HTMLCS.addMessage(HTMLCS.ERROR, labels[i], 'Label found without a "for" attribute, and therefore not explicitly associated with a form control.', 'H44.NoForAttr');
