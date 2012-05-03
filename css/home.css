@@ -703,10 +703,27 @@ tr.notice td.assertType {
     background: #66656b;
 }
 
+td:last-child ul {
+ margin:0;
+ padding:0;
+}
+
+td:last-child li {
+ list-style-type:none;
+ margin:0;
+ padding:0;
+}
+
 #test-results {
  position:relative;
  padding:5px 0 0 0 ;
 
+}
+
+#test-results table a[href^='http:'] {
+ display:inline-block;
+ padding-right:18px;
+ background: url(../images/external-link-table.png) center right no-repeat;
 }
 
 .radio-gen {
