@@ -96,6 +96,19 @@ p a:hover {
  color:#dc5e2d;
 }
 
+td a {
+ text-decoration:none;
+ color:#385287;
+ font-weight:normal;
+ text-shadow:none;
+/* background-color:#d9e8f5; */
+}
+
+td a:hover {
+ text-decoration:underline;
+ color:#dc5e2d;
+}
+
 .screen-hide {
  position:absolute;
  left:-9000px;
@@ -979,4 +992,27 @@ li label {
 
 #results-table a:hover {
   background:#e1eaf2;
+}
+
+td:last-child ul {
+ margin:0;
+ padding:0;
+}
+
+td:last-child li {
+ list-style-type:none;
+ margin:0;
+ padding:0;
+}
+
+#test-area table a[href^='http:'] {
+ display:inline-block;
+ padding-right:18px;
+ background: url(../images/external-link-table.png) center right no-repeat;
+}
+
+#introduction a[href^='http:']:hover, #test-area a[href^='http:']:hover {
+ display:inline-block;
+ padding-right:18px;
+ background: url(../images/external-link-hover.png) center right no-repeat;
 }
