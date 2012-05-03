@@ -31,7 +31,7 @@ function updateResults(resultsWrapper)
         return;
     }
 
-    var content = '<div id="test-results" class="hide-notice"><table id="test-results-table"><tr>';
+    var content = '<table id="test-results-table"><tr>';
     content    += '<th>#</th><th>Message</th><th>Principle</th><th><acronym title="Success Criterion">SC</acronym></th><th>Techniques</th></tr>';
 
     var errors   = 0;
@@ -75,7 +75,7 @@ function updateResults(resultsWrapper)
         var noStdMsgParts = msgParts.join('.');
 
         content += '<tr class="' + type.toLowerCase() + '">';
-        content += '<td class="number">' + (i + 1) + '<span class="flag"></span></td>';
+        content += '<td class="number"><span class="flag"></span></td>';
         content += '<td class="messageText"><strong>' + type + ':</strong> ' + msg.msg + '</td>';
         content += '<td class="messagePrinciple">';
         content += '<a href="http://www.w3.org/TR/WCAG20/#' + principles[principle].toLowerCase() + '">' + principles[principle] + '</a>';
@@ -94,17 +94,27 @@ function updateResults(resultsWrapper)
 
     var heading = '<h3>Test results</h3>';
 
+    var noticeActive     = '';
+    var testResultsClass = 'hide-notice';
+    if ((errors === 0) && (warnings === 0)) {
+        noticeActive     = ' class="active"';
+        testResultsClass = '';
+    }
+
     heading += '<ul id="results-overview">';
     heading += '<li class="active"><a href="#" onclick="return toggleMsgTypes.call(this, \'error\');"><span class="result-count result-count-errors">' + errors + '</span> <span class="result-type">errors</span></a></li>';
     heading += '<li class="active"><a href="#" onclick="return toggleMsgTypes.call(this, \'warning\');"><span class="result-count result-count-warnings">' + warnings + '</span> <span class="result-type">warnings</span></a></li>';
-    heading += '<li><a href="#" onclick="return toggleMsgTypes.call(this, \'notice\');"><span class="result-count result-count-notices">' + notices + '</span> <span class="result-type">notices</span></a></li>';
+    heading += '<li' + noticeActive + '><a href="#" onclick="return toggleMsgTypes.call(this, \'notice\');"><span class="result-count result-count-notices">' + notices + '</span> <span class="result-type">notices</span></a></li>';
     heading += '</ul>';
+    heading += '<div id="test-results" class="' + testResultsClass + '">';
 
     content  = heading + content;
     content += '</table>';
+    content += '<div id="test-results-noMessages"><em>No messages matched the types you selected</em></div>';
     content += '<span class="footnote"><em>Add the WCAG bookmarklet to your browser to run this test on any web page.</em></span></div>';
     resultsWrapper.innerHTML = content;
 
+    reorderResults();
 }
 
 function runHTMLCSTest() {
@@ -202,7 +212,35 @@ function toggleMsgTypes(type) {
         testResultsDiv.className += ' ' + className;
     }
 
+    reorderResults();
     return false;
+}
+
+function reorderResults() {
+    var testResultsDiv = document.getElementById('test-results');
+    var numberCells    = testResultsDiv.querySelectorAll('tr td.number');
+    var currRow        = 0;
+
+    for (var i = 0; i < numberCells.length; i++) {
+        if (window.getComputedStyle) {
+            var display = window.getComputedStyle(numberCells[i].parentNode).display;
+        } else {
+            var display = numberCells[i].parentNode.currentStyle.display;
+        }
+
+        if (display !== 'none') {
+            currRow++;
+            numberCells[i].innerHTML = currRow;
+        } else {
+            numberCells[i].innerHTML = '';
+        }
+    }
+
+    if (currRow === 0) {
+        document.getElementById('test-results-noMessages').style.display = 'block';
+    } else {
+        document.getElementById('test-results-noMessages').style.display = 'none';
+    }
 }
 
 window.onload = function() {

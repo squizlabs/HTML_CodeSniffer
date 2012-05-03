@@ -874,6 +874,16 @@ li label {
  margin:24px 0 0px 0;
 }
 
+#test-results-noMessages {
+ display:block;
+ width:100%;
+ color:#b0afaf;
+ text-align:center;
+ padding:15px 0 20px 0;
+ text-shadow: 0 1px 0 rgba(255,255,255,1);
+ text-weight: bold;
+}
+
 .footnote {
  display:block;
  width:100%;
