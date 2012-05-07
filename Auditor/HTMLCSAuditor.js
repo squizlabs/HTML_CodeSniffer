@@ -1231,8 +1231,13 @@ var HTMLCSAuditor = new function()
 
         if ((source === null) || (source === undefined)) {
             // If not defined (or no longer existing?), check the document.
+            source = [];
+
+            if (document.querySelectorAll('frameset').length === 0) {
+                source.push(document);
+            };
+
             if (window.frames.length > 0) {
-                source = [];
                 for (var i = 0; i < window.frames.length; i++) {
                     try {
                         source.push(window.frames[i].document);
@@ -1241,8 +1246,6 @@ var HTMLCSAuditor = new function()
                         // cross-domain), then ignore.
                     }
                 }
-            } else {
-                source = document;
             }
         } else if (source.nodeName) {
             // See if we are being sent a text box or text area; if so then
