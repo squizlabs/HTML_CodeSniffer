@@ -81,7 +81,7 @@ function updateResults(resultsWrapper)
         content += '<a href="http://www.w3.org/TR/WCAG20/#' + principles[principle].toLowerCase() + '">' + principles[principle] + '</a>';
         content += '</td>';
         content += '<td class="messageSC">';
-        content += '<a href="Standards/WCAG2/' + sc + '">' + sc.replace('_', '.', 'g') + '</a>';
+        content += '<a href="Standards/WCAG2/' + sc + '">' + sc.replace(new RegExp('_', 'g'), '.') + '</a>';
         content += '</td>';
         content += '<td class="messageTechniques"><ul>';
         for (var j = 0; j < techniques.length; j++) {
