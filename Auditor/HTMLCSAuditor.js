@@ -1396,6 +1396,17 @@ var HTMLCSAuditor = new function()
         var _processSource = function(standard, sources) {
             var source = sources.shift();
 
+            // Source is undefined. Keep shifting, until we find one or we run
+            // out of array elements.
+            while (!source) {
+                if (sources.length === 0) {
+                    _finalise();
+                    return;
+                } else {
+                    source = sources.shift();
+                }
+            }
+
             HTMLCS.process(standard, source, function() {
                 _messages = _messages.concat(HTMLCS.getMessages());
                 if (sources.length === 0) {
