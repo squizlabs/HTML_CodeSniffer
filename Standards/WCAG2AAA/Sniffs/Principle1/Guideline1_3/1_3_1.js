@@ -102,10 +102,10 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
                 } else {
                     this._labelNames[labelFor] = labels[i];
 
-                    if (top instanceof Document === true) {
-                        var refNode = top.getElementById(labelFor);
-                    } else {
+                    if (top.ownerDocument) {
                         var refNode = top.ownerDocument.getElementById(labelFor);
+                    } else {
+                        var refNode = top.getElementById(labelFor);
                     }
 
                     if (refNode === null) {
