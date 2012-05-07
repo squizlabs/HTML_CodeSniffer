@@ -65,6 +65,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
                 case 'div':
                     this.testNonSemanticHeading(element);
                     this.testListsWithBreaks(element);
+                    this.testUnstructuredNavLinks(element);
                 break;
 
                 case 'table':
@@ -821,5 +822,42 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
 
             lastHeading = headingNum;
         }
+    },
+
+    /**
+     * Test for the presence of a list around common navigation links (H48).
+     *
+     * @param {DOMNode} element The element to test.
+     *
+     * @returns void
+     */
+    testUnstructuredNavLinks: function(element)
+    {
+        var nodeName    = element.nodeName.toLowerCase();
+        var linksLength = 0;
+
+        var childNodes  = element.childNodes;
+        for (var i = 0; i < childNodes.length; i++) {
+            if ((childNodes[i].nodeType === 1) && (childNodes[i].nodeName.toLowerCase() === 'a')) {
+                linksLength++;
+                if (linksLength > 1) {
+                    break;
+                }
+            }
+        }//end for
+
+        if (linksLength > 1) {
+            // Going to throw a warning here, mainly because we cannot easily tell
+            // whether it is just a paragraph with multiple links, or a navigation
+            // structure.
+            var parent = element.parentNode;
+            while ((parent !== null) && (parent.nodeName.toLowerCase() !== 'ul') && (parent.nodeName.toLowerCase() !== 'ol')) {
+                parent = parent.parentNode;
+            }
+
+            if (parent === null) {
+                HTMLCS.addMessage(HTMLCS.WARNING, element, 'If this element contains a navigation section, it is recommended that it be marked up as a list.', 'H48');
+            }
+        }//end if
     }
 };

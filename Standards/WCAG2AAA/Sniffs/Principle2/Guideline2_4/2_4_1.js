@@ -24,10 +24,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_4_2_4_1 = {
     {
         return [
             'iframe',
-            'p',
-            'div',
-            'ul',
-            'ol'
+            '_top',
         ];
 
     },
@@ -40,19 +37,16 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_4_2_4_1 = {
      */
     process: function(element, top)
     {
-        var nodeName = element.nodeName.toLowerCase();
+        if (element === top) {
+            this.testGenericBypassMsg(top);
+        } else {
+            var nodeName = element.nodeName.toLowerCase();
 
-        switch (nodeName) {
-            case 'iframe':
-                this.testIframeTitle(element);
-            break;
-
-            case 'p':
-            case 'div':
-            case 'ul':
-            case 'ol':
-                this.testMapElement(element);
-            break;
+            switch (nodeName) {
+                case 'iframe':
+                    this.testIframeTitle(element);
+                break;
+            }
         }
     },
 
@@ -84,50 +78,12 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_4_2_4_1 = {
     },
 
     /**
-     * Test for the presence of the map element for grouping links (technique H50).
-     *
-     * @param {DOMNode} element The element to test.
+     * Throw a generic bypass blocks message.
      *
      * @returns void
      */
-    testMapElement: function(element)
+    testGenericBypassMsg: function(top)
     {
-        var nodeName    = element.nodeName.toLowerCase();
-        var linksLength = 0;
-
-        if (nodeName === 'li') {
-            // List item. Don't fire on these.
-            linksLength = 0;
-        } else if (/^(ul|ol|dl)$/.test(nodeName) === true) {
-            // List container. Test on everything underneath.
-            linksLength = element.querySelectorAll('a').length;
-        } else {
-            // Everything else. Test direct links only.
-            var childNodes  = element.childNodes;
-            for (var i = 0; i < childNodes.length; i++) {
-                if ((childNodes[i].nodeType === 1) && (childNodes[i].nodeName.toLowerCase() === 'a')) {
-                    linksLength++;
-                    if (linksLength > 1) {
-                        break;
-                    }
-                }
-            }//end for
-        }//end if
-
-        if (linksLength > 1) {
-            // Going to throw a warning here, mainly because we cannot easily tell
-            // whether it is just a paragraph with multiple links, or a navigation
-            // structure.
-            var mapFound = false;
-            var parent   = element.parentNode;
-            while ((parent !== null) && (parent.nodeName.toLowerCase() !== 'map')) {
-                parent = parent.parentNode;
-            }
-
-            if (parent === null) {
-                // Found no map element.
-                HTMLCS.addMessage(HTMLCS.WARNING, element, 'Check that links that should be grouped into logical sets (such as a navigation bar or main menu) are grouped using map elements, so they can be bypassed.', 'H50');
-            }
-        }//end if
+        HTMLCS.addMessage(HTMLCS.NOTICE, top, 'Ensure that any common navigation elements can be bypassed; for instance, by use of skip links, header elements, or ARIA landmark roles.', 'G1,G123,G124,H69');
     }
 };
