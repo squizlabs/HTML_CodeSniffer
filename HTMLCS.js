@@ -44,6 +44,10 @@ var HTMLCS = new function()
         _standard     = null;
 
         if (!content) {
+            if (callback instanceof Function === true) {
+                callback();
+            }
+
             return false;
         }
 
