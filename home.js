@@ -85,7 +85,7 @@ function updateResults(resultsWrapper)
         content += '</td>';
         content += '<td class="messageTechniques"><ul>';
         for (var j = 0; j < techniques.length; j++) {
-            content += '<li><a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/' + techniques[j] + '">' + techniques[j] + '</a></li>';
+            content += '<li><a href="http://www.w3.org/TR/WCAG20-TECHS/' + techniques[j] + '">' + techniques[j] + '</a></li>';
         }
         content += '</ul></td>';
         content += '</tr>';
