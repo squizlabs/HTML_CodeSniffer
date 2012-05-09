@@ -1722,9 +1722,9 @@ var HTMLCSAuditor = new function()
             pointer.style.opacity = 0;
             pointer.className     = pointer.className.replace('HTMLCS-pointer-hidden', '');
 
-            var pointerRect = this.getBoundingRectangle(pointer);
+            /*var pointerRect = this.getBoundingRectangle(pointer);
             var pointerH    = (pointerRect.y2 - pointerRect.y1);
-            var pointerW    = (pointerRect.x2 - pointerRect.x1);
+            var pointerW    = (pointerRect.x2 - pointerRect.x1);*/
 
             this.pointerDim.height = 62;
             this.pointerDim.width  = 62;
@@ -1739,16 +1739,16 @@ var HTMLCSAuditor = new function()
             var scrollY = Math.max(0, Math.min(rect.y1 - 100, doc.documentElement.offsetHeight - winDim.height));
 
             // Try to position the pointer.
-            if ((rect.y1 - pointerH - bounceHeight) > scrollY) {
+            if ((rect.y1 - this.pointerDim.height - bounceHeight) > scrollY) {
                 // Arrow direction down.
                 direction = 'down';
-            } else if ((rect.y2 + pointerH) < (winDim.height - scrollY)) {
+            } else if ((rect.y2 + this.pointerDim.height) < (winDim.height - scrollY)) {
                 // Up.
                 direction = 'up';
-            } else if ((rect.x2 + pointerW) < winDim.width) {
+            } else if ((rect.x2 + this.pointerDim.width) < winDim.width) {
                 // Left.
                 direction = 'left';
-            } else if ((rect.x1 - pointerW) > 0) {
+            } else if ((rect.x1 - this.pointerDim.width) > 0) {
                 // Right.
                 direction = 'right';
             }
@@ -1777,12 +1777,14 @@ var HTMLCSAuditor = new function()
 
                 var rect    = this.getElementCoords(elem, true);
                 var window  = this.getElementWindow(elem);
-                var targetY = rect.y - 100;
+                var targetY = Math.max(rect.y - 100, 0);
 
-                while (targetY > 0) {
+                while (targetY >= 0) {
                     window.scrollTo(0, targetY);
                     var scrollCoords = this.getScrollCoords(window.document.documentElement);
-                    targetY         -= scrollCoords.y;
+
+                    targetY -= scrollCoords.y;
+                    targetY  = Math.max(targetY, 0);
 
                     if (window === topWin) {
                         break;
