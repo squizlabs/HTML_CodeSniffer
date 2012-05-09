@@ -1483,7 +1483,7 @@ var HTMLCSAuditor = new function()
 
         },
 
-        getElementCoords: function(element)
+        getElementCoords: function(element, absolute)
         {
             var left = 0;
             var top  = 0;
@@ -1496,10 +1496,30 @@ var HTMLCSAuditor = new function()
                 window = element.ownerDocument.parentWindow;
             }
 
-            do {
-                left += element.offsetLeft;
-                top  += element.offsetTop;
-            } while (element = element.offsetParent)
+            if (absolute === true) {
+                var topWin = window.top;
+            } else {
+                var topWin = window;
+            }
+
+            while (true) {
+                do {
+                    left += element.offsetLeft;
+                    top  += element.offsetTop;
+                } while (element = element.offsetParent);
+
+                if (window === topWin) {
+                    break;
+                } else {
+                    element = window.frameElement;
+                    window  = window.parent;
+
+                    if (element.nodeName.toLowerCase() === 'frame') {
+                        // We can't go any further if we hit a proper frame.
+                        break;
+                    }
+                }
+            }//end while
 
             return {
                 x: left,
@@ -1737,6 +1757,9 @@ var HTMLCSAuditor = new function()
         },
 
         pointTo: function(elem) {
+            var topWin = this.getElementWindow(elem).top;
+            var winDim = this.getWindowDimensions(topWin.document.documentElement);
+
             // Do not point to elem if its hidden.
             if (this.isPointable(elem) === false) {
                 return;
@@ -1752,9 +1775,21 @@ var HTMLCSAuditor = new function()
                 pointer.style.display = 'block';
                 pointer.style.opacity = 1;
 
-                var rect   = this.getBoundingRectangle(elem);
-                var window = this.getElementWindow(elem);
-                window.scrollTo(0, rect.y1 - 100);
+                var rect    = this.getElementCoords(elem, true);
+                var window  = this.getElementWindow(elem);
+                var targetY = rect.y - 100;
+
+                while (targetY > 0) {
+                    window.scrollTo(0, targetY);
+                    var scrollCoords = this.getScrollCoords(window.document.documentElement);
+                    targetY         -= scrollCoords.y;
+
+                    if (window === topWin) {
+                        break;
+                    } else {
+                        window = window.parent;
+                    }
+                }//end while
 
                 this.showPointer(elem, direction);
             }
