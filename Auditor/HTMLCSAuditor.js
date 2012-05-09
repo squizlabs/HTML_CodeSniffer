@@ -995,6 +995,10 @@ var HTMLCSAuditor = new function()
         return navDiv;
     }
 
+    this.getElementWindow = function(elem) {
+        return pointer.getElementWindow(elem);
+    }
+
     var pointToIssueElement = function(issue) {
         var msg = _messages[Number(issue)];
         if (!msg.element) {
@@ -1005,7 +1009,7 @@ var HTMLCSAuditor = new function()
         pointer.container = _doc.getElementById('HTMLCS-wrapper');
 
         if (pointer.isPointable(msg.element) === false) {
-            pointer.className    += ' HTMLCS-pointer-hidden';
+            pointer.className += ' HTMLCS-pointer-hidden';
 
             if (btnPointTo) {
                 btnPointTo.className += ' disabled';
@@ -1422,13 +1426,15 @@ var HTMLCSAuditor = new function()
 
     this.close = function() {
         var wrapper = _doc.getElementById('HTMLCS-wrapper');
+
         if (wrapper) {
             _doc.body.removeChild(wrapper);
         }
 
-        var pointer = _doc.querySelector('.HTMLCS-pointer');
-        if (pointer) {
-            _doc.body.removeChild(pointer);
+        var pointerEl = pointer.pointer;
+        if (pointerEl) {
+            var ptrWin = this.getElementWindow(pointerEl);
+            ptrWin.document.querySelector('body').removeChild(pointerEl);
         }
 
         if (_options.closeCallback) {
@@ -1489,12 +1495,7 @@ var HTMLCSAuditor = new function()
             var top  = 0;
 
             // Get parent window coords.
-            var window = null;
-            if (element.ownerDocument.defaultView) {
-                window = element.ownerDocument.defaultView;
-            } else {
-                window = element.ownerDocument.parentWindow;
-            }
+            var window = this.getElementWindow(element);
 
             if (absolute === true) {
                 var topWin = window.top;
