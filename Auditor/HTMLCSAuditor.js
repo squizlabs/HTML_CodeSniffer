@@ -1336,7 +1336,7 @@ var HTMLCSAuditor = new function()
 
         // Load the "processing" screen.
         var wrapper        = self.buildSummaryPage();
-        wrapper.className += ' processing';
+        wrapper.className += ' HTMLCS-processing';
 
         if (target) {
             wrapper.style.left = target.style.left;
