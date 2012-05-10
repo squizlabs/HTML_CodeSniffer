@@ -543,7 +543,7 @@ var HTMLCSAuditor = new function()
             notice: 0
         };
 
-        var wrapper  = _doc.getElementById(_prefix + 'wrapper');
+        var wrapper = _doc.getElementById(_prefix + 'wrapper');
 
         for (var i = 0; i < _messages.length; i++) {
             switch (_messages[i].type) {
@@ -1425,21 +1425,22 @@ var HTMLCSAuditor = new function()
     };
 
     this.close = function() {
-        var wrapper = _doc.getElementById('HTMLCS-wrapper');
+        if (_doc) {
+            var wrapper = _doc.getElementById('HTMLCS-wrapper');
 
-        if (wrapper) {
-            _doc.body.removeChild(wrapper);
-        }
+            if (wrapper) {
+                _doc.querySelector('body').removeChild(wrapper);
 
-        var pointerEl = pointer.pointer;
-        if (pointerEl) {
-            var ptrWin = this.getElementWindow(pointerEl);
-            ptrWin.document.querySelector('body').removeChild(pointerEl);
-        }
+                var pointerEl = pointer.pointer;
+                if (pointerEl && pointerEl.parentNode) {
+                    pointerEl.parentNode.removeChild(pointerEl);
+                }
 
-        if (_options.closeCallback) {
-            _messages = _options.closeCallback.call(this);
-        }
+                if (_options.closeCallback) {
+                    _messages = _options.closeCallback.call(this);
+                }
+            }//end if
+        }//end if
     };
 
     this.pointToElement = function(element) {

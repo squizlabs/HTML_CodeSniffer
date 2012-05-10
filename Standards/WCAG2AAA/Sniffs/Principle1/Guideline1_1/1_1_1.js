@@ -131,7 +131,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
             case 'input':
                 // Image submit buttons.
                 if ((missingAlt === true) || (nullAlt === true)) {
-                    HTMLCS.addMessage(HTMLCS.ERROR, element, 'Image submit button missing an alt attribute. Specify a text alternative using the alt attribute, that describes the button\'s function.', 'H36');
+                    HTMLCS.addMessage(HTMLCS.ERROR, element, 'Image submit button missing an alt attribute. Specify a text alternative that describes the button\'s function, using the alt attribute.', 'H36');
                 } else {
                     HTMLCS.addMessage(HTMLCS.NOTICE, element, 'Ensure that the image submit button\'s alt text identifies the purpose of the button.', 'G94.Button');
                 }

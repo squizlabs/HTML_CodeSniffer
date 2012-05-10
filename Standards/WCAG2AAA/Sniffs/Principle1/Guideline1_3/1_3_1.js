@@ -109,11 +109,11 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
                     }
 
                     if (refNode === null) {
-                        HTMLCS.addMessage(HTMLCS.ERROR, labels[i], 'This label\'s for attribute contains an ID that does not exist in the document.', 'H44.NonExistent');
+                        HTMLCS.addMessage(HTMLCS.ERROR, labels[i], 'This label\'s "for" attribute contains an ID that does not exist in the document.', 'H44.NonExistent');
                     } else {
                         var nodeName = refNode.nodeName.toLowerCase();
                         if ((nodeName !== 'input') && (nodeName !== 'select') && (nodeName !== 'textarea')) {
-                            HTMLCS.addMessage(HTMLCS.ERROR, labels[i], 'This label\'s for attribute contains an ID that points to an element that is not a form control.', 'H44.NotFormControl');
+                            HTMLCS.addMessage(HTMLCS.ERROR, labels[i], 'This label\'s "for" attribute contains an ID that points to an element that is not a form control.', 'H44.NotFormControl');
                         }
                     }
                 }
@@ -164,7 +164,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
 
         if ((element.hasAttribute('id') === false) && (isNoLabelControl === false)) {
             // There is no id attribute at all on the control.
-            HTMLCS.addMessage(HTMLCS.ERROR, element, 'Form control does not have an id, therefore it cannot have an explicit label.', 'H44.NoId');
+            HTMLCS.addMessage(HTMLCS.ERROR, element, 'Form control does not have an ID, therefore it cannot have an explicit label.', 'H44.NoId');
         } else {
             var id = element.getAttribute('id');
             if (!this._labelNames[id]) {
@@ -679,7 +679,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
         var legend = fieldset.querySelector('legend');
 
         if ((legend === null) || (legend.parentNode !== fieldset)) {
-            HTMLCS.addMessage(HTMLCS.ERROR, fieldset, 'Fieldset does not contain a legend element that includes a description of that group.', 'H71.3');
+            HTMLCS.addMessage(HTMLCS.ERROR, fieldset, 'Fieldset does not contain a legend element. All fieldsets should contain a legend element that describes a description of the field group.', 'H71.3');
         }
     },
 
