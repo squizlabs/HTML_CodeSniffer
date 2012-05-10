@@ -220,10 +220,10 @@ However, in HTML5, an anchor element without a href attribute (but with content)
 
 <tr class="">
 <td id="4_1_2_0_name" headers="name_4_1_2 sc4_1_2">
-<p>Empty anchor element found.</p>
-<div class="fullcode">[Standard].Principle4.Guideline4_1.4_1_2.H91.A.EmptyNoId</div></td>
+<p>Anchor element found with a valid href attribute, but no link content has been supplied.</p>
+<div class="fullcode">[Standard].Principle4.Guideline4_1.4_1_2.H91.A.NoContent</div></td>
 <td id="4_1_2_0_applies" headers="applies_4_1_2 sc4_1_2">
-<p>Completely empty anchor element (no text, no href, no ID).</p>
+<p>Link with a href attribute, but without link text. This means it does not have an accessibility API "name".</p>
 </td>
 <td id="4_1_2_0_tech" headers="tech_4_1_2 sc4_1_2">
 <ul>
@@ -234,10 +234,10 @@ However, in HTML5, an anchor element without a href attribute (but with content)
 
 <tr class="">
 <td id="4_1_2_1_name" headers="name_4_1_2 sc4_1_2">
-<p>Empty anchor elements should not be used for defining a in-page link target. Consider moving its ID to a parent or nearby element.</p>
-<div class="fullcode">[Standard].Principle4.Guideline4_1.4_1_2.H91.A.Empty</div></td>
+<p>Anchor element found with no link content and no name and/or ID attribute.</p>
+<div class="fullcode">[Standard].Principle4.Guideline4_1.4_1_2.H91.A.EmptyNoId</div></td>
 <td id="4_1_2_1_applies" headers="applies_4_1_2 sc4_1_2">
-<p>Empty anchor element (no text, no href) but with an ID. This breaks the intended role of an "A" element being a link. The ID should be placed on something more concrete, unless the ID is used for reasons like scripting.</p>
+<p>Completely empty anchor element (no text, no href, no ID).</p>
 </td>
 <td id="4_1_2_1_tech" headers="tech_4_1_2 sc4_1_2">
 <ul>
@@ -248,10 +248,10 @@ However, in HTML5, an anchor element without a href attribute (but with content)
 
 <tr class="">
 <td id="4_1_2_2_name" headers="name_4_1_2 sc4_1_2">
-<p>Empty anchor elements should not be used for defining a in-page link target. Consider moving the name attribute to become an ID of a parent or nearby element.</p>
-<div class="fullcode">[Standard].Principle4.Guideline4_1.4_1_2.H91.A.EmptyWithName</div></td>
+<p>Empty anchor elements should not be used for defining in-page link targets. Consider moving its ID to a parent or nearby element.</p>
+<div class="fullcode">[Standard].Principle4.Guideline4_1.4_1_2.H91.A.Empty</div></td>
 <td id="4_1_2_2_applies" headers="applies_4_1_2 sc4_1_2">
-<p>Empty anchor element (no text, no href) but with a name attribute. This breaks the intended role of an "A" element being a link. This is the older method of creating an in-page link target, using the name attribute instead of ID.</p>
+<p>Empty anchor element (no text, no href) but with an ID. This breaks the intended role of an "A" element being a link. The ID should be placed on something more concrete, unless the ID is used for reasons like scripting.</p>
 </td>
 <td id="4_1_2_2_tech" headers="tech_4_1_2 sc4_1_2">
 <ul>
@@ -262,10 +262,10 @@ However, in HTML5, an anchor element without a href attribute (but with content)
 
 <tr class="">
 <td id="4_1_2_3_name" headers="name_4_1_2 sc4_1_2">
-<p>Link contains a valid href attribute, but no content.</p>
-<div class="fullcode">[Standard].Principle4.Guideline4_1.4_1_2.H91.A.NoContent</div></td>
+<p>Empty anchor elements should not be used for defining in-page link targets. Consider moving the name attribute to become an ID of a parent or nearby element.</p>
+<div class="fullcode">[Standard].Principle4.Guideline4_1.4_1_2.H91.A.EmptyWithName</div></td>
 <td id="4_1_2_3_applies" headers="applies_4_1_2 sc4_1_2">
-<p>Link with a href attribute, but without link text. This means it does not have an accessibility API "name".</p>
+<p>Empty anchor element (no text, no href) but with a name attribute. This breaks the intended role of an "A" element being a link. This is the older method of creating an in-page link target, using the name attribute instead of ID.</p>
 </td>
 <td id="4_1_2_3_tech" headers="tech_4_1_2 sc4_1_2">
 <ul>
@@ -333,10 +333,10 @@ However, in HTML5, an anchor element without a href attribute (but with content)
 
 <tr class="">
 <td id="4_1_2_7_name" headers="name_4_1_2 sc4_1_2">
-<p>Anchor elements should not be used for defining an in-page link target. If not using the ID for other purposes (such as CSS or scripting), consider moving it to a parent element.</p>
-<div class="fullcode">[Standard].Principle4.Guideline4_1.4_1_2.H91.A.NoHref</div></td>
+<p>Anchor element found with link content, but no href and/or ID attribute has been supplied.</p>
+<div class="fullcode">[Standard].Principle4.Guideline4_1.4_1_2.H91.A.Placeholder</div></td>
 <td id="4_1_2_7_applies" headers="applies_4_1_2 sc4_1_2">
-<p>Anchor element with no href, but with an ID and text. This breaks the intended role of an "A" element being a link. It will usually be around text inside another parent element (such as a heading); the ID should be moved up for the same effect.</p>
+<p>Link with text, but no href or ID. This means it does not have an accessibility API "value". The quoted text comes from the HTML5 definition of what an "A" element without a href represents.</p>
 </td>
 <td id="4_1_2_7_tech" headers="tech_4_1_2 sc4_1_2">
 <ul>
@@ -347,10 +347,10 @@ However, in HTML5, an anchor element without a href attribute (but with content)
 
 <tr class="">
 <td id="4_1_2_8_name" headers="name_4_1_2 sc4_1_2">
-<p>Link found with text, but no href and ID. If this is not "where a link would have been placed if relevant", the A element should be removed.</p>
-<div class="fullcode">[Standard].Principle4.Guideline4_1.4_1_2.H91.A.Placeholder</div></td>
+<p>Anchor elements should not be used for defining in-page link targets. If not using the ID for other purposes (such as CSS or scripting), consider moving it to a parent element.</p>
+<div class="fullcode">[Standard].Principle4.Guideline4_1.4_1_2.H91.A.NoHref</div></td>
 <td id="4_1_2_8_applies" headers="applies_4_1_2 sc4_1_2">
-<p>Link with text, but no href or ID. This means it does not have an accessibility API "value". The quoted text comes from the HTML5 definition of what an "A" element without a href represents.</p>
+<p>Anchor element with no href, but with an ID and text. This breaks the intended role of an "A" element being a link. It will usually be around text inside another parent element (such as a heading); the ID should be moved up for the same effect.</p>
 </td>
 <td id="4_1_2_8_tech" headers="tech_4_1_2 sc4_1_2">
 <ul>

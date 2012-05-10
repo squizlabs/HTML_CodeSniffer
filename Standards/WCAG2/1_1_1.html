@@ -178,7 +178,7 @@
 
 <tr class="">
 <td id="1_1_1_3_name" headers="name_1_1_1 sc1_1_1">
-<p>Image submit button missing an alt attribute. Specify a text alternative using the alt attribute, that describes the button's function.</p>
+<p>Image submit button missing an alt attribute. Specify a text alternative that describes the button's function, using the alt attribute</p>
 <div class="fullcode">[Standard].Principle1.Guideline1_1.1_1_1.H36</div></td>
 <td id="1_1_1_3_applies" headers="applies_1_1_1 sc1_1_1">
 <p>Image submit button that has a missing or empty alt attribute.</p>
@@ -304,41 +304,28 @@
 </tr>
 
 <tr class="">
-<td id="1_1_1_17_name" headers="name_1_1_1 sc1_1_1">
-<p>Check that the value of the longdesc attribute is a valid URI of an existing resource.</p>
-<div class="fullcode">[Standard].Principle1.Guideline1_1.1_1_1.H45.2</div></td>
-<td id="1_1_1_17_applies" headers="applies_1_1_1 sc1_1_1">
-<p>Image with a longdesc attribute that is not an absolute URI (as determined by having a protocol in the URI). It is fired as a warning because it is impossible to test whether it is a valid relative path, or plain text.</p>
-</td>
-<td id="1_1_1_17_tech" headers="tech_1_1_1 sc1_1_1">
-<ul>
-<li><a href="http://www.w3.org/TR/WCAG20-TECHS/H45">H45</a></li>
-</ul>
-</td>
-</tr>
-
-<tr class="">
-<td id="1_1_1_18_name" headers="name_1_1_1 sc1_1_1">
-<p>If this image cannot be described in a short text alternative, provide a long text alternative, either using the longdesc attribute or another sufficient technique.</p>
-<div class="fullcode">[Standard].Principle1.Guideline1_1.1_1_1.H45.1</div></td>
-<td id="1_1_1_18_applies" headers="applies_1_1_1 sc1_1_1">
+<td id="1_1_1_16_name" headers="name_1_1_1 sc1_1_1">
+<p>If this image cannot be described in a short text alternative, ensure a long text alternative is available, such as in the body text or through a link.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_1.1_1_1.G73,G74</div></td>
+<td id="1_1_1_16_applies" headers="applies_1_1_1 sc1_1_1">
 <p>Images with alt text, in general.</p>
 </td>
-<td id="1_1_1_18_tech" headers="tech_1_1_1 sc1_1_1">
+<td id="1_1_1_16_tech" headers="tech_1_1_1 sc1_1_1">
 <ul>
-<li><a href="http://www.w3.org/TR/WCAG20-TECHS/H45">H45</a></li>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/G73">G73</a></li>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/G74">G74</a></li>
 </ul>
 </td>
 </tr>
 
 <tr class="">
-<td id="1_1_1_19_name" headers="name_1_1_1 sc1_1_1">
+<td id="1_1_1_17_name" headers="name_1_1_1 sc1_1_1">
 <p>Img element is marked so that it is ignored by Assistive Technology.</p>
 <div class="fullcode">[Standard].Principle1.Guideline1_1.1_1_1.H67.2</div></td>
-<td id="1_1_1_19_applies" headers="applies_1_1_1 sc1_1_1">
+<td id="1_1_1_17_applies" headers="applies_1_1_1 sc1_1_1">
 <p>Image element (outside of a link) that is marked with an empty alt attribute, and its title attribute is empty or absent.</p>
 </td>
-<td id="1_1_1_19_tech" headers="tech_1_1_1 sc1_1_1">
+<td id="1_1_1_17_tech" headers="tech_1_1_1 sc1_1_1">
 <ul>
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/H67">H67</a></li>
 </ul>
@@ -362,7 +349,7 @@
 
 <tr class="">
 <td id="1_1_1_11_name" headers="name_1_1_1 sc1_1_1">
-<p>Check that short (and if appropriate, long) text alternatives are available for non-text content that serve the same purpose and presents the same information.</p>
+<p>Check that short (and if appropriate, long) text alternatives are available for non-text content that serve the same purpose and present the same information.</p>
 <div class="fullcode">[Standard].Principle1.Guideline1_1.1_1_1.G94,G92.Applet</div></td>
 <td id="1_1_1_11_applies" headers="applies_1_1_1 sc1_1_1">
 <p>Applet elements (with correctly specified text alternatives) in general.</p>
@@ -377,7 +364,7 @@
 
 <tr class="">
 <td id="1_1_1_12_name" headers="name_1_1_1 sc1_1_1">
-<p>Check that short (and if appropriate, long) text alternatives are available for non-text content that serve the same purpose and presents the same information.</p>
+<p>Check that short (and if appropriate, long) text alternatives are available for non-text content that serve the same purpose and present the same information.</p>
 <div class="fullcode">[Standard].Principle1.Guideline1_1.1_1_1.G94,G92.Object</div></td>
 <td id="1_1_1_12_applies" headers="applies_1_1_1 sc1_1_1">
 <p>Object elements (with a correctly specified text alternative) in general.</p>
@@ -392,26 +379,12 @@
 
 <tr class="">
 <td id="1_1_1_13_name" headers="name_1_1_1 sc1_1_1">
-<p>Check that the content at the target of the longdesc URI contains a long description describing the original non-text content associated with it.</p>
-<div class="fullcode">[Standard].Principle1.Guideline1_1.1_1_1.H45.3</div></td>
-<td id="1_1_1_13_applies" headers="applies_1_1_1 sc1_1_1">
-<p>Image with a valid longdesc attribute (that is an absolute URI).</p>
-</td>
-<td id="1_1_1_13_tech" headers="tech_1_1_1 sc1_1_1">
-<ul>
-<li><a href="http://www.w3.org/TR/WCAG20-TECHS/H45">H45</a></li>
-</ul>
-</td>
-</tr>
-
-<tr class="">
-<td id="1_1_1_14_name" headers="name_1_1_1 sc1_1_1">
 <p>Ensure that the area element's text alternative serves the same purpose as the part of image map image it references.</p>
 <div class="fullcode">[Standard].Principle1.Guideline1_1.1_1_1.H24.2</div></td>
-<td id="1_1_1_14_applies" headers="applies_1_1_1 sc1_1_1">
+<td id="1_1_1_13_applies" headers="applies_1_1_1 sc1_1_1">
 <p>Area elements with alt text, in general.</p>
 </td>
-<td id="1_1_1_14_tech" headers="tech_1_1_1 sc1_1_1">
+<td id="1_1_1_13_tech" headers="tech_1_1_1 sc1_1_1">
 <ul>
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/H24">H24</a></li>
 </ul>
@@ -419,13 +392,13 @@
 </tr>
 
 <tr class="">
-<td id="1_1_1_15_name" headers="name_1_1_1 sc1_1_1">
+<td id="1_1_1_14_name" headers="name_1_1_1 sc1_1_1">
 <p>Ensure that the image submit button's alt text identifies the purpose of the button.</p>
 <div class="fullcode">[Standard].Principle1.Guideline1_1.1_1_1.G94.Button</div></td>
-<td id="1_1_1_15_applies" headers="applies_1_1_1 sc1_1_1">
+<td id="1_1_1_14_applies" headers="applies_1_1_1 sc1_1_1">
 <p>Image submit buttons in general. In the case of these, they should describe the function of the button, not necessarily the image in general (although they should be the same).</p>
 </td>
-<td id="1_1_1_15_tech" headers="tech_1_1_1 sc1_1_1">
+<td id="1_1_1_14_tech" headers="tech_1_1_1 sc1_1_1">
 <ul>
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/G94">G94</a></li>
 </ul>
@@ -433,13 +406,13 @@
 </tr>
 
 <tr class="">
-<td id="1_1_1_16_name" headers="name_1_1_1 sc1_1_1">
+<td id="1_1_1_15_name" headers="name_1_1_1 sc1_1_1">
 <p>Ensure that the img element's alt text serves the same purpose and presents the same information as the image.</p>
 <div class="fullcode">[Standard].Principle1.Guideline1_1.1_1_1.G94.Image</div></td>
-<td id="1_1_1_16_applies" headers="applies_1_1_1 sc1_1_1">
+<td id="1_1_1_15_applies" headers="applies_1_1_1 sc1_1_1">
 <p>Images with alt text, in general.</p>
 </td>
-<td id="1_1_1_16_tech" headers="tech_1_1_1 sc1_1_1">
+<td id="1_1_1_15_tech" headers="tech_1_1_1 sc1_1_1">
 <ul>
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/G94">G94</a></li>
 </ul>

@@ -108,7 +108,7 @@
 
 <tbody>
 <tr class="top-row">
-<td id="sc1_1_1" rowspan="20" class="scrow"><h5 class="grey-heading"><a href="1_1_1"><abbr title="Success Criterion">SC</abbr> 1.1.1: Non-text Content (Level <abbr title="Single A">A</abbr>)</a></h5><p>All non-text content that is presented to the user has a text alternative that serves the equivalent purpose, except for the situations listed below.</p>
+<td id="sc1_1_1" rowspan="18" class="scrow"><h5 class="grey-heading"><a href="1_1_1"><abbr title="Success Criterion">SC</abbr> 1.1.1: Non-text Content (Level <abbr title="Single A">A</abbr>)</a></h5><p>All non-text content that is presented to the user has a text alternative that serves the equivalent purpose, except for the situations listed below.</p>
 
 <ul>
 <li><em>Controls, Input:</em> If non-text content is a control or accepts user input, then it has a name that describes its purpose. (Refer to <a href="#gl4_1">Guideline 4.1</a> for additional requirements for controls and content that accepts user input.)</li>
@@ -148,7 +148,7 @@
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/G94">G94</a></li>
 </ul>
 </td><tr>
-<td headers="name_1_1 sc1_1_1" class=" error"><p><strong>Error:</strong> Image submit button missing an alt attribute. Specify a text alternative using the alt attribute, that describes the button's function.</p>
+<td headers="name_1_1 sc1_1_1" class=" error"><p><strong>Error:</strong> Image submit button missing an alt attribute. Specify a text alternative that describes the button's function, using the alt attribute</p>
 <div class="fullcode">[Standard].Principle1.Guideline1_1.1_1_1.H36</div></div></td><td headers="applies_1_1 sc1_1_1" class=""><p>Image submit button that has a missing or empty alt attribute.</p>
 </td><td headers="tech_1_1 sc1_1_1" class=""><ul>
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/H36">H36</a></li>
@@ -172,22 +172,11 @@
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/H24">H24</a></li>
 </ul>
 </td><tr>
-<td headers="name_1_1 sc1_1_1" class=" warning"><p><strong>Warning:</strong> If this image cannot be described in a short text alternative, provide a long text alternative, either using the longdesc attribute or another sufficient technique.</p>
-<div class="fullcode">[Standard].Principle1.Guideline1_1.1_1_1.H45.1</div></div></td><td headers="applies_1_1 sc1_1_1" class=""><p>Images with alt text, in general.</p>
+<td headers="name_1_1 sc1_1_1" class=" warning"><p><strong>Warning:</strong> If this image cannot be described in a short text alternative, ensure a long text alternative is available, such as in the body text or through a link.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_1.1_1_1.G73,G74</div></div></td><td headers="applies_1_1 sc1_1_1" class=""><p>Images with alt text, in general.</p>
 </td><td headers="tech_1_1 sc1_1_1" class=""><ul>
-<li><a href="http://www.w3.org/TR/WCAG20-TECHS/H45">H45</a></li>
-</ul>
-</td><tr>
-<td headers="name_1_1 sc1_1_1" class=" warning"><p><strong>Warning:</strong> Check that the value of the longdesc attribute is a valid URI of an existing resource.</p>
-<div class="fullcode">[Standard].Principle1.Guideline1_1.1_1_1.H45.2</div></div></td><td headers="applies_1_1 sc1_1_1" class=""><p>Image with a longdesc attribute that is not an absolute URI (as determined by having a protocol in the URI). It is fired as a warning because it is impossible to test whether it is a valid relative path, or plain text.</p>
-</td><td headers="tech_1_1 sc1_1_1" class=""><ul>
-<li><a href="http://www.w3.org/TR/WCAG20-TECHS/H45">H45</a></li>
-</ul>
-</td><tr>
-<td headers="name_1_1 sc1_1_1" class=" notice"><p><strong>Notice:</strong> Check that the content at the target of the longdesc URI contains a long description describing the original non-text content associated with it.</p>
-<div class="fullcode">[Standard].Principle1.Guideline1_1.1_1_1.H45.3</div></div></td><td headers="applies_1_1 sc1_1_1" class=""><p>Image with a valid longdesc attribute (that is an absolute URI).</p>
-</td><td headers="tech_1_1 sc1_1_1" class=""><ul>
-<li><a href="http://www.w3.org/TR/WCAG20-TECHS/H45">H45</a></li>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/G73">G73</a></li>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/G74">G74</a></li>
 </ul>
 </td><tr>
 <td headers="name_1_1 sc1_1_1" class=" error"><p><strong>Error:</strong> Img element inside a link must not use alt text that duplicates the text content of the link.</p>
@@ -214,7 +203,7 @@
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/H53">H53</a></li>
 </ul>
 </td><tr>
-<td headers="name_1_1 sc1_1_1" class=" notice"><p><strong>Notice:</strong> Check that short (and if appropriate, long) text alternatives are available for non-text content that serve the same purpose and presents the same information.</p>
+<td headers="name_1_1 sc1_1_1" class=" notice"><p><strong>Notice:</strong> Check that short (and if appropriate, long) text alternatives are available for non-text content that serve the same purpose and present the same information.</p>
 <div class="fullcode">[Standard].Principle1.Guideline1_1.1_1_1.G94,G92.Object</div></div></td><td headers="applies_1_1 sc1_1_1" class=""><p>Object elements (with a correctly specified text alternative) in general.</p>
 </td><td headers="tech_1_1 sc1_1_1" class=""><ul>
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/G94">G94</a></li>
@@ -233,7 +222,7 @@
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/H35">H35</a></li>
 </ul>
 </td><tr>
-<td headers="name_1_1 sc1_1_1" class=" notice"><p><strong>Notice:</strong> Check that short (and if appropriate, long) text alternatives are available for non-text content that serve the same purpose and presents the same information.</p>
+<td headers="name_1_1 sc1_1_1" class=" notice"><p><strong>Notice:</strong> Check that short (and if appropriate, long) text alternatives are available for non-text content that serve the same purpose and present the same information.</p>
 <div class="fullcode">[Standard].Principle1.Guideline1_1.1_1_1.G94,G92.Applet</div></div></td><td headers="applies_1_1 sc1_1_1" class=""><p>Applet elements (with correctly specified text alternatives) in general.</p>
 </td><td headers="tech_1_1 sc1_1_1" class=""><ul>
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/G94">G94</a></li>
@@ -368,11 +357,23 @@
 
 <tbody>
 <tr class="top-row">
-<td id="sc1_3_1" rowspan="32" class="scrow"><h5 class="grey-heading"><a href="1_3_1"><abbr title="Success Criterion">SC</abbr> 1.3.1: Info and Relationships (Level <abbr title="Single A">A</abbr>)</a></h5><p>Information, structure, and relationships conveyed through presentation can be programmatically determined or are available in text.</p>
+<td id="sc1_3_1" rowspan="35" class="scrow"><h5 class="grey-heading"><a href="1_3_1"><abbr title="Success Criterion">SC</abbr> 1.3.1: Info and Relationships (Level <abbr title="Single A">A</abbr>)</a></h5><p>Information, structure, and relationships conveyed through presentation can be programmatically determined or are available in text.</p>
 </td><td headers="name_1_3 sc1_3_1" class=" error"><p><strong>Error:</strong> Multiple labels exist with the same "for" attribute. If these labels refer to different form controls, the controls should have unique "id" attributes.</p>
 <div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H93</div></div></td><td headers="applies_1_3 sc1_3_1" class=""><p>Second and subsequent sightings of a specific value for the "for" attribute. Labels should be unique per element.</p>
 </td><td headers="tech_1_3 sc1_3_1" class=""><ul>
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/H93">H93</a></li>
+</ul>
+</td><tr>
+<td headers="name_1_3 sc1_3_1" class=" error"><p><strong>Error:</strong> This label's "for" attribute contains an ID that does not exist in the document.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H44.NonExistent</div></div></td><td headers="applies_1_3 sc1_3_1" class=""><p>Label with a "for" attribute that does not match any ID used in the document.</p>
+</td><td headers="tech_1_3 sc1_3_1" class=""><ul>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/H44">H44</a></li>
+</ul>
+</td><tr>
+<td headers="name_1_3 sc1_3_1" class=" error"><p><strong>Error:</strong> This label's "for" attribute contains an ID that points to an element that is not a form control.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H44.NotFormControl</div></div></td><td headers="applies_1_3 sc1_3_1" class=""><p>Label with a "for" attribute that matches an ID of an element that is not a form control (that should have a label). Specifically tested are input, select and textarea elements. Labels can only be associated with form controls, not generically with other elements.</p>
+</td><td headers="tech_1_3 sc1_3_1" class=""><ul>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/H44">H44</a></li>
 </ul>
 </td><tr>
 <td headers="name_1_3 sc1_3_1" class=" error"><p><strong>Error:</strong> Label found without a "for" attribute, and therefore not explicitly associated with a form control.</p>
@@ -381,7 +382,7 @@
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/H44">H44</a></li>
 </ul>
 </td><tr>
-<td headers="name_1_3 sc1_3_1" class=" error"><p><strong>Error:</strong> Form control does not have an id, therefore it cannot have an explicit label.</p>
+<td headers="name_1_3 sc1_3_1" class=" error"><p><strong>Error:</strong> Form control does not have an ID, therefore it cannot have an explicit label.</p>
 <div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H44.NoId</div></div></td><td headers="applies_1_3 sc1_3_1" class=""><p>Form control without an ID.</p>
 </td><td headers="tech_1_3 sc1_3_1" class=""><ul>
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/H44">H44</a></li>
@@ -423,13 +424,13 @@
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/H44">H44</a></li>
 </ul>
 </td><tr>
-<td headers="name_1_3 sc1_3_1" class=" error"><p><strong>Error:</strong> Semantic markup should be used to mark emphasised or special text so that it can be programmatically determined.</p>
+<td headers="name_1_3 sc1_3_1" class=" warning"><p><strong>Warning:</strong> Semantic markup should be used to mark emphasised or special text so that it can be programmatically determined.</p>
 <div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H49.[NodeName]</div></div></td><td headers="applies_1_3 sc1_3_1" class=""><p>Element that is used for presentational purposes (by HTML 4's standards). The element code contains a title-cased version of the offending node name, to allow separate resolutions for each type of element (eg. B with STRONG).</p>
 </td><td headers="tech_1_3 sc1_3_1" class=""><ul>
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/H49">H49</a></li>
 </ul>
 </td><tr>
-<td headers="name_1_3 sc1_3_1" class=" error"><p><strong>Error:</strong> Semantic markup should be used to mark emphasised or special text so that it can be programmatically determined.</p>
+<td headers="name_1_3 sc1_3_1" class=" warning"><p><strong>Warning:</strong> Semantic markup should be used to mark emphasised or special text so that it can be programmatically determined.</p>
 <div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H49.AlignAttr</div></div></td><td headers="applies_1_3 sc1_3_1" class=""><p>Element with a align attribute. It should use CSS (text-align in text-related elements like paragraphs, or float with image floating).</p>
 </td><td headers="tech_1_3 sc1_3_1" class=""><ul>
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/H49">H49</a></li>
@@ -453,81 +454,81 @@
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/H63">H63</a></li>
 </ul>
 </td><tr>
-<td headers="name_1_3 sc1_3_1" class=" warning"><p><strong>Warning:</strong> Scope attributes are ambiguous in a multi-level structure. Use the headers attribute on td elements instead.</p>
+<td headers="name_1_3 sc1_3_1" class=" warning"><p><strong>Warning:</strong> Scope attributes on th elements are ambiguous in a table with multiple levels of headings. Use the headers attribute on td elements instead.</p>
 <div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H43.ScopeAmbiguous</div></div></td><td headers="applies_1_3 sc1_3_1" class=""><p>Table with multiple levels of row or column headers, but using scope attribute. In this case, the headers attribute MUST be used; scope is not sufficient.</p>
 </td><td headers="tech_1_3 sc1_3_1" class=""><ul>
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/H43">H43</a></li>
 </ul>
 </td><tr>
-<td headers="name_1_3 sc1_3_1" class=" error"><p><strong>Error:</strong> Incorrect headers attribute, expected [expected headers] but found [actual headers]</p>
+<td headers="name_1_3 sc1_3_1" class=" error"><p><strong>Error:</strong> Incorrect headers attribute on this td element. Expected "[expected headers]" but found "[actual headers]"</p>
 <div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H43.IncorrectAttr</div></div></td><td headers="applies_1_3 sc1_3_1" class=""><p>TD element with a headers attribute which does not match the one expected from its relevant header cells (the IDs of the TH elements it is aligned with). The test ignores extra white space, and the headers can be in any order, as long as they are there.</p>
 </td><td headers="tech_1_3 sc1_3_1" class=""><ul>
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/H43">H43</a></li>
 </ul>
 </td><tr>
-<td headers="name_1_3 sc1_3_1" class=" error"><p><strong>Error:</strong> Associate data cells with multi-level table headings using the headers attribute.</p>
+<td headers="name_1_3 sc1_3_1" class=" error"><p><strong>Error:</strong> The relationship between td elements and their associated th elements is not defined. As this table has multiple levels of th elements, you must use the headers attribute on td elements.</p>
 <div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H43.HeadersRequired</div></div></td><td headers="applies_1_3 sc1_3_1" class=""><p>Table with multiple levels of row or column headers, not using headers attributes at all.</p>
 </td><td headers="tech_1_3 sc1_3_1" class=""><ul>
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/H43">H43</a></li>
 </ul>
 </td><tr>
-<td headers="name_1_3 sc1_3_1" class=" error"><p><strong>Error:</strong> Not all th elements in this table contain an id attribute, so that they may be referenced by td elements' headers attributes.</p>
+<td headers="name_1_3 sc1_3_1" class=" error"><p><strong>Error:</strong> Not all th elements in this table contain an id attribute. These cells should contain ids so that they may be referenced by td elements headers attributes.'</p>
 <div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H43.MissingHeaderIds</div></div></td><td headers="applies_1_3 sc1_3_1" class=""><p>Table where not all TH elements contain IDs.</p>
 </td><td headers="tech_1_3 sc1_3_1" class=""><ul>
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/H43">H43</a></li>
 </ul>
 </td><tr>
-<td headers="name_1_3 sc1_3_1" class=" error"><p><strong>Error:</strong> Not all td elements contain a headers attribute, which list the ids of all headers associated with that cell.</p>
+<td headers="name_1_3 sc1_3_1" class=" error"><p><strong>Error:</strong> Not all td elements in this table contain a headers attribute. Each headers attribute should list the ids of all th elements associated with that cell.</p>
 <div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H43.MissingHeadersAttrs</div></div></td><td headers="applies_1_3 sc1_3_1" class=""><p>Table where not all TD elements contain headers attributes (but some do).</p>
 </td><td headers="tech_1_3 sc1_3_1" class=""><ul>
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/H43">H43</a></li>
 </ul>
 </td><tr>
-<td headers="name_1_3 sc1_3_1" class=" error"><p><strong>Error:</strong> Associate data cells with table headings using either the scope or headers attribute techniques.</p>
+<td headers="name_1_3 sc1_3_1" class=" error"><p><strong>Error:</strong> The relationship between td elements and their associated th elements is not defined. Use either the scope attribute on th elements, or the headers attribute on td elements.</p>
 <div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H43,H63</div></div></td><td headers="applies_1_3 sc1_3_1" class=""><p>Table with a single levels of row AND column headers, not using headers or scope attributes at all. (Either is acceptable in this situation.)</p>
 </td><td headers="tech_1_3 sc1_3_1" class=""><ul>
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/H43">H43</a></li>
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/H63">H63</a></li>
 </ul>
 </td><tr>
-<td headers="name_1_3 sc1_3_1" class=" error"><p><strong>Error:</strong> Not all th elements have a scope attribute, identifying the purpose of the header.</p>
+<td headers="name_1_3 sc1_3_1" class=" error"><p><strong>Error:</strong> Not all th elements in this table have a scope attribute. These cells should contain a scope attribute to identify their association with td elements.</p>
 <div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H63.1</div></div></td><td headers="applies_1_3 sc1_3_1" class=""><p>Table where some TH elements contain scope attributes - signifying an intention to use that format of association (and it's allowed) - but not all of them do.</p>
 </td><td headers="tech_1_3 sc1_3_1" class=""><ul>
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/H63">H63</a></li>
 </ul>
 </td><tr>
-<td headers="name_1_3 sc1_3_1" class=" error"><p><strong>Error:</strong> If both a summary attribute and a caption element are present for this data table, the summary should not duplicate the caption.</p>
+<td headers="name_1_3 sc1_3_1" class=" error"><p><strong>Error:</strong> If this table is a data table, and both a summary attribute and a caption element are present, the summary should not duplicate the caption.</p>
 <div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H39,H73.4</div></div></td><td headers="applies_1_3 sc1_3_1" class=""><p>Table where the summary attribute and caption element match exactly (after trimming).</p>
 </td><td headers="tech_1_3 sc1_3_1" class=""><ul>
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/H39">H39</a></li>
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/H73">H73</a></li>
 </ul>
 </td><tr>
-<td headers="name_1_3 sc1_3_1" class=" notice"><p><strong>Notice:</strong> Check that the summary attribute describes the table's organization or explains how to use the table.</p>
+<td headers="name_1_3 sc1_3_1" class=" notice"><p><strong>Notice:</strong> If this table is a data table, check that the summary attribute describes the tables organization or explains how to use the table.'</p>
 <div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H73.3.Check</div></div></td><td headers="applies_1_3 sc1_3_1" class=""><p>Table with specified summary attribute.</p>
 </td><td headers="tech_1_3 sc1_3_1" class=""><ul>
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/H73">H73</a></li>
 </ul>
 </td><tr>
-<td headers="name_1_3 sc1_3_1" class=" warning"><p><strong>Warning:</strong> Consider using the summary attribute of the table element to give an overview of this data table.</p>
+<td headers="name_1_3 sc1_3_1" class=" warning"><p><strong>Warning:</strong> If this table is a data table, consider using the summary attribute of the table element to give an overview of this table.</p>
 <div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H73.3.NoSummary</div></div></td><td headers="applies_1_3 sc1_3_1" class=""><p>Table without summary attribute.</p>
 </td><td headers="tech_1_3 sc1_3_1" class=""><ul>
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/H73">H73</a></li>
 </ul>
 </td><tr>
-<td headers="name_1_3 sc1_3_1" class=" notice"><p><strong>Notice:</strong> Check that the caption element accurately describes this table.</p>
+<td headers="name_1_3 sc1_3_1" class=" notice"><p><strong>Notice:</strong> If this table is a data table, check that the caption element accurately describes this table.</p>
 <div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H39.3.Check</div></div></td><td headers="applies_1_3 sc1_3_1" class=""><p>Table with specified caption element.</p>
 </td><td headers="tech_1_3 sc1_3_1" class=""><ul>
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/H39">H39</a></li>
 </ul>
 </td><tr>
-<td headers="name_1_3 sc1_3_1" class=" warning"><p><strong>Warning:</strong> Consider using a caption element to the table element to identify this data table.</p>
+<td headers="name_1_3 sc1_3_1" class=" warning"><p><strong>Warning:</strong> If this table is a data table, consider using a caption element to the table element to identify this table.</p>
 <div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H39.3.NoCaption</div></div></td><td headers="applies_1_3 sc1_3_1" class=""><p>Table without caption element.</p>
 </td><td headers="tech_1_3 sc1_3_1" class=""><ul>
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/H39">H39</a></li>
 </ul>
 </td><tr>
-<td headers="name_1_3 sc1_3_1" class=" error"><p><strong>Error:</strong> Fieldset does not contain a legend element that includes a description of that group.</p>
+<td headers="name_1_3 sc1_3_1" class=" error"><p><strong>Error:</strong> Fieldset does not contain a legend element. All fieldsets should contain a legend element that describes a description of the field group.</p>
 <div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H71.3</div></div></td><td headers="applies_1_3 sc1_3_1" class=""><p>Fieldset without legend element.</p>
 </td><td headers="tech_1_3 sc1_3_1" class=""><ul>
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/H71">H71</a></li>
@@ -557,10 +558,16 @@
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/H48">H48</a></li>
 </ul>
 </td><tr>
-<td headers="name_1_3 sc1_3_1" class=" warning"><p><strong>Warning:</strong> Authors should use properly nested headings (eg. [explanation text]) to facilitate navigation and understanding of document structure.</p>
-<div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.G141</div></div></td><td headers="applies_1_3 sc1_3_1" class=""><p>Header elements when a skip of a heading level is detected - for example, H2 followed by H4. The explanation text says something like "H3 follows H2", or that H1s should be the primary heading if we appear to be missing a H1.</p>
+<td headers="name_1_3 sc1_3_1" class=" warning"><p><strong>Warning:</strong> The heading structure is not logically nested. This [heading] element (should be a [correct heading] to be properly nested / appears to be the primary document heading, so should be an h1 element).</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.G141</div></div></td><td headers="applies_1_3 sc1_3_1" class=""><p>Header elements when a skip of a heading level is detected - for example, H2 followed by H4. <strong>Error at AAA level</strong>, as violation of Success Criterion 2.4.10.</p>
 </td><td headers="tech_1_3 sc1_3_1" class=""><ul>
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/G141">G141</a></li>
+</ul>
+</td><tr>
+<td headers="name_1_3 sc1_3_1" class=" warning"><p><strong>Warning:</strong> If this element contains a navigation section, it is recommended that it be marked up as a list.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H48</div></div></td><td headers="applies_1_3 sc1_3_1" class=""><p>P or DIV element that has more than one link.</p>
+</td><td headers="tech_1_3 sc1_3_1" class=""><ul>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/H48">H48</a></li>
 </ul>
 </td><tr class="top-row">
 <td id="sc1_3_2" rowspan="1" class="scrow"><h5 class="grey-heading"><a href="1_3_2"><abbr title="Success Criterion">SC</abbr> 1.3.2: Meaningful Sequence (Level <abbr title="Single A">A</abbr>)</a></h5><p>When the sequence in which content is presented affects its meaning, a correct reading sequence can be programmatically determined.</p>
@@ -965,7 +972,7 @@
 <p><strong>Editor's Note:</strong> Superseded by <a href="#sc2_3_2">Success Criterion 2.3.2</a> at level AAA. That Success Criterion removes the flash threshold allowances.</p>
 
 <p>The notice about "sufficiently small" size is deliberately vague, since it depends on whether it is for general web usage, or where the screen size is known (such as for display in a foyer). In the former case, a baseline is given based on a minimum resolution and screen size. See technique <a href="http://www.w3.org/TR/WCAG20-TECHS/G176">G176: Keeping the flashing area small enough</a> for a further discussion.</p>
-</td><td headers="name_2_3 sc2_3_1" class=" notice"><p><strong>Notice:</strong> Check that no component of the content does not flash more than three times in any 1-second period, or that the size of the flashing area is sufficiently small.</p>
+</td><td headers="name_2_3 sc2_3_1" class=" notice"><p><strong>Notice:</strong> Check that no component of the content flashes more than three times in any 1-second period, or that the size of any flashing area is sufficiently small.</p>
 <div class="fullcode">[Standard].Principle2.Guideline2_3.2_3_1.G19,G176</div></div></td><td headers="applies_2_3 sc2_3_1" class=""><p>Top element.</p>
 </td><td headers="tech_2_3 sc2_3_1" class=""><ul>
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/G19">G19</a></li>
@@ -973,7 +980,7 @@
 </ul>
 </td><tr class="top-row">
 <td id="sc2_3_2" rowspan="1" class="scrow"><h5 class="grey-heading"><a href="2_3_2"><abbr title="Success Criterion">SC</abbr> 2.3.2: Three Flashes (Level <abbr title="Triple A">AAA</abbr>)</a></h5><p>Web pages do not contain anything that flashes more than three times in any one second period.</p>
-</td><td headers="name_2_3 sc2_3_2" class="na notice"><p><strong>Notice:</strong> Check that no component of the content does not flash more than three times in any 1-second period.</p>
+</td><td headers="name_2_3 sc2_3_2" class="na notice"><p><strong>Notice:</strong> Check that no component of the content flashes more than three times in any 1-second period.</p>
 <div class="fullcode">[Standard].Principle2.Guideline2_3.2_3_2.G19</div></div></td><td headers="applies_2_3 sc2_3_2" class="na"><p>Top element.</p>
 </td><td headers="tech_2_3 sc2_3_2" class="na"><ul>
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/G19">G19</a></li>
@@ -1012,10 +1019,13 @@
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/H64">H64</a></li>
 </ul>
 </td><tr>
-<td headers="name_2_4 sc2_4_1" class=" warning"><p><strong>Warning:</strong> Check that links that should be grouped into logical sets (such as a navigation bar or main menu) are grouped using map elements, so they can be bypassed.</p>
-<div class="fullcode">[Standard].Principle2.Guideline2_4.2_4_1.H50</div></div></td><td headers="applies_2_4 sc2_4_1" class=""><p>Top element.</p>
+<td headers="name_2_4 sc2_4_1" class=" notice"><p><strong>Notice:</strong> Ensure that any common navigation elements can be bypassed; for instance, by use of skip links, header elements, or ARIA landmark roles.</p>
+<div class="fullcode">[Standard].Principle2.Guideline2_4.2_4_1.G1,G123,G124,H69</div></div></td><td headers="applies_2_4 sc2_4_1" class=""><p>Top element. (No sufficient technique currently exists for ARIA landmark roles, but they are becoming increasingly supported.)</p>
 </td><td headers="tech_2_4 sc2_4_1" class=""><ul>
-<li><a href="http://www.w3.org/TR/WCAG20-TECHS/H50">H50</a></li>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/G1">G1</a></li>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/G123">G123</a></li>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/G124">G124</a></li>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/H69">H69</a></li>
 </ul>
 </td><tr class="top-row">
 <td id="sc2_4_2" rowspan="4" class="scrow"><h5 class="grey-heading"><a href="2_4_2"><abbr title="Success Criterion">SC</abbr> 2.4.2: Page Titled (Level <abbr title="Single A">A</abbr>)</a></h5><p>Web pages have titles that describe topic or purpose.</p>
@@ -1424,37 +1434,37 @@
 <td id="sc4_1_2" rowspan="9" class="scrow"><h5 class="grey-heading"><a href="4_1_2"><abbr title="Success Criterion">SC</abbr> 4.1.2: Name, Role, Value (Level <abbr title="Single A">A</abbr>)</a></h5><p>For all user interface components (including but not limited to: form elements, links and components generated by scripts), the name and role can be programmatically determined; states, properties, and values that can be set by the user can be programmatically set; and notification of changes to these items is available to user agents, including assistive technologies.</p>
 
 <p><em>Note:</em> This success criterion is primarily for Web authors who develop or script their own user interface components. For example, standard HTML controls already meet this success criterion when used according to specification.</p>
-</td><td headers="name_4_1 sc4_1_2" class=" error"><p><strong>Error:</strong> Empty anchor elements should not be used for defining a in-page link target. Consider moving its ID to a parent or nearby element.</p>
+</td><td headers="name_4_1 sc4_1_2" class=" error"><p><strong>Error:</strong> Empty anchor elements should not be used for defining in-page link targets. Consider moving its ID to a parent or nearby element.</p>
 <div class="fullcode">[Standard].Principle4.Guideline4_1.4_1_2.H91.A.Empty</div></div></td><td headers="applies_4_1 sc4_1_2" class=""><p>Empty anchor element (no text, no href) but with an ID. This breaks the intended role of an "A" element being a link. The ID should be placed on something more concrete, unless the ID is used for reasons like scripting.</p>
 </td><td headers="tech_4_1 sc4_1_2" class=""><ul>
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/H91">H91</a></li>
 </ul>
 </td><tr>
-<td headers="name_4_1 sc4_1_2" class=" error"><p><strong>Error:</strong> Empty anchor elements should not be used for defining a in-page link target. Consider moving the name attribute to become an ID of a parent or nearby element.</p>
+<td headers="name_4_1 sc4_1_2" class=" error"><p><strong>Error:</strong> Empty anchor elements should not be used for defining in-page link targets. Consider moving the name attribute to become an ID of a parent or nearby element.</p>
 <div class="fullcode">[Standard].Principle4.Guideline4_1.4_1_2.H91.A.EmptyWithName</div></div></td><td headers="applies_4_1 sc4_1_2" class=""><p>Empty anchor element (no text, no href) but with a name attribute. This breaks the intended role of an "A" element being a link. This is the older method of creating an in-page link target, using the name attribute instead of ID.</p>
 </td><td headers="tech_4_1 sc4_1_2" class=""><ul>
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/H91">H91</a></li>
 </ul>
 </td><tr>
-<td headers="name_4_1 sc4_1_2" class=" error"><p><strong>Error:</strong> Empty anchor element found.</p>
+<td headers="name_4_1 sc4_1_2" class=" error"><p><strong>Error:</strong> Anchor element found with no link content and no name and/or ID attribute.</p>
 <div class="fullcode">[Standard].Principle4.Guideline4_1.4_1_2.H91.A.EmptyNoId</div></div></td><td headers="applies_4_1 sc4_1_2" class=""><p>Completely empty anchor element (no text, no href, no ID).</p>
 </td><td headers="tech_4_1 sc4_1_2" class=""><ul>
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/H91">H91</a></li>
 </ul>
 </td><tr>
-<td headers="name_4_1 sc4_1_2" class=" warning"><p><strong>Warning:</strong> Anchor elements should not be used for defining an in-page link target. If not using the ID for other purposes (such as CSS or scripting), consider moving it to a parent element.</p>
+<td headers="name_4_1 sc4_1_2" class=" warning"><p><strong>Warning:</strong> Anchor elements should not be used for defining in-page link targets. If not using the ID for other purposes (such as CSS or scripting), consider moving it to a parent element.</p>
 <div class="fullcode">[Standard].Principle4.Guideline4_1.4_1_2.H91.A.NoHref</div></div></td><td headers="applies_4_1 sc4_1_2" class=""><p>Anchor element with no href, but with an ID and text. This breaks the intended role of an "A" element being a link. It will usually be around text inside another parent element (such as a heading); the ID should be moved up for the same effect.</p>
 </td><td headers="tech_4_1 sc4_1_2" class=""><ul>
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/H91">H91</a></li>
 </ul>
 </td><tr>
-<td headers="name_4_1 sc4_1_2" class=" warning"><p><strong>Warning:</strong> Link found with text, but no href and ID. If this is not "where a link would have been placed if relevant", the A element should be removed.</p>
+<td headers="name_4_1 sc4_1_2" class=" warning"><p><strong>Warning:</strong> Anchor element found with link content, but no href and/or ID attribute has been supplied.</p>
 <div class="fullcode">[Standard].Principle4.Guideline4_1.4_1_2.H91.A.Placeholder</div></div></td><td headers="applies_4_1 sc4_1_2" class=""><p>Link with text, but no href or ID. This means it does not have an accessibility API "value". The quoted text comes from the HTML5 definition of what an "A" element without a href represents.</p>
 </td><td headers="tech_4_1 sc4_1_2" class=""><ul>
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/H91">H91</a></li>
 </ul>
 </td><tr>
-<td headers="name_4_1 sc4_1_2" class=" error"><p><strong>Error:</strong> Link contains a valid href attribute, but no content.</p>
+<td headers="name_4_1 sc4_1_2" class=" error"><p><strong>Error:</strong> Anchor element found with a valid href attribute, but no link content has been supplied.</p>
 <div class="fullcode">[Standard].Principle4.Guideline4_1.4_1_2.H91.A.NoContent</div></div></td><td headers="applies_4_1 sc4_1_2" class=""><p>Link with a href attribute, but without link text. This means it does not have an accessibility API "name".</p>
 </td><td headers="tech_4_1 sc4_1_2" class=""><ul>
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/H91">H91</a></li>

@@ -93,13 +93,11 @@
 
                 <h3>Discussion</h3><h4 class="grey-heading">Redundant event handlers</h4>
 
-<p>The relevant technique is <a href="http://www.w3.org/TR/WCAG20-TECHS/SCR2">SCR2: Using redundant keyboard and mouse event handlers</a>. This technique specifically refers to an example changing an image when it receives the focus - that an image change on a link using onmouseover and onmouseout should also be implemented using onfocus and onblur, so it is activated using the keyboard (by tabbing to the element).</p>
+<p>The relevant technique is <a href="http://www.w3.org/TR/WCAG20-TECHS/SCR20">SCR20: Using both keyboard and other device-specific functions</a>. Events which will emit messages if found include mouseover, mouseout, mousemove, mousedown, mouseup, and dblclick.</p>
 
-<p>However, it equally applies to other functionality that would be accessible only via the mouse. Events which will emit messages if found include mouseover, mouseout, mousemove, mousedown, mouseup, and dblclick.</p>
+<p>Using the onclick event does not trigger a message under the SCR20 technique. The <a href="http://www.w3.org/TR/DOM-Level-3-Events/">current working draft of DOM Events Level 3 Specification</a> states "Though the click event type has its origins in pointer devices (e.g., a mouse), subsequent implementation enhancements have extended it beyond that association, and it can be considered a device-independent event type for element activation." Certain elements will typically generate a click event on a certain key press - notably links and buttons (see <a href="http://www.w3.org/TR/WCAG20-TECHS/SCR35">technique SCR35</a>).</p>
 
-<p>Using the onclick event does not trigger a message under the SCR2 technique. The <a href="http://www.w3.org/TR/DOM-Level-3-Events/">current working draft of DOM Events Level 3 Specification</a> states "Though the click event type has its origins in pointer devices (e.g., a mouse), subsequent implementation enhancements have extended it beyond that association, and it can be considered a device-independent event type for element activation." Certain elements will typically generate a click event on a certain key press - notably links and buttons (see <a href="http://www.w3.org/TR/WCAG20-TECHS/SCR35">technique SCR35</a>).</p>
-
-<p>As events can be implemented using a variety of different methods - ranging from via HTML attributes, through to DOM events, to being set through frameworks like jQuery or Prototype.js. On the flipside, even if a corresponding event is provided in code as an HTML attribute, there is no guarantee that it exposes the same functionality as the mouse event.</p>
+<p>Eents can be implemented using a variety of different methods - ranging from the HTML attributes and JavaScript properties, through to DOM events (eg. addEventListener), or being set through frameworks like jQuery or Prototype.js. On the flipside, even if a corresponding event is provided in code as an HTML attribute, there is no guarantee that it exposes the same functionality as the mouse event.</p>
 
 <p>Therefore, a warning will be generated on elements that contain the mouse-specific attributes. It will be up to the author to ensure that the functionality is provided to keyboard users in an appropriate manner.</p>
 
