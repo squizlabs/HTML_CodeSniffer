@@ -461,6 +461,13 @@
     overflow: auto;
 }
 
+#HTMLCS-wrapper .HTMLCS-issue-source-not-supported {
+    font-size: 1em;
+    line-height: 1.4em;
+    margin: 0 0 0.5em 0.2em;
+    overflow: auto;
+}
+
 #HTMLCS-wrapper .HTMLCS-issue-source-inner strong {
     font-weight: normal;
     color: #FFF;
@@ -782,6 +789,11 @@
     width: 62px;
     height: 50px;
     background-position: 0 -185px;
+}
+
+.HTMLCS-pointer-hidden {
+    opacity: 0;
+    display: none;
 }
 
 #HTMLCS-wrapper #HTMLCS-settings-use-standard label {

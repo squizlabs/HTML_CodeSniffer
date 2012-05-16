@@ -829,68 +829,7 @@ var HTMLCSAuditor = new function()
             msgElementSource.className = _prefix + 'issue-source';
             msgDiv.appendChild(msgElementSource);
             _options.customIssueSource.call(this, id, message, standard, msgElementSource, msgDetailsDiv);
-        } else if (message.element.outerHTML) {
-            var preText  = '';
-            var postText = '';
-
-            if (message.element.innerHTML.length > 31) {
-                var outerHTML = message.element.outerHTML.replace(message.element.innerHTML, message.element.innerHTML.substr(0, 31) + '...');
-            } else {
-                var outerHTML = message.element.outerHTML;
-            }
-
-            // Find previous siblings.
-            var preNode = message.element.previousSibling;
-            while (preText.length <= 31) {
-                if (preNode === null) {
-                    break;
-                } else {
-                    if (preNode.nodeType === 1) {
-                        // Element node.
-                        preText = preNode.outerHTML;
-                    } else if (preNode.nodeType === 3) {
-                        // Text node.
-                        if (preNode.textContent !== undefined) {
-                            preText = preNode.textContent + preText;
-                        } else {
-                            preText = preNode.nodeValue + preText;
-                        }
-                    }
-
-                    if (preText.length > 31) {
-                        preText = '...' + preText.substr(preText.length - 31);
-                    }
-                }
-
-                preNode = preNode.previousSibling;
-            }//end while
-
-            // Find following siblings.
-            var postNode = message.element.nextSibling;
-            while (postText.length <= 31) {
-                if (postNode === null) {
-                    break;
-                } else {
-                    if (postNode.nodeType === 1) {
-                        // Element node.
-                        postText += postNode.outerHTML;
-                    } else if (postNode.nodeType === 3) {
-                        // Text node.
-                        if (postNode.textContent !== undefined) {
-                            postText += postNode.textContent;
-                        } else {
-                            postText += postNode.nodeValue;
-                        }
-                    }
-
-                    if (postText.length > 31) {
-                        postText = postText.substr(0, 31) + '...';
-                    }
-                }
-
-                postNode = postNode.nextSibling;
-            }//end while
-
+        } else {
             var msgElementSource       = _doc.createElement('div');
             msgElementSource.className = _prefix + 'issue-source';
 
@@ -908,27 +847,99 @@ var HTMLCSAuditor = new function()
 
             msgElementSourceHeader.appendChild(msgSourceHeaderText);
             msgElementSourceHeader.appendChild(btnPointTo);
-
-            // Actual source code, highlighting offending element.
-            var msgElementSourceInner       = _doc.createElement('div');
-            msgElementSourceInner.className = _prefix + 'issue-source-inner';
-
-            var msgElementSourceMain       = _doc.createElement('strong');
-            if (msgElementSourceMain.textContent !== undefined) {
-                msgElementSourceMain.textContent = outerHTML;
-            } else {
-                // IE8 uses innerText instead. Oh well.
-                msgElementSourceMain.innerText = outerHTML;
-            }
-
-            msgElementSourceInner.appendChild(_doc.createTextNode(preText));
-            msgElementSourceInner.appendChild(msgElementSourceMain);
-            msgElementSourceInner.appendChild(_doc.createTextNode(postText));
-
             msgElementSource.appendChild(msgElementSourceHeader);
-            msgElementSource.appendChild(msgElementSourceInner);
+
+            if (message.element.outerHTML) {
+                var preText  = '';
+                var postText = '';
+
+                if (message.element.innerHTML.length > 31) {
+                    var outerHTML = message.element.outerHTML.replace(message.element.innerHTML, message.element.innerHTML.substr(0, 31) + '...');
+                } else {
+                    var outerHTML = message.element.outerHTML;
+                }
+
+                // Find previous siblings.
+                var preNode = message.element.previousSibling;
+                while (preText.length <= 31) {
+                    if (preNode === null) {
+                        break;
+                    } else {
+                        if (preNode.nodeType === 1) {
+                            // Element node.
+                            preText = preNode.outerHTML;
+                        } else if (preNode.nodeType === 3) {
+                            // Text node.
+                            if (preNode.textContent !== undefined) {
+                                preText = preNode.textContent + preText;
+                            } else {
+                                preText = preNode.nodeValue + preText;
+                            }
+                        }
+
+                        if (preText.length > 31) {
+                            preText = '...' + preText.substr(preText.length - 31);
+                        }
+                    }
+
+                    preNode = preNode.previousSibling;
+                }//end while
+
+                // Find following siblings.
+                var postNode = message.element.nextSibling;
+                while (postText.length <= 31) {
+                    if (postNode === null) {
+                        break;
+                    } else {
+                        if (postNode.nodeType === 1) {
+                            // Element node.
+                            postText += postNode.outerHTML;
+                        } else if (postNode.nodeType === 3) {
+                            // Text node.
+                            if (postNode.textContent !== undefined) {
+                                postText += postNode.textContent;
+                            } else {
+                                postText += postNode.nodeValue;
+                            }
+                        }
+
+                        if (postText.length > 31) {
+                            postText = postText.substr(0, 31) + '...';
+                        }
+                    }
+
+                    postNode = postNode.nextSibling;
+                }//end while
+
+                // Actual source code, highlighting offending element.
+                var msgElementSourceInner       = _doc.createElement('div');
+                msgElementSourceInner.className = _prefix + 'issue-source-inner';
+
+                var msgElementSourceMain       = _doc.createElement('strong');
+                if (msgElementSourceMain.textContent !== undefined) {
+                    msgElementSourceMain.textContent = outerHTML;
+                } else {
+                    // IE8 uses innerText instead. Oh well.
+                    msgElementSourceMain.innerText = outerHTML;
+                }
+
+                msgElementSourceInner.appendChild(_doc.createTextNode(preText));
+                msgElementSourceInner.appendChild(msgElementSourceMain);
+                msgElementSourceInner.appendChild(_doc.createTextNode(postText));
+                msgElementSource.appendChild(msgElementSourceInner);
+            } else {
+                // No support for outerHTML.
+                var msgElementSourceInner       = _doc.createElement('div');
+                msgElementSourceInner.className = _prefix + 'issue-source-not-supported';
+
+                var nsText = 'The code snippet functionality is not supported in this browser.'
+
+                msgElementSourceInner.appendChild(_doc.createTextNode(nsText));
+                msgElementSource.appendChild(msgElementSourceInner);
+            }//end if
+
             msgDiv.appendChild(msgElementSource);
-        }
+        }//end if
 
         return msgDiv;
     };
@@ -1009,7 +1020,9 @@ var HTMLCSAuditor = new function()
         pointer.container = _doc.getElementById('HTMLCS-wrapper');
 
         if (pointer.isPointable(msg.element) === false) {
-            pointer.className += ' HTMLCS-pointer-hidden';
+            if (pointer.pointer) {
+                pointer.pointer.className += ' HTMLCS-pointer-hidden';
+            }
 
             if (btnPointTo) {
                 btnPointTo.className += ' disabled';
@@ -1775,7 +1788,7 @@ var HTMLCSAuditor = new function()
                 pointer.style.display = 'none';
             } else {
                 pointer.style.display = 'block';
-                pointer.style.opacity = 1;
+                pointer.style.opacity = 'auto';
 
                 var rect    = this.getElementCoords(elem, true);
                 var window  = this.getElementWindow(elem);
