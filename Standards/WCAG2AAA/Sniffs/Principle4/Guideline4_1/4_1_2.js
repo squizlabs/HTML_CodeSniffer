@@ -125,7 +125,6 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
         }
 
         var requiredValues = {
-            input_text: '@value',
             select: 'option_selected'
         };
 
@@ -253,7 +252,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
             } else if (requiredValue.charAt(0) === '@') {
                 builtAttr = 'using the ' + requiredValue + ' attribute';
             } else {
-                builtAttr = 'using the ' +requiredValue + ' element';
+                builtAttr = 'using the ' + requiredValue + ' element';
             }
 
             HTMLCS.addMessage(HTMLCS.ERROR, element, 'This ' + msgNodeType + ' does not have a value available to an accessibility API. Add one ' + builtAttr + '.', 'H91.' + msgSubCode + '.Value');
