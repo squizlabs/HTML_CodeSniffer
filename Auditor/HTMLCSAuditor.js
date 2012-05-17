@@ -932,7 +932,7 @@ var HTMLCSAuditor = new function()
                 var msgElementSourceInner       = _doc.createElement('div');
                 msgElementSourceInner.className = _prefix + 'issue-source-not-supported';
 
-                var nsText = 'The code snippet functionality is not supported in this browser.'
+                var nsText = 'The code snippet functionality is not supported in this browser.';
 
                 msgElementSourceInner.appendChild(_doc.createTextNode(nsText));
                 msgElementSource.appendChild(msgElementSourceInner);

@@ -26,7 +26,13 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
             'button',
             'table',
             'fieldset',
-            'form'
+            'form',
+            'h1',
+            'h2',
+            'h3',
+            'h4',
+            'h5',
+            'h6'
         ];
 
     },
@@ -75,6 +81,15 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
 
                 case 'fieldset':
                     this.testFieldsetLegend(element);
+                break;
+
+                case 'h1':
+                case 'h2':
+                case 'h3':
+                case 'h4':
+                case 'h5':
+                case 'h6':
+                    this.testEmptyHeading(element);
                 break;
             }//end switch
         }//end if
@@ -821,6 +836,25 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
             }
 
             lastHeading = headingNum;
+        }
+    },
+
+    /**
+     * Test for headings with no text, which should either be filled, or tags removed.
+     *
+     * @param {DOMNode} element The element to test.
+     *
+     * @returns void
+     */
+    testEmptyHeading: function(element) {
+        var text = element.textContent;
+
+        if (text === undefined) {
+            text = element.innerText;
+        }
+
+        if (/^\s*$/.test(text) === true) {
+            HTMLCS.addMessage(HTMLCS.ERROR, element, 'Heading tag found with no content. Text that is not intended as a heading should not be marked up with heading tags.', 'H42.2');
         }
     },
 
