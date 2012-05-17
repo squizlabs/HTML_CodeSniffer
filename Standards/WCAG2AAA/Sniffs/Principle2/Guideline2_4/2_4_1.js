@@ -24,6 +24,8 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_4_2_4_1 = {
     {
         return [
             'iframe',
+            'a',
+            'area',
             '_top'
         ];
 
@@ -45,6 +47,11 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_4_2_4_1 = {
             switch (nodeName) {
                 case 'iframe':
                     this.testIframeTitle(element);
+                break;
+
+                case 'a':
+                case 'area':
+                    this.testSameDocFragmentLinks(element, top);
                 break;
             }
         }
@@ -80,10 +87,40 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_4_2_4_1 = {
     /**
      * Throw a generic bypass blocks message.
      *
+     * @param {DOMNode} top Top element of the testing source.
+     *
      * @returns void
      */
     testGenericBypassMsg: function(top)
     {
         HTMLCS.addMessage(HTMLCS.NOTICE, top, 'Ensure that any common navigation elements can be bypassed; for instance, by use of skip links, header elements, or ARIA landmark roles.', 'G1,G123,G124,H69');
+    },
+
+    /**
+     * Test for document fragment links to IDs that do not exist.
+     *
+     * These are links of the form "<a href="#content">", where the ID "content" does
+     * not exist. Area elements in image maps are also tested, as they are also
+     * likely to contain these attributes.
+     *
+     * @param {DOMNode} element The element to test.
+     * @param {DOMNode} top     Top element of the testing source.
+     *
+     * @returns void
+     */
+    testSameDocFragmentLinks: function(element, top)
+    {
+        if (element.hasAttribute('href') === true) {
+            var href = element.getAttribute('href');
+            href     = HTMLCS.util.trim(href);
+            if ((href.length > 1) && (href.charAt(0) === '#')) {
+                var id     = href.substr(1);
+                var target = top.querySelector('#' + id);
+
+                if (target === null) {
+                    HTMLCS.addMessage(HTMLCS.ERROR, element, 'This link tries to point to an ID "' + id + '" within the document, but the ID does not exist.', 'G1,G123,G124.NoSuchID');
+                }
+            }
+        }
     }
 };
