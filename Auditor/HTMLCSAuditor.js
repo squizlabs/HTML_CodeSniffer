@@ -1894,7 +1894,7 @@ var HTMLCSAuditor = new function()
                 && coords.y2 >= midY
             ) {
                 var self = this;
-                this.container.style.opaciyy = 0.5;
+                this.container.style.opacity = 0.5;
                 setTimeout(function() {
                     self.container.style.opacity = 1;
                 }, 4000);
