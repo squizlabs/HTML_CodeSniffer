@@ -1887,16 +1887,16 @@ var HTMLCSAuditor = new function()
             var posOffset = 20;
             var newPos    = null;
             var midX      = (rect.x1 + ((rect.x2 - rect.x1) / 2));
-            var midY      = (rect.y1 + ((rect.y2 - rect.y1) / 2));
+            var midY      = (rect.y1 + ((rect.y2 - rect.y1) / 2)) - frameScroll.y;
             if (coords.x1 <= midX
                 && coords.x2 >= midX
                 && coords.y1 <= midY
                 && coords.y2 >= midY
             ) {
                 var self = this;
-                this.container.style.opactiy = 0.5;
+                this.container.style.opaciyy = 0.5;
                 setTimeout(function() {
-                    self.container.style.opactiy = 1;
+                    self.container.style.opacity = 1;
                 }, 4000);
             }
 
