@@ -24,6 +24,8 @@ var HTMLCSAuditor = new function()
 
     var self = this;
 
+    this.pointerContainer = null;
+
     /**
      * Build the "summary section" square button.
      *
@@ -841,8 +843,7 @@ var HTMLCSAuditor = new function()
             msgSourceHeaderText.innerHTML = 'Code Snippet';
 
             var btnPointTo = buildSummaryButton(_prefix + 'button-point-to-element-' + id, 'pointer', 'Point to Element', function() {
-                pointer.container = _doc.getElementById(_prefix + 'wrapper');
-                pointer.pointTo(message.element);
+                self.pointToElement(message.element);
             });
 
             msgElementSourceHeader.appendChild(msgSourceHeaderText);
@@ -1017,7 +1018,7 @@ var HTMLCSAuditor = new function()
         }
 
         var btnPointTo    = _doc.getElementById(_prefix + 'button-point-to-element-' + issue);
-        pointer.container = _doc.getElementById('HTMLCS-wrapper');
+        pointer.container = self.pointerContainer || _doc.getElementById('HTMLCS-wrapper');
 
         if (pointer.isPointable(msg.element) === false) {
             if (pointer.pointer) {
@@ -1457,7 +1458,7 @@ var HTMLCSAuditor = new function()
     };
 
     this.pointToElement = function(element) {
-        pointer.container = _doc.getElementById('HTMLCS-wrapper');
+        pointer.container = self.pointerContainer || _doc.getElementById('HTMLCS-wrapper');
         pointer.pointTo(element);
 
     };
