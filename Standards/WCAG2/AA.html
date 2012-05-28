@@ -357,7 +357,7 @@
 
 <tbody>
 <tr class="top-row">
-<td id="sc1_3_1" rowspan="35" class="scrow"><h5 class="grey-heading"><a href="1_3_1"><abbr title="Success Criterion">SC</abbr> 1.3.1: Info and Relationships (Level <abbr title="Single A">A</abbr>)</a></h5><p>Information, structure, and relationships conveyed through presentation can be programmatically determined or are available in text.</p>
+<td id="sc1_3_1" rowspan="36" class="scrow"><h5 class="grey-heading"><a href="1_3_1"><abbr title="Success Criterion">SC</abbr> 1.3.1: Info and Relationships (Level <abbr title="Single A">A</abbr>)</a></h5><p>Information, structure, and relationships conveyed through presentation can be programmatically determined or are available in text.</p>
 </td><td headers="name_1_3 sc1_3_1" class=" error"><p><strong>Error:</strong> Multiple labels exist with the same "for" attribute. If these labels refer to different form controls, the controls should have unique "id" attributes.</p>
 <div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H93</div></div></td><td headers="applies_1_3 sc1_3_1" class=""><p>Second and subsequent sightings of a specific value for the "for" attribute. Labels should be unique per element.</p>
 </td><td headers="tech_1_3 sc1_3_1" class=""><ul>
@@ -568,6 +568,12 @@
 <div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H48</div></div></td><td headers="applies_1_3 sc1_3_1" class=""><p>P or DIV element that has more than one link.</p>
 </td><td headers="tech_1_3 sc1_3_1" class=""><ul>
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/H48">H48</a></li>
+</ul>
+</td><tr>
+<td headers="name_1_3 sc1_3_1" class=" error"><p><strong>Error:</strong> Heading tag found with no content. Text that is not intended as a heading should not be marked up with heading tags.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H42.2</div></div></td><td headers="applies_1_3 sc1_3_1" class=""><p>Heading element (h1-h6) that has no content. Non-breaking spaces are included in definition of "no content" in this case.</p>
+</td><td headers="tech_1_3 sc1_3_1" class=""><ul>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/H42">H42</a></li>
 </ul>
 </td><tr class="top-row">
 <td id="sc1_3_2" rowspan="1" class="scrow"><h5 class="grey-heading"><a href="1_3_2"><abbr title="Success Criterion">SC</abbr> 1.3.2: Meaningful Sequence (Level <abbr title="Single A">A</abbr>)</a></h5><p>When the sequence in which content is presented affects its meaning, a correct reading sequence can be programmatically determined.</p>
@@ -1006,7 +1012,7 @@
 
 <tbody>
 <tr class="top-row">
-<td id="sc2_4_1" rowspan="3" class="scrow"><h5 class="grey-heading"><a href="2_4_1"><abbr title="Success Criterion">SC</abbr> 2.4.1: Bypass Blocks (Level <abbr title="Single A">A</abbr>)</a></h5><p>A mechanism is available to bypass blocks of content that are repeated on multiple Web pages.</p>
+<td id="sc2_4_1" rowspan="4" class="scrow"><h5 class="grey-heading"><a href="2_4_1"><abbr title="Success Criterion">SC</abbr> 2.4.1: Bypass Blocks (Level <abbr title="Single A">A</abbr>)</a></h5><p>A mechanism is available to bypass blocks of content that are repeated on multiple Web pages.</p>
 </td><td headers="name_2_4 sc2_4_1" class=" error"><p><strong>Error:</strong> Iframe element requires a non-empty title attribute that identifies the frame.</p>
 <div class="fullcode">[Standard].Principle2.Guideline2_4.2_4_1.H64.1</div></div></td><td headers="applies_2_4 sc2_4_1" class=""><p>Iframe elements that have missing or empty title attribute.</p>
 </td><td headers="tech_2_4 sc2_4_1" class=""><ul>
@@ -1026,6 +1032,14 @@
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/G123">G123</a></li>
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/G124">G124</a></li>
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/H69">H69</a></li>
+</ul>
+</td><tr>
+<td headers="name_2_4 sc2_4_1" class=" error"><p><strong>Error:</strong> This link tries to point to an ID "(link ID)" within the document, but the ID does not exist.</p>
+<div class="fullcode">[Standard].Principle2.Guideline2_4.2_4_1.G1,G123,G124.NoSuchId</div></div></td><td headers="applies_2_4 sc2_4_1" class=""><p>Anchor (a) or area element with a href element pointing to an ID in the same document, such as "#content", but where that document ID does not exist.</p>
+</td><td headers="tech_2_4 sc2_4_1" class=""><ul>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/G1">G1</a></li>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/G123">G123</a></li>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/G124">G124</a></li>
 </ul>
 </td><tr class="top-row">
 <td id="sc2_4_2" rowspan="4" class="scrow"><h5 class="grey-heading"><a href="2_4_2"><abbr title="Success Criterion">SC</abbr> 2.4.2: Page Titled (Level <abbr title="Single A">A</abbr>)</a></h5><p>Web pages have titles that describe topic or purpose.</p>
@@ -1145,7 +1159,7 @@
 <p><em>Note 1:</em> "Heading" is used in its general sense and includes titles and other ways to add a heading to different types of content.</p>
 
 <p><em>Note 2:</em> This success criterion covers sections within writing, not user interface components. User Interface components are covered under <a href="#sc4_1_2">Success Criterion 4.1.2</a>.</p>
-<p><strong>Editor's Note:</strong> No specific test file provided. Where HTML is used, testing for relevant semantic headers (h1-h6) occurs in <a href="#sc1_3_1">Success Criterion 1.3.1</a>.</p>
+<p><strong>Editor's Note:</strong> No specific test file provided. Where HTML is used, testing for relevant semantic headers (h1-h6) occurs in <a href="#sc1_3_1">Success Criterion 1.3.1</a> - incorrect heading nesting results in an error at AAA level.</p>
 </td><td colspan="3" headers="name_2_4 applies_2_4 tech_2_4 sc2_4_10">No tests for this Success Criterion.</td></tbody>
 </table>
 
