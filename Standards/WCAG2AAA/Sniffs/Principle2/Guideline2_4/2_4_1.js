@@ -114,13 +114,22 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_4_2_4_1 = {
             var href = element.getAttribute('href');
             href     = HTMLCS.util.trim(href);
             if ((href.length > 1) && (href.charAt(0) === '#')) {
-                var id     = href.substr(1);
-                var target = top.querySelector('#' + id);
+                var id = href.substr(1);
 
-                if (target === null) {
-                    HTMLCS.addMessage(HTMLCS.ERROR, element, 'This link tries to point to an ID "' + id + '" within the document, but the ID does not exist.', 'G1,G123,G124.NoSuchID');
-                }
-            }
+                try {
+                    var doc = top;
+                    if (doc.ownerDocument) {
+                        doc = doc.ownerDocument;
+                    }
+
+                    var target = doc.getElementById(id);
+
+                    if (target === null) {
+                        HTMLCS.addMessage(HTMLCS.ERROR, element, 'This link tries to point to an ID "' + id + '" within the document, but the ID does not exist.', 'G1,G123,G124.NoSuchID');
+                    }
+                } catch (ex) {
+                }//end try
+            }//end if
         }
     }
 };
