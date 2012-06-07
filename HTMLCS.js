@@ -152,7 +152,8 @@ var HTMLCS = new function()
                 fullDoc = true;
             }
         } else {
-            if (content.nodeName.toLowerCase() === 'html') {
+            // If we are the document, or the document element.
+            if ((content.nodeName.toLowerCase() === 'html') || (content.documentElement)) {
                 fullDoc = true;
             }
         }
