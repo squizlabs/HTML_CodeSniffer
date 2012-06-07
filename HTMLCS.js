@@ -585,6 +585,52 @@ var HTMLCS = new function()
             return empty;
         };
 
+        this.isHidden = function(element) {
+            var hidden = false;
+
+            // Do not point to elem if its hidden. Use computed styles.
+            if (elem.currentStyle) {
+                // IE 8.
+                var style = elem.currentStyle;
+            } else if (window.getComputedStyle) {
+                var style = window.getComputedStyle(elem);
+            } else {
+                return false;
+            }
+
+            if ((style.visibility === 'hidden') || (style.display === 'none')) {
+                hidden = true;
+            }
+
+            return hidden;
+        };
+
+        this.contains = function(parent, child) {
+            var contained = false;
+
+            // If the parent and the child are the same, they can't contain each
+            // other.
+            if (parent !== child) {
+                if (!parent.ownerDocument) {
+                    // Parent is the document. Short-circuiting because contains()
+                    // doesn't exist on the document element.
+                    // We check whether the child can be contained, and whether the
+                    // child is in the same document as the parent.
+                    if ((child.ownerDocument) && (child.ownerDocument === parent)) {
+                        contained = true;
+                    }
+                } else {
+                    if ((parent.contains) && (parent.contains(child) === true)) {
+                        contained = true;
+                    } else if ((parent.compareDocumentPosition) && ((parent.compareDocumentPosition(child) & 16) > 0)) {
+                        contained = true;
+                    }
+                }//end if
+            }//end if
+
+            return contained;
+        };
+
         this.isLayoutTable = function(table) {
             return false;
         };
