@@ -101,6 +101,13 @@
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/H94">H94: Ensuring that elements do not contain duplicate attributes</a></li>
 </ul>
 
+<blockquote>
+  <p>Note that technique H74 does not necessarily mean that all tags must be closed - only where they are required according to the appropriate specification.
+  For example, a document written as XHTML 1.0 should have <strong>all</strong> tags closed, however documents written as HTML 4.01, or as HTML5 in the HTML serialisation,
+  are allowed to omit certain closing tags - both for empty/void elements such as "br", and certain other elements such as "p" and "li" - and still satisfy technique
+  H74.</p>
+</blockquote>
+
 <p>In contrast to HTML&#95;CodeSniffer cannot check most of these errors, because it performs its check through information it receives from the Document Object Model (DOM). Browsers generally try to correct any invalid nesting, duplicate attributes and the like, so by the time HTML&#95;CodeSniffer gets to it, such analysis is not possible, because the DOM has been "cleaned". Further, if an XHTML document parsed as XML (rather than HTML as in most browsers) fails these techniques, a conforming parser would likely not load the document at all (as it is not well-formed), making analysis impossible.</p>
 
 <p>HTML&#95;CodeSniffer <strong>will</strong> check for duplicate ID attributes, however. These errors are flagged as a Common Failure - <a href="http://www.w3.org/TR/WCAG20-TECHS/F77">Failure of Success Criterion 4.1.1 due to duplicate values of type ID</a>. The failure is defined this way because the failure is generic, and attributes can be defined as "type ID" for other types of XML documents through a document type definition (DTD) or XML Schema.</p>
