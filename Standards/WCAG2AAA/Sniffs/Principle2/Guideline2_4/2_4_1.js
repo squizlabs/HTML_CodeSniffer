@@ -125,10 +125,10 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_4_2_4_1 = {
                     var target = doc.getElementById(id);
 
                     if ((target === null) || (HTMLCS.util.contains(top, target) === false)) {
-                        if (HTMLCS.isFullDoc(top) === true) {
+                        if ((HTMLCS.isFullDoc(top) === true) || (top.nodeName.toLowerCase() === 'body')) {
                             HTMLCS.addMessage(HTMLCS.ERROR, element, 'This link tries to point to an ID "' + id + '" within the document, but the ID does not exist.', 'G1,G123,G124.NoSuchID');
                         } else {
-                            HTMLCS.addMessage(HTMLCS.WARNING, element, 'This link tries to point to an ID "' + id + '" within the document, but the ID does not exist in the fragment tested.', 'G1,G123,G124.NoSuchID');
+                            HTMLCS.addMessage(HTMLCS.WARNING, element, 'This link tries to point to an ID "' + id + '" within the document, but the ID does not exist in the fragment tested.', 'G1,G123,G124.NoSuchIDFragment');
                         }
                     }
                 } catch (ex) {
