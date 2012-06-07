@@ -92,10 +92,9 @@ These links are often used to skip to content, and as such can be very useful fo
 requiring keyboard access, depend on skip links to reach a page's content quickly, so their inclusion is good accessibility practise, and if incorrect
 can result in user disorientation or frustration as they are either sent to an unexpected part of the page (such as the top), or nowhere at all.</p>
 
-<p>Following the inclusion of (<a href="https://github.com/squizlabs/HTML_CodeSniffer/pull/10">Pull Request #10</a>), full documents will still emit an error if the ID of a
-fragment link cannot be found in the document. However, if a document fragment (eg. not a full document) is submitted, then a <strong>warning</strong> will be emitted if
-that ID cannot be found in the tested fragment. (The source tester will consider a "full document" as one that has a html element, or one missing the html element
-but containing both head and body elements.)</p>
+<p>Following the inclusion of Pull Requests <a href="https://github.com/squizlabs/HTML_CodeSniffer/pull/10">#10</a> and <a href="https://github.com/squizlabs/HTML_CodeSniffer/pull/11">#11</a>,
+documents that contain at least a <strong>body element</strong> will still emit an error if the ID of a fragment link cannot be found. Other document fragments will emit
+a <strong>warning</strong> only, if that ID cannot be found in the tested fragment.</p>
 
 <p>Although both messages should be acted upon, document fragments will only emit a warning because it is <em>non-authoritative</em>: whether the code would conform in a
 document depends on the other contents of a document. For instance, the source of a paragraph or other content section may be submitted to HTML&#95;CodeSniffer
@@ -114,8 +113,8 @@ of the WCAG 2.0 recommendation: a fragment can only be considered in the context
   <p>Changelog for the fragment links test:</p>
   
   <ul>
-  <li>Added on 17 May 2012 (<a href="https://github.com/squizlabs/HTML_CodeSniffer/pull/5">Pull Request #5</a>).</li>
-  <li>Document fragments now only emit a warning as of 7 June 2012 (<a href="https://github.com/squizlabs/HTML_CodeSniffer/pull/10">Pull Request #10</a>).</li>
+  <li>Added on 17 May 2012 (Pull Request <a href="https://github.com/squizlabs/HTML_CodeSniffer/pull/5">#5</a>).</li>
+  <li>Document fragments now only emit a warning as of 7 June 2012 (Pull Requests <a href="https://github.com/squizlabs/HTML_CodeSniffer/pull/10">#10</a>, <a href="https://github.com/squizlabs/HTML_CodeSniffer/pull/11">#11</a>).</li>
   </ul>
 </blockquote>
 
