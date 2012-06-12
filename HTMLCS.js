@@ -84,9 +84,11 @@ var HTMLCS = new function()
      * @return void
      */
     this.run = function(callback, content) {
-        var element = null;
+        var element      = null;
+        var loadingFrame = false;
         if (typeof content === 'string') {
             if (this.isFullDoc(content) === true) {
+                loadingFrame = true;
                 var elementFrame = document.createElement('iframe');
                 elementFrame.style.display = 'none';
                 elementFrame = document.body.insertBefore(elementFrame, null);
@@ -127,7 +129,7 @@ var HTMLCS = new function()
         elements.unshift(element);
 
         // Run the sniffs.
-        if (this.isFullDoc(content) === false) {
+        if (loadingFrame === false) {
             _run(elements, element, callback);
         }
     };
