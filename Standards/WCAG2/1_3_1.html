@@ -85,7 +85,7 @@
 
         <div class="max-width">
 
-                <h3>Discussion</h3><h4 class="grey-heading">Associating table headers with data cells</h4>
+                <h3>Discussion</h3><h4>Associating table headers with data cells</h4>
 
 <p>The WCAG 2.0 techniques document provides two methods of associating headers with data cells: the <a href="http://www.w3.org/TR/WCAG20-TECHS/H43">headers attribute</a> and the <a href="http://www.w3.org/TR/WCAG20-TECHS/H63">scope attribute</a>.</p>
 
@@ -101,7 +101,7 @@
 
 <p>Further, when the headers attribute technique is used and th elements are properly identified with IDs, HTML&#95;CodeSniffer will calculate the expected value of the headers attribute for each cell, and emit an error for each cell that fails this comparison. Similar to the class attribute, order is not important: if HTML&#95;CodeSniffer expects headers of "row1 colB" and the cell as "colB row1", this is fine.</p>
 
-<h4 class="grey-heading">Adding summary and caption to tables</h4>
+<h4>Adding summary and caption to tables</h4>
 
 <p>Relevant techniques are <a href="www.w3.org/TR/WCAG20-TECHS/H39">H39: Using caption elements to associate data table captions with data tables</a>, and <a href="www.w3.org/TR/WCAG20-TECHS/H73">H73: Using the summary attribute of the table element to give an overview of data tables</a>.</p>
 
@@ -109,7 +109,7 @@
 
 <p>When both caption and summary are specified, the information should not be duplicated.</p>
 
-<h4 class="grey-heading">Labelling form elements</h4>
+<h4>Labelling form elements</h4>
 
 <p>Labels must be explicitly labelled, using the "for" attribute, according to <a href="http://www.w3.org/TR/WCAG20-TECHS/H44">H44: Using label elements to associate text labels with form controls</a>. If the visual design cannot accommodate a label, then you can use the title attribute instead - see <a href="http://www.w3.org/TR/WCAG20-TECHS/H65">H65: Using the title attribute to identify form controls when the label element cannot be used</a>.</p>
 
@@ -117,9 +117,9 @@
 
 <p>Using the label element is preferred whenever possible, because sighted users relying upon the keyboard for navigation may not be able to access the title attribute, which normally appears as a tooltip in the browser.</p>
 
-<h4 class="grey-heading">Grouping form elements</h4>
+<h4>Grouping form elements</h4>
 
-<h5 class="grey-heading">Using the fieldset element</h5>
+<h5>Using the fieldset element</h5>
 
 <p>Fields that are logically related should be grouped using the fieldset element, according to technique <a href="http://www.w3.org/TR/WCAG20-TECHS/H71">H71: Providing a description for groups of form controls using fieldset and legend elements</a>.</p>
 
@@ -133,11 +133,11 @@
 
 <p>Indeed, one common failure listed for <a href="./3_3_2">Success Criterion 3.3.2 (Labels or Instructions)</a> specifically relates to <a href="http://www.w3.org/TR/WCAG20-TECHS/F82">formatting a phone number as multiple fields, but without including a text label</a>. (Note that this suggests three fields as per the United States' common format, but the same would apply in Australia where phone numbers are often broken up into two fields, for area code and local number.)</p>
 
-<h5 class="grey-heading">Using optgroup in a select element</h5>
+<h5>Using optgroup in a select element</h5>
 
 <p>Related options should be grouped using an optgroup element, as per technique <a href="www.w3.org/TR/WCAG20-TECHS/H85">H85: Using OPTGROUP to group OPTION elements inside a SELECT</a>.</p>
 
-<h4 class="grey-heading">Using list markup</h4>
+<h4>Using list markup</h4>
 
 <p>The relevant technique is <a href="http://www.w3.org/TR/WCAG20-TECHS/H48">H48: Using ol, ul and dl for lists or groups of links</a>. Most checks (especially for a definition list) will likely need visual confirmation that the block should be a list, however HTML&#95;CodeSniffer can help with certain paragraphs that should be turned into lists.</p>
 

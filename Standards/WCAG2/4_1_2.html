@@ -87,7 +87,7 @@
 
         <div class="max-width">
 
-                <h3>Discussion</h3><h4 class="grey-heading">About Accessibility APIs</h4>
+                <h3>Discussion</h3><h4>About Accessibility APIs</h4>
 
 <p>This goal often speaks of exposing certain data to an "accessibility <acronym title="Application Programming Interface">API</acronym>". Nominally speaking, this translates UI components to a set of data (such as role, name, value, state, available actions, etc) that can be communicated to a user via assistive technology such as a screen reader.</p>
 
@@ -95,7 +95,7 @@
 
 <p>Using technique <a href="http://www.w3.org/TR/WCAG20-TECHS/H91">H91: Using HTML form controls and links</a> successfully ensures that ordinary HTML form controls and links are accessible. If you are creating custom controls and widgets, it may not be so easy to expose such controls to an accessibility API - for instance, that a two-state on/off toggle button (like that found in Squiz Framework, or the iOS interface) has the role of a check box, and should be exposed to assistive technology as such. The <a href="http://www.w3.org/TR/wai-aria"><acronym title="Web Accessibility Intiative: Accessible Rich Internet Applications">WAI-ARIA</acronym> document</a> attempts to address this with a common vocabulary, but this is only at Candidate Recommendation stage, pending further implementation and testing. An implementation report was expected by July 2011, but an <a href="http://www.w3.org/WAI/aria/faq#update">August 2011 update in the FAQ for WAI-ARIA</a> states the relevant group "expects it will take several months to complete the tests".</p>
 
-<h4 class="grey-heading">Roles, Names, States and Values table</h4>
+<h4>Roles, Names, States and Values table</h4>
 
 <p>Adapted from technique <a href="http://www.w3.org/TR/WCAG20-TECHS/H91">H91: Using HTML form controls and links</a>. HTML_CodeSniffer will emit errors on form fields that do not have a required source for the "name" and, if applicable, "value" fields under this model.</p>
 
@@ -187,7 +187,7 @@
 </tbody>
 </table>
 
-<h4 class="grey-heading">Anchor elements without href attributes</h4>
+<h4>Anchor elements without href attributes</h4>
 
 <p>Generally speaking, an anchor (A) element without a href is considered incorrect code, as it does not coincide with its ARIA role of being a link.
 However, in HTML5, an anchor element without a href attribute (but with content) is considered legal:</p>
