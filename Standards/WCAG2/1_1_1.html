@@ -94,7 +94,27 @@
 
         <div class="max-width">
 
-                <h3>Discussion</h3><h4>Alternatives for non-text content</h4>
+                <h3>Discussion</h3><h4>Table of Contents</h4>
+
+<ol>
+  <li><a href="#alternatives-for-non-text-content">Alternatives for non-text content</a></li>
+<ol>
+  <li><a href="#short-and-long-text-alternatives">Short and long text alternatives</a></li>
+</ol>
+  <li><a href="#decorative-images">Decorative images</a></li>
+  <li><a href="#appropriate-text-alternatives">Appropriate text alternatives</a></li>
+<ol>
+  <li><a href="#standalone-img-elements">Standalone img elements</a></li>
+  <li><a href="#linked-img-elements">Linked img elements</a></li>
+  <li><a href="#image-submit-buttons">Image submit buttons</a></li>
+  <li><a href="#client-side-image-maps">Client-side image maps</a></li>
+  <li><a href="#object-elements">Object elements</a></li>
+  <li><a href="#applet-elements">Applet elements</a></li>
+</ol>
+  <li><a href="#link-combining-and-stuttering-tests">Link combining and stuttering tests</a></li>
+  <li><a href="#explicitly-not-tested">Explicitly not tested</a></li>
+</ol>
+<h4 id="alternatives-for-non-text-content">Alternatives for non-text content</h4>
 
 <p>A large proportion of the tests performed for Success Criterion 1.1.1 relate to text
 alternatives for images, objects such as Flash movies, and other "non-text content" -
@@ -131,7 +151,7 @@ your content.</p>
   media criteria of WCAG 2.0, such as <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/media-equiv-av-only-alt.html">Success Criterion 1.2.1</a>.</p>
 </blockquote>
 
-<h5>Short and long text alternatives</h5>
+<h5 id="short-and-long-text-alternatives">Short and long text alternatives</h5>
 
 <p>The WCAG specification makes mention of two "lengths" of text alternatives: short and
 long. This passage generally describes where a long-text alternative should be used:</p>
@@ -165,7 +185,7 @@ was included to show.</p>
   or to provide a link to a page with a long description.</p>
 </blockquote>
 
-<h4>Decorative images</h4>
+<h4 id="decorative-images">Decorative images</h4>
 
 <p>All images must contain a short text alternative to satisfy Success Criterion 1.1.1, however
 it is possible for the text alternative to be empty. If the image does not convey information,
@@ -188,12 +208,12 @@ absent or empty, otherwise. An attribute consisting entirely of whitespace is al
   media type would ignore image-related CSS rules.</p>
 </blockquote>
 
-<h4>Appropriate text alternatives</h4>
+<h4 id="appropriate-text-alternatives">Appropriate text alternatives</h4>
 
 <p>This section describes appropriate short and long text alternatives for each possible
 type of non-text content.</p>
 
-<h5>Standalone img elements</h5>
+<h5 id="standalone-img-elements">Standalone img elements</h5>
 
 <p>The purpose of a standalone img element should be summarised in a short text alternative,
 presuming the image is not purely decorative.</p>
@@ -207,7 +227,7 @@ of the image:</p>
   <p><cite>Techniques for WCAG 2.0: <a href="http://www.w3.org/TR/WCAG20-TECHS/G94">G94: Providing short text alternative for non-text content that serves the same purpose and presents the same information as the non-text content</a></cite></p>
 </blockquote>
 
-<h5>Linked img elements</h5>
+<h5 id="linked-img-elements">Linked img elements</h5>
 
 <p>When the img element is linked to another page or fragment, the rules of <a href="./2_4_4">Success Criterion 2.4.4</a>
 and <a href="./2_4_9">Success Criterion 2.4.9</a> override the previous section: the contents of the link must describe
@@ -226,13 +246,13 @@ further information to the text, and thus can be marked "decorative" with an emp
 alt text. Certainly, the text and image should not say the same thing - see
 "Link stuttering" below.</p>
 
-<h5>Image submit buttons</h5>
+<h5 id="image-submit-buttons">Image submit buttons</h5>
 
 <p>Image submit buttons follow the same rules as images linked in "a" elements: their
 text alternative should describe the purpose of the button, not necessarily describe
 the image.</p>
 
-<h5>Client-side image maps</h5>
+<h5 id="client-side-image-maps">Client-side image maps</h5>
 
 <p>Appropriate accessibility in client-side image maps (using the "map" element) are
 covered in technique <a href="http://www.w3.org/TR/WCAG20-TECHS/H24">H24: Providing text alternatives for the area elements of image maps</a>.</p>
@@ -248,7 +268,7 @@ of the areas in the map.</p>
   images are disabled.</p>
 </blockquote>
 
-<h5>Object elements</h5>
+<h5 id="object-elements">Object elements</h5>
 
 <p>Embedded objects (using the "object" element), such as Flash movies, Java applets,
 and so on, allow both text and non-text alternatives to be provided as fallback
@@ -263,7 +283,7 @@ an error when a non-text alternative cannot be found in an object element group,
 is most likely to be a mistake. However, other long text alternative methods should
 also be sufficient.</p>
 
-<h5>Applet elements</h5>
+<h5 id="applet-elements">Applet elements</h5>
 
 <p>Although non-standard (except for very early versions of HTML), applet elements are
 still reasonably well supported throughout most browsers. The W3C standard recommends
@@ -285,7 +305,7 @@ built-in (Internet Explorer in particular) but cannot load the applet.</li>
 these locations should use the same, short text alternative. A long text alternative
 can be provided through the usual methods such as body text or a link.</p>
 
-<h4>Link combining and stuttering tests</h4>
+<h4 id="link-combining-and-stuttering-tests">Link combining and stuttering tests</h4>
 
 <p>When an image and adjacent text are to point to the same location, they should be
 combined into one link. Sometimes, authors split them into two separate links to avoid having, say, an
@@ -309,7 +329,7 @@ link may contain a combination of a file name and a type icon indicating it as a
 Word Doc file, then the icon can say that it is of a MS Word Doc type. If it says this
 in the link text however, then this would not be appropriate.</p>
 
-<h4>Explicitly not tested</h4>
+<h4 id="explicitly-not-tested">Explicitly not tested</h4>
 
 <p>We do not test <a href="http://www.w3.org/TR/WCAG20-TECHS/H46">Technique H46: Using noembed with embed</a>. This technique speaks of marrying the non-standard embed element, used by as a forerunner to the HTML 4.0-standard object element, with a noembed element which provides a text alternative. The noembed element could be placed either inside the embed element, or immediately afterwards.</p>
 

@@ -85,7 +85,17 @@
 
         <div class="max-width">
 
-                <h3>Discussion</h3><h4>About Ruby text</h4>
+                <h3>Discussion</h3><h4>Table of Contents</h4>
+
+<ol>
+  <li><a href="#about-ruby-text">About Ruby text</a></li>
+<ol>
+  <li><a href="#xhtml-1.1-vs-html5">XHTML 1.1 vs HTML5</a></li>
+  <li><a href="#browser-support">Browser support</a></li>
+</ol>
+  <li><a href="#additional-sufficient-techniques">Additional sufficient techniques</a></li>
+</ol>
+<h4 id="about-ruby-text">About Ruby text</h4>
 
 <p>One method of providing pronunciation of words is ruby text, as detailed in technique <a href="http://www.w3.org/TR/WCAG20-TECHS/H62">H62: Using the ruby element</a>. It is currently not necessarily the best method at the moment due to its lack of broad support (see the "Additional sufficient techniques" below), but it is one that can be programmatically checked for errors. It is also one that may become more used in the future if support improves, particularly given its acceptance into HTML5.</p>
 
@@ -93,11 +103,11 @@
 
 <p>This concept is generically called <em>ruby text</em> by the W3C. This comes from both the old concept of a 5.5-point text used for annotations in printing, and the term "rubi" (ルビ) being used in Japanese for this concept, known otherwise as <a href="http://en.wikipedia.org/wiki/Furigana">furigana</a>.</p>
 
-<h5>XHTML 1.1 vs HTML5</h5>
+<h5 id="xhtml-1.1-vs-html5">XHTML 1.1 vs HTML5</h5>
 
 <p>The testing procedure provided in this technique mentions "simple ruby markup" (there is complex markup available) and the rb element: these are part of the XHTML 1.1 definition of ruby text. In HTML5, all ruby markup is "simple", and the rb element does not exist; the base text should be placed in the body of the ruby element. HTML_CodeSniffer tweaks its error message depending on whether the DOM contains an rb element or not.</p>
 
-<h5>Browser support</h5>
+<h5 id="browser-support">Browser support</h5>
 
 <p>Support for the ruby element varies, but has been slow because the lack of wide support for XHTML 1.1 (notably, Internet Explorer's poor support for markup with an XML content type in general). However, this has been slowly improving with its introduction into HTML5, with Webkit adding support recently.</p>
 
@@ -111,7 +121,7 @@
 
 <p>The lack of complete support - something that will never be 100% (eg. text browsers?) - means use of the rp element is important. The rp element has no representation in browsers that support the ruby element; in browsers that do not understand them, the elements will have no effect, with the result being the base text, with the pronunciation beside it in whatever passes for parentheses.</p>
 
-<h4>Additional sufficient techniques</h4>
+<h4 id="additional-sufficient-techniques">Additional sufficient techniques</h4>
 
 <p>If ruby text is not available as an option for fulfilling this Success Criterion, the following techniques are also considered sufficient, but require a manual test:</p>
 

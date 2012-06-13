@@ -4,7 +4,7 @@ html {
 
 body {
  padding: 0px 20px 20px 20px;
- margin: 0; 
+ margin: 0;
  color:#2e2d33;
  background-color:#fbfbfb;
  min-width:820px;
@@ -16,8 +16,8 @@ body {
 
 h1 a {
  display:block;
- padding-right:3px; 
- position:relative; 
+ padding-right:3px;
+ position:relative;
  background: url(../images/html-code-sniffer.png) no-repeat top left;
  width:385px;
  height:34px;
@@ -64,7 +64,7 @@ a {
 }
 
 a:hover {
- color:#dc5e2d;  
+ color:#dc5e2d;
 }
 
 a:link img {
@@ -207,6 +207,10 @@ blockquote {
 }
 
 li {
+ margin-bottom:5px;
+}
+
+ul li {
  list-style-type:circle;
  margin-bottom:5px;
 }
@@ -370,7 +374,7 @@ div#introduction {
   -webkit-transition:all 0.2s ease-out;
   -moz-transition:all 0.2s ease-out;
   -o-transition:all 0.2s ease-out;
-  -ms-transition:all 0.2s ease-out;    
+  -ms-transition:all 0.2s ease-out;
   transition:all 0.2s ease-out;
 }
 
