@@ -120,6 +120,11 @@ table {
  box-shadow:0 1px 0 rgba(255,255,255,1);
 }
 
+table caption {
+ font-weight: bold;
+ margin-bottom: 0.5em;
+}
+
 table th {
  background:#e0e0e0;
  padding:9px 10px;
