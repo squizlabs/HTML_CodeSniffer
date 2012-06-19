@@ -76,9 +76,9 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
             if (/^\s*$/.test(content) === true) {
                 // Also no content. (eg. <a id=""></a> or <a name=""></a>)
                 if (element.hasAttribute('id') === true) {
-                    HTMLCS.addMessage(HTMLCS.ERROR, element, 'Empty anchor elements should not be used for defining in-page link targets. Consider moving its ID to a parent or nearby element.', 'H91.A.Empty');
+                    HTMLCS.addMessage(HTMLCS.WARNING, element, 'Anchor element found with an ID but without a href or link text. Consider moving its ID to a parent or nearby element.', 'H91.A.Empty');
                 } else if (element.hasAttribute('name') === true) {
-                    HTMLCS.addMessage(HTMLCS.ERROR, element, 'Empty anchor elements should not be used for defining in-page link targets. Consider moving the name attribute to become an ID of a parent or nearby element.', 'H91.A.EmptyWithName');
+                    HTMLCS.addMessage(HTMLCS.WARNING, element, 'Anchor element found with a name attribute but without a href or link text. Consider moving the name attribute to become an ID of a parent or nearby element.', 'H91.A.EmptyWithName');
                 } else {
                     HTMLCS.addMessage(HTMLCS.ERROR, element, 'Anchor element found with no link content and no name and/or ID attribute.', 'H91.A.EmptyNoId');
                 }
