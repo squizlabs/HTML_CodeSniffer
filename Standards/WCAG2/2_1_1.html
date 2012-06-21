@@ -91,15 +91,82 @@
 
         <div class="max-width">
 
-                <h3 id="discussion">Discussion</h3><h4>Redundant event handlers</h4>
+                <h3 id="discussion">Discussion</h3><h4>Table of Contents</h4>
 
-<p>The relevant technique is <a href="http://www.w3.org/TR/WCAG20-TECHS/SCR20">SCR20: Using both keyboard and other device-specific functions</a>. Events which will emit messages if found include mouseover, mouseout, mousemove, mousedown, mouseup, and dblclick.</p>
+<ol>
+  <li><a href="#redundant-event-handlers">Redundant event handlers</a></li>
+<ol>
+  <li><a href="#what-about-the-click-event">What about the click event?</a></li>
+  <li><a href="#which-event-implementations-are-tested">Which event implementations are tested?</a></li>
+</ol></ol>
+<h4 id="redundant-event-handlers">Redundant event handlers</h4>
 
-<p>Using the onclick event does not trigger a message under the SCR20 technique. The <a href="http://www.w3.org/TR/DOM-Level-3-Events/">current working draft of DOM Events Level 3 Specification</a> states "Though the click event type has its origins in pointer devices (e.g., a mouse), subsequent implementation enhancements have extended it beyond that association, and it can be considered a device-independent event type for element activation." Certain elements will typically generate a click event on a certain key press - notably links and buttons (see <a href="http://www.w3.org/TR/WCAG20-TECHS/SCR35">technique SCR35</a>).</p>
+<p>The main focus of this Success Criterion is to employ either device-independent
+events that will work with both keyboard and mouse, or to provide redundant keyboard events.
+The relevant technique is <a href="http://www.w3.org/TR/WCAG20-TECHS/SCR20">SCR20: Using both keyboard and other device-specific
+functions</a>. Events which will emit messages
+if found include mouseover, mouseout, mousemove, mousedown, mouseup, and dblclick.</p>
 
-<p>Eents can be implemented using a variety of different methods - ranging from the HTML attributes and JavaScript properties, through to DOM events (eg. addEventListener), or being set through frameworks like jQuery or Prototype.js. On the flipside, even if a corresponding event is provided in code as an HTML attribute, there is no guarantee that it exposes the same functionality as the mouse event.</p>
+<p>If the process cannot be replicated exactly using keyboard events, some other way must
+be provided to perform the action (technique <a href="http://www.w3.org/TR/WCAG-TECHS/G90">G90: Providing keyboard-triggered event handlers</a>).
+For example, a mouse interface may use a drag-and-drop method for moving items between
+certain areas of a page. Although the "drag and drop" cannot be replicated by the keyboard,
+alternative actions can be provided: for instance, arrow keys to select, tab to switch between areas,
+and "cut" and "paste" shortcuts to move the items.</p>
 
-<p>Therefore, a warning will be generated on elements that contain the mouse-specific attributes. It will be up to the author to ensure that the functionality is provided to keyboard users in an appropriate manner.</p>
+<h5 id="what-about-the-click-event">What about the click event?</h5>
+
+<p>You will notice that the above list does not include click events. This is because
+the click event is also fired as part of an activation trigger (see technique
+<a href="http://www.w3.org/TR/WCAG20-TECHS/SCR35">SCR35: Making actions keyboard accessible by using the onclick event of anchors and buttons</a>).</p>
+
+<p>For instance, when browsing a page using the keyboard, a link produced from an "a"
+element can be activated by using the Enter key. This will generate the relevant
+key events for that keypress, but will also generate a click event (referred to as a
+"synthesised" click event. Similarly, if an accessibility API triggers its activation,
+a click event will be generated regardless of how it implements the activation.</p>
+
+<p>The DOM Level 3 events specification draft states:</p>
+
+<blockquote>
+  <p>Though the click event type has its origins in pointer devices (e.g., a mouse), subsequent
+  implementation enhancements have extended it beyond that association, and it can be considered a
+  device-independent event type for element activation. <em>(<a href="http://www.w3.org/TR/DOM-Level-3-Events/#event-type-click">Click event type</a>)</em></p>
+  
+  <p>If the instance of the activation trigger is not an event of event type <em>click</em>[, ...]
+  the implementation must synthesize and dispatch an event of event type <em>click</em> as one
+  of the default actions of that activation trigger; the value of the <em>Event.target</em> must
+  be set to the event target (normally, the currently focused element), and the event must simulate a <em>left click</em>...
+  <em>(<a href="http://www.w3.org/TR/DOM-Level-3-Events/#click-synthesis">Activation event synthesis</a>)</em></p>
+  
+  <p><cite><a href="http://www.w3.org/TR/DOM-Level-3-Events/">Document Object Model (DOM) Level 3 Events Specification</a>
+  (working draft, hence work in progress - 14 June 2012 version quoted)</cite></p>
+</blockquote>
+
+<p>This definition appears to deprecate the use of the DOMActivate event, introduced in the DOM Level 2 Events
+specification, which was never strongly supported by browsers (and not by Internet Explorer).</p>
+
+<h5 id="which-event-implementations-are-tested">Which event implementations are tested?</h5>
+
+<p>Events can be implemented using a variety of different methods - ranging from the HTML attributes
+and JavaScript properties, through to DOM events (eg. addEventListener), or being set through
+frameworks like jQuery or Prototype.js. On the flipside, even if a corresponding event is provided
+in code as an HTML attribute, there is no guarantee that it exposes the same functionality as the mouse event.</p>
+
+<p>The main stumbling blocks to being able to test all events are:</p>
+
+<ul>
+<li>The processing time that it would take to traverse every element in the document and
+determine if each element has any of the mouse-bound JavaScript events (set through
+element.onmousedown, element.ondblclick, etc), and</li>
+<li>The lack in DOM Level 3 of an ability to determine whether an event listener has been
+added through addEventListener(). Many frameworks will wrap the event handler system,
+providing tracking of the events that have been attached in this way.</li>
+</ul>
+
+<p>Currently, a warning is generated on elements that contain the mouse-specific attributes.
+It will be up to the author to ensure that the functionality is provided to keyboard users in an
+appropriate manner.</p>
 
 
                 <h3 id="sniff-coverage">Sniff Coverage</h3>
