@@ -90,19 +90,79 @@
 
         <div class="max-width">
 
-                <h3 id="discussion">Discussion</h3><h4>About the flash thresholds</h4>
+                <h3 id="discussion">Discussion</h3><h4>Table of Contents</h4>
 
-<p>The definitions of a "general flash" or a "red flash" are found in the "Understanding" document.</p>
+<ol>
+  <li><a href="#definition-of-a-flash">Definition of a flash</a></li>
+  <li><a href="#so-what-does-this-mean">So what does this mean?</a></li>
+<ol>
+  <li><a href="#what-is-small-enough">What is "small enough"?</a></li>
+</ol>
+  <li><a href="#comparison-with-wcag-1.0">Comparison with WCAG 1.0</a></li>
+  <li><a href="#comparison-with-abbr-titleunited-statesu.s.abbr-section-508">Comparison with <abbr title="United States">U.S.</abbr> Section 508</a></li>
+</ol>
+<h4 id="definition-of-a-flash">Definition of a flash</h4>
 
-<p>This Success Criterion can be passed by letting <a href="http://www.w3.org/TR/WCAG20-TECHS/G19">no part of the page flash more than 3 times per second</a>, or ensuring that the <a href="http://www.w3.org/TR/WCAG20-TECHS/G176">combined area of flashing on the screen is "small enough"</a> - roughly a 25% proportion of any 10-degree field of vision.</p>
+<p>The definitions of a "general flash" or a "red flash" are defined below in the threshold definition:</p>
 
-<p>What is "small enough"? It depends on the size of the screen and the distance from the typical viewer. For general web usage, the W3C guidelines specify an area based on a 15-17 inch monitor at 1024 x 768 resolution, viewed at 22-26 inches (55-65 cm). This provides a (total) flashable region of 21,824 square pixels, of any shape. At higher resolutions and screen sizes, this size would cover a lesser percentage of such field of vision.</p>
+<blockquote>
+  <p>a flash or rapidly changing image sequence is below the threshold (i.e., content <strong>passes</strong>) if any of the following are true:</p>
+  
+  <ol>
+  <li>there are no more than three <strong>general flashes</strong> and / or no more than three <strong>red flashes</strong> within any one-second period; or</li>
+  <li>the combined area of flashes occurring concurrently occupies no more than a total of .006 steradians within any 10 degree
+  visual field on the screen (25% of any 10 degree visual field on the screen) at typical viewing distance</li>
+  </ol>
+  
+  <p>where:</p>
+  
+  <ul>
+  <li>A <strong>general flash</strong> is defined as a pair of opposing changes in relative luminance of 10% or more of the maximum relative
+  luminance where the [relative luminance]((http://www.w3.org/TR/WCAG20/#relativeluminancedef) of the darker image is below 0.80; and where "a pair of opposing changes" is an increase
+  followed by a decrease, or a decrease followed by an increase, and</li>
+  <li>A <strong>red flash</strong> is defined as any pair of opposing transitions involving a saturated red. <em>&#91;note: check the full definition for the definition of a "saturated red"&#93;</em></li>
+  </ul>
+  
+  <p><em>Exception:</em> Flashing that is a fine, balanced, pattern such as white noise or an alternating checkerboard pattern with "squares"
+  smaller than 0.1 degree (of visual field at typical viewing distance) on a side does not violate the thresholds.</p>
+  
+  <p><cite><a href="http://www.w3.org/TR/WCAG20/#general-thresholddef">WCAG 2.0 Recommendation: "general flash and red flash thresholds" definition</a></cite></p>
+</blockquote>
 
-<p>The resolution of 1024 x 768 was chosen as the "most common" resolution (when the technique was introduced with the WCAG 2.0 Recommendation, in late 2008). The techniques may be updated down the track to specify a new minimum, when a new screen size and resolution has been common for a few years. However, this is not expected to come quickly, as the main point of such a low baseline is because many users will not upgrade their computer and/or monitor any more than once every few years, so lower screen sizes need to be catered for. If the 3 flash per second limit is adhered to, then this is not an issue to worry about.</p>
+<h4 id="so-what-does-this-mean">So what does this mean?</h4>
 
-<p>When a screen size and resolution is known (such as for use in a kiosk, or other standard operating environment), a more specific maximum flash area can be calculated. The formula can be found in the "small enough" technique (G176) above.</p>
+<p>This definition is one of the most complex found in the WCAG 2.0 definitions, so it is worth breaking down. The easiest method
+to pass this Success Criterion, of course, is to ensure that <a href="http://www.w3.org/TR/WCAG20-TECHS/G19">flashes in content do not occur more often than three times per second</a>.
+Otherwise, at <abbr title="Single A">A</abbr> level, an exception is offered where content will pass if the
+<a href="http://www.w3.org/TR/WCAG20-TECHS/G176">combined area of flashing on the screen is "small enough"</a>.</p>
 
-<p>This replaces a stricter no-flash or "no-flicker" requirement in <a href="http://www.w3.org/TR/WCAG10/#tech-avoid-flicker">WCAG 1.0 (Checkpoint 7.1)</a> which applied at single-A level. This requirement still applies at AAA level as <a href="./2_3_2">Success Criterion 2.3.2</a>.</p>
+<h5 id="what-is-small-enough">What is "small enough"?</h5>
+
+<p>The definition of small enough is given as "25% of any 10 degree visual field on the screen... at typical viewing distance". This size, therefore,
+depends on the screen size, resolution, and viewing distance. The higher the resolution or screen size, the larger the permitted area. Where content is
+to be viewed on a known monitor (such as a kiosk, digital billboard, or other standard operating environment), the W3C provide a
+<a href="http://www.w3.org/TR/WCAG20-TECHS/G176#smallsafe2">formula for calculating the "small safe area" for known displays</a>.</p>
+
+<p>For general web usage, however, a baseline needs to be established based on a common resolution. When the recommendation was made final in
+late 2008, the baseline was set to a 15-17 inch monitor at 1024 x 768 resolution, viewed at 22-26 inches (55-65 cm). For such a baseline,
+the "small safe area" is a contiguous region of 21,824 pixels squared (or a quarter of a 341 x 256 pixel rectangle). This covers screens at higher
+resolutions and screen sizes, as the "small safe area" would cover a lesser percentage of such field of vision.</p>
+
+<h4 id="comparison-with-wcag-1.0">Comparison with WCAG 1.0</h4>
+
+<p>This Success Criterion replaces a stricter no-flash or "no-flicker" requirement in <a href="http://www.w3.org/TR/WCAG10/#tech-avoid-flicker">WCAG 1.0 (Checkpoint 7.1)</a>
+which applied at <abbr title="Single A">A</abbr> level. WCAG 1.0 defined "flickering" as between 4 and 59 flashes per second.</p>
+
+<p>A strict no-flash requirement still applies at <abbr title="Triple A">AAA</abbr> level as <a href="./2_3_2">Success Criterion 2.3.2</a>.</p>
+
+<h4 id="comparison-with-abbr-titleunited-statesu.s.abbr-section-508">Comparison with <abbr title="United States">U.S.</abbr> Section 508</h4>
+
+<p>Those authors wishing to comply with the current Section 508 requirements for web sites must avoid flashing within the range of 2 and 55
+flashes per second, <em>not inclusive</em>. <cite>(<a href="http://section508.gov/index.cfm?fuseAction=stdsdoc#Web">Section 508 Standards Guide</a> - Web-based information/applications section, rule J)</cite></p>
+
+<p>In the current (very slowly-moving) process of updating Section 508, it is proposed that these requirements will be replaced
+with that of WCAG 2.0 Level <abbr title="Double A">AA</abbr>. If authors comply with the current Section 508 requirement by restricting
+flashes to two per second will also comply with Success Criterion 2.3.1, and therefore the proposed update to Section 508.</p>
 
 
                 <h3 id="sniff-coverage">Sniff Coverage</h3>
