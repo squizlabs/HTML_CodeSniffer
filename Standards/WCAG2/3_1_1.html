@@ -134,8 +134,8 @@
 
 <h4 id="formats-of-language-tags">Formats of language tags</h4>
 
-<p>The IETF's BCP 47 document defines the format of a valid language tag. It is made up of two RFCs: <a href="www.rfc-editor.org/rfc/rfc5646.txt">RFC 5646 "Tags for Identifying Languages"</a>
-and <a href="www.rfc-editor.org/rfc/rfc4647.txt">RFC 4647 "Matching of Language Tags"</a>; it is the former that defines the format for a valid language tag.</p>
+<p>The IETF's BCP 47 document defines the format of a valid language tag. It is made up of two RFCs: <a href="http://www.rfc-editor.org/rfc/rfc5646.txt">RFC 5646 "Tags for Identifying Languages"</a>
+and <a href="http://www.rfc-editor.org/rfc/rfc4647.txt">RFC 4647 "Matching of Language Tags"</a>; it is the former that defines the format for a valid language tag.</p>
 
 <p>A language tag contains the following subtags, specified in the order provided in the following table. All subtags are joined together with hyphens ('-').</p>
 
@@ -166,7 +166,7 @@ Five to eight letters are used for registered languages without an ISO 639 code:
 <td>No</td>
 <td>Three letters</td>
 <td>Although the definition technically allows up to three extlang subtags, all subtags after the first
-were "permanently reserved" when RFC 5646 took effect: "tags that include those subtags in \[the second and third\] position
+were "permanently reserved" when RFC 5646 took effect: "tags that include those subtags in [the second and third] position
 are, and will always remain, invalid". Most extlang tags have been deprecated by full 3-character language tags.</td>
 </tr>
 <tr>
@@ -229,9 +229,15 @@ as written following the <a href="http://en.wikipedia.org/wiki/German_orthograph
   </ul>
 </blockquote>
 
-<p><em>Note:</em> Some assistive technologies do not recognise regional differences beyond the primary <strong>language</strong> subtag, or only handle a limited subset of them. For instance, a screen reader could theoretically come with several accents for English - for instance, United States, United Kingdom, Australia, and so on - but only a generic one for Spanish. In the first case, country may be recognised (eg. "en-US" vs. "en-GB"); in the latter, everything after the initial "es" language tag may be ignored.</p>
+<p><em>Note:</em> Some assistive technologies do not recognise regional differences beyond the primary <strong>language</strong> subtag,
+or only handle a limited subset of them. For instance, a screen reader could theoretically come with several accents
+for English - for instance, United States, United Kingdom, Australia, and so on - but only a generic one for Spanish.
+In the first case, country may be recognised (eg. "en-US" vs. "en-GB"); in the latter, everything after the initial
+"es" language tag may be ignored.</p>
 
-<p>The <a href="http://www.iana.org/assignments/language-subtag-registry">language subtag registry</a> is administered by IANA, and is populated primarily through various ISO standard sources, such as ISO 639 (language codes) and ISO 3166 (country codes). HTML&#95;CodeSniffer does not check for validity against this list, but does check for well-formedness.</p>
+<p>The <a href="http://www.iana.org/assignments/language-subtag-registry">language subtag registry</a> is administered by the <abbr title="Internet Assigned Numbers Authority"><a href="http://www.iana.org/">IANA</a></abbr>,
+and is populated primarily through various ISO standard sources, such as ISO 639 (language codes) and ISO 3166 (country codes).
+HTML&#95;CodeSniffer does not check for validity against this list, but does check for well-formedness.</p>
 
 <h4 id="using-server-side-techniques">Using server-side techniques</h4>
 
