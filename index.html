@@ -106,7 +106,7 @@
                 Test results will be shown underneath the code block.</p>
 
                 <div id="code-input">
-                    <form id="runHTMLCS" action="">
+                    <form id="runHTMLCS" action="" onsubmit="javascript:runHTMLCSTest(false); return false;">
                         <div id="code-overlay" onclick="hideDiv()">
                             <div id="test-area-graphic"></div>Paste your code here
                         </div>
@@ -125,7 +125,7 @@
                             </ul>
                             </fieldset>
 
-                            <button type="button" id="run-button" onclick="javascript:runHTMLCSTest(false);" class="test-options-disabled">Run HTML_CodeSniffer</button>
+                            <button type="submit" id="run-button" class="test-options-disabled">Run HTML_CodeSniffer</button>
 
                         </div>
                     </form>
