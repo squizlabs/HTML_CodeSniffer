@@ -155,14 +155,9 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
     /**
      * Test for longdesc attributes on images (technique H45).
      *
-     * We flag messages when:
-     * - No longdesc attribute is present - a warning to ensure authors add a long
-     *   alternative (using longdesc or some other alternative).
-     * - A warning when the longdesc is not an absolute URI - to make authors check
-     *   whether the text entered is indeed a relative URI, instead of a mistake (eg.
-     *   directly entering the long alternative into longdesc).
-     * - A notice to ensure the content of the longdesc is what it should be - a long
-     *   text alternative for the image.
+     * We throw a notice to ensure that a longdesc is available in an accessible
+     * way - ie. using body text or a link. Longdesc is specifically ignored as it
+     * is not accessible to sighted users.
      *
      * @param {DOMNode} element The element to test.
      *
@@ -170,7 +165,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
      */
     testLongdesc: function(element)
     {
-        HTMLCS.addMessage(HTMLCS.WARNING, element, 'If this image cannot be described in a short text alternative, ensure a long text alternative is available, such as in the body text or through a link.', 'G73,G74');
+        HTMLCS.addMessage(HTMLCS.NOTICE, element, 'If this image cannot be fully described in a short text alternative, ensure a long text alternative is also available, such as in the body text or through a link.', 'G73,G74');
 
     },
 
