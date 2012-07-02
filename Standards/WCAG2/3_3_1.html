@@ -85,7 +85,50 @@
 
         <div class="max-width">
 
-                
+                <h3 id="discussion">Discussion</h3><h4>Table of Contents</h4>
+
+<ol>
+  <li><a href="#summary">Summary</a></li>
+  <li><a href="#use-of-presentation-to-display-errors">Use of presentation to display errors</a></li>
+  <li><a href="#use-of-browser-enforced-validation">Use of browser-enforced validation</a></li>
+</ol>
+<h4 id="summary">Summary</h4>
+
+<p>This Success Criterion ensures that all users are able to easily determine that a form submission has failed,
+by providing a text description of what field(s) are in error and why. Error messages should be as specific as possible;
+providing specifics of errors, whether they be missing required fields, or fields not in the correct format.</p>
+
+<p>The relevant techniques - such as <a href="http://www.w3.org/TR/WCAG20-TECHS/G83">G83: Providing text descriptions to identify required fields that were not completed</a>
+for missing required fields - suggest making the error as obvious as possible. The best practices offered in the techniques appear to be:</p>
+
+<ul>
+<li>Provide a message above the form stating the errors that were found. This provides
+users who must read sequentially with early identification that the form is functioning
+but submitted with errors;</li>
+<li>Adding some sort of general error identification to the title of the document, for the
+same reason;</li>
+<li>Providing some sort of notice (preferably in a field's label) to denote that an error
+was found in that field, meaning users do not have to refer back to the initial message
+to find the other missing fields.</li>
+</ul>
+
+<h4 id="use-of-presentation-to-display-errors">Use of presentation to display errors</h4>
+
+<p>This Success Criterion does not forbid the use of additional text styling or colour to further draw attention to
+the error. For instance, there is nothing wrong with highlighting fields in error in red for instance, as long as the actual
+error is described in text.</p>
+
+<h4 id="use-of-browser-enforced-validation">Use of browser-enforced validation</h4>
+
+<p>Some source languages allow validation to be carried out by the user agent, based on the base language itself. This is particularly pointed towards
+HTML5, where new input element types allow the browser to enforce client-side restrictions on inputs without
+requiring JavaScript. For example, some new browsers support the "pattern" attribute on text inputs, which can set a required
+format for text fields to follow; the pattern is the format of the <abbr title="Perl-compatible regular expression">PCRE</abbr>
+subset supported by the JavaScript RegExp object.</p>
+
+<p>This Success Criterion "does not require, nor prevent" the use of these new features. However, due to the patchy support for these
+in HTML5; their use <em>alone</em> to validate fields is not recommended.</p>
+
 
                 <h3 id="sniff-coverage">Sniff Coverage</h3>
 
