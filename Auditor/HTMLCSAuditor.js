@@ -276,7 +276,7 @@ var HTMLCSAuditor = new function()
         lineageHomeLink.appendChild(lineageHomeSpan);
 
         lineageHomeLink.onmousedown = function() {
-            HTMLCSAuditor.run(_standard, _sources, _options);
+            self.run(_standard, _sources, _options);
         };
 
         // Issue totals.
@@ -328,7 +328,7 @@ var HTMLCSAuditor = new function()
         lineageHomeLink.appendChild(lineageHomeSpan);
 
         lineageHomeLink.onmousedown = function() {
-            HTMLCSAuditor.run(_standard, _sources, _options);
+            self.run(_standard, _sources, _options);
         };
 
         // Back to Report item.
@@ -522,8 +522,8 @@ var HTMLCSAuditor = new function()
                     notice: _doc.getElementById(_prefix + 'include-notice').checked
                 }
 
-                var wrapper = _doc.getElementById(_prefix + 'wrapper');
-                var newWrapper        = self.build(_standard, _messages, _options);
+                var wrapper    = _doc.getElementById(_prefix + 'wrapper');
+                var newWrapper = self.build(_standard, _messages, _options);
 
                 if (_options.parentElement) {
                     _options.parentElement.replaceChild(newWrapper, wrapper);
@@ -539,33 +539,8 @@ var HTMLCSAuditor = new function()
             }//end if
         };
 
-        var levels = {
-            error: 0,
-            warning: 0,
-            notice: 0
-        };
-
         var wrapper = _doc.getElementById(_prefix + 'wrapper');
-
-        for (var i = 0; i < _messages.length; i++) {
-            switch (_messages[i].type) {
-                case HTMLCS.ERROR:
-                    levels.error++;
-                break;
-
-                case HTMLCS.WARNING:
-                    levels.warning++;
-                break;
-
-                case HTMLCS.NOTICE:
-                    levels.notice++;
-                break;
-
-                default:
-                    // No default case.
-                break;
-            }//end switch
-        }//end for
+        var levels  = self.countIssues(_messages);
 
         // Set default show options based on the first run. Don't re-do these, let
         // the user's settings take priority, unless there is no message.
@@ -1057,6 +1032,33 @@ var HTMLCSAuditor = new function()
 
     };
 
+    this.countIssues = function(messages)
+    {
+        var counts = {
+            error: 0,
+            warning: 0,
+            notice: 0
+        };
+
+        for (var i = 0; i < messages.length; i++) {
+            switch (messages[i].type) {
+                case HTMLCS.ERROR:
+                    counts.error++;
+                break;
+
+                case HTMLCS.WARNING:
+                    counts.warning++;
+                break;
+
+                case HTMLCS.NOTICE:
+                    counts.notice++;
+                break;
+            }//end switch
+        }//end for
+
+        return counts;
+    };
+
     this.build = function(standard, messages, options) {
         var wrapper = null;
         if (_doc) {
@@ -1350,7 +1352,8 @@ var HTMLCSAuditor = new function()
 
         this.includeCss('HTMLCS');
 
-        var target = _doc.getElementById(_prefix + 'wrapper');
+        var target    = _doc.getElementById(_prefix + 'wrapper');
+        var newlyOpen = false;
 
         // Load the "processing" screen.
         var wrapper        = self.buildSummaryPage();
@@ -1366,6 +1369,7 @@ var HTMLCSAuditor = new function()
                 _options.openCallback.call(this);
             }
 
+            newlyOpen = true;
             parentEl.appendChild(wrapper);
         }
 
