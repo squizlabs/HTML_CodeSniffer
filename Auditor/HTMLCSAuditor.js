@@ -1381,9 +1381,9 @@ var HTMLCSAuditor = new function()
                 if (wrapper) {
                     if (wrapper === _messages[i].element) {
                         ignore = true;
-                    } else if (document === _messages[i].element) {
-                        // Don't ignore document. This is to short-circuit calls to
-                        // contains() because IE doesn't like document being the argument.
+                    } else if (_messages[i].element.documentElement) {
+                        // Short-circuit document objects. IE doesn't like documents
+                        // being the argument of contains() calls.
                         ignore = false;
                     } else if ((wrapper.contains) && (wrapper.contains(_messages[i].element) === true)) {
                         ignore = true;
