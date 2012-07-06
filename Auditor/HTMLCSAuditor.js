@@ -1447,7 +1447,7 @@ var HTMLCSAuditor = new function()
             var wrapper = _doc.getElementById('HTMLCS-wrapper');
 
             if (wrapper) {
-                _doc.querySelector('body').removeChild(wrapper);
+                wrapper.parentNode.removeChild(wrapper);
 
                 var pointerEl = pointer.pointer;
                 if (pointerEl && pointerEl.parentNode) {
