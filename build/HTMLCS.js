@@ -1,63 +1,15 @@
-var HTMLCS=new function(){var a={},b=[],d={},c=null,e=null,g=[],f={};this.ERROR=1;this.WARNING=2;this.NOTICE=3;this.process=function(e,D,v){a={};b=[];d={};c=null;if(!D)return!1;a[x(e)]?HTMLCS.run(v,D):this.loadStandard(e,function(){HTMLCS.run(v,D)})};this.loadStandard=function(a,b){if(!a)return!1;B(a,function(){c=a;b.call(this)})};this.run=function(a,b){var c=null,m=!1;if("string"===typeof b)if(!0===this.isFullDoc(b)){var m=!0,n=document.createElement("iframe");n.style.display="none";n=document.body.insertBefore(n,
-null);n.contentDocument?c=n.contentDocument:c.contentWindow&&(c=n.contentWindow.document);n.onload=function(){var b=z(c);b.unshift(c);l(b,c,a)};c.write(b);c.close()}else c=document.createElement("div"),c.innerHTML=b;else c=b;c?(a=a||function(){},g=[],n=z(c),n.unshift(c),!1===m&&l(n,c,a)):a.call(this)};this.isFullDoc=function(a){var b=!1;if("string"===typeof a)-1!==a.toLowerCase().indexOf("<html")?b=!0:-1!==a.toLowerCase().indexOf("<head")&&-1!==a.toLowerCase().indexOf("<body")&&(b=!0);else if("html"===
-a.nodeName.toLowerCase()||a.documentElement)b=!0;return b};this.addMessage=function(a,b,d,m,n){m=c+"."+e._name+"."+m;g.push({type:a,element:b,msg:f[m]||d,code:m,data:n})};this.getMessages=function(){return g.concat([])};var l=function(a,b,c){for(;0<a.length;){var m=a.shift(),n=m===b?"_top":m.tagName.toLowerCase();d[n]&&0<d[n].length&&o(m,d[n].concat([]),b)}!0===c instanceof Function&&c.call(this)},o=function(a,b,c,m){for(;0<b.length;){var n=b.shift();e=n;!0===n.useCallback?n.process(a,c,function(){o(a,
-b,c);b=[]}):n.process(a,c)}!0===m instanceof Function&&m.call(this)},B=function(a,b,c){0!==a.indexOf("http")&&(a=x(a));var m=a.split("/");window["HTMLCS_"+m[m.length-2]]?u(a,b,c):p(a,function(){u(a,b,c)})},u=function(b,c,d){var m=b.split("/"),n=window["HTMLCS_"+m[m.length-2]],m={},e;for(e in n)!0===n.hasOwnProperty(e)&&(m[e]=n[e]);if(!m)return!1;a[b]=m;if(d)if(d.include&&0<d.include.length)m.sniffs=d.include;else if(d.exclude)for(e=0;e<d.exclude.length;e++)n=m.sniffs.find(d.exclude[e]),0<=n&&m.sniffs.splice(n,
-1);d=m.sniffs.slice(0,m.sniffs.length);A(b,d,c)},A=function(a,b,c){if(0===b.length)c.call(this);else{var m=b.shift();r(a,m,function(){A(a,b,c)})}},r=function(a,c,e){if("string"===typeof c){var m=function(){var m=w(a,c);if(m){var s=m.register();if(s&&0<s.length)for(var q=0;q<s.length;q++)d[s[q]]||(d[s[q]]=[]),d[s[q]].push(m);b.push(m)}e.call(this)};w(a,c)?m():p(E(a,c),m)}else B(c.standard,function(){if(c.messages)for(var a in c.messages)f[a]=c.messages[a];e.call(this)},{exclude:c.exclude,include:c.include})},
-E=function(a,b){var c=a.split("/");c.pop();return c.join("/")+"/Sniffs/"+b.replace(/\./g,"/")+".js"},x=function(a){for(var b=document.getElementsByTagName("script"),c=null,m=0;m<b.length;m++)if(b[m].src&&b[m].src.match(/HTMLCS\.js/)){c=b[m].src.replace(/HTMLCS\.js/,"");break}return c+"Standards/"+a+"/ruleset.js"},w=function(b,c){var d;d="HTMLCS_"+(a[b].name+"_Sniffs_");d+=c.split(".").join("_");if(!window[d])return null;window[d]._name=c;return window[d]},p=function(a,b){var c=document.createElement("script");
-c.onload=function(){c.onload=null;c.onreadystatechange=null;b.call(this)};c.onreadystatechange=function(){!0===/^(complete|loaded)$/.test(this.readyState)&&(c.onreadystatechange=null,c.onload())};c.src=a;document.head?document.head.appendChild(c):document.getElementsByTagName("head")[0].appendChild(c)},z=function(a){for(var a=(a||document).getElementsByTagName("*"),b=[],c=0;c<a.length;c++)b.push(a[c]);return b};this.isStringEmpty=function(a){var b=!0;-1!==a.indexOf(String.fromCharCode(160))?b=!1:
+var HTMLCS=new function(){var a={},b=[],d={},c=null,e=null,f=[],g={};this.ERROR=1;this.WARNING=2;this.NOTICE=3;this.process=function(e,x,y){a={};b=[];d={};c=null;if(!x)return!1;a[o(e)]?HTMLCS.run(y,x):this.loadStandard(e,function(){HTMLCS.run(y,x)})};this.loadStandard=function(a,b){if(!a)return!1;u(a,function(){c=a;b.call(this)})};this.run=function(a,b){var d=null,c=!1;if("string"===typeof b)if(!0===this.isFullDoc(b)){var c=!0,e=document.createElement("iframe");e.style.display="none";e=document.body.insertBefore(e,
+null);e.contentDocument?d=e.contentDocument:d.contentWindow&&(d=e.contentWindow.document);e.onload=function(){var b=s(d);b.unshift(d);h(b,d,a)};d.write(b);d.close()}else d=document.createElement("div"),d.innerHTML=b;else d=b;d?(a=a||function(){},f=[],e=s(d),e.unshift(d),!1===c&&h(e,d,a)):a.call(this)};this.isFullDoc=function(a){var b=!1;if("string"===typeof a)-1!==a.toLowerCase().indexOf("<html")?b=!0:-1!==a.toLowerCase().indexOf("<head")&&-1!==a.toLowerCase().indexOf("<body")&&(b=!0);else if("html"===
+a.nodeName.toLowerCase()||a.documentElement)b=!0;return b};this.addMessage=function(a,b,d,v,h){v=c+"."+e._name+"."+v;f.push({type:a,element:b,msg:g[v]||d,code:v,data:h})};this.getMessages=function(){return f.concat([])};var h=function(a,b,c){for(;0<a.length;){var e=a.shift(),f=e===b?"_top":e.tagName.toLowerCase();d[f]&&0<d[f].length&&i(e,d[f].concat([]),b)}!0===c instanceof Function&&c.call(this)},i=function(a,b,d,c){for(;0<b.length;){var f=b.shift();e=f;!0===f.useCallback?f.process(a,d,function(){i(a,
+b,d);b=[]}):f.process(a,d)}!0===c instanceof Function&&c.call(this)},u=function(a,b,d){0!==a.indexOf("http")&&(a=o(a));var c=a.split("/");window["HTMLCS_"+c[c.length-2]]?m(a,b,d):k(a,function(){m(a,b,d)})},m=function(b,d,c){var e=b.split("/"),f=window["HTMLCS_"+e[e.length-2]],e={},g;for(g in f)!0===f.hasOwnProperty(g)&&(e[g]=f[g]);if(!e)return!1;a[b]=e;if(c)if(c.include&&0<c.include.length)e.sniffs=c.include;else if(c.exclude)for(g=0;g<c.exclude.length;g++)f=e.sniffs.find(c.exclude[g]),0<=f&&e.sniffs.splice(f,
+1);c=e.sniffs.slice(0,e.sniffs.length);t(b,c,d)},t=function(a,b,d){if(0===b.length)d.call(this);else{var c=b.shift();j(a,c,function(){t(a,b,d)})}},j=function(a,c,e){if("string"===typeof c){var f=function(){var f=p(a,c);if(f){var g=f.register();if(g&&0<g.length)for(var h=0;h<g.length;h++)d[g[h]]||(d[g[h]]=[]),d[g[h]].push(f);b.push(f)}e.call(this)};p(a,c)?f():k(w(a,c),f)}else u(c.standard,function(){if(c.messages)for(var a in c.messages)g[a]=c.messages[a];e.call(this)},{exclude:c.exclude,include:c.include})},
+w=function(a,b){var d=a.split("/");d.pop();return d.join("/")+"/Sniffs/"+b.replace(/\./g,"/")+".js"},o=function(a){for(var b=document.getElementsByTagName("script"),d=null,c=0;c<b.length;c++)if(b[c].src&&b[c].src.match(/HTMLCS\.js/)){d=b[c].src.replace(/HTMLCS\.js/,"");break}return d+"Standards/"+a+"/ruleset.js"},p=function(b,d){var c;c="HTMLCS_"+(a[b].name+"_Sniffs_");c+=d.split(".").join("_");if(!window[c])return null;window[c]._name=d;return window[c]},k=function(a,b){var c=document.createElement("script");
+c.onload=function(){c.onload=null;c.onreadystatechange=null;b.call(this)};c.onreadystatechange=function(){!0===/^(complete|loaded)$/.test(this.readyState)&&(c.onreadystatechange=null,c.onload())};c.src=a;document.head?document.head.appendChild(c):document.getElementsByTagName("head")[0].appendChild(c)},s=function(a){for(var a=(a||document).getElementsByTagName("*"),b=[],c=0;c<a.length;c++)b.push(a[c]);return b};this.isStringEmpty=function(a){var b=!0;-1!==a.indexOf(String.fromCharCode(160))?b=!1:
 !1===/^\s*$/.test(a)&&(b=!1);return b};this.util=new function(){this.trim=function(a){return a.replace(/^\s*(.*)\s*$/g,"$1")};this.isStringEmpty=function(a){var b=!0;-1!==a.indexOf(String.fromCharCode(160))?b=!1:!1===/^\s*$/.test(a)&&(b=!1);return b};this.isHidden=function(){var a=!1;if(elem.currentStyle)var b=elem.currentStyle;else if(window.getComputedStyle)b=window.getComputedStyle(elem);else return!1;if("hidden"===b.visibility||"none"===b.display)a=!0;return a};this.contains=function(a,b){var c=
-!1;a!==b&&(a.ownerDocument?a.contains&&!0===a.contains(b)?c=!0:a.compareDocumentPosition&&0<(a.compareDocumentPosition(b)&16)&&(c=!0):b.ownerDocument&&b.ownerDocument===a&&(c=!0));return c};this.isLayoutTable=function(){return!1};this.getElementTextContent=function(a,b){void 0===b&&(b=!0);for(var a=a.cloneNode(!0),c=[],m=0;m<a.childNodes.length;m++)c.push(a.childNodes[m]);for(var d=[];0<c.length;){var e=c.shift();if(1===e.nodeType)if("img"===e.nodeName.toLowerCase())!0===b&&!0===e.hasAttribute("alt")&&
-d.push(e.getAttribute("alt"));else for(m=0;m<e.childNodes.length;m++)c.push(e.childNodes[m]);else 3===e.nodeType&&d.push(e.nodeValue)}return d=d.join("").replace(/^\s+|\s+$/g,"")};this.getCellHeaders=function(a){if("object"!==typeof a||"table"!==a.nodeName.toLowerCase())return null;for(var a=a.getElementsByTagName("tr"),b=[],c={},m={},d=[],e=["th","td"],q=0;q<e.length;q++)for(var k=e[q],h=0;h<a.length;h++)for(var j=a[h],i=0,H=0;H<j.childNodes.length;H++){var g=j.childNodes[H];if(1===g.nodeType){if(b[h])for(;b[h][0]===
-i;)b[h].shift(),i++;var f=g.nodeName.toLowerCase(),l=Number(g.getAttribute("rowspan"))||1,o=Number(g.getAttribute("colspan"))||1;if(1<l)for(var t=h+1;t<h+l;t++){b[t]||(b[t]=[]);for(var y=i;y<i+o;y++)b[t].push(y)}if(f===k)if("th"===f){g=g.getAttribute("id")||"";for(t=h;t<h+l;t++)c[t]=c[t]||{first:i,ids:[]},c[t].ids.push(g);for(t=i;t<i+o;t++)m[t]=m[t]||{first:h,ids:[]},m[t].ids.push(g)}else if("td"===f){f=[];for(t=h;t<h+l;t++)for(y=i;y<i+o;y++)c[t]&&y>=c[t].first&&(f=f.concat(c[t].ids)),m[y]&&t>=m[y].first&&
-(f=f.concat(m[y].ids));0<f.length&&(f=" "+f.sort().join(" ")+" ",f=f.replace(/\s+/g," ").replace(/(\w+\s)\1+/g,"$1").replace(/^\s*(.*?)\s*$/g,"$1"),d.push({cell:g,headers:f}))}i+=o}}return d}}},HTMLCSAuditor=new function(){var a="",b="",d=[],c={},e=null,g=[],f=1,l=this;this.pointerContainer=null;var o=function(a,b,c,d){var k=e.createElement("div");k.id=a;k.className="HTMLCS-button";k.setAttribute("title",c);a=e.createElement("span");a.className="HTMLCS-button-icon HTMLCS-button-"+b;k.appendChild(a);
-b=e.createTextNode(String.fromCharCode(160));k.appendChild(b);!0===d instanceof Function&&(k.onclick=function(){!1===/disabled/.test(k.className)&&d(k)});return k},B=function(a,b,c,d,k){void 0===c&&(c=!1);var h=/msie/i.test(navigator.userAgent),j=e.createElement("label");j.className="HTMLCS-checkbox";a='<span class="HTMLCS-checkbox-switch"><span class="HTMLCS-checkbox-slider"></span>'+('<input id="'+a+'" type="checkbox"');!0===c&&(a+=' checked="checked"',j.className+=" active");!0===d&&(a+=' disabled="disabled"',
-j.className+=" disabled");j.innerHTML=a+(' title="'+b+'" /></span>');var i=j.getElementsByTagName("input")[0];i.onclick=function(){j.className=i.checked===true?j.className+" active":j.className.replace("active","");k instanceof Function===true&&k(i)};!0===h&&(j.onclick=function(){i.click()});return j},u=function(a,b){var c=e.createElement("div");c.className="HTMLCS-header";c.innerHTML="HTML_CodeSniffer by Squiz";c.setAttribute("title","Using standard "+a);var d=!1,k=0,h=0;c.onmousedown=function(a){a=
-a||window.event;d=!0;k=a.clientX;h=a.clientY;return!1};e.onmousemove=function(a){a=a||window.event;if(!0===d){var c=b.offsetTop,m=b.offsetLeft;h<a.clientY?(c+=a.clientY-h,b.style.top=c+"px"):h>a.clientY&&(c-=h-a.clientY,b.style.top=c+"px");k<a.clientX?(m+=a.clientX-k,b.style.left=m+"px"):k>a.clientX&&(m-=k-a.clientX,b.style.left=m+"px");k=a.clientX;h=a.clientY}};e.onmouseup=function(){d=!1};var j=e.createElement("div");j.className="HTMLCS-close";j.setAttribute("title","Close");j.onmousedown=function(){l.close.call(l)};
-c.appendChild(j);return c},A=function(a,n,s){var q=e.createElement("div");q.className="HTMLCS-summary";var k=e.createElement("div");k.className="HTMLCS-summary-left";q.appendChild(k);var h=e.createElement("div");h.className="HTMLCS-summary-right";q.appendChild(h);var j=[];if(0<a){var i="Errors";1===a&&(i="Error");j.push("<strong>"+a+"</strong> "+i)}0<n&&(i="Warnings",1===n&&(i="Warning"),j.push("<strong>"+n+"</strong> "+i));0<s&&(i="Notices",1===s&&(i="Notice"),j.push("<strong>"+s+"</strong> "+i));
-a=e.createElement("ol");a.className="HTMLCS-lineage";n=e.createElement("li");n.className="HTMLCS-lineage-item";s=e.createElement("a");s.className="HTMLCS-lineage-link";s.href="javascript:";i=e.createElement("span");i.innerHTML="Home";s.appendChild(i);s.onmousedown=function(){HTMLCSAuditor.run(b,d,c)};i=e.createElement("li");i.className="HTMLCS-lineage-item";i.innerHTML=j.join(', &nbsp;<span class="HTMLCS-divider"></span>');n.appendChild(s);a.appendChild(n);a.appendChild(i);k.appendChild(a);h.appendChild(e.createTextNode(String.fromCharCode(160)));
-return q},r=function(a,n){var s=e.createElement("div");s.className="HTMLCS-summary-detail";var q=e.createElement("div");q.className="HTMLCS-summary-left";var k=e.createElement("div");k.className="HTMLCS-summary-right";var h=e.createElement("ol");h.className="HTMLCS-lineage";var j=e.createElement("li");j.className="HTMLCS-lineage-item";var i=e.createElement("a");i.className="HTMLCS-lineage-link";i.href="javascript:";var f=e.createElement("span");f.innerHTML="Home";i.appendChild(f);i.onmousedown=function(){HTMLCSAuditor.run(b,
-d,c)};f=e.createElement("li");f.className="HTMLCS-lineage-item";var l=e.createElement("a");l.className="HTMLCS-lineage-link";l.href="javascript:";l.innerHTML="Report";l.setAttribute("title","Back to Report");l.onmousedown=function(){var a=e.querySelectorAll(".HTMLCS-inner-wrapper")[0];a.style.marginLeft="0px";a.style.maxHeight=null;s.style.display="none";e.querySelectorAll(".HTMLCS-summary")[0].style.display="block"};var F=e.createElement("li");F.className="HTMLCS-lineage-item";F.innerHTML="Issue "+
-a+" of "+n;j.appendChild(i);f.appendChild(l);h.appendChild(j);h.appendChild(f);h.appendChild(F);q.appendChild(h);h=e.createElement("div");h.className="HTMLCS-button-group";j=o("HTMLCS-button-previous-issue","previous","Previous Issue",function(){var b=Number(a)-1;if(1<=b){w(b-1);wrapper=s.parentNode;var c=r(b,n);wrapper.replaceChild(c,s);c.style.display="block";c=e.querySelectorAll(".HTMLCS-issue-detail-list")[0];c.firstChild.style.marginLeft=parseInt(c.firstChild.style.marginLeft,10)+300+"px";G(b-
-1)}});i=o("HTMLCS-button-next-issue","next","Next Issue",function(){var b=Number(a)+1;if(b<=g.length){w(b-1);wrapper=s.parentNode;var c=r(b,n);wrapper.replaceChild(c,s);c.style.display="block";c=e.querySelectorAll(".HTMLCS-issue-detail-list")[0];c.firstChild.style.marginLeft=parseInt(c.firstChild.style.marginLeft,10)-300+"px";G(b-1)}});1===a?j.className+=" disabled":a===n&&(i.className+=" disabled");h.appendChild(j);h.appendChild(i);k.appendChild(h);s.appendChild(q);s.appendChild(k);return s},E=function(){var a=
-e.createElement("div");a.className="HTMLCS-settings";var n=e.createElement("div");n.id="HTMLCS-settings-use-standard";var s=e.createElement("label");s.innerHTML="Standards:";s.setAttribute("for","HTMLCS-settings-use-standard-select");var q=e.createElement("select");q.id="HTMLCS-settings-use-standard-select";q.innerHTML="";for(var k=["WCAG2AAA","WCAG2AA","WCAG2A"],h=0;h<k.length;h++){var j=k[h],i=e.createElement("option");i.value=j;i.innerHTML=window["HTMLCS_"+j].name;j===b&&(i.selected=!0);q.appendChild(i);
-q.onchange=function(){b=this.options[this.selectedIndex].value;l.run(b,d,c)}}k=e.createElement("div");k.id="HTMLCS-settings-issue-count";j=e.createElement("div");j.id="HTMLCS-settings-issue-count-help";j.innerHTML="Select the types of issues to include in the report";var f=e.createElement("div");f.id="HTMLCS-settings-view-report";f.innerHTML="View Report";f.onclick=function(){if(!1===/disabled/.test(this.className)){c.show={error:e.getElementById("HTMLCS-include-error").checked,warning:e.getElementById("HTMLCS-include-warning").checked,
-notice:e.getElementById("HTMLCS-include-notice").checked};var a=e.getElementById("HTMLCS-wrapper"),d=l.build(b,g,c);c.parentElement?c.parentElement.replaceChild(d,a):(d.style.left=a.style.left,d.style.top=a.style.top,e.body.replaceChild(d,a));c.listUpdateCallback&&c.listUpdateCallback.call(this,g)}};i={error:0,warning:0,notice:0};e.getElementById("HTMLCS-wrapper");for(h=0;h<g.length;h++)switch(g[h].type){case HTMLCS.ERROR:i.error++;break;case HTMLCS.WARNING:i.warning++;break;case HTMLCS.NOTICE:i.notice++}void 0===
-c.show&&0<g.length&&(c.show={error:!0,warning:!0,notice:!1},0===i.error&&0===i.warning&&(c.show.notice=!0));for(var C in i){var o=i[C],h=e.createElement("div");h.className="HTMLCS-issue-tile HTMLCS-"+C.toLowerCase();var p=e.createElement("div");p.className="HTMLCS-tile-text";var r="<strong>"+o+"</strong> "+C.substr(0,1).toUpperCase()+C.substr(1);1!==o&&(r+="s");p.innerHTML=r;if(void 0===c.show)var r=!1,t=!0;else r=c.show[C],t=!1,0===o&&(t=!0);o=B("HTMLCS-include-"+C,"Toggle display of "+C+" messages",
-r,t,function(){var a=false;if(e.getElementById("HTMLCS-include-error").disabled===false){c.show.error=e.getElementById("HTMLCS-include-error").checked;a=a||c.show.error}if(e.getElementById("HTMLCS-include-warning").disabled===false){c.show.warning=e.getElementById("HTMLCS-include-warning").checked;a=a||c.show.warning}if(e.getElementById("HTMLCS-include-notice").disabled===false){c.show.notice=e.getElementById("HTMLCS-include-notice").checked;a=a||c.show.notice}f.className=a===true?f.className.replace(/ disabled/,
-""):f.className+" disabled"});h.appendChild(p);h.appendChild(o);k.appendChild(h)}if(void 0!==c.show){if(!1===(c.show.error||c.show.warning||c.show.notice))f.className+=" disabled"}else f.className+=" disabled";n.appendChild(s);n.appendChild(q);a.appendChild(n);a.appendChild(k);a.appendChild(j);a.appendChild(f);return a},x=function(a,b){var c="",d="",k="";switch(b.type){case HTMLCS.ERROR:d="Error";break;case HTMLCS.WARNING:d="Warning";break;case HTMLCS.NOTICE:d="Notice"}var k=d.toLowerCase(),h=b.msg;
-115<h.length&&(h=h.substr(0,115)+"...");c=e.createElement("li");c.id="HTMLCS-msg-"+a;var j=e.createElement("span");j.className="HTMLCS-issue-type HTMLCS-"+k;j.setAttribute("title",d);c.appendChild(j);d=e.createElement("span");d.className="HTMLCS-issue-title";d.innerHTML=h;c.appendChild(d);c.onclick=function(){var a=this.id.replace(/HTMLCS-msg-/,"");w(a);var b=e.querySelectorAll(".HTMLCS-issue-detail-list")[0];b.className+=" HTMLCS-transition-disabled";b.firstChild.style.marginLeft=-300*a+"px";G(a);
-setTimeout(function(){b.className=b.className.replace(/ HTMLCS-transition-disabled/,"")},500);var c=e.querySelectorAll(".HTMLCS-inner-wrapper")[0];c.style.marginLeft="-300px";c.style.maxHeight="15em";summary=e.querySelectorAll(".HTMLCS-summary-detail")[0];a=r(parseInt(a)+1,g.length);summary.parentNode.replaceChild(a,summary);a.style.display="block";e.querySelectorAll(".HTMLCS-summary")[0].style.display="none"};return c},w=function(a){for(var b=e.querySelectorAll(".HTMLCS-issue-detail-list")[0].getElementsByTagName("li"),
-d=0;d<b.length;d++)b[d].className=b[d].className.replace(/ HTMLCS-current/,"");b=e.getElementById("HTMLCS-msg-detail-"+a);b.className+=" HTMLCS-current";c.showIssueCallback&&c.showIssueCallback.call(this,a)},p=function(a,b,d){var q="",k={Principle1:{name:"Perceivable",link:"http://www.w3.org/TR/WCAG20/#perceivable"},Principle2:{name:"Operable",link:"http://www.w3.org/TR/WCAG20/#operable"},Principle3:{name:"Understandable",link:"http://www.w3.org/TR/WCAG20/#understandable"},Principle4:{name:"Robust",
-link:"http://www.w3.org/TR/WCAG20/#robust"}};switch(b.type){case HTMLCS.ERROR:q="Error";break;case HTMLCS.WARNING:q="Warning";break;case HTMLCS.NOTICE:q="Notice"}for(var h="HTMLCS-"+q.toLowerCase(),j=b.code.split(".",5),i=j[1],j=j[4].split(","),f=[],g=0;g<j.length;g++)j[g]=j[g].split("."),f.push('<a href="http://www.w3.org/TR/WCAG20-TECHS/'+j[g][0]+'" target="_blank">'+j[g][0]+"</a>");j=e.createElement("li");j.id="HTMLCS-msg-detail-"+a;g=e.createElement("div");g.className="HTMLCS-issue-details";var r=
-e.createElement("span");r.className="HTMLCS-issue-type "+h;r.setAttribute("title",q);q=e.createElement("div");q.className="HTMLCS-issue-title";q.innerHTML=b.msg;h=e.createElement("div");h.className="HTMLCS-issue-wcag-ref";k='<em>Principle:</em> <a href="'+k[i].link+'" target="_blank">'+k[i].name+"</a><br/>";k+="<em>Technique:</em> "+f.join(" ");NaN;h.innerHTML=k;g.appendChild(r);g.appendChild(q);g.appendChild(h);j.appendChild(g);if(c.customIssueSource)k=e.createElement("div"),k.className="HTMLCS-issue-source",
-j.appendChild(k),c.customIssueSource.call(this,a,b,d,k,g);else{k=e.createElement("div");k.className="HTMLCS-issue-source";d=e.createElement("div");d.className="HTMLCS-issue-source-header";i=e.createElement("strong");i.innerHTML="Code Snippet";a=o("HTMLCS-button-point-to-element-"+a,"pointer","Point to Element",function(){l.pointToElement(b.element)});d.appendChild(i);d.appendChild(a);k.appendChild(d);if(b.element.outerHTML){d=a="";i=31<b.element.innerHTML.length?b.element.outerHTML.replace(b.element.innerHTML,
-b.element.innerHTML.substr(0,31)+"..."):b.element.outerHTML;for(f=b.element.previousSibling;31>=a.length&&null!==f;)1===f.nodeType?a=f.outerHTML:3===f.nodeType&&(a=void 0!==f.textContent?f.textContent+a:f.nodeValue+a),31<a.length&&(a="..."+a.substr(a.length-31)),f=f.previousSibling;for(f=b.element.nextSibling;31>=d.length&&null!==f;)1===f.nodeType?d+=f.outerHTML:3===f.nodeType&&(d=void 0!==f.textContent?d+f.textContent:d+f.nodeValue),31<d.length&&(d=d.substr(0,31)+"..."),f=f.nextSibling;f=e.createElement("div");
-f.className="HTMLCS-issue-source-inner";g=e.createElement("strong");void 0!==g.textContent?g.textContent=i:g.innerText=i;f.appendChild(e.createTextNode(a));f.appendChild(g);f.appendChild(e.createTextNode(d))}else f=e.createElement("div"),f.className="HTMLCS-issue-source-not-supported",f.appendChild(e.createTextNode("The code snippet functionality is not supported in this browser."));k.appendChild(f);j.appendChild(k)}return j},z=function(a,b){var c=e.createElement("div");c.className="HTMLCS-navigation";
-var d=e.createElement("span");d.className="HTMLCS-nav-button HTMLCS-previous";d.innerHTML=String.fromCharCode(160);1===a&&(d.className+=" HTMLCS-disabled");c.appendChild(d);var k=e.createElement("span");k.className="HTMLCS-page-number";k.innerHTML="Page "+a+" of "+b;c.appendChild(k);var h=e.createElement("span");h.className="HTMLCS-nav-button HTMLCS-next";h.innerHTML=String.fromCharCode(160);a===b&&(h.className+=" HTMLCS-disabled");c.appendChild(h);d.onclick=function(){if(f>1){f--;if(f===1)d.className=
-d.className+" HTMLCS-disabled"}h.className=h.className.replace(/ HTMLCS-disabled/,"");k.innerHTML="Page "+f+" of "+b;e.querySelectorAll(".HTMLCS-issue-list")[0].style.marginLeft=(f-1)*-300+"px"};h.onclick=function(){if(f<b){f++;if(f===b)h.className=h.className+" HTMLCS-disabled"}d.className=d.className.replace(/ HTMLCS-disabled/,"");k.innerHTML="Page "+f+" of "+b;e.querySelectorAll(".HTMLCS-issue-list")[0].style.marginLeft=(f-1)*-300+"px"};return c};this.getElementWindow=function(a){return v.getElementWindow(a)};
-var G=function(a){var b=g[Number(a)];if(b.element)if(a=e.getElementById("HTMLCS-button-point-to-element-"+a),v.container=l.pointerContainer||e.getElementById("HTMLCS-wrapper"),!1===v.isPointable(b.element)){if(v.pointer&&(v.pointer.className+=" HTMLCS-pointer-hidden"),a)a.className+=" disabled"}else a&&(a.className=a.className.replace(" disabled","")),v.pointTo(b.element)},D=function(a,b){if(0===a.length)b.call(this);else{var c=a.shift();HTMLCS.loadStandard(c,function(){D(a,b)})}};this.getIssue=function(a){return g[a]};
-this.build=function(a,b){var d=null;e&&e.getElementById("HTMLCS-wrapper");for(var f=0,k=0,h=0,d=0;d<b.length;d++){var j=!1;switch(b[d].type){case HTMLCS.ERROR:!1===c.show.error?j=!0:f++;break;case HTMLCS.WARNING:!1===c.show.warning?j=!0:k++;break;case HTMLCS.NOTICE:!1===c.show.notice?j=!0:h++}!0===j&&(b.splice(d,1),d--)}g=b;for(var i=j="",d=0;d<b.length;d++){0===d%5&&(j+='<ol class="HTMLCS-issue-list"',0===d&&(j+='style="margin-left: 0em"'),j+=">");j+=x(d,b[d]);if(4===d%5||d===b.length-1)j+="</ol>";
-i+=p(d,b[d],a)}d=e.createElement("div");d.id="HTMLCS-wrapper";d.className="showing-issue-list";!0!==c.noHeader&&(j=u(a,d),d.appendChild(j));f=A(f,k,h);k=r(1,b.length);h=e.createElement("div");h.id="HTMLCS-issues-wrapper";h.className="HTMLCS-inner-wrapper";i=300*Math.ceil(b.length/5);j=e.createElement("div");j.id="HTMLCS-issues";j.className="HTMLCS-details";j.setAttribute("style","width: "+i+"px");i=e.createElement("ol");i.className="HTMLCS-issue-list";i.setAttribute("style","margin-left: 0");for(var l=
-0;l<b.length;l++){0<l&&0===l%5&&(j.appendChild(i),i=e.createElement("ol"),i.className="HTMLCS-issue-list");var o=x(l,b[l]);i.appendChild(o)}j.appendChild(i);h.appendChild(j);j=Math.ceil(b.length/5);j=z(1,j);h.appendChild(j);j=e.createElement("div");j.className="HTMLCS-outer-wrapper";j.appendChild(h);h=e.createElement("div");h.id="HTMLCS-issues-detail-wrapper";h.className="HTMLCS-inner-wrapper";l=300*b.length;i=e.createElement("div");i.id="HTMLCS-issues-detail";i.className="HTMLCS-details";i.setAttribute("style",
-"width: "+l+"px");l=e.createElement("ol");l.className="HTMLCS-issue-detail-list";l.setAttribute("style","margin-left: 0");for(o=0;o<b.length;o++){var F=p(o,b[o]);l.appendChild(F)}i.appendChild(l);h.appendChild(i);j.appendChild(h);d.appendChild(f);d.appendChild(k);d.appendChild(j);return d};this.buildSummaryPage=function(){var a=e.createElement("div");a.id="HTMLCS-wrapper";a.className="showing-settings";if(!0!==c.noHeader){var d=u(b,a);a.appendChild(d)}d=E();a.appendChild(d);return a};this.changeScreen=
-function(b){var c=e.getElementById("HTMLCS-wrapper");c.className=c.className.replace(RegExp("showing-"+a),"");c.className+=" showing-"+b;c.className=c.className.replace(/\s+/," ");a=b};this.includeCss=function(a,b){if(!1!==c.includeCss){void 0===b&&(b=e);for(var d=b.querySelector("head"),f=d.getElementsByTagName("link"),k=!1,h=0;h<f.length;h++)if(!0===RegExp(a+".css").test(f[h].getAttribute("href"))){k=!0;break}!1===k&&(f=b.createElement("link"),f.rel="stylesheet",f.type="text/css",f.href=c.path+
-a+".css",d.appendChild(f))}};this.run=function(m,n,s){for(var q=["WCAG2AAA","WCAG2AA","WCAG2A"],k=[],h=0;h<q.length;h++)window["HTMLCS_"+q[h]]||k.push(q[h]);if(0<k.length)D(k,function(){l.run(m,n,s)});else{if(null===n||void 0===n){if(n=[],0===document.querySelectorAll("frameset").length&&n.push(document),0<window.frames.length)for(h=0;h<window.frames.length;h++)try{n.push(window.frames[h].document)}catch(j){}}else n.nodeName&&("input"===n.nodeName.toLowerCase()?!1===n.hasAttribute("type")?n=n.value:
-"text"===n.getAttribute("type").toLowerCase()&&(n=n.value):"textarea"===n.nodeName.toLowerCase()&&(n=n.value));!1===n instanceof Array&&(n=[n]);void 0===s&&(s={});b=m;d=n;c=s;f=1;a="";g=[];var i=null;if(c.parentElement)i=c.parentElement;else if(0<window.frames.length){q=-1;k=null;for(h=0;h<window.frames.length;h++)try{if("frame"===window.frames[h].frameElement.nodeName.toLowerCase()&&window.frames[h].document){var o=window.frames[h].innerWidth*window.frames[h].innerHeight;o>q&&(q=o,k=window.frames[h].document.body)}}catch(r){}i=
-null===k?document.body:k}else i=document.body;e=i;e.ownerDocument&&(e=e.ownerDocument);c.path||(c.path="./");void 0===c.includeCss&&(c.includeCss=!0);this.includeCss("HTMLCS");var h=e.getElementById("HTMLCS-wrapper"),p=l.buildSummaryPage();p.className+=" HTMLCS-processing";h?(p.style.left=h.style.left,p.style.top=h.style.top,i.replaceChild(p,h)):(c.openCallback&&c.openCallback.call(this),i.appendChild(p));var u=function(){for(var a=0;a<g.length;a++){var b=false;p&&(p===g[a].element?b=true:document===
-g[a].element?b=false:p.contains&&p.contains(g[a].element)===true?b=true:p.compareDocumentPosition&&(p.compareDocumentPosition(g[a].element)&16)>0&&(b=true));if(b===true){g.splice(a,1);a--}}if(c.runCallback){a=c.runCallback.call(this,g);a instanceof Array===true&&(g=a)}setTimeout(function(){var a=e.getElementById("HTMLCS-wrapper"),b=l.buildSummaryPage();b.style.left=a.style.left;b.style.top=a.style.top;i.replaceChild(b,a)},400)},v=function(a,b){for(var c=b.shift();!c;){if(b.length===0){u();return}c=
-b.shift()}HTMLCS.process(a,c,function(){g=g.concat(HTMLCS.getMessages());b.length===0?u():v(a,b)})};v(m,d.concat([]))}};this.close=function(){if(e){var a=e.getElementById("HTMLCS-wrapper");a&&(e.querySelector("body").removeChild(a),(a=v.pointer)&&a.parentNode&&a.parentNode.removeChild(a),c.closeCallback&&(g=c.closeCallback.call(this)))}};this.pointToElement=function(a){v.container=l.pointerContainer||e.getElementById("HTMLCS-wrapper");v.pointTo(a)};this.getCurrentStandard=function(){return b};var v=
-{pointer:null,pointerDim:{},container:null,getBoundingRectangle:function(a){if(!a)return null;var b=this.getElementCoords(a),a=this.getElementDimensions(a);return{x1:b.x,y1:b.y,x2:b.x+a.width,y2:b.y+a.height}},getElementDimensions:function(a){return{width:a.offsetWidth,height:a.offsetHeight}},getElementCoords:function(a,b){for(var c=0,d=0,e=this.getElementWindow(a),f=!0===b?e.top:e;;){do c+=a.offsetLeft,d+=a.offsetTop;while(a=a.offsetParent);if(e===f)break;else if(a=e.frameElement,e=e.parent,"frame"===
-a.nodeName.toLowerCase())break}return{x:c,y:d}},getWindowDimensions:function(a){var b=this.getElementWindow(a),c=a.ownerDocument,d=0,e=0;if(b.innerWidth)d=b.innerWidth,e=b.innerHeight,a=this.getScrollbarWidth(a),c.documentElement.scrollHeight>e&&"number"===typeof a&&(d-=a),c.body.scrollWidth>d&&"number"===typeof a&&(e-=a);else if(c.documentElement&&(c.documentElement.clientWidth||c.documentElement.clientHeight))d=c.documentElement.clientWidth,e=c.documentElement.clientHeight;else if(c.body&&(c.body.clientWidth||
-c.body.clientHeight))d=c.body.clientWidth,e=c.body.clientHeight;return{width:d,height:e}},getScrollbarWidth:function(a){if(this.scrollBarWidth)return this.scrollBarWidth;doc=a.ownerDocument;var b=null,c=null,b=a=0,b=doc.createElement("div");b.style.position="absolute";b.style.top="-1000px";b.style.left="-1000px";b.style.width="100px";b.style.height="50px";b.style.overflow="hidden";c=doc.createElement("div");c.style.width="100%";c.style.height="200px";b.appendChild(c);e.body.appendChild(b);a=c.offsetWidth;
-b.style.overflow="auto";b=c.offsetWidth;doc.body.removeChild(doc.body.lastChild);return this.scrollBarWidth=a-=b},getScrollCoords:function(a){var b=this.getElementWindow(a);doc=a.ownerDocument;var c=a=0;b.pageYOffset?(a=b.pageXOffset,c=b.pageYOffset):doc.body&&(doc.body.scrollLeft||doc.body.scrollTop)?(a=doc.body.scrollLeft,c=doc.body.scrollTop):(a=doc.documentElement.scrollLeft,c=doc.documentElement.scrollTop);return{x:a,y:c}},getElementWindow:function(a){var a=a||e.body,b=null;return b=a.ownerDocument.defaultView?
-a.ownerDocument.defaultView:a.ownerDocument.parentWindow},isPointable:function(a){if(null===a.ownerDocument)return!1;var b=a.currentStyle?a.currentStyle:window.getComputedStyle(a);if("hidden"===b.visibility||"none"===b.display)return!1;b=this.getBoundingRectangle(a);return 0===b.x1&&0===b.x2||b.x1===b.x2||b.y1===b.y2||null===this.getPointerDirection(a)?!1:!0},getPointerDirection:function(a){var b=null,c=this.getBoundingRectangle(a),d=this.getPointer(a),e=a.ownerDocument;d.style.display="block";d.style.opacity=
-0;d.className=d.className.replace("HTMLCS-pointer-hidden","");this.pointerDim.height=62;this.pointerDim.width=62;d=this.getWindowDimensions(a);this.getElementWindow(a);a=Math.max(0,Math.min(c.y1-100,e.documentElement.offsetHeight-d.height));c.y1-this.pointerDim.height-20>a?b="down":c.y2+this.pointerDim.height<d.height-a?b="up":c.x2+this.pointerDim.width<d.width?b="left":0<c.x1-this.pointerDim.width&&(b="right");return b},pointTo:function(a){var b=this.getElementWindow(a).top;this.getWindowDimensions(b.document.documentElement);
-if(!1!==this.isPointable(a)){var c=this.getPointerDirection(a),d=this.getPointer(a);if(null===c)d.style.display="none";else{d.style.display="block";d.style.opacity="auto";for(var e=this.getElementCoords(a,!0),d=this.getElementWindow(a),e=Math.max(e.y-100,0);0<=e;){d.scrollTo(0,e);var f=this.getScrollCoords(d.document.documentElement),e=e-f.y,e=Math.max(e,0);if(d===b)break;else d=d.parent}this.showPointer(a,c)}}},getPointer:function(a){a=a.ownerDocument;HTMLCSAuditor.includeCss("HTMLCS",a);this.pointer&&
-this.pointer.parentNode&&this.pointer.parentNode.removeChild(this.pointer);this.pointer=a.createElement("div");this.pointer.className="HTMLCS-pointer HTMLCS-pointer-hidden";a.body.appendChild(this.pointer);return this.pointer},showPointer:function(a,b){this._removeDirectionClasses();this.pointer.className+=" HTMLCS-pointer-"+b;this.pointer.className=this.pointer.className.replace("HTMLCS-pointer-hidden","");var c=this.getBoundingRectangle(a),d=0,e=0;switch(b){case "up":d=c.y2;e=250>c.x2-c.x1?this.getRectMidPnt(c)-
-this.pointerDim.width/2:c.x1;break;default:d=c.y1-this.pointerDim.height;e=250>c.x2-c.x1?this.getRectMidPnt(c)-this.pointerDim.width/2:c.x1;break;case "left":e=c.x2;d=this.getRectMidPnt(c,!0)-this.pointerDim.height/2;break;case "right":e=c.x1-this.pointerDim.width,d=this.getRectMidPnt(c,!0)-this.pointerDim.height/2}var f=this.getScrollCoords(a);this.pointer.style.top=d+"px";this.pointer.style.left=e+"px";d=this.getBoundingRectangle(this.container);c=this.getBoundingRectangle(this.pointer);e=c.x1+
-(c.x2-c.x1)/2;c=c.y1+(c.y2-c.y1)/2-f.y;if(d.x1<=e&&d.x2>=e&&d.y1<=c&&d.y2>=c){var g=this;this.container.style.opacity=0.5;setTimeout(function(){g.container.style.opacity=1},4E3)}var i=this.pointer;this.bounce(function(){setTimeout(function(){i.parentNode&&i.parentNode.removeChild(i)},1500)},b)},bounce:function(a,b){var c=b,d=this.pointer,e=0,f="",g=0;switch(b){case "up":c=b+"-op",g=30;case "down":f="top";break;case "left":c=b+"-op",g=30;case "right":f="left"}var i=e=Number(d.style[f].replace("px",
-""))+g,l=e-30,o=0,p=setInterval(function(){c===b?(i--,d.style[f]=i+"px",i<l&&(c=b+"-op",5===o&&0!==g&&(clearInterval(p),a.call(this)))):(i++,d.style[f]=i+"px",i>=e&&(c=b,o++,5===o&&0===g&&(clearInterval(p),a.call(this))))},10)},getRectMidPnt:function(a,b){var c=0;return c=!0===b?a.y1+(a.y2-a.y1)/2:a.x1+(a.x2-a.x1)/2},_removeDirectionClasses:function(){for(var a=["down","up","left","right"],b=a.length,c=0;c<b;c++)this.pointer.className=this.pointer.className.replace("HTMLCS-pointer-"+a[c],"")}}},HTMLCS_WCAG2AAA=
-{name:"WCAG2AAA",description:"Web Content Accessibility Guidelines (WCAG) 2.0 AAA",sniffs:"Principle1.Guideline1_1.1_1_1,Principle1.Guideline1_2.1_2_1,Principle1.Guideline1_2.1_2_2,Principle1.Guideline1_2.1_2_4,Principle1.Guideline1_2.1_2_5,Principle1.Guideline1_2.1_2_6,Principle1.Guideline1_2.1_2_7,Principle1.Guideline1_2.1_2_8,Principle1.Guideline1_2.1_2_9,Principle1.Guideline1_3.1_3_1,Principle1.Guideline1_3.1_3_1_AAA,Principle1.Guideline1_3.1_3_2,Principle1.Guideline1_3.1_3_3,Principle1.Guideline1_4.1_4_1,Principle1.Guideline1_4.1_4_2,Principle1.Guideline1_4.1_4_3_F24,Principle1.Guideline1_4.1_4_6,Principle1.Guideline1_4.1_4_7,Principle1.Guideline1_4.1_4_8,Principle1.Guideline1_4.1_4_9,Principle2.Guideline2_1.2_1_1,Principle2.Guideline2_1.2_1_2,Principle2.Guideline2_2.2_2_2,Principle2.Guideline2_2.2_2_3,Principle2.Guideline2_2.2_2_4,Principle2.Guideline2_2.2_2_5,Principle2.Guideline2_3.2_3_2,Principle2.Guideline2_4.2_4_1,Principle2.Guideline2_4.2_4_2,Principle2.Guideline2_4.2_4_3,Principle2.Guideline2_4.2_4_5,Principle2.Guideline2_4.2_4_6,Principle2.Guideline2_4.2_4_7,Principle2.Guideline2_4.2_4_8,Principle2.Guideline2_4.2_4_9,Principle3.Guideline3_1.3_1_1,Principle3.Guideline3_1.3_1_2,Principle3.Guideline3_1.3_1_3,Principle3.Guideline3_1.3_1_4,Principle3.Guideline3_1.3_1_5,Principle3.Guideline3_1.3_1_6,Principle3.Guideline3_2.3_2_1,Principle3.Guideline3_2.3_2_2,Principle3.Guideline3_2.3_2_3,Principle3.Guideline3_2.3_2_4,Principle3.Guideline3_2.3_2_5,Principle3.Guideline3_3.3_3_1,Principle3.Guideline3_3.3_3_2,Principle3.Guideline3_3.3_3_3,Principle3.Guideline3_3.3_3_5,Principle3.Guideline3_3.3_3_6,Principle4.Guideline4_1.4_1_1,Principle4.Guideline4_1.4_1_2".split(",")},
+!1;a!==b&&(a.ownerDocument?a.contains&&!0===a.contains(b)?c=!0:a.compareDocumentPosition&&0<(a.compareDocumentPosition(b)&16)&&(c=!0):b.ownerDocument&&b.ownerDocument===a&&(c=!0));return c};this.isLayoutTable=function(){return!1};this.getElementTextContent=function(a,b){void 0===b&&(b=!0);for(var a=a.cloneNode(!0),c=[],d=0;d<a.childNodes.length;d++)c.push(a.childNodes[d]);for(var e=[];0<c.length;){var f=c.shift();if(1===f.nodeType)if("img"===f.nodeName.toLowerCase())!0===b&&!0===f.hasAttribute("alt")&&
+e.push(f.getAttribute("alt"));else for(d=0;d<f.childNodes.length;d++)c.push(f.childNodes[d]);else 3===f.nodeType&&e.push(f.nodeValue)}return e=e.join("").replace(/^\s+|\s+$/g,"")};this.getCellHeaders=function(a){if("object"!==typeof a||"table"!==a.nodeName.toLowerCase())return null;for(var a=a.getElementsByTagName("tr"),b=[],c={},d={},e=[],f=["th","td"],g=0;g<f.length;g++)for(var h=f[g],i=0;i<a.length;i++)for(var k=a[i],j=0,m=0;m<k.childNodes.length;m++){var r=k.childNodes[m];if(1===r.nodeType){if(b[i])for(;b[i][0]===
+j;)b[i].shift(),j++;var n=r.nodeName.toLowerCase(),o=Number(r.getAttribute("rowspan"))||1,p=Number(r.getAttribute("colspan"))||1;if(1<o)for(var l=i+1;l<i+o;l++){b[l]||(b[l]=[]);for(var q=j;q<j+p;q++)b[l].push(q)}if(n===h)if("th"===n){r=r.getAttribute("id")||"";for(l=i;l<i+o;l++)c[l]=c[l]||{first:j,ids:[]},c[l].ids.push(r);for(l=j;l<j+p;l++)d[l]=d[l]||{first:i,ids:[]},d[l].ids.push(r)}else if("td"===n){n=[];for(l=i;l<i+o;l++)for(q=j;q<j+p;q++)c[l]&&q>=c[l].first&&(n=n.concat(c[l].ids)),d[q]&&l>=d[q].first&&
+(n=n.concat(d[q].ids));0<n.length&&(n=" "+n.sort().join(" ")+" ",n=n.replace(/\s+/g," ").replace(/(\w+\s)\1+/g,"$1").replace(/^\s*(.*?)\s*$/g,"$1"),e.push({cell:r,headers:n}))}j+=p}}return e}}},HTMLCS_WCAG2AAA={name:"WCAG2AAA",description:"Web Content Accessibility Guidelines (WCAG) 2.0 AAA",sniffs:"Principle1.Guideline1_1.1_1_1,Principle1.Guideline1_2.1_2_1,Principle1.Guideline1_2.1_2_2,Principle1.Guideline1_2.1_2_4,Principle1.Guideline1_2.1_2_5,Principle1.Guideline1_2.1_2_6,Principle1.Guideline1_2.1_2_7,Principle1.Guideline1_2.1_2_8,Principle1.Guideline1_2.1_2_9,Principle1.Guideline1_3.1_3_1,Principle1.Guideline1_3.1_3_1_AAA,Principle1.Guideline1_3.1_3_2,Principle1.Guideline1_3.1_3_3,Principle1.Guideline1_4.1_4_1,Principle1.Guideline1_4.1_4_2,Principle1.Guideline1_4.1_4_3_F24,Principle1.Guideline1_4.1_4_6,Principle1.Guideline1_4.1_4_7,Principle1.Guideline1_4.1_4_8,Principle1.Guideline1_4.1_4_9,Principle2.Guideline2_1.2_1_1,Principle2.Guideline2_1.2_1_2,Principle2.Guideline2_2.2_2_2,Principle2.Guideline2_2.2_2_3,Principle2.Guideline2_2.2_2_4,Principle2.Guideline2_2.2_2_5,Principle2.Guideline2_3.2_3_2,Principle2.Guideline2_4.2_4_1,Principle2.Guideline2_4.2_4_2,Principle2.Guideline2_4.2_4_3,Principle2.Guideline2_4.2_4_5,Principle2.Guideline2_4.2_4_6,Principle2.Guideline2_4.2_4_7,Principle2.Guideline2_4.2_4_8,Principle2.Guideline2_4.2_4_9,Principle3.Guideline3_1.3_1_1,Principle3.Guideline3_1.3_1_2,Principle3.Guideline3_1.3_1_3,Principle3.Guideline3_1.3_1_4,Principle3.Guideline3_1.3_1_5,Principle3.Guideline3_1.3_1_6,Principle3.Guideline3_2.3_2_1,Principle3.Guideline3_2.3_2_2,Principle3.Guideline3_2.3_2_3,Principle3.Guideline3_2.3_2_4,Principle3.Guideline3_2.3_2_5,Principle3.Guideline3_3.3_3_1,Principle3.Guideline3_3.3_3_2,Principle3.Guideline3_3.3_3_3,Principle3.Guideline3_3.3_3_5,Principle3.Guideline3_3.3_3_6,Principle4.Guideline4_1.4_1_1,Principle4.Guideline4_1.4_1_2".split(",")},
 HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_2_2_2_1={register:function(){return["meta"]},process:function(a){!0===a.hasAttribute("http-equiv")&&"refresh"===(""+a.getAttribute("http-equiv")).toLowerCase()&&!0===/^[1-9]\d*/.test(a.getAttribute("content").toLowerCase())&&(!0===/url=/.test(a.getAttribute("content").toLowerCase())?HTMLCS.addMessage(HTMLCS.ERROR,a,"Meta refresh tag used to redirect to another page, with a time limit that is not zero. Users cannot control this time limit.","F40.2"):HTMLCS.addMessage(HTMLCS.ERROR,
 a,"Meta refresh tag used to refresh the current page. Users cannot control the time limit for this refresh.","F41.2"))}},HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_2_2_2_4={register:function(){return["_top"]},process:function(a){HTMLCS.addMessage(HTMLCS.NOTICE,a,"Check that all interruptions (including updates to content) can be postponed or suppressed by the user, except interruptions involving an emergency.","SCR14")}},HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_2_2_2_2={register:function(){return["_top",
 "blink"]},process:function(a,b){if(a===b){HTMLCS.addMessage(HTMLCS.NOTICE,a,"If any part of the content moves, scrolls or blinks for more than 5 seconds, or auto-updates, check that there is a mechanism available to pause, stop, or hide the content.","SCR33,SCR22,G187,G152,G186,G191");for(var d=b.querySelectorAll("*"),c=0;c<d.length;c++){var e=null,e=d[c].currentStyle?d[c].currentStyle:window.getComputedStyle(d[c],null);!0===/blink/.test(e["text-decoration"])&&HTMLCS.addMessage(HTMLCS.WARNING,d[c],
@@ -72,7 +24,7 @@ process:function(a){for(var b=a.childNodes,d=null,c=0;c<b.length;c++)if("head"==
 {register:function(){return["iframe","a","area","_top"]},process:function(a,b){if(a===b)this.testGenericBypassMsg(b);else switch(a.nodeName.toLowerCase()){case "iframe":this.testIframeTitle(a);break;case "a":case "area":this.testSameDocFragmentLinks(a,b)}},testIframeTitle:function(a){if("iframe"===a.nodeName.toLowerCase()){var b=!1;!0===a.hasAttribute("title")&&a.getAttribute("title")&&!1===/^\s+$/.test(a.getAttribute("title"))&&(b=!0);!1===b?HTMLCS.addMessage(HTMLCS.ERROR,a,"Iframe element requires a non-empty title attribute that identifies the frame.",
 "H64.1"):HTMLCS.addMessage(HTMLCS.NOTICE,a,"Check that the title attribute of this element contains text that identifies the frame.","H64.2")}},testGenericBypassMsg:function(a){HTMLCS.addMessage(HTMLCS.NOTICE,a,"Ensure that any common navigation elements can be bypassed; for instance, by use of skip links, header elements, or ARIA landmark roles.","G1,G123,G124,H69")},testSameDocFragmentLinks:function(a,b){if(!0===a.hasAttribute("href")){var d=a.getAttribute("href"),d=HTMLCS.util.trim(d);if(1<d.length&&
 "#"===d.charAt(0)){d=d.substr(1);try{var c=b;c.ownerDocument&&(c=c.ownerDocument);var e=c.getElementById(d);if(null===e||!1===HTMLCS.util.contains(b,e))!0===HTMLCS.isFullDoc(b)||"body"===b.nodeName.toLowerCase()?HTMLCS.addMessage(HTMLCS.ERROR,a,'This link tries to point to an ID "'+d+'" within the document, but the ID does not exist.',"G1,G123,G124.NoSuchID"):HTMLCS.addMessage(HTMLCS.WARNING,a,'This link tries to point to an ID "'+d+'" within the document, but the ID does not exist in the fragment tested.',
-"G1,G123,G124.NoSuchIDFragment")}catch(g){}}}}},HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_4_2_4_9={register:function(){return["a"]},process:function(a){HTMLCS.addMessage(HTMLCS.NOTICE,a,"Check that text of the link describes the purpose of the link.","H30")}},HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_1_2_1_2={register:function(){return["object","applet","embed"]},process:function(a){HTMLCS.addMessage(HTMLCS.WARNING,a,"Check that this applet or plugin provides the ability to move the focus away from itself when using the keyboard.",
+"G1,G123,G124.NoSuchIDFragment")}catch(f){}}}}},HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_4_2_4_9={register:function(){return["a"]},process:function(a){HTMLCS.addMessage(HTMLCS.NOTICE,a,"Check that text of the link describes the purpose of the link.","H30")}},HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_1_2_1_2={register:function(){return["object","applet","embed"]},process:function(a){HTMLCS.addMessage(HTMLCS.WARNING,a,"Check that this applet or plugin provides the ability to move the focus away from itself when using the keyboard.",
 "F10")}},HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_1_2_1_1={register:function(){return["_top"]},process:function(a,b){if(a===b){for(var d=b.querySelectorAll("*[ondblclick]"),c=0;c<d.length;c++)HTMLCS.addMessage(HTMLCS.WARNING,d[c],"Ensure the functionality provided by double-clicking on this element is available through the keyboard.","SCR20.DblClick");d=b.querySelectorAll("*[onmouseover]");for(c=0;c<d.length;c++)HTMLCS.addMessage(HTMLCS.WARNING,d[c],"Ensure the functionality provided by mousing over this element is available through the keyboard; for instance, using the focus event.",
 "SCR20.MouseOver");d=b.querySelectorAll("*[onmouseout]");for(c=0;c<d.length;c++)HTMLCS.addMessage(HTMLCS.WARNING,d[c],"Ensure the functionality provided by mousing out of this element is available through the keyboard; for instance, using the blur event.","SCR20.MouseOut");d=b.querySelectorAll("*[onmousemove]");for(c=0;c<d.length;c++)HTMLCS.addMessage(HTMLCS.WARNING,d[c],"Ensure the functionality provided by moving the mouse on this element is available through the keyboard.","SCR20.MouseMove");d=
 b.querySelectorAll("*[onmousedown]");for(c=0;c<d.length;c++)HTMLCS.addMessage(HTMLCS.WARNING,d[c],"Ensure the functionality provided by mousing down on this element is available through the keyboard; for instance, using the keydown event.","SCR20.MouseDown");d=b.querySelectorAll("*[onmouseup]");for(c=0;c<d.length;c++)HTMLCS.addMessage(HTMLCS.WARNING,d[c],"Ensure the functionality provided by mousing up on this element is available through the keyboard; for instance, using the keyup event.","SCR20.MouseUp")}}},
@@ -94,14 +46,14 @@ process:function(a,b){for(var d=b.querySelectorAll("object, embed, applet, bgsou
 "G159,G166")}}},HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_2_1_2_3={register:function(){return["_top"]},process:function(a,b){for(var d=b.querySelectorAll("object, embed, applet, video"),c=0;c<d.length;c++)HTMLCS.addMessage(HTMLCS.NOTICE,d[c],"If this embedded object contains pre-recorded synchronised media and is not provided as an alternative for text content, check that an audio description of its video, and/or an alternative text version of the content is provided.","G69,G78,G173,G8")}},HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_2_1_2_4=
 {register:function(){return["_top"]},process:function(a,b){for(var d=b.querySelectorAll("object, embed, applet, video"),c=0;c<d.length;c++)HTMLCS.addMessage(HTMLCS.NOTICE,d[c],"If this embedded object contains synchronised media, check that captions are provided for live audio content.","G9,G87,G93")}},HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_2_1_2_5={register:function(){return["_top"]},process:function(a,b){for(var d=b.querySelectorAll("object, embed, applet, video"),c=0;c<d.length;c++)HTMLCS.addMessage(HTMLCS.NOTICE,
 d[c],"If this embedded object contains pre-recorded synchronised media, check that an audio description is provided for its video content.","G78,G173,G8")}},HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1={register:function(){return["img","input","area","object","applet"]},process:function(a){switch(a.nodeName.toLowerCase()){case "img":this.testNullAltText(a);this.testLinkStutter(a);this.testLongdesc(a);break;case "input":!0===a.hasAttribute("type")&&"image"===a.getAttribute("type")&&this.testNullAltText(a);
-break;case "area":this.testNullAltText(a);break;case "object":this.testObjectTextAlternative(a);break;case "applet":this.testAppletTextAlternative(a)}},testNullAltText:function(a){var b=a.nodeName.toLowerCase(),d=!1,c=!1,e=!1;if("a"===a.parentNode.nodeName.toLowerCase()){var g=this._getPreviousSiblingElement(a,null),f=this._getNextSiblingElement(a,null);null===g&&null===f&&(d=!0)}if(!1===a.hasAttribute("alt"))c=!0;else if(!a.getAttribute("alt")||!0===HTMLCS.isStringEmpty(a.getAttribute("alt")))e=
+break;case "area":this.testNullAltText(a);break;case "object":this.testObjectTextAlternative(a);break;case "applet":this.testAppletTextAlternative(a)}},testNullAltText:function(a){var b=a.nodeName.toLowerCase(),d=!1,c=!1,e=!1;if("a"===a.parentNode.nodeName.toLowerCase()){var f=this._getPreviousSiblingElement(a,null),g=this._getNextSiblingElement(a,null);null===f&&null===g&&(d=!0)}if(!1===a.hasAttribute("alt"))c=!0;else if(!a.getAttribute("alt")||!0===HTMLCS.isStringEmpty(a.getAttribute("alt")))e=
 !0;switch(b){case "img":!0===d&&(!0===c||!0===e)?HTMLCS.addMessage(HTMLCS.ERROR,a.parentNode,"Img element is the only content of the link, but is missing alt text. The alt text should describe the purpose of the link.","H30.2"):!0===c?HTMLCS.addMessage(HTMLCS.ERROR,a,"Img element missing an alt attribute. Use the alt attribute to specify a short text alternative.","H37"):!0===e?!0===a.hasAttribute("title")&&!1===HTMLCS.isStringEmpty(a.getAttribute("title"))?HTMLCS.addMessage(HTMLCS.ERROR,a,"Img element with empty alt text must have absent or empty title attribute.",
 "H67.1"):HTMLCS.addMessage(HTMLCS.WARNING,a,"Img element is marked so that it is ignored by Assistive Technology.","H67.2"):HTMLCS.addMessage(HTMLCS.NOTICE,a,"Ensure that the img element's alt text serves the same purpose and presents the same information as the image.","G94.Image");break;case "input":!0===c||!0===e?HTMLCS.addMessage(HTMLCS.ERROR,a,"Image submit button missing an alt attribute. Specify a text alternative that describes the button's function, using the alt attribute.","H36"):HTMLCS.addMessage(HTMLCS.NOTICE,
 a,"Ensure that the image submit button's alt text identifies the purpose of the button.","G94.Button");break;case "area":!0===c||!0===e?HTMLCS.addMessage(HTMLCS.ERROR,a,"Area element in an image map missing an alt attribute. Each area element must have a text alternative that describes the function of the image map area.","H24"):HTMLCS.addMessage(HTMLCS.NOTICE,a,"Ensure that the area element's text alternative serves the same purpose as the part of image map image it references.","H24.2")}},testLongdesc:function(a){HTMLCS.addMessage(HTMLCS.NOTICE,
-a,"If this image cannot be fully described in a short text alternative, ensure a long text alternative is also available, such as in the body text or through a link.","G73,G74")},testLinkStutter:function(a){if("a"===a.parentNode.nodeName.toLowerCase()){var b=a.parentNode,d=b.getAttribute("href"),c=HTMLCS.util.getElementTextContent(b,!1),e=this._getLinkAltText(b),g,f;null===e&&(e="");null!==e&&""!==e&&HTMLCS.util.trim(e).toLowerCase()===HTMLCS.util.trim(c).toLowerCase()&&HTMLCS.addMessage(HTMLCS.ERROR,
-a,"Img element inside a link must not use alt text that duplicates the text content of the link.","H2.EG5");""===c&&(c=this._getPreviousSiblingElement(b,"a",!0),b=this._getNextSiblingElement(b,"a",!0),null!==c&&(g={href:c.getAttribute("href"),text:HTMLCS.util.getElementTextContent(c,!1),alt:this._getLinkAltText(c)},null===g.alt&&(g.alt="")),null!==b&&(f={href:b.getAttribute("href"),text:HTMLCS.util.getElementTextContent(b,!1),alt:this._getLinkAltText(b)},null===f.alt&&(f.alt="")),f&&""!==f.href&&
-null!==f.href&&d===f.href&&(""!==f.text&&""===e?HTMLCS.addMessage(HTMLCS.ERROR,a,"Img element inside a link has empty or missing alt text when a link beside it contains link text. Consider combining the links.","H2.EG4"):f.text.toLowerCase()===e.toLowerCase()&&HTMLCS.addMessage(HTMLCS.ERROR,a,"Img element inside a link must not use alt text that duplicates the content of a text link beside it.","H2.EG3")),g&&""!==g.href&&null!==g.href&&d===g.href&&(""!==g.text&&""===e?HTMLCS.addMessage(HTMLCS.ERROR,
-a,"Img element inside a link has empty or missing alt text when a link beside it contains link text. Consider combining the links.","H2.EG4"):g.text.toLowerCase()===e.toLowerCase()&&HTMLCS.addMessage(HTMLCS.ERROR,a,"Img element inside a link must not use alt text that duplicates the content of a text link beside it.","H2.EG3")))}},testObjectTextAlternative:function(a){null===a.querySelector("object")&&(""===HTMLCS.util.getElementTextContent(a,!0)?HTMLCS.addMessage(HTMLCS.ERROR,a,"Object elements must contain a text alternative after all other alternatives are exhausted.",
+a,"If this image cannot be fully described in a short text alternative, ensure a long text alternative is also available, such as in the body text or through a link.","G73,G74")},testLinkStutter:function(a){if("a"===a.parentNode.nodeName.toLowerCase()){var b=a.parentNode,d=b.getAttribute("href"),c=HTMLCS.util.getElementTextContent(b,!1),e=this._getLinkAltText(b),f,g;null===e&&(e="");null!==e&&""!==e&&HTMLCS.util.trim(e).toLowerCase()===HTMLCS.util.trim(c).toLowerCase()&&HTMLCS.addMessage(HTMLCS.ERROR,
+a,"Img element inside a link must not use alt text that duplicates the text content of the link.","H2.EG5");""===c&&(c=this._getPreviousSiblingElement(b,"a",!0),b=this._getNextSiblingElement(b,"a",!0),null!==c&&(f={href:c.getAttribute("href"),text:HTMLCS.util.getElementTextContent(c,!1),alt:this._getLinkAltText(c)},null===f.alt&&(f.alt="")),null!==b&&(g={href:b.getAttribute("href"),text:HTMLCS.util.getElementTextContent(b,!1),alt:this._getLinkAltText(b)},null===g.alt&&(g.alt="")),g&&""!==g.href&&
+null!==g.href&&d===g.href&&(""!==g.text&&""===e?HTMLCS.addMessage(HTMLCS.ERROR,a,"Img element inside a link has empty or missing alt text when a link beside it contains link text. Consider combining the links.","H2.EG4"):g.text.toLowerCase()===e.toLowerCase()&&HTMLCS.addMessage(HTMLCS.ERROR,a,"Img element inside a link must not use alt text that duplicates the content of a text link beside it.","H2.EG3")),f&&""!==f.href&&null!==f.href&&d===f.href&&(""!==f.text&&""===e?HTMLCS.addMessage(HTMLCS.ERROR,
+a,"Img element inside a link has empty or missing alt text when a link beside it contains link text. Consider combining the links.","H2.EG4"):f.text.toLowerCase()===e.toLowerCase()&&HTMLCS.addMessage(HTMLCS.ERROR,a,"Img element inside a link must not use alt text that duplicates the content of a text link beside it.","H2.EG3")))}},testObjectTextAlternative:function(a){null===a.querySelector("object")&&(""===HTMLCS.util.getElementTextContent(a,!0)?HTMLCS.addMessage(HTMLCS.ERROR,a,"Object elements must contain a text alternative after all other alternatives are exhausted.",
 "H53"):HTMLCS.addMessage(HTMLCS.NOTICE,a,"Check that short (and if appropriate, long) text alternatives are available for non-text content that serve the same purpose and present the same information.","G94,G92.Object"))},testAppletTextAlternative:function(a){var b=!1;if(null===a.querySelector("object")){var d=HTMLCS.util.getElementTextContent(a,!0);!0===HTMLCS.isStringEmpty(d)&&(HTMLCS.addMessage(HTMLCS.ERROR,a,"Applet elements must contain a text alternative in the element's body, for browsers without support for the applet element.",
 "H35.3"),b=!0)}d=a.getAttribute("alt")||"";!0===HTMLCS.isStringEmpty(d)&&(HTMLCS.addMessage(HTMLCS.ERROR,a,"Applet elements must contain an alt attribute, to provide a text alternative to browsers supporting the element but are unable to load the applet.","H35.2"),b=!0);!1===b&&HTMLCS.addMessage(HTMLCS.NOTICE,a,"Check that short (and if appropriate, long) text alternatives are available for non-text content that serve the same purpose and present the same information.","G94,G92.Applet")},_getLinkAltText:function(a){for(var a=
 a.cloneNode(!0),b=[],d=0;d<a.childNodes.length;d++)b.push(a.childNodes[d]);for(a=null;0<b.length;)if(d=b.shift(),1===d.nodeType&&"img"===d.nodeName.toLowerCase()&&!0===d.hasAttribute("alt")){a=(a=d.getAttribute("alt"))?a.replace(/^\s+|\s+$/g,""):"";break}return a},_getPreviousSiblingElement:function(a,b,d){void 0===b&&(b=null);void 0===d&&(d=!1);for(a=a.previousSibling;null!==a;){if(3===a.nodeType){if(!1===HTMLCS.isStringEmpty(a.nodeValue)&&!0===d){a=null;break}}else if(1===a.nodeType){if(null===
@@ -111,9 +63,9 @@ process:function(a,b){var d=HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1
 b);break;case "form":this.testRequiredFieldsets(a);break;case "select":this.testLabelsOnInputs(a,b);this.testOptgroup(a);break;case "p":case "div":this.testNonSemanticHeading(a);this.testListsWithBreaks(a);this.testUnstructuredNavLinks(a);break;case "table":this.testTableHeaders(a);this.testTableCaptionSummary(a);break;case "fieldset":this.testFieldsetLegend(a);break;case "h1":case "h2":case "h3":case "h4":case "h5":case "h6":this.testEmptyHeading(a)}},testEmptyDupeLabelForAttrs:function(a){this._labelNames=
 {};for(var b=a.getElementsByTagName("label"),d=0;d<b.length;d++)if(!0===b[d].hasAttribute("for")&&""!==b[d].getAttribute("for")){var c=b[d].getAttribute("for");this._labelNames[c]&&null!==this._labelNames[c]?(HTMLCS.addMessage(HTMLCS.ERROR,b[d],'Multiple labels exist with the same "for" attribute. If these labels refer to different form controls, the controls should have unique "id" attributes.',"H93"),this._labelNames[c]=null):(this._labelNames[c]=b[d],c=a.ownerDocument?a.ownerDocument.getElementById(c):
 a.getElementById(c),null===c?HTMLCS.addMessage(HTMLCS.ERROR,b[d],'This label\'s "for" attribute contains an ID that does not exist in the document.',"H44.NonExistent"):(c=c.nodeName.toLowerCase(),"input"!==c&&"select"!==c&&"textarea"!==c&&HTMLCS.addMessage(HTMLCS.ERROR,b[d],'This label\'s "for" attribute contains an ID that points to an element that is not a form control.',"H44.NotFormControl")))}else HTMLCS.addMessage(HTMLCS.ERROR,b[d],'Label found without a "for" attribute, and therefore not explicitly associated with a form control.',
-"H44.NoForAttr")},testLabelsOnInputs:function(a,b){var d=a.nodeName.toLowerCase();"input"===d&&(d=a.getAttribute("type"));var c=!1;!0===/^(submit|reset|image|hidden|button)$/.test(d)&&(c=!0);this._labelNames={};for(var e=b.getElementsByTagName("label"),g=0;g<e.length;g++)!0===e[g].hasAttribute("for")&&(this._labelNames[e[g].getAttribute("for")]=e[g]);if(!1===a.hasAttribute("id")&&!1===c)HTMLCS.addMessage(HTMLCS.ERROR,a,"Form control does not have an ID, therefore it cannot have an explicit label.",
-"H44.NoId");else if(e=a.getAttribute("id"),this._labelNames[e])if(!0===c)HTMLCS.addMessage(HTMLCS.ERROR,a,"Label element should not be used for this type of form control.","H44.NoLabelAllowed");else{c=!1;!0===/^(checkbox|radio)$/.test(d)&&(c=!0);if(a.compareDocumentPosition)if(d=a.compareDocumentPosition(this._labelNames[e]),2===(d&2))var f=1;else 4===(d&4)&&(f=-1);else a.sourceIndex&&(f=a.sourceIndex-this._labelNames[e].sourceIndex);!0===c&&0<f?HTMLCS.addMessage(HTMLCS.ERROR,a,"The label element for this control should be placed after this element.",
-"H44.1.After"):!1===c&&0>f&&HTMLCS.addMessage(HTMLCS.ERROR,a,"The label element for this control should be placed before this element.","H44.1.Before")}else!1===c&&(!0===a.hasAttribute("title")?!0===/^\s*$/.test(a.getAttribute("title"))?HTMLCS.addMessage(HTMLCS.ERROR,a,"Form control without a label contains an empty title attribute. The title attribute should identify the purpose of the control.","H65.3"):HTMLCS.addMessage(HTMLCS.WARNING,a,"Check that the title attribute identifies the purpose of the control, and that a label element is not appropriate.",
+"H44.NoForAttr")},testLabelsOnInputs:function(a,b){var d=a.nodeName.toLowerCase();"input"===d&&(d=a.getAttribute("type"));var c=!1;!0===/^(submit|reset|image|hidden|button)$/.test(d)&&(c=!0);this._labelNames={};for(var e=b.getElementsByTagName("label"),f=0;f<e.length;f++)!0===e[f].hasAttribute("for")&&(this._labelNames[e[f].getAttribute("for")]=e[f]);if(!1===a.hasAttribute("id")&&!1===c)HTMLCS.addMessage(HTMLCS.ERROR,a,"Form control does not have an ID, therefore it cannot have an explicit label.",
+"H44.NoId");else if(e=a.getAttribute("id"),this._labelNames[e])if(!0===c)HTMLCS.addMessage(HTMLCS.ERROR,a,"Label element should not be used for this type of form control.","H44.NoLabelAllowed");else{c=!1;!0===/^(checkbox|radio)$/.test(d)&&(c=!0);if(a.compareDocumentPosition)if(d=a.compareDocumentPosition(this._labelNames[e]),2===(d&2))var g=1;else 4===(d&4)&&(g=-1);else a.sourceIndex&&(g=a.sourceIndex-this._labelNames[e].sourceIndex);!0===c&&0<g?HTMLCS.addMessage(HTMLCS.ERROR,a,"The label element for this control should be placed after this element.",
+"H44.1.After"):!1===c&&0>g&&HTMLCS.addMessage(HTMLCS.ERROR,a,"The label element for this control should be placed before this element.","H44.1.Before")}else!1===c&&(!0===a.hasAttribute("title")?!0===/^\s*$/.test(a.getAttribute("title"))?HTMLCS.addMessage(HTMLCS.ERROR,a,"Form control without a label contains an empty title attribute. The title attribute should identify the purpose of the control.","H65.3"):HTMLCS.addMessage(HTMLCS.WARNING,a,"Check that the title attribute identifies the purpose of the control, and that a label element is not appropriate.",
 "H65"):HTMLCS.addMessage(HTMLCS.ERROR,a,"Form control does not have an explicit label or title attribute, identifying the purpose of the control.","H44.2"))},testPresentationMarkup:function(a){for(var b=a.querySelectorAll("b, i, u, s, strike, tt, big, small, center, font"),d=0;d<b.length;d++){var c="H49."+b[d].nodeName.substr(0,1).toUpperCase()+b[d].nodeName.substr(1).toLowerCase();HTMLCS.addMessage(HTMLCS.WARNING,b[d],"Semantic markup should be used to mark emphasised or special text so that it can be programmatically determined.",
 c)}b=a.querySelectorAll("*[align]");for(d=0;d<b.length;d++)c="H49.AlignAttr",HTMLCS.addMessage(HTMLCS.WARNING,b[d],"Semantic markup should be used to mark emphasised or special text so that it can be programmatically determined.",c)},testNonSemanticHeading:function(a){var b=a.nodeName.toLowerCase();if("p"===b||"div"===b)b=a.childNodes,1===b.length&&1===b[0].nodeType&&!0===/^(strong|em|b|i|u)$/.test(b[0].nodeName.toLowerCase())&&HTMLCS.addMessage(HTMLCS.WARNING,a,"Heading markup should be used if this content is intended as a heading.",
 "H42")},testTableHeaders:function(a){for(var b=this._testTableHeadersAttrs(a),d=this._testTableScopeAttrs(a),c=0;c<d.invalid.length;c++)HTMLCS.addMessage(HTMLCS.ERROR,d.invalid[c],"Table cell has an invalid scope attribute. Valid values are row, col, rowgroup, or colgroup.","H63.3");for(c=0;c<d.obsoleteTd.length;c++)HTMLCS.addMessage(HTMLCS.WARNING,d.obsoleteTd[c],"Scope attributes on td elements that act as headings for other elements are obsolete in HTML5. Use a th element instead.","H63.2");!0===
@@ -123,27 +75,27 @@ b.allowScope?0===d.missing.length&&!1===b.required:!0===d.used&&(HTMLCS.addMessa
 "H43,H63"):!1===d.used&&(0<b.missingThId.length||0<b.missingTd.length)?(0<b.missingThId.length&&HTMLCS.addMessage(HTMLCS.ERROR,a,"Not all th elements in this table contain an id attribute. These cells should contain ids so that they may be referenced by td elements' headers attributes.","H43.MissingHeaderIds"),0<b.missingTd.length&&HTMLCS.addMessage(HTMLCS.ERROR,a,"Not all td elements in this table contain a headers attribute. Each headers attribute should list the ids of all th elements associated with that cell.",
 "H43.MissingHeadersAttrs")):0<d.missing.length&&!1===b.used?HTMLCS.addMessage(HTMLCS.ERROR,a,"Not all th elements in this table have a scope attribute. These cells should contain a scope attribute to identify their association with td elements.","H63.1"):0<d.missing.length&&(0<b.missingThId.length||0<b.missingTd.length)&&HTMLCS.addMessage(HTMLCS.ERROR,a,"The relationship between td elements and their associated th elements is not defined. Use either the scope attribute on th elements, or the headers attribute on td elements.",
 "H43,H63"))},_testTableScopeAttrs:function(a){var a={th:a.getElementsByTagName("th"),td:a.getElementsByTagName("td")},b={used:!1,correct:!0,missing:[],invalid:[],obsoleteTd:[]},d;for(d in a)for(var c=0;c<a[d].length;c++){element=a[d][c];var e="";!0===element.hasAttribute("scope")&&(b.used=!0,element.getAttribute("scope")&&(e=element.getAttribute("scope")));"th"===element.nodeName.toLowerCase()?!0===/^\s*$/.test(e)?(b.correct=!1,b.missing.push(element)):!1===/^(row|col|rowgroup|colgroup)$/.test(e)&&
-(b.correct=!1,b.invalid.push(element)):""!==e&&(b.obsoleteTd.push(element),!1===/^(row|col|rowgroup|colgroup)$/.test(e)&&(b.correct=!1,b.invalid.push(element)))}return b},_testTableHeadersAttrs:function(a){for(var b={required:!0,used:!1,correct:!0,allowScope:!0,missingThId:[],missingTd:[],wrongHeaders:[]},d=a.getElementsByTagName("tr"),c=[],e=[],g=[],f=0,l=0,o=0;o<d.length;o++)for(var B=d[o],u=0,A=0;A<B.childNodes.length;A++){var r=B.childNodes[A];if(1===r.nodeType){if(c[o])for(;c[o][0]===u;)c[o].shift(),
-u++;var E=r.nodeName.toLowerCase(),x=Number(r.getAttribute("rowspan"))||1,w=Number(r.getAttribute("colspan"))||1;if(1<x)for(var p=o+1;p<o+x;p++){c[p]||(c[p]=[]);for(var z=u;z<u+w;z++)c[p].push(z)}if("th"===E){if(""===(r.getAttribute("id")||""))b.correct=!1,b.missingThId.push(r);1<x&&1<w?b.allowScope=!1:!0===b.allowScope&&(void 0===g[u]&&(g[u]=0),void 0===e[o]&&(e[o]=0),e[o]+=w,g[u]+=x)}else"td"===E&&!0===r.hasAttribute("headers")&&!1===/^\s*$/.test(r.getAttribute("headers"))&&(b.used=!0);u+=w}}for(p=
-0;p<e.length;p++)1<e[p]&&f++;for(p=0;p<g.length;p++)1<g[p]&&l++;if(1<f||1<l)b.allowScope=!1;else if(!0===b.allowScope&&(0===f||0===l))b.required=!1;a=HTMLCS.util.getCellHeaders(a);for(p=0;p<a.length;p++)r=a[p].cell,d=a[p].headers,!1===r.hasAttribute("headers")?(b.correct=!1,b.missingTd.push(r)):(c=(r.getAttribute("headers")||"").split(/\s+/),0===c.length?(b.correct=!1,b.missingTd.push(r)):(c=" "+c.sort().join(" ")+" ",c=c.replace(/\s+/g," ").replace(/(\w+\s)\1+/g,"$1").replace(/^\s*(.*?)\s*$/g,"$1"),
-d!==c&&(b.correct=!1,r={element:r,expected:d,actual:r.getAttribute("headers")||""},b.wrongHeaders.push(r))));return b},testTableCaptionSummary:function(a){var b=a.getAttribute("summary")||"",d=a.getElementsByTagName("caption"),c="";0<d.length&&(c=d[0].innerHTML.replace(/^\s*(.*?)\s*$/g,"$1"));b=b.replace(/^\s*(.*?)\s*$/g,"$1");""!==b?(c===b&&HTMLCS.addMessage(HTMLCS.ERROR,a,"If this table is a data table, and both a summary attribute and a caption element are present, the summary should not duplicate the caption.",
+(b.correct=!1,b.invalid.push(element)):""!==e&&(b.obsoleteTd.push(element),!1===/^(row|col|rowgroup|colgroup)$/.test(e)&&(b.correct=!1,b.invalid.push(element)))}return b},_testTableHeadersAttrs:function(a){for(var b={required:!0,used:!1,correct:!0,allowScope:!0,missingThId:[],missingTd:[],wrongHeaders:[]},d=a.getElementsByTagName("tr"),c=[],e=[],f=[],g=0,h=0,i=0;i<d.length;i++)for(var u=d[i],m=0,t=0;t<u.childNodes.length;t++){var j=u.childNodes[t];if(1===j.nodeType){if(c[i])for(;c[i][0]===m;)c[i].shift(),
+m++;var w=j.nodeName.toLowerCase(),o=Number(j.getAttribute("rowspan"))||1,p=Number(j.getAttribute("colspan"))||1;if(1<o)for(var k=i+1;k<i+o;k++){c[k]||(c[k]=[]);for(var s=m;s<m+p;s++)c[k].push(s)}if("th"===w){if(""===(j.getAttribute("id")||""))b.correct=!1,b.missingThId.push(j);1<o&&1<p?b.allowScope=!1:!0===b.allowScope&&(void 0===f[m]&&(f[m]=0),void 0===e[i]&&(e[i]=0),e[i]+=p,f[m]+=o)}else"td"===w&&!0===j.hasAttribute("headers")&&!1===/^\s*$/.test(j.getAttribute("headers"))&&(b.used=!0);m+=p}}for(k=
+0;k<e.length;k++)1<e[k]&&g++;for(k=0;k<f.length;k++)1<f[k]&&h++;if(1<g||1<h)b.allowScope=!1;else if(!0===b.allowScope&&(0===g||0===h))b.required=!1;a=HTMLCS.util.getCellHeaders(a);for(k=0;k<a.length;k++)j=a[k].cell,d=a[k].headers,!1===j.hasAttribute("headers")?(b.correct=!1,b.missingTd.push(j)):(c=(j.getAttribute("headers")||"").split(/\s+/),0===c.length?(b.correct=!1,b.missingTd.push(j)):(c=" "+c.sort().join(" ")+" ",c=c.replace(/\s+/g," ").replace(/(\w+\s)\1+/g,"$1").replace(/^\s*(.*?)\s*$/g,"$1"),
+d!==c&&(b.correct=!1,j={element:j,expected:d,actual:j.getAttribute("headers")||""},b.wrongHeaders.push(j))));return b},testTableCaptionSummary:function(a){var b=a.getAttribute("summary")||"",d=a.getElementsByTagName("caption"),c="";0<d.length&&(c=d[0].innerHTML.replace(/^\s*(.*?)\s*$/g,"$1"));b=b.replace(/^\s*(.*?)\s*$/g,"$1");""!==b?(c===b&&HTMLCS.addMessage(HTMLCS.ERROR,a,"If this table is a data table, and both a summary attribute and a caption element are present, the summary should not duplicate the caption.",
 "H39,H73.4"),HTMLCS.addMessage(HTMLCS.NOTICE,a,"If this table is a data table, check that the summary attribute describes the table's organization or explains how to use the table.","H73.3.Check")):HTMLCS.addMessage(HTMLCS.WARNING,a,"If this table is a data table, consider using the summary attribute of the table element to give an overview of this table.","H73.3.NoSummary");""!==c?HTMLCS.addMessage(HTMLCS.NOTICE,a,"If this table is a data table, check that the caption element accurately describes this table.",
 "H39.3.Check"):HTMLCS.addMessage(HTMLCS.WARNING,a,"If this table is a data table, consider using a caption element to the table element to identify this table.","H39.3.NoCaption")},testFieldsetLegend:function(a){var b=a.querySelector("legend");(null===b||b.parentNode!==a)&&HTMLCS.addMessage(HTMLCS.ERROR,a,"Fieldset does not contain a legend element. All fieldsets should contain a legend element that describes a description of the field group.","H71.3")},testOptgroup:function(a){null===a.querySelector("optgroup")&&
-HTMLCS.addMessage(HTMLCS.WARNING,a,"If this selection list contains groups of related options, they should be grouped with optgroup.","H85.2")},testRequiredFieldsets:function(a){for(var b=a.querySelectorAll("input[type=radio], input[type=checkbox]"),d={},c=0;c<b.length;c++){var e=b[c];if(!0===e.hasAttribute("name")){for(var g=e.getAttribute("name"),f=e.parentNode;"fieldset"!==f.nodeName.toLowerCase()&&null!==f&&f!==a;)f=f.parentNode;"fieldset"!==f.nodeName.toLowerCase()&&(f=null)}if(void 0===d[g])d[g]=
-f;else if(null===f||f!==d[g]){HTMLCS.addMessage(HTMLCS.ERROR,a,"Radio buttons or check boxes with the same name attribute must be contained within a fieldset element.","H71.2");break}}},testListsWithBreaks:function(a){var b=[];if(null!==a.querySelector("br")){for(var d=[],c=0;c<a.childNodes.length;c++)d.push(a.childNodes[c]);for(var e=[];0<d.length;){var g=d.shift();if(1===g.nodeType)if("br"===g.nodeName.toLowerCase())b.push(e.join(" ").replace(/^\s*(.*?)\s*$/g,"$1")),e=[];else for(c=g.childNodes.length-
-1;0<=c;--c)d.unshift(g.childNodes[c]);else 3===g.nodeType&&e.push(g.nodeValue)}0<e.length&&b.push(e.join(" ").replace(/^\s*(.*?)\s*$/g,"$1"));for(c=0;c<b.length;c++){if(!0===/^[\-*]\s+/.test(b[0])){HTMLCS.addMessage(HTMLCS.WARNING,a,"Content appears to have the visual appearance of a bulleted list. It may be appropriate to mark this content up using a ul element.","H48.1");break}if(!0===/^\d+[:\/\-.]?\s+/.test(b[0])){HTMLCS.addMessage(HTMLCS.WARNING,a,"Content appears to have the visual appearance of a numbered list. It may be appropriate to mark this content up using an ol element.",
-"H48.2");break}}}},testHeadingOrder:function(a,b){for(var d=0,c=a.querySelectorAll("h1, h2, h3, h4, h5, h6"),e=0;e<c.length;e++){var g=parseInt(c[e].nodeName.substr(1,1));if(1<g-d){var f="should be an h"+(d+1)+" to be properly nested";0===d&&(f="appears to be the primary document heading, so should be an h1 element");HTMLCS.addMessage(b,c[e],"The heading structure is not logically nested. This h"+g+" element "+f+".","G141")}d=g}},testEmptyHeading:function(a){var b=a.textContent;void 0===b&&(b=a.innerText);
+HTMLCS.addMessage(HTMLCS.WARNING,a,"If this selection list contains groups of related options, they should be grouped with optgroup.","H85.2")},testRequiredFieldsets:function(a){for(var b=a.querySelectorAll("input[type=radio], input[type=checkbox]"),d={},c=0;c<b.length;c++){var e=b[c];if(!0===e.hasAttribute("name")){for(var f=e.getAttribute("name"),g=e.parentNode;"fieldset"!==g.nodeName.toLowerCase()&&null!==g&&g!==a;)g=g.parentNode;"fieldset"!==g.nodeName.toLowerCase()&&(g=null)}if(void 0===d[f])d[f]=
+g;else if(null===g||g!==d[f]){HTMLCS.addMessage(HTMLCS.ERROR,a,"Radio buttons or check boxes with the same name attribute must be contained within a fieldset element.","H71.2");break}}},testListsWithBreaks:function(a){var b=[];if(null!==a.querySelector("br")){for(var d=[],c=0;c<a.childNodes.length;c++)d.push(a.childNodes[c]);for(var e=[];0<d.length;){var f=d.shift();if(1===f.nodeType)if("br"===f.nodeName.toLowerCase())b.push(e.join(" ").replace(/^\s*(.*?)\s*$/g,"$1")),e=[];else for(c=f.childNodes.length-
+1;0<=c;--c)d.unshift(f.childNodes[c]);else 3===f.nodeType&&e.push(f.nodeValue)}0<e.length&&b.push(e.join(" ").replace(/^\s*(.*?)\s*$/g,"$1"));for(c=0;c<b.length;c++){if(!0===/^[\-*]\s+/.test(b[0])){HTMLCS.addMessage(HTMLCS.WARNING,a,"Content appears to have the visual appearance of a bulleted list. It may be appropriate to mark this content up using a ul element.","H48.1");break}if(!0===/^\d+[:\/\-.]?\s+/.test(b[0])){HTMLCS.addMessage(HTMLCS.WARNING,a,"Content appears to have the visual appearance of a numbered list. It may be appropriate to mark this content up using an ol element.",
+"H48.2");break}}}},testHeadingOrder:function(a,b){for(var d=0,c=a.querySelectorAll("h1, h2, h3, h4, h5, h6"),e=0;e<c.length;e++){var f=parseInt(c[e].nodeName.substr(1,1));if(1<f-d){var g="should be an h"+(d+1)+" to be properly nested";0===d&&(g="appears to be the primary document heading, so should be an h1 element");HTMLCS.addMessage(b,c[e],"The heading structure is not logically nested. This h"+f+" element "+g+".","G141")}d=f}},testEmptyHeading:function(a){var b=a.textContent;void 0===b&&(b=a.innerText);
 !0===/^\s*$/.test(b)&&HTMLCS.addMessage(HTMLCS.ERROR,a,"Heading tag found with no content. Text that is not intended as a heading should not be marked up with heading tags.","H42.2")},testUnstructuredNavLinks:function(a){a.nodeName.toLowerCase();for(var b=0,d=a.childNodes,c=0;c<d.length&&(!(1===d[c].nodeType&&"a"===d[c].nodeName.toLowerCase())||!(b++,1<b));c++);if(1<b){for(b=a.parentNode;null!==b&&"ul"!==b.nodeName.toLowerCase()&&"ol"!==b.nodeName.toLowerCase();)b=b.parentNode;null===b&&HTMLCS.addMessage(HTMLCS.WARNING,
 a,"If this element contains a navigation section, it is recommended that it be marked up as a list.","H48")}}},HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_3={register:function(){return["_top"]},process:function(a,b){HTMLCS.addMessage(HTMLCS.NOTICE,b,"Where instructions are provided for understanding the content, do not rely on sensory characteristics alone (such as shape, size or location) to describe objects.","G96")}},HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_1={register:function(){return["_top"]},
-process:function(a,b){if(a===b)for(var d=b.querySelectorAll("*[id]"),c={},e=0;e<d.length;e++){var g=d[e].getAttribute("id");void 0!==c[g]?HTMLCS.addMessage(HTMLCS.ERROR,d[e],'Duplicate id attribute value "'+g+'" found on the web page.',"F77"):c[g]=!0}}},HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2={register:function(){return"a,button,fieldset,input,select,textarea".split(",")},process:function(a,b){"a"===a.nodeName.toLowerCase()?this._processLinks(a):this._processFormControls(a,b)},_processLinks:function(a){var b=
+process:function(a,b){if(a===b)for(var d=b.querySelectorAll("*[id]"),c={},e=0;e<d.length;e++){var f=d[e].getAttribute("id");void 0!==c[f]?HTMLCS.addMessage(HTMLCS.ERROR,d[e],'Duplicate id attribute value "'+f+'" found on the web page.',"F77"):c[f]=!0}}},HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2={register:function(){return"a,button,fieldset,input,select,textarea".split(",")},process:function(a,b){"a"===a.nodeName.toLowerCase()?this._processLinks(a):this._processFormControls(a,b)},_processLinks:function(a){var b=
 !1,d=HTMLCS.util.getElementTextContent(a);!0===a.hasAttribute("title")&&!1===/^\s*$/.test(a.getAttribute("title"))||/^\s*$/.test(d);!0===a.hasAttribute("href")&&!1===/^\s*$/.test(a.getAttribute("href"))&&(b=!0);!1===b?!0===/^\s*$/.test(d)?!0===a.hasAttribute("id")?HTMLCS.addMessage(HTMLCS.WARNING,a,"Anchor element found with an ID but without a href or link text. Consider moving its ID to a parent or nearby element.","H91.A.Empty"):!0===a.hasAttribute("name")?HTMLCS.addMessage(HTMLCS.WARNING,a,"Anchor element found with a name attribute but without a href or link text. Consider moving the name attribute to become an ID of a parent or nearby element.",
 "H91.A.EmptyWithName"):HTMLCS.addMessage(HTMLCS.ERROR,a,"Anchor element found with no link content and no name and/or ID attribute.","H91.A.EmptyNoId"):!0===a.hasAttribute("id")?HTMLCS.addMessage(HTMLCS.WARNING,a,"Anchor elements should not be used for defining in-page link targets. If not using the ID for other purposes (such as CSS or scripting), consider moving it to a parent element.","H91.A.NoHref"):HTMLCS.addMessage(HTMLCS.WARNING,a,"Anchor element found with link content, but no href and/or ID attribute has been supplied.",
 "H91.A.Placeholder"):!0===/^\s*$/.test(d)&&0===a.querySelectorAll("img").length&&HTMLCS.addMessage(HTMLCS.ERROR,a,"Anchor element found with a valid href attribute, but no link content has been supplied.","H91.A.NoContent")},_processFormControls:function(a,b){var d={button:["@title","_content"],fieldset:["legend"],input_button:["@value"],input_text:["label","@title"],input_file:["label","@title"],input_password:["label","@title"],input_checkbox:["label","@title"],input_radio:["label","@title"],input_image:["@alt",
-"@title"],select:["label","@title"],textarea:["label","@title"]},c={select:"option_selected"},e=a.nodeName.toLowerCase(),g=a.nodeName.substr(0,1).toUpperCase()+a.nodeName.substr(1).toLowerCase();if("input"===e){e=!1===a.hasAttribute("type")?e+"_text":e+("_"+a.getAttribute("type").toLowerCase());if("input_submit"===e||"input_reset"===e)e="input_button";g="Input"+e.substr(6,1).toUpperCase()+e.substr(7).toLowerCase()}var f=d[e],l=c[e];if(f){for(l=0;l<d[e].length;l++){f=d[e][l];if("_content"===f){var o=
-HTMLCS.util.getElementTextContent(a);if(!1===/^\s*$/.test(o))break}else if("label"===f&&a.hasAttribute("id")&&!1===/^\s*$/.test(a.getAttribute("id")))if(!0===/^\-?[A-Za-z][A-Za-z0-9\-_]*$/.test(a.getAttribute("id"))){if(null!==b.querySelector("label[for="+a.getAttribute("id")+"]"))break}else HTMLCS.addMessage(HTMLCS.ERROR,a,'Unable to automatically test for a label for element ID "'+a.getAttribute("id")+'".',"H91."+g+".NameInvalid");if("@"===f.charAt(0)){if(f=f.substr(1,f.length),!0===a.hasAttribute(f)&&
-!1===/^\s*$/.test(a.getAttribute(f)))break}else if(o=a.querySelector(f),null!==o&&(o=HTMLCS.util.getElementTextContent(o),!1===/^\s*$/.test(o)))break}if(l===d[e].length){o=e+" element";"input_"===e.substr(0,6)&&(o=e.substr(6)+" input element");d=d[e].slice(0,d[e].length);for(l=0;l<d.length;l++)d[l]="_content"===d[l]?"element content":"@"===d[l].charAt(0)?d[l].substr(1)+" attribute":d[l]+" element";HTMLCS.addMessage(HTMLCS.ERROR,a,"This "+o+" does not have a name available to an accessibility API. Valid names are: "+
-d.join(", ")+".","H91."+g+".Name")}}l=c[e];c=!1;void 0===l?c=!0:"_content"===l?(o=HTMLCS.util.getElementTextContent(a),!1===/^\s*$/.test(o)&&(c=!0)):"option_selected"===l?!1===a.hasAttribute("multiple")?null!==a.querySelector("option[selected]")&&(c=!0):c=!0:"@"===l.charAt(0)&&(l=l.substr(1,l.length),!0===a.hasAttribute(l)&&(c=!0));!1===c&&(o=e+" element","input_"===e.substr(0,6)&&(o=e.substr(6)+" input element"),e="",e="_content"===l?"by adding content to the element":"option_selected"===l?'by adding a "selected" attribute to one of its options':
-"@"===l.charAt(0)?"using the "+l+" attribute":"using the "+l+" element",HTMLCS.addMessage(HTMLCS.ERROR,a,"This "+o+" does not have a value available to an accessibility API. Add one "+e+".","H91."+g+".Value"))}},HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_3_3_3_5={register:function(){return["form"]},process:function(a){HTMLCS.addMessage(HTMLCS.NOTICE,a,"Check that context-sensitive help is available for this form, at a Web-page and/or control level.","G71,G184,G193")}},HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_3_3_3_1=
+"@title"],select:["label","@title"],textarea:["label","@title"]},c={select:"option_selected"},e=a.nodeName.toLowerCase(),f=a.nodeName.substr(0,1).toUpperCase()+a.nodeName.substr(1).toLowerCase();if("input"===e){e=!1===a.hasAttribute("type")?e+"_text":e+("_"+a.getAttribute("type").toLowerCase());if("input_submit"===e||"input_reset"===e)e="input_button";f="Input"+e.substr(6,1).toUpperCase()+e.substr(7).toLowerCase()}var g=d[e],h=c[e];if(g){for(h=0;h<d[e].length;h++){g=d[e][h];if("_content"===g){var i=
+HTMLCS.util.getElementTextContent(a);if(!1===/^\s*$/.test(i))break}else if("label"===g&&a.hasAttribute("id")&&!1===/^\s*$/.test(a.getAttribute("id")))if(!0===/^\-?[A-Za-z][A-Za-z0-9\-_]*$/.test(a.getAttribute("id"))){if(null!==b.querySelector("label[for="+a.getAttribute("id")+"]"))break}else HTMLCS.addMessage(HTMLCS.ERROR,a,'Unable to automatically test for a label for element ID "'+a.getAttribute("id")+'".',"H91."+f+".NameInvalid");if("@"===g.charAt(0)){if(g=g.substr(1,g.length),!0===a.hasAttribute(g)&&
+!1===/^\s*$/.test(a.getAttribute(g)))break}else if(i=a.querySelector(g),null!==i&&(i=HTMLCS.util.getElementTextContent(i),!1===/^\s*$/.test(i)))break}if(h===d[e].length){i=e+" element";"input_"===e.substr(0,6)&&(i=e.substr(6)+" input element");d=d[e].slice(0,d[e].length);for(h=0;h<d.length;h++)d[h]="_content"===d[h]?"element content":"@"===d[h].charAt(0)?d[h].substr(1)+" attribute":d[h]+" element";HTMLCS.addMessage(HTMLCS.ERROR,a,"This "+i+" does not have a name available to an accessibility API. Valid names are: "+
+d.join(", ")+".","H91."+f+".Name")}}h=c[e];c=!1;void 0===h?c=!0:"_content"===h?(i=HTMLCS.util.getElementTextContent(a),!1===/^\s*$/.test(i)&&(c=!0)):"option_selected"===h?!1===a.hasAttribute("multiple")?null!==a.querySelector("option[selected]")&&(c=!0):c=!0:"@"===h.charAt(0)&&(h=h.substr(1,h.length),!0===a.hasAttribute(h)&&(c=!0));!1===c&&(i=e+" element","input_"===e.substr(0,6)&&(i=e.substr(6)+" input element"),e="",e="_content"===h?"by adding content to the element":"option_selected"===h?'by adding a "selected" attribute to one of its options':
+"@"===h.charAt(0)?"using the "+h+" attribute":"using the "+h+" element",HTMLCS.addMessage(HTMLCS.ERROR,a,"This "+i+" does not have a value available to an accessibility API. Add one "+e+".","H91."+f+".Value"))}},HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_3_3_3_5={register:function(){return["form"]},process:function(a){HTMLCS.addMessage(HTMLCS.NOTICE,a,"Check that context-sensitive help is available for this form, at a Web-page and/or control level.","G71,G184,G193")}},HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_3_3_3_1=
 {register:function(){return["form"]},process:function(a){HTMLCS.addMessage(HTMLCS.NOTICE,a,"If an input error is automatically detected in this form, check that the item(s) in error are identified and the error(s) are described to the user in text.","G83,G84,G85")}},HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_3_3_3_6={register:function(){return["form"]},process:function(a){HTMLCS.addMessage(HTMLCS.NOTICE,a,"Check that submissions to this form are either reversible, checked for input errors, and/or confirmed by the user.",
 "G98,G99,G155,G164,G168.AllForms")}},HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_3_3_3_2={register:function(){return["form"]},process:function(a){HTMLCS.addMessage(HTMLCS.NOTICE,a,"Check that descriptive labels or instructions (including for required fields) are provided for user input in this form.","G131,G89,G184,H90")}},HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_3_3_3_3={register:function(){return["form"]},process:function(a){HTMLCS.addMessage(HTMLCS.NOTICE,a,"Check that this form provides suggested corrections to errors in user input, unless it would jeopardize the security or purpose of the content.",
 "G177")}},HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_3_3_3_4={register:function(){return["form"]},process:function(a){HTMLCS.addMessage(HTMLCS.NOTICE,a,"If this form would bind a user to a financial or legal commitment, modify/delete user-controllable data, or submit test responses, ensure that submissions are either reversible, checked for input errors, and/or confirmed by the user.","G98,G99,G155,G164,G168.LegalForms")}},HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_2_3_2_3={register:function(){return["_top"]},
@@ -151,7 +103,7 @@ process:function(a,b){HTMLCS.addMessage(HTMLCS.NOTICE,b,"Check that navigational
 "G197")}},HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_2_3_2_2={register:function(){return["form"]},process:function(a){"form"===a.nodeName.toLowerCase()&&this.checkFormSubmitButton(a)},checkFormSubmitButton:function(a){null===a.querySelector("input[type=submit], input[type=image], button[type=submit]")&&HTMLCS.addMessage(HTMLCS.ERROR,a,'Form does not contain a submit button (input type="submit", input type="image", or button type="submit").',"H32.2")}},HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_2_3_2_5=
 {register:function(){return["a"]},process:function(a){"a"===a.nodeName.toLowerCase()&&this.checkNewWindowTarget(a)},checkNewWindowTarget:function(a){!0===a.hasAttribute("target")&&"_blank"===(a.getAttribute("target")||"")&&!1===/new window/i.test(a.innerHTML)&&HTMLCS.addMessage(HTMLCS.WARNING,a,"Check that this link's link text contains information indicating that the link will open in a new window.","H83.3")}},HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_2_3_2_1={register:function(){return["_top"]},
 process:function(a,b){null!==b.querySelector("input, textarea, button, select")&&HTMLCS.addMessage(HTMLCS.NOTICE,b,"Check that a change of context does not occur when any input field receives focus.","G107")}},HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_1_3_1_2={register:function(){return["_top"]},process:function(a,b){HTMLCS.addMessage(HTMLCS.NOTICE,b,"Ensure that any change in language is marked using the lang and/or xml:lang attribute on an element, as appropriate.","H58");for(var d=HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_1_3_1_1,
-c=b.querySelectorAll("*[lang]"),e=0;e<=c.length;e++){var g=e===c.length?b:c[e];if(!g.documentElement&&"html"!==g.nodeName.toLowerCase()){if(!0===g.hasAttribute("lang")){var f=g.getAttribute("lang");!1===d.isValidLanguageTag(f)&&HTMLCS.addMessage(HTMLCS.ERROR,g,"The language specified in the lang attribute of this element does not appear to be well-formed.","H58.1.Lang")}!0===g.hasAttribute("xml:lang")&&(f=g.getAttribute("xml:lang"),!1===d.isValidLanguageTag(f)&&HTMLCS.addMessage(HTMLCS.ERROR,g,"The language specified in the xml:lang attribute of this element does not appear to be well-formed.",
+c=b.querySelectorAll("*[lang]"),e=0;e<=c.length;e++){var f=e===c.length?b:c[e];if(!f.documentElement&&"html"!==f.nodeName.toLowerCase()){if(!0===f.hasAttribute("lang")){var g=f.getAttribute("lang");!1===d.isValidLanguageTag(g)&&HTMLCS.addMessage(HTMLCS.ERROR,f,"The language specified in the lang attribute of this element does not appear to be well-formed.","H58.1.Lang")}!0===f.hasAttribute("xml:lang")&&(g=f.getAttribute("xml:lang"),!1===d.isValidLanguageTag(g)&&HTMLCS.addMessage(HTMLCS.ERROR,f,"The language specified in the xml:lang attribute of this element does not appear to be well-formed.",
 "H58.1.XmlLang"))}}}},HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_1_3_1_6={register:function(){return["ruby"]},process:function(a){var b=a.querySelectorAll("rb");0===a.querySelectorAll("rt").length&&(0===b.length?HTMLCS.addMessage(HTMLCS.ERROR,a,"Ruby element does not contain an rt element containing pronunciation information for its body text.","H62.1.HTML5"):HTMLCS.addMessage(HTMLCS.ERROR,a,"Ruby element does not contain an rt element containing pronunciation information for the text inside the rb element.",
 "H62.1.XHTML11"));0===a.querySelectorAll("rp").length&&HTMLCS.addMessage(HTMLCS.ERROR,a,"Ruby element does not contain rp elements, which provide extra punctuation to browsers not supporting ruby text.","H62.2")}},HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_1_3_1_5={register:function(){return["_top"]},process:function(a,b){HTMLCS.addMessage(HTMLCS.NOTICE,b,"Where the content requires reading ability more advanced than the lower secondary education level, supplemental content or an alternative version should be provided.",
 "G86,G103,G79,G153,G160")}},HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_1_3_1_3={register:function(){return["_top"]},process:function(a,b){HTMLCS.addMessage(HTMLCS.NOTICE,b,"Check that there is a mechanism available for identifying specific definitions of words or phrases used in an unusual or restricted way, including idioms and jargon.","H40,H54,H60,G62,G70")}},HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_1_3_1_4={register:function(){return["_top"]},process:function(a,b){HTMLCS.addMessage(HTMLCS.NOTICE,
@@ -159,3 +111,2168 @@ b,"Check that a mechanism for identifying the expanded form or meaning of abbrev
 !1===this.isValidLanguageTag(d)&&HTMLCS.addMessage(HTMLCS.ERROR,b,"The language specified in the lang attribute of the document element does not appear to be well-formed.","H57.3.Lang")}!0===a.hasAttribute("xml:lang")&&(d=a.getAttribute("xml:lang"),!1===this.isValidLanguageTag(d)&&HTMLCS.addMessage(HTMLCS.ERROR,b,"The language specified in the xml:lang attribute of the document element does not appear to be well-formed.","H57.3.XmlLang"))}},isValidLanguageTag:function(a){var b=!0;!1===RegExp("^([ix](-[a-z0-9]{1,8})+)$|^[a-z]{2,8}(-[a-z]{3}){0,3}(-[a-z]{4})?(-[a-z]{2}|-[0-9]{3})?(-[0-9][a-z0-9]{3}|-[a-z0-9]{5,8})*(-[a-wy-z0-9](-[a-z0-9]{2,8})+)*(-x(-[a-z0-9]{1,8})+)?$",
 "i").test(a)&&(b=!1);return b}},HTMLCS_WCAG2AA={name:"WCAG2AA",description:"Web Content Accessibility Guidelines (WCAG) 2.0 AA",sniffs:[{standard:"WCAG2AAA",include:"Principle1.Guideline1_1.1_1_1,Principle1.Guideline1_2.1_2_1,Principle1.Guideline1_2.1_2_2,Principle1.Guideline1_2.1_2_4,Principle1.Guideline1_2.1_2_5,Principle1.Guideline1_3.1_3_1,Principle1.Guideline1_3.1_3_1_A,Principle1.Guideline1_3.1_3_2,Principle1.Guideline1_3.1_3_3,Principle1.Guideline1_4.1_4_1,Principle1.Guideline1_4.1_4_2,Principle1.Guideline1_4.1_4_3,Principle1.Guideline1_4.1_4_3_F24,Principle1.Guideline1_4.1_4_4,Principle1.Guideline1_4.1_4_5,Principle2.Guideline2_1.2_1_1,Principle2.Guideline2_1.2_1_2,Principle2.Guideline2_2.2_2_1,Principle2.Guideline2_2.2_2_2,Principle2.Guideline2_3.2_3_1,Principle2.Guideline2_4.2_4_1,Principle2.Guideline2_4.2_4_2,Principle2.Guideline2_4.2_4_3,Principle2.Guideline2_4.2_4_4,Principle2.Guideline2_4.2_4_5,Principle2.Guideline2_4.2_4_6,Principle2.Guideline2_4.2_4_7,Principle3.Guideline3_1.3_1_1,Principle3.Guideline3_1.3_1_2,Principle3.Guideline3_2.3_2_1,Principle3.Guideline3_2.3_2_2,Principle3.Guideline3_2.3_2_3,Principle3.Guideline3_2.3_2_4,Principle3.Guideline3_3.3_3_1,Principle3.Guideline3_3.3_3_2,Principle3.Guideline3_3.3_3_3,Principle3.Guideline3_3.3_3_4,Principle4.Guideline4_1.4_1_1,Principle4.Guideline4_1.4_1_2".split(",")}]},
 HTMLCS_WCAG2A={name:"WCAG2A",description:"Web Content Accessibility Guidelines (WCAG) 2.0 A",sniffs:[{standard:"WCAG2AAA",include:"Principle1.Guideline1_1.1_1_1,Principle1.Guideline1_2.1_2_1,Principle1.Guideline1_2.1_2_2,Principle1.Guideline1_2.1_2_3,Principle1.Guideline1_3.1_3_1,Principle1.Guideline1_3.1_3_1_A,Principle1.Guideline1_3.1_3_2,Principle1.Guideline1_3.1_3_3,Principle1.Guideline1_4.1_4_1,Principle1.Guideline1_4.1_4_2,Principle2.Guideline2_1.2_1_1,Principle2.Guideline2_1.2_1_2,Principle2.Guideline2_2.2_2_1,Principle2.Guideline2_2.2_2_2,Principle2.Guideline2_3.2_3_1,Principle2.Guideline2_4.2_4_1,Principle2.Guideline2_4.2_4_2,Principle2.Guideline2_4.2_4_3,Principle2.Guideline2_4.2_4_4,Principle3.Guideline3_1.3_1_1,Principle3.Guideline3_2.3_2_1,Principle3.Guideline3_2.3_2_2,Principle3.Guideline3_3.3_3_1,Principle3.Guideline3_3.3_3_2,Principle4.Guideline4_1.4_1_1,Principle4.Guideline4_1.4_1_2".split(",")}]};
+/**
+ * +--------------------------------------------------------------------+
+ * | This HTML_CodeSniffer file is Copyright (c)                        |
+ * | Squiz Australia Pty Ltd ABN 53 131 581 247                         |
+ * +--------------------------------------------------------------------+
+ * | IMPORTANT: Your use of this Software is subject to the terms of    |
+ * | the Licence provided in the file licence.txt. If you cannot find   |
+ * | this file please contact Squiz (www.squiz.com.au) so we may        |
+ * | provide you a copy.                                                |
+ * +--------------------------------------------------------------------+
+ *
+ */
+
+var HTMLCSAuditor = new function()
+{
+    var _prefix   = 'HTMLCS-';
+    var _screen   = '';
+    var _standard = '';
+    var _sources  = [];
+    var _options  = {};
+    var _doc      = null;
+    var _messages = [];
+    var _page     = 1;
+
+    var self = this;
+
+    this.pointerContainer = null;
+
+    /**
+     * Build the "summary section" square button.
+     *
+     * @return {HTMLDivElement}
+     */
+    var buildSummaryButton = function(id, className, title, onclick) {
+        var button       = _doc.createElement('div');
+        button.id        = id;
+        button.className = _prefix + 'button';
+        button.setAttribute('title', title);
+
+        var buttonInner       = _doc.createElement('span');
+        buttonInner.className = _prefix + 'button-icon ' + _prefix + 'button-' + className;
+        button.appendChild(buttonInner);
+
+        var nbsp = _doc.createTextNode(String.fromCharCode(160));
+        button.appendChild(nbsp);
+
+        if ((onclick instanceof Function) === true) {
+            button.onclick = function() {
+                if (/disabled/.test(button.className) === false) {
+                    onclick(button);
+                }
+            };
+        }
+
+        return button;
+    };
+
+    /**
+     * Build a checkbox.
+     *
+     * @return {HTMLDivElement}
+     */
+    var buildCheckbox = function(id, title, checked, disabled, onclick) {
+        if (checked === undefined) {
+            checked = false;
+        }
+
+        var isIE = new RegExp('msie', 'i').test(navigator.userAgent);
+
+        var label   = _doc.createElement('label');
+        var content = '';
+        label.className = _prefix + 'checkbox';
+
+        content    += '<span class="' + _prefix + 'checkbox-switch">';
+        content    += '<span class="' + _prefix + 'checkbox-slider"></span>';
+        content    += '<input id="' + id + '" type="checkbox"';
+
+        if (checked === true) {
+            content += ' checked="checked"';
+            label.className += ' active';
+        }
+
+        if (disabled === true) {
+            content += ' disabled="disabled"';
+            label.className += ' disabled';
+        }
+
+        content += ' title="' + title + '" /></span>';
+
+        label.innerHTML = content;
+
+        var input = label.getElementsByTagName('input')[0];
+        input.onclick = function() {
+            if (input.checked === true) {
+                label.className += ' active';
+            } else {
+                label.className = label.className.replace('active', '');
+            }
+
+            if (onclick instanceof Function === true) {
+                onclick(input);
+            }
+        };
+
+        if (isIE === true) {
+            label.onclick = function() {
+                input.click();
+            }
+        }
+
+        return label;
+    };
+
+    /**
+     * Build a radio button.
+     *
+     * @return {HTMLDivElement}
+     */
+    var buildRadioButton = function(groupName, value, title, checked) {
+        if (checked === undefined) {
+            checked = false;
+        }
+
+        var label   = _doc.createElement('label');
+        label.className = _prefix + 'radio';
+        var content = '<span class="' + _prefix + 'radio-title">' + title + '</span>';
+        content    += '<span class="' + _prefix + 'radio-switch">';
+        content    += '<span class="' + _prefix + 'radio-slider"></span>';
+        content    += '<input type="radio" name="' + _prefix + groupName + '" ';
+        content    += 'class="' + _prefix + 'radiobtn"';
+        content    += 'value="' + value + '"';
+
+        if (checked === true) {
+            content    += ' checked="true"';
+        }
+
+        content += ' /></span>';
+
+        label.innerHTML = content;
+
+        return label;
+    };
+
+    /**
+     * Build the header section at the absolute top of the interface.
+     *
+     * @return {HTMLDivElement}
+     */
+    var buildHeaderSection = function(standard, wrapper) {
+        var header       = _doc.createElement('div');
+        header.className = _prefix + 'header';
+        header.innerHTML = 'HTML_CodeSniffer by Squiz';
+        header.setAttribute('title', 'Using standard ' + standard);
+
+        var dragging = false;
+        var prevX    = 0;
+        var prevY    = 0;
+        var mouseX   = 0;
+        var mouseY   = 0;
+
+        header.onmousedown = function(e) {
+            e = e || window.event;
+
+            dragging = true;
+            mouseX   = e.clientX;
+            mouseY   = e.clientY;
+            return false;
+        };
+
+        _doc.onmousemove = function(e) {
+            e = e || window.event;
+
+            if (dragging === true) {
+                var top = wrapper.offsetTop;
+                var left = wrapper.offsetLeft;
+
+                if (mouseY < e.clientY) {
+                    top += (e.clientY - mouseY);
+                    wrapper.style.top = top + 'px';
+                } else if (mouseY > e.clientY) {
+                    top -= (mouseY - e.clientY);
+                    wrapper.style.top = top + 'px';
+                }
+
+                if (mouseX < e.clientX) {
+                    left += (e.clientX - mouseX);
+                    wrapper.style.left = left + 'px';
+                } else if (mouseX > e.clientX) {
+                    left -= (mouseX - e.clientX);
+                    wrapper.style.left = left + 'px';
+                }
+
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+            }//end if
+        };
+
+        _doc.onmouseup = function(e) {
+            dragging = false;
+        };
+
+        var closeIcon       = _doc.createElement('div');
+        closeIcon.className = _prefix + 'close';
+        closeIcon.setAttribute('title', 'Close');
+        closeIcon.onmousedown = function() {
+            self.close.call(self);
+        }
+
+        header.appendChild(closeIcon);
+
+        return header;
+    };
+
+    /**
+     * Build the summary section of the interface.
+     *
+     * This includes the number of errors, warnings and notices; as well as buttons
+     * to access the settings interface, and to recheck the content.
+     *
+     * @return {HTMLDivElement}
+     */
+    var buildSummarySection = function(errors, warnings, notices) {
+        var summary       = _doc.createElement('div');
+        summary.className = _prefix + 'summary';
+
+        var leftPane       = _doc.createElement('div');
+        leftPane.className = _prefix + 'summary-left';
+        summary.appendChild(leftPane);
+
+        var rightPane       = _doc.createElement('div');
+        rightPane.className = _prefix + 'summary-right';
+        summary.appendChild(rightPane);
+
+        var leftContents = [];
+
+        var divider = ', &nbsp;<span class="' + _prefix + 'divider"></span>';
+
+        if (errors > 0) {
+            var typeName = 'Errors';
+            if (errors === 1) {
+                typeName = 'Error';
+            }
+            leftContents.push('<strong>' + errors + '</strong> ' + typeName);
+        }
+
+        if (warnings > 0) {
+            var typeName = 'Warnings';
+            if (warnings === 1) {
+                typeName = 'Warning';
+            }
+            leftContents.push('<strong>' + warnings + '</strong> ' + typeName);
+        }
+
+        if (notices > 0) {
+            var typeName = 'Notices';
+            if (notices === 1) {
+                typeName = 'Notice';
+            }
+            leftContents.push('<strong>' + notices + '</strong> ' + typeName);
+        }
+
+        // Start lineage in left pane.
+        var lineage       = _doc.createElement('ol');
+        lineage.className = _prefix + 'lineage';
+
+        // Back to summary item.
+        var lineageHomeItem       = _doc.createElement('li');
+        lineageHomeItem.className = _prefix + 'lineage-item';
+
+        var lineageHomeLink       = _doc.createElement('a');
+        lineageHomeLink.className = _prefix + 'lineage-link';
+        lineageHomeLink.href      = 'javascript:';
+
+        var lineageHomeSpan       = _doc.createElement('span');
+        lineageHomeSpan.innerHTML = 'Home';
+        lineageHomeLink.appendChild(lineageHomeSpan);
+
+        lineageHomeLink.onmousedown = function() {
+            self.run(_standard, _sources, _options);
+        };
+
+        // Issue totals.
+        var lineageTotalsItem       = _doc.createElement('li');
+        lineageTotalsItem.className = _prefix + 'lineage-item';
+        lineageTotalsItem.innerHTML = leftContents.join(divider);
+
+        lineageHomeItem.appendChild(lineageHomeLink);
+        lineage.appendChild(lineageHomeItem);
+        lineage.appendChild(lineageTotalsItem);
+        leftPane.appendChild(lineage);
+
+        rightPane.appendChild(_doc.createTextNode(String.fromCharCode(160)));
+
+        return summary;
+    };
+
+    /**
+     * Build the summary section of the interface.
+     *
+     * This includes the number of errors, warnings and notices; as well as buttons
+     * to access the settings interface, and to recheck the content.
+     *
+     * @return {HTMLDivElement}
+     */
+    var buildDetailSummarySection = function(issue, totalIssues) {
+        var summary       = _doc.createElement('div');
+        summary.className = _prefix + 'summary-detail';
+
+        var leftPane       = _doc.createElement('div');
+        leftPane.className = _prefix + 'summary-left';
+
+        var rightPane       = _doc.createElement('div');
+        rightPane.className = _prefix + 'summary-right';
+
+        // Start lineage.
+        var lineage       = _doc.createElement('ol');
+        lineage.className = _prefix + 'lineage';
+
+        var lineageHomeItem       = _doc.createElement('li');
+        lineageHomeItem.className = _prefix + 'lineage-item';
+
+        var lineageHomeLink       = _doc.createElement('a');
+        lineageHomeLink.className = _prefix + 'lineage-link';
+        lineageHomeLink.href      = 'javascript:';
+
+        var lineageHomeSpan       = _doc.createElement('span');
+        lineageHomeSpan.innerHTML = 'Home';
+        lineageHomeLink.appendChild(lineageHomeSpan);
+
+        lineageHomeLink.onmousedown = function() {
+            self.run(_standard, _sources, _options);
+        };
+
+        // Back to Report item.
+        var lineageReportItem       = _doc.createElement('li');
+        lineageReportItem.className = _prefix + 'lineage-item';
+
+        var lineageReportLink       = _doc.createElement('a');
+        lineageReportLink.className = _prefix + 'lineage-link';
+        lineageReportLink.href      = 'javascript:';
+        lineageReportLink.innerHTML = 'Report';
+        lineageReportLink.setAttribute('title', 'Back to Report');
+
+        lineageReportLink.onmousedown = function() {
+            var list = _doc.querySelectorAll('.HTMLCS-inner-wrapper')[0];
+            list.style.marginLeft = '0px';
+            list.style.maxHeight  = null;
+
+            summary.style.display = 'none';
+            var listSummary = _doc.querySelectorAll('.HTMLCS-summary')[0];
+            listSummary.style.display = 'block';
+        };
+
+        // Issue Count item.
+        var lineageTotalsItem       = _doc.createElement('li');
+        lineageTotalsItem.className = _prefix + 'lineage-item';
+        lineageTotalsItem.innerHTML = 'Issue ' + issue + ' of ' + totalIssues;
+
+        lineageHomeItem.appendChild(lineageHomeLink);
+        lineageReportItem.appendChild(lineageReportLink);
+        lineage.appendChild(lineageHomeItem);
+        lineage.appendChild(lineageReportItem);
+        lineage.appendChild(lineageTotalsItem);
+        leftPane.appendChild(lineage);
+
+        var buttonGroup       = _doc.createElement('div');
+        buttonGroup.className = _prefix + 'button-group';
+
+        var prevButton = buildSummaryButton(_prefix + 'button-previous-issue', 'previous', 'Previous Issue', function(target) {
+            var newIssue = Number(issue) - 1;
+
+            if (newIssue >= 1) {
+                setCurrentDetailIssue(newIssue - 1);
+                wrapper = summary.parentNode;
+                var newSummary = buildDetailSummarySection(newIssue, totalIssues);
+                wrapper.replaceChild(newSummary, summary);
+                newSummary.style.display = 'block';
+
+                var issueList = _doc.querySelectorAll('.HTMLCS-issue-detail-list')[0];
+                issueList.firstChild.style.marginLeft = (parseInt(issueList.firstChild.style.marginLeft, 10) + 300) + 'px';
+                pointToIssueElement(newIssue - 1);
+            }//end if
+        });
+
+        var nextButton = buildSummaryButton(_prefix + 'button-next-issue', 'next', 'Next Issue', function(target) {
+            var newIssue = Number(issue) + 1;
+
+            if (newIssue <= _messages.length) {
+                setCurrentDetailIssue(newIssue - 1);
+                wrapper = summary.parentNode;
+                var newSummary = buildDetailSummarySection(newIssue, totalIssues);
+                wrapper.replaceChild(newSummary, summary);
+                newSummary.style.display = 'block';
+
+                var issueList = _doc.querySelectorAll('.HTMLCS-issue-detail-list')[0];
+                issueList.firstChild.style.marginLeft = (parseInt(issueList.firstChild.style.marginLeft, 10) - 300) + 'px';
+                pointToIssueElement(newIssue - 1);
+            }//end if
+        });
+
+        if (issue === 1) {
+            prevButton.className += ' disabled';
+        } else if (issue === totalIssues) {
+            nextButton.className += ' disabled';
+        }
+
+        buttonGroup.appendChild(prevButton);
+        buttonGroup.appendChild(nextButton);
+        rightPane.appendChild(buttonGroup);
+
+        summary.appendChild(leftPane);
+        summary.appendChild(rightPane);
+
+        return summary;
+    };
+
+    /**
+     * Build the main issue list section of the interface.
+     *
+     * This is what you see when the tests have finished running. A summary list of
+     * , paged five at a time.
+     *
+     * @return {HTMLDivElement}
+     */
+    var buildIssueListSection = function(messages) {
+        var issueListWidth = (Math.ceil(messages.length / 5) * 300);
+        var issueList      = _doc.createElement('div');
+        issueList.id        = _prefix + 'issues';
+        issueList.className = _prefix + 'details';
+        issueList.setAttribute('style', 'width: ' + issueListWidth + 'px');
+
+        var listSection = _doc.createElement('ol');
+        listSection.className = _prefix + 'issue-list';
+        listSection.setAttribute('style', 'margin-left: 0');
+
+        for (var i = 0; i < messages.length; i++) {
+            if ((i > 0) && ((i % 5) === 0)) {
+                issueList.appendChild(listSection);
+                var listSection = _doc.createElement('ol');
+                listSection.className = _prefix + 'issue-list';
+            }
+
+            var msg = buildMessageSummary(i, messages[i]);
+            listSection.appendChild(msg);
+        }
+
+        issueList.appendChild(listSection);
+
+        return issueList;
+    };
+
+    var buildIssueDetailSection = function(messages) {
+        var issueListWidth  = (messages.length * 300);
+        var issueList       = _doc.createElement('div');
+        issueList.id        = _prefix + 'issues-detail';
+        issueList.className = _prefix + 'details';
+        issueList.setAttribute('style', 'width: ' + issueListWidth + 'px');
+
+        var listSection = _doc.createElement('ol');
+        listSection.className = _prefix + 'issue-detail-list';
+        listSection.setAttribute('style', 'margin-left: 0');
+
+        for (var i = 0; i < messages.length; i++) {
+            var msg = buildMessageDetail(i, messages[i]);
+            listSection.appendChild(msg);
+        }
+
+        issueList.appendChild(listSection);
+
+        return issueList;
+    };
+
+    var buildSettingsSection = function() {
+        var settingsDiv       = _doc.createElement('div');
+        settingsDiv.className = _prefix + 'settings';
+
+        var useStandardDiv = _doc.createElement('div');
+        useStandardDiv.id = _prefix + 'settings-use-standard';
+
+        var useStandardLabel       = _doc.createElement('label');
+        useStandardLabel.innerHTML = 'Standards:';
+        useStandardLabel.setAttribute('for', _prefix + 'settings-use-standard-select');
+
+        var useStandardSelect       = _doc.createElement('select');
+        useStandardSelect.id        = _prefix + 'settings-use-standard-select';
+        useStandardSelect.innerHTML = '';
+
+        var standards = ['WCAG2AAA', 'WCAG2AA', 'WCAG2A'];
+        for (var i = 0; i < standards.length; i++) {
+            var standard     = standards[i];
+            var option       = _doc.createElement('option');
+            option.value     = standard;
+            option.innerHTML = window['HTMLCS_' + standard].name;
+
+            if (standard === _standard) {
+                option.selected = true;
+            }
+
+            useStandardSelect.appendChild(option);
+            useStandardSelect.onchange = function() {
+                _standard = this.options[this.selectedIndex].value;
+                self.run(_standard, _sources, _options);
+            }
+        }
+
+        var issueCountDiv = _doc.createElement('div');
+        issueCountDiv.id  = _prefix + 'settings-issue-count';
+
+        var issueCountHelpDiv       = _doc.createElement('div');
+        issueCountHelpDiv.id        = _prefix + 'settings-issue-count-help';
+        issueCountHelpDiv.innerHTML = 'Select the types of issues to include in the report';
+
+        var viewReportDiv       = _doc.createElement('div');
+        viewReportDiv.id        = _prefix + 'settings-view-report';
+        viewReportDiv.innerHTML = 'View Report';
+
+        viewReportDiv.onclick = function() {
+            if (/disabled/.test(this.className) === false) {
+                _options.show = {
+                    error: _doc.getElementById(_prefix + 'include-error').checked,
+                    warning: _doc.getElementById(_prefix + 'include-warning').checked,
+                    notice: _doc.getElementById(_prefix + 'include-notice').checked
+                }
+
+                var wrapper    = _doc.getElementById(_prefix + 'wrapper');
+                var newWrapper = self.build(_standard, _messages, _options);
+
+                if (_options.parentElement) {
+                    _options.parentElement.replaceChild(newWrapper, wrapper);
+                } else {
+                    newWrapper.style.left = wrapper.style.left;
+                    newWrapper.style.top  = wrapper.style.top;
+                    _doc.body.replaceChild(newWrapper, wrapper);
+                }
+
+                if (_options.listUpdateCallback) {
+                    _options.listUpdateCallback.call(this, _messages);
+                }
+            }//end if
+        };
+
+        var wrapper = _doc.getElementById(_prefix + 'wrapper');
+        var levels  = self.countIssues(_messages);
+
+        // Set default show options based on the first run. Don't re-do these, let
+        // the user's settings take priority, unless there is no message.
+        if ((_options.show === undefined) && (_messages.length > 0)) {
+            _options.show = {
+                error: true,
+                warning: true,
+                notice: false
+            }
+
+            if ((levels.error === 0) && (levels.warning === 0)) {
+                _options.show.notice = true;
+            }
+        }
+
+        for (var level in levels) {
+            var msgCount       = levels[level];
+            var levelDiv       = _doc.createElement('div');
+            levelDiv.className = _prefix + 'issue-tile ' + _prefix + level.toLowerCase();
+
+            var levelCountDiv       = _doc.createElement('div');
+            levelCountDiv.className = 'HTMLCS-tile-text';
+
+            var content = '<strong>' + msgCount + '</strong> ' + level.substr(0, 1).toUpperCase() + level.substr(1);
+            if (msgCount !== 1) {
+                content += 's';
+            }
+
+            levelCountDiv.innerHTML = content;
+
+            if (_options.show === undefined) {
+                var checked  = false;
+                var disabled = true;
+            } else {
+                var checked  = _options.show[level];
+                var disabled = false;
+
+                if (msgCount === 0) {
+                    disabled = true;
+                }
+            }
+
+            var levelSwitch = buildCheckbox(_prefix + 'include-' + level, 'Toggle display of ' + level + ' messages', checked, disabled, function(input) {
+                // Only change checkboxes that haven't been disabled.
+                var enable = false;
+
+                if (_doc.getElementById(_prefix + 'include-error').disabled === false) {
+                    _options.show.error = _doc.getElementById(_prefix + 'include-error').checked;
+                    enable = enable || _options.show.error;
+                }
+
+                if (_doc.getElementById(_prefix + 'include-warning').disabled === false) {
+                    _options.show.warning = _doc.getElementById(_prefix + 'include-warning').checked;
+                    enable = enable || _options.show.warning;
+                }
+
+                if (_doc.getElementById(_prefix + 'include-notice').disabled === false) {
+                    _options.show.notice = _doc.getElementById(_prefix + 'include-notice').checked;
+                    enable = enable || _options.show.notice;
+                }
+
+                if (enable === true) {
+                    viewReportDiv.className = viewReportDiv.className.replace(/ disabled/, '');
+                } else {
+                    viewReportDiv.className += ' disabled';
+                }
+            });
+
+            levelDiv.appendChild(levelCountDiv);
+            levelDiv.appendChild(levelSwitch);
+            issueCountDiv.appendChild(levelDiv);
+        }
+
+        // Only disable if we have "currently showing" setting on.
+        if (_options.show !== undefined) {
+            var enable = (_options.show.error || _options.show.warning || _options.show.notice);
+            if (enable === false) {
+                viewReportDiv.className += ' disabled';
+            }
+        } else {
+            viewReportDiv.className += ' disabled';
+        }
+
+        useStandardDiv.appendChild(useStandardLabel);
+        useStandardDiv.appendChild(useStandardSelect);
+
+        settingsDiv.appendChild(useStandardDiv);
+        settingsDiv.appendChild(issueCountDiv);
+        settingsDiv.appendChild(issueCountHelpDiv);
+        settingsDiv.appendChild(viewReportDiv);
+
+        return settingsDiv;
+    };
+
+    var buildMessageSummary = function(id, message) {
+        var msg       = '';
+        var typeText  = '';
+        var typeClass = '';
+
+        switch (message.type) {
+            case HTMLCS.ERROR:
+                typeText = 'Error';
+            break;
+
+            case HTMLCS.WARNING:
+                typeText = 'Warning';
+            break;
+
+            case HTMLCS.NOTICE:
+                typeText = 'Notice';
+            break;
+
+            default:
+                // Not defined.
+            break;
+        }//end switch
+
+        var typeClass  = typeText.toLowerCase();
+        var messageMsg = message.msg;
+        if (messageMsg.length > 115) {
+            messageMsg = messageMsg.substr(0, 115) + '...';
+        }
+
+        var msg = _doc.createElement('li');
+        msg.id  = _prefix + 'msg-' + id;
+
+        var typeIcon       = _doc.createElement('span');
+        typeIcon.className = _prefix + 'issue-type ' + _prefix + typeClass;
+        typeIcon.setAttribute('title', typeText);
+        msg.appendChild(typeIcon);
+
+        var msgTitle       = _doc.createElement('span');
+        msgTitle.className = _prefix + 'issue-title';
+        msgTitle.innerHTML = messageMsg;
+        msg.appendChild(msgTitle);
+
+        msg.onclick = function() {
+            var id = this.id.replace(new RegExp(_prefix + 'msg-'), '');
+            setCurrentDetailIssue(id);
+
+            var detailList = _doc.querySelectorAll('.HTMLCS-issue-detail-list')[0];
+            detailList.className += ' ' + _prefix + 'transition-disabled';
+            detailList.firstChild.style.marginLeft = (id * -300) + 'px';
+
+            pointToIssueElement(id);
+
+            setTimeout(function() {
+                detailList.className = detailList.className.replace(new RegExp(' ' + _prefix + 'transition-disabled'), '');
+            }, 500);
+
+            var list = _doc.querySelectorAll('.HTMLCS-inner-wrapper')[0];
+            list.style.marginLeft = '-300px';
+            list.style.maxHeight  = '15em';
+
+            summary = _doc.querySelectorAll('.HTMLCS-summary-detail')[0];
+            var newSummary = buildDetailSummarySection(parseInt(id) + 1, _messages.length);
+            summary.parentNode.replaceChild(newSummary, summary);
+            newSummary.style.display = 'block';
+
+            var oldSummary = _doc.querySelectorAll('.HTMLCS-summary')[0];
+            oldSummary.style.display = 'none';
+        }
+
+        return msg;
+    };
+
+    var setCurrentDetailIssue = function(id) {
+        var detailList = _doc.querySelectorAll('.HTMLCS-issue-detail-list')[0];
+        var items      = detailList.getElementsByTagName('li');
+        for (var i = 0; i < items.length; i++) {
+            items[i].className = items[i].className.replace(new RegExp(' ' + _prefix + 'current'), '');
+        }
+
+        var currentItem = _doc.getElementById('HTMLCS-msg-detail-' + id);
+        currentItem.className += ' ' + _prefix + 'current';
+
+        if (_options.showIssueCallback) {
+            _options.showIssueCallback.call(this, id);
+        }
+    }
+
+    var buildMessageDetail = function(id, message, standard) {
+        var typeText  = '';
+
+        var principles = {
+            'Principle1': {
+                name: 'Perceivable',
+                link: 'http://www.w3.org/TR/WCAG20/#perceivable'
+               },
+            'Principle2': {
+                name: 'Operable',
+                link: 'http://www.w3.org/TR/WCAG20/#operable'
+               },
+            'Principle3': {
+                name: 'Understandable',
+                link: 'http://www.w3.org/TR/WCAG20/#understandable'
+               },
+            'Principle4': {
+                name: 'Robust',
+                link: 'http://www.w3.org/TR/WCAG20/#robust'
+               }
+        }
+
+        switch (message.type) {
+            case HTMLCS.ERROR:
+                typeText = 'Error';
+            break;
+
+            case HTMLCS.WARNING:
+                typeText = 'Warning';
+            break;
+
+            case HTMLCS.NOTICE:
+                typeText = 'Notice';
+            break;
+
+            default:
+                // Not defined.
+            break;
+        }//end switch
+
+        var typeClass     = _prefix + typeText.toLowerCase();
+        var msgCodeParts  = message.code.split('.', 5);
+        var principle     = msgCodeParts[1];
+        var techniques    = msgCodeParts[4].split(',');
+        var techniquesStr = [];
+
+        for (var i = 0; i < techniques.length; i++) {
+            techniques[i]  = techniques[i].split('.');
+            techniquesStr.push('<a href="http://www.w3.org/TR/WCAG20-TECHS/' + techniques[i][0] + '" target="_blank">' + techniques[i][0] + '</a>');
+        }
+
+        var msgDiv = _doc.createElement('li');
+        msgDiv.id  = _prefix + 'msg-detail-' + id;
+
+        var msgDetailsDiv       = _doc.createElement('div');
+        msgDetailsDiv.className = _prefix + 'issue-details';
+
+        var msgType       = _doc.createElement('span');
+        msgType.className = _prefix + 'issue-type ' + typeClass;
+        msgType.setAttribute('title', typeText);
+
+        var msgTitle       = _doc.createElement('div');
+        msgTitle.className = _prefix + 'issue-title';
+        msgTitle.innerHTML = message.msg;
+
+        var msgWcagRef       = _doc.createElement('div');
+        msgWcagRef.className = _prefix + 'issue-wcag-ref';
+
+        var refContent       = '<em>Principle:</em> <a href="' + principles[principle].link + '" target="_blank">' + principles[principle].name + '</a><br/>';
+        refContent          += '<em>Technique:</em> ' + techniquesStr.join(' '); + '<br/>';
+        msgWcagRef.innerHTML = refContent;
+
+        msgDetailsDiv.appendChild(msgType);
+        msgDetailsDiv.appendChild(msgTitle);
+        msgDetailsDiv.appendChild(msgWcagRef);
+        msgDiv.appendChild(msgDetailsDiv);
+
+        // Build the source view, if outerHTML exists (Firefox >= 11, Webkit, IE),
+        // and applies to the particular element (ie. document doesn't have it).
+        if (_options.customIssueSource) {
+            var msgElementSource       = _doc.createElement('div');
+            msgElementSource.className = _prefix + 'issue-source';
+            msgDiv.appendChild(msgElementSource);
+            _options.customIssueSource.call(this, id, message, standard, msgElementSource, msgDetailsDiv);
+        } else {
+            var msgElementSource       = _doc.createElement('div');
+            msgElementSource.className = _prefix + 'issue-source';
+
+            // Header row.
+            var msgElementSourceHeader       = _doc.createElement('div');
+            msgElementSourceHeader.className = _prefix + 'issue-source-header';
+
+            var msgSourceHeaderText       = _doc.createElement('strong');
+            msgSourceHeaderText.innerHTML = 'Code Snippet';
+
+            var btnPointTo = buildSummaryButton(_prefix + 'button-point-to-element-' + id, 'pointer', 'Point to Element', function() {
+                self.pointToElement(message.element);
+            });
+
+            msgElementSourceHeader.appendChild(msgSourceHeaderText);
+            msgElementSourceHeader.appendChild(btnPointTo);
+            msgElementSource.appendChild(msgElementSourceHeader);
+
+            if (message.element.outerHTML) {
+                var preText  = '';
+                var postText = '';
+
+                if (message.element.innerHTML.length > 31) {
+                    var outerHTML = message.element.outerHTML.replace(message.element.innerHTML, message.element.innerHTML.substr(0, 31) + '...');
+                } else {
+                    var outerHTML = message.element.outerHTML;
+                }
+
+                // Find previous siblings.
+                var preNode = message.element.previousSibling;
+                while (preText.length <= 31) {
+                    if (preNode === null) {
+                        break;
+                    } else {
+                        if (preNode.nodeType === 1) {
+                            // Element node.
+                            preText = preNode.outerHTML;
+                        } else if (preNode.nodeType === 3) {
+                            // Text node.
+                            if (preNode.textContent !== undefined) {
+                                preText = preNode.textContent + preText;
+                            } else {
+                                preText = preNode.nodeValue + preText;
+                            }
+                        }
+
+                        if (preText.length > 31) {
+                            preText = '...' + preText.substr(preText.length - 31);
+                        }
+                    }
+
+                    preNode = preNode.previousSibling;
+                }//end while
+
+                // Find following siblings.
+                var postNode = message.element.nextSibling;
+                while (postText.length <= 31) {
+                    if (postNode === null) {
+                        break;
+                    } else {
+                        if (postNode.nodeType === 1) {
+                            // Element node.
+                            postText += postNode.outerHTML;
+                        } else if (postNode.nodeType === 3) {
+                            // Text node.
+                            if (postNode.textContent !== undefined) {
+                                postText += postNode.textContent;
+                            } else {
+                                postText += postNode.nodeValue;
+                            }
+                        }
+
+                        if (postText.length > 31) {
+                            postText = postText.substr(0, 31) + '...';
+                        }
+                    }
+
+                    postNode = postNode.nextSibling;
+                }//end while
+
+                // Actual source code, highlighting offending element.
+                var msgElementSourceInner       = _doc.createElement('div');
+                msgElementSourceInner.className = _prefix + 'issue-source-inner';
+
+                var msgElementSourceMain       = _doc.createElement('strong');
+                if (msgElementSourceMain.textContent !== undefined) {
+                    msgElementSourceMain.textContent = outerHTML;
+                } else {
+                    // IE8 uses innerText instead. Oh well.
+                    msgElementSourceMain.innerText = outerHTML;
+                }
+
+                msgElementSourceInner.appendChild(_doc.createTextNode(preText));
+                msgElementSourceInner.appendChild(msgElementSourceMain);
+                msgElementSourceInner.appendChild(_doc.createTextNode(postText));
+                msgElementSource.appendChild(msgElementSourceInner);
+            } else {
+                // No support for outerHTML.
+                var msgElementSourceInner       = _doc.createElement('div');
+                msgElementSourceInner.className = _prefix + 'issue-source-not-supported';
+
+                var nsText = 'The code snippet functionality is not supported in this browser.';
+
+                msgElementSourceInner.appendChild(_doc.createTextNode(nsText));
+                msgElementSource.appendChild(msgElementSourceInner);
+            }//end if
+
+            msgDiv.appendChild(msgElementSource);
+        }//end if
+
+        return msgDiv;
+    };
+
+    var buildNavigation = function(page, totalPages) {
+        var navDiv       = _doc.createElement('div');
+        navDiv.className = _prefix + 'navigation';
+
+        var prev       = _doc.createElement('span');
+        prev.className = _prefix + 'nav-button ' + _prefix + 'previous';
+        prev.innerHTML = String.fromCharCode(160);
+
+        if (page === 1) {
+            prev.className += ' ' + _prefix + 'disabled';
+        }
+
+        navDiv.appendChild(prev);
+
+        var pageNum       = _doc.createElement('span');
+        pageNum.className = _prefix + 'page-number';
+        pageNum.innerHTML = 'Page ' + page + ' of ' + totalPages;
+        navDiv.appendChild(pageNum);
+
+        var next       = _doc.createElement('span');
+        next.className = _prefix + 'nav-button ' + _prefix + 'next';
+        next.innerHTML = String.fromCharCode(160);
+
+        if (page === totalPages) {
+            next.className += ' ' + _prefix + 'disabled';
+        }
+
+        navDiv.appendChild(next);
+
+        prev.onclick = function() {
+            if (_page > 1) {
+                _page--;
+                if (_page === 1) {
+                    prev.className += ' ' + _prefix + 'disabled';
+                }
+            }
+
+            next.className    = next.className.replace(new RegExp(' ' + _prefix + 'disabled'), '');
+            pageNum.innerHTML = 'Page ' + _page + ' of ' + totalPages;
+
+            var issueList = _doc.querySelectorAll('.HTMLCS-issue-list')[0];
+            issueList.style.marginLeft = ((_page - 1) * -300) + 'px';
+        }
+
+        next.onclick = function() {
+            if (_page < totalPages) {
+                _page++;
+                if (_page === totalPages) {
+                    next.className += ' ' + _prefix + 'disabled';
+                }
+            }
+
+            prev.className    = prev.className.replace(new RegExp(' ' + _prefix + 'disabled'), '');
+            pageNum.innerHTML = 'Page ' + _page + ' of ' + totalPages;
+
+            var issueList = _doc.querySelectorAll('.HTMLCS-issue-list')[0];
+            issueList.style.marginLeft = ((_page - 1) * -300) + 'px';
+        }
+
+        return navDiv;
+    }
+
+    this.getElementWindow = function(elem) {
+        return pointer.getElementWindow(elem);
+    }
+
+    var pointToIssueElement = function(issue) {
+        var msg = _messages[Number(issue)];
+        if (!msg.element) {
+            return;
+        }
+
+        var btnPointTo    = _doc.getElementById(_prefix + 'button-point-to-element-' + issue);
+        pointer.container = self.pointerContainer || _doc.getElementById('HTMLCS-wrapper');
+
+        if (pointer.isPointable(msg.element) === false) {
+            if (pointer.pointer) {
+                pointer.pointer.className += ' HTMLCS-pointer-hidden';
+            }
+
+            if (btnPointTo) {
+                btnPointTo.className += ' disabled';
+            }
+        } else {
+            if (btnPointTo) {
+                btnPointTo.className =  btnPointTo.className.replace(' disabled', '');
+            }
+
+            pointer.pointTo(msg.element);
+        }
+
+    };
+
+    var loadStandards = function(standards, callback) {
+        if (standards.length === 0) {
+            callback.call(this);
+            return;
+        }
+
+        var standard = standards.shift();
+        HTMLCS.loadStandard(standard, function() {
+            loadStandards(standards, callback);
+        });
+
+    };
+
+    this.getIssue = function(issueNumber)
+    {
+        return _messages[issueNumber];
+
+    };
+
+    this.countIssues = function(messages)
+    {
+        var counts = {
+            error: 0,
+            warning: 0,
+            notice: 0
+        };
+
+        for (var i = 0; i < messages.length; i++) {
+            switch (messages[i].type) {
+                case HTMLCS.ERROR:
+                    counts.error++;
+                break;
+
+                case HTMLCS.WARNING:
+                    counts.warning++;
+                break;
+
+                case HTMLCS.NOTICE:
+                    counts.notice++;
+                break;
+            }//end switch
+        }//end for
+
+        return counts;
+    };
+
+    this.build = function(standard, messages, options) {
+        var wrapper = null;
+        if (_doc) {
+            var wrapper = _doc.getElementById(_prefix + 'wrapper');
+        }
+
+        var errors   = 0;
+        var warnings = 0;
+        var notices  = 0;
+
+        for (var i = 0; i < messages.length; i++) {
+            // Filter only the wanted error types.
+            var ignore = false;
+            switch (messages[i].type) {
+                case HTMLCS.ERROR:
+                    if (_options.show.error === false) {
+                        ignore = true;
+                    } else {
+                        errors++;
+                    }
+                break;
+
+                case HTMLCS.WARNING:
+                    if (_options.show.warning === false) {
+                        ignore = true;
+                    } else {
+                        warnings++;
+                    }
+                break;
+
+                case HTMLCS.NOTICE:
+                    if (_options.show.notice === false) {
+                        ignore = true;
+                    } else {
+                        notices++;
+                    }
+                break;
+            }//end switch
+
+            if (ignore === true) {
+                messages.splice(i, 1);
+                i--;
+            }
+        }//end for
+
+        _messages = messages;
+
+        var settingsContents = '';
+        var summaryContents  = '';
+        var detailContents   = '';
+
+        for (var i = 0; i < messages.length; i++) {
+            if ((i % 5) === 0) {
+                summaryContents += '<ol class="HTMLCS-issue-list"';
+
+                if (i === 0) {
+                    summaryContents += 'style="margin-left: 0em"';
+                }
+
+                summaryContents += '>';
+            }
+
+            summaryContents += buildMessageSummary(i, messages[i]);
+
+            if (((i % 5) === 4) || (i === (messages.length - 1))) {
+                summaryContents += '</ol>';
+            }
+
+            detailContents  += buildMessageDetail(i, messages[i], standard);
+        }
+
+        var detailWidth  = (i * 300);
+
+        var wrapper       = _doc.createElement('div');
+        wrapper.id        = _prefix + 'wrapper';
+        wrapper.className = 'showing-issue-list';
+
+        if (_options.noHeader !== true) {
+            var header = buildHeaderSection(standard, wrapper);
+            wrapper.appendChild(header);
+        }
+
+        var summary       = buildSummarySection(errors, warnings, notices);
+        var summaryDetail = buildDetailSummarySection(1, messages.length);
+
+        var innerWrapper       = _doc.createElement('div');
+        innerWrapper.id        = _prefix + 'issues-wrapper';
+        innerWrapper.className = _prefix + 'inner-wrapper';
+
+        var issueList = buildIssueListSection(messages);
+        innerWrapper.appendChild(issueList);
+
+        var totalPages = Math.ceil(messages.length / 5);
+        var navDiv     = buildNavigation(1, totalPages);
+        innerWrapper.appendChild(navDiv);
+
+        var outerWrapper       = _doc.createElement('div');
+        outerWrapper.className = _prefix + 'outer-wrapper';
+        outerWrapper.appendChild(innerWrapper);
+
+        var innerWrapper       = _doc.createElement('div');
+        innerWrapper.id        = _prefix + 'issues-detail-wrapper';
+        innerWrapper.className = _prefix + 'inner-wrapper';
+
+        var issueDetail = buildIssueDetailSection(messages);
+        innerWrapper.appendChild(issueDetail);
+        outerWrapper.appendChild(innerWrapper);
+
+        wrapper.appendChild(summary);
+        wrapper.appendChild(summaryDetail);
+        wrapper.appendChild(outerWrapper);
+
+        return wrapper;
+    };
+
+    this.buildSummaryPage = function() {
+        var wrapper       = _doc.createElement('div');
+        wrapper.id        = _prefix + 'wrapper';
+        wrapper.className = 'showing-settings';
+
+        if (_options.noHeader !== true) {
+            var header = buildHeaderSection(_standard, wrapper);
+            wrapper.appendChild(header);
+        }
+
+        var summary = buildSettingsSection();
+        wrapper.appendChild(summary);
+
+        return wrapper;
+    };
+
+    this.changeScreen = function(screen) {
+        var wrapper = _doc.getElementById(_prefix + 'wrapper');
+
+        // Remove current "showing" section, add new one, then clean up the class name.
+        wrapper.className  = wrapper.className.replace(new RegExp('showing-' + _screen), '');
+        wrapper.className += ' showing-' + screen;
+        wrapper.className  = wrapper.className.replace(/\s+/, ' ');
+        _screen = screen;
+    };
+
+    this.includeCss = function(prefix, doc) {
+        if (_options.includeCss === false) {
+            return;
+        }
+
+        if (doc === undefined) {
+            doc = _doc;
+        }
+
+        var head     = doc.querySelector('head');
+        var exLinks  = head.getElementsByTagName('link');
+        var foundCss = false;
+        for (var i = 0; i < exLinks.length; i++) {
+            if (new RegExp(prefix + '\.css').test(exLinks[i].getAttribute('href')) === true) {
+                foundCss = true;
+                break;
+            }
+        }
+
+        if (foundCss === false) {
+            var cssLink  = doc.createElement('link');
+            cssLink.rel  = 'stylesheet';
+            cssLink.type = 'text/css';
+            cssLink.href = _options.path + prefix + '.css';
+            head.appendChild(cssLink);
+        }
+    }
+
+    /**
+     * Run HTML_CodeSniffer and place the results in the auditor.
+     *
+     * @returns undefined
+     */
+    this.run = function(standard, source, options) {
+        var standards       = ['WCAG2AAA', 'WCAG2AA', 'WCAG2A'];
+        var standardsToLoad = [];
+        for (var i = 0; i < standards.length; i++) {
+            if (!window['HTMLCS_' + standards[i]]) {
+                standardsToLoad.push(standards[i]);
+            }
+        }
+
+        if (standardsToLoad.length > 0) {
+            loadStandards(standardsToLoad, function() {
+                self.run(standard, source, options);
+            });
+            return;
+        }
+
+        if ((source === null) || (source === undefined)) {
+            // If not defined (or no longer existing?), check the document.
+            source = [];
+
+            if (document.querySelectorAll('frameset').length === 0) {
+                source.push(document);
+            };
+
+            if (window.frames.length > 0) {
+                for (var i = 0; i < window.frames.length; i++) {
+                    try {
+                        source.push(window.frames[i].document);
+                    } catch (ex) {
+                        // If no access permitted to the document (eg.
+                        // cross-domain), then ignore.
+                    }
+                }
+            }
+        } else if (source.nodeName) {
+            // See if we are being sent a text box or text area; if so then
+            // examine its contents rather than the node itself.
+            if (source.nodeName.toLowerCase() === 'input') {
+                if (source.hasAttribute('type') === false) {
+                    // Inputs with no type default to text fields.
+                    source = source.value;
+                } else {
+                    var inputType = source.getAttribute('type').toLowerCase();
+                    if (inputType === 'text') {
+                        // Text field.
+                        source = source.value;
+                    }
+                }
+            } else if (source.nodeName.toLowerCase() === 'textarea') {
+                // Text area.
+                source = source.value;
+            }//end if
+        }
+
+        if ((source instanceof Array) === false) {
+            source = [source];
+        }//end if
+
+        if (options === undefined) {
+            options = {};
+        }
+
+        // Save the options at this point, so we can refresh with them.
+        _standard = standard;
+        _sources  = source;
+        _options  = options;
+        _page     = 1;
+        _screen   = '';
+        _messages = [];
+
+        var parentEl = null;
+
+        if (_options.parentElement) {
+            parentEl = _options.parentElement;
+        } else if (window.frames.length > 0) {
+            var largestFrameSize = -1;
+            var largestFrame     = null;
+
+            for (var i = 0; i < window.frames.length; i++) {
+                try {
+                    if (window.frames[i].frameElement.nodeName.toLowerCase() === 'frame') {
+                        if (window.frames[i].document) {
+                            var frameSize = window.frames[i].innerWidth * window.frames[i].innerHeight;
+                            if (frameSize > largestFrameSize) {
+                                largestFrameSize = frameSize;
+                                largestFrame     = window.frames[i].document.body;
+                            }
+                        }//end if
+                    }//end if
+                } catch (ex) {
+                    // Skip cross-domain frames. Can't do much about those.
+                }//end try
+            }//end for
+
+            if (largestFrame === null) {
+                // They're all iframes. Just use the main document body.
+                parentEl = document.body;
+            } else {
+                parentEl = largestFrame;
+            }
+        } else {
+            parentEl = document.body;
+        }
+
+        _doc = parentEl;
+        if (_doc.ownerDocument) {
+            _doc = _doc.ownerDocument;
+        }
+
+        if (!_options.path) {
+            _options.path = './';
+        }
+
+        if (_options.includeCss === undefined) {
+            _options.includeCss = true;
+        }
+
+        this.includeCss('HTMLCS');
+
+        var target    = _doc.getElementById(_prefix + 'wrapper');
+        var newlyOpen = false;
+
+        // Load the "processing" screen.
+        var wrapper        = self.buildSummaryPage();
+        wrapper.className += ' HTMLCS-processing';
+
+        if (target) {
+            wrapper.style.left = target.style.left;
+            wrapper.style.top  = target.style.top;
+            parentEl.replaceChild(wrapper, target);
+        } else {
+            // Being opened for the first time (in this frame).
+            if (_options.openCallback) {
+                _options.openCallback.call(this);
+            }
+
+            newlyOpen = true;
+            parentEl.appendChild(wrapper);
+        }
+
+        // Process and replace with the issue list when finished.
+        var _finalise = function() {
+            // Before then, ignore warnings arising from the Advisor interface itself.
+            for (var i = 0; i < _messages.length; i++) {
+                var ignore = false;
+                if (wrapper) {
+                    if (wrapper === _messages[i].element) {
+                        ignore = true;
+                    } else if (_messages[i].element.documentElement) {
+                        // Short-circuit document objects. IE doesn't like documents
+                        // being the argument of contains() calls.
+                        ignore = false;
+                    } else if ((wrapper.contains) && (wrapper.contains(_messages[i].element) === true)) {
+                        ignore = true;
+                    } else if ((wrapper.compareDocumentPosition) && ((wrapper.compareDocumentPosition(_messages[i].element) & 16) > 0)) {
+                        ignore = true;
+                    }
+                }//end if
+
+                if (ignore === true) {
+                    _messages.splice(i, 1);
+                    i--;
+                }
+            }//end for
+
+            var _gaBeacon = {
+    uaAcct: '359178.17',
+    self: this,
+
+    /**
+     * Build a GA domain hash.
+     */
+    domainHash: function(domain) {
+        var hash = 0;
+        var c    = 0;
+
+        for (var pos = domain.length - 1; pos >= 0; pos--) {
+            var ord = domain.charCodeAt(pos);
+            hash    = (hash << 6 & 0xfffffff) + ord + (ord << 14);
+            c       = hash & 0xfe00000;
+            hash    = (c != 0) ? (hash ^ c >> 21) : hash;
+        }
+
+        return hash;
+    },
+
+    /**
+     * Get a random number.
+     */
+    rand: function() {
+        return Math.floor(Math.random() * 0x80000000);
+    },
+
+    /**
+     * Build a new utma cookie.
+     */
+    buildUtma: function() {
+        var utma = [];
+
+        utma.push(this.domainHash(document.location.hostname));
+        utma.push(this.rand());
+        utma.push(Math.floor((new Date().getTime()) / 1000));
+        utma.push(utma[2]);
+        utma.push(utma[2]);
+        utma.push(1);
+
+        return utma.join('.');
+    },
+
+    /**
+     * Renew a utma cookie (potentially).
+     */
+    renewUtma: function(utma, force) {
+        var utmc = this.getCookie('utmc');
+
+        if ((force === true) || (!utmc)) {
+            utma = utma.split('.');
+            utma[5]++;
+            utma[3] = utma[4];
+            utma[4] = Math.floor((new Date().getTime()) / 1000);
+            utma = utma.join('.');
+        }
+
+        return utma;
+    },
+
+    /**
+     * Build custom vars "X10" code.
+     */
+    buildCustomVars: function(standard, errors, warnings, notices) {
+        var keys   = ['Standard', 'Errors', 'Warnings', 'Notices'];
+        var values = [standard, errors, warnings, notices];
+        var x10    = '';
+
+        x10 += '8(' + keys.join('*') + ')';
+        x10 += '9(' + values.join('*') + ')';
+
+        return x10;
+    },
+
+    /**
+     * Build a URL.
+     */
+    url: function(standard, errors, warnings, notices, force) {
+        var url = 'http://www.google-analytics.com/__utm.gif?';
+        if (location.protocol === 'https:') {
+            url = 'https://ssl.google-analytics.com/__utm.gif?';
+        }
+
+        var utma = this.getCookie('utma');
+        if (!utma) {
+            utma = this.buildUtma();
+        } else {
+            utma = this.renewUtma(utma, force);
+        }
+
+        var expires = new Date();
+        expires.setFullYear(expires.getFullYear() + 2);
+
+        this.setCookie('utma', utma, expires);
+        this.setCookie('utmc', this.domainHash(document.location.hostname));
+
+        var getVars = {
+            utmwv: '0.0',
+            utmn: this.rand(),
+            utmhn: document.location.hostname,
+            utmp: document.location.pathname,
+            utmac: 'UA-' + this.uaAcct.split('.').join('-'),
+            utme: this.buildCustomVars(standard, errors, warnings, notices),
+            utmcc: '__utma=' + utma + ';'
+        }
+
+        for (varName in getVars) {
+            url += escape(varName) + '=' + escape(getVars[varName]) + '&';
+        }
+
+        return url;
+    },
+
+    /**
+     * Set cookie.
+     */
+    setCookie: function(cookieName, value, expires) {
+        cookieName = '__htmlcs.' + cookieName;
+
+        var cookieStr = cookieName + '=' + value;
+        cookieStr    += ';path=/';
+
+        if (expires) {
+            cookieStr += ';expires=' + escape(expires.toString());
+        }
+
+        document.cookie = cookieStr;
+    },
+
+    /**
+     * Check whether cookie exists.
+     * (Based on Mozilla Developer Network page example on "document.cookie").
+     */
+    cookieExists: function (cookieName) {
+        cookieName  = '__htmlcs.' + cookieName;
+        return (new RegExp("(?:^|;\\s*)" + escape(cookieName).replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=")).test(document.cookie);
+    },
+
+    /**
+     * Get cookie.
+     * (Based on Mozilla Developer Network page example on "document.cookie").
+     */
+    getCookie: function(cookieName) {
+        if (this.cookieExists(cookieName) === false) {
+            return null;
+        }
+
+        cookieName = '__htmlcs.' + cookieName;
+        return unescape(document.cookie.replace(new RegExp("(?:^|.*;\\s*)" + escape(cookieName).replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=\\s*((?:[^;](?!;))*[^;]?).*"), "$1"));
+    }
+};
+
+var counts = self.countIssues(_messages);
+var gaImg  = _doc.createElement('img');
+gaImg.src  = _gaBeacon.url(standard, counts.error, counts.warning, counts.notice, newlyOpen);
+gaImg.style.display = 'none';
+
+
+if (_options.runCallback) {
+                var _newMsgs = _options.runCallback.call(this, _messages);
+                if ((_newMsgs instanceof Array) === true) {
+                    _messages = _newMsgs;
+                }
+            }
+
+            setTimeout(function() {
+                var wrapper    = _doc.getElementById(_prefix + 'wrapper');
+                var newWrapper = self.buildSummaryPage();
+
+                newWrapper.style.left = wrapper.style.left;
+                newWrapper.style.top  = wrapper.style.top;
+                parentEl.replaceChild(newWrapper, wrapper);
+            }, 400);
+        };
+
+        var _processSource = function(standard, sources) {
+            var source = sources.shift();
+
+            // Source is undefined. Keep shifting, until we find one or we run
+            // out of array elements.
+            while (!source) {
+                if (sources.length === 0) {
+                    _finalise();
+                    return;
+                } else {
+                    source = sources.shift();
+                }
+            }
+
+            HTMLCS.process(standard, source, function() {
+                _messages = _messages.concat(HTMLCS.getMessages());
+                if (sources.length === 0) {
+                    _finalise();
+                } else {
+                    _processSource(standard, sources);
+                }
+            });
+        };
+
+        _processSource(standard, _sources.concat([]));
+    };
+
+    this.close = function() {
+        if (_doc) {
+            var wrapper = _doc.getElementById('HTMLCS-wrapper');
+
+            if (wrapper) {
+                wrapper.parentNode.removeChild(wrapper);
+
+                var pointerEl = pointer.pointer;
+                if (pointerEl && pointerEl.parentNode) {
+                    pointerEl.parentNode.removeChild(pointerEl);
+                }
+
+                if (_options.closeCallback) {
+                    _messages = _options.closeCallback.call(this);
+                }
+            }//end if
+        }//end if
+    };
+
+    this.pointToElement = function(element) {
+        pointer.container = self.pointerContainer || _doc.getElementById('HTMLCS-wrapper');
+        pointer.pointTo(element);
+
+    };
+
+    this.getCurrentStandard = function() {
+        return _standard;
+
+    };
+
+    var pointer =
+    {
+        pointer: null,
+        pointerDim: {},
+        container: null,
+
+        getBoundingRectangle: function(element)
+        {
+            if (!element) {
+                return null;
+            }
+
+            // Retrieve the coordinates and dimensions of the element.
+            var coords     = this.getElementCoords(element);
+            var dimensions = this.getElementDimensions(element);
+            var result     = {
+                'x1' : coords.x,
+                'y1' : coords.y,
+                'x2' : coords.x + dimensions.width,
+                'y2' : coords.y + dimensions.height
+            };
+            return result;
+
+        },
+
+        getElementDimensions: function(element)
+        {
+            var result = {
+                width: element.offsetWidth,
+                height: element.offsetHeight
+            };
+
+            return result;
+
+        },
+
+        getElementCoords: function(element, absolute)
+        {
+            var left = 0;
+            var top  = 0;
+
+            // Get parent window coords.
+            var window = this.getElementWindow(element);
+
+            if (absolute === true) {
+                var topWin = window.top;
+            } else {
+                var topWin = window;
+            }
+
+            while (true) {
+                do {
+                    left += element.offsetLeft;
+                    top  += element.offsetTop;
+                } while (element = element.offsetParent);
+
+                if (window === topWin) {
+                    break;
+                } else {
+                    element = window.frameElement;
+                    window  = window.parent;
+
+                    if (element.nodeName.toLowerCase() === 'frame') {
+                        // We can't go any further if we hit a proper frame.
+                        break;
+                    }
+                }
+            }//end while
+
+            return {
+                x: left,
+                y: top
+            };
+
+        },
+
+        getWindowDimensions: function(elem)
+        {
+            var window = this.getElementWindow(elem);
+            var doc    = elem.ownerDocument;
+
+            var windowWidth  = 0;
+            var windowHeight = 0;
+            if (window.innerWidth) {
+                // Will work on Mozilla, Opera and Safari etc.
+                windowWidth  = window.innerWidth;
+                windowHeight = window.innerHeight;
+                // If the scrollbar is showing (it is always showing in IE) then its'
+                // width needs to be subtracted from the height and/or width.
+                var scrollWidth = this.getScrollbarWidth(elem);
+                // The documentElement.scrollHeight.
+                if (doc.documentElement.scrollHeight > windowHeight) {
+                    // Scrollbar is shown.
+                    if (typeof scrollWidth === 'number') {
+                        windowWidth -= scrollWidth;
+                    }
+                }
+
+                if (doc.body.scrollWidth > windowWidth) {
+                    // Scrollbar is shown.
+                    if (typeof scrollWidth === 'number') {
+                        windowHeight -= scrollWidth;
+                    }
+                }
+            } else if (doc.documentElement && (doc.documentElement.clientWidth || doc.documentElement.clientHeight)) {
+                // Internet Explorer.
+                windowWidth  = doc.documentElement.clientWidth;
+                windowHeight = doc.documentElement.clientHeight;
+            } else if (doc.body && (doc.body.clientWidth || doc.body.clientHeight)) {
+                // Browsers that are in quirks mode or weird examples fall through here.
+                windowWidth  = doc.body.clientWidth;
+                windowHeight = doc.body.clientHeight;
+            }//end if
+
+            var result = {
+                'width'  : windowWidth,
+                'height' : windowHeight
+            };
+            return result;
+
+        },
+
+        getScrollbarWidth: function(elem)
+        {
+            if (this.scrollBarWidth) {
+                return this.scrollBarWidth;
+            }
+
+            doc = elem.ownerDocument;
+
+            var wrapDiv            = null;
+            var childDiv           = null;
+            var widthNoScrollBar   = 0;
+            var widthWithScrollBar = 0;
+            // Outer scrolling div.
+            wrapDiv                = doc.createElement('div');
+            wrapDiv.style.position = 'absolute';
+            wrapDiv.style.top      = '-1000px';
+            wrapDiv.style.left     = '-1000px';
+            wrapDiv.style.width    = '100px';
+            wrapDiv.style.height   = '50px';
+            // Start with no scrollbar.
+            wrapDiv.style.overflow = 'hidden';
+
+            // Inner content div.
+            childDiv              = doc.createElement('div');
+            childDiv.style.width  = '100%';
+            childDiv.style.height = '200px';
+
+            // Put the inner div in the scrolling div.
+            wrapDiv.appendChild(childDiv);
+            // Append the scrolling div to the doc.
+            _doc.body.appendChild(wrapDiv);
+
+            // Width of the inner div sans scrollbar.
+            widthNoScrollBar = childDiv.offsetWidth;
+            // Add the scrollbar.
+            wrapDiv.style.overflow = 'auto';
+            // Width of the inner div width scrollbar.
+            widthWithScrollBar = childDiv.offsetWidth;
+
+            // Remove the scrolling div from the doc.
+            doc.body.removeChild(doc.body.lastChild);
+
+            // Pixel width of the scroller.
+            var scrollBarWidth = (widthNoScrollBar - widthWithScrollBar);
+            // Set the DOM variable so we don't have to run this again.
+            this.scrollBarWidth = scrollBarWidth;
+            return scrollBarWidth;
+
+        },
+
+        getScrollCoords: function(elem)
+        {
+            var window = this.getElementWindow(elem);
+            doc        = elem.ownerDocument;
+
+            var scrollX = 0;
+            var scrollY = 0;
+            if (window.pageYOffset) {
+                // Mozilla, Firefox, Safari and Opera will fall into here.
+                scrollX = window.pageXOffset;
+                scrollY = window.pageYOffset;
+            } else if (doc.body && (doc.body.scrollLeft || doc.body.scrollTop)) {
+                // This is the DOM compliant method of retrieving the scroll position.
+                // Safari and OmniWeb supply this, but report wrongly when the window
+                // is not scrolled. They are caught by the first condition however, so
+                // this is not a problem.
+                scrollX = doc.body.scrollLeft;
+                scrollY = doc.body.scrollTop;
+            } else {
+                // Internet Explorer will get into here when in strict mode.
+                scrollX = doc.documentElement.scrollLeft;
+                scrollY = doc.documentElement.scrollTop;
+            }
+
+            var coords = {
+                x: scrollX,
+                y: scrollY
+            };
+            return coords;
+
+        },
+
+        getElementWindow: function(element)
+        {
+            element = element || _doc.body;
+
+            var window = null;
+            if (element.ownerDocument.defaultView) {
+                window = element.ownerDocument.defaultView;
+            } else {
+                window = element.ownerDocument.parentWindow;
+            }
+
+            return window;
+
+        },
+
+        isPointable: function(elem) {
+            // If the specified elem is not in the DOM then we cannot point to it.
+            // Also, cannot point to the document itself.
+            if (elem.ownerDocument === null) {
+                return false;
+            }
+
+            // Do not point to elem if its hidden. Use computed styles.
+            if (elem.currentStyle) {
+                // IE 8.
+                var style = elem.currentStyle;
+            } else {
+                var style = window.getComputedStyle(elem);
+            }
+
+            if ((style.visibility === 'hidden') || (style.display === 'none')) {
+                return false;
+            }
+
+            // Get element coords.
+            var rect = this.getBoundingRectangle(elem);
+
+            // If we cannot get the position then dont do anything,
+            // most likely element is hidden.
+            if (rect.x1 === 0
+                && rect.x2 === 0
+                || rect.x1 === rect.x2
+                || rect.y1 === rect.y2
+            ) {
+                return false;
+            }
+
+            if (this.getPointerDirection(elem) === null) {
+                return false;
+            }
+
+            return true;
+        },
+
+        getPointerDirection: function(elem) {
+            var direction = null;
+
+            // Get element coords.
+            var rect    = this.getBoundingRectangle(elem);
+            var pointer = this.getPointer(elem);
+            var doc     = elem.ownerDocument;
+
+            pointer.style.display = 'block';
+            pointer.style.opacity = 0;
+            pointer.className     = pointer.className.replace('HTMLCS-pointer-hidden', '');
+
+            /*var pointerRect = this.getBoundingRectangle(pointer);
+            var pointerH    = (pointerRect.y2 - pointerRect.y1);
+            var pointerW    = (pointerRect.x2 - pointerRect.x1);*/
+
+            this.pointerDim.height = 62;
+            this.pointerDim.width  = 62;
+
+            var bounceHeight = 20;
+
+            // Determine where to show the arrow.
+            var winDim = this.getWindowDimensions(elem);
+            var window = this.getElementWindow(elem);
+            //window.scrollTo(0, rect.y1 - 100);
+
+            var scrollY = Math.max(0, Math.min(rect.y1 - 100, doc.documentElement.offsetHeight - winDim.height));
+
+            // Try to position the pointer.
+            if ((rect.y1 - this.pointerDim.height - bounceHeight) > scrollY) {
+                // Arrow direction down.
+                direction = 'down';
+            } else if ((rect.y2 + this.pointerDim.height) < (winDim.height - scrollY)) {
+                // Up.
+                direction = 'up';
+            } else if ((rect.x2 + this.pointerDim.width) < winDim.width) {
+                // Left.
+                direction = 'left';
+            } else if ((rect.x1 - this.pointerDim.width) > 0) {
+                // Right.
+                direction = 'right';
+            }
+
+            return direction;
+        },
+
+        pointTo: function(elem) {
+            var topWin = this.getElementWindow(elem).top;
+            var winDim = this.getWindowDimensions(topWin.document.documentElement);
+
+            // Do not point to elem if its hidden.
+            if (this.isPointable(elem) === false) {
+                return;
+            }
+
+            // Get element coords.
+            var direction = this.getPointerDirection(elem);
+            var pointer   = this.getPointer(elem);
+
+            if (direction === null) {
+                pointer.style.display = 'none';
+            } else {
+                pointer.style.display = 'block';
+                pointer.style.opacity = 'auto';
+
+                var rect    = this.getElementCoords(elem, true);
+                var window  = this.getElementWindow(elem);
+                var targetY = Math.max(rect.y - 100, 0);
+
+                while (targetY >= 0) {
+                    window.scrollTo(0, targetY);
+                    var scrollCoords = this.getScrollCoords(window.document.documentElement);
+
+                    targetY -= scrollCoords.y;
+                    targetY  = Math.max(targetY, 0);
+
+                    if (window === topWin) {
+                        break;
+                    } else {
+                        window = window.parent;
+                    }
+                }//end while
+
+                this.showPointer(elem, direction);
+            }
+        },
+
+        getPointer: function(targetElement) {
+            var doc = targetElement.ownerDocument;
+            HTMLCSAuditor.includeCss('HTMLCS', doc);
+
+            if (this.pointer && this.pointer.parentNode) {
+                this.pointer.parentNode.removeChild(this.pointer);
+            }
+
+            this.pointer = doc.createElement('div');
+            var c        = 'HTMLCS';
+            this.pointer.className = c + '-pointer ' + c + '-pointer-hidden';
+            doc.body.appendChild(this.pointer);
+            //targetElement.ownerDocument.body.appendChild(this.pointer);
+
+            return this.pointer;
+        },
+
+        showPointer: function(elem, direction) {
+            var c = 'HTMLCS';
+
+            this._removeDirectionClasses();
+
+            this.pointer.className += ' ' + c + '-pointer-' + direction;
+            this.pointer.className  = this.pointer.className.replace(c + '-pointer-hidden', '');
+
+            var rect         = this.getBoundingRectangle(elem);
+            var top          = 0;
+            var left         = 0;
+            var bounceHeight = 20;
+            switch (direction) {
+                case 'up':
+                    bounceHeight = (-bounceHeight);
+                    top          = rect.y2;
+                    if ((rect.x2 - rect.x1) < 250) {
+                        left = (this.getRectMidPnt(rect) - (this.pointerDim.width / 2));
+                    } else {
+                        left = rect.x1;
+                    }
+                break;
+
+                case 'down':
+                default:
+                    top = (rect.y1 - this.pointerDim.height);
+                    if ((rect.x2 - rect.x1) < 250) {
+                        left = (this.getRectMidPnt(rect) - (this.pointerDim.width / 2));
+                    } else {
+                        left = rect.x1;
+                    }
+                break;
+
+                case 'left':
+                    left = rect.x2;
+                    top  = (this.getRectMidPnt(rect, true) - (this.pointerDim.height / 2));
+                break;
+
+                case 'right':
+                    bounceHeight = (-bounceHeight);
+                    left         = (rect.x1 - this.pointerDim.width);
+                    top          = (this.getRectMidPnt(rect, true) - (this.pointerDim.height / 2));
+                break;
+
+            }//end switch
+
+            var frameScroll = this.getScrollCoords(elem);
+
+            this.pointer.style.top  = top  + 'px';
+            this.pointer.style.left = left + 'px';
+
+            // Check if the help window is under the pointer then re-position it.
+            // Unless it is an element within the HTMLCS pop-up.
+            var coords    = this.getBoundingRectangle(this.container);
+            rect          = this.getBoundingRectangle(this.pointer);
+            var posOffset = 20;
+            var newPos    = null;
+            var midX      = (rect.x1 + ((rect.x2 - rect.x1) / 2));
+            var midY      = (rect.y1 + ((rect.y2 - rect.y1) / 2)) - frameScroll.y;
+            if (coords.x1 <= midX
+                && coords.x2 >= midX
+                && coords.y1 <= midY
+                && coords.y2 >= midY
+            ) {
+                var self = this;
+                this.container.style.opacity = 0.5;
+                setTimeout(function() {
+                    self.container.style.opacity = 1;
+                }, 4000);
+            }
+
+            var pointer = this.pointer;
+            this.bounce(function() {
+                setTimeout(function() {
+                    if (pointer.parentNode) {
+                        pointer.parentNode.removeChild(pointer);
+                    }
+                }, 1500);
+            }, direction);
+
+        },
+
+        bounce: function(callback, direction)
+        {
+            var currentDirection = direction;
+            var pointer          = this.pointer;
+            var initialPos       = 0;
+            var style            = '';
+            var initalPosOffset  = 0;
+            var dist             = 30;
+            var maxBounce        = 5;
+
+            switch (direction) {
+                case 'up':
+                    currentDirection = direction + '-op';
+                    initalPosOffset  = dist;
+                case 'down':
+                    style = 'top';
+                break;
+
+                case 'left':
+                    currentDirection = direction + '-op';
+                    initalPosOffset  = dist;
+                case 'right':
+                    style = 'left';
+                break;
+            }
+
+            initialPos = (Number(pointer.style[style].replace('px', '')) + initalPosOffset);
+
+            var currentPos = initialPos;
+            var lowerLimit = (initialPos - dist);
+            var bounces    = 0;
+
+            var i = setInterval(function() {
+                if (currentDirection === direction) {
+                    currentPos--;
+                    pointer.style[style] = currentPos + 'px';
+                    if (currentPos < lowerLimit) {
+                        currentDirection = direction + '-op';
+                        if (bounces === maxBounce && initalPosOffset !== 0) {
+                            clearInterval(i);
+                            callback.call(this);
+                            return;
+                        }
+                    }
+
+                } else {
+                    currentPos++;
+                    pointer.style[style] = currentPos + 'px';
+
+                    if (currentPos >= initialPos) {
+                        currentDirection = direction;
+                        bounces++;
+
+                        if (bounces === maxBounce && initalPosOffset === 0) {
+                            clearInterval(i);
+                            callback.call(this);
+                            return;
+                        }
+                    }
+                }
+            }, 10);
+
+        },
+
+        getRectMidPnt: function(rect, height) {
+            var midPnt = 0;
+            if (height === true) {
+                midPnt = (rect.y1 + ((rect.y2 - rect.y1) / 2));
+            } else {
+                midPnt = (rect.x1 + ((rect.x2 - rect.x1) / 2));
+            }
+
+            return midPnt;
+        },
+
+        _removeDirectionClasses: function() {
+            var c = 'HTMLCS';
+            var d = ['down', 'up', 'left', 'right'];
+            var l = d.length;
+            for (var i = 0; i < l; i++) {
+                this.pointer.className = this.pointer.className.replace(c + '-pointer-' + d[i], '');
+            }
+        }
+
+    }
+
+};
+
