@@ -86,7 +86,38 @@
 
         <div class="max-width">
 
-                
+                <h3 id="discussion">Discussion</h3><h4>To what extent can I rely on browsers?</h4>
+
+<p>Recent versions of browsers - including Firefox (3.0+), Chrome, and Opera,
+contain the ability to full-zoom pages, resizing both images as well as text. Notably,
+Internet Explorer only gained the ability to resize text in IE 7, and became mostly
+usable in IE 8.</p>
+
+<p>The Understanding document, in reference to
+<a href="http://www.w3.org/TR/WAI-USERAGENT/guidelines.html#tech-configure-text-scale"><abbr title="User-agent Accessibility Guidelines">UAAG</abbr> 1.0 Checkpoint 4.1: Configure text scale</a>,
+makes the following observation with regards the browser's handling of zoom:</p>
+
+<blockquote>
+  <p>Authors may satisfy this Success Criterion by verifying that content does not
+  interfere with user agent support for resizing text, including text-based controls,
+  or by providing direct support for resizing text or changing the layout.</p>
+</blockquote>
+
+<p>In this case, a judgement call must be made as to the intended audience of the
+site, as to whether relying on the user-agent is feasible.</p>
+
+<p>For instance, if you were writing a web application with the same browser baseline
+as the HTML_CodeSniffer auditor - eg. setting a minimum version of IE 8 - you may be able
+to claim success in this respect because the user agents you are supporting are able
+to zoom. In this case, you would need to simply check that the page is readable at
+200% zoom, at various viewport dimensions.</p>
+
+<p>On the other hand, if you were writing a web site intended for mainland China,
+which still has a significant portion (at time of writing) of computers running
+IE 6, you would likely not be able to rely on browser support for zooming, as IE 6
+does not support it properly. In that case, you would need to provide your own
+mechanism for increasing the text size.</p>
+
 
                 <h3 id="sniff-coverage">Sniff Coverage</h3>
 
