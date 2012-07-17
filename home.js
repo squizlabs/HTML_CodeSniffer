@@ -65,7 +65,7 @@ function updateResults(resultsWrapper)
         // Get the success criterion so we can provide a link.
         var msgParts   = msg.code.split('.');
         var principle  = msgParts[1];
-        var sc         = msgParts[3];
+        var sc         = msgParts[3].split('_').slice(0, 3).join('_');
         var techniques = msgParts[4];
         techniques     = techniques.split(',');
 
