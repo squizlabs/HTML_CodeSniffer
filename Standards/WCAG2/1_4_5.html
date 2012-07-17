@@ -78,7 +78,8 @@
 
             <p>(From <em>Understanding WCAG 2.0</em>: <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-text-presentation.html">Understanding Success Criterion 1.4.5</a>)</p>
 
-            
+            <h3 class="grey-heading">Note</h3><p>Superseded by <a href="#sc1_4_9">Success Criterion 1.4.9</a> at level AAA, which removes most of the exceptions.</p>
+
 
         </div>
 
@@ -92,7 +93,79 @@
 
         <div class="max-width">
 
-                
+                <h3 id="discussion">Discussion</h3><h4>Table of Contents</h4>
+
+<ol>
+  <li><a href="#summary">Summary</a></li>
+<ol>
+  <li><a href="#exceptions">Exceptions</a></li>
+</ol>
+  <li><a href="#technologies-other-than-html">Technologies other than HTML</a></li>
+</ol>
+<h4 id="summary">Summary</h4>
+
+<p>The purpose of this Success Criterion is to ensure that as much information that
+could be made available as text, is available as text rather than as an image of
+text.</p>
+
+<p>The most obvious reasoning is to make the text most accessible to all users. This is
+not necessarily so the text can be read out to assistive technology such as a screen
+reader: there are text alternative techniques (such as alt text and long descriptions)
+that cater for this, although there are advantages in this area to avoiding images of
+text where possible.</p>
+
+<p>The main reasoning given in the Understanding document is for visual handicaps:
+providing text instead of an image of text allows users to adjust the size, spacing
+and other formatting to suit their needs. Not all of this is possible with an image -
+it can be resized using zoom in most modern user agents, but this does not allow for
+customisation of other formatting, such as line spacing.</p>
+
+<h5 id="exceptions">Exceptions</h5>
+
+<p>There are a number of exceptions:</p>
+
+<ul>
+<li><p>Images of text are permitted where the effect would not be reliably presented in
+commonly available user agents. For instance, where a typeface is not commonly
+redistributed, and is not licensed for further distribution (for instance, in
+<abbr title="Web Open Font Format">WOFF</abbr> or <abbr title="Embedded OpenType">EOT</abbr> format).</p></li>
+<li><p>They are permitted where implementing as text would interfere with other Success
+Criteria.</p>
+
+<p>Example: implementing shadowed text. The text-shadow CSS feature (in standard form
+at least) is not available in all browsers. It is sometimes emulated, for instance,
+through positioning a second layer with the same text slightly behind the original.
+However, it could be argued that this would not be an accessibility-supported
+method of implementing shadowed text: those relying on assistive technology such as
+a screen reader may find that it reads such shadowed information twice, causing
+issues similar to "link stutter". In this case, an image of text could potentially be argued for.</p></li>
+<li><p>As is common in WCAG 2.0, exceptions exist for text considered "essential", such as
+branding inside a logotype, or high-quality samples of a typeface.</p></li>
+</ul>
+
+<p>Also take note of the definition of "images of text":</p>
+
+<blockquote>
+  <p>The definition of image of text contains the note: "Note: This does not include
+  text that is part of a picture that contains significant other visual content."
+  Examples of such pictures include graphs, screenshots, and diagrams which visually
+  convey important information through more than just text.</p>
+  
+  <p><cite>Understanding WCAG 2.0: <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-text-presentation.html">Images of Text: Understanding <abbr title="Success Criterion">SC</abbr> 1.4.5</a></cite></p>
+</blockquote>
+
+<p><em>Note:</em> most of these exceptions do not apply when targeting the <abbr title="Triple A">AAA</abbr>
+level, where <a href="./1_4_9">Success Criterion 1.4.9: Images of Text (No Exceptions)</a> applies.
+Contrary to the name of the criterion, there are some exceptions, but visual presentation
+cannot be used as an excuse.</p>
+
+<h4 id="technologies-other-than-html">Technologies other than HTML</h4>
+
+<p>This Success Criterion applies regardless of the technology involved. For instance,
+PDF documents with text can either be saved with the text preserved (so it can be
+selected, for instance), or as an image. Where possible, the document should be saved
+so the text is preserved and accessible.</p>
+
 
                 <h3 id="sniff-coverage">Sniff Coverage</h3>
 
