@@ -85,11 +85,28 @@
 
         <div class="max-width">
 
-                <h3 id="discussion">Discussion</h3><h4>On providing submit buttons</h4>
+                <h3 id="discussion">Discussion</h3><h4>Summary</h4>
 
-<p>This is covered by a general technique (<a href="http://www.w3.org/TR/WCAG20-TECHS/G80">G80: Providing a submit button to initiate a change of context</a>) and a HTML-specific technique (<a href="http://www.w3.org/TR/WCAG20-TECHS/G32">H32: Providing submit buttons</a>).</p>
+<p>The main purpose of this Success Criterion is ensuring that users do not become confused by an
+unexplained change of context arising from an input change in a form.</p>
 
-<p>Providing a submit button suggests that a user will be able to use that submit button to explicitly trigger a change in context, rather than it being placed out of their control by a web page. (That this criterion is successful depends, of course, on the author not doing such latter things.)</p>
+<p>Using a submit button to change context in a form is the best possible method. If this is not
+possible and a change in input must result in a change of context, then there should be
+instructions stating explicitly what would happen once the input occurs - technique
+<a href="http://www.w3.org/TR/WCAG20-TECHS/G13">G13: Describing what will happen before a change to a form control that causes a change of context to occur is made</a>.</p>
+
+<p>This instruction material must be placed in a location readily accessible to all users.
+Placing the instruction material in a bypassable location is considered
+a common failure, documented as <a href="http://www.w3.org/TR/WCAG20-TECHS/F76">failure F76</a>.</p>
+
+<h4>Tests for submit buttons</h4>
+
+<p>A submit button is the most appropriate control to use to signal to a user that the button
+will explicitly trigger a change in context. This is preferable to the context change being
+placed out of their control by a web page. (That this criterion is successful depends, of course, on the author not doing such latter things.)</p>
+
+<p>This is covered by a general technique (<a href="http://www.w3.org/TR/WCAG20-TECHS/G80">G80: Providing a submit button to initiate a change of context</a>)
+and a HTML-specific technique (<a href="http://www.w3.org/TR/WCAG20-TECHS/H32">H32: Providing submit buttons</a>).</p>
 
 <p>In HTML, the three elements that count as submit buttons are:</p>
 
