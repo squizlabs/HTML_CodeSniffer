@@ -85,42 +85,85 @@
 
         <div class="max-width">
 
-                <h3 id="discussion">Discussion</h3><h4>About the link element</h4>
+                <h3 id="discussion">Discussion</h3><h4>Table of Contents</h4>
 
-<p>Using the link element to programmatically relate pages is covered in technique <a href="http://www.w3.org/TR/WCAG20-TECHS/H59">H59: Using the link element and navigation tools</a>. Some user agents provide methods for using these links, but this has suffered a little due to lack of consensus on some standard link relation types.</p>
+<ol>
+  <li><a href="#summary">Summary</a></li>
+  <li><a href="#about-the-link-element">About the link element</a></li>
+<ol>
+  <li><a href="#support-for-navigation-links-in-browser-chrome">Support for navigation links in browser chrome</a></li>
+  <li><a href="#direction-of-links">Direction of links</a></li>
+</ol>
+  <li><a href="#additional-sufficient-techniques">Additional sufficient techniques</a></li>
+</ol>
+<h4 id="summary">Summary</h4>
 
-<p>The link element includes several different relation types or roles. Beyond stylesheet and "alternate" representations (for RSS/Atom feeds, for instance), some relations are used for navigation purposes.</p>
+<p>This Success Criterion is best described with its one-sentence intent statement:</p>
 
-<p>Appropriate lists of relation types include:</p>
+<blockquote>
+  <p>The intent of this Success Criterion is to provide a way for the user to orient
+  herself within a set of Web pages, a Web site, or a Web application and find related information.</p>
+  
+  <p><cite>Understanding WCAG 2.0: <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/navigation-mechanisms-location.html">Location: Understanding <abbr title="Success Criterion">SC</abbr> 2.4.8</a></cite></p>
+</blockquote>
+
+<h4 id="about-the-link-element">About the link element</h4>
+
+<p>Using the link element to programmatically relate pages is covered in technique
+<a href="http://www.w3.org/TR/WCAG20-TECHS/H59">H59: Using the link element and navigation tools</a>.
+Some user agents provide methods for using these links, but this has suffered a little
+due to lack of consensus on some standard link relation types.</p>
+
+<p>The link element includes several different relation types or roles. Beyond stylesheet
+and "alternate" representations (for RSS/Atom feeds, for instance), some relations are used for navigation purposes.</p>
+
+<p>HTML_CodeSniffer will test ALL link elements for validity, not just those specified
+for navigational techniques. That is, they will be checked to ensure they contain a
+valid rel attribute and value attribute.</p>
+
+<p>Relation types are defined in multiple places:</p>
 
 <ul>
 <li>The <a href="http://www.w3.org/1999/xhtml/vocab/">XHTML vocabulary</a> which defines roles as they relate to XHTML+RDFa, for XHTML 1.1+.</li>
-<li>The <a href="http://www.iana.org/assignments/link-relations/link-relations.xml">IANA link type registry</a> as it applies to <a href="http://tools.ietf.org/html/rfc5988">RFC5988: Web Linking</a>. This proposes that links would be able to be expressed as HTTP headers.</li>
-<li>The HTML5 specification contains a <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/links.html#linkTypes">base list of supported relation types</a> - note that only "next" and "prev" are explicitly included for navigation purposes; other proposed link types in HTML5 are explicitly the responsibility of <a href="http://microformats.org/wiki/existing-rel-values#HTML5_link_type_extensions">a HTML5 link type registry maintained by the Microformats community</a>.</li>
+<li>The <a href="http://www.iana.org/assignments/link-relations/link-relations.xml">IANA link type registry</a> as it applies to <a href="http://tools.ietf.org/html/rfc5988">RFC 5988: Web Linking</a>. This proposes that links would be able to be expressed as HTTP headers.</li>
+<li>The HTML5 specification contains a <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/links.html#linkTypes">base list of supported relation types</a> -
+note that only "next" and "prev" are defined for navigation purposes; other proposed link types in HTML5 are explicitly the responsibility of <a href="http://microformats.org/wiki/existing-rel-values#HTML5_link_type_extensions">a HTML5 link type registry maintained by the Microformats community</a>.</li>
 </ul>
 
-<p>Although older browsers may have displayed navigational link elements in their user interface "chrome", it is no longer a popular option, and has been removed from later browsers. Some support add-ons which add this support back in. In summary:</p>
+<h5 id="support-for-navigation-links-in-browser-chrome">Support for navigation links in browser chrome</h5>
+
+<p>Although older browsers may have displayed navigational link elements in their user interface "chrome",
+it is no longer a popular option, and has been removed from later browsers. Some support add-ons which add this support back in. In summary:</p>
 
 <ul>
-<li>Opera 11 includes a "Fast Forward" button by default using the "next" relation; there is a "Navigation Bar" toolbar which displays the other relations, but it is hidden by default, and <a href="http://lists.w3.org/Archives/Public/public-html/2010Nov/0385.html">is likely to be removed "in due course"</a>.</li>
-<li>"Old" Mozilla/Netscape used to handle it, and so does SeaMonkey now (View menu - Show/Hide - Website Navigation Bar).</li>
+<li>Opera (as of version 12.00) includes a "Fast Forward" feature, accessed by pressing the spacebar at the end of a page containing a "next" relation.
+A "Next" button is also available for the toolbar. A Navigation Bar used to provide the other relations, but this was removed in version 12.00.</li>
+<li>The "Suite" versions of Mozilla/Netscape used to handle it, and SeaMonkey retains this feature (View menu - Show/Hide - Website Navigation Bar).</li>
 <li>Firefox (and probably IE) have extensions that expose link relations in a separate toolbar.</li>
 </ul>
 
 <p>The "next" relation is also used for link prefetching in Firefox (and probably later versions of SeaMonkey), as well as the explicitly specified "prefetch" relation.</p>
 
-<p>HTML5 only supports "forward" links (using the rel attribute); "reverse" links (using the rev attribute) are not supported. The only major reverse relation that was commonly used in HTML was rev="made", which referred to the author of the page - this has been changed to rel="author" in HTML5. Therefore, HTML_CodeSniffer will not recognise link elements with reverse relations.</p>
+<h5 id="direction-of-links">Direction of links</h5>
 
-<p>HTML_CodeSniffer will test ALL link elements for validity, not just those specified for navigational techniques.</p>
+<p>HTML5 only supports "forward" links (using the rel attribute). The concept of "reverse"
+links (using the rev attribute), as found in earlier versions of HTML, are not supported.
+HTML_CodeSniffer will, similarly, not recognise link elements with reverse relations.</p>
 
-<h4>Additional sufficient techniques</h4>
+<p>The only major reverse relation that was commonly used in HTML was rev="made", which
+referred to the author of the page. This has been changed to rel="author" in HTML5 so
+it can be expressed as a forward relation.</p>
+
+<h4 id="additional-sufficient-techniques">Additional sufficient techniques</h4>
 
 <p>Beyond the link element, the following techniques are also sufficient for allowing a user to determine the location of a page, where appropriate:</p>
 
 <ul>
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/G65">Providing a breadcrumb trail</a>.</li>
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/G63">Providing a site map</a>.</li>
-<li><a href="http://www.w3.org/TR/WCAG20-TECHS/G128">Indicating current location within navigation bars</a> - but, just changing the background colour is not sufficient (see <a href="./1_4_1">Success Criterion 1.4.1 (Use of Colour)</a>): something else should change, such as disabling the link, bolding the text, or adding an indicator such as an asterisk or bullet.</li>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/G128">Indicating current location within navigation bars</a> -
+but, just changing the background colour is not sufficient (see <a href="./1_4_1">Success Criterion 1.4.1 (Use of Colour)</a>):
+something else should change, such as disabling the link, bolding the text, or adding an indicator such as an asterisk or bullet.</li>
 </ul>
 
 
