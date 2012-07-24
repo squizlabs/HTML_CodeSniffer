@@ -473,7 +473,9 @@ var HTMLCSAuditor = new function()
 
         if (issue === 1) {
             prevButton.className += ' disabled';
-        } else if (issue === totalIssues) {
+        }
+
+        if (issue === totalIssues) {
             nextButton.className += ' disabled';
         }
 
@@ -1023,7 +1025,10 @@ var HTMLCSAuditor = new function()
                 }
             }
 
-            next.className    = next.className.replace(new RegExp(' ' + _prefix + 'disabled'), '');
+            if (totalPages > 1) {
+                next.className = next.className.replace(new RegExp(' ' + _prefix + 'disabled'), '');
+            }
+
             pageNum.innerHTML = 'Page ' + _page + ' of ' + totalPages;
 
             var issueList = _doc.querySelectorAll('.HTMLCS-issue-list')[0];
@@ -1038,7 +1043,10 @@ var HTMLCSAuditor = new function()
                 }
             }
 
-            prev.className    = prev.className.replace(new RegExp(' ' + _prefix + 'disabled'), '');
+            if (totalPages > 1) {
+                prev.className = prev.className.replace(new RegExp(' ' + _prefix + 'disabled'), '');
+            }
+
             pageNum.innerHTML = 'Page ' + _page + ' of ' + totalPages;
 
             var issueList = _doc.querySelectorAll('.HTMLCS-issue-list')[0];
