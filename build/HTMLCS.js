@@ -1,3 +1,4 @@
+/* Copyright Squiz - For full terms see licence.txt */
 var HTMLCS=new function(){var a={},b=[],d={},c=null,e=null,f=[],g={};this.ERROR=1;this.WARNING=2;this.NOTICE=3;this.process=function(e,x,y){a={};b=[];d={};c=null;if(!x)return!1;a[o(e)]?HTMLCS.run(y,x):this.loadStandard(e,function(){HTMLCS.run(y,x)})};this.loadStandard=function(a,b){if(!a)return!1;u(a,function(){c=a;b.call(this)})};this.run=function(a,b){var d=null,c=!1;if("string"===typeof b)if(!0===this.isFullDoc(b)){var c=!0,e=document.createElement("iframe");e.style.display="none";e=document.body.insertBefore(e,
 null);e.contentDocument?d=e.contentDocument:d.contentWindow&&(d=e.contentWindow.document);e.onload=function(){var b=s(d);b.unshift(d);h(b,d,a)};d.write(b);d.close()}else d=document.createElement("div"),d.innerHTML=b;else d=b;d?(a=a||function(){},f=[],e=s(d),e.unshift(d),!1===c&&h(e,d,a)):a.call(this)};this.isFullDoc=function(a){var b=!1;if("string"===typeof a)-1!==a.toLowerCase().indexOf("<html")?b=!0:-1!==a.toLowerCase().indexOf("<head")&&-1!==a.toLowerCase().indexOf("<body")&&(b=!0);else if("html"===
 a.nodeName.toLowerCase()||a.documentElement)b=!0;return b};this.addMessage=function(a,b,d,v,h){v=c+"."+e._name+"."+v;f.push({type:a,element:b,msg:g[v]||d,code:v,data:h})};this.getMessages=function(){return f.concat([])};var h=function(a,b,c){for(;0<a.length;){var e=a.shift(),f=e===b?"_top":e.tagName.toLowerCase();d[f]&&0<d[f].length&&i(e,d[f].concat([]),b)}!0===c instanceof Function&&c.call(this)},i=function(a,b,d,c){for(;0<b.length;){var f=b.shift();e=f;!0===f.useCallback?f.process(a,d,function(){i(a,
@@ -63,27 +64,27 @@ process:function(a,b){var d=HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1
 b);break;case "form":this.testRequiredFieldsets(a);break;case "select":this.testLabelsOnInputs(a,b);this.testOptgroup(a);break;case "p":case "div":this.testNonSemanticHeading(a);this.testListsWithBreaks(a);this.testUnstructuredNavLinks(a);break;case "table":this.testTableHeaders(a);this.testTableCaptionSummary(a);break;case "fieldset":this.testFieldsetLegend(a);break;case "h1":case "h2":case "h3":case "h4":case "h5":case "h6":this.testEmptyHeading(a)}},testEmptyDupeLabelForAttrs:function(a){this._labelNames=
 {};for(var b=a.getElementsByTagName("label"),d=0;d<b.length;d++)if(!0===b[d].hasAttribute("for")&&""!==b[d].getAttribute("for")){var c=b[d].getAttribute("for");this._labelNames[c]&&null!==this._labelNames[c]?(HTMLCS.addMessage(HTMLCS.ERROR,b[d],'Multiple labels exist with the same "for" attribute. If these labels refer to different form controls, the controls should have unique "id" attributes.',"H93"),this._labelNames[c]=null):(this._labelNames[c]=b[d],c=a.ownerDocument?a.ownerDocument.getElementById(c):
 a.getElementById(c),null===c?HTMLCS.addMessage(HTMLCS.ERROR,b[d],'This label\'s "for" attribute contains an ID that does not exist in the document.',"H44.NonExistent"):(c=c.nodeName.toLowerCase(),"input"!==c&&"select"!==c&&"textarea"!==c&&HTMLCS.addMessage(HTMLCS.ERROR,b[d],'This label\'s "for" attribute contains an ID that points to an element that is not a form control.',"H44.NotFormControl")))}else HTMLCS.addMessage(HTMLCS.ERROR,b[d],'Label found without a "for" attribute, and therefore not explicitly associated with a form control.',
-"H44.NoForAttr")},testLabelsOnInputs:function(a,b){var d=a.nodeName.toLowerCase();"input"===d&&(d=a.getAttribute("type"));var c=!1;!0===/^(submit|reset|image|hidden|button)$/.test(d)&&(c=!0);this._labelNames={};for(var e=b.getElementsByTagName("label"),f=0;f<e.length;f++)!0===e[f].hasAttribute("for")&&(this._labelNames[e[f].getAttribute("for")]=e[f]);if(!1===a.hasAttribute("id")&&!1===c)HTMLCS.addMessage(HTMLCS.ERROR,a,"Form control does not have an ID, therefore it cannot have an explicit label.",
-"H44.NoId");else if(e=a.getAttribute("id"),this._labelNames[e])if(!0===c)HTMLCS.addMessage(HTMLCS.ERROR,a,"Label element should not be used for this type of form control.","H44.NoLabelAllowed");else{c=!1;!0===/^(checkbox|radio)$/.test(d)&&(c=!0);if(a.compareDocumentPosition)if(d=a.compareDocumentPosition(this._labelNames[e]),2===(d&2))var g=1;else 4===(d&4)&&(g=-1);else a.sourceIndex&&(g=a.sourceIndex-this._labelNames[e].sourceIndex);!0===c&&0<g?HTMLCS.addMessage(HTMLCS.ERROR,a,"The label element for this control should be placed after this element.",
-"H44.1.After"):!1===c&&0>g&&HTMLCS.addMessage(HTMLCS.ERROR,a,"The label element for this control should be placed before this element.","H44.1.Before")}else!1===c&&(!0===a.hasAttribute("title")?!0===/^\s*$/.test(a.getAttribute("title"))?HTMLCS.addMessage(HTMLCS.ERROR,a,"Form control without a label contains an empty title attribute. The title attribute should identify the purpose of the control.","H65.3"):HTMLCS.addMessage(HTMLCS.WARNING,a,"Check that the title attribute identifies the purpose of the control, and that a label element is not appropriate.",
-"H65"):HTMLCS.addMessage(HTMLCS.ERROR,a,"Form control does not have an explicit label or title attribute, identifying the purpose of the control.","H44.2"))},testPresentationMarkup:function(a){for(var b=a.querySelectorAll("b, i, u, s, strike, tt, big, small, center, font"),d=0;d<b.length;d++){var c="H49."+b[d].nodeName.substr(0,1).toUpperCase()+b[d].nodeName.substr(1).toLowerCase();HTMLCS.addMessage(HTMLCS.WARNING,b[d],"Semantic markup should be used to mark emphasised or special text so that it can be programmatically determined.",
-c)}b=a.querySelectorAll("*[align]");for(d=0;d<b.length;d++)c="H49.AlignAttr",HTMLCS.addMessage(HTMLCS.WARNING,b[d],"Semantic markup should be used to mark emphasised or special text so that it can be programmatically determined.",c)},testNonSemanticHeading:function(a){var b=a.nodeName.toLowerCase();if("p"===b||"div"===b)b=a.childNodes,1===b.length&&1===b[0].nodeType&&!0===/^(strong|em|b|i|u)$/.test(b[0].nodeName.toLowerCase())&&HTMLCS.addMessage(HTMLCS.WARNING,a,"Heading markup should be used if this content is intended as a heading.",
-"H42")},testTableHeaders:function(a){for(var b=this._testTableHeadersAttrs(a),d=this._testTableScopeAttrs(a),c=0;c<d.invalid.length;c++)HTMLCS.addMessage(HTMLCS.ERROR,d.invalid[c],"Table cell has an invalid scope attribute. Valid values are row, col, rowgroup, or colgroup.","H63.3");for(c=0;c<d.obsoleteTd.length;c++)HTMLCS.addMessage(HTMLCS.WARNING,d.obsoleteTd[c],"Scope attributes on td elements that act as headings for other elements are obsolete in HTML5. Use a th element instead.","H63.2");!0===
-b.allowScope?0===d.missing.length&&!1===b.required:!0===d.used&&(HTMLCS.addMessage(HTMLCS.WARNING,a,"Scope attributes on th elements are ambiguous in a table with multiple levels of headings. Use the headers attribute on td elements instead.","H43.ScopeAmbiguous"),d=null);for(c=0;c<b.wrongHeaders.length;c++)HTMLCS.addMessage(HTMLCS.ERROR,b.wrongHeaders[c].element,'Incorrect headers attribute on this td element. Expected "'+b.wrongHeaders[c].expected+'" but found "'+b.wrongHeaders[c].actual+'"',"H43.IncorrectAttr");
-!0===b.required&&!1===b.allowScope&&(!1===b.used?HTMLCS.addMessage(HTMLCS.ERROR,a,"The relationship between td elements and their associated th elements is not defined. As this table has multiple levels of th elements, you must use the headers attribute on td elements.","H43.HeadersRequired"):(0<b.missingThId.length&&HTMLCS.addMessage(HTMLCS.ERROR,a,"Not all th elements in this table contain an id attribute. These cells should contain ids so that they may be referenced by td elements' headers attributes.",
-"H43.MissingHeaderIds"),0<b.missingTd.length&&HTMLCS.addMessage(HTMLCS.ERROR,a,"Not all td elements in this table contain a headers attribute. Each headers attribute should list the ids of all th elements associated with that cell.","H43.MissingHeadersAttrs")));!0===b.required&&!0===b.allowScope&&!1===b.correct&&!1===d.correct&&(!1===d.used&&!1===b.used?HTMLCS.addMessage(HTMLCS.ERROR,a,"The relationship between td elements and their associated th elements is not defined. Use either the scope attribute on th elements, or the headers attribute on td elements.",
-"H43,H63"):!1===d.used&&(0<b.missingThId.length||0<b.missingTd.length)?(0<b.missingThId.length&&HTMLCS.addMessage(HTMLCS.ERROR,a,"Not all th elements in this table contain an id attribute. These cells should contain ids so that they may be referenced by td elements' headers attributes.","H43.MissingHeaderIds"),0<b.missingTd.length&&HTMLCS.addMessage(HTMLCS.ERROR,a,"Not all td elements in this table contain a headers attribute. Each headers attribute should list the ids of all th elements associated with that cell.",
-"H43.MissingHeadersAttrs")):0<d.missing.length&&!1===b.used?HTMLCS.addMessage(HTMLCS.ERROR,a,"Not all th elements in this table have a scope attribute. These cells should contain a scope attribute to identify their association with td elements.","H63.1"):0<d.missing.length&&(0<b.missingThId.length||0<b.missingTd.length)&&HTMLCS.addMessage(HTMLCS.ERROR,a,"The relationship between td elements and their associated th elements is not defined. Use either the scope attribute on th elements, or the headers attribute on td elements.",
-"H43,H63"))},_testTableScopeAttrs:function(a){var a={th:a.getElementsByTagName("th"),td:a.getElementsByTagName("td")},b={used:!1,correct:!0,missing:[],invalid:[],obsoleteTd:[]},d;for(d in a)for(var c=0;c<a[d].length;c++){element=a[d][c];var e="";!0===element.hasAttribute("scope")&&(b.used=!0,element.getAttribute("scope")&&(e=element.getAttribute("scope")));"th"===element.nodeName.toLowerCase()?!0===/^\s*$/.test(e)?(b.correct=!1,b.missing.push(element)):!1===/^(row|col|rowgroup|colgroup)$/.test(e)&&
-(b.correct=!1,b.invalid.push(element)):""!==e&&(b.obsoleteTd.push(element),!1===/^(row|col|rowgroup|colgroup)$/.test(e)&&(b.correct=!1,b.invalid.push(element)))}return b},_testTableHeadersAttrs:function(a){for(var b={required:!0,used:!1,correct:!0,allowScope:!0,missingThId:[],missingTd:[],wrongHeaders:[]},d=a.getElementsByTagName("tr"),c=[],e=[],f=[],g=0,h=0,i=0;i<d.length;i++)for(var u=d[i],m=0,t=0;t<u.childNodes.length;t++){var j=u.childNodes[t];if(1===j.nodeType){if(c[i])for(;c[i][0]===m;)c[i].shift(),
-m++;var w=j.nodeName.toLowerCase(),o=Number(j.getAttribute("rowspan"))||1,p=Number(j.getAttribute("colspan"))||1;if(1<o)for(var k=i+1;k<i+o;k++){c[k]||(c[k]=[]);for(var s=m;s<m+p;s++)c[k].push(s)}if("th"===w){if(""===(j.getAttribute("id")||""))b.correct=!1,b.missingThId.push(j);1<o&&1<p?b.allowScope=!1:!0===b.allowScope&&(void 0===f[m]&&(f[m]=0),void 0===e[i]&&(e[i]=0),e[i]+=p,f[m]+=o)}else"td"===w&&!0===j.hasAttribute("headers")&&!1===/^\s*$/.test(j.getAttribute("headers"))&&(b.used=!0);m+=p}}for(k=
-0;k<e.length;k++)1<e[k]&&g++;for(k=0;k<f.length;k++)1<f[k]&&h++;if(1<g||1<h)b.allowScope=!1;else if(!0===b.allowScope&&(0===g||0===h))b.required=!1;a=HTMLCS.util.getCellHeaders(a);for(k=0;k<a.length;k++)j=a[k].cell,d=a[k].headers,!1===j.hasAttribute("headers")?(b.correct=!1,b.missingTd.push(j)):(c=(j.getAttribute("headers")||"").split(/\s+/),0===c.length?(b.correct=!1,b.missingTd.push(j)):(c=" "+c.sort().join(" ")+" ",c=c.replace(/\s+/g," ").replace(/(\w+\s)\1+/g,"$1").replace(/^\s*(.*?)\s*$/g,"$1"),
-d!==c&&(b.correct=!1,j={element:j,expected:d,actual:j.getAttribute("headers")||""},b.wrongHeaders.push(j))));return b},testTableCaptionSummary:function(a){var b=a.getAttribute("summary")||"",d=a.getElementsByTagName("caption"),c="";0<d.length&&(c=d[0].innerHTML.replace(/^\s*(.*?)\s*$/g,"$1"));b=b.replace(/^\s*(.*?)\s*$/g,"$1");""!==b?(c===b&&HTMLCS.addMessage(HTMLCS.ERROR,a,"If this table is a data table, and both a summary attribute and a caption element are present, the summary should not duplicate the caption.",
-"H39,H73.4"),HTMLCS.addMessage(HTMLCS.NOTICE,a,"If this table is a data table, check that the summary attribute describes the table's organization or explains how to use the table.","H73.3.Check")):HTMLCS.addMessage(HTMLCS.WARNING,a,"If this table is a data table, consider using the summary attribute of the table element to give an overview of this table.","H73.3.NoSummary");""!==c?HTMLCS.addMessage(HTMLCS.NOTICE,a,"If this table is a data table, check that the caption element accurately describes this table.",
-"H39.3.Check"):HTMLCS.addMessage(HTMLCS.WARNING,a,"If this table is a data table, consider using a caption element to the table element to identify this table.","H39.3.NoCaption")},testFieldsetLegend:function(a){var b=a.querySelector("legend");(null===b||b.parentNode!==a)&&HTMLCS.addMessage(HTMLCS.ERROR,a,"Fieldset does not contain a legend element. All fieldsets should contain a legend element that describes a description of the field group.","H71.3")},testOptgroup:function(a){null===a.querySelector("optgroup")&&
-HTMLCS.addMessage(HTMLCS.WARNING,a,"If this selection list contains groups of related options, they should be grouped with optgroup.","H85.2")},testRequiredFieldsets:function(a){for(var b=a.querySelectorAll("input[type=radio], input[type=checkbox]"),d={},c=0;c<b.length;c++){var e=b[c];if(!0===e.hasAttribute("name")){for(var f=e.getAttribute("name"),g=e.parentNode;"fieldset"!==g.nodeName.toLowerCase()&&null!==g&&g!==a;)g=g.parentNode;"fieldset"!==g.nodeName.toLowerCase()&&(g=null)}if(void 0===d[f])d[f]=
-g;else if(null===g||g!==d[f]){HTMLCS.addMessage(HTMLCS.ERROR,a,"Radio buttons or check boxes with the same name attribute must be contained within a fieldset element.","H71.2");break}}},testListsWithBreaks:function(a){var b=[];if(null!==a.querySelector("br")){for(var d=[],c=0;c<a.childNodes.length;c++)d.push(a.childNodes[c]);for(var e=[];0<d.length;){var f=d.shift();if(1===f.nodeType)if("br"===f.nodeName.toLowerCase())b.push(e.join(" ").replace(/^\s*(.*?)\s*$/g,"$1")),e=[];else for(c=f.childNodes.length-
-1;0<=c;--c)d.unshift(f.childNodes[c]);else 3===f.nodeType&&e.push(f.nodeValue)}0<e.length&&b.push(e.join(" ").replace(/^\s*(.*?)\s*$/g,"$1"));for(c=0;c<b.length;c++){if(!0===/^[\-*]\s+/.test(b[0])){HTMLCS.addMessage(HTMLCS.WARNING,a,"Content appears to have the visual appearance of a bulleted list. It may be appropriate to mark this content up using a ul element.","H48.1");break}if(!0===/^\d+[:\/\-.]?\s+/.test(b[0])){HTMLCS.addMessage(HTMLCS.WARNING,a,"Content appears to have the visual appearance of a numbered list. It may be appropriate to mark this content up using an ol element.",
+"H44.NoForAttr")},testLabelsOnInputs:function(a,b){var d=a.nodeName.toLowerCase();"input"===d&&(d=a.getAttribute("type"));var c=!1;!0===/^(submit|reset|image|hidden|button)$/.test(d)&&(c=!0);this._labelNames={};for(var e=b.getElementsByTagName("label"),f=0;f<e.length;f++)!0===e[f].hasAttribute("for")&&(this._labelNames[e[f].getAttribute("for")]=e[f]);if(!1===a.hasAttribute("id")&&!1===c)!0===a.hasAttribute("title")?!0===/^\s*$/.test(a.getAttribute("title"))&&HTMLCS.addMessage(HTMLCS.ERROR,a,"Form control without a label contains an empty title attribute. The title attribute should identify the purpose of the control.",
+"H65.3"):HTMLCS.addMessage(HTMLCS.ERROR,a,"Form control does not have an ID, therefore it cannot have an explicit label.","H44.NoId");else if(e=a.getAttribute("id"),this._labelNames[e])if(!0===c)HTMLCS.addMessage(HTMLCS.ERROR,a,"Label element should not be used for this type of form control.","H44.NoLabelAllowed");else{c=!1;!0===/^(checkbox|radio)$/.test(d)&&(c=!0);if(a.compareDocumentPosition)if(d=a.compareDocumentPosition(this._labelNames[e]),2===(d&2))var g=1;else 4===(d&4)&&(g=-1);else a.sourceIndex&&
+(g=a.sourceIndex-this._labelNames[e].sourceIndex);!0===c&&0<g?HTMLCS.addMessage(HTMLCS.ERROR,a,"The label element for this control should be placed after this element.","H44.1.After"):!1===c&&0>g&&HTMLCS.addMessage(HTMLCS.ERROR,a,"The label element for this control should be placed before this element.","H44.1.Before")}else!1===c&&(!0===a.hasAttribute("title")?!0===/^\s*$/.test(a.getAttribute("title"))?HTMLCS.addMessage(HTMLCS.ERROR,a,"Form control without a label contains an empty title attribute. The title attribute should identify the purpose of the control.",
+"H65.3"):HTMLCS.addMessage(HTMLCS.WARNING,a,"Check that the title attribute identifies the purpose of the control, and that a label element is not appropriate.","H65"):HTMLCS.addMessage(HTMLCS.ERROR,a,"Form control does not have an explicit label or title attribute, identifying the purpose of the control.","H44.2"))},testPresentationMarkup:function(a){for(var b=a.querySelectorAll("b, i, u, s, strike, tt, big, small, center, font"),d=0;d<b.length;d++){var c="H49."+b[d].nodeName.substr(0,1).toUpperCase()+
+b[d].nodeName.substr(1).toLowerCase();HTMLCS.addMessage(HTMLCS.WARNING,b[d],"Semantic markup should be used to mark emphasised or special text so that it can be programmatically determined.",c)}b=a.querySelectorAll("*[align]");for(d=0;d<b.length;d++)c="H49.AlignAttr",HTMLCS.addMessage(HTMLCS.WARNING,b[d],"Semantic markup should be used to mark emphasised or special text so that it can be programmatically determined.",c)},testNonSemanticHeading:function(a){var b=a.nodeName.toLowerCase();if("p"===b||
+"div"===b)b=a.childNodes,1===b.length&&1===b[0].nodeType&&!0===/^(strong|em|b|i|u)$/.test(b[0].nodeName.toLowerCase())&&HTMLCS.addMessage(HTMLCS.WARNING,a,"Heading markup should be used if this content is intended as a heading.","H42")},testTableHeaders:function(a){for(var b=this._testTableHeadersAttrs(a),d=this._testTableScopeAttrs(a),c=0;c<d.invalid.length;c++)HTMLCS.addMessage(HTMLCS.ERROR,d.invalid[c],"Table cell has an invalid scope attribute. Valid values are row, col, rowgroup, or colgroup.",
+"H63.3");for(c=0;c<d.obsoleteTd.length;c++)HTMLCS.addMessage(HTMLCS.WARNING,d.obsoleteTd[c],"Scope attributes on td elements that act as headings for other elements are obsolete in HTML5. Use a th element instead.","H63.2");!0===b.allowScope?0===d.missing.length&&!1===b.required:!0===d.used&&(HTMLCS.addMessage(HTMLCS.WARNING,a,"Scope attributes on th elements are ambiguous in a table with multiple levels of headings. Use the headers attribute on td elements instead.","H43.ScopeAmbiguous"),d=null);
+for(c=0;c<b.wrongHeaders.length;c++)HTMLCS.addMessage(HTMLCS.ERROR,b.wrongHeaders[c].element,'Incorrect headers attribute on this td element. Expected "'+b.wrongHeaders[c].expected+'" but found "'+b.wrongHeaders[c].actual+'"',"H43.IncorrectAttr");!0===b.required&&!1===b.allowScope&&(!1===b.used?HTMLCS.addMessage(HTMLCS.ERROR,a,"The relationship between td elements and their associated th elements is not defined. As this table has multiple levels of th elements, you must use the headers attribute on td elements.",
+"H43.HeadersRequired"):(0<b.missingThId.length&&HTMLCS.addMessage(HTMLCS.ERROR,a,"Not all th elements in this table contain an id attribute. These cells should contain ids so that they may be referenced by td elements' headers attributes.","H43.MissingHeaderIds"),0<b.missingTd.length&&HTMLCS.addMessage(HTMLCS.ERROR,a,"Not all td elements in this table contain a headers attribute. Each headers attribute should list the ids of all th elements associated with that cell.","H43.MissingHeadersAttrs")));
+!0===b.required&&!0===b.allowScope&&!1===b.correct&&!1===d.correct&&(!1===d.used&&!1===b.used?HTMLCS.addMessage(HTMLCS.ERROR,a,"The relationship between td elements and their associated th elements is not defined. Use either the scope attribute on th elements, or the headers attribute on td elements.","H43,H63"):!1===d.used&&(0<b.missingThId.length||0<b.missingTd.length)?(0<b.missingThId.length&&HTMLCS.addMessage(HTMLCS.ERROR,a,"Not all th elements in this table contain an id attribute. These cells should contain ids so that they may be referenced by td elements' headers attributes.",
+"H43.MissingHeaderIds"),0<b.missingTd.length&&HTMLCS.addMessage(HTMLCS.ERROR,a,"Not all td elements in this table contain a headers attribute. Each headers attribute should list the ids of all th elements associated with that cell.","H43.MissingHeadersAttrs")):0<d.missing.length&&!1===b.used?HTMLCS.addMessage(HTMLCS.ERROR,a,"Not all th elements in this table have a scope attribute. These cells should contain a scope attribute to identify their association with td elements.","H63.1"):0<d.missing.length&&
+(0<b.missingThId.length||0<b.missingTd.length)&&HTMLCS.addMessage(HTMLCS.ERROR,a,"The relationship between td elements and their associated th elements is not defined. Use either the scope attribute on th elements, or the headers attribute on td elements.","H43,H63"))},_testTableScopeAttrs:function(a){var a={th:a.getElementsByTagName("th"),td:a.getElementsByTagName("td")},b={used:!1,correct:!0,missing:[],invalid:[],obsoleteTd:[]},d;for(d in a)for(var c=0;c<a[d].length;c++){element=a[d][c];var e="";
+!0===element.hasAttribute("scope")&&(b.used=!0,element.getAttribute("scope")&&(e=element.getAttribute("scope")));"th"===element.nodeName.toLowerCase()?!0===/^\s*$/.test(e)?(b.correct=!1,b.missing.push(element)):!1===/^(row|col|rowgroup|colgroup)$/.test(e)&&(b.correct=!1,b.invalid.push(element)):""!==e&&(b.obsoleteTd.push(element),!1===/^(row|col|rowgroup|colgroup)$/.test(e)&&(b.correct=!1,b.invalid.push(element)))}return b},_testTableHeadersAttrs:function(a){for(var b={required:!0,used:!1,correct:!0,
+allowScope:!0,missingThId:[],missingTd:[],wrongHeaders:[]},d=a.getElementsByTagName("tr"),c=[],e=[],f=[],g=0,h=0,i=0;i<d.length;i++)for(var u=d[i],m=0,t=0;t<u.childNodes.length;t++){var j=u.childNodes[t];if(1===j.nodeType){if(c[i])for(;c[i][0]===m;)c[i].shift(),m++;var w=j.nodeName.toLowerCase(),o=Number(j.getAttribute("rowspan"))||1,p=Number(j.getAttribute("colspan"))||1;if(1<o)for(var k=i+1;k<i+o;k++){c[k]||(c[k]=[]);for(var s=m;s<m+p;s++)c[k].push(s)}if("th"===w){if(""===(j.getAttribute("id")||
+""))b.correct=!1,b.missingThId.push(j);1<o&&1<p?b.allowScope=!1:!0===b.allowScope&&(void 0===f[m]&&(f[m]=0),void 0===e[i]&&(e[i]=0),e[i]+=p,f[m]+=o)}else"td"===w&&!0===j.hasAttribute("headers")&&!1===/^\s*$/.test(j.getAttribute("headers"))&&(b.used=!0);m+=p}}for(k=0;k<e.length;k++)1<e[k]&&g++;for(k=0;k<f.length;k++)1<f[k]&&h++;if(1<g||1<h)b.allowScope=!1;else if(!0===b.allowScope&&(0===g||0===h))b.required=!1;a=HTMLCS.util.getCellHeaders(a);for(k=0;k<a.length;k++)j=a[k].cell,d=a[k].headers,!1===j.hasAttribute("headers")?
+(b.correct=!1,b.missingTd.push(j)):(c=(j.getAttribute("headers")||"").split(/\s+/),0===c.length?(b.correct=!1,b.missingTd.push(j)):(c=" "+c.sort().join(" ")+" ",c=c.replace(/\s+/g," ").replace(/(\w+\s)\1+/g,"$1").replace(/^\s*(.*?)\s*$/g,"$1"),d!==c&&(b.correct=!1,j={element:j,expected:d,actual:j.getAttribute("headers")||""},b.wrongHeaders.push(j))));return b},testTableCaptionSummary:function(a){var b=a.getAttribute("summary")||"",d=a.getElementsByTagName("caption"),c="";0<d.length&&(c=d[0].innerHTML.replace(/^\s*(.*?)\s*$/g,
+"$1"));b=b.replace(/^\s*(.*?)\s*$/g,"$1");""!==b?(c===b&&HTMLCS.addMessage(HTMLCS.ERROR,a,"If this table is a data table, and both a summary attribute and a caption element are present, the summary should not duplicate the caption.","H39,H73.4"),HTMLCS.addMessage(HTMLCS.NOTICE,a,"If this table is a data table, check that the summary attribute describes the table's organization or explains how to use the table.","H73.3.Check")):HTMLCS.addMessage(HTMLCS.WARNING,a,"If this table is a data table, consider using the summary attribute of the table element to give an overview of this table.",
+"H73.3.NoSummary");""!==c?HTMLCS.addMessage(HTMLCS.NOTICE,a,"If this table is a data table, check that the caption element accurately describes this table.","H39.3.Check"):HTMLCS.addMessage(HTMLCS.WARNING,a,"If this table is a data table, consider using a caption element to the table element to identify this table.","H39.3.NoCaption")},testFieldsetLegend:function(a){var b=a.querySelector("legend");(null===b||b.parentNode!==a)&&HTMLCS.addMessage(HTMLCS.ERROR,a,"Fieldset does not contain a legend element. All fieldsets should contain a legend element that describes a description of the field group.",
+"H71.3")},testOptgroup:function(a){null===a.querySelector("optgroup")&&HTMLCS.addMessage(HTMLCS.WARNING,a,"If this selection list contains groups of related options, they should be grouped with optgroup.","H85.2")},testRequiredFieldsets:function(a){for(var b=a.querySelectorAll("input[type=radio], input[type=checkbox]"),d={},c=0;c<b.length;c++){var e=b[c];if(!0===e.hasAttribute("name")){for(var f=e.getAttribute("name"),g=e.parentNode;"fieldset"!==g.nodeName.toLowerCase()&&null!==g&&g!==a;)g=g.parentNode;
+"fieldset"!==g.nodeName.toLowerCase()&&(g=null)}if(void 0===d[f])d[f]=g;else if(null===g||g!==d[f]){HTMLCS.addMessage(HTMLCS.ERROR,a,"Radio buttons or check boxes with the same name attribute must be contained within a fieldset element.","H71.2");break}}},testListsWithBreaks:function(a){var b=[];if(null!==a.querySelector("br")){for(var d=[],c=0;c<a.childNodes.length;c++)d.push(a.childNodes[c]);for(var e=[];0<d.length;){var f=d.shift();if(1===f.nodeType)if("br"===f.nodeName.toLowerCase())b.push(e.join(" ").replace(/^\s*(.*?)\s*$/g,
+"$1")),e=[];else for(c=f.childNodes.length-1;0<=c;--c)d.unshift(f.childNodes[c]);else 3===f.nodeType&&e.push(f.nodeValue)}0<e.length&&b.push(e.join(" ").replace(/^\s*(.*?)\s*$/g,"$1"));for(c=0;c<b.length;c++){if(!0===/^[\-*]\s+/.test(b[0])){HTMLCS.addMessage(HTMLCS.WARNING,a,"Content appears to have the visual appearance of a bulleted list. It may be appropriate to mark this content up using a ul element.","H48.1");break}if(!0===/^\d+[:\/\-.]?\s+/.test(b[0])){HTMLCS.addMessage(HTMLCS.WARNING,a,"Content appears to have the visual appearance of a numbered list. It may be appropriate to mark this content up using an ol element.",
 "H48.2");break}}}},testHeadingOrder:function(a,b){for(var d=0,c=a.querySelectorAll("h1, h2, h3, h4, h5, h6"),e=0;e<c.length;e++){var f=parseInt(c[e].nodeName.substr(1,1));if(1<f-d){var g="should be an h"+(d+1)+" to be properly nested";0===d&&(g="appears to be the primary document heading, so should be an h1 element");HTMLCS.addMessage(b,c[e],"The heading structure is not logically nested. This h"+f+" element "+g+".","G141")}d=f}},testEmptyHeading:function(a){var b=a.textContent;void 0===b&&(b=a.innerText);
 !0===/^\s*$/.test(b)&&HTMLCS.addMessage(HTMLCS.ERROR,a,"Heading tag found with no content. Text that is not intended as a heading should not be marked up with heading tags.","H42.2")},testUnstructuredNavLinks:function(a){a.nodeName.toLowerCase();for(var b=0,d=a.childNodes,c=0;c<d.length&&(!(1===d[c].nodeType&&"a"===d[c].nodeName.toLowerCase())||!(b++,1<b));c++);if(1<b){for(b=a.parentNode;null!==b&&"ul"!==b.nodeName.toLowerCase()&&"ol"!==b.nodeName.toLowerCase();)b=b.parentNode;null===b&&HTMLCS.addMessage(HTMLCS.WARNING,
 a,"If this element contains a navigation section, it is recommended that it be marked up as a list.","H48")}}},HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_3={register:function(){return["_top"]},process:function(a,b){HTMLCS.addMessage(HTMLCS.NOTICE,b,"Where instructions are provided for understanding the content, do not rely on sensory characteristics alone (such as shape, size or location) to describe objects.","G96")}},HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_1={register:function(){return["_top"]},
@@ -111,18 +112,7 @@ b,"Check that a mechanism for identifying the expanded form or meaning of abbrev
 !1===this.isValidLanguageTag(d)&&HTMLCS.addMessage(HTMLCS.ERROR,b,"The language specified in the lang attribute of the document element does not appear to be well-formed.","H57.3.Lang")}!0===a.hasAttribute("xml:lang")&&(d=a.getAttribute("xml:lang"),!1===this.isValidLanguageTag(d)&&HTMLCS.addMessage(HTMLCS.ERROR,b,"The language specified in the xml:lang attribute of the document element does not appear to be well-formed.","H57.3.XmlLang"))}},isValidLanguageTag:function(a){var b=!0;!1===RegExp("^([ix](-[a-z0-9]{1,8})+)$|^[a-z]{2,8}(-[a-z]{3}){0,3}(-[a-z]{4})?(-[a-z]{2}|-[0-9]{3})?(-[0-9][a-z0-9]{3}|-[a-z0-9]{5,8})*(-[a-wy-z0-9](-[a-z0-9]{2,8})+)*(-x(-[a-z0-9]{1,8})+)?$",
 "i").test(a)&&(b=!1);return b}},HTMLCS_WCAG2AA={name:"WCAG2AA",description:"Web Content Accessibility Guidelines (WCAG) 2.0 AA",sniffs:[{standard:"WCAG2AAA",include:"Principle1.Guideline1_1.1_1_1,Principle1.Guideline1_2.1_2_1,Principle1.Guideline1_2.1_2_2,Principle1.Guideline1_2.1_2_4,Principle1.Guideline1_2.1_2_5,Principle1.Guideline1_3.1_3_1,Principle1.Guideline1_3.1_3_1_A,Principle1.Guideline1_3.1_3_2,Principle1.Guideline1_3.1_3_3,Principle1.Guideline1_4.1_4_1,Principle1.Guideline1_4.1_4_2,Principle1.Guideline1_4.1_4_3,Principle1.Guideline1_4.1_4_3_F24,Principle1.Guideline1_4.1_4_4,Principle1.Guideline1_4.1_4_5,Principle2.Guideline2_1.2_1_1,Principle2.Guideline2_1.2_1_2,Principle2.Guideline2_2.2_2_1,Principle2.Guideline2_2.2_2_2,Principle2.Guideline2_3.2_3_1,Principle2.Guideline2_4.2_4_1,Principle2.Guideline2_4.2_4_2,Principle2.Guideline2_4.2_4_3,Principle2.Guideline2_4.2_4_4,Principle2.Guideline2_4.2_4_5,Principle2.Guideline2_4.2_4_6,Principle2.Guideline2_4.2_4_7,Principle3.Guideline3_1.3_1_1,Principle3.Guideline3_1.3_1_2,Principle3.Guideline3_2.3_2_1,Principle3.Guideline3_2.3_2_2,Principle3.Guideline3_2.3_2_3,Principle3.Guideline3_2.3_2_4,Principle3.Guideline3_3.3_3_1,Principle3.Guideline3_3.3_3_2,Principle3.Guideline3_3.3_3_3,Principle3.Guideline3_3.3_3_4,Principle4.Guideline4_1.4_1_1,Principle4.Guideline4_1.4_1_2".split(",")}]},
 HTMLCS_WCAG2A={name:"WCAG2A",description:"Web Content Accessibility Guidelines (WCAG) 2.0 A",sniffs:[{standard:"WCAG2AAA",include:"Principle1.Guideline1_1.1_1_1,Principle1.Guideline1_2.1_2_1,Principle1.Guideline1_2.1_2_2,Principle1.Guideline1_2.1_2_3,Principle1.Guideline1_3.1_3_1,Principle1.Guideline1_3.1_3_1_A,Principle1.Guideline1_3.1_3_2,Principle1.Guideline1_3.1_3_3,Principle1.Guideline1_4.1_4_1,Principle1.Guideline1_4.1_4_2,Principle2.Guideline2_1.2_1_1,Principle2.Guideline2_1.2_1_2,Principle2.Guideline2_2.2_2_1,Principle2.Guideline2_2.2_2_2,Principle2.Guideline2_3.2_3_1,Principle2.Guideline2_4.2_4_1,Principle2.Guideline2_4.2_4_2,Principle2.Guideline2_4.2_4_3,Principle2.Guideline2_4.2_4_4,Principle3.Guideline3_1.3_1_1,Principle3.Guideline3_2.3_2_1,Principle3.Guideline3_2.3_2_2,Principle3.Guideline3_3.3_3_1,Principle3.Guideline3_3.3_3_2,Principle4.Guideline4_1.4_1_1,Principle4.Guideline4_1.4_1_2".split(",")}]};
-/**
- * +--------------------------------------------------------------------+
- * | This HTML_CodeSniffer file is Copyright (c)                        |
- * | Squiz Australia Pty Ltd ABN 53 131 581 247                         |
- * +--------------------------------------------------------------------+
- * | IMPORTANT: Your use of this Software is subject to the terms of    |
- * | the Licence provided in the file licence.txt. If you cannot find   |
- * | this file please contact Squiz (www.squiz.com.au) so we may        |
- * | provide you a copy.                                                |
- * +--------------------------------------------------------------------+
- *
- */
+
 
 var HTMLCSAuditor = new function()
 {
@@ -139,11 +129,7 @@ var HTMLCSAuditor = new function()
 
     this.pointerContainer = null;
 
-    /**
-     * Build the "summary section" square button.
-     *
-     * @return {HTMLDivElement}
-     */
+    
     var buildSummaryButton = function(id, className, title, onclick) {
         var button       = _doc.createElement('div');
         button.id        = id;
@@ -168,11 +154,7 @@ var HTMLCSAuditor = new function()
         return button;
     };
 
-    /**
-     * Build a checkbox.
-     *
-     * @return {HTMLDivElement}
-     */
+    
     var buildCheckbox = function(id, title, checked, disabled, onclick) {
         if (checked === undefined) {
             checked = false;
@@ -224,11 +206,7 @@ var HTMLCSAuditor = new function()
         return label;
     };
 
-    /**
-     * Build a radio button.
-     *
-     * @return {HTMLDivElement}
-     */
+    
     var buildRadioButton = function(groupName, value, title, checked) {
         if (checked === undefined) {
             checked = false;
@@ -254,11 +232,7 @@ var HTMLCSAuditor = new function()
         return label;
     };
 
-    /**
-     * Build the header section at the absolute top of the interface.
-     *
-     * @return {HTMLDivElement}
-     */
+    
     var buildHeaderSection = function(standard, wrapper) {
         var header       = _doc.createElement('div');
         header.className = _prefix + 'header';
@@ -324,14 +298,7 @@ var HTMLCSAuditor = new function()
         return header;
     };
 
-    /**
-     * Build the summary section of the interface.
-     *
-     * This includes the number of errors, warnings and notices; as well as buttons
-     * to access the settings interface, and to recheck the content.
-     *
-     * @return {HTMLDivElement}
-     */
+    
     var buildSummarySection = function(errors, warnings, notices) {
         var summary       = _doc.createElement('div');
         summary.className = _prefix + 'summary';
@@ -407,14 +374,7 @@ var HTMLCSAuditor = new function()
         return summary;
     };
 
-    /**
-     * Build the summary section of the interface.
-     *
-     * This includes the number of errors, warnings and notices; as well as buttons
-     * to access the settings interface, and to recheck the content.
-     *
-     * @return {HTMLDivElement}
-     */
+    
     var buildDetailSummarySection = function(issue, totalIssues) {
         var summary       = _doc.createElement('div');
         summary.className = _prefix + 'summary-detail';
@@ -527,14 +487,7 @@ var HTMLCSAuditor = new function()
         return summary;
     };
 
-    /**
-     * Build the main issue list section of the interface.
-     *
-     * This is what you see when the tests have finished running. A summary list of
-     * , paged five at a time.
-     *
-     * @return {HTMLDivElement}
-     */
+    
     var buildIssueListSection = function(messages) {
         var issueListWidth = (Math.ceil(messages.length / 5) * 300);
         var issueList      = _doc.createElement('div');
@@ -1341,11 +1294,7 @@ var HTMLCSAuditor = new function()
         }
     }
 
-    /**
-     * Run HTML_CodeSniffer and place the results in the auditor.
-     *
-     * @returns undefined
-     */
+    
     this.run = function(standard, source, options) {
         var standards       = ['WCAG2AAA', 'WCAG2AA', 'WCAG2A'];
         var standardsToLoad = [];
@@ -1515,9 +1464,7 @@ var HTMLCSAuditor = new function()
     uaAcct: '359178.17',
     self: this,
 
-    /**
-     * Build a GA domain hash.
-     */
+    
     domainHash: function(domain) {
         var hash = 0;
         var c    = 0;
@@ -1532,16 +1479,12 @@ var HTMLCSAuditor = new function()
         return hash;
     },
 
-    /**
-     * Get a random number.
-     */
+    
     rand: function() {
         return Math.floor(Math.random() * 0x80000000);
     },
 
-    /**
-     * Build a new utma cookie.
-     */
+    
     buildUtma: function() {
         var utma = [];
 
@@ -1555,9 +1498,7 @@ var HTMLCSAuditor = new function()
         return utma.join('.');
     },
 
-    /**
-     * Renew a utma cookie (potentially).
-     */
+    
     renewUtma: function(utma, force) {
         var utmc = this.getCookie('utmc');
 
@@ -1572,9 +1513,7 @@ var HTMLCSAuditor = new function()
         return utma;
     },
 
-    /**
-     * Build custom vars "X10" code.
-     */
+    
     buildCustomVars: function(standard, errors, warnings, notices) {
         var keys   = ['Standard', 'Errors', 'Warnings', 'Notices'];
         var values = [standard, errors, warnings, notices];
@@ -1586,9 +1525,7 @@ var HTMLCSAuditor = new function()
         return x10;
     },
 
-    /**
-     * Build a URL.
-     */
+    
     url: function(standard, errors, warnings, notices, force) {
         var url = 'http://www.google-analytics.com/__utm.gif?';
         if (location.protocol === 'https:') {
@@ -1625,9 +1562,7 @@ var HTMLCSAuditor = new function()
         return url;
     },
 
-    /**
-     * Set cookie.
-     */
+    
     setCookie: function(cookieName, value, expires) {
         cookieName = '__htmlcs.' + cookieName;
 
@@ -1641,19 +1576,13 @@ var HTMLCSAuditor = new function()
         document.cookie = cookieStr;
     },
 
-    /**
-     * Check whether cookie exists.
-     * (Based on Mozilla Developer Network page example on "document.cookie").
-     */
+    
     cookieExists: function (cookieName) {
         cookieName  = '__htmlcs.' + cookieName;
         return (new RegExp("(?:^|;\\s*)" + escape(cookieName).replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=")).test(document.cookie);
     },
 
-    /**
-     * Get cookie.
-     * (Based on Mozilla Developer Network page example on "document.cookie").
-     */
+    
     getCookie: function(cookieName) {
         if (this.cookieExists(cookieName) === false) {
             return null;
@@ -2014,9 +1943,7 @@ if (_options.runCallback) {
             pointer.style.opacity = 0;
             pointer.className     = pointer.className.replace('HTMLCS-pointer-hidden', '');
 
-            /*var pointerRect = this.getBoundingRectangle(pointer);
-            var pointerH    = (pointerRect.y2 - pointerRect.y1);
-            var pointerW    = (pointerRect.x2 - pointerRect.x1);*/
+            
 
             this.pointerDim.height = 62;
             this.pointerDim.width  = 62;
