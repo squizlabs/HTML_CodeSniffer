@@ -179,7 +179,14 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
 
         if ((element.hasAttribute('id') === false) && (isNoLabelControl === false)) {
             // There is no id attribute at all on the control.
-            HTMLCS.addMessage(HTMLCS.ERROR, element, 'Form control does not have an ID, therefore it cannot have an explicit label.', 'H44.NoId');
+            if (element.hasAttribute('title') === true) {
+                if (/^\s*$/.test(element.getAttribute('title')) === true) {
+                    // But the title attribute is empty. Whoops.
+                    HTMLCS.addMessage(HTMLCS.ERROR, element, 'Form control without a label contains an empty title attribute. The title attribute should identify the purpose of the control.', 'H65.3');
+                }
+            } else {
+                HTMLCS.addMessage(HTMLCS.ERROR, element, 'Form control does not have an ID, therefore it cannot have an explicit label.', 'H44.NoId');
+            }//end if
         } else {
             var id = element.getAttribute('id');
             if (!this._labelNames[id]) {
