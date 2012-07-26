@@ -75,6 +75,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
                 break;
 
                 case 'table':
+                    this.testGeneralTable(element);
                     this.testTableHeaders(element);
                     this.testTableCaptionSummary(element);
                 break;
@@ -908,5 +909,21 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
                 HTMLCS.addMessage(HTMLCS.WARNING, element, 'If this element contains a navigation section, it is recommended that it be marked up as a list.', 'H48');
             }
         }//end if
+    },
+
+    /**
+     * Provide generic messages for tables depending on what type of table they
+     * are - layout or data.
+     *
+     * @param {DOMNode} table The table element to test.
+     *
+     * @returns void
+     */
+    testGeneralTable: function(table) {
+        if (HTMLCS.isLayoutTable(table) === true) {
+            HTMLCS.addMessage(HTMLCS.NOTICE, element, 'This table appears to be a layout table. If it is meant to instead be a data table, ensure header cells are identified using th elements.', 'LayoutTable');
+        } else {
+            HTMLCS.addMessage(HTMLCS.NOTICE, element, 'This table appears to be a data table. If it is meant to instead be a layout table, ensure there are no th elements, and no summary or caption.', 'DataTable');
+        }
     }
 };
