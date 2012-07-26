@@ -635,6 +635,11 @@ var HTMLCS = new function()
         };
 
         this.isLayoutTable = function(table) {
+            var th = table.querySelector('th');
+            if (th === null) {
+                return true;
+            }
+
             return false;
         };
 
