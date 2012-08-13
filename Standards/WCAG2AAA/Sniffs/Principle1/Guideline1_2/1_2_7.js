@@ -1,7 +1,7 @@
 /**
  * +--------------------------------------------------------------------+
  * | This HTML_CodeSniffer file is Copyright (c)                        |
- * | Squiz Australia Pty Ltd ABN 53 131 581 247                         |
+ * | Squiz Pty Ltd (ABN 77 084 670 600)                                 |
  * +--------------------------------------------------------------------+
  * | IMPORTANT: Your use of this Software is subject to the terms of    |
  * | the Licence provided in the file licence.txt. If you cannot find   |
