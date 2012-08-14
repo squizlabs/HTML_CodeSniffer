@@ -87,30 +87,29 @@ var HTMLCS = new function()
         var element      = null;
         var loadingFrame = false;
         if (typeof content === 'string') {
-            if (this.isFullDoc(content) === true) {
-                loadingFrame = true;
-                var elementFrame = document.createElement('iframe');
-                elementFrame.style.display = 'none';
-                elementFrame = document.body.insertBefore(elementFrame, null);
+            loadingFrame = true;
+            var elementFrame = document.createElement('iframe');
+            elementFrame.style.display = 'none';
+            elementFrame = document.body.insertBefore(elementFrame, null);
 
-                if (elementFrame.contentDocument) {
-                    element = elementFrame.contentDocument;
-                } else if (element.contentWindow) {
-                    element = elementFrame.contentWindow.document;
-                }
-
-                elementFrame.onload = function() {
-                    var elements = _getAllTags(element);
-                    elements.unshift(element);
-                    _run(elements, element, callback);
-                }
-
-                element.write(content);
-                element.close();
-            } else {
-                element = document.createElement('div');
-                element.innerHTML = content;
+            if (elementFrame.contentDocument) {
+                element = elementFrame.contentDocument;
+            } else if (element.contentWindow) {
+                element = elementFrame.contentWindow.document;
             }
+
+            elementFrame.onload = function() {
+                if (HTMLCS.isFullDoc(content) === false) {
+                    element = element.getElementsByTagName('body')[0];
+                }
+
+                var elements = _getAllTags(element);
+                elements.unshift(element);
+                _run(elements, element, callback);
+            }
+
+            element.write(content);
+            element.close();
         } else {
             element = content;
         }
