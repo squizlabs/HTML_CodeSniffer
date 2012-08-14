@@ -163,17 +163,28 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
                 } else if (requiredName === 'label') {
                     // Label element.
                     if ((element.hasAttribute('id')) && (/^\s*$/.test(element.getAttribute('id')) === false)) {
-                        // Only test if the ID is valid CSS identifier, otherwise querySelector will complain.
                         if (/^\-?[A-Za-z][A-Za-z0-9\-_]*$/.test(element.getAttribute('id')) === true) {
                             var label = top.querySelector('label[for=' + element.getAttribute('id') + ']');
                             if (label !== null) {
                                 break;
                             }
                         } else {
-                            HTMLCS.addMessage(HTMLCS.ERROR, element, 'Unable to automatically test for a label for element ID "' + element.getAttribute('id') + '".', 'H91.' + msgSubCode + '.NameInvalid');
-                        }
-                    }
-                } if (requiredName.charAt(0) === '@') {
+                            // Characters not suitable for querySelector. Use slower method.
+                            var labels = top.getElementsByTagName('label');
+                            var found  = false;
+                            for (var x = 0; x < labels.length; x++) {
+                                if ((labels[x].hasAttribute('for') === true) && (labels[x].getAttribute('for') === element.getAttribute('id'))) {
+                                    found = true;
+                                    break;
+                                }
+                            }//end for
+
+                            if (found === true) {
+                                break;
+                            }
+                        }//end if
+                    }//end if
+                } else if (requiredName.charAt(0) === '@') {
                     // Attribute.
                     requiredName = requiredName.substr(1, requiredName.length);
                     if ((element.hasAttribute(requiredName) === true) && (/^\s*$/.test(element.getAttribute(requiredName)) === false)) {
