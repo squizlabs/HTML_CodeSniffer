@@ -98,7 +98,10 @@ var HTMLCS = new function()
                 element = elementFrame.contentWindow.document;
             }
 
-            elementFrame.onload = function() {
+            elementFrame.load = function() {
+                this.onreadystatechange = null;
+                this.onload = null;
+
                 if (HTMLCS.isFullDoc(content) === false) {
                     element = element.getElementsByTagName('body')[0];
                 }
@@ -107,6 +110,16 @@ var HTMLCS = new function()
                 elements.unshift(element);
                 _run(elements, element, callback);
             }
+
+            // Satisfy IE which doesn't like onload being set dynamically.
+            elementFrame.onreadystatechange = function() {
+                if (/^(complete|loaded)$/.test(this.readyState) === true) {
+                    this.onreadystatechange = null;
+                    this.load();
+                }
+            }
+
+            elementFrame.onload = elementFrame.load;
 
             element.write(content);
             element.close();
