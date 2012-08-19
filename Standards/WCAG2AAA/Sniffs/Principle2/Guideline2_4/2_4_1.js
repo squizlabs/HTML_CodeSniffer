@@ -122,13 +122,18 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_4_2_4_1 = {
                         doc = doc.ownerDocument;
                     }
 
+                    // First search for an element with the appropriate ID, then search for a
+                    // named anchor using the name attribute.
                     var target = doc.getElementById(id);
+                    if (target === null) {
+                        target = doc.querySelector('a[name="' + id + '"]');
+                    }
 
                     if ((target === null) || (HTMLCS.util.contains(top, target) === false)) {
                         if ((HTMLCS.isFullDoc(top) === true) || (top.nodeName.toLowerCase() === 'body')) {
-                            HTMLCS.addMessage(HTMLCS.ERROR, element, 'This link tries to point to an ID "' + id + '" within the document, but the ID does not exist.', 'G1,G123,G124.NoSuchID');
+                            HTMLCS.addMessage(HTMLCS.ERROR, element, 'This link points to a named anchor "' + id + '" within the document, but no anchor exists with that name.', 'G1,G123,G124.NoSuchID');
                         } else {
-                            HTMLCS.addMessage(HTMLCS.WARNING, element, 'This link tries to point to an ID "' + id + '" within the document, but the ID does not exist in the fragment tested.', 'G1,G123,G124.NoSuchIDFragment');
+                            HTMLCS.addMessage(HTMLCS.WARNING, element, 'This link points to a named anchor "' + id + '" within the document, but no anchor exists with that name in the fragment tested.', 'G1,G123,G124.NoSuchIDFragment');
                         }
                     }
                 } catch (ex) {
