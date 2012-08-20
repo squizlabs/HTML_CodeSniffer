@@ -140,6 +140,7 @@ vertical-align: top;
 padding: 5px 8px;
 margin: 0px;
 border:1px solid #e0e0e0;
+position: relative;
 }
 
 table tr:nth-child(odd) {
@@ -163,16 +164,28 @@ td:last-child li {
  padding:0;
 }
 
-td.error {
- border-left: 5px solid #921e1f;
+td.error:before,
+td.warning:before,
+td.notice:before {
+ content: '';
+ display: inline-block;
+ position: absolute;
+ height: 100%;
+ width: 5px;
+ top: 0;
+ left: 0;
 }
 
-td.warning {
- border-left: 5px solid #b99538;
+td.error:before {
+ background-color: #921e1f;
 }
 
-td.notice {
- border-left: 5px solid #68676e;
+td.warning:before {
+ background-color: #b99538;
+}
+
+td.notice:before {
+ background-color: #68676e;
 }
 
 table p {
