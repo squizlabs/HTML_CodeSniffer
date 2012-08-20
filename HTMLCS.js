@@ -656,6 +656,68 @@ var HTMLCS = new function()
         };
 
         /**
+         * Calculate the contrast ratio between two colours.
+         *
+         * Colours should be in 3- or 6-digit hex format; order does not matter
+         * (ie. it doesn't matter which is the lighter and which is the darker).
+         * Values should be in the range [1.0, 21.0]... a ratio of 1.0 means "they're
+         * exactly the same contrast", 21.0 means it's white-on-black or v.v.
+         * Formula as per WCAG 2.0 definitions.
+         *
+         * @param {String} colour1 The first colour to compare.
+         * @param {String} colour2 The second colour to compare.
+         *
+         * @returns {Number}
+         */
+        this.contrastRatio = function(colour1, colour2) {
+            var ratio = (0.05 + this.relativeLum(colour1)) / (0.05 + this.relativeLum(colour2));
+            if (ratio < 1) {
+                ratio = 1 / ratio;
+            }
+
+            return ratio;
+        };
+
+        /**
+         * Calculate relative luminescence for a hex colour.
+         *
+         * The hex colour can have an optional "#" at the front, which is stripped.
+         * Relative luminescence formula is defined in the definitions of WCAG 2.0.
+         * It can be either three or six hex digits, as per CSS conventions.
+         * It should return a value in the range [0.0, 1.0].
+         *
+         * @param {String} colour The colour to calculate from.
+         *
+         * @returns {Number}
+         */
+        this.relativeLum = function(colour) {
+            if (colour.charAt(0) === '#') {
+                colour = colour.substr(1);
+            }
+
+            if (colour.length === 3) {
+                colour = colour.replace(/^(.)(.)(.)$/, '$1$1$2$2$3$3');
+            }
+
+            colour = {
+                red: (parseInt(colour.substr(0, 2), 16) / 255),
+                green: (parseInt(colour.substr(2, 2), 16) / 255),
+                blue: (parseInt(colour.substr(4, 2), 16) / 255)
+            };
+
+            for (var x in colour) {
+                if (colour[x] <= 0.03928) {
+                    colour[x] = colour[x] / 12.92;
+                } else {
+                    colour[x] = Math.pow(((colour[x] + 0.055) / 1.055), 2.4);
+                }
+            }//end for
+
+            var lum = ((colour.red * 0.2126) + (colour.green * 0.7152) + (colour.blue * 0.0722));
+            return lum;
+        }
+
+        /**
          * Gets the text contents of an element.
          *
          * @param {DOMNode} element           The element being inspected.
