@@ -990,10 +990,6 @@ var HTMLCSAuditor = new function()
         return navDiv;
     }
 
-    this.getElementWindow = function(elem) {
-        return pointer.getElementWindow(elem);
-    }
-
     var pointToIssueElement = function(issue) {
         var msg = _messages[Number(issue)];
         if (!msg.element) {
@@ -1522,7 +1518,7 @@ var HTMLCSAuditor = new function()
             var top  = 0;
 
             // Get parent window coords.
-            var window = this.getElementWindow(element);
+            var window = HTMLCS.util.getElementWindow(element);
 
             if (absolute === true) {
                 var topWin = window.top;
@@ -1558,7 +1554,7 @@ var HTMLCSAuditor = new function()
 
         getWindowDimensions: function(elem)
         {
-            var window = this.getElementWindow(elem);
+            var window = HTMLCS.util.getElementWindow(elem);
             var doc    = elem.ownerDocument;
 
             var windowWidth  = 0;
@@ -1654,7 +1650,7 @@ var HTMLCSAuditor = new function()
 
         getScrollCoords: function(elem)
         {
-            var window = this.getElementWindow(elem);
+            var window = HTMLCS.util.getElementWindow(elem);
             doc        = elem.ownerDocument;
 
             var scrollX = 0;
@@ -1684,21 +1680,6 @@ var HTMLCSAuditor = new function()
 
         },
 
-        getElementWindow: function(element)
-        {
-            element = element || _doc.body;
-
-            var window = null;
-            if (element.ownerDocument.defaultView) {
-                window = element.ownerDocument.defaultView;
-            } else {
-                window = element.ownerDocument.parentWindow;
-            }
-
-            return window;
-
-        },
-
         isPointable: function(elem) {
             // If the specified elem is not in the DOM then we cannot point to it.
             // Also, cannot point to the document itself.
@@ -1707,14 +1688,7 @@ var HTMLCSAuditor = new function()
             }
 
             // Do not point to elem if its hidden. Use computed styles.
-            if (elem.currentStyle) {
-                // IE 8.
-                var style = elem.currentStyle;
-            } else {
-                var style = window.getComputedStyle(elem);
-            }
-
-            if ((style.visibility === 'hidden') || (style.display === 'none')) {
+            if (HTMLCS.util.isHidden(elem) === true) {
                 return false;
             }
 
@@ -1761,7 +1735,7 @@ var HTMLCSAuditor = new function()
 
             // Determine where to show the arrow.
             var winDim = this.getWindowDimensions(elem);
-            var window = this.getElementWindow(elem);
+            var window = HTMLCS.util.getElementWindow(elem);
             //window.scrollTo(0, rect.y1 - 100);
 
             var scrollY = Math.max(0, Math.min(rect.y1 - 100, doc.documentElement.offsetHeight - winDim.height));
@@ -1785,7 +1759,7 @@ var HTMLCSAuditor = new function()
         },
 
         pointTo: function(elem) {
-            var topWin = this.getElementWindow(elem).top;
+            var topWin = HTMLCS.util.getElementWindow(elem).top;
             var winDim = this.getWindowDimensions(topWin.document.documentElement);
 
             // Do not point to elem if its hidden.
@@ -1804,7 +1778,7 @@ var HTMLCSAuditor = new function()
                 pointer.style.opacity = 'auto';
 
                 var rect    = this.getElementCoords(elem, true);
-                var window  = this.getElementWindow(elem);
+                var window  = HTMLCS.util.getElementWindow(elem);
                 var targetY = Math.max(rect.y - 100, 0);
 
                 while (targetY >= 0) {

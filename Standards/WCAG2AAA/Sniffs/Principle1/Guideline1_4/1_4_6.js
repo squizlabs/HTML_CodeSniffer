@@ -29,15 +29,27 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_6 = {
     /**
      * Process the registered element.
      *
-     * NOTE: The separate test file for failure F24 (foreground colour without
-     * background colour, or vice versa) also applies to 1.4.6 at Triple-A level.
-     *
      * @param {DOMNode} element The element registered.
      * @param {DOMNode} top     The top element of the tested code.
      */
     process: function(element, top)
     {
-        HTMLCS.addMessage(HTMLCS.NOTICE, top, 'Check that a contrast ratio of at least 7.0:1 exists between text (or images of text) and its background colour, or 4.5:1 for large text.', 'G17,G18,G148,G174');
+        if (element === top) {
+            var failures = HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast.testContrastRatio(top, 7.0, 4.5);
 
+            for (var i = 0; i < failures.length; i++) {
+                var element  = failures[i].element;
+                var value    = (Math.round(failures[i].value * 100) / 100);
+                var required = failures[i].required;
+
+                if (required === 4.5) {
+                    var code = 'G18';
+                } else if (required === 7.0) {
+                    var code = 'G17';
+                }
+
+                HTMLCS.addMessage(HTMLCS.ERROR, element, 'This element has insufficient contrast at this level. Expected a contrast ratio of at least ' + required + ':1, but text in this element has a contrast ratio of ' + value + ':1.', code);
+            }
+        }
     }
 };

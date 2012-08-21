@@ -32,9 +32,9 @@ var HTMLCS = new function()
     /**
      * Loads the specifid standard and run the sniffs.
      *
-     * @param {string}         standard The name of the standard to load.
-     * @param {string|DOMNode} An HTML string or a DOMNode.
-     * @param {function}       The function that will be called when the testing is completed.
+     * @param {String}      standard The name of the standard to load.
+     * @param {String|Node} An HTML string or a DOM node object.
+     * @param {Function}    The function that will be called when the testing is completed.
      */
     this.process = function(standard, content, callback) {
         // Clear previous runs.
@@ -59,10 +59,8 @@ var HTMLCS = new function()
     /**
      * Loads the specified standard and its sniffs.
      *
-     * @param {string}   standard The name of the standard to load.
-     * @param {function} callback The function to call once the standard is loaded.
-     *
-     * @return void
+     * @param {String}   standard The name of the standard to load.
+     * @param {Function} callback The function to call once the standard is loaded.
      */
     this.loadStandard = function(standard, callback) {
         if (!standard) {
@@ -78,10 +76,8 @@ var HTMLCS = new function()
     /**
      * Runs the sniffs for the loaded standard.
      *
-     * @param {function}       callback The function to call once all sniffs are completed.
-     * @param {string|DOMNode} content  An HTML string or a DOMNode.
-     *
-     * @return void
+     * @param {Function}    callback The function to call once all sniffs are completed.
+     * @param {String|Node} content  An HTML string or a DOM node object.
      */
     this.run = function(callback, content) {
         var element      = null;
@@ -153,9 +149,9 @@ var HTMLCS = new function()
      * or <head> + <body> elements. For an element, only the 'html' element (the
      * document element) is accepted.
      *
-     * @param {string|DOMNode} content  An HTML string or a DOMNode.
+     * @param {String|Node} content An HTML string or a DOM node object.
      *
-     * @return {boolean}
+     * @returns {Boolean}
      */
     this.isFullDoc = function(content) {
         var fullDoc = false;
@@ -178,11 +174,11 @@ var HTMLCS = new function()
     /**
      * Adds a message.
      *
-     * @param {integer} type The type of the message.
-     * @param {DOMNode} element The element that the message is related to.
-     * @param {string}  msg     The message string.
-     * @param {string}  code    Unique code for the message.
-     * @param {object}  data    Extra data to store for the message.
+     * @param {Number}  type    The type of the message.
+     * @param {Node}    element The element that the message is related to.
+     * @param {String}  msg     The message string.
+     * @param {String}  code    Unique code for the message.
+     * @param {Object}  [data]  Extra data to store for the message.
      */
     this.addMessage = function(type, element, msg, code, data) {
         code = _getMessageCode(code);
@@ -202,7 +198,7 @@ var HTMLCS = new function()
      * Return a copy of the array so the class variable doesn't get modified by
      * future modification (eg. splicing).
      *
-     * @return {array} Array of message objects.
+     * @returns {Array} Array of message objects.
      */
     this.getMessages = function() {
         return _messages.concat([]);
@@ -211,8 +207,9 @@ var HTMLCS = new function()
     /**
      * Runs the sniffs in the loaded standard for the specified element.
      *
-     * @param {DOMNode}  element  The element to test.
-     * @param {function} callback The function to call once all tests are run.
+     * @param {Node}     element    The element to test.
+     * @param {Node}     topElement The top element of the processing.
+     * @param {Function} [callback] The function to call once all tests are run.
      */
     var _run = function(elements, topElement, callback) {
         while (elements.length > 0) {
@@ -237,9 +234,10 @@ var HTMLCS = new function()
     /**
      * Process the sniffs.
      *
-     * @param {DOMNode}  element  The element to test.
-     * @param {array}    sniffs   Array of sniffs.
-     * @param {function} callback The function to call once the processing is completed.
+     * @param {Node}     element    The element to test.
+     * @param {Array}    sniffs     Array of sniffs.
+     * @param {Node}     topElement The top element of the processing.
+     * @param {Function} [callback] The function to call once the processing is completed.
      */
     var _processSniffs = function(element, sniffs, topElement, callback) {
         while (sniffs.length > 0) {
@@ -270,9 +268,9 @@ var HTMLCS = new function()
     /**
      * Includes the specified standard file.
      *
-     * @param {string}   standard The name of the standard.
-     * @param {function} callback The function to call once the standard is included.
-     * @param {object}   options  The options for the standard (e.g. exclude sniffs).
+     * @param {String}   standard The name of the standard.
+     * @param {Function} callback The function to call once the standard is included.
+     * @param {Object}   options  The options for the standard (e.g. exclude sniffs).
      */
     var _includeStandard = function(standard, callback, options) {
         if (standard.indexOf('http') !== 0) {
@@ -296,9 +294,9 @@ var HTMLCS = new function()
     /**
      * Registers the specified standard and its sniffs.
      *
-     * @param {string}   standard The name of the standard.
-     * @param {function} callback The function to call once the standard is registered.
-     * @param {object}   options  The options for the standard (e.g. exclude sniffs).
+     * @param {String}   standard The name of the standard.
+     * @param {Function} callback The function to call once the standard is registered.
+     * @param {Object}   options  The options for the standard (e.g. exclude sniffs).
      */
     var _registerStandard = function(standard, callback, options) {
         // Get the object name.
@@ -344,9 +342,9 @@ var HTMLCS = new function()
     /**
      * Registers the sniffs for the specified standard.
      *
-     * @param {string}   standard The name of the standard.
-     * @param {array}    sniffs   List of sniffs to register.
-     * @param {function} callback The function to call once the sniffs are registered.
+     * @param {String}   standard The name of the standard.
+     * @param {Array}    sniffs   List of sniffs to register.
+     * @param {Function} callback The function to call once the sniffs are registered.
      */
     var _registerSniffs = function(standard, sniffs, callback) {
         if (sniffs.length === 0) {
@@ -364,10 +362,10 @@ var HTMLCS = new function()
     /**
      * Includes the sniff's JS file and registers it.
      *
-     * @param {string}        standard The name of the standard.
-     * @param {string|object} sniff    The sniff to register, can be a string or
+     * @param {String}        standard The name of the standard.
+     * @param {String|Object} sniff    The sniff to register, can be a string or
      *                                 and object specifying another standard.
-     * @param {function}      callback The function to call once the sniff is included and registered.
+     * @param {Function}      callback The function to call once the sniff is included and registered.
      */
     var _loadSniffFile = function(standard, sniff, callback) {
         if (typeof sniff === 'string') {
@@ -404,8 +402,8 @@ var HTMLCS = new function()
     /**
      * Registers the specified sniff.
      *
-     * @param {string} standard The name of the standard.
-     * @param {string} sniff    The name of the sniff.
+     * @param {String} standard The name of the standard.
+     * @param {String} sniff    The name of the sniff.
      */
     var _registerSniff = function(standard, sniff) {
         // Get the sniff object.
@@ -415,7 +413,10 @@ var HTMLCS = new function()
         }
 
         // Call the register method of the sniff, it should return an array of tags.
-        var watchedTags = sniffObj.register();
+        if (sniffObj.register) {
+            var watchedTags = sniffObj.register();
+        }
+
         if (watchedTags && watchedTags.length > 0) {
             for (var i = 0; i < watchedTags.length; i++) {
                 if (!_tags[watchedTags[i]]) {
@@ -432,10 +433,10 @@ var HTMLCS = new function()
     /**
      * Returns the path to the sniff file.
      *
-     * @param {string} standard The name of the standard.
-     * @param {string} sniff    The name of the sniff.
+     * @param {String} standard The name of the standard.
+     * @param {String} sniff    The name of the sniff.
      *
-     * @return {string} The path to the JS file of the sniff.
+     * @returns {String} The path to the JS file of the sniff.
      */
     var _getSniffPath = function(standard, sniff) {
         var parts = standard.split('/');
@@ -447,9 +448,9 @@ var HTMLCS = new function()
     /**
      * Returns the path to a local standard.
      *
-     * @param {string} standard The name of the standard.
+     * @param {String} standard The name of the standard.
      *
-     * @return {string} The path to the local standard.
+     * @returns {String} The path to the local standard.
      */
     var _getStandardPath = function(standard)
     {
@@ -477,10 +478,10 @@ var HTMLCS = new function()
     /**
      * Returns the sniff object.
      *
-     * @param {string} standard The name of the standard.
-     * @param {string} sniff    The name of the sniff.
+     * @param {String} standard The name of the standard.
+     * @param {String} sniff    The name of the sniff.
      *
-     * @return {object} The sniff object.
+     * @returns {Object} The sniff object.
      */
     var _getSniff = function(standard, sniff) {
         var name = 'HTMLCS_';
@@ -500,7 +501,7 @@ var HTMLCS = new function()
      *
      * A full message code includes the standard name, the sniff name and the given code.
      *
-     * @return {string} The full message code.
+     * @returns {String} The full message code.
      */
     var _getMessageCode = function(code) {
         code = _standard + '.' + _currentSniff._name + '.' + code;
@@ -510,8 +511,8 @@ var HTMLCS = new function()
     /**
      * Includes the specified JS file.
      *
-     * @param {string}   src      The URL to the JS file.
-     * @param {function} callback The function to call once the script is loaded.
+     * @param {String}   src      The URL to the JS file.
+     * @param {Function} callback The function to call once the script is loaded.
      */
     var _includeScript = function(src, callback) {
         var script    = document.createElement('script');
@@ -540,15 +541,15 @@ var HTMLCS = new function()
     /**
      * Returns all the child elements in the given element.
      *
-     * @param {DOMNode} element The parent element.
+     * @param {Node|Document} [element=document] The parent element.
      *
-     * @return {array} Array of DOMNode.
+     * @returns {Array} Array of Node objects.
      */
     var _getAllTags = function(element) {
         element      = element || document;
         var elements = element.getElementsByTagName('*');
 
-        // Convert to array. We can't use array features on a DOMNodeList.
+        // Convert to array. We can't use array features on a NodeList.
         var elArray = [];
         for (var i = 0; i < elements.length; i++) {
             elArray.push(elements[i]);
@@ -582,10 +583,29 @@ var HTMLCS = new function()
     };
 
     this.util = new function() {
+        /**
+         * Trim off excess spaces on either side.
+         *
+         * @param {String} string The string with potentially extraneous whitespace.
+         *
+         * @returns {String}
+         */
         this.trim = function(string) {
             return string.replace(/^\s*(.*)\s*$/g, '$1');
         };
 
+        /**
+         * Returns true if the string is "empty" according to WCAG standards.
+         *
+         * We can test for whether the string is entirely composed of whitespace, but
+         * WCAG standards explicitly state that non-breaking spaces (&nbsp;, &#160;)
+         * are not considered "empty". So we need this function to filter out that
+         * situation.
+         *
+         * @param {String} string The potentially empty string.
+         *
+         * @returns {Boolean}
+         */
         this.isStringEmpty = function(string) {
             var empty = true;
 
@@ -600,26 +620,89 @@ var HTMLCS = new function()
             return empty;
         };
 
+        /**
+         * Get the window object relating to the passed element.
+         *
+         * @param {Node|Document} element The element (or document) to pass.
+         *
+         * @returns {Window}
+         */
+        this.getElementWindow = function(element)
+        {
+            if (element.ownerDocument) {
+                var doc = element.ownerDocument;
+            } else {
+                var doc = element;
+            }
+
+            var window = null;
+            if (doc.defaultView) {
+                window = doc.defaultView;
+            } else {
+                window = doc.parentWindow;
+            }
+
+            return window;
+
+        };
+
+        /**
+         * Return the appropriate computed style object for an element.
+         *
+         * It's accessed in different ways depending on whether it's IE or not.
+         *
+         * @param {Node} element An element with style.
+         *
+         * @returns {Object}
+         */
+        this.style = function(element) {
+            var computedStyle = null;
+            var window        = this.getElementWindow(element);
+
+            if (element.currentStyle) {
+                computedStyle = element.currentStyle;
+            } else if (window.getComputedStyle) {
+                computedStyle = window.getComputedStyle(element, null);
+            }
+
+            return computedStyle;
+        };
+
+        /**
+         * Return true if an element is hidden.
+         *
+         * If the computed style of an element cannot be determined for some reason,
+         * it is presumed it is NOT hidden.
+         *
+         * @param {Node} element The element that is hiding, or not.
+         *
+         * @returns {Boolean}
+         */
         this.isHidden = function(element) {
             var hidden = false;
 
             // Do not point to elem if its hidden. Use computed styles.
-            if (elem.currentStyle) {
-                // IE 8.
-                var style = elem.currentStyle;
-            } else if (window.getComputedStyle) {
-                var style = window.getComputedStyle(elem);
-            } else {
-                return false;
-            }
-
-            if ((style.visibility === 'hidden') || (style.display === 'none')) {
-                hidden = true;
+            var style = this.style(element);
+            if (style !== null) {
+                if ((style.visibility === 'hidden') || (style.display === 'none')) {
+                    hidden = true;
+                }
             }
 
             return hidden;
         };
 
+        /**
+         * Returns true if the passed child is contained by the passed parent.
+         *
+         * Uses either the IE contains() method or the W3C compareDocumentPosition()
+         * method, as appropriate.
+         *
+         * @param {Node|Document} parent The parent element or document.
+         * @param {Node|Document} child  The child.
+         *
+         * @returns {Boolean}
+         */
         this.contains = function(parent, child) {
             var contained = false;
 
@@ -646,6 +729,17 @@ var HTMLCS = new function()
             return contained;
         };
 
+        /**
+         * Returns true if the table passed is a layout table.
+         *
+         * If the passed table contains headings - through the use of the th
+         * element - HTML_CodeSniffer will assume it is a data table. This is in line
+         * with most other online checkers.
+         *
+         * @param {Node} table The table to check.
+         *
+         * @returns {Boolean}
+         */
         this.isLayoutTable = function(table) {
             var th = table.querySelector('th');
             if (th === null) {
@@ -658,7 +752,7 @@ var HTMLCS = new function()
         /**
          * Calculate the contrast ratio between two colours.
          *
-         * Colours should be in 3- or 6-digit hex format; order does not matter
+         * Colours should be in rgb() or 3/6-digit hex format; order does not matter
          * (ie. it doesn't matter which is the lighter and which is the darker).
          * Values should be in the range [1.0, 21.0]... a ratio of 1.0 means "they're
          * exactly the same contrast", 21.0 means it's white-on-black or v.v.
@@ -679,9 +773,11 @@ var HTMLCS = new function()
         };
 
         /**
-         * Calculate relative luminescence for a hex colour.
+         * Calculate relative luminescence for a colour in the sRGB colour profile.
          *
-         * The hex colour can have an optional "#" at the front, which is stripped.
+         * Supports rgb() and hex colours. rgba() also supported but the alpha
+         * channel is currently ignored.
+         * Hex colours can have an optional "#" at the front, which is stripped.
          * Relative luminescence formula is defined in the definitions of WCAG 2.0.
          * It can be either three or six hex digits, as per CSS conventions.
          * It should return a value in the range [0.0, 1.0].
@@ -691,36 +787,236 @@ var HTMLCS = new function()
          * @returns {Number}
          */
         this.relativeLum = function(colour) {
-            if (colour.charAt(0) === '#') {
-                colour = colour.substr(1);
+            if (colour.charAt) {
+                var colour = this.colourStrToRGB(colour);
             }
 
-            if (colour.length === 3) {
-                colour = colour.replace(/^(.)(.)(.)$/, '$1$1$2$2$3$3');
-            }
-
-            colour = {
-                red: (parseInt(colour.substr(0, 2), 16) / 255),
-                green: (parseInt(colour.substr(2, 2), 16) / 255),
-                blue: (parseInt(colour.substr(4, 2), 16) / 255)
-            };
-
+            var transformed = {};
             for (var x in colour) {
                 if (colour[x] <= 0.03928) {
-                    colour[x] = colour[x] / 12.92;
+                    transformed[x] = colour[x] / 12.92;
                 } else {
-                    colour[x] = Math.pow(((colour[x] + 0.055) / 1.055), 2.4);
+                    transformed[x] = Math.pow(((colour[x] + 0.055) / 1.055), 2.4);
                 }
             }//end for
 
-            var lum = ((colour.red * 0.2126) + (colour.green * 0.7152) + (colour.blue * 0.0722));
+            var lum = ((transformed.red * 0.2126) + (transformed.green * 0.7152) + (transformed.blue * 0.0722));
             return lum;
         }
 
         /**
+         * Convert a colour string to a structure with red/green/blue elements.
+         *
+         * Supports rgb() and hex colours (3 or 6 hex digits, optional "#").
+         * rgba() also supported but the alpha channel is currently ignored.
+         * Each red/green/blue element is in the range [0.0, 1.0].
+         *
+         * @param {String} colour The colour to convert.
+         *
+         * @returns {Object}
+         */
+        this.colourStrToRGB = function(colour) {
+            colour = colour.toLowerCase();
+
+            if (colour.substring(0, 3) === 'rgb') {
+                // rgb[a](0, 0, 0[, 0]) format.
+                var matches = /^rgba?\s*\((\d+),\s*(\d+),\s*(\d+)([^)]*)\)$/.exec(colour);
+                colour = {
+                    red: (matches[1] / 255),
+                    green: (matches[2] / 255),
+                    blue: (matches[3] / 255),
+                }
+            } else {
+                // Hex digit format.
+                if (colour.charAt(0) === '#') {
+                    colour = colour.substr(1);
+                }
+
+                if (colour.length === 3) {
+                    colour = colour.replace(/^(.)(.)(.)$/, '$1$1$2$2$3$3');
+                }
+
+                colour = {
+                    red: (parseInt(colour.substr(0, 2), 16) / 255),
+                    green: (parseInt(colour.substr(2, 2), 16) / 255),
+                    blue: (parseInt(colour.substr(4, 2), 16) / 255)
+                };
+            }
+
+            return colour;
+        };
+
+        /**
+         * Convert an RGB colour structure to a hex colour.
+         *
+         * The red/green/blue colour elements should be on a [0.0, 1.0] scale.
+         * Colours that can be converted into a three Hex-digit string will be
+         * converted as such (eg. rgb(34,34,34) => #222). Others will be converted
+         * to a six-digit string (eg. rgb(48,48,48) => #303030).
+         *
+         * @param {Object} colour Structure with "red", "green" and "blue" elements.
+         *
+         * @returns {String}
+         */
+        this.RGBtoColourStr = function(colour) {
+            colourStr = '#';
+            colour.red   = Math.round(colour.red * 255);
+            colour.green = Math.round(colour.green * 255);
+            colour.blue  = Math.round(colour.blue * 255);
+
+            if ((colour.red % 17 === 0) && (colour.green % 17 === 0) && (colour.blue % 17 === 0)) {
+                // Reducible to three hex digits.
+                colourStr += (colour.red / 17).toString(16);
+                colourStr += (colour.green / 17).toString(16);
+                colourStr += (colour.blue / 17).toString(16);
+            } else {
+                if (colour.red < 16) {
+                    colourStr += '0';
+                }
+                colourStr += colour.red.toString(16);
+
+                if (colour.green < 16) {
+                    colourStr += '0';
+                }
+                colourStr += colour.green.toString(16);
+
+                if (colour.blue < 16) {
+                    colourStr += '0';
+                }
+                colourStr += colour.blue.toString(16);
+            }
+
+            return colourStr;
+        };
+
+        /**
+         * Convert an RGB colour into hue-saturation-value.
+         *
+         * This is used for calculations changing the colour (for colour contrast
+         * purposes) to ensure that the hue is maintained.
+         * The parameter accepts either a string (hex or rgb() format) or a
+         * red/green/blue structure.
+         * The returned structure has hue, saturation, and value components: the
+         * latter two are in the range [0.0, 1.0]; hue is in degrees,
+         * range [0.0, 360.0).
+         * If there is no saturation then hue is technically undefined.
+         *
+         * @param {String|Object} colour A colour to convert.
+         *
+         * @returns {Object}
+         */
+        this.sRGBtoHSV = function(colour) {
+            // If this is a string, then convert to a colour structure.
+            if (colour.charAt) {
+                colour = this.colourStrToRGB(colour);
+            }
+
+            var hsvColour = {
+                hue: 0,
+                saturation: 0,
+                value: 0
+            };
+
+            var maxColour = Math.max(colour.red, colour.green, colour.blue);
+            var minColour = Math.min(colour.red, colour.green, colour.blue);
+            var chroma    = maxColour - minColour;
+
+            if (chroma === 0) {
+                hsvColour.value = colour.red;
+            } else {
+                hsvColour.value = maxColour;
+                if (maxColour === colour.red) {
+                    hsvColour.hue = ((colour.green - colour.blue) / chroma);
+                } else if (maxColour === colour.green) {
+                    hsvColour.hue = (2.0 + ((colour.blue - colour.red) / chroma));
+                } else {
+                    hsvColour.hue = (4.0 + ((colour.red - colour.green) / chroma));
+                }//end if
+
+                hsvColour.hue = (hsvColour.hue * 60.0);
+                if (hsvColour.hue >= 360.0) {
+                    hsvColour.hue -= 360.0;
+                }
+
+                hsvColour.saturation = chroma / hsvColour.value;
+            }//end if
+
+            return hsvColour;
+        };
+
+        /**
+         * Convert a hue-saturation-value structure into an RGB structure.
+         *
+         * The hue element should be a degree value in the region of [0.0, 360.0).
+         * The saturation and value elements should be in the range [0.0, 1.0].
+         * Use RGBtoColourStr to convert back into a hex colour.
+         *
+         * @param {Object} hsvColour A HSV structure to convert.
+         *
+         * @returns {Object}
+         */
+        this.HSVtosRGB = function(hsvColour) {
+            var colour = {
+                red: 0,
+                green: 0,
+                blue: 0
+            };
+
+            if (hsvColour.saturation === 0) {
+                colour.red = hsvColour.value;
+                colour.green = hsvColour.value;
+                colour.blue = hsvColour.value;
+            } else {
+                var chroma      = hsvColour.value * hsvColour.saturation;
+                var minColour   = hsvColour.value - chroma;
+                var interHue    = hsvColour.hue / 60.0;
+                var interHueMod = interHue - 2 * (Math.floor(interHue / 2));
+                var interCol    = chroma * (1 - Math.abs(interHueMod - 1));
+
+                switch(Math.floor(interHue)) {
+                    case 0:
+                        colour.red   = chroma;
+                        colour.green = interCol;
+                    break;
+
+                    case 1:
+                        colour.green = chroma;
+                        colour.red   = interCol;
+                    break;
+
+                    case 2:
+                        colour.green = chroma;
+                        colour.blue  = interCol;
+                    break;
+
+                    case 3:
+                        colour.blue  = chroma;
+                        colour.green = interCol;
+                    break;
+
+                    case 4:
+                        colour.blue = chroma;
+                        colour.red  = interCol;
+                    break;
+
+                    case 5:
+                        colour.red  = chroma;
+                        colour.blue = interCol;
+                    break;
+                }//end switch
+
+                colour.red   = (colour.red + minColour);
+                colour.green = (colour.green + minColour);
+                colour.blue  = (colour.blue + minColour);
+            }//end if
+
+            return colour;
+        };
+
+        /**
          * Gets the text contents of an element.
          *
-         * @param {DOMNode} element           The element being inspected.
+         * @param {Node}    element           The element being inspected.
          * @param {Boolean} [includeAlt=true] Include alt text from images.
          *
          * @returns {String} The text contents.
