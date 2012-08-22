@@ -245,6 +245,8 @@ function reorderResults() {
 
 window.onload = function() {
     var radios = document.querySelectorAll('.radio-gen');
+    var source = document.getElementById('source');
+
     for (var i = 0; i < radios.length; i++) {
         radios[i].onclick = function(event) {
             event.target.previousSibling.click();
@@ -260,10 +262,13 @@ window.onload = function() {
             }
 
             event.target.nextSibling.className += ' radio-on';
+
+            if (source.value !== '') {
+                activateHTMLCS();
+            }
         }
     }
 
-    var source = document.getElementById('source');
     source.onkeypress = function() {
         activateHTMLCS();
     };
