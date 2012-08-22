@@ -26,7 +26,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
         }
 
         while (toProcess.length > 0) {
-            var node = toProcess.pop();
+            var node = toProcess.shift();
 
             // This is an element.
             if ((node.nodeType === 1) && (HTMLCS.util.isHidden(node) === false)) {
