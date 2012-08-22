@@ -687,6 +687,14 @@ var HTMLCS = new function()
                 if ((style.visibility === 'hidden') || (style.display === 'none')) {
                     hidden = true;
                 }
+
+                if ((parseInt(style.left, 10) + parseInt(style.width, 10)) < 0) {
+                    hidden = true;
+                }
+
+                if ((parseInt(style.top, 10) + parseInt(style.height, 10)) < 0) {
+                    hidden = true;
+                }
             }
 
             return hidden;
