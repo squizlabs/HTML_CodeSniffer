@@ -60,6 +60,13 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
                             parent          = parent.parentNode;
                         }//end while
 
+                        // If the background colour is still transparent, this is probably
+                        // a fragment with which we cannot reliably make a statement about
+                        // contrast ratio. Skip the element.
+                        if ((bgColour === 'transparent') || (bgColour === 'rgba(0, 0, 0, 0)')) {
+                            continue;
+                        }
+
                         var contrastRatio = HTMLCS.util.contrastRatio(bgColour, style.color);
 
                         // Calculate font size. Note that CSS 2.1 fixes a reference pixel
