@@ -63,7 +63,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_6 = {
                     recommendText = ' Recommendation: change ' + recommendText.join(', ') + '.';
                 }
 
-                HTMLCS.addMessage(HTMLCS.ERROR, element, 'This element has insufficient contrast at this level. Expected a contrast ratio of at least ' + required + ':1, but text in this element has a contrast ratio of ' + value + ':1.' + recommendText, code);
+                HTMLCS.addMessage(HTMLCS.ERROR, element, 'This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least ' + required + ':1, but text in this element has a contrast ratio of ' + value + ':1.' + recommendText, code);
             }
         }
     }
