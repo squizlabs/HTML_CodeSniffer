@@ -99,7 +99,12 @@ var HTMLCS = new function()
                 this.onload = null;
 
                 if (HTMLCS.isFullDoc(content) === false) {
-                    element = element.getElementsByTagName('body')[0].getElementsByTagName('div')[0];
+                    element = element.getElementsByTagName('body')[0];
+                    var div = element.getElementsByTagName('div')[0];
+                    if (div && (div.id === '__HTMLCS-source-wrap')) {
+                        div.id  = '';
+                        element = div;
+                    }
                 }
 
                 var elements = _getAllTags(element);
@@ -117,8 +122,8 @@ var HTMLCS = new function()
 
             elementFrame.onload = elementFrame.load;
 
-            if (HTMLCS.isFullDoc(content) === false) {
-                element.write('<div>' + content + '</div>');
+            if ((HTMLCS.isFullDoc(content) === false) && (content.indexOf('<body') === -1)) {
+                element.write('<div id="__HTMLCS-source-wrap">' + content + '</div>');
             } else {
                 element.write(content);
             }
