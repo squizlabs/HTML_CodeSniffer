@@ -1688,29 +1688,20 @@ var HTMLCSAuditor = new function()
                 return false;
             }
 
+            // Check whether the element is in the document, by looking up its
+            // DOM tree for a document object.
+            var parent = elem.parentNode;
+            while (parent && parent.ownerDocument) {
+                parent = parent.parentNode;
+            }//end while
+
+            // If we didn't hit a document, the element must not be in there.
+            if (parent === null) {
+                return false;
+            }
+
             // Do not point to elem if its hidden. Use computed styles.
             if (HTMLCS.util.isHidden(elem) === true) {
-                return false;
-            }
-
-            // Get element coords.
-            var rect = this.getBoundingRectangle(elem);
-
-            // If we cannot get the position then dont do anything,
-            // most likely element is hidden.
-            if (rect.x1 === 0
-                && rect.x2 === 0
-                || rect.x1 === rect.x2
-                || rect.y1 === rect.y2
-            ) {
-                return false;
-            }
-
-            if ((rect.x1 < 0) && (rect.x2 < 0)) {
-                return false;
-            }
-
-            if ((rect.y1 < 0) && (rect.y2 < 0)) {
                 return false;
             }
 
@@ -1764,9 +1755,10 @@ var HTMLCSAuditor = new function()
 
         pointTo: function(elem) {
             // Do not point to elem if its hidden.
-            var doc = elem;
-            if (doc.ownerDocument) {
-                doc = doc.ownerDocument;
+            if (elem.ownerDocument) {
+                var doc = elem.ownerDocument;
+            } else {
+                var doc = elem;
             }
 
             var oldPointer = doc.getElementById('HTMLCS-pointer');
@@ -1792,14 +1784,18 @@ var HTMLCSAuditor = new function()
                 myPointer.style.opacity = null;
 
                 var isFixed = false;
-                var parent  = elem;
+                if (HTMLCS.util.style(elem).position === 'fixed') {
+                    var isFixed = true;
+                }
+
+                var parent = elem.parentNode;
                 while (parent.ownerDocument) {
                     if (HTMLCS.util.style(parent).position === 'fixed') {
                         isFixed = true;
                         break;
-                    } else {
-                        parent = parent.parentNode;
                     }
+
+                    parent = parent.parentNode;
                 }//end while
 
                 if (isFixed === true) {
