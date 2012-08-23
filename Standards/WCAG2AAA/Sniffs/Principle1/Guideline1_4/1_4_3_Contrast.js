@@ -50,12 +50,28 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
                         var bgColour = style.backgroundColor;
                         var hasBgImg = false;
 
-                        if (style.backgroundImage) {
+                        if (style.backgroundImage !== 'none') {
                             hasBgImg = true;
                         }
 
                         var parent = node.parentNode;
 
+                        // Calculate font size. Note that CSS 2.1 fixes a reference pixel
+                        // as 96 dpi (hence "pixel ratio" workarounds for Hi-DPI devices)
+                        // so this calculation should be safe.
+                        var fontSize      = parseInt(style.fontSize, 10) * (72 / 96);
+                        var minLargeSize  = 18;
+
+                        if ((style.fontWeight === 'bold') || (parseInt(style.fontWeight, 10) >= 600)) {
+                            var minLargeSize = 14;
+                        }
+
+                        var reqRatio = minContrast;
+                        if (fontSize >= minLargeSize) {
+                            reqRatio = minLargeContrast;
+                        }
+
+                        // Check for a solid background colour.
                         while ((bgColour === 'transparent') || (bgColour === 'rgba(0, 0, 0, 0)')) {
                             if ((!parent) || (!parent.ownerDocument)) {
                                 break;
@@ -63,7 +79,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
 
                             var parentStyle = HTMLCS.util.style(parent);
                             var bgColour    = parentStyle.backgroundColor;
-                            if (parentStyle.backgroundImage) {
+                            if (parentStyle.backgroundImage !== 'none') {
                                 hasBgImg = true;
                             }
 
@@ -90,20 +106,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
 
                         var contrastRatio = HTMLCS.util.contrastRatio(bgColour, style.color);
 
-                        // Calculate font size. Note that CSS 2.1 fixes a reference pixel
-                        // as 96 dpi (hence "pixel ratio" workarounds for Hi-DPI devices)
-                        // so this calculation should be safe.
-                        var fontSize      = parseInt(style.fontSize, 10) * (72 / 96);
-                        var minLargeSize  = 18;
 
-                        if ((style.fontWeight === 'bold') || (parseInt(style.fontWeight, 10) >= 600)) {
-                            var minLargeSize = 14;
-                        }
-
-                        var reqRatio = minContrast;
-                        if (fontSize >= minLargeSize) {
-                            reqRatio = minLargeContrast;
-                        }
 
                         if (contrastRatio < reqRatio) {
                             var recommendation = this.recommendColour(bgColour, style.color, reqRatio);
