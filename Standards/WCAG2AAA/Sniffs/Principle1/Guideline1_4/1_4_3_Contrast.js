@@ -78,14 +78,15 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
                         }
 
                         if (contrastRatio < reqRatio) {
-
+                            var recommendation = this.recommendColour(bgColour, style.color, reqRatio);
 
                             failures.push({
                                 element: node,
                                 colour: style.color,
                                 bgColour: bgColour,
                                 value: contrastRatio,
-                                required: reqRatio
+                                required: reqRatio,
+                                recommendation: recommendation
                             });
                         }//end if
                     }//end if
@@ -94,5 +95,132 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
         }//end while
 
         return failures;
+    },
+
+    recommendColour: function(back, fore, target) {
+        // Canonicalise the colours.
+        var fore = HTMLCS.util.RGBtoColourStr(HTMLCS.util.colourStrToRGB(fore));
+        var back = HTMLCS.util.RGBtoColourStr(HTMLCS.util.colourStrToRGB(back));
+
+        var cr = HTMLCS.util.contrastRatio(fore, back);
+        var foreDiff = Math.abs(HTMLCS.util.relativeLum(fore) - 0.5);
+        var backDiff = Math.abs(HTMLCS.util.relativeLum(back) - 0.5);
+
+        var recommendation = null;
+
+        if (cr < target) {
+            // Work out which colour has more room to move.
+            // If they are the same, prefer changing the foreground colour.
+            var multiplier = (1 + 1 / 400);
+            if (foreDiff <= backDiff) {
+                var change = 'back';
+                var newCol = back;
+                if (HTMLCS.util.relativeLum(back) < 0.5) {
+                    var multiplier = (1 / multiplier);
+                }
+            } else {
+                var change = 'fore';
+                var newCol = fore;
+                if (HTMLCS.util.relativeLum(fore) < 0.5) {
+                    var multiplier = (1 / multiplier);
+                }
+            }
+
+            var hsv     = HTMLCS.util.sRGBtoHSV(newCol);
+            var chroma  = hsv.saturation * hsv.value;
+            var newFore = fore;
+            var newBack = back;
+            var changed = false;
+
+            var i = 0;
+
+            while (cr < target) {
+                if ((newCol === '#fff') || (newCol === '#000')) {
+                    // Couldn't go far enough. Reset and try the other colour.
+                    if (changed === true) {
+                        // We've already switched colours, so we have to start
+                        // winding back the other colour.
+                        if (change === 'fore') {
+                            var oldBack = newBack;
+                            var j = 1;
+                            while (newBack === oldBack) {
+                                var newBack = multiplyColour(newBack, Math.pow(1 / multiplier, j));
+                                j++;
+                            }
+                        } else {
+                            var oldFore = newFore;
+                            var j = 1;
+                            while (newFore === oldFore) {
+                                var newFore = multiplyColour(newFore, Math.pow(1 / multiplier, j));
+                                j++;
+                            }
+                        }
+                    } else {
+                        newFore = fore;
+                        newBack = back;
+                        multiplier = 1 / multiplier;
+                        if (change === 'fore') {
+                            change = 'back';
+                            var hsv = back;
+                        } else {
+                            change = 'fore';
+                            var hsv = fore;
+                        }
+
+                        hsv     = HTMLCS.util.sRGBtoHSV(hsv);
+                        chroma  = hsv.saturation * hsv.value;
+                        changed = true;
+                    }
+                }
+
+                i++;
+                var newCol = HTMLCS.util.HSVtosRGB(hsv);
+                var newCol = this.multiplyColour(newCol, Math.pow(multiplier, i));
+
+                if (change === 'fore') {
+                    var newFore = newCol;
+                } else {
+                    var newBack = newCol;
+                }
+
+                var cr = HTMLCS.util.contrastRatio(newFore, newBack);
+            }//end while
+
+            recommendation = {
+                fore: {
+                    from: fore,
+                    to: newFore
+                },
+                back: {
+                    from: back,
+                    to: newBack
+                }
+            }
+        }//end if
+
+        return recommendation;
+    },
+
+    multiplyColour: function(colour, multiplier) {
+        var hsvColour = HTMLCS.util.sRGBtoHSV(colour);
+        var chroma    = hsvColour.saturation * hsvColour.value;
+
+        // If we are starting from black, start it from #010101 instead.
+        if (hsvColour.value === 0) {
+            hsvColour.value = (1 / 255);
+        }
+
+        hsvColour.value = hsvColour.value * multiplier;
+        if (hsvColour.value === 0) {
+            hsvColour.saturation = 0;
+        } else {
+            hsvColour.saturation = chroma / hsvColour.value;
+        }
+
+        hsvColour.value      = Math.min(1, hsvColour.value);
+        hsvColour.saturation = Math.min(1, hsvColour.saturation);
+
+        var newColour = HTMLCS.util.RGBtoColourStr(HTMLCS.util.HSVtosRGB(hsvColour));
+        return newColour;
     }
 }

@@ -38,9 +38,10 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_6 = {
             var failures = HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast.testContrastRatio(top, 7.0, 4.5);
 
             for (var i = 0; i < failures.length; i++) {
-                var element  = failures[i].element;
-                var value    = (Math.round(failures[i].value * 100) / 100);
-                var required = failures[i].required;
+                var element   = failures[i].element;
+                var value     = (Math.round(failures[i].value * 100) / 100);
+                var required  = failures[i].required;
+                var recommend = failures[i].recommendation;
 
                 if (required === 4.5) {
                     var code = 'G18';
@@ -48,7 +49,21 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_6 = {
                     var code = 'G17';
                 }
 
-                HTMLCS.addMessage(HTMLCS.ERROR, element, 'This element has insufficient contrast at this level. Expected a contrast ratio of at least ' + required + ':1, but text in this element has a contrast ratio of ' + value + ':1.', code);
+                var recommendText = [];
+                if (recommend) {
+                    if (recommend.fore.from !== recommend.fore.to) {
+                        recommendText.push('text colour to ' + recommend.fore.to);
+                    }
+                    if (recommend.back.from !== recommend.back.to) {
+                        recommendText.push('background to ' + recommend.back.to);
+                    }
+                }
+
+                if (recommendText.length > 0) {
+                    recommendText = ' Recommendation: change ' + recommendText.join(', ') + '.';
+                }
+
+                HTMLCS.addMessage(HTMLCS.ERROR, element, 'This element has insufficient contrast at this level. Expected a contrast ratio of at least ' + required + ':1, but text in this element has a contrast ratio of ' + value + ':1.' + recommendText, code);
             }
         }
     }
