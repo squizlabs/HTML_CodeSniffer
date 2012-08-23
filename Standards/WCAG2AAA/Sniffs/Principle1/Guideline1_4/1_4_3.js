@@ -42,6 +42,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3 = {
                 var value     = (Math.round(failures[i].value * 100) / 100);
                 var required  = failures[i].required;
                 var recommend = failures[i].recommendation;
+                var hasBgImg  = failures[i].hasBgImage || false;
 
                 if (required === 4.5) {
                     var code = 'G18';
@@ -57,14 +58,20 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3 = {
                     if (recommend.back.from !== recommend.back.to) {
                         recommendText.push('background to ' + recommend.back.to);
                     }
-                }
+                }//end if
 
                 if (recommendText.length > 0) {
                     recommendText = ' Recommendation: change ' + recommendText.join(', ') + '.';
                 }
 
-                HTMLCS.addMessage(HTMLCS.ERROR, element, 'This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least ' + required + ':1, but text in this element has a contrast ratio of ' + value + ':1.' + recommendText, code);
-            }
-        }
+                if (hasBgImg === true) {
+                    code += '.BgImage';
+                    HTMLCS.addMessage(HTMLCS.WARNING, element, 'This element\'s text is placed on a background image, but no solid background colour is available. Ensure the contrast ratio between the text and all covered parts of the image are at least ' + required + ':1.' + recommendText, code);
+                } else {
+                    code += '.Fail';
+                    HTMLCS.addMessage(HTMLCS.ERROR, element, 'This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least ' + required + ':1, but text in this element has a contrast ratio of ' + value + ':1.' + recommendText, code);
+                }//end if
+            }//end for
+        }//end if
     }
 };

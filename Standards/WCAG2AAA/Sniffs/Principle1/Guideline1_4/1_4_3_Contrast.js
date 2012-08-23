@@ -48,7 +48,13 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
 
                     if (style) {
                         var bgColour = style.backgroundColor;
-                        var parent   = node.parentNode;
+                        var hasBgImg = false;
+
+                        if (style.backgroundImage) {
+                            hasBgImg = true;
+                        }
+
+                        var parent = node.parentNode;
 
                         while ((bgColour === 'transparent') || (bgColour === 'rgba(0, 0, 0, 0)')) {
                             if ((!parent) || (!parent.ownerDocument)) {
@@ -57,13 +63,28 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
 
                             var parentStyle = HTMLCS.util.style(parent);
                             var bgColour    = parentStyle.backgroundColor;
-                            parent          = parent.parentNode;
+                            if (parentStyle.backgroundImage) {
+                                hasBgImg = true;
+                            }
+
+                            parent = parent.parentNode;
                         }//end while
 
                         // If the background colour is still transparent, this is probably
                         // a fragment with which we cannot reliably make a statement about
                         // contrast ratio. Skip the element.
                         if ((bgColour === 'transparent') || (bgColour === 'rgba(0, 0, 0, 0)')) {
+                            if (hasBgImg === true) {
+                                failures.push({
+                                    element: node,
+                                    colour: style.color,
+                                    bgColour: undefined,
+                                    value: undefined,
+                                    required: reqRatio,
+                                    hasBgImage: true
+                                });
+                            }
+
                             continue;
                         }
 
