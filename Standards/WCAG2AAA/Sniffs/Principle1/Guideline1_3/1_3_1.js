@@ -125,7 +125,15 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
                     }
 
                     if (refNode === null) {
-                        HTMLCS.addMessage(HTMLCS.ERROR, labels[i], 'This label\'s "for" attribute contains an ID that does not exist in the document.', 'H44.NonExistent');
+                        var level = HTMLCS.ERROR;
+                        var msg   = 'This label\'s "for" attribute contains an ID that does not exist in the document.'
+                        var code  = 'H44.NonExistent';
+                        if (HTMLCS.isFullDoc(top) === false) {
+                            level = HTMLS.WARNING;
+                            msg   = 'This label\'s "for" attribute contains an ID that does not exist in the document fragment.'
+                            var code  = 'H44.NonExistentFragment';
+                        }
+                        HTMLCS.addMessage(level, labels[i], msg, code);
                     } else {
                         var nodeName = refNode.nodeName.toLowerCase();
                         if ((nodeName !== 'input') && (nodeName !== 'select') && (nodeName !== 'textarea')) {

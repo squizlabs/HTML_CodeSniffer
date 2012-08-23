@@ -99,7 +99,7 @@ var HTMLCS = new function()
                 this.onload = null;
 
                 if (HTMLCS.isFullDoc(content) === false) {
-                    element = element.getElementsByTagName('body')[0];
+                    element = element.getElementsByTagName('body')[0].getElementsByTagName('div')[0];
                 }
 
                 var elements = _getAllTags(element);
@@ -117,7 +117,12 @@ var HTMLCS = new function()
 
             elementFrame.onload = elementFrame.load;
 
-            element.write(content);
+            if (HTMLCS.isFullDoc(content) === false) {
+                element.write('<div>' + content + '</div>');
+            } else {
+                element.write(content);
+            }
+
             element.close();
         } else {
             element = content;
@@ -832,7 +837,7 @@ var HTMLCS = new function()
                 colour = {
                     red: (matches[1] / 255),
                     green: (matches[2] / 255),
-                    blue: (matches[3] / 255),
+                    blue: (matches[3] / 255)
                 }
             } else {
                 // Hex digit format.
