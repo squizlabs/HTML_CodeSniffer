@@ -126,11 +126,11 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
 
                     if (refNode === null) {
                         var level = HTMLCS.ERROR;
-                        var msg   = 'This label\'s "for" attribute contains an ID that does not exist in the document.'
+                        var msg   = 'This label\'s "for" attribute contains an ID that does not exist in the document.';
                         var code  = 'H44.NonExistent';
-                        if (HTMLCS.isFullDoc(top) === false) {
-                            level = HTMLS.WARNING;
-                            msg   = 'This label\'s "for" attribute contains an ID that does not exist in the document fragment.'
+                        if ((HTMLCS.isFullDoc(top) === true) || (top.nodeName.toLowerCase() === 'body')) {
+                            level = HTMLCS.WARNING;
+                            msg   = 'This label\'s "for" attribute contains an ID that does not exist in the document fragment.';
                             var code  = 'H44.NonExistentFragment';
                         }
                         HTMLCS.addMessage(level, labels[i], msg, code);
