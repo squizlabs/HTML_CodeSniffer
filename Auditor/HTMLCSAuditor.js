@@ -990,10 +990,6 @@ var HTMLCSAuditor = new function()
         return navDiv;
     }
 
-    this.getElementWindow = function(elem) {
-        return pointer.getElementWindow(elem);
-    }
-
     var pointToIssueElement = function(issue) {
         var msg = _messages[Number(issue)];
         if (!msg.element) {
@@ -1004,8 +1000,10 @@ var HTMLCSAuditor = new function()
         pointer.container = self.pointerContainer || _doc.getElementById('HTMLCS-wrapper');
 
         if (pointer.isPointable(msg.element) === false) {
+            var myPointer = pointer.getPointer(msg.element);
+
             if (pointer.pointer) {
-                pointer.pointer.className += ' HTMLCS-pointer-hidden';
+                myPointer.className += ' HTMLCS-pointer-hidden';
             }
 
             if (btnPointTo) {
@@ -1455,12 +1453,12 @@ var HTMLCSAuditor = new function()
             var wrapper = _doc.getElementById('HTMLCS-wrapper');
 
             if (wrapper) {
-                wrapper.parentNode.removeChild(wrapper);
-
-                var pointerEl = pointer.pointer;
+                var pointerEl = pointer.getPointer(wrapper);
                 if (pointerEl && pointerEl.parentNode) {
                     pointerEl.parentNode.removeChild(pointerEl);
                 }
+
+                wrapper.parentNode.removeChild(wrapper);
 
                 if (_options.closeCallback) {
                     _messages = _options.closeCallback.call(this);
@@ -1482,7 +1480,6 @@ var HTMLCSAuditor = new function()
 
     var pointer =
     {
-        pointer: null,
         pointerDim: {},
         container: null,
 
@@ -1522,7 +1519,7 @@ var HTMLCSAuditor = new function()
             var top  = 0;
 
             // Get parent window coords.
-            var window = this.getElementWindow(element);
+            var window = HTMLCS.util.getElementWindow(element);
 
             if (absolute === true) {
                 var topWin = window.top;
@@ -1558,7 +1555,7 @@ var HTMLCSAuditor = new function()
 
         getWindowDimensions: function(elem)
         {
-            var window = this.getElementWindow(elem);
+            var window = HTMLCS.util.getElementWindow(elem);
             var doc    = elem.ownerDocument;
 
             var windowWidth  = 0;
@@ -1654,7 +1651,7 @@ var HTMLCSAuditor = new function()
 
         getScrollCoords: function(elem)
         {
-            var window = this.getElementWindow(elem);
+            var window = HTMLCS.util.getElementWindow(elem);
             doc        = elem.ownerDocument;
 
             var scrollX = 0;
@@ -1684,21 +1681,6 @@ var HTMLCSAuditor = new function()
 
         },
 
-        getElementWindow: function(element)
-        {
-            element = element || _doc.body;
-
-            var window = null;
-            if (element.ownerDocument.defaultView) {
-                window = element.ownerDocument.defaultView;
-            } else {
-                window = element.ownerDocument.parentWindow;
-            }
-
-            return window;
-
-        },
-
         isPointable: function(elem) {
             // If the specified elem is not in the DOM then we cannot point to it.
             // Also, cannot point to the document itself.
@@ -1706,28 +1688,20 @@ var HTMLCSAuditor = new function()
                 return false;
             }
 
-            // Do not point to elem if its hidden. Use computed styles.
-            if (elem.currentStyle) {
-                // IE 8.
-                var style = elem.currentStyle;
-            } else {
-                var style = window.getComputedStyle(elem);
-            }
+            // Check whether the element is in the document, by looking up its
+            // DOM tree for a document object.
+            var parent = elem.parentNode;
+            while (parent && parent.ownerDocument) {
+                parent = parent.parentNode;
+            }//end while
 
-            if ((style.visibility === 'hidden') || (style.display === 'none')) {
+            // If we didn't hit a document, the element must not be in there.
+            if (parent === null) {
                 return false;
             }
 
-            // Get element coords.
-            var rect = this.getBoundingRectangle(elem);
-
-            // If we cannot get the position then dont do anything,
-            // most likely element is hidden.
-            if (rect.x1 === 0
-                && rect.x2 === 0
-                || rect.x1 === rect.x2
-                || rect.y1 === rect.y2
-            ) {
+            // Do not point to elem if its hidden. Use computed styles.
+            if (HTMLCS.util.isHidden(elem) === true) {
                 return false;
             }
 
@@ -1742,17 +1716,13 @@ var HTMLCSAuditor = new function()
             var direction = null;
 
             // Get element coords.
-            var rect    = this.getBoundingRectangle(elem);
-            var pointer = this.getPointer(elem);
-            var doc     = elem.ownerDocument;
+            var rect      = this.getBoundingRectangle(elem);
+            var myPointer = this.getPointer(elem);
+            var doc       = elem.ownerDocument;
 
-            pointer.style.display = 'block';
-            pointer.style.opacity = 0;
-            pointer.className     = pointer.className.replace('HTMLCS-pointer-hidden', '');
-
-            /*var pointerRect = this.getBoundingRectangle(pointer);
-            var pointerH    = (pointerRect.y2 - pointerRect.y1);
-            var pointerW    = (pointerRect.x2 - pointerRect.x1);*/
+            myPointer.style.display = 'block';
+            myPointer.style.opacity = 0;
+            myPointer.className     = myPointer.className.replace('HTMLCS-pointer-hidden', '');
 
             this.pointerDim.height = 62;
             this.pointerDim.width  = 62;
@@ -1761,8 +1731,7 @@ var HTMLCSAuditor = new function()
 
             // Determine where to show the arrow.
             var winDim = this.getWindowDimensions(elem);
-            var window = this.getElementWindow(elem);
-            //window.scrollTo(0, rect.y1 - 100);
+            var window = HTMLCS.util.getElementWindow(elem);
 
             var scrollY = Math.max(0, Math.min(rect.y1 - 100, doc.documentElement.offsetHeight - winDim.height));
 
@@ -1785,41 +1754,73 @@ var HTMLCSAuditor = new function()
         },
 
         pointTo: function(elem) {
-            var topWin = this.getElementWindow(elem).top;
-            var winDim = this.getWindowDimensions(topWin.document.documentElement);
-
             // Do not point to elem if its hidden.
+            if (elem.ownerDocument) {
+                var doc = elem.ownerDocument;
+            } else {
+                var doc = elem;
+            }
+
+            var oldPointer = doc.getElementById('HTMLCS-pointer');
+            if (oldPointer) {
+                oldPointer.parentNode.removeChild(oldPointer);
+            }
+
             if (this.isPointable(elem) === false) {
                 return;
             }
 
             // Get element coords.
+            var topWin = HTMLCS.util.getElementWindow(elem).top;
+            var winDim = this.getWindowDimensions(topWin.document.documentElement);
+
             var direction = this.getPointerDirection(elem);
-            var pointer   = this.getPointer(elem);
+            var myPointer = this.getPointer(elem);
 
             if (direction === null) {
-                pointer.style.display = 'none';
+                myPointer.style.display = 'none';
             } else {
-                pointer.style.display = 'block';
-                pointer.style.opacity = 'auto';
+                myPointer.style.display = 'block';
+                myPointer.style.opacity = null;
 
-                var rect    = this.getElementCoords(elem, true);
-                var window  = this.getElementWindow(elem);
-                var targetY = Math.max(rect.y - 100, 0);
+                var isFixed = false;
+                if (HTMLCS.util.style(elem).position === 'fixed') {
+                    var isFixed = true;
+                }
 
-                while (targetY >= 0) {
-                    window.scrollTo(0, targetY);
-                    var scrollCoords = this.getScrollCoords(window.document.documentElement);
-
-                    targetY -= scrollCoords.y;
-                    targetY  = Math.max(targetY, 0);
-
-                    if (window === topWin) {
+                var parent = elem.parentNode;
+                while (parent.ownerDocument) {
+                    if (HTMLCS.util.style(parent).position === 'fixed') {
+                        isFixed = true;
                         break;
-                    } else {
-                        window = window.parent;
                     }
+
+                    parent = parent.parentNode;
                 }//end while
+
+                if (isFixed === true) {
+                    myPointer.style.position = 'fixed';
+                } else {
+                    myPointer.style.position = 'absolute';
+
+                    var rect    = this.getElementCoords(elem, true);
+                    var window  = HTMLCS.util.getElementWindow(elem);
+                    var targetY = Math.max(rect.y - 100, 0);
+
+                    while (targetY >= 0) {
+                        window.scrollTo(0, targetY);
+                        var scrollCoords = this.getScrollCoords(window.document.documentElement);
+
+                        targetY -= scrollCoords.y;
+                        targetY  = Math.max(targetY, 0);
+
+                        if (window === topWin) {
+                            break;
+                        } else {
+                            window = window.parent;
+                        }
+                    }//end while
+                }//end if
 
                 this.showPointer(elem, direction);
             }
@@ -1828,27 +1829,26 @@ var HTMLCSAuditor = new function()
         getPointer: function(targetElement) {
             var doc = targetElement.ownerDocument;
             HTMLCSAuditor.includeCss('HTMLCS', doc);
+            var c = 'HTMLCS';
 
-            if (this.pointer && this.pointer.parentNode) {
-                this.pointer.parentNode.removeChild(this.pointer);
+            var myPointer = doc.getElementById(c + '-pointer');
+            if (!myPointer) {
+                myPointer = doc.createElement('div');
+                myPointer.id        = c + '-pointer';
+                myPointer.className = c + '-pointer ' + c + '-pointer-hidden';
+                doc.body.appendChild(myPointer);
             }
 
-            this.pointer = doc.createElement('div');
-            var c        = 'HTMLCS';
-            this.pointer.className = c + '-pointer ' + c + '-pointer-hidden';
-            doc.body.appendChild(this.pointer);
-            //targetElement.ownerDocument.body.appendChild(this.pointer);
-
-            return this.pointer;
+            return myPointer;
         },
 
         showPointer: function(elem, direction) {
             var c = 'HTMLCS';
 
-            this._removeDirectionClasses();
-
-            this.pointer.className += ' ' + c + '-pointer-' + direction;
-            this.pointer.className  = this.pointer.className.replace(c + '-pointer-hidden', '');
+            var myPointer = this.getPointer(elem);
+            this._removeDirectionClasses(myPointer);
+            myPointer.className += ' ' + c + '-pointer-' + direction;
+            myPointer.className  = myPointer.className.replace(c + '-pointer-hidden', '');
 
             var rect         = this.getBoundingRectangle(elem);
             var top          = 0;
@@ -1890,17 +1890,22 @@ var HTMLCSAuditor = new function()
 
             var frameScroll = this.getScrollCoords(elem);
 
-            this.pointer.style.top  = top  + 'px';
-            this.pointer.style.left = left + 'px';
+            myPointer.style.top  = top  + 'px';
+            myPointer.style.left = left + 'px';
 
             // Check if the help window is under the pointer then re-position it.
             // Unless it is an element within the HTMLCS pop-up.
             var coords    = this.getBoundingRectangle(this.container);
-            rect          = this.getBoundingRectangle(this.pointer);
+            rect          = this.getBoundingRectangle(myPointer);
             var posOffset = 20;
             var newPos    = null;
             var midX      = (rect.x1 + ((rect.x2 - rect.x1) / 2));
-            var midY      = (rect.y1 + ((rect.y2 - rect.y1) / 2)) - frameScroll.y;
+            var midY      = (rect.y1 + ((rect.y2 - rect.y1) / 2));
+
+            if (HTMLCS.util.style(myPointer).position !== 'fixed') {
+                midY -= frameScroll.y;
+            }
+
             if (coords.x1 <= midX
                 && coords.x2 >= midX
                 && coords.y1 <= midY
@@ -1913,21 +1918,19 @@ var HTMLCSAuditor = new function()
                 }, 4000);
             }
 
-            var pointer = this.pointer;
-            this.bounce(function() {
+            this.bounce(myPointer, function() {
                 setTimeout(function() {
-                    if (pointer.parentNode) {
-                        pointer.parentNode.removeChild(pointer);
+                    if (myPointer.parentNode) {
+                        myPointer.parentNode.removeChild(myPointer);
                     }
                 }, 1500);
             }, direction);
 
         },
 
-        bounce: function(callback, direction)
+        bounce: function(myPointer, callback, direction)
         {
             var currentDirection = direction;
-            var pointer          = this.pointer;
             var initialPos       = 0;
             var style            = '';
             var initalPosOffset  = 0;
@@ -1950,7 +1953,7 @@ var HTMLCSAuditor = new function()
                 break;
             }
 
-            initialPos = (Number(pointer.style[style].replace('px', '')) + initalPosOffset);
+            initialPos = (Number(myPointer.style[style].replace('px', '')) + initalPosOffset);
 
             var currentPos = initialPos;
             var lowerLimit = (initialPos - dist);
@@ -1959,7 +1962,7 @@ var HTMLCSAuditor = new function()
             var i = setInterval(function() {
                 if (currentDirection === direction) {
                     currentPos--;
-                    pointer.style[style] = currentPos + 'px';
+                    myPointer.style[style] = currentPos + 'px';
                     if (currentPos < lowerLimit) {
                         currentDirection = direction + '-op';
                         if (bounces === maxBounce && initalPosOffset !== 0) {
@@ -1971,7 +1974,7 @@ var HTMLCSAuditor = new function()
 
                 } else {
                     currentPos++;
-                    pointer.style[style] = currentPos + 'px';
+                    myPointer.style[style] = currentPos + 'px';
 
                     if (currentPos >= initialPos) {
                         currentDirection = direction;
@@ -1999,12 +2002,12 @@ var HTMLCSAuditor = new function()
             return midPnt;
         },
 
-        _removeDirectionClasses: function() {
+        _removeDirectionClasses: function(myPointer) {
             var c = 'HTMLCS';
             var d = ['down', 'up', 'left', 'right'];
             var l = d.length;
             for (var i = 0; i < l; i++) {
-                this.pointer.className = this.pointer.className.replace(c + '-pointer-' + d[i], '');
+                myPointer.className = myPointer.className.replace(c + '-pointer-' + d[i], '');
             }
         }
 
