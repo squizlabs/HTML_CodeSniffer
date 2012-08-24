@@ -92,9 +92,55 @@
 
         <div class="max-width">
 
-                
+                <h3 id="discussion">Discussion</h3><h4>Table of Contents</h4>
 
-                <h3>Sniff Coverage</h3>
+<ol>
+  <li><a href="#summary">Summary</a></li>
+<ol>
+  <li><a href="#what-is-user-controllable-data">What is "user-controllable" data?</a></li>
+  <li><a href="#sufficient-methods">Sufficient methods</a></li>
+</ol></ol>
+<h4 id="summary">Summary</h4>
+
+<p>The purpose of this Success Criterion is to provide the ability for users to confirm
+and correct submissions that have legal or other significant ramifications. Users with
+certain disabilities may make mistakes with entering data - those with motor disabilities
+may have trouble hitting (or not hitting) certain keys, while other cognitive problems (such
+as dyslexia) may result in unintended field entries, such as resulting from transposed keys.</p>
+
+<h5 id="what-is-user-controllable-data">What is "user-controllable" data?</h5>
+
+<p>The description briefly mentions "user-controllable" data. This recognises that other
+data may be generated along with the form, such as log data. This Success Criterion
+is intended to cover data that is entered and can be controlled by the user, such as
+name and address.</p>
+
+<h5 id="sufficient-methods">Sufficient methods</h5>
+
+<p>The techniques provided as "sufficient" are summarised as the following:</p>
+
+<ul>
+<li>Providing a confirmation message before the user finally submits the action, be it an
+insert, update or delete. On a multi-page form in particular, such a confirmation page
+should allow a user to review and check their entries before submitting. <cite>(<a href="http://www.w3.org/TR/WCAG20-TECHS/G168">G168</a>, <a href="http://www.w3.org/TR/WCAG20-TECHS/G98">G98</a>)</cite></li>
+<li>Requiring an additional action - such as providing a confirmation checkbox to be checked -
+before a form can be submitted. This mitigates submitting incorrect or incomplete data
+based on an accidental click of the Submit button. <cite>(<a href="http://www.w3.org/TR/WCAG20-TECHS/G155">G155</a>)</cite></li>
+<li>Allowing a "cooling-off period" during which an online transaction can be amended or
+cancelled. Some contracts allow a certain period of time where a commitment can be
+voided or amended before it is completely binding. <cite>(<a href="http://www.w3.org/TR/WCAG20-TECHS/G164">G164</a>)</cite></li>
+<li>Providing some method to recover deleted items, if no confirmation is provided beforehand -
+for instance, a Trash Can-style system. An undo mechanism upon delete may also satisfy,
+so long as the mechanism to undo is accessible. <cite>(<a href="http://www.w3.org/TR/WCAG20-TECHS/G99">G99</a>)</cite></li>
+</ul>
+
+<blockquote>
+  <p>If the cooling-off period is used, the method to amend or cancel does <em>not</em> need to be itself available online; it may require a phone
+  call or written notice instead.</p>
+</blockquote>
+
+
+                <h3 id="sniff-coverage">Sniff Coverage</h3>
 
                 <p>Note that "[Standard]" will be replaced with "WCAG2A", "WCAG2AA" or "WCAG2AAA", depending on the level being tested.</p>
 
@@ -134,6 +180,8 @@
 </tr>
 
 </tbody></table>
+
+                
 
         </div> <!-- end max-width -->
 

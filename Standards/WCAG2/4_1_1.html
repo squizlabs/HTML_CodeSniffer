@@ -87,13 +87,40 @@
 
         <div class="max-width">
 
-                <h3>Discussion</h3><h4 class="grey-heading">Valid vs. Well-formed</h4>
+                <h3 id="discussion">Discussion</h3><h4>Table of Contents</h4>
 
-<p>Keep in mind that "valid" and "well-formed" are two different things, at least in XML. In an XML document (including XHTML), it only needs to be well-formed to satisfy this Success Criterion - not necessarily valid (technique <a href="http://www.w3.org/TR/WCAG20-TECHS/H75">H75: Ensuring that Web pages are well-formed</a>).</p>
+<ol>
+  <li><a href="#summary">Summary</a></li>
+<ol>
+  <li><a href="#xhtml-documents">XHTML documents</a></li>
+  <li><a href="#html-documents">HTML documents</a></li>
+</ol>
+  <li><a href="#what-can-htmlcodesniffer-check-for">What can HTML&#95;CodeSniffer check for?</a></li>
+</ol>
+<h4 id="summary">Summary</h4>
 
-<h5 class="grey-heading">Replacements for well-formedness requirements in HTML</h5>
+<p>The concept being described in this Success Criterion is similar to that of a document
+being "well-formed", as it is defined in XML. If a document is not well-formed, a user
+agent will either completely reject the document, or attempt to repair it - something
+that may not be interpreted the same way across browsers.</p>
 
-<p>Because HTML serialisation does not have a concept of being "well-formed" so to speak, following technique <a href="http://www.w3.org/TR/WCAG20-TECHS/H88">H88: Using HTML according to spec</a> is sufficient. Otherwise, at an absolute minimum, the following three techniques must be followed:</p>
+<p>Note the rider <em>"except where the specifications allow these features"</em>. This is to
+allow pages that conform to the HTML specification to pass this Success Criterion -
+as it does not require closing tags for many elements (or in some cases, even opening
+tags - for instance, tbody). This is why the three HTML-specific techniques exist:</p>
+
+<h5 id="xhtml-documents">XHTML documents</h5>
+
+<p>For XHTML documents, technique <a href="http://www.w3.org/TR/WCAG20-TECHS/H75">H75: Ensuring that Web pages are well-formed</a>
+applies. Technically speaking, documents that are not well-formed will not render at
+all in browsers, but that does not tend to apply when the document is sent with a HTML
+content type.</p>
+
+<h5 id="html-documents">HTML documents</h5>
+
+<p>Because HTML serialisation does not have a concept of being "well-formed" so to speak,
+following technique <a href="http://www.w3.org/TR/WCAG20-TECHS/H88">H88: Using HTML according to spec</a>
+is sufficient. Otherwise, at an absolute minimum, the following three techniques must be followed:</p>
 
 <ul>
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/H74">H74: Ensuring that opening and closing tags are used according to specification</a></li>
@@ -101,14 +128,26 @@
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/H94">H94: Ensuring that elements do not contain duplicate attributes</a></li>
 </ul>
 
-<p>In contrast to HTML&#95;CodeSniffer cannot check most of these errors, because it performs its check through information it receives from the Document Object Model (DOM). Browsers generally try to correct any invalid nesting, duplicate attributes and the like, so by the time HTML&#95;CodeSniffer gets to it, such analysis is not possible, because the DOM has been "cleaned". Further, if an XHTML document parsed as XML (rather than HTML as in most browsers) fails these techniques, a conforming parser would likely not load the document at all (as it is not well-formed), making analysis impossible.</p>
+<h4 id="what-can-htmlcodesniffer-check-for">What can HTML&#95;CodeSniffer check for?</h4>
 
-<p>HTML&#95;CodeSniffer <strong>will</strong> check for duplicate ID attributes, however. These errors are flagged as a Common Failure - <a href="http://www.w3.org/TR/WCAG20-TECHS/F77">Failure of Success Criterion 4.1.1 due to duplicate values of type ID</a>. The failure is defined this way because the failure is generic, and attributes can be defined as "type ID" for other types of XML documents through a document type definition (DTD) or XML Schema.</p>
+<p>HTML&#95;CodeSniffer makes checks for duplicate ID attributes. These errors are
+flagged as a Common Failure <a href="http://www.w3.org/TR/WCAG20-TECHS/F77">F77: Failure of Success Criterion 4.1.1 due to duplicate values of type ID</a>.
+The failure is defined this way because the failure is generic, and attributes can be
+defined as "type ID" for other types of XML documents through a document type definition (DTD) or XML Schema.</p>
 
-<p>A lack of failures of this kind can only be considered authoritative if a complete document is processed. A document fragment can be tested for duplicate IDs, but it does not guarantee conformance if a fragment is inserted into a document, as it may duplicate IDs used by the fragment.</p>
+<blockquote>
+  <p><em>Note:</em> A lack of failures of this kind can only be considered authoritative if a complete
+  document is processed. A document fragment can be tested for duplicate IDs, but it
+  does not guarantee conformance if a fragment is inserted into a document, as it may duplicate IDs used by the fragment.</p>
+</blockquote>
+
+<p>Other errors in this category cannot currently be tested - and would be impossible to test
+whenever HTML&#95;CodeSniffer is passed a document object model (DOM) element rather than source
+code. This is because any source code provided from the user agent will generally be reconstructed
+from the DOM, and therefore will not be the same as the original source code.</p>
 
 
-                <h3>Sniff Coverage</h3>
+                <h3 id="sniff-coverage">Sniff Coverage</h3>
 
                 <p>Note that "[Standard]" will be replaced with "WCAG2A", "WCAG2AA" or "WCAG2AAA", depending on the level being tested.</p>
 
@@ -140,6 +179,8 @@
 </tr>
 
 </tbody></table>
+
+                
 
                 
 

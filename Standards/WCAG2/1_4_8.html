@@ -93,9 +93,46 @@
 
         <div class="max-width">
 
-                
+                <h3 id="discussion">Discussion</h3><h4>Summary</h4>
 
-                <h3>Sniff Coverage</h3>
+<ul>
+<li><p><em>Foreground and background colors can be selected by the user.</em></p>
+
+<p>Some users require the ability to set colours and other presentation of text as
+they require it, for various reasons. At the very least, changes in presentation
+should be possible through the use of a user style sheet.</p></li>
+<li><p>*Width is no more than 80 characters or glyphs (40 if <abbr title="Chinese, Japanese and Korean (script)">CJK</abbr>).</p>
+
+<p>Shorter line lengths in blocks of text can improve readability for those with
+some reading or vision disabilities. Asian scripts mentioned above usually use
+double-width characters, so the maximum number of glyphs per line is halved for
+text in those scripts.</p></li>
+<li><p><em>Text is not justified (aligned to both the left and the right margins).</em></p>
+
+<p>Uneven spacing can make text more difficult to read. In CSS, blocks of text
+should not use the <em>text-align: justify</em> setting.</p></li>
+<li><p><em>Line spacing (leading) is at least space-and-a-half within paragraphs, and
+paragraph spacing is at least 1.5 times larger than the line spacing.</em></p>
+
+<p>Extra spacing between lines and paragraphs make it easier to track them, being
+especially helpful to users with cognitive difficulties but also useful for all
+sighted readers.</p>
+
+<p>"Space and a half" means an extra. With typical normal CSS line-spacing being 1.2em (120% of
+the font size) in most browsers, this suggests a minimum line-spacing setting of
+1.8em to satisfy this criterion.</p></li>
+<li><p><em>Text can be resized without assistive technology up to 200 percent in a way that
+does not require the user to scroll horizontally to read a line of text on a full-screen window.</em></p>
+
+<p>This does not mean that seeing a horizontal scroll bar at 200% zoom automatically
+fails the success criterion, because it only applies to a specific block of text.
+For instance, multiple columns of text can cause the horizontal scroll bar without
+failure, as long as one does not need to scroll back and forth to read a single
+specific column.</p></li>
+</ul>
+
+
+                <h3 id="sniff-coverage">Sniff Coverage</h3>
 
                 <p>Note that "[Standard]" will be replaced with "WCAG2A", "WCAG2AA" or "WCAG2AAA", depending on the level being tested.</p>
 
@@ -195,6 +232,8 @@
 </tr>
 
 </tbody></table>
+
+                
 
         </div> <!-- end max-width -->
 

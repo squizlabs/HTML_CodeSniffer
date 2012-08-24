@@ -92,18 +92,63 @@
 
         <div class="max-width">
 
-                <h3>Discussion</h3><h4 class="grey-heading">Summary</h4>
+                <h3 id="discussion">Discussion</h3><h4>Table of Contents</h4>
 
-<p>The Understanding page explains why the ratios of 3.0:1, 4.5:1 and 7.0:1 were chosen (the latter for the AAA standard, <a href="./1_4_6">Success Criterion 1.4.6</a>.</p>
+<ol>
+  <li><a href="#summary">Summary</a></li>
+<ol>
+  <li><a href="#contrast-ratio-calcuation">Contrast ratio calcuation</a></li>
+  <li><a href="#exceptions">Exceptions</a></li>
+</ol></ol>
+<h4 id="summary">Summary</h4>
 
-<p>The 3.0:1 ratio is an ergonomic standard under ANSI and ISO (<a href="http://en.wikipedia.org/wiki/ISO_9241">ISO 9241</a>), and the 4.5:1 contrast ratio specified under AA is specified based on an empirical study that users with 20/40 visual acuity have a loss of contrast sensitivity of the equivalent of 1.5:1, compared to 20/20 vision - hence (3.0 * 1.5) = 4.5:1 contrast ratio.</p>
+<p>This is the minimum version of a two-stage criterion relating to contrast between foreground and
+background colours; the <abbr title="Triple A">AAA</abbr> version exists as <a href="./1_4_6">Success Criterion 1.4.6</a>.
+This Success Criterion applies both to text and images of text.</p>
 
-<p>For AAA level and Success Criterion 1.4.6, the contrast ratio specified (7.0:1) is supposed to satisfy 20/80 visual acuity (without correction or assistive technology) - about another 1.5x increase over the 4.5:1 ratio.</p>
+<p>The W3C documentation explains the reasoning for the above ratios. The 3:1 ratio is a ergonomic standard
+under ANSI and ISO (<a href="http://en.wikipedia.org/wiki/ISO_9241">ISO 9241</a>), recommended for normal observers
+with nominal 20/20 visual acuity.</p>
 
-<p>For means of comparison, the maximum contrast ratio, between white and black, is 21.0:1. A formula is available for <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html#contrast-ratiodef">calculating contrast ratio</a> from two RGB values' "relative luminescence".</p>
+<p>The <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html">Understanding SC 1.2.6</a>
+document cites a study which suggests an empirical finding that the difference between 20/20 and 20/40
+visual acuity includes a loss of contrast sensitivity, such that a 1.5x increase in contrast is required
+to remain perceptible. Hence, the minimum contrast for body text is set to 4.5:1.</p>
+
+<p>This is stated to provide adequate contrast to those who do not use assistive technology to enhance contrast,
+but regardless have moderately low vision.</p>
+
+<h5 id="contrast-ratio-calcuation">Contrast ratio calcuation</h5>
+
+<p>The contrast ratio used requires the relative luminance of the two colours to be calculated; the
+W3C provides <a href="http://www.w3.org/TR/WCAG20/#relativeluminancedef">a formula for calculating relative luminance</a>.
+This provides a value between 0.0 (black) and 1.0 (white). A constant (of 0.05) is added as an adjustment
+for average ambient light, and the two are divided.</p>
+
+<p>The minimum possible ratio is 1:1 (the same colour), while the maximum possible is 21:1 (between white
+and black).</p>
+
+<h5 id="exceptions">Exceptions</h5>
+
+<p>Exceptions are made for the following:</p>
+
+<ul>
+<li><p><em>Large-scale text</em>, including images thereof. In Latin-based script, "large text" is defined as 18-point
+normal text, or 14-point bold text (usually 120% and 150% of the default body text size, respectively).
+These have a relaxed contrast requirement of 3:1.</p></li>
+<li><p>Text or images that are <em>incidental</em>, that is</p>
+
+<blockquote>
+  <p>part of an inactive user interface component, that are pure decoration, that are not visible to anyone,
+  or that are part of a picture that contains significant other visual content, have no contrast requirement.</p>
+</blockquote>
+
+<p>These have no minimum contrast requirement.</p></li>
+<li><p>Text that is part of a logotype. These have no minimum contrast requirement.</p></li>
+</ul>
 
 
-                <h3>Sniff Coverage</h3>
+                <h3 id="sniff-coverage">Sniff Coverage</h3>
 
                 <p>Note that "[Standard]" will be replaced with "WCAG2A", "WCAG2AA" or "WCAG2AAA", depending on the level being tested.</p>
 
@@ -183,6 +228,8 @@
 </tr>
 
 </tbody></table>
+
+                
 
         </div> <!-- end max-width -->
 

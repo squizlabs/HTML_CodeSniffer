@@ -85,9 +85,28 @@
 
         <div class="max-width">
 
-                
+                <h3 id="discussion">Discussion</h3><h4>Summary</h4>
 
-                <h3>Sniff Coverage</h3>
+<p>This Success Criterion requires Web pages wishing to conform at Level <abbr title="Triple A">AAA</abbr>,
+that contain the ability to perform a transaction - such as a form submission or a
+multi-page process such as a purchase - to provide the ability to save data - preferably
+automatically - if the process contains the possibility of a user being automatically logged out,
+and re-construct the transaction in progress following re-authentication.</p>
+
+<p>An automatic logout could exist because of a session timing out, or because the process does not believe
+the user is no longer who it is. The former is more of a problem, because of issues with users
+with severe disabilities potentially taking much longer to proceed with transactions.</p>
+
+<blockquote>
+  <p>This Success Criterion, and its sufficient techniques, assume that a form will submit before
+  reporting that re-authentication is required. Some sites attempt to redirect a user to another
+  page after the time-out period for logging back in, using a meta refresh or JavaScript code.
+  This would be a violation of <a href="./2_2_1">Success Criterion 2.2.1</a> unless the redirection time-out
+  can be adjusted or removed as described in that Success Criterion.</p>
+</blockquote>
+
+
+                <h3 id="sniff-coverage">Sniff Coverage</h3>
 
                 <p>Note that "[Standard]" will be replaced with "WCAG2A", "WCAG2AA" or "WCAG2AAA", depending on the level being tested.</p>
 
@@ -124,6 +143,8 @@
 </tr>
 
 </tbody></table>
+
+                
 
         </div> <!-- end max-width -->
 

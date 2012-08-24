@@ -4,7 +4,7 @@ window.onload = function() {
     window.onscroll = function() {
         var offset = window.pageYOffset || document.documentElement.scrollTop;
 
-        if (offset >= 1200) {
+        if (offset >= 200) {
             topDiv.className = 'on';
         } else {
             topDiv.className = 'off';
