@@ -112,11 +112,7 @@ it is likely that users will be relying on assistive technology to view content.
 
                 <p>Note that "[Standard]" will be replaced with "WCAG2A", "WCAG2AA" or "WCAG2AAA", depending on the level being tested.</p>
 
-                
-
-                
-
-                <h4 class="grey-heading">Notices</h4><table>
+                <h4 class="grey-heading">Errors</h4><table>
 <colgroup>
 <col width="42%">
 <col width="42%">
@@ -131,22 +127,78 @@ it is likely that users will be relying on assistive technology to view content.
 
 <tr class="">
 <td id="1_4_6_0_name" headers="name_1_4_6 sc1_4_6">
-<p>Check that a contrast ratio of at least 7.0:1 exists between text (or images of text) and its background colour, or 4.5:1 for large text.</p>
-<div class="fullcode">[Standard].Principle1.Guideline1_4.1_4_6.G17,G18,G148,G174</div></td>
+<p>This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 4.5:1, but text in this element has a contrast ratio of {value}. Recommendation: {colour recommendations}.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_4.1_4_6.G18</div></td>
 <td id="1_4_6_0_applies" headers="applies_1_4_6 sc1_4_6">
-<p>Top element.</p>
+<p>Elements with text with colours that have insufficient colour contrast for the Level AAA's requirements for "large text". The recommendation will contain a suggestion as to a colour change(s) that will satisfy the Success Criterion.</p>
 </td>
 <td id="1_4_6_0_tech" headers="tech_1_4_6 sc1_4_6">
 <ul>
-<li><a href="http://www.w3.org/TR/WCAG20-TECHS/G17">G17</a></li>
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/G18">G18</a></li>
-<li><a href="http://www.w3.org/TR/WCAG20-TECHS/G148">G148</a></li>
-<li><a href="http://www.w3.org/TR/WCAG20-TECHS/G174">G174</a></li>
+</ul>
+</td>
+</tr>
+
+<tr class="">
+<td id="1_4_6_1_name" headers="name_1_4_6 sc1_4_6">
+<p>This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 7:1, but text in this element has a contrast ratio of {value}. Recommendation: {colour recommendations}.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_4.1_4_6.G17</div></td>
+<td id="1_4_6_1_applies" headers="applies_1_4_6 sc1_4_6">
+<p>Elements with text with colours that have insufficient colour contrast for Level AAA's requirements. The recommendation will contain a suggestion as to a colour change(s) that will satisfy the Success Criterion.</p>
+</td>
+<td id="1_4_6_1_tech" headers="tech_1_4_6 sc1_4_6">
+<ul>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/G17">G17</a></li>
 </ul>
 </td>
 </tr>
 
 </tbody></table>
+
+                <h4 class="grey-heading">Warnings</h4><table>
+<colgroup>
+<col width="42%">
+<col width="42%">
+<col width="16%">
+</colgroup>
+<tbody>
+<tr>
+<th id="name_1_4_6">Message Name</th>
+<th id="applies_1_4_6">Applies To</th>
+<th id="tech_1_4_6">Techniques</th>
+</tr>
+
+<tr class="">
+<td id="1_4_6_2_name" headers="name_1_4_6 sc1_4_6">
+<p>This element's text is placed on a background image. Ensure the contrast ratio between the text and all covered parts of the image are at least 4.5:1.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_4.1_4_6.G18</div></td>
+<td id="1_4_6_2_applies" headers="applies_1_4_6 sc1_4_6">
+<p>Text placed in front of a background image. Applies at Level AAA to text defined as "large text".</p>
+</td>
+<td id="1_4_6_2_tech" headers="tech_1_4_6 sc1_4_6">
+<ul>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/G18">G18</a></li>
+</ul>
+</td>
+</tr>
+
+<tr class="">
+<td id="1_4_6_3_name" headers="name_1_4_6 sc1_4_6">
+<p>This element's text is placed on a background image. Ensure the contrast ratio between the text and all covered parts of the image are at least 7:1.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_4.1_4_6.G17</div></td>
+<td id="1_4_6_3_applies" headers="applies_1_4_6 sc1_4_6">
+<p>Text placed in front of a background image. Applies at Level AAA to general text.</p>
+</td>
+<td id="1_4_6_3_tech" headers="tech_1_4_6 sc1_4_6">
+<ul>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/G17">G17</a></li>
+</ul>
+</td>
+</tr>
+
+</tbody></table>
+
+                
 
                 
 

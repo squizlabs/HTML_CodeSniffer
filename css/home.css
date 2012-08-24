@@ -132,7 +132,7 @@ td a:hover {
  position:absolute;
  top:0px;
  right:0px;
- z-index:200000;
+ z-index:90000;
  overflow:hidden;
 }
 

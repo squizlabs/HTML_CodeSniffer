@@ -336,20 +336,6 @@ ID attribute on the intended target itself.</p>
 </td>
 </tr>
 
-<tr class="">
-<td id="4_1_2_4_name" headers="name_4_1_2 sc4_1_2">
-<p>Unable to automatically test for a label for element ID "[Element ID]".</p>
-<div class="fullcode">[Standard].Principle4.Guideline4_1.4_1_2.H91.[NodeName].NameInvalid</div></td>
-<td id="4_1_2_4_applies" headers="applies_4_1_2 sc4_1_2">
-<p>Form control where the ID is not a valid CSS selector.</p>
-</td>
-<td id="4_1_2_4_tech" headers="tech_4_1_2 sc4_1_2">
-<ul>
-<li><a href="http://www.w3.org/TR/WCAG20-TECHS/H91">H91</a></li>
-</ul>
-</td>
-</tr>
-
 </tbody></table>
 
                 <h4 class="grey-heading">Warnings</h4><table>
@@ -366,11 +352,25 @@ ID attribute on the intended target itself.</p>
 </tr>
 
 <tr class="">
-<td id="4_1_2_5_name" headers="name_4_1_2 sc4_1_2">
+<td id="4_1_2_4_name" headers="name_4_1_2 sc4_1_2">
 <p>Anchor element found with a name attribute but without a href or link text. Consider moving the name attribute to become an ID of a parent or nearby element.</p>
 <div class="fullcode">[Standard].Principle4.Guideline4_1.4_1_2.H91.A.EmptyWithName</div></td>
-<td id="4_1_2_5_applies" headers="applies_4_1_2 sc4_1_2">
+<td id="4_1_2_4_applies" headers="applies_4_1_2 sc4_1_2">
 <p>Empty anchor element (no text, no href) but with a name attribute. In HTML5, this breaks the intended role of an "A" element being a link, and the name attribute is also obsolete. (In HTML 4.01, this is legal.) This is the older method of creating an in-page link target, using the name attribute instead of ID.</p>
+</td>
+<td id="4_1_2_4_tech" headers="tech_4_1_2 sc4_1_2">
+<ul>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/H91">H91</a></li>
+</ul>
+</td>
+</tr>
+
+<tr class="">
+<td id="4_1_2_5_name" headers="name_4_1_2 sc4_1_2">
+<p>Anchor element found with an ID but without a href or link text. Consider moving its ID to a parent or nearby element.</p>
+<div class="fullcode">[Standard].Principle4.Guideline4_1.4_1_2.H91.A.Empty</div></td>
+<td id="4_1_2_5_applies" headers="applies_4_1_2 sc4_1_2">
+<p>Empty anchor element (no text, no href) but with an ID. In HTML5, this breaks the intended role of an "A" element being a link. (In HTML 4.01, this is legal.) The ID should be placed on something more concrete, unless the ID is used for reasons like scripting.</p>
 </td>
 <td id="4_1_2_5_tech" headers="tech_4_1_2 sc4_1_2">
 <ul>
@@ -381,10 +381,10 @@ ID attribute on the intended target itself.</p>
 
 <tr class="">
 <td id="4_1_2_6_name" headers="name_4_1_2 sc4_1_2">
-<p>Anchor element found with an ID but without a href or link text. Consider moving its ID to a parent or nearby element.</p>
-<div class="fullcode">[Standard].Principle4.Guideline4_1.4_1_2.H91.A.Empty</div></td>
+<p>Anchor element found with link content, but no href and/or ID attribute has been supplied.</p>
+<div class="fullcode">[Standard].Principle4.Guideline4_1.4_1_2.H91.A.Placeholder</div></td>
 <td id="4_1_2_6_applies" headers="applies_4_1_2 sc4_1_2">
-<p>Empty anchor element (no text, no href) but with an ID. In HTML5, this breaks the intended role of an "A" element being a link. (In HTML 4.01, this is legal.) The ID should be placed on something more concrete, unless the ID is used for reasons like scripting.</p>
+<p>Link with text, but no href or ID. This means it does not have an accessibility API "value". It only counts as a warning, because in the latest HTML5 draft, <a href="http://dev.w3.org/html5/spec/the-a-element.html">an "A" element can be specified without a href</a>.</p>
 </td>
 <td id="4_1_2_6_tech" headers="tech_4_1_2 sc4_1_2">
 <ul>
@@ -395,26 +395,12 @@ ID attribute on the intended target itself.</p>
 
 <tr class="">
 <td id="4_1_2_7_name" headers="name_4_1_2 sc4_1_2">
-<p>Anchor element found with link content, but no href and/or ID attribute has been supplied.</p>
-<div class="fullcode">[Standard].Principle4.Guideline4_1.4_1_2.H91.A.Placeholder</div></td>
-<td id="4_1_2_7_applies" headers="applies_4_1_2 sc4_1_2">
-<p>Link with text, but no href or ID. This means it does not have an accessibility API "value". It only counts as a warning, because in the latest HTML5 draft, <a href="http://dev.w3.org/html5/spec/the-a-element.html">an "A" element can be specified without a href</a>.</p>
-</td>
-<td id="4_1_2_7_tech" headers="tech_4_1_2 sc4_1_2">
-<ul>
-<li><a href="http://www.w3.org/TR/WCAG20-TECHS/H91">H91</a></li>
-</ul>
-</td>
-</tr>
-
-<tr class="">
-<td id="4_1_2_8_name" headers="name_4_1_2 sc4_1_2">
 <p>Anchor elements should not be used for defining in-page link targets. If not using the ID for other purposes (such as CSS or scripting), consider moving it to a parent element.</p>
 <div class="fullcode">[Standard].Principle4.Guideline4_1.4_1_2.H91.A.NoHref</div></td>
-<td id="4_1_2_8_applies" headers="applies_4_1_2 sc4_1_2">
+<td id="4_1_2_7_applies" headers="applies_4_1_2 sc4_1_2">
 <p>Anchor element with no href, but with an ID and text. This breaks the intended role of an "A" element being a link. It will usually be around text inside another parent element (such as a heading); the ID should be moved up for the same effect.</p>
 </td>
-<td id="4_1_2_8_tech" headers="tech_4_1_2 sc4_1_2">
+<td id="4_1_2_7_tech" headers="tech_4_1_2 sc4_1_2">
 <ul>
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/H91">H91</a></li>
 </ul>

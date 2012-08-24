@@ -152,7 +152,48 @@ These have a relaxed contrast requirement of 3:1.</p></li>
 
                 <p>Note that "[Standard]" will be replaced with "WCAG2A", "WCAG2AA" or "WCAG2AAA", depending on the level being tested.</p>
 
-                
+                <h4 class="grey-heading">Errors</h4><table>
+<colgroup>
+<col width="42%">
+<col width="42%">
+<col width="16%">
+</colgroup>
+<tbody>
+<tr>
+<th id="name_1_4_3">Message Name</th>
+<th id="applies_1_4_3">Applies To</th>
+<th id="tech_1_4_3">Techniques</th>
+</tr>
+
+<tr class="">
+<td id="1_4_3_0_name" headers="name_1_4_3 sc1_4_3">
+<p>This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 3:1, but text in this element has a contrast ratio of {value}. Recommendation: {colour recommendations}.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_4.1_4_3.G145</div></td>
+<td id="1_4_3_0_applies" headers="applies_1_4_3 sc1_4_3">
+<p>Elements with text with colours that have insufficient colour contrast for the Level AA's requirements for "large text". The recommendation will contain a suggestion as to a colour change(s) that will satisfy the Success Criterion.</p>
+</td>
+<td id="1_4_3_0_tech" headers="tech_1_4_3 sc1_4_3">
+<ul>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/G145">G145</a></li>
+</ul>
+</td>
+</tr>
+
+<tr class="">
+<td id="1_4_3_1_name" headers="name_1_4_3 sc1_4_3">
+<p>This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 4.5:1, but text in this element has a contrast ratio of {value}. Recommendation: {colour recommendations}.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_4.1_4_3.G18</div></td>
+<td id="1_4_3_1_applies" headers="applies_1_4_3 sc1_4_3">
+<p>Elements with text with colours that have insufficient colour contrast for Level AA's requirements. The recommendation will contain a suggestion as to a colour change(s) that will satisfy the Success Criterion.</p>
+</td>
+<td id="1_4_3_1_tech" headers="tech_1_4_3 sc1_4_3">
+<ul>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/G18">G18</a></li>
+</ul>
+</td>
+</tr>
+
+</tbody></table>
 
                 <h4 class="grey-heading">Warnings</h4><table>
 <colgroup>
@@ -168,28 +209,56 @@ These have a relaxed contrast requirement of 3:1.</p></li>
 </tr>
 
 <tr class="">
-<td id="1_4_3_1_name" headers="name_1_4_3 sc1_4_3">
-<p>Check that this element has an inherited background colour or image to complement the corresponding inline foreground colour.</p>
-<div class="fullcode">[Standard].Principle1.Guideline1_4.1_4_3.F24.FGColour</div></td>
-<td id="1_4_3_1_applies" headers="applies_1_4_3 sc1_4_3">
-<p>Elements with a foreground color style or attribute, without a corresponding background color style or bgcolor attribute.</p>
-</td>
-<td id="1_4_3_1_tech" headers="tech_1_4_3 sc1_4_3">
-<ul>
-<li><a href="http://www.w3.org/TR/WCAG20-TECHS/F24">F24</a></li>
-</ul>
-</td>
-</tr>
-
-<tr class="">
 <td id="1_4_3_2_name" headers="name_1_4_3 sc1_4_3">
-<p>Check that this element has an inherited foreground colour to complement the corresponding inline background colour or image.</p>
-<div class="fullcode">[Standard].Principle1.Guideline1_4.1_4_3.F24.BGColour</div></td>
+<p>This element's text is placed on a background image. Ensure the contrast ratio between the text and all covered parts of the image are at least 3:1.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_4.1_4_3.G145</div></td>
 <td id="1_4_3_2_applies" headers="applies_1_4_3 sc1_4_3">
-<p>Elements with a background style or bgcolor attribute, without a corresponding foreground color style or attribute.</p>
+<p>Text placed in front of a background image. Applies at Level AA to text defined as "large text".</p>
 </td>
 <td id="1_4_3_2_tech" headers="tech_1_4_3 sc1_4_3">
 <ul>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/G145">G145</a></li>
+</ul>
+</td>
+</tr>
+
+<tr class="">
+<td id="1_4_3_3_name" headers="name_1_4_3 sc1_4_3">
+<p>This element's text is placed on a background image. Ensure the contrast ratio between the text and all covered parts of the image are at least 4.5:1.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_4.1_4_3.G18</div></td>
+<td id="1_4_3_3_applies" headers="applies_1_4_3 sc1_4_3">
+<p>Text placed in front of a background image. Applies at Level AA to general text.</p>
+</td>
+<td id="1_4_3_3_tech" headers="tech_1_4_3 sc1_4_3">
+<ul>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/G18">G18</a></li>
+</ul>
+</td>
+</tr>
+
+<tr class="">
+<td id="1_4_3_4_name" headers="name_1_4_3 sc1_4_3">
+<p>Check that this element has an inherited background colour or image to complement the corresponding inline foreground colour.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_4.1_4_3.F24.FGColour</div></td>
+<td id="1_4_3_4_applies" headers="applies_1_4_3 sc1_4_3">
+<p>Elements with a foreground color style or attribute, without a corresponding background color style or bgcolor attribute.</p>
+</td>
+<td id="1_4_3_4_tech" headers="tech_1_4_3 sc1_4_3">
+<ul>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/F24">F24</a></li>
+</ul>
+</td>
+</tr>
+
+<tr class="">
+<td id="1_4_3_5_name" headers="name_1_4_3 sc1_4_3">
+<p>Check that this element has an inherited foreground colour to complement the corresponding inline background colour or image.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_4.1_4_3.F24.BGColour</div></td>
+<td id="1_4_3_5_applies" headers="applies_1_4_3 sc1_4_3">
+<p>Elements with a background style or bgcolor attribute, without a corresponding foreground color style or attribute.</p>
+</td>
+<td id="1_4_3_5_tech" headers="tech_1_4_3 sc1_4_3">
+<ul>
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/F24">F24</a></li>
 </ul>
 </td>
@@ -197,37 +266,7 @@ These have a relaxed contrast requirement of 3:1.</p></li>
 
 </tbody></table>
 
-                <h4 class="grey-heading">Notices</h4><table>
-<colgroup>
-<col width="42%">
-<col width="42%">
-<col width="16%">
-</colgroup>
-<tbody>
-<tr>
-<th id="name_1_4_3">Message Name</th>
-<th id="applies_1_4_3">Applies To</th>
-<th id="tech_1_4_3">Techniques</th>
-</tr>
-
-<tr class="">
-<td id="1_4_3_0_name" headers="name_1_4_3 sc1_4_3">
-<p>Check that a contrast ratio of at least 4.5:1 exists between text (or images of text) and its background colour, or 3.0:1 for large text.</p>
-<div class="fullcode">[Standard].Principle1.Guideline1_4.1_4_3.G18,G145,G148,G174</div></td>
-<td id="1_4_3_0_applies" headers="applies_1_4_3 sc1_4_3">
-<p>Top element.</p>
-</td>
-<td id="1_4_3_0_tech" headers="tech_1_4_3 sc1_4_3">
-<ul>
-<li><a href="http://www.w3.org/TR/WCAG20-TECHS/G18">G18</a></li>
-<li><a href="http://www.w3.org/TR/WCAG20-TECHS/G145">G145</a></li>
-<li><a href="http://www.w3.org/TR/WCAG20-TECHS/G148">G148</a></li>
-<li><a href="http://www.w3.org/TR/WCAG20-TECHS/G174">G174</a></li>
-</ul>
-</td>
-</tr>
-
-</tbody></table>
+                
 
                 
 

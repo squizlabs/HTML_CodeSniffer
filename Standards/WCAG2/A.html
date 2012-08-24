@@ -357,8 +357,14 @@
 
 <tbody>
 <tr class="top-row">
-<td id="sc1_3_1" rowspan="36" class="scrow"><h5 class="grey-heading"><a href="1_3_1"><abbr title="Success Criterion">SC</abbr> 1.3.1: Info and Relationships (Level <abbr title="Single A">A</abbr>)</a></h5><p>Information, structure, and relationships conveyed through presentation can be programmatically determined or are available in text.</p>
-</td><td headers="name_1_3 sc1_3_1" class=" error"><p><strong>Error:</strong> Multiple labels exist with the same "for" attribute. If these labels refer to different form controls, the controls should have unique "id" attributes.</p>
+<td id="sc1_3_1" rowspan="37" class="scrow"><h5 class="grey-heading"><a href="1_3_1"><abbr title="Success Criterion">SC</abbr> 1.3.1: Info and Relationships (Level <abbr title="Single A">A</abbr>)</a></h5><p>Information, structure, and relationships conveyed through presentation can be programmatically determined or are available in text.</p>
+</td><td headers="name_1_3 sc1_3_1" class=" error"><p><strong>Error:</strong> Heading tag found with no content. Text that is not intended as a heading should not be marked up with heading tags.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H42.2</div></div></td><td headers="applies_1_3 sc1_3_1" class=""><p>Heading element (h1-h6) that has no content. Non-breaking spaces are included in definition of "no content" in this case.</p>
+</td><td headers="tech_1_3 sc1_3_1" class=""><ul>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/H42">H42</a></li>
+</ul>
+</td><tr>
+<td headers="name_1_3 sc1_3_1" class=" error"><p><strong>Error:</strong> Multiple labels exist with the same "for" attribute. If these labels refer to different form controls, the controls should have unique "id" attributes.</p>
 <div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H93</div></div></td><td headers="applies_1_3 sc1_3_1" class=""><p>Second and subsequent sightings of a specific value for the "for" attribute. Labels should be unique per element.</p>
 </td><td headers="tech_1_3 sc1_3_1" class=""><ul>
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/H93">H93</a></li>
@@ -366,6 +372,12 @@
 </td><tr>
 <td headers="name_1_3 sc1_3_1" class=" error"><p><strong>Error:</strong> This label's "for" attribute contains an ID that does not exist in the document.</p>
 <div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H44.NonExistent</div></div></td><td headers="applies_1_3 sc1_3_1" class=""><p>Label with a "for" attribute that does not match any ID used in the document.</p>
+</td><td headers="tech_1_3 sc1_3_1" class=""><ul>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/H44">H44</a></li>
+</ul>
+</td><tr>
+<td headers="name_1_3 sc1_3_1" class=" warning"><p><strong>Warning:</strong> This label's "for" attribute contains an ID that does not exist in the document fragment.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H44.NonExistentFragment</div></div></td><td headers="applies_1_3 sc1_3_1" class=""><p>Label with a "for" attribute that does not match any ID used in the document fragment. This is does not </p>
 </td><td headers="tech_1_3 sc1_3_1" class=""><ul>
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/H44">H44</a></li>
 </ul>
@@ -569,12 +581,6 @@
 </td><td headers="tech_1_3 sc1_3_1" class=""><ul>
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/H48">H48</a></li>
 </ul>
-</td><tr>
-<td headers="name_1_3 sc1_3_1" class=" error"><p><strong>Error:</strong> Heading tag found with no content. Text that is not intended as a heading should not be marked up with heading tags.</p>
-<div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H42.2</div></div></td><td headers="applies_1_3 sc1_3_1" class=""><p>Heading element (h1-h6) that has no content. Non-breaking spaces are included in definition of "no content" in this case.</p>
-</td><td headers="tech_1_3 sc1_3_1" class=""><ul>
-<li><a href="http://www.w3.org/TR/WCAG20-TECHS/H42">H42</a></li>
-</ul>
 </td><tr class="top-row">
 <td id="sc1_3_2" rowspan="1" class="scrow"><h5 class="grey-heading"><a href="1_3_2"><abbr title="Success Criterion">SC</abbr> 1.3.2: Meaningful Sequence (Level <abbr title="Single A">A</abbr>)</a></h5><p>When the sequence in which content is presented affects its meaning, a correct reading sequence can be programmatically determined.</p>
 </td><td headers="name_1_3 sc1_3_2" class=" notice"><p><strong>Notice:</strong> Check that the content is ordered in a meaningful sequence when linearised, such as when style sheets are disabled.</p>
@@ -631,7 +637,7 @@
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/F23">F23</a></li>
 </ul>
 </td><tr class="top-row">
-<td id="sc1_4_3" rowspan="3" class="scrow"><h5 class="grey-heading"><a href="1_4_3"><abbr title="Success Criterion">SC</abbr> 1.4.3: Contrast (Minimum) (Level <abbr title="Double A">AA</abbr>)</a></h5><p>The visual presentation of text and images of text has a contrast ratio of at least 4.5:1, except for the following:</p>
+<td id="sc1_4_3" rowspan="6" class="scrow"><h5 class="grey-heading"><a href="1_4_3"><abbr title="Success Criterion">SC</abbr> 1.4.3: Contrast (Minimum) (Level <abbr title="Double A">AA</abbr>)</a></h5><p>The visual presentation of text and images of text has a contrast ratio of at least 4.5:1, except for the following:</p>
 
 <ul>
 <li><em>Large Text:</em> Large-scale text and images of large-scale text have a contrast ratio of at least 3:1;</li>
@@ -639,13 +645,28 @@
 <li><em>Logotypes:</em> Text that is part of a logo or brand name has no minimum contrast requirement.</li>
 </ul>
 <p><strong>Editor's Note:</strong> Superseded by <a href="#sc1_4_6">Success Criterion 1.4.6</a> at level AAA, which is a stricter application of the same concept.</p>
-</td><td headers="name_1_4 sc1_4_3" class="na notice"><p><strong>Notice:</strong> Check that a contrast ratio of at least 4.5:1 exists between text (or images of text) and its background colour, or 3.0:1 for large text.</p>
-<div class="fullcode">[Standard].Principle1.Guideline1_4.1_4_3.G18,G145,G148,G174</div></div></td><td headers="applies_1_4 sc1_4_3" class="na"><p>Top element.</p>
+</td><td headers="name_1_4 sc1_4_3" class="na notice"><p><strong>Notice:</strong> This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 4.5:1, but text in this element has a contrast ratio of {value}. Recommendation: {colour recommendations}.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_4.1_4_3.G18</div></div></td><td headers="applies_1_4 sc1_4_3" class="na"><p>Elements with text with colours that have insufficient colour contrast for Level AA's requirements. The recommendation will contain a suggestion as to a colour change(s) that will satisfy the Success Criterion.</p>
 </td><td headers="tech_1_4 sc1_4_3" class="na"><ul>
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/G18">G18</a></li>
+</ul>
+</td><tr>
+<td headers="name_1_4 sc1_4_3" class="na notice"><p><strong>Notice:</strong> This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 3:1, but text in this element has a contrast ratio of {value}. Recommendation: {colour recommendations}.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_4.1_4_3.G145</div></div></td><td headers="applies_1_4 sc1_4_3" class="na"><p>Elements with text with colours that have insufficient colour contrast for the Level AA's requirements for "large text". The recommendation will contain a suggestion as to a colour change(s) that will satisfy the Success Criterion.</p>
+</td><td headers="tech_1_4 sc1_4_3" class="na"><ul>
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/G145">G145</a></li>
-<li><a href="http://www.w3.org/TR/WCAG20-TECHS/G148">G148</a></li>
-<li><a href="http://www.w3.org/TR/WCAG20-TECHS/G174">G174</a></li>
+</ul>
+</td><tr>
+<td headers="name_1_4 sc1_4_3" class="na notice"><p><strong>Notice:</strong> This element's text is placed on a background image. Ensure the contrast ratio between the text and all covered parts of the image are at least 4.5:1.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_4.1_4_3.G18</div></div></td><td headers="applies_1_4 sc1_4_3" class="na"><p>Text placed in front of a background image. Applies at Level AA to general text.</p>
+</td><td headers="tech_1_4 sc1_4_3" class="na"><ul>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/G18">G18</a></li>
+</ul>
+</td><tr>
+<td headers="name_1_4 sc1_4_3" class="na notice"><p><strong>Notice:</strong> This element's text is placed on a background image. Ensure the contrast ratio between the text and all covered parts of the image are at least 3:1.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_4.1_4_3.G145</div></div></td><td headers="applies_1_4 sc1_4_3" class="na"><p>Text placed in front of a background image. Applies at Level AA to text defined as "large text".</p>
+</td><td headers="tech_1_4 sc1_4_3" class="na"><ul>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/G145">G145</a></li>
 </ul>
 </td><tr>
 <td headers="name_1_4 sc1_4_3" class=" warning"><p><strong>Warning:</strong> Check that this element has an inherited foreground colour to complement the corresponding inline background colour or image.</p>
@@ -685,20 +706,35 @@
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/C30">C30</a></li>
 </ul>
 </td><tr class="top-row">
-<td id="sc1_4_6" rowspan="1" class="scrow"><h5 class="grey-heading"><a href="1_4_6"><abbr title="Success Criterion">SC</abbr> 1.4.6: Contrast (Enhanced) (Level <abbr title="Triple A">AAA</abbr>)</a></h5><p>The visual presentation of text and images of text has a contrast ratio of at least 7:1, except for the following:</p>
+<td id="sc1_4_6" rowspan="4" class="scrow"><h5 class="grey-heading"><a href="1_4_6"><abbr title="Success Criterion">SC</abbr> 1.4.6: Contrast (Enhanced) (Level <abbr title="Triple A">AAA</abbr>)</a></h5><p>The visual presentation of text and images of text has a contrast ratio of at least 7:1, except for the following:</p>
 
 <ul>
 <li><em>Large Text:</em> Large-scale text and images of large-scale text have a contrast ratio of at least 4.5:1;</li>
 <li><em>Incidental:</em> Text or images of text that are part of an inactive user interface component, that are pure decoration, that are not visible to anyone, or that are part of a picture that contains significant other visual content, have no contrast requirement.</li>
 <li><em>Logotypes:</em> Text that is part of a logo or brand name has no minimum contrast requirement.</li>
 </ul>
-</td><td headers="name_1_4 sc1_4_6" class="na warning"><p><strong>Warning:</strong> Check that a contrast ratio of at least 7.0:1 exists between text (or images of text) and its background colour, or 4.5:1 for large text.</p>
-<div class="fullcode">[Standard].Principle1.Guideline1_4.1_4_6.G17,G18,G148,G174</div></div></td><td headers="applies_1_4 sc1_4_6" class="na"><p>Top element.</p>
+</td><td headers="name_1_4 sc1_4_6" class="na warning"><p><strong>Warning:</strong> This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 7:1, but text in this element has a contrast ratio of {value}. Recommendation: {colour recommendations}.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_4.1_4_6.G17</div></div></td><td headers="applies_1_4 sc1_4_6" class="na"><p>Elements with text with colours that have insufficient colour contrast for Level AAA's requirements. The recommendation will contain a suggestion as to a colour change(s) that will satisfy the Success Criterion.</p>
 </td><td headers="tech_1_4 sc1_4_6" class="na"><ul>
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/G17">G17</a></li>
+</ul>
+</td><tr>
+<td headers="name_1_4 sc1_4_6" class="na warning"><p><strong>Warning:</strong> This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 4.5:1, but text in this element has a contrast ratio of {value}. Recommendation: {colour recommendations}.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_4.1_4_6.G18</div></div></td><td headers="applies_1_4 sc1_4_6" class="na"><p>Elements with text with colours that have insufficient colour contrast for the Level AAA's requirements for "large text". The recommendation will contain a suggestion as to a colour change(s) that will satisfy the Success Criterion.</p>
+</td><td headers="tech_1_4 sc1_4_6" class="na"><ul>
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/G18">G18</a></li>
-<li><a href="http://www.w3.org/TR/WCAG20-TECHS/G148">G148</a></li>
-<li><a href="http://www.w3.org/TR/WCAG20-TECHS/G174">G174</a></li>
+</ul>
+</td><tr>
+<td headers="name_1_4 sc1_4_6" class="na warning"><p><strong>Warning:</strong> This element's text is placed on a background image. Ensure the contrast ratio between the text and all covered parts of the image are at least 7:1.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_4.1_4_6.G17</div></div></td><td headers="applies_1_4 sc1_4_6" class="na"><p>Text placed in front of a background image. Applies at Level AAA to general text.</p>
+</td><td headers="tech_1_4 sc1_4_6" class="na"><ul>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/G17">G17</a></li>
+</ul>
+</td><tr>
+<td headers="name_1_4 sc1_4_6" class="na warning"><p><strong>Warning:</strong> This element's text is placed on a background image. Ensure the contrast ratio between the text and all covered parts of the image are at least 4.5:1.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_4.1_4_6.G18</div></div></td><td headers="applies_1_4 sc1_4_6" class="na"><p>Text placed in front of a background image. Applies at Level AAA to text defined as "large text".</p>
+</td><td headers="tech_1_4 sc1_4_6" class="na"><ul>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/G18">G18</a></li>
 </ul>
 </td><tr class="top-row">
 <td id="sc1_4_7" rowspan="1" class="scrow"><h5 class="grey-heading"><a href="1_4_7"><abbr title="Success Criterion">SC</abbr> 1.4.7: Low or No Background Audio (Level <abbr title="Triple A">AAA</abbr>)</a></h5><p>For prerecorded audio-only content that (1) contains primarily speech in the foreground, (2) is not an audio CAPTCHA or audio logo, and (3) is not vocalization intended to be primarily musical expression such as singing or rapping, at least one of the following is true:</p>
@@ -1044,21 +1080,15 @@
 </ul>
 </td><tr>
 <td headers="name_2_4 sc2_4_1" class=" warning"><p><strong>Warning:</strong> This link points to a named anchor "[link target]" within the document, but no anchor exists with that name in the fragment tested.</p>
-<div class="fullcode">[Standard].Principle2.Guideline2_4.2_4_1.G1,G123,G124.NoSuchIdFragment</div></div></td><td headers="applies_2_4 sc2_4_1" class=""><p>Anchor (a) or area element with a href element pointing to an ID in the same document, such as "#content", but where that anchor - defined through an ID (anywhere), or a name attribute on an "a" attribute - does not exist. Applies to document fragments: such a message is non-authoritative, as it depends on the document around it.</p>
+<div class="fullcode">[Standard].Principle2.Guideline2_4.2_4_1.G1,G123,G124.NoSuchIdFragment2.4.2</div></div></td><td headers="applies_2_4 sc2_4_1" class=""><p>Anchor (a) or area element with a href element pointing to an ID in the same document, such as "#content", but where that anchor - defined through an ID (anywhere), or a name attribute on an "a" attribute - does not exist. Applies to document fragments: such a message is non-authoritative, as it depends on the document around it.</p>
 </td><td headers="tech_2_4 sc2_4_1" class=""><ul>
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/G1">G1</a></li>
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/G123">G123</a></li>
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/G124">G124</a></li>
 </ul>
 </td><tr class="top-row">
-<td id="sc2_4_2" rowspan="4" class="scrow"><h5 class="grey-heading"><a href="2_4_2"><abbr title="Success Criterion">SC</abbr> 2.4.2: Page Titled (Level <abbr title="Single A">A</abbr>)</a></h5><p>Web pages have titles that describe topic or purpose.</p>
-</td><td headers="name_2_4 sc2_4_2" class=" error"><p><strong>Error:</strong> There is no head section in which to place a descriptive title element.</p>
-<div class="fullcode">[Standard].Principle2.Guideline2_4.2_4_2.H25.1.NoHeadEl</div></div></td><td headers="applies_2_4 sc2_4_2" class=""><p>Document with a non-existent head section. Titles must be placed there.</p>
-</td><td headers="tech_2_4 sc2_4_2" class=""><ul>
-<li><a href="http://www.w3.org/TR/WCAG20-TECHS/H25">H25</a></li>
-</ul>
-</td><tr>
-<td headers="name_2_4 sc2_4_2" class=" error"><p><strong>Error:</strong> A title should be provided for the document, using a non-empty title element in the head section.</p>
+<td id="sc2_4_2" rowspan="3" class="scrow"><h5 class="grey-heading"><a href="2_4_2"><abbr title="Success Criterion">SC</abbr> 2.4.2: Page Titled (Level <abbr title="Single A">A</abbr>)</a></h5><p>Web pages have titles that describe topic or purpose.</p>
+</td><td headers="name_2_4 sc2_4_2" class=" error"><p><strong>Error:</strong> A title should be provided for the document, using a non-empty title element in the head section.</p>
 <div class="fullcode">[Standard].Principle2.Guideline2_4.2_4_2.H25.1.NoTitleEl</div></div></td><td headers="applies_2_4 sc2_4_2" class=""><p>Document with a head section, but missing a title attribute.</p>
 </td><td headers="tech_2_4 sc2_4_2" class=""><ul>
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/H25">H25</a></li>
@@ -1454,7 +1484,7 @@
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/F77">F77</a></li>
 </ul>
 </td><tr class="top-row">
-<td id="sc4_1_2" rowspan="9" class="scrow"><h5 class="grey-heading"><a href="4_1_2"><abbr title="Success Criterion">SC</abbr> 4.1.2: Name, Role, Value (Level <abbr title="Single A">A</abbr>)</a></h5><p>For all user interface components (including but not limited to: form elements, links and components generated by scripts), the name and role can be programmatically determined; states, properties, and values that can be set by the user can be programmatically set; and notification of changes to these items is available to user agents, including assistive technologies.</p>
+<td id="sc4_1_2" rowspan="8" class="scrow"><h5 class="grey-heading"><a href="4_1_2"><abbr title="Success Criterion">SC</abbr> 4.1.2: Name, Role, Value (Level <abbr title="Single A">A</abbr>)</a></h5><p>For all user interface components (including but not limited to: form elements, links and components generated by scripts), the name and role can be programmatically determined; states, properties, and values that can be set by the user can be programmatically set; and notification of changes to these items is available to user agents, including assistive technologies.</p>
 
 <p><em>Note:</em> This success criterion is primarily for Web authors who develop or script their own user interface components. For example, standard HTML controls already meet this success criterion when used according to specification.</p>
 </td><td headers="name_4_1 sc4_1_2" class=" warning"><p><strong>Warning:</strong> Anchor element found with an ID but without a href or link text. Consider moving its ID to a parent or nearby element.</p>
@@ -1489,12 +1519,6 @@
 </td><tr>
 <td headers="name_4_1 sc4_1_2" class=" error"><p><strong>Error:</strong> Anchor element found with a valid href attribute, but no link content has been supplied.</p>
 <div class="fullcode">[Standard].Principle4.Guideline4_1.4_1_2.H91.A.NoContent</div></div></td><td headers="applies_4_1 sc4_1_2" class=""><p>Link with a href attribute, but without link text. This means it does not have an accessibility API "name".</p>
-</td><td headers="tech_4_1 sc4_1_2" class=""><ul>
-<li><a href="http://www.w3.org/TR/WCAG20-TECHS/H91">H91</a></li>
-</ul>
-</td><tr>
-<td headers="name_4_1 sc4_1_2" class=" error"><p><strong>Error:</strong> Unable to automatically test for a label for element ID "[Element ID]".</p>
-<div class="fullcode">[Standard].Principle4.Guideline4_1.4_1_2.H91.[NodeName].NameInvalid</div></div></td><td headers="applies_4_1 sc4_1_2" class=""><p>Form control where the ID is not a valid CSS selector.</p>
 </td><td headers="tech_4_1 sc4_1_2" class=""><ul>
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/H91">H91</a></li>
 </ul>
