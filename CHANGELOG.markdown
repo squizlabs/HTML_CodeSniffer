@@ -1,7 +1,8 @@
 # HTML_CodeSniffer Bookmarklet Changelog
 
 A list of the changes made to the HTML\_CodeSniffer bookmarklet since its initial
-release.
+release. This will be updated when the bookmarklet is updated on the [official
+HTML\_CodeSniffer web site](http://squizlabs.github.com/HTML_CodeSniffer).
 
 Items prefixed with "SC" refer to changes or fixes to the tests in that Success
 Criterion (or Criteria), and should be read in conjunction with the W3C's documentation
@@ -9,7 +10,12 @@ for the [Web Content Accessibility Guidelines (WCAG) 2.0](http://www.w3.org/TR/W
 
 ## Version 27 (TBA)
 
-- **SC 1.4.3, 1.4.6:** New test relating to Contrast ratios. (Issue #26)
+- **SC 1.4.3, 1.4.6:** New tests relating to Contrast ratios. Instead of a general
+  notice, HTML\_CodeSniffer will attempt to calculate contrast ratios where
+  background and foreground colours are known, and issue errors containing the actual
+  and required contrast ratios, and a recommended change in colour. Warnings will be
+  issued where a background image makes it impossible to determine the actual
+  contrast ratio. (Issue #26)
 - **Auditor:** Fixed a bug with the "point to element" function with elements that
   are styled with a "fixed" position. (Issue #25)
 - **SC 2.4.1:** Fixed a regression arising from Issue #22, where some non-
@@ -45,4 +51,28 @@ for the [Web Content Accessibility Guidelines (WCAG) 2.0](http://www.w3.org/TR/W
 
 ## Version 17 (10 Jul 2012)
 
-- Initial released version of HTML_CodeSniffer bookmarklet.
+- *This version needs expanding.*
+
+## Version 14 (2 Jul 2012)
+
+- *This version needs expanding.*
+
+## Version 13 (19 Jun 2012)
+
+- *This version needs expanding.*
+
+## Version 12 (13 Jun 2012)
+
+- *This version needs expanding.*
+
+## Version 11 (7 Jun 2012)
+
+- *This version needs expanding.*
+
+## Version 6 (28 May 2012)
+
+- *This version needs expanding.*
+
+## Version 1 (10 May 2012)
+
+- Initial beta version of HTML_CodeSniffer bookmarklet.
