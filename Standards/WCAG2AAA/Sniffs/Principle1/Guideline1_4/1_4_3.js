@@ -66,7 +66,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3 = {
 
                 if (hasBgImg === true) {
                     code += '.BgImage';
-                    HTMLCS.addMessage(HTMLCS.WARNING, element, 'This element\'s text is placed on a background image, but no solid background colour is available. Ensure the contrast ratio between the text and all covered parts of the image are at least ' + required + ':1.' + recommendText, code);
+                    HTMLCS.addMessage(HTMLCS.WARNING, element, 'This element\'s text is placed on a background image. Ensure the contrast ratio between the text and all covered parts of the image are at least ' + required + ':1.', code);
                 } else {
                     code += '.Fail';
                     HTMLCS.addMessage(HTMLCS.ERROR, element, 'This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least ' + required + ':1, but text in this element has a contrast ratio of ' + value + ':1.' + recommendText, code);
