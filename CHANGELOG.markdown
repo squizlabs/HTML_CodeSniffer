@@ -22,7 +22,8 @@ for the [Web Content Accessibility Guidelines (WCAG) 2.0](http://www.w3.org/TR/W
   existent named anchors were being treated as coming from a full document body (and
   thus being emitted as authoritative errors) instead of warnings.
 - **SC 1.3.1:** Labels pointing to a non-existent ID will now emit either an error or
-  warning depending on whether, similar to the "named anchor" test in SC 2.4.1.
+  warning depending on whether a full document (or at least a body tag) was passed,
+  similar to the "named anchor" test in SC 2.4.1.
 
 ## Version 24 (20 Aug 2012)
 
@@ -38,7 +39,7 @@ for the [Web Content Accessibility Guidelines (WCAG) 2.0](http://www.w3.org/TR/W
   an Error message. ([Issue #21](http://squizlabs.github.com/HTML_CodeSniffer/issues/21))
 - **SC 1.3.1:** Fixed a bug where, if passed a source code fragment, Webkit-based
   browsers would emit false errors, where a label would be stated as pointing to a
-  non-existent ID where they are not ([Issue #22](http://squizlabs.github.com/HTML_CodeSniffer/issues/22))
+  non-existent ID, where that ID actually exists. ([Issue #22](http://squizlabs.github.com/HTML_CodeSniffer/issues/22))
 
 ## Version 19 (24 Jul 2012)
 
