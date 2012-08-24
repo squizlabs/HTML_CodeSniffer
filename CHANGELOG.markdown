@@ -115,4 +115,4 @@ for the [Web Content Accessibility Guidelines (WCAG) 2.0](http://www.w3.org/TR/W
 
 ## Version 1 (10 May 2012)
 
-- Initial beta version of HTML_CodeSniffer bookmarklet.
+- Initial version of HTML_CodeSniffer bookmarklet.
