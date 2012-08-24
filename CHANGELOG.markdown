@@ -10,12 +10,12 @@ for the [Web Content Accessibility Guidelines (WCAG) 2.0](http://www.w3.org/TR/W
 
 ## Version 24+ (TBA)
 
-- **SC 1.4.3, 1.4.6:** New tests relating to Contrast ratios. Instead of a general
-  notice, HTML\_CodeSniffer will attempt to calculate contrast ratios where
-  background and foreground colours are known, and issue errors containing the actual
-  and required contrast ratios, and a recommended change in colour. Warnings will be
-  issued where a background image makes it impossible to determine the actual
-  contrast ratio. ([Issue #26](http://squizlabs.github.com/HTML_CodeSniffer/issues/26))
+- **SC 1.4.3, 1.4.6:** New tests relating to contrast ratios between foreground and
+  background colours. Instead of a general notice, HTML\_CodeSniffer will attempt to
+  calculate contrast ratios where background and foreground colours are known, and
+  issue errors containing the actual and required contrast ratios, and a recommended
+  change in colour. Warnings will be issued where a background image makes it
+  impossible to determine the actual contrast ratio. ([Issue #26](http://squizlabs.github.com/HTML_CodeSniffer/issues/26))
 - **Auditor:** Fixed a bug with the "point to element" function with elements that
   are styled with a "fixed" position. ([Issue #25](http://squizlabs.github.com/HTML_CodeSniffer/issues/25))
 - **SC 2.4.1:** Fixed a regression arising from [Issue #22](http://squizlabs.github.com/HTML_CodeSniffer/issues/22), where some non-
@@ -29,14 +29,14 @@ for the [Web Content Accessibility Guidelines (WCAG) 2.0](http://www.w3.org/TR/W
 
 - **SC 2.4.1:** When testing a same-page link for existence of a named anchor,
   HTML\_CodeSniffer now recognises "a" elements using the "name" attribute (as
-  permitted in HTML 4.01) as a named anchors, not just IDs. ([Pull Request #24](http://squizlabs.github.com/HTML_CodeSniffer/issues/24))
+  permitted in HTML 4.01) as named anchors, not just IDs. ([Pull Request #24](http://squizlabs.github.com/HTML_CodeSniffer/issues/24))
 
 ## Version 23 (15 Aug 2012)
 
 - **SC 4.1.2:** HTML\_CodeSniffer no longer skips checking for explicit labels where
-  a form control did not have an ID which was also a valid CSS selector (which is a
-  subset of what is valid in HTML 4.01 and HTML5). These skipped checks resulted in
-  an Error message. ([Issue #21](http://squizlabs.github.com/HTML_CodeSniffer/issues/21))
+  a form control used an ID which was not a legal CSS selector, but is legal in
+  HTML 4.01 and HTML5. These skipped checks previously resulted in an Error message.
+  ([Issue #21](http://squizlabs.github.com/HTML_CodeSniffer/issues/21))
 - **SC 1.3.1:** Fixed a bug where, if passed a source code fragment, Webkit-based
   browsers would emit false errors, where a label would be stated as pointing to a
   non-existent ID, where that ID actually exists. ([Issue #22](http://squizlabs.github.com/HTML_CodeSniffer/issues/22))
