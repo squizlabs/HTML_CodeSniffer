@@ -8,7 +8,7 @@ Items prefixed with "SC" refer to changes or fixes to the tests in that Success
 Criterion (or Criteria), and should be read in conjunction with the W3C's documentation
 for the [Web Content Accessibility Guidelines (WCAG) 2.0](http://www.w3.org/TR/WCAG20).
 
-## Version 24+ (TBA)
+## Version 29 (24 Aug 2012)
 
 - **SC 1.4.3, 1.4.6:** New tests relating to contrast ratios between foreground and
   background colours. Instead of a general notice, HTML\_CodeSniffer will attempt to
