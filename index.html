@@ -62,31 +62,34 @@
 
                     <p>To get you started, HTML_CodeSniffer comes with a set of 3 standards that enforce the <a href="http://www.w3.org/TR/WCAG/">Web Content Accessibility Guidelines (WCAG) 2.0</a>. An auditor interface is provided by a bookmarklet to let you try out the WCAG 2.0 checks on any web page.</p>
 
-                    <div id="ourCounter" class="statsCounter" style="display:none;"></div>
+                    <div id="issueCounterWrap" style="display:none;">
+                        <span class="statsHeading">Issues Detected</span>
+                        <div id="issueCounter" class="statsCounter"></div>
+                    </div>
 
                     <script type="text/javascript">
                         jQuery(document).ready(function($) {
                             loadHTMLCSStats(function(stats) {
-                                //$('#ourCounter').css('display', 'block');
+                                //$('#issueCounterWrap').css('display', 'block');
 
                                 var count = stats.errors + stats.warnings + stats.notices;
 
-                                $('#ourCounter').html(count);
-                                $('#ourCounter').formatNumber({format:"###,###,###,###", locale:"us"});
+                                $('#issueCounter').html(count);
+                                $('#issueCounter').formatNumber({format:"###,###,###,###", locale:"us"});
 
                                 setInterval(function() {
-                                    $('#ourCounter').html(count++);
-                                    $('#ourCounter').formatNumber({format:"###,###,###,###", locale:"us"});
+                                    $('#issueCounter').html(count++);
+                                    $('#issueCounter').formatNumber({format:"###,###,###,###", locale:"us"});
                                 }, (1000 * stats.errorSeconds));
 
                                 setInterval(function() {
-                                    $('#ourCounter').html(count++);
-                                    $('#ourCounter').formatNumber({format:"###,###,###,###", locale:"us"});
+                                    $('#issueCounter').html(count++);
+                                    $('#issueCounter').formatNumber({format:"###,###,###,###", locale:"us"});
                                 }, (1000 * stats.warningSeconds));
 
                                 setInterval(function() {
-                                    $('#ourCounter').html(count++);
-                                    $('#ourCounter').formatNumber({format:"###,###,###,###", locale:"us"});
+                                    $('#issueCounter').html(count++);
+                                    $('#issueCounter').formatNumber({format:"###,###,###,###", locale:"us"});
                                 }, (1000 * stats.noticesSeconds));
                             });
                         });
