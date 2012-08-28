@@ -11,6 +11,9 @@
 
         <script type="text/javascript" src="./build/HTMLCS.js"></script>
         <script type="text/javascript" src="./home.js"></script>
+        <script type="text/javascript" src="./jquery-1.8.0.min.js"></script>
+        <script type="text/javascript" src="./jshashtable.js"></script>
+        <script type="text/javascript" src="./jquery.numberformatter-1.2.2.min.js"></script>
         <script type="text/javascript">
             var _gaq = _gaq || [];
             _gaq.push(['_setAccount', 'UA-359178-16']);
@@ -58,6 +61,36 @@
                     <p>HTML_CodeSniffer is a client-side script that checks HTML source code and detects violations of a defined coding standard. HTML_CodeSniffer is written entirely in JavaScript, does not require any server-side processing and can be extended by developers to enforce custom coding standards by creating your own "sniffs".</p>
 
                     <p>To get you started, HTML_CodeSniffer comes with a set of 3 standards that enforce the <a href="http://www.w3.org/TR/WCAG/">Web Content Accessibility Guidelines (WCAG) 2.0</a>. An auditor interface is provided by a bookmarklet to let you try out the WCAG 2.0 checks on any web page.</p>
+
+                    <div id="ourCounter" class="statsCounter" style="display:none;"></div>
+
+                    <script type="text/javascript">
+                        jQuery(document).ready(function($) {
+                            loadHTMLCSStats(function(stats) {
+                                //$('#ourCounter').css('display', 'block');
+
+                                var count = stats.errors + stats.warnings + stats.notices;
+
+                                $('#ourCounter').html(count);
+                                $('#ourCounter').formatNumber({format:"###,###,###,###", locale:"us"});
+
+                                setInterval(function() {
+                                    $('#ourCounter').html(count++);
+                                    $('#ourCounter').formatNumber({format:"###,###,###,###", locale:"us"});
+                                }, (1000 * stats.errorSeconds));
+
+                                setInterval(function() {
+                                    $('#ourCounter').html(count++);
+                                    $('#ourCounter').formatNumber({format:"###,###,###,###", locale:"us"});
+                                }, (1000 * stats.warningSeconds));
+
+                                setInterval(function() {
+                                    $('#ourCounter').html(count++);
+                                    $('#ourCounter').formatNumber({format:"###,###,###,###", locale:"us"});
+                                }, (1000 * stats.noticesSeconds));
+                            });
+                        });
+                    </script>
 
                     <span class="introduction-divider"></span>
 

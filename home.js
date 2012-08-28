@@ -243,6 +243,28 @@ function reorderResults() {
     }
 }
 
+// HTMLCSMeter.
+function loadHTMLCSStats(callback)
+{
+    var feed = 'list';
+    var key  = '0ArD0TOS0OvHkdEdLQ0pRbkgzRUp5T2JvRHRYQkZfS0E';
+    var worksheet = 'od8';
+    $.getJSON('http://spreadsheets.google.com/feeds/' + feed + '/' + key + '/' + worksheet + '/public/values?alt=json-in-script&single=true&callback=?', null, function(data) {
+        var stats = {};
+        var entry = data.feed.entry[0];
+        var sec   = data.feed.entry[1];
+
+        stats.errors         = parseInt(entry.gsx$errors.$t);
+        stats.warnings       = parseInt(entry.gsx$warnings.$t);
+        stats.notices        = parseInt(entry.gsx$notices.$t);
+        stats.errorSeconds   = parseInt(sec.gsx$errors.$t);
+        stats.warningSeconds = parseInt(sec.gsx$warnings.$t);
+        stats.noticesSeconds = parseInt(sec.gsx$notices.$t);
+
+        callback.call(this, stats);
+    });
+}
+
 window.onload = function() {
     var radios = document.querySelectorAll('.radio-gen');
     var source = document.getElementById('source');
