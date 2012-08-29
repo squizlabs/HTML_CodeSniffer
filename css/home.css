@@ -314,16 +314,17 @@ td a:hover {
  z-index:10000;
  background: #2c3e62  url(../images/bookmarklet-bg.jpg) repeat top left;
  box-shadow: 0 0 10px rgba(0,0,0,.3), 0 1px 5px rgba(0,0,0,.3) inset;
- padding:20px 0;
+ padding:0 0 40px 0;
 }
 
 #bookmarklet-feature {
- position:absolute;
- top:0px;
+ position:relative;;
+ top:0;
  left:0;
  background: url(../images/bookmarklet-feature.png) top left no-repeat;
  width:470px;
- height:500px;
+ height:370px;
+ background-position: 72px 40px;
 }
 
 #introduction #bookmarklet .button {
@@ -333,7 +334,6 @@ td a:hover {
  height:64px;
  padding-top:6px;
  line-height:24px;
- margin:345px auto 0 auto;
  text-align:center;
  font-size:22px;
  color:#ffffff;
@@ -401,6 +401,7 @@ td a:hover {
  left:0;
  z-index:10;
  background: url(../images/gn-trans.png) repeat;
+ box-shadow: 0 28px 21px -23px rgba(0, 0, 0, 0.25), 0 -28px 21px -23px rgba(0, 0, 0, 0.25)
 }
 
 .zigzag {
