@@ -47,6 +47,8 @@ h2 {
  font-size:30px;
  line-height:34px;
  letter-spacing:-1px;
+ margin-top: 6px;
+ margin-bottom: 33px;
 }
 
 h3 {
@@ -59,7 +61,8 @@ h3 {
 }
 
 #introduction h3 {
- margin-top:10px;
+ margin-top: 10px;
+ margin-bottom: 5px;
 }
 
 #test-area h3 {
@@ -295,6 +298,7 @@ td a:hover {
  position:relative;
  left:2px;
  padding-bottom:8px;
+ margin: 40px 0 30px;
 }
 
 #standards-list,
@@ -318,13 +322,12 @@ td a:hover {
 }
 
 #bookmarklet-feature {
- position:relative;;
+ position:relative;
  top:0;
  left:0;
- background: url(../images/bookmarklet-feature.png) top left no-repeat;
+ background: url(../images/bookmarklet-feature.png) 72px 30px no-repeat;
  width:470px;
- height:370px;
- background-position: 72px 40px;
+ height:345px;
 }
 
 #introduction #bookmarklet .button {
@@ -384,7 +387,7 @@ td a:hover {
 }
 
 #bookmarklet .requirements {
- color:#b6c8dc;
+ color:#7690cc;
  font-size:11px;
  text-align:center;
  padding:20px 60px;
@@ -1058,21 +1061,38 @@ td:last-child li {
 }
 .statsHeading {
     display: block;
-    color: #2c5181;
-    font-weight: bold;
-    font-size: 12px;
-    margin-bottom: 8px;
+    color: #cdd7ec;
+    font-size: 13px;
+    margin-bottom: 15px;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.6);
 }
 .statsCounter {
     display: inline-block;
-    color: #2c5181;
-    background: url("../images/test-area-bg.png") repeat scroll 0 0 #D9E8F5;
-    border: 1px solid #C6C6C6;
-    padding: 0.2em 0.5em 0.1em;
-    font-size: 30px;
-    font-weight: bold;
+    color: #5873b0;
+    background-color: #233151;
+    padding: 0 0.5em 0;
+    font-size: 28px;
+    min-width: 263px;
     letter-spacing: 0.1em;
-    border-radius: 0.2em;
-    box-shadow: 0 1px 0 rgba(255,255,255,0.8) inset, 0 2px 4px rgba(0,0,0,0.15);
-    text-shadow: 0 1px 0 #FFF;
+    line-height: 1.3em;
+    border-radius: 0.1em;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) inset, 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* Retina Replacements
+****************************************/
+@media
+only screen and (-webkit-min-device-pixel-ratio: 2),
+only screen and (   min--moz-device-pixel-ratio: 2),
+only screen and (     -o-min-device-pixel-ratio: 2/1),
+only screen and (        min-device-pixel-ratio: 2),
+only screen and (                min-resolution: 192dpi),
+only screen and (                min-resolution: 2dppx) { 
+    
+    #bookmarklet-feature {
+        background: url(../images/bookmarklet-feature@2x.png) 72px 30px no-repeat;
+        background-size: 318px 307px;
+    }
+}
+
 }
