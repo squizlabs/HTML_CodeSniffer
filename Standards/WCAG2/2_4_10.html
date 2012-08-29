@@ -90,17 +90,34 @@
 
         <div class="max-width">
 
-                
+                <h3 id="discussion">Discussion</h3><h4>Summary</h4>
 
-                <h3>Sniff Coverage</h3>
+<p>The purpose of this Success Criterion is to provide organisation and identification
+for various parts of a page, using section headings. Headings are important as they
+facilitate navigation and comprehension, by effectively allowing the user to
+"skim-read" the content using the headings. Some users will use properly-tagged
+headings to skip from section to section so they can find the information they
+want more quickly.</p>
 
-                <p>Note that "[Standard]" will be replaced with "WCAG2A", "WCAG2AA" or "WCAG2AAA", depending on the level being tested.</p>
+<p>Visual presentation alone (such as horizontal rules) are not considered sufficient,
+as they do not include the additional mental aids provided by a heading.</p>
 
-                
+<h4>Effect on HTML&#95;CodeSniffer</h4>
 
-                
+<p>HTML&#95;CodeSniffer does not have any tests that explicitly identify errors under
+Success Criterion 2.4.10. However, it <em>does</em> affect other tests.</p>
 
-                
+<p>At <a href="./1_3_1">Success Criterion 1.3.1</a>, there is a test that checks for the order
+of headings - ensuring that headings are not skipped. For instance, if a <abbr title="Heading 1">h1</abbr> element
+was followed by a <abbr title="Heading 3">h3</abbr>, a message would appear. At lower
+levels, it generates a warning, but at Level <abbr title="Triple A">AAA</abbr> HTML&#95;CodeSniffer
+will emit an error. This is because it will not be considered sufficient to satisfy</p>
+
+<p>Note: "This provision is included at Level <abbr title="Triple A">AAA</abbr> because
+it cannot be applied to all types of content and it may not always be possible to insert headings" -
+for instance, posting pre-existing documents, or something like a letter where
+headings are not appropriate.</p>
+
 
         </div> <!-- end max-width -->
 

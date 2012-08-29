@@ -87,9 +87,32 @@
 
         <div class="max-width">
 
-                
+                <h3 id="discussion">Discussion</h3><h4>Why is failure considered interference?</h4>
 
-                <h3>Sniff Coverage</h3>
+<p>This Success Criterion comes with a warning about failure to meet the criterion
+counting as "interference", thus failing <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/conformance.html#uc-conf-req5-head">Conformance Requirement 5</a> even if such
+audio technology is not relied upon to achieve WCAG 2.0 conformance.</p>
+
+<p>There are two main reasons for this being considered interference:</p>
+
+<ul>
+<li><p>Automatic sounds may interfere with the understanding of the page of those users
+relying on a screen reader or similar techology, if only because they will likely
+play at the same volume, and thus make the content less accessible to such users.
+Any method to control (rather than mute) the audio must include the ability for it be reduced to zero.</p></li>
+<li><p>Further, for users relying on a screen reader or similar technology, they are effectively
+navigating by sound, and thus the order in which they hear things is important.
+If a sound automatically plays, it may be thought to be in a different location to
+where it may be (if it is visible at all). This may interfere with their ability to
+navigate to the source of the sound and turn it off.</p></li>
+</ul>
+
+<p>The W3C Understanding document recommends that sounds be started by user action,
+rather than automatically. An exception is provided for those sounds shorter than
+three seconds.</p>
+
+
+                <h3 id="sniff-coverage">Sniff Coverage</h3>
 
                 <p>Note that "[Standard]" will be replaced with "WCAG2A", "WCAG2AA" or "WCAG2AAA", depending on the level being tested.</p>
 
@@ -125,6 +148,8 @@
 </tr>
 
 </tbody></table>
+
+                
 
         </div> <!-- end max-width -->
 

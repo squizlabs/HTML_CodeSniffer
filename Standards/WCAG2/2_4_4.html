@@ -86,9 +86,32 @@
 
         <div class="max-width">
 
-                <h3>Discussion</h3><h4 class="grey-heading">About ambiguous links</h4>
+                <h3 id="discussion">Discussion</h3><h4>Table of Contents</h4>
 
-<p>This Success Criterion applies to all links "except where the purpose of the link would be ambiguous to users in general". This is defined as when:</p>
+<ol>
+  <li><a href="#summary">Summary</a></li>
+<ol>
+  <li><a href="#why-the-ambiguous-exception">Why the "ambiguous" exception?</a></li>
+</ol>
+  <li><a href="#what-is-acceptable-as-surrounding-context">What is acceptable as surrounding context?</a></li>
+</ol>
+<h4 id="summary">Summary</h4>
+
+<p>The purpose of this Success Criterion is to ensure that link text, combined with their
+immediate surrounding context, provide enough information for letting users decide
+whether to follow the link.</p>
+
+<p>This is particularly important when many assistive technologies
+offer the ability to provide a list of links without browsing through the whole page.
+Preferably, the link text itself would be enough to ensure this decision is possible
+(and this is a requirement of Level <abbr title="Triple A">AAA</abbr> through <a href="./2.4.9">Success Criterion 2.4.9</a>),
+but at Level <abbr title="Single A">A</abbr> it is permitted to take into account
+the immediate surrounding context.</p>
+
+<h5 id="why-the-ambiguous-exception">Why the "ambiguous" exception?</h5>
+
+<p>This Success Criterion applies to all links "except where the purpose of the link
+would be ambiguous to users in general". This is defined as when:</p>
 
 <blockquote>
   <p>the purpose cannot be determined from the link and all information of the Web page
@@ -100,12 +123,47 @@
   quantity of guava exported or a photograph of people harvesting guava. Until the
   link is activated, all readers are unsure and the person with a disability is not
   at any disadvantage.</p>
+  
+  <p><cite><a href="http://www.w3.org/TR/WCAG20/#ambiguouslinkdef">WCAG 2.0 Recommendation: Definition - "ambiguous to users in general"</a></cite></p>
 </blockquote>
 
-<p>In other words, if a well-functioning user would be just as confused by the link as a disadvantaged user, this criterion would not be violated, since the purpose of accessibility rules such as this is that users with disabilities are not at any disadvantage to normal users. That is not to say, however, that applying the techniques would not be a good idea - in this case for all users.</p>
+<p>In other words, if a well-functioning user would be just as confused by the link as a
+disadvantaged user, this criterion would not be violated, since the purpose of
+accessibility rules such as this is that users with disabilities are not at any disadvantage
+to normal users. That is not to say, however, that applying the techniques would not be
+a good idea - in this case for all users.</p>
+
+<h4 id="what-is-acceptable-as-surrounding-context">What is acceptable as surrounding context?</h4>
+
+<p>Link context is defined through a number of techniques for programmatically defining link context,
+which are provided in the message provided by HTML&#95;CodeSniffer. These include combining the link text with:</p>
+
+<ul>
+<li>the text in the enclosing list item (<a href="http://www.w3.org/TR/WCAG20-TECHS/H77">H77</a>), or</li>
+<li>the text in an enclosing paragraph (<a href="http://www.w3.org/TR/WCAG20-TECHS/H78">H78</a>), or</li>
+<li>the text in an enclosing table cell and, if applicable, associated table headings (<a href="http://www.w3.org/TR/WCAG20-TECHS/H79">H79</a>), or</li>
+<li>the preceding heading element (<a href="http://www.w3.org/TR/WCAG20-TECHS/H80">H80</a>), or</li>
+<li>the parent list item, if the link is part of a nested list (<a href="http://www.w3.org/TR/WCAG20-TECHS/H81">H81</a>).</li>
+<li>the anchor's title attribute, if present (<a href="http://www.w3.org/TR/WCAG20-TECHS/H33">H33</a>).</li>
+</ul>
+
+<p>A common failure (<a href="http://www.w3.org/TR/WCAG20-TECHS/F63">F63</a>) usually occurs as a
+result of incorrectly understanding what counts as link context. For instance, in
+Failure Example 1, a lead paragraph of a news article is followed by a "Read More"
+link. However, the two are printed in separate paragraphs, and therefore the link
+loses the context provided by the lead. If the "Read More" link was at the end of
+the lead rather than in a separate paragraph, the lead would provide suitable
+context to the "Read More" link. Alternatively, the link text could be changed to
+provide more context on its own.</p>
+
+<p>Although provided (Failure Example 3) is an example of a definition list (dl element),
+which is provided because it could normally also be considered a candidate for
+providing a link context, but at the time of the recommendation's writing support for
+this was not strong, so could not be considered sufficient for satisfying this
+Success Criterion.</p>
 
 
-                <h3>Sniff Coverage</h3>
+                <h3 id="sniff-coverage">Sniff Coverage</h3>
 
                 <p>Note that "[Standard]" will be replaced with "WCAG2A", "WCAG2AA" or "WCAG2AAA", depending on the level being tested.</p>
 
@@ -164,6 +222,8 @@
 </tr>
 
 </tbody></table>
+
+                
 
         </div> <!-- end max-width -->
 

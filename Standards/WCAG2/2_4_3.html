@@ -85,9 +85,31 @@
 
         <div class="max-width">
 
-                
+                <h3 id="discussion">Discussion</h3><h4>Summary</h4>
 
-                <h3>Sniff Coverage</h3>
+<p>The purpose of the Focus Order Success Criterion is to ensure that sequential navigation
+of content is performed in an order that preserves the meaning of the content, and can
+be navigated using the keyboard in a meaningful way.</p>
+
+<p>The main important items to take note of are:</p>
+
+<ul>
+<li><p>Programmatically ordering the fields in a way such that users relying on that order
+(such as those using a screen reader) can navigate through focusable content in a
+meaningful manner; and</p></li>
+<li><p>Placing the fields visually in a way so that sighted users using the keyboard to
+naigate through the page - using the programmatically determined focus order, or
+some other method - are not confused. This can be ordered by any method that makes
+mental sense for the content and layout involved.</p></li>
+</ul>
+
+<p>This is particularly important when content is modified using scripting. If fields are
+added (such as through the Document Object Model) that see the reading order changed
+with in a way that interferes with the natural navigation order for a group of users,
+then this Success Criterion would fail.</p>
+
+
+                <h3 id="sniff-coverage">Sniff Coverage</h3>
 
                 <p>Note that "[Standard]" will be replaced with "WCAG2A", "WCAG2AA" or "WCAG2AAA", depending on the level being tested.</p>
 
@@ -123,6 +145,8 @@
 </tr>
 
 </tbody></table>
+
+                
 
         </div> <!-- end max-width -->
 

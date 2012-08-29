@@ -96,9 +96,76 @@
 
         <div class="max-width">
 
-                
+                <h3 id="discussion">Discussion</h3><h4>Table of Contents</h4>
 
-                <h3>Sniff Coverage</h3>
+<ol>
+  <li><a href="#summary">Summary</a></li>
+  <li><a href="#methods-of-satisfying">Methods of satisfying</a></li>
+  <li><a href="#exceptions">Exceptions</a></li>
+</ol>
+<h4 id="summary">Summary</h4>
+
+<p>The purpose of this Success Criterion is to make sure that timed interaction in Web pages is
+not designed solely with able-bodied persons in mind. Those that may need additional time
+include users with physical as well as cognitive disabilities.</p>
+
+<p>At AAA level, the stricter <a href="./2_2_3">Success Criterion 2.2.3</a> applies. There, the only reason
+for allowing timing for an interaction is the "real-time" exception.</p>
+
+<h4 id="methods-of-satisfying">Methods of satisfying</h4>
+
+<p>Three methods are provided for satisfying this Success Criterion, of which one must be provided,
+unless an exception applies:</p>
+
+<ul>
+<li>The user can turn off the time limit.</li>
+<li>The user has the ability to change the time limit to something at least 10 times the default.</li>
+<li>The user is warned at least 20 seconds before the time limit expires and told to perform a simple
+action (eg. "press any key") to extend, and can do this at least 10 times.</li>
+</ul>
+
+<p>It appears that any extension should reset the time limit to the originally set value, given how the
+<em>Adjust</em> and <em>Extend</em> solutions align with each other, but this is not written in the document.</p>
+
+<p>The "10 times default" and 20 second time periods are based on clinical evidence. The latter
+gives sufficient time for most users to hit any key (or the space bar or similar), but is
+considered short enough as to not to put users at risk of snooping or other security breaches.</p>
+
+<h4 id="exceptions">Exceptions</h4>
+
+<p>Three exceptions exist in this Success Criterion that allow you to avoid the requirement
+to allow a user to turn off, adjust or extend the time limit:</p>
+
+<ul>
+<li>The interaction relates to a real-time activity, and this timing cannot be avoided
+(for instance, an online auction).</li>
+<li>The interaction is essential to the activity (see below for definition).</li>
+<li>The initial time period is greater than 20 hours; chosen because it is longer than
+a typical full day awake.</li>
+</ul>
+
+<p>An "essential" interaction is defined as one that</p>
+
+<blockquote>
+  <p>if removed, would fundamentally change the information or functionality of the
+  content, <em>and</em> information and functionality cannot be achieved in another way
+  that would conform</p>
+  
+  <p><cite><a href="http://www.w3.org/TR/WCAG20/#essentialdef">WCAG 2.0 Recommendation: "Essential" definition</a></cite></p>
+</blockquote>
+
+<p>An example given by the Understanding document is of a ticketing web site, that only holds
+tickets for a specified period at each stage (say, 5-15 minutes) before timing out. This is
+justified as part of a ticket management process for high-demand events, and allowing
+users to extend the time-out period would invalidate this business process. So in this case,
+at least part of the process is considered "essential".</p>
+
+<p>Note, however, that not all parts of a process may be considered "essential". For instance,
+such a site could allow a user, who would generally have advance knowledge of an event, to
+register with the web site in their own time, or before tickets are held.</p>
+
+
+                <h3 id="sniff-coverage">Sniff Coverage</h3>
 
                 <p>Note that "[Standard]" will be replaced with "WCAG2A", "WCAG2AA" or "WCAG2AAA", depending on the level being tested.</p>
 
@@ -144,6 +211,8 @@
 </tr>
 
 </tbody></table>
+
+                
 
                 
 

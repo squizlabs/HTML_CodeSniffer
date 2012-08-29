@@ -85,83 +85,194 @@
 
         <div class="max-width">
 
-                <h3>Discussion</h3><h4 class="grey-heading">On the lang attribute</h4>
+                <h3 id="discussion">Discussion</h3><h4>Table of Contents</h4>
 
-<p>The effective language attribute - on the html element or otherwise - is different depending on whether the page is rendered as HTML or as XHTML:</p>
+<ol>
+  <li><a href="#marking-languages-with-attributes">Marking languages with attributes</a></li>
+  <li><a href="#formats-of-language-tags">Formats of language tags</a></li>
+  <li><a href="#using-server-side-techniques">Using server-side techniques</a></li>
+</ol>
+<h4 id="marking-languages-with-attributes">Marking languages with attributes</h4>
+
+<p>The effective language attribute - on the html element or otherwise - is different depending on whether a Web page is rendered as HTML or as XHTML:</p>
 
 <ul>
 <li>in HTML, the attribute is called "lang";</li>
-<li>in XHTML, the attribute is "xml:lang", as per the XML specification (and the latter is mandatory for XHTML).</li>
+<li>in XHTML, the attribute is "xml:lang", as per the XML specification (and this is mandatory for an XHTML document).</li>
 </ul>
+
+<blockquote>
+  <p>Where HTML5 is understood by a browser, HTML5 documents will probably use the former attribute,
+  because currently they will most likely have been delivered as the content type "text/html"
+  (XHTML5 can technically only be delivered using the XHTML content type).</p>
+  
+  <p>The W3C currently publish a Working Draft on so-called <a href="http://www.w3.org/TR/html-polyglot/" title="Polyglot Markup: HTML-Compatible XHTML Documents&quot; (">"Polyglot Markup"</a>, which allow compliant documents to be served
+  with either content type; it suggests using both attributes and making sure they are identical. This takes advantage of the fact that one
+  attribute will be used, and the other will be considered valid but ignored.</p>
+  
+  <p>Such a concept also exists in XHTML 1.0 in its <a href="http://www.w3.org/TR/xhtml1/guidelines.html" title="XHTML 1.0 (Second Edition) - Appendix C: HTML Compatibility Guidelines">HTML Compatibility Guidelines appendix</a>, but not in HTML 4.01.</p>
+</blockquote>
 
 <p>The ability to test for the correct attribute, based on document type, is hampered by two factors:</p>
 
 <ul>
-<li>On IE, there is no ability to specifically access the doctype through javascript - through document.doctype - except in IE9 Standards Mode;</li>
-<li>The mess that is serving XHTML 1.0 as the content type text/html (instead of serving as application/xhtml+xml), and what it would actually be parsed as by a browser DOM.</li>
+<li>On Internet Explorer, there is no ability to specifically access the doctype through javascript - through document.doctype - except in IE9 Standards Mode;
+
+<ul>
+<li>in IE8, this only occurs for XML documents; in HTML the doctype is parsed into the DOM as a comment node.</li>
+</ul></li>
+<li>The mess that is serving XHTML 1.0 as the content type text/html (instead of the intended content type, "application/xhtml+xml"), and what it would actually be parsed as by a browser DOM.</li>
 </ul>
 
-<p>Therefore, our automated testing can be limited to the following:</p>
+<p>Therefore, HTML_CodeSniffer's automated testing can currently be limited to the following:</p>
 
 <ul>
 <li>That at least one of "lang" or "xml:lang" is used. (That the correct one(s) exist is up to the tester as a manual check.)</li>
 <li>If both are specified, that they don't conflict with each other (they must be the same when compared case-insensitively).</li>
-<li>That they conform to the correct format for language tags (eg. "en"; "en-AU"), as per the <a href="http://www.rfc-editor.org/rfc/bcp/bcp47.txt">IETF's Best Common Practices #47 document</a> (currently incorporating RFC 5646 "Tags for Identifying Languages", and RFC 4647 "Matching of Language Tags").</li>
+<li>That they conform to the correct format for language tags (eg. "en"; "en-AU"), as per the <a href="http://www.rfc-editor.org/rfc/bcp/bcp47.txt">IETF's Best Common Practices #47 document</a>.</li>
 </ul>
 
-<p>In the case of HTML 5, a W3C Editor's Draft exists referring to a concept called <a href="http://www.w3.org/TR/html-polyglot/" title="Polyglot Markup: HTML-Compatible XHTML Documents">"Polyglot Markup"</a>, which is a method of ensuring that XHTML 5 documents can work properly when interpreted as HTML-serialised documents - which is intended to happen with an XHTML document is sent with the content type text/html. Polyglot markup suggests using both lang and xml:lang with identical (case-insensitive) values, as each appropriate value will be considered a valid but benign attribute in the other serialisation.
-XHTML 1.0 also states that both are acceptable in its <a href="http://www.w3.org/TR/xhtml1/guidelines.html" title="XHTML 1.0 (Second Edition) - Appendix C: HTML Compatibility Guidelines">HTML Compatibility Guidelines appendix</a>. However, HTML 4 markup is not valid when xml:lang exists.</p>
+<h4 id="formats-of-language-tags">Formats of language tags</h4>
 
-<h4 class="grey-heading">On language tags</h4>
+<p>The IETF's BCP 47 document defines the format of a valid language tag. It is made up of two RFCs: <a href="http://www.rfc-editor.org/rfc/rfc5646.txt">RFC 5646 "Tags for Identifying Languages"</a>
+and <a href="http://www.rfc-editor.org/rfc/rfc4647.txt">RFC 4647 "Matching of Language Tags"</a>; it is the former that defines the format for a valid language tag.</p>
 
-<p>The IETF's BCP 47 document (linked above) defines the format of a valid language tag. It contains the following subtags <strong>in this order, joined by hyphens (-)</strong>:</p>
+<p>A language tag contains the following subtags, specified in the order provided in the following table. All subtags are joined together with hyphens ('-').</p>
+
+<table>
+<caption>List of subtags used in a BCP 47-compliant language tag</caption>
+<thead>
+<tr>
+<th scope="col">Subtag</th>
+<th scope="col">Required?</th>
+<th scope="col">Repeatable?</th>
+<th scope="col">Format</th>
+<th scope="col">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row">language</th>
+<td>Yes</td>
+<td>No</td>
+<td>2-8 letters</td>
+<td>Uses the ISO 639 language codes: "Alpha-2" codes take precedence over "Alpha-3" (eg. "en" instead of "eng" for English). Subtags in range qaa-qtz are reserved for private use.<br/>
+Four letters are reserved for "possible future standardisation". Alpha-4 codes are used in ISO 639-6 (which was published after publication of RFC 5646), but these are for language variants.<br/>
+Five to eight letters are used for registered languages without an ISO 639 code: none are defined and it is unlikely any will; new languages must be submitted for ISO 639 inclusion first.</td>
+</tr>
+<tr>
+<th scope="row">extlang</th>
+<td>No</td>
+<td>No</td>
+<td>Three letters</td>
+<td>Although the definition technically allows up to three extlang subtags, all subtags after the first
+were "permanently reserved" when RFC 5646 took effect: "tags that include those subtags in [the second and third] position
+are, and will always remain, invalid". Most extlang tags have been deprecated by full 3-character language tags.</td>
+</tr>
+<tr>
+<th scope="row">script</th>
+<td>No</td>
+<td>No</td>
+<td>Four letters, typically written title case</td>
+<td>Used to differentiate between languages written in different scripts. For instance, "Latn" for Latin script
+(such as that used in English), or "Hant" for Chinese "Traditional Han" script.</td>
+</tr>
+<tr>
+<th scope="row">region</th>
+<td>No</td>
+<td>No</td>
+<td>Either two letters (written uppercase), or three digits</td>
+<td>Two letters represents the "Alpha-2" code for a country as per ISO 3166-1: eg. "AU" represents Australia, "GB" for the United Kingdom (Great Britain). Codes AA, QM-QZ, XA-XZ, ZZ reserved for private use.
+The three-digit form represents a geographical region, as <a href="http://unstats.un.org/unsd/methods/m49/m49.htm">defined by the United
+Nations Statistical Division</a>: "035" is South-East Asia, "053" is Australia and New Zealand combined, etc.
+</td>
+</tr>
+<tr>
+<th scope="row">variant</th>
+<td>No</td>
+<td>Yes</td>
+<td>Either 5-8 characters, or digit + 3 characters</td>
+<td>Represents "additional, well-recognized variations" or dialects that can't be represented by other subtags. For instance, different
+romanisations of Mandarin Chinese have variants of "zh-Latn".
+The four-character form appears mainly to allow years to be used as variants: eg. "de-1996" represents German
+as written following the <a href="http://en.wikipedia.org/wiki/German_orthography_reform_of_1996">1996 orthography reform</a>.</td>
+</tr>
+<tr>
+<th scope="row">extension</th>
+<td>No</td>
+<td>Yes</td>
+<td>One character "code", followed by one or more values of 2-8 characters<br/>(all separated by hyphens)</td>
+<td>The "code" character cannot be "x", as this defines a privateuse section.</td>
+</tr>
+<tr>
+<th scope="row">privateuse</th>
+<td>Optional</td>
+<td>N/A</td>
+<td>The letter "x", followed by one or more values of 1-8 characters<br/>(all separated by hyphens)</td>
+<td>When an "x" subtag is found, anything following that is considered a private use value.</td>
+</tr>
+</tbody>
+</table>
 
 <blockquote>
-  <ul>
-  <li><strong>language</strong> (required): 2-8 alpha characters (2-3 common), lower case</li>
-  <li><strong>extlang</strong> (optional, repeatable up to 3 times): 3 alpha characters, lower case. Technically part of the language subtag. Most deprecated in favour of their own 3-character language subtag.</li>
-  <li><strong>script</strong> (optional): 4 alpha characters, title case</li>
-  <li><strong>region</strong> (optional): 2 alpha characters (for a country, typically), upper case) or a 3-digit number (for a region)</li>
-  <li><strong>variant</strong> (optional, repeatable):  5-8 alphanumeric characters, OR one digit followed by three alphanumeric characters</li>
-  <li><strong>extension</strong> (optional, repeatable): format "code-value*"
+  <p>Notes to use of the table:</p>
   
   <ul>
-  <li>Code is a single alphanumeric character, except "x".</li>
-  <li><a href="http://www.iana.org/assignments/language-tag-extensions-registry">Only one extension is currently registered</a>: "u" for Unicode extensions.</li>
-  <li>One or more values can be specified (hyphen between them): 2-8 alphanumeric characters.</li>
-  <li>Where multiple extensions are used, canonical ordering is by alphabetical order of their extension letter.</li>
-  </ul></li>
-  <li><strong>privateuse</strong> (optional): format "x-value*"
+  <li><strong>Allowed characters:</strong> Where "letters" (alphabetic characters) and "digits" are used, only those may be used. Otherwise, any alphanumeric character is usable.</li>
+  <li><strong>Case sensitivity:</strong> language tags are case-insensitive; the canonical and recommended method of writing is lowercase except in places in the table which mention capitalisation.</li>
+  <li><strong>Extensions:</strong> As of 28 February 2012, two extensions are defined, both managed by the Unicode Consortium:
   
   <ul>
-  <li>the "x" is invariant</li>
-  <li>One or more values can be specified (hyphen between them): 1-8 alphanumeric characters.</li>
+  <li><strong>"u"</strong> for specifying various locale attributes of Unicode text, such as collating order (defined in <a href="http://www.rfc-editor.org/rfc/rfc6067.txt">RFC 6067</a>)</li>
+  <li><strong>"t"</strong> for specifying the source language or script of transformed content, such as transliterations (defined in <a href="http://www.rfc-editor.org/rfc/rfc6497.txt">RFC 6497</a>).</li>
   </ul></li>
   </ul>
-  
-  <p>Case is insensitive throughout, but the above states how they <em>should</em> be written for consistency and canonicalisation purposes.</p>
-  
-  <p>A <strong>privateuse</strong> section can replace an entire language tag, as can a set of grandfathered tags.</p>
-  
-  <p>Where "repeatable" does not appear, a subtag can only be used once.</p>
 </blockquote>
 
-<p><em>Note:</em> Some assistive technologies do not recognise regional differences beyond the primary <strong>language</strong> subtag, or only handle a limited subset of them. For instance, a screen reader could theoretically come with several accents for English - for instance, United States, United Kingdom, Australia, and so on - but only a generic one for Spanish. In the first case, country may be recognised (eg. "en-US" vs. "en-GB"); in the latter, everything after the initial "es" language tag may be ignored.</p>
+<p><em>Note:</em> Some assistive technologies do not recognise regional differences beyond the primary <strong>language</strong> subtag,
+or only handle a limited subset of them. For instance, a screen reader could theoretically come with several accents
+for English - for instance, United States, United Kingdom, Australia, and so on - but only a generic one for Spanish.
+In the first case, country may be recognised (eg. "en-US" vs. "en-GB"); in the latter, everything after the initial
+"es" language tag may be ignored.</p>
 
-<p>The <a href="http://www.iana.org/assignments/language-subtag-registry">language subtag registry</a> is administered by IANA, and is populated primarily through various ISO standard sources, such as ISO 639 (language codes) and ISO 3166 (country codes). HTML&#95;CodeSniffer does not check for validity against this list, but does check for well-formedness.</p>
+<p>The <a href="http://www.iana.org/assignments/language-subtag-registry">language subtag registry</a> is administered by the <abbr title="Internet Assigned Numbers Authority"><a href="http://www.iana.org/">IANA</a></abbr>,
+and is populated primarily through various ISO standard sources, such as ISO 639 (language codes) and ISO 3166 (country codes).
+HTML&#95;CodeSniffer does not check for validity against this list, but does check for well-formedness.</p>
 
-<h4 class="grey-heading">On server-side techniques</h4>
+<h4 id="using-server-side-techniques">Using server-side techniques</h4>
 
-<p>One advisory technique provided is implemented server-side: <a href="http://www.w3.org/TR/WCAG20-TECHS/SVR5">SVR5: Specifying the default language in the HTTP header</a>. This suggests to use the <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.12">Content-Language HTTP header</a> to identify the default language for a web page.</p>
+<p>One advisory technique for Success Criterion 3.1.1 is <a href="http://www.w3.org/TR/WCAG20-TECHS/SVR5">SVR5: Specifying the default language in the HTTP header</a>.
+This suggests to use the <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.12">Content-Language HTTP header</a> to identify the intended
+audiences for a web page.</p>
 
-<p>Its main usage is to aid in content negotiation with the user agent (presuming correctly-set headers), to serve a version of the content in the appropriate language.</p>
+<p>The Content-Language header's primary use is as part of the content negotiation process. User agents can send a list of languages in which
+they would prefer to receive documents (using the Accept-Language request header), and a server can potentially contain multiple versions
+of documents for various languages. This negotiation can take place at a script level, or at the server itself: for instance, the help
+documentation installed by default on an Apache server is served using in-built content language negotiation.</p>
 
-<p>However, Content-Language cannot be used on its own, hence this is only an advisory technique. A Web page should be able to be parsed to determine its language without having to be served, hence should not rely on HTTP headers for determination of its language. Also, Content-Language supports multiple primary languages when a page is intended for multiple language audiences - this is not possible using the lang attribute.</p>
+<p><acronym title="Request for Comments">RFC</acronym> 2616 (which defines <abbr title="Hypertext Transfer Protocol, version 1.1">HTTP/1.1</abbr>)
+gives an example of where multiple entries in the Content-Language header may be appropriate, and when it may not:</p>
 
-<p>RFC2616 gives an example for a page on New Zealand's Treaty of Waitangi, when presented in English and Maori simultaneously, could use both "en" (or "en-NZ") and "mi" in the Content-Language tag. When marking such a page with the "lang" tag, the primary language of the whole page - also taking into account navigational elements and the like - should be specified in the html element. Parts of the page in the non-dominant language should then be marked, by following <a href="/3_1_2">Success Criterion 3.1.2 (Language of Parts)</a> and using the lang attribute.</p>
+<blockquote>
+  <p>Multiple languages MAY be listed for content that is intended for multiple audiences. For example, a rendition of the "Treaty of
+  Waitangi," presented simultaneously in the original Maori and English versions, would call for</p>
+
+<pre><code>Content-Language: mi, en
+</code></pre>
+  
+  <p>However, just because multiple languages are present within an entity does not mean that it is intended for multiple linguistic audiences.
+  An example would be a beginner's language primer, such as "A First Lesson in Latin," which is clearly intended to be used by an
+  English-literate audience. In this case, the Content-Language would properly only include "en".</p>
+  
+  <p><cite><a href="http://www.rfc-editor.org/rfc/rfc2616.txt">IETF RFC 2616: Hypertext Transfer Protocol &mdash; HTTP/1.1</a>, section 14.12: "Content-Language"</cite></p>
+</blockquote>
+
+<p>However, the Content-Language header cannot be relied upon on its own - its primary purpose being content negotiation, it increases the
+possibility that a user is served content in a language that best suits them. However, this does not remove the requirement to mark languages
+within the document itself, as Content-Language does not affect the language in which the document is ultimately processed.</p>
 
 
-                <h3>Sniff Coverage</h3>
+                <h3 id="sniff-coverage">Sniff Coverage</h3>
 
                 <p>Note that "[Standard]" will be replaced with "WCAG2A", "WCAG2AA" or "WCAG2AAA", depending on the level being tested.</p>
 
@@ -221,6 +332,8 @@ XHTML 1.0 also states that both are acceptable in its <a href="http://www.w3.org
 </tr>
 
 </tbody></table>
+
+                
 
                 
 

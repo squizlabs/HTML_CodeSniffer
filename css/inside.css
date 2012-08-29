@@ -4,7 +4,7 @@ html {
 
 body {
  padding: 0px 20px 20px 20px;
- margin: 0; 
+ margin: 0;
  color:#2e2d33;
  background-color:#fbfbfb;
  min-width:820px;
@@ -16,8 +16,8 @@ body {
 
 h1 a {
  display:block;
- padding-right:3px; 
- position:relative; 
+ padding-right:3px;
+ position:relative;
  background: url(../images/html-code-sniffer.png) no-repeat top left;
  width:385px;
  height:34px;
@@ -64,7 +64,7 @@ a {
 }
 
 a:hover {
- color:#dc5e2d;  
+ color:#dc5e2d;
 }
 
 a:link img {
@@ -120,6 +120,11 @@ table {
  box-shadow:0 1px 0 rgba(255,255,255,1);
 }
 
+table caption {
+ font-weight: bold;
+ margin-bottom: 0.5em;
+}
+
 table th {
  background:#e0e0e0;
  padding:9px 10px;
@@ -135,6 +140,7 @@ vertical-align: top;
 padding: 5px 8px;
 margin: 0px;
 border:1px solid #e0e0e0;
+position: relative;
 }
 
 table tr:nth-child(odd) {
@@ -158,16 +164,28 @@ td:last-child li {
  padding:0;
 }
 
-td.error {
- border-left: 5px solid #921e1f;
+td.error:before,
+td.warning:before,
+td.notice:before {
+ content: '';
+ display: inline-block;
+ position: absolute;
+ height: 100%;
+ width: 5px;
+ top: 0;
+ left: 0;
 }
 
-td.warning {
- border-left: 5px solid #b99538;
+td.error:before {
+ background-color: #921e1f;
 }
 
-td.notice {
- border-left: 5px solid #68676e;
+td.warning:before {
+ background-color: #b99538;
+}
+
+td.notice:before {
+ background-color: #68676e;
 }
 
 table p {
@@ -207,6 +225,10 @@ blockquote {
 }
 
 li {
+ margin-bottom:5px;
+}
+
+ul li {
  list-style-type:circle;
  margin-bottom:5px;
 }
@@ -370,7 +392,7 @@ div#introduction {
   -webkit-transition:all 0.2s ease-out;
   -moz-transition:all 0.2s ease-out;
   -o-transition:all 0.2s ease-out;
-  -ms-transition:all 0.2s ease-out;    
+  -ms-transition:all 0.2s ease-out;
   transition:all 0.2s ease-out;
 }
 

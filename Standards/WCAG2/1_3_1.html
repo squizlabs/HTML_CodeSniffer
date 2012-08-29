@@ -85,61 +85,248 @@
 
         <div class="max-width">
 
-                <h3>Discussion</h3><h4 class="grey-heading">Associating table headers with data cells</h4>
+                <h3 id="discussion">Discussion</h3><h4>Table of Contents</h4>
 
-<p>The WCAG 2.0 techniques document provides two methods of associating headers with data cells: the <a href="http://www.w3.org/TR/WCAG20-TECHS/H43">headers attribute</a> and the <a href="http://www.w3.org/TR/WCAG20-TECHS/H63">scope attribute</a>.</p>
+<ol>
+  <li><a href="#techniques-for-making-tables-more-accessible">Techniques for making tables more accessible</a></li>
+<ol>
+  <li><a href="#what-is-a-data-table">What is a data table?</a></li>
+  <li><a href="#use-of-scope-andor-headers-attributes">Use of scope and/or headers attributes</a></li>
+  <li><a href="#detecting-incorrect-headers-attributes">Detecting incorrect headers attributes</a></li>
+  <li><a href="#adding-summary-and-caption-to-tables">Adding summary and caption to tables</a></li>
+</ol>
+  <li><a href="#making-forms-more-accessible">Making forms more accessible</a></li>
+<ol>
+  <li><a href="#labelling-form-elements">Labelling form elements</a></li>
+  <li><a href="#ensuring-label-targets-exist-in-the-document">Ensuring label targets exist in the document</a></li>
+  <li><a href="#grouping-form-elements-using-the-fieldset-element">Grouping form elements using the fieldset element</a></li>
+  <li><a href="#grouping-drop-down-options-using-the-optgroup-element">Grouping drop-down options using the optgroup element</a></li>
+</ol>
+  <li><a href="#marking-up-lists">Marking up lists</a></li>
+  <li><a href="#avoiding-presentational-markup">Avoiding presentational markup</a></li>
+  <li><a href="#nesting-of-headings">Nesting of headings</a></li>
+</ol>
+<h4 id="techniques-for-making-tables-more-accessible">Techniques for making tables more accessible</h4>
 
-<p>The first method requires that headers be assigned an id, and that ordinary (td) cells use a "headers" attribute which specifies the IDs of all headers it is associated with. Alternatively, the "scope" attribute is placed on a th element to state which dimension it is a header for (row, col, rowgroup or colgroup) - the group headers are not well accessibility-supported, which limits its usefulness beyond a single row or column header.</p>
+<p>One major component of the WCAG guidelines is providing table headers for data tables, and associating cells
+of data within those tables with the headers that they relate to. Especially when navigating unsighted,
+data tables can be daunting as without a full view of the table - and therefore without context - it can
+be difficult to ascertain just what a data cell's meaning is.</p>
 
-<p>HTML&#95;CodeSniffer recognises both methods, but which ones it allows or requires depends on the number of rows or columns with heading (th) elements:</p>
+<h5 id="what-is-a-data-table">What is a data table?</h5>
 
-<ul>
-<li>With one row or one column of headers, but not both, either technique is encouraged but optional.</li>
-<li>With one row AND one column of headers, one of the two techniques MUST be used, but either is acceptable.</li>
-<li>With at least two rows OR two columns of headers, the headers attribute technique MUST be used.</li>
-</ul>
+<p>HTML&#95;CodeSniffer currently presumes that <strong>all</strong> tables are data tables. This is based on the presumption that
+new modern site designs are likely to use a layout design based upon CSS. However, certain tests will throw a
+warning that will apply only if a table is a data table.</p>
 
-<p>Further, when the headers attribute technique is used and th elements are properly identified with IDs, HTML&#95;CodeSniffer will calculate the expected value of the headers attribute for each cell, and emit an error for each cell that fails this comparison. Similar to the class attribute, order is not important: if HTML&#95;CodeSniffer expects headers of "row1 colB" and the cell as "colB row1", this is fine.</p>
-
-<h4 class="grey-heading">Adding summary and caption to tables</h4>
-
-<p>Relevant techniques are <a href="www.w3.org/TR/WCAG20-TECHS/H39">H39: Using caption elements to associate data table captions with data tables</a>, and <a href="www.w3.org/TR/WCAG20-TECHS/H73">H73: Using the summary attribute of the table element to give an overview of data tables</a>.</p>
-
-<p>The caption element is reasonably obvious: it adds a title to the table for identification purposes, which all users can see. On the other hand, the summary is not shown (at all) to sighted users, so the main intent is to explain the use of the table where it is not obvious to users requiring accessibility support. The W3C article provides the example of a bus timetable, which uses the summary attribute to explain how to read it (in this case: bus stops listed in row 1, then look down that column to find departure times). For sighted users reading the timetable would be obvious, but someone with a screen reader who cannot skim-read the table first would not have this orientation.</p>
-
-<p>When both caption and summary are specified, the information should not be duplicated.</p>
-
-<h4 class="grey-heading">Labelling form elements</h4>
-
-<p>Labels must be explicitly labelled, using the "for" attribute, according to <a href="http://www.w3.org/TR/WCAG20-TECHS/H44">H44: Using label elements to associate text labels with form controls</a>. If the visual design cannot accommodate a label, then you can use the title attribute instead - see <a href="http://www.w3.org/TR/WCAG20-TECHS/H65">H65: Using the title attribute to identify form controls when the label element cannot be used</a>.</p>
-
-<p>Implicit labels are where the label attribute wraps around the field: they are not supported by assistive technology as well as explicit labels, so are not recommended.</p>
-
-<p>Using the label element is preferred whenever possible, because sighted users relying upon the keyboard for navigation may not be able to access the title attribute, which normally appears as a tooltip in the browser.</p>
-
-<h4 class="grey-heading">Grouping form elements</h4>
-
-<h5 class="grey-heading">Using the fieldset element</h5>
-
-<p>Fields that are logically related should be grouped using the fieldset element, according to technique <a href="http://www.w3.org/TR/WCAG20-TECHS/H71">H71: Providing a description for groups of form controls using fieldset and legend elements</a>.</p>
-
-<p>The W3C acknowledges that fieldset elements are tacky with default styling:</p>
+<p>The current HTML5 working draft contains a suggested method of determining whether a table is a data or layout
+table:</p>
 
 <blockquote>
-  <p>Authors sometimes avoid using the fieldset element because of the default display in the browser, which draws a border around the grouped controls. This visual grouping is also useful and authors should seriously consider retaining it (or some form of visual grouping). The visual effect can be modified in CSS by overriding the "border" property of the fieldset and the "position" property of the legend.</p>
+  <p>User agents, especially those that do table analysis on arbitrary content, are encouraged to find heuristics
+  to determine which tables actually contain data and which are merely being used for layout. This
+  specification does not define a precise heuristic, but the following are suggested as possible indicators:</p>
+  
+  <table>
+  <thead>
+  <tr>
+  <th>Feature</th><th>Indication</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td>The use of the <em>role</em> attribute with the value <strong>presentation</strong></td><td>Probably a layout table</td>
+  </tr>
+  <tr>
+  <td>The use of the <em>border</em> attribute with the non-conforming value 0</td><td>Probably a layout table</td>
+  </tr>
+  <tr>
+  <td>The use of the non-conforming <em>cellspacing</em> and <em>cellpadding</em> attributes with the value 0</td><td>Probably a layout table</td>
+  </tr>
+  <tr>
+  <td>The use of <em>caption</em>, <em>thead</em>, or <em>th</em> elements</td><td>Probably a non-layout table</td>
+  </tr>
+  <tr>
+  <td>The use of the <em>headers</em> and <em>scope</em> attributes</td><td>Probably a non-layout table</td>
+  </tr>
+  <tr>
+  <td>The use of the <em>border</em> attribute with a value other than 0</td><td>Probably a non-layout table</td>
+  </tr>
+  <tr>
+  <td>Explicit visible borders set using CSS</td><td>Probably a non-layout table</td>
+  </tr>
+  <tr>
+  <td>The use of the <em>summary</em> attribute</td><td>Not a good indicator (both layout and non-layout tables have historically been given this attribute)</td>
+  </tr>
+  </tbody>
+  </table>
+  
+  <p><cite><a href="http://www.w3.org/TR/html5/the-table-element.html">HTML5: The table element</a> - working draft, hence work in progress</cite></p>
 </blockquote>
 
-<p>This also applies when one or more fields represents a single data item: for instance, a phone number or date. This would allow a user with the appropriate assistive technology to properly skip the entire item of data in one hit. As an example, a credit card expiry date is commonly represented as two drop-down fields: month and year. Each individual field should be labelled for their purpose (eg. "Month"), probably using the title attribute because the designer is not likely to want the label to show to sighted users. The two fields should then be wrapped in a fieldset element, stating their overall purpose (eg. "Expiry Date") in the legend element.</p>
+<h5 id="use-of-scope-andor-headers-attributes">Use of scope and/or headers attributes</h5>
 
-<p>Indeed, one common failure listed for <a href="./3_3_2">Success Criterion 3.3.2 (Labels or Instructions)</a> specifically relates to <a href="http://www.w3.org/TR/WCAG20-TECHS/F82">formatting a phone number as multiple fields, but without including a text label</a>. (Note that this suggests three fields as per the United States' common format, but the same would apply in Australia where phone numbers are often broken up into two fields, for area code and local number.)</p>
+<p>There are two techniques provided for associating headers with data cells:</p>
 
-<h5 class="grey-heading">Using optgroup in a select element</h5>
+<ul>
+<li>the <a href="http://www.w3.org/TR/WCAG20-TECHS/H63">scope attribute</a>, which associates a table header (th element) with a single row or column (or, in theory, a group of them); and</li>
+<li>the <a href="http://www.w3.org/TR/WCAG20-TECHS/H43">headers attribute</a>, which associates a data cell (td element) with one or more table header cells (identified by ID, which must be assigned to each header cell).</li>
+</ul>
 
-<p>Related options should be grouped using an optgroup element, as per technique <a href="www.w3.org/TR/WCAG20-TECHS/H85">H85: Using OPTGROUP to group OPTION elements inside a SELECT</a>.</p>
+<p>HTML&#95;CodeSniffer recognises both methods, and will warn users if either of them should be used for a data table.
+Broadly speaking, this will occur when a table contains both row and column headers, or when a single set of headers
+spans multiple levels.</p>
 
-<h4 class="grey-heading">Using list markup</h4>
+<table>
+<caption>Required attributes to disambiguate table headers' meaning</caption>
+<thead>
+<tr>
+<th>Type of table</th><th>Requirements</th><th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Two or more levels of either row <strong>and/or</strong> column headers</td><td>Must use headers attribute</td>
+<td>The scope attribute is ambiguous with multiple levels of column headers, and the "rowgroup" and "colgroup" values of the scope attribute
+appear to not be accepted enough (in screen readers, for example) to be considered "accessibility-supported".</td>
+</tr>
+<tr>
+<td>Single-level row header <strong>and</strong> single-level column header</td><td>Either method is required</td>
+<td>The "row" and "col" values of the scope attribute are sufficient to unambiguously associate a data cell with headers, and are accessibility-supported.
+Alternatively, the headers attribute can still be used.</td>
+</tr>
+<tr>
+<td>Single-level row header <strong>or</strong> single-level column header</td><td>Use of either method optional</td>
+<td>The header meanings are unambiguous in such a table, so such methods are not required.</td>
+</tr>
+</tbody>
+</table>
 
-<p>The relevant technique is <a href="http://www.w3.org/TR/WCAG20-TECHS/H48">H48: Using ol, ul and dl for lists or groups of links</a>. Most checks (especially for a definition list) will likely need visual confirmation that the block should be a list, however HTML&#95;CodeSniffer can help with certain paragraphs that should be turned into lists.</p>
+<h5 id="detecting-incorrect-headers-attributes">Detecting incorrect headers attributes</h5>
+
+<p>When the headers attribute technique is used and th elements are properly identified with IDs, HTML&#95;CodeSniffer will calculate
+the expected value of the headers attribute for each cell, and emit an error for each cell that fails this comparison. The headers
+attribute is specified as a space-separated list of IDs, similar to the class attribute: order is not important, and HTML&#95;CodeSniffer
+will accept cells where the headers attribute is specified correctly but in a different order to that expected.</p>
+
+<blockquote>
+  <p>HTML&#95;CodeSniffer will not throw errors on td elements that appear before the first row and column of headers.
+  For instance, if a table contains a cell in row 1, column 1, with no meaning and thus given a td element instead of th,
+  no error will be thrown. (This example is written independent of direction - normally this will be the top-left
+  table cell, but in a right-to-left (RTL) language it will be the top-right.)</p>
+</blockquote>
+
+<h5 id="adding-summary-and-caption-to-tables">Adding summary and caption to tables</h5>
+
+<p>Adding a caption and summary provide a way to provide further information on identifying and using the table. The two relevant
+techniques are:</p>
+
+<ul>
+<li><a href="www.w3.org/TR/WCAG20-TECHS/H39">H39: Using caption elements to associate data table captions with data tables</a>, and</li>
+<li><a href="www.w3.org/TR/WCAG20-TECHS/H73">H73: Using the summary attribute of the table element to give an overview of data tables</a>.</li>
+</ul>
+
+<p>The caption element is mainly to programmatically associate a table with its caption. The method technique H39 uses suggests that
+a table does not <em>need</em> a caption to fulfil this Success Criterion, but if they exist, they should be associated using the caption
+element. It also ensures that the caption element is not used for other purposes. HTML&#95;CodeSniffer will emit a warning if a
+caption is missing.</p>
+
+<p>The summary attribute is more important, as it provides information on the use of a table, especially to non-sighted users
+where use of a table is not obvious. The W3C article provides the example of a bus timetable, which uses the summary attribute
+to explain how to read it (in this case: bus stops are listed in row 1; find your bus stop then look down that column to find
+departure times). For sighted users reading the timetable would be obvious, but someone with a screen reader who cannot
+skim-read the table first would not have this orientation.</p>
+
+<p>The summary attribute's main issue is that it is not shown to sighted users, so if the information that would appear in the
+summary attribute would also be useful to other groups of users, it may be better placed in body text before the table (not
+after, because it is not obvious to those users reading sequentially). Therefore, the lack of a summary is reported by
+HTML&#95;CodeSniffer as a warning.</p>
+
+<p>The two techniques also state that where both caption and summary are specified, the information should not be duplicated.</p>
+
+<h4 id="making-forms-more-accessible">Making forms more accessible</h4>
+
+<h5 id="labelling-form-elements">Labelling form elements</h5>
+
+<p>Labels must be explicitly labelled, using the "for" attribute, according to
+<a href="http://www.w3.org/TR/WCAG20-TECHS/H44">H44: Using label elements to associate text labels with form controls</a>.
+If the visual design cannot accommodate a label, then you can use the title attribute instead - see
+<a href="http://www.w3.org/TR/WCAG20-TECHS/H65">H65: Using the title attribute to identify form controls when the label element cannot be used</a>.</p>
+
+<p>Implicit labels are where the label attribute wraps around the field: they are not supported by assistive technology as
+well as explicit labels, so are not recommended. The input field becomes part of the label, which makes it more difficult
+to determine what the label actually is; it is not as accessibility-supported in older versions of assistive technology.</p>
+
+<p>Using the label element is preferred whenever possible, because sighted users relying upon the keyboard for navigation may
+not be able to access the title attribute, which normally appears as a tooltip in the browser.</p>
+
+<h5 id="ensuring-label-targets-exist-in-the-document">Ensuring label targets exist in the document</h5>
+
+<p>HTML&#95;CodeSniffer will emit an error message on a label element in the following circumstances:</p>
+
+<ul>
+<li>The "for" attribute contains an ID that does not exist in the current document; or</li>
+<li>The "for" attribute contains an ID that points to a form control.</li>
+</ul>
+
+<p>For the latter test, specifically tested are input, select and textarea elements. Button elements are not tested, as these should not
+have a label (their caption acts as its label).</p>
+
+<h5 id="grouping-form-elements-using-the-fieldset-element">Grouping form elements using the fieldset element</h5>
+
+<p>Fields that are logically related should be grouped using the fieldset element, according to technique
+<a href="http://www.w3.org/TR/WCAG20-TECHS/H71">H71: Providing a description for groups of form controls using fieldset and legend elements</a>.
+The fieldset element contains a legend element (that should be the first child of the fieldset) which
+provides an identification for the field group.</p>
+
+<p>The W3C acknowledges that the default presentation of the fieldset element in most browsers is somewhat tacky,
+but also advise against completely removing the visual grouping provided by a fieldset, stating:</p>
+
+<blockquote>
+  <p>Authors sometimes avoid using the fieldset element because of the default display in the browser, which
+  draws a border around the grouped controls. This visual grouping is also useful and authors should seriously
+  consider retaining it (or some form of visual grouping). The visual effect can be modified in CSS by overriding
+  the "border" property of the fieldset and the "position" property of the legend.</p>
+  
+  <p><cite>Techniques for WCAG 2.0: <a href="http://www.w3.org/TR/WCAG20-TECHS/H71">H71: Providing a description for groups of form controls using fieldset and legend elements</a></cite></p>
+</blockquote>
+
+<p>Fields will usually be grouped because they form part of a larger logical unit. For instance, the fields that make up a billing address
+should be grouped by a fieldset. However, this also extends to what may initially be thought of as single data items that are nonetheless
+broken apart into multiple fields, such as:</p>
+
+<ul>
+<li>A date data item being entered by way of separate fields for day, month and year; or</li>
+<li>A phone number data item, split into an area code and local number.</li>
+</ul>
+
+<p>Grouping these fields would allow a user with supporting assistive technology to understand the purpose of the entire data item,
+and skip it if necessary. The latter example could be exposed to such users as a "home phone number", for instance, letting them
+skip it if necessary. Each input control should also be labelled according to its individual purpose, possibly using the title
+attribute if the label is not to appear to sighted users by default.</p>
+
+<p>Indeed, one common failure listed for <a href="./3_3_2">Success Criterion 3.3.2 (Labels or Instructions)</a> specifically relates to
+<a href="http://www.w3.org/TR/WCAG20-TECHS/F82">formatting a phone number as multiple fields, but without including a text label</a>.
+(Note that this suggests three fields as per the common North American format, )</p>
+
+<h5 id="grouping-drop-down-options-using-the-optgroup-element">Grouping drop-down options using the optgroup element</h5>
+
+<p>Technique <a href="http://www.w3.org/TR/WCAG20-TECHS/H85">H85: Using OPTGROUP to group OPTION elements inside a SELECT</a> suggests that
+groups of related option elements inside a select element (drop-down field) should be grouped using the optgroup field.</p>
+
+<h4 id="marking-up-lists">Marking up lists</h4>
+
+<p>Where a set of items is written as a list, they should be marked up using the appropriate list type, as per technique
+<a href="http://www.w3.org/TR/WCAG20-TECHS/H48">H48: Using ol, ul and dl for lists or groups of links</a>. There are three list types:</p>
+
+<ul>
+<li>unordered (bulleted, like this one), using the ul element;</li>
+<li>ordered (numbered/lettered), using the ol element; and</li>
+<li>definition (where a term is followed by its definition, usually indented).</li>
+</ul>
+
+<p>Most checks (especially for a definition list) will likely need visual confirmation that the block should be a list, however
+HTML&#95;CodeSniffer will throw errors where certain paragraphs appear to be a list but are not marked up as such.</p>
 
 <p>Paragraphs broken up by line breaks (br elements) will be detected as being potential lists when at least one line starts with the following:</p>
 
@@ -150,8 +337,65 @@
 
 <p>HTML&#95;CodeSniffer will suggest that these elements should be converted into the appropriate list type.</p>
 
+<h4 id="avoiding-presentational-markup">Avoiding presentational markup</h4>
 
-                <h3>Sniff Coverage</h3>
+<p>HTML&#95;CodeSniffer will throw errors where authors use so-called "presentational markup" as defined in HTML 4.01. Specifically,
+it tests for these presentational elements and attributes:</p>
+
+<table style="width: 60%;">
+<caption>Presentational markup and their recommended replacements</caption>
+<thead>
+<tr>
+<th>Presentational element or attribute</th><th>Recommended replacement</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>b</td><td>strong</td></tr>
+<tr><td>i</td><td>em, cite (citations)</td></tr>
+<tr><td>u</td><td>ins (marking inserted text)</td></tr>
+<tr><td>s, strike</td><td>del (marking deleted text)</td></tr>
+<tr><td>tt</td><td>code, kbd</td></tr>
+<tr><td>big</td><td>CSS (font-size)</td></tr>
+<tr><td>small</td><td>CSS (font-size)</td></tr>
+<tr><td>center</td><td>CSS (text-align)</td></tr>
+<tr><td>font</td><td>span with a CSS class</td></tr>
+<tr><td>Use of the align attribute</td><td>CSS (text-align for text, float for images)</td></tr>
+</tbody>
+</table>
+
+<p>Note that use of elements producing an underline are generally discouraged, or a change in their display recommended,
+because most users expect hyperlinks to be underlined.</p>
+
+<blockquote>
+  <p>In HTML5, most such markup has been given a semantic meaning, usually defining what type of text normally uses the default
+  formatting, without conveying an additional sense of emphasis as the strong or em elements do.</p>
+</blockquote>
+
+<h4 id="nesting-of-headings">Nesting of headings</h4>
+
+<p>HTML&#95;CodeSniffer will emit messages when headings are not nested in the correct order. For example, the primary heading
+of the document not being a H1, or heading levels being skipped such as a H1 being followed by a H3.</p>
+
+<p>At <abbr title="Single A">A</abbr> and <abbr title="Double A">AA</abbr> level, they will emit a warning, as there are examples
+in the HTML version of the technique involved (<a href="http://www.w3.org/TR/WCAG20-TECHS/H42">H42: Using h1-h6 to identify headings</a>)
+which suggest that headings don't necessarily have to be in order.</p>
+
+<p>At <abbr title="Triple A">AAA</abbr> level, an error will be thrown instead, with the reason related to Success Criterion 2.4.10 -
+which states that "section headings are used to organise the content". With incorrectly-nested headings, it makes it more
+difficult for some users to grasp the overall structure of the page, and so it is considered important that they are properly
+used. The single relevant technique for that Success Criterion states:</p>
+
+<blockquote>
+  <p>To facilitate navigation and understanding of overall document structure, authors should use headings that are properly nested
+  (e.g., h1 followed by h2, h2 followed by h2 or h3, h3 followed by h3 or h4, etc.).</p>
+  
+  <p><cite>Techniques for WCAG 2.0: <a href="http://www.w3.org/TR/WCAG20-TECHS/G141">G141: Organizing a page using headings</a></cite></p>
+</blockquote>
+
+<p>Therefore, this is enforced at the <abbr title="Triple A">AAA</abbr> level.</p>
+
+
+                <h3 id="sniff-coverage">Sniff Coverage</h3>
 
                 <p>Note that "[Standard]" will be replaced with "WCAG2A", "WCAG2AA" or "WCAG2AAA", depending on the level being tested.</p>
 
@@ -661,6 +905,20 @@
 </td>
 </tr>
 
+<tr class="">
+<td id="1_3_1_36_name" headers="name_1_3_1 sc1_3_1">
+<p>This label's "for" attribute contains an ID that does not exist in the document fragment.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_1.H44.NonExistentFragment</div></td>
+<td id="1_3_1_36_applies" headers="applies_1_3_1 sc1_3_1">
+<p>Label with a "for" attribute that does not match any ID used in the document fragment. This is does not </p>
+</td>
+<td id="1_3_1_36_tech" headers="tech_1_3_1 sc1_3_1">
+<ul>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/H44">H44</a></li>
+</ul>
+</td>
+</tr>
+
 </tbody></table>
 
                 <h4 class="grey-heading">Notices</h4><table>
@@ -705,6 +963,8 @@
 </tr>
 
 </tbody></table>
+
+                
 
         </div> <!-- end max-width -->
 

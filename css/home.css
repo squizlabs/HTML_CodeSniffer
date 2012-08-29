@@ -132,7 +132,7 @@ td a:hover {
  position:absolute;
  top:0px;
  right:0px;
- z-index:200000;
+ z-index:90000;
  overflow:hidden;
 }
 
@@ -295,6 +295,11 @@ td a:hover {
  position:relative;
  left:2px;
  padding-bottom:8px;
+}
+
+#standards-list,
+#standards-list h3 {
+    text-align: center;
 }
 
 #introduction #bookmarklet {
@@ -1042,4 +1047,31 @@ td:last-child li {
  display:inline-block;
  padding-right:18px;
  background: url(../images/external-link-hover.png) center right no-repeat;
+}
+
+/* Stats Counter
+****************************************/
+#issueCounterWrap {
+    text-align: center;
+    padding: 0 0 1.9em;
+}
+.statsHeading {
+    display: block;
+    color: #2c5181;
+    font-weight: bold;
+    font-size: 12px;
+    margin-bottom: 8px;
+}
+.statsCounter {
+    display: inline-block;
+    color: #2c5181;
+    background: url("../images/test-area-bg.png") repeat scroll 0 0 #D9E8F5;
+    border: 1px solid #C6C6C6;
+    padding: 0.2em 0.5em 0.1em;
+    font-size: 30px;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    border-radius: 0.2em;
+    box-shadow: 0 1px 0 rgba(255,255,255,0.8) inset, 0 2px 4px rgba(0,0,0,0.15);
+    text-shadow: 0 1px 0 #FFF;
 }

@@ -85,9 +85,37 @@
 
         <div class="max-width">
 
-                
+                <h3 id="discussion">Discussion</h3><h4>Summary</h4>
 
-                <h3>Sniff Coverage</h3>
+<p>The purpose of this Success Criterion is to ensure that no unexpected changes of
+context occur as a mere result of a form control receiving the focus. Users should be
+able to navigate through the page, by mouse or keyboard, without seeing things done
+to their browsing context which include:</p>
+
+<ul>
+<li>their focus being switched to another component,</li>
+<li>forms automatically submitted, or</li>
+<li>new windows automatically opened.</li>
+</ul>
+
+<h5>Examples</h5>
+
+<ul>
+<li><p>Automatic pop-up windows, such as those used for advertising, fail the success
+criterion as per <a href="http://www.w3.org/TR/2012/NOTE-WCAG20-TECHS-20120103/F52">failure F52</a>.
+"Pop-under" ads technically do not fail this due to the window not automatically
+being given focus, however if the ad is forced to the front programmatically on
+close, it could possibly argued that this action still fails.</p></li>
+<li><p>For elements such as links or buttons, it is tempting to set an event handler on the
+"focus" event, so it works with both mouse and keyboard. However, users not using the
+mouse to navigate through the document will find that the event will fire as soon as
+the element is navigated to, without user intervention. Instead, the event should fire
+on element activation - in these cases, the "click" event will work as generic
+activation event. (See <a href="http://www.w3.org/TR/WCAG20-TECHS/G107">G107: Using "activate" rather than "focus" as a trigger for changes of context</a>).</p></li>
+</ul>
+
+
+                <h3 id="sniff-coverage">Sniff Coverage</h3>
 
                 <p>Note that "[Standard]" will be replaced with "WCAG2A", "WCAG2AA" or "WCAG2AAA", depending on the level being tested.</p>
 
@@ -123,6 +151,8 @@
 </tr>
 
 </tbody></table>
+
+                
 
         </div> <!-- end max-width -->
 

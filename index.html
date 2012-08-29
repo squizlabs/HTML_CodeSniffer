@@ -11,6 +11,7 @@
 
         <script type="text/javascript" src="./build/HTMLCS.js"></script>
         <script type="text/javascript" src="./home.js"></script>
+        <script type="text/javascript" src="./jquery-1.8.0.min.js"></script>
         <script type="text/javascript">
             var _gaq = _gaq || [];
             _gaq.push(['_setAccount', 'UA-359178-16']);
@@ -59,6 +60,41 @@
 
                     <p>To get you started, HTML_CodeSniffer comes with a set of 3 standards that enforce the <a href="http://www.w3.org/TR/WCAG/">Web Content Accessibility Guidelines (WCAG) 2.0</a>. An auditor interface is provided by a bookmarklet to let you try out the WCAG 2.0 checks on any web page.</p>
 
+                    <div id="ourCounter" class="statsCounter" style="display:none;"></div>
+
+                    <script type="text/javascript">
+                        jQuery(document).ready(function($) {
+                            loadHTMLCSStats(function(stats) {
+                                var formatNumber = function(number) {
+                                    var regex = /(\d+)(\d{3})/;
+                                    number += '';
+                                    while (regex.test(number)) {
+                                        number = number.replace(regex, '$1,$2');
+                                    }
+
+                                    return number;
+                                }
+
+                                //$('#ourCounter').css('display', 'block');
+
+                                var count = stats.errors + stats.warnings + stats.notices;
+
+                                $('#ourCounter').html(formatNumber(count));
+                                setInterval(function() {
+                                    $('#ourCounter').html(formatNumber(++count));
+                                }, (1000 * stats.errorSeconds));
+
+                                setInterval(function() {
+                                    $('#ourCounter').html(formatNumber(++count));
+                                }, (1000 * stats.warningSeconds));
+
+                                setInterval(function() {
+                                    $('#ourCounter').html(formatNumber(++count));
+                                }, (1000 * stats.noticesSeconds));
+                            });
+                        });
+                    </script>
+
                     <span class="introduction-divider"></span>
 
                     <div id="standards-list">
@@ -106,7 +142,7 @@
                 Test results will be shown underneath the code block.</p>
 
                 <div id="code-input">
-                    <form id="runHTMLCS" action="">
+                    <form id="runHTMLCS" action="" onsubmit="javascript:runHTMLCSTest(false); return false;">
                         <div id="code-overlay" onclick="hideDiv()">
                             <div id="test-area-graphic"></div>Paste your code here
                         </div>
@@ -125,7 +161,7 @@
                             </ul>
                             </fieldset>
 
-                            <button type="button" id="run-button" onclick="javascript:runHTMLCSTest(false);" class="test-options-disabled">Run HTML_CodeSniffer</button>
+                            <button type="submit" id="run-button" class="test-options-disabled">Run HTML_CodeSniffer</button>
 
                         </div>
                     </form>

@@ -65,7 +65,7 @@ function updateResults(resultsWrapper)
         // Get the success criterion so we can provide a link.
         var msgParts   = msg.code.split('.');
         var principle  = msgParts[1];
-        var sc         = msgParts[3];
+        var sc         = msgParts[3].split('_').slice(0, 3).join('_');
         var techniques = msgParts[4];
         techniques     = techniques.split(',');
 
@@ -243,8 +243,32 @@ function reorderResults() {
     }
 }
 
+// HTMLCSMeter.
+function loadHTMLCSStats(callback)
+{
+    var feed = 'list';
+    var key  = '0ArD0TOS0OvHkdEdLQ0pRbkgzRUp5T2JvRHRYQkZfS0E';
+    var worksheet = 'od8';
+    $.getJSON('http://spreadsheets.google.com/feeds/' + feed + '/' + key + '/' + worksheet + '/public/values?alt=json-in-script&single=true&callback=?', null, function(data) {
+        var stats = {};
+        var entry = data.feed.entry[0];
+        var sec   = data.feed.entry[1];
+
+        stats.errors         = parseInt(entry.gsx$errors.$t);
+        stats.warnings       = parseInt(entry.gsx$warnings.$t);
+        stats.notices        = parseInt(entry.gsx$notices.$t);
+        stats.errorSeconds   = parseInt(sec.gsx$errors.$t);
+        stats.warningSeconds = parseInt(sec.gsx$warnings.$t);
+        stats.noticesSeconds = parseInt(sec.gsx$notices.$t);
+
+        callback.call(this, stats);
+    });
+}
+
 window.onload = function() {
     var radios = document.querySelectorAll('.radio-gen');
+    var source = document.getElementById('source');
+
     for (var i = 0; i < radios.length; i++) {
         radios[i].onclick = function(event) {
             event.target.previousSibling.click();
@@ -260,10 +284,13 @@ window.onload = function() {
             }
 
             event.target.nextSibling.className += ' radio-on';
+
+            if (source.value !== '') {
+                activateHTMLCS();
+            }
         }
     }
 
-    var source = document.getElementById('source');
     source.onkeypress = function() {
         activateHTMLCS();
     };

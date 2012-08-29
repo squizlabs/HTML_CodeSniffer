@@ -91,24 +91,28 @@
 
         <div class="max-width">
 
-                <h3>Discussion</h3><h4 class="grey-heading">Summary</h4>
+                <h3 id="discussion">Discussion</h3><h4>Summary</h4>
 
-<p>This is a stricter version of <a href="./1_4_3">Success Criterion 1.4.3</a>. Normally a contrast ratio of 3.0:1 is a standard for normal users (ie. without loss of visual acuity, or 20/20).</p>
+<p>This is the stricter version of a two-stage criterion relating to contrast between foreground and
+background colours; the <abbr title="Triple A">AAA</abbr> version exists as <a href="./1_4_3">Success Criterion 1.4.3</a>;
+please see that document for background information regarding contrast and luminance.</p>
 
-<p>The 4.5:1 contrast ratio (found in Success Criterion 1.4.3 for body text, and this one for large print) is chosen to cater for the loss of contrast recognition for users with approximately 20/40 vision typically suffer, while the 7.0:1 level quoted in this criterion is meant to handle users with approximately 20/80 vision. For those with worse vision (and cannot be corrected), it is suggested that those users would be better suited with assistive technology.</p>
+<h5>What changes in this version?</h5>
 
-<p>For means of comparison, the maximum contrast ratio (between white and black) is 21.0:1.</p>
+<p>The minimum contrast ratio for applicable text, or images of text, is increased by a further 1.5 times;
+for body text the minimum becomes 7:1, while a 4.5:1 ratio is required for large-scale text.</p>
+
+<p>This is nominated to satisfy the requirements of users who have as low as 20/80 vision. Beyond this point,
+it is likely that users will be relying on assistive technology to view content.</p>
+
+<p>Otherwise, the same exceptions and relaxations apply as Success Criterion 1.4.3.</p>
 
 
-                <h3>Sniff Coverage</h3>
+                <h3 id="sniff-coverage">Sniff Coverage</h3>
 
                 <p>Note that "[Standard]" will be replaced with "WCAG2A", "WCAG2AA" or "WCAG2AAA", depending on the level being tested.</p>
 
-                
-
-                
-
-                <h4 class="grey-heading">Notices</h4><table>
+                <h4 class="grey-heading">Errors</h4><table>
 <colgroup>
 <col width="42%">
 <col width="42%">
@@ -123,22 +127,80 @@
 
 <tr class="">
 <td id="1_4_6_0_name" headers="name_1_4_6 sc1_4_6">
-<p>Check that a contrast ratio of at least 7.0:1 exists between text (or images of text) and its background colour, or 4.5:1 for large text.</p>
-<div class="fullcode">[Standard].Principle1.Guideline1_4.1_4_6.G17,G18,G148,G174</div></td>
+<p>This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 4.5:1, but text in this element has a contrast ratio of {value}. Recommendation: {colour recommendations}.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_4.1_4_6.G18</div></td>
 <td id="1_4_6_0_applies" headers="applies_1_4_6 sc1_4_6">
-<p>Top element.</p>
+<p>Elements with text with colours that have insufficient colour contrast for the Level AAA's requirements for "large text". The recommendation will contain a suggestion as to a colour change(s) that will satisfy the Success Criterion.</p>
 </td>
 <td id="1_4_6_0_tech" headers="tech_1_4_6 sc1_4_6">
 <ul>
-<li><a href="http://www.w3.org/TR/WCAG20-TECHS/G17">G17</a></li>
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/G18">G18</a></li>
-<li><a href="http://www.w3.org/TR/WCAG20-TECHS/G148">G148</a></li>
-<li><a href="http://www.w3.org/TR/WCAG20-TECHS/G174">G174</a></li>
+</ul>
+</td>
+</tr>
+
+<tr class="">
+<td id="1_4_6_1_name" headers="name_1_4_6 sc1_4_6">
+<p>This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 7:1, but text in this element has a contrast ratio of {value}. Recommendation: {colour recommendations}.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_4.1_4_6.G17</div></td>
+<td id="1_4_6_1_applies" headers="applies_1_4_6 sc1_4_6">
+<p>Elements with text with colours that have insufficient colour contrast for Level AAA's requirements. The recommendation will contain a suggestion as to a colour change(s) that will satisfy the Success Criterion.</p>
+</td>
+<td id="1_4_6_1_tech" headers="tech_1_4_6 sc1_4_6">
+<ul>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/G17">G17</a></li>
 </ul>
 </td>
 </tr>
 
 </tbody></table>
+
+                <h4 class="grey-heading">Warnings</h4><table>
+<colgroup>
+<col width="42%">
+<col width="42%">
+<col width="16%">
+</colgroup>
+<tbody>
+<tr>
+<th id="name_1_4_6">Message Name</th>
+<th id="applies_1_4_6">Applies To</th>
+<th id="tech_1_4_6">Techniques</th>
+</tr>
+
+<tr class="">
+<td id="1_4_6_2_name" headers="name_1_4_6 sc1_4_6">
+<p>This element's text is placed on a background image. Ensure the contrast ratio between the text and all covered parts of the image are at least 4.5:1.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_4.1_4_6.G18</div></td>
+<td id="1_4_6_2_applies" headers="applies_1_4_6 sc1_4_6">
+<p>Text placed in front of a background image. Applies at Level AAA to text defined as "large text".</p>
+</td>
+<td id="1_4_6_2_tech" headers="tech_1_4_6 sc1_4_6">
+<ul>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/G18">G18</a></li>
+</ul>
+</td>
+</tr>
+
+<tr class="">
+<td id="1_4_6_3_name" headers="name_1_4_6 sc1_4_6">
+<p>This element's text is placed on a background image. Ensure the contrast ratio between the text and all covered parts of the image are at least 7:1.</p>
+<div class="fullcode">[Standard].Principle1.Guideline1_4.1_4_6.G17</div></td>
+<td id="1_4_6_3_applies" headers="applies_1_4_6 sc1_4_6">
+<p>Text placed in front of a background image. Applies at Level AAA to general text.</p>
+</td>
+<td id="1_4_6_3_tech" headers="tech_1_4_6 sc1_4_6">
+<ul>
+<li><a href="http://www.w3.org/TR/WCAG20-TECHS/G17">G17</a></li>
+</ul>
+</td>
+</tr>
+
+</tbody></table>
+
+                
+
+                
 
         </div> <!-- end max-width -->
 
