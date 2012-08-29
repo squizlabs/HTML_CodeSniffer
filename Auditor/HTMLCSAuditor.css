@@ -74,6 +74,7 @@
     cursor: pointer;
     height: 2.2em;
     opacity: 0.5;
+    filter: alpha(opacity=50);
     right: 0;
     top: 0;
     width: 2.2em;
@@ -81,6 +82,7 @@
 
 #HTMLCS-wrapper .HTMLCS-close:hover {
     opacity: 1;
+    filter: none;
 }
 
 #HTMLCS-wrapper .HTMLCS-close:after {
@@ -165,6 +167,7 @@
 
 #HTMLCS-wrapper .HTMLCS-lineage .HTMLCS-lineage-item:first-child span {
     opacity: 0;
+    filter: alpha(opacity=0);
     position: absolute;
     left: -9999px;
     width: 0;
@@ -655,6 +658,7 @@
 
 #HTMLCS-wrapper .HTMLCS-checkbox.disabled {
     opacity: 0.4;
+    filter: alpha(opacity=40);
     cursor: default;
 }
 
@@ -794,6 +798,7 @@
 
 .HTMLCS-pointer-hidden {
     opacity: 0;
+    filter: alpha(opacity=0);
     display: none;
 }
 
@@ -859,11 +864,13 @@
 #HTMLCS-wrapper.HTMLCS-processing #HTMLCS-settings-view-report,
 #HTMLCS-wrapper #HTMLCS-settings-view-report.disabled {
     cursor: default;
+    filter: alpha(opacity=40);
     opacity: 0.4;
 }
 
 #HTMLCS-wrapper .HTMLCS-button.disabled {
     cursor: default;
+    filter: alpha(opacity=30);
     opacity: 0.3;
 }
 
