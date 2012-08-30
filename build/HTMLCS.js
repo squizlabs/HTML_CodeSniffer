@@ -175,8 +175,6 @@ var HTMLCSAuditor = new function()
             checked = false;
         }
 
-        var isIE = new RegExp('msie', 'i').test(navigator.userAgent);
-
         var label   = _doc.createElement('label');
         var content = '';
         label.className = _prefix + 'checkbox';
@@ -200,7 +198,10 @@ var HTMLCSAuditor = new function()
         label.innerHTML = content;
 
         var input = label.getElementsByTagName('input')[0];
-        input.onclick = function() {
+
+        label.onclick = function(event) {
+            input.checked = !input.checked;
+
             if (input.checked === true) {
                 label.className += ' active';
             } else {
@@ -210,12 +211,8 @@ var HTMLCSAuditor = new function()
             if (onclick instanceof Function === true) {
                 onclick(input);
             }
-        };
 
-        if (isIE === true) {
-            label.onclick = function() {
-                input.click();
-            }
+            return false;
         }
 
         return label;
