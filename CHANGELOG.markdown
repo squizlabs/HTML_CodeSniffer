@@ -8,6 +8,14 @@ Items prefixed with "SC" refer to changes or fixes to the tests in that Success
 Criterion (or Criteria), and should be read in conjunction with the W3C's documentation
 for the [Web Content Accessibility Guidelines (WCAG) 2.0](http://www.w3.org/TR/WCAG20).
 
+## Version 33 (31 Aug 2012)
+
+- **Auditor:** Fixed an issue in Internet Explorer 9+ where the message type switches
+  would not work properly. ([Pull Request #32](http://squizlabs.github.com/HTML_CodeSniffer/issues/32))
+- **Auditor:** Fixed some auditor styling issues in Internet Explorer 8, mainly
+  relating to opacity issues - for instance, correctly showing that message type
+  switches and the "View Report" button is disabled when necessary. ([Pull Request #32](http://squizlabs.github.com/HTML_CodeSniffer/issues/32))
+
 ## Version 31 (27 Aug 2012)
 
 - **SC 2.2.2:** Fixed a bug that was causing testing on sites using Twitter's "Tweet
