@@ -173,7 +173,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
         }
 
         var isNoLabelControl = false;
-        if (/^(submit|reset|image|hidden|button)$/.test(inputType) === true) {
+        if (/^(submit|reset|image|hidden|button)$/.test(inputType.toLowerCase()) === true) {
             isNoLabelControl = true;
         }
 
