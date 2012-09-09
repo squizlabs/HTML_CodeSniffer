@@ -90,17 +90,19 @@ var HTMLCSAuditor = new function()
         var input = label.getElementsByTagName('input')[0];
 
         label.onclick = function(event) {
-            input.checked = !input.checked;
+            if (disabled === false) {
+                input.checked = !input.checked;
 
-            if (input.checked === true) {
-                label.className += ' active';
-            } else {
-                label.className = label.className.replace('active', '');
-            }
+                if (input.checked === true) {
+                    label.className += ' active';
+                } else {
+                    label.className = label.className.replace('active', '');
+                }
 
-            if (onclick instanceof Function === true) {
-                onclick(input);
-            }
+                if (onclick instanceof Function === true) {
+                    onclick(input);
+                }
+            }//end if
 
             return false;
         }
@@ -578,6 +580,7 @@ var HTMLCSAuditor = new function()
                 var disabled = false;
 
                 if (msgCount === 0) {
+                    checked  = false;
                     disabled = true;
                 }
             }
@@ -602,7 +605,7 @@ var HTMLCSAuditor = new function()
                 }
 
                 if (enable === true) {
-                    viewReportDiv.className = viewReportDiv.className.replace(/ disabled/, '');
+                    viewReportDiv.className = viewReportDiv.className.replace(/ disabled/g, '');
                 } else {
                     viewReportDiv.className += ' disabled';
                 }
@@ -1398,6 +1401,8 @@ var HTMLCSAuditor = new function()
                 if (ignore === true) {
                     _messages.splice(i, 1);
                     i--;
+                } else {
+                    console.info([_messages[i].element, _messages[i].code]);
                 }
             }//end for
 
