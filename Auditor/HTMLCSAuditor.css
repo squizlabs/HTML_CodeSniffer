@@ -692,6 +692,10 @@
   background-color: #205caf;
 }
 
+#HTMLCS-wrapper .HTMLCS-checkbox.disabled * {
+  cursor: default;
+}
+
 #HTMLCS-wrapper .HTMLCS-checkbox-slider {
   -moz-transition: left 0.2s ease-out;
   -webkit-transition: left 0.2s ease-out;
