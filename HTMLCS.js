@@ -729,6 +729,29 @@ var HTMLCS = new function()
         };
 
         /**
+         * Return true if an element is in a document.
+         *
+         * @param {Node} element The element that is in a doc, or not.
+         *
+         * @returns {Boolean}
+         */
+        this.isInDocument = function(element) {
+            // Check whether the element is in the document, by looking up its
+            // DOM tree for a document object.
+            var parent = element.parentNode;
+            while (parent && parent.ownerDocument) {
+                parent = parent.parentNode;
+            }//end while
+
+            // If we didn't hit a document, the element must not be in there.
+            if (parent === null) {
+                return false;
+            }
+
+            return true;
+        };
+
+        /**
          * Returns true if the passed child is contained by the passed parent.
          *
          * Uses either the IE contains() method or the W3C compareDocumentPosition()
