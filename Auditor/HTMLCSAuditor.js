@@ -801,6 +801,48 @@ var HTMLCSAuditor = new function()
         msgDetailsDiv.appendChild(msgWcagRef);
         msgDiv.appendChild(msgDetailsDiv);
 
+        // If the item cannot be pointed to, tell them why.
+        if (pointer.isPointable(message.element) === false) {
+            var msgElementSource       = _doc.createElement('div');
+            msgElementSource.className = _prefix + 'issue-source';
+            msgDiv.appendChild(msgElementSource);
+
+            var msgElementSourceHeader       = _doc.createElement('div');
+            msgElementSourceHeader.className = _prefix + 'issue-source-header';
+
+            var msgSourceHeaderText       = _doc.createElement('strong');
+            msgSourceHeaderText.innerHTML = 'Unable to Point to Element';
+
+            msgElementSourceHeader.appendChild(msgSourceHeaderText);
+            msgElementSource.appendChild(msgElementSourceHeader);
+
+            var msgElementSourceInner         = _doc.createElement('div');
+            msgElementSourceInner.style.clear = 'both';
+            var msg = 'Unable to point to the element associated with this issue.';
+
+            if (message.element.ownerDocument === null) {
+                msg = 'This message relates to the entire document and thus cannot be pointed to.';
+            } else {
+                var body = message.element.ownerDocument.getElementsByTagName('body')[0];
+                if (HTMLCS.util.isInDocument(message.element) === false) {
+                    msg += ' It may have been removed from the document since the report was generated.';
+                } else if (HTMLCS.util.contains(body, message.element) === false) {
+                    msg = 'This message relates to an element outside of the document body, and thus cannot be pointed to.';
+                } else {
+                    msg += ' It may be hidden from view using styles.';
+                }
+            }
+
+            if (msgElementSourceInner.textContent !== undefined) {
+                msgElementSourceInner.textContent = msg;
+            } else {
+                // IE8 uses innerText instead. Oh well.
+                msgElementSourceInner.innerText = msg;
+            }
+
+            msgElementSource.appendChild(msgElementSourceInner);
+        }
+
         // Build the source view, if outerHTML exists (Firefox >= 11, Webkit, IE),
         // and applies to the particular element (ie. document doesn't have it).
         if (_options.customIssueSource) {
