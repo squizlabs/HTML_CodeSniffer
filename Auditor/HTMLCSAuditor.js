@@ -1356,6 +1356,10 @@ var HTMLCSAuditor = new function()
             _options.includeCss = true;
         }
 
+        if (_options.ignoreMsgCodes === undefined) {
+            _options.ignoreMsgCodes = [];
+        }
+
         this.includeCss('HTMLCS');
 
         var target    = _doc.getElementById(_prefix + 'wrapper');
@@ -1398,11 +1402,16 @@ var HTMLCSAuditor = new function()
                     }
                 }//end if
 
+                for (var j = 0; j < options.ignoreMsgCodes.length; j++) {
+                    if (new RegExp(options.ignoreMsgCodes[j]).test(_messages[i].code) === true) {
+                        ignore = true;
+                        break;
+                    }
+                }
+
                 if (ignore === true) {
                     _messages.splice(i, 1);
                     i--;
-                } else {
-                    console.info([_messages[i].element, _messages[i].code]);
                 }
             }//end for
 
