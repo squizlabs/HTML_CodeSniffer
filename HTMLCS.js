@@ -222,6 +222,7 @@ var HTMLCS = new function()
      * @param {Function} [callback] The function to call once all tests are run.
      */
     var _run = function(elements, topElement, callback) {
+        var topMsgs = [];
         while (elements.length > 0) {
             var element = elements.shift();
 
@@ -231,8 +232,25 @@ var HTMLCS = new function()
                 var tagName = element.tagName.toLowerCase();
             }
 
+            // First check whether any "top" messages need to be shifted off for this
+            // element. If so, dump off into the main messages.
+            for (var i = 0; i < topMsgs.length;) {
+                if (element === topMsgs[i].element) {
+                    _messages.push(topMsgs[i]);
+                    topMsgs.splice(i, 1);
+                } else {
+                    i++;
+                }
+            }//end for
+
             if (_tags[tagName] && _tags[tagName].length > 0) {
                 _processSniffs(element, _tags[tagName].concat([]), topElement);
+
+                // Save "top" messages, and reset the messages array.
+                if (tagName === '_top') {
+                    topMsgs   = _messages;
+                    _messages = [];
+                }
             }
         }//end while
 
