@@ -824,11 +824,10 @@ var HTMLCSAuditor = new function()
                 msg = 'This message relates to the entire document and thus cannot be pointed to.';
             } else {
                 var body = message.element.ownerDocument.getElementsByTagName('body')[0];
-                if (HTMLCS.util.contains(body, message.element) === false) {
-                    //
-                    msg = 'This message relates to an element outside of the document body, and thus cannot be pointed to.';
-                } else if (HTMLCS.util.isInDocument(message.element) === false) {
+                if (HTMLCS.util.isInDocument(message.element) === false) {
                     msg += ' It may have been removed from the document since the report was generated.';
+                } else if (HTMLCS.util.contains(body, message.element) === false) {
+                    msg = 'This message relates to an element outside of the document body, and thus cannot be pointed to.';
                 } else {
                     msg += ' It may be hidden from view using styles.';
                 }
