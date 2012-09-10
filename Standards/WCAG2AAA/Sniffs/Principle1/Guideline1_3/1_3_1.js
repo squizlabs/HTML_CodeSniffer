@@ -722,7 +722,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
         var legend = fieldset.querySelector('legend');
 
         if ((legend === null) || (legend.parentNode !== fieldset)) {
-            HTMLCS.addMessage(HTMLCS.ERROR, fieldset, 'Fieldset does not contain a legend element. All fieldsets should contain a legend element that describes a description of the field group.', 'H71.3');
+            HTMLCS.addMessage(HTMLCS.ERROR, fieldset, 'Fieldset does not contain a legend element. All fieldsets should contain a legend element that describes a description of the field group.', 'H71.NoLegend');
         }
     },
 
@@ -781,7 +781,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
                 // Multiple names detected = should be in a fieldset.
                 // Either first instance or this one wasn't in a fieldset, or they
                 // are in different fieldsets.
-                HTMLCS.addMessage(HTMLCS.ERROR, form, 'Radio buttons or check boxes with the same name attribute must be contained within a fieldset element.', 'H71.2');
+                HTMLCS.addMessage(HTMLCS.WARNING, form, 'If these radio buttons or check boxes require a further group-level description, they should be contained within a fieldset element.', 'H71.SameName');
                 break;
             }//end if
         }//end for
