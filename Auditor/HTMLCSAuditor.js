@@ -829,7 +829,7 @@ var HTMLCSAuditor = new function()
                 } else if (HTMLCS.util.contains(body, message.element) === false) {
                     msg = 'This message relates to an element outside of the document body, and thus cannot be pointed to.';
                 } else {
-                    msg += ' It may be hidden from view using styles.';
+                    msg += ' It may be hidden from view using styles, or may not have a visual representation.';
                 }
             }
 
