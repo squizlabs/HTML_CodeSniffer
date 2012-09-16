@@ -22,7 +22,12 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_2_1_2_2 = {
      */
     register: function()
     {
-        return ['_top'];
+        return [
+            'object',
+            'embed',
+            'applet',
+            'video'
+        ];
 
     },
 
@@ -34,12 +39,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_2_1_2_2 = {
      */
     process: function(element, top)
     {
-        // Check for elements that could potentially contain video.
-        var mediaObjs = top.querySelectorAll('object, embed, applet, video');
-
-        for (var i = 0; i < mediaObjs.length; i++) {
-            HTMLCS.addMessage(HTMLCS.NOTICE, mediaObjs[i], 'If this embedded object contains pre-recorded synchronised media and is not provided as an alternative for text content, check that captions are provided for audio content.', 'G87,G93');
-        }
+        HTMLCS.addMessage(HTMLCS.NOTICE, element, 'If this embedded object contains pre-recorded synchronised media and is not provided as an alternative for text content, check that captions are provided for audio content.', 'G87,G93');
 
     }
 };
