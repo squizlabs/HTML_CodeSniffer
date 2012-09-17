@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+    <head>
+        <title>H35.2 Missing Applet Alt Attribute Failure</title>
+    </head>
+    <body>
+        <h1>H35.2 Missing Applet Alt Attribute Failure</h1>
+
+        <applet code="lake.class" width="250" height="500">
+            <p>Lake applet long description</p>
+        </applet>
+
+        <h2>Explanation</h2>
+
+        <p>According to Success Criterion 1.1.1 (Non-text Content), all non-text content should contain at least a short text
+        alternative, such as through alt text. However, if the short text alternative is not enough to fully describe the
+        non-text content, a long description should be provided. An example may be the contents of a graph: the alt text may
+        say &quot;Graph of sales by quarter&quot; but it does not describe the points of the graph.</p>
+
+        <p>This should fail because the alt attribute has not been provided. Both alt attributes and body text are required.
+        The alt attribute will be used by browsers that understand the applet tag natively (such as some versions of Internet
+        Explorer) but cannot load the applet. The body text will be used by browsers without native support for Java, where
+        it would ignore the applet tags.</p>
+
+        <h2>Expected Errors</h2>
+
+        <ul>
+            <li><em>[Standard]</em>.Principle1.Guideline1_1.1_1_1.H35.2: "Applet elements must contain an alt attribute, to provide a text alternative to browsers supporting the element but are unable to load the applet."</li>
+        </ul>
+
+        <h2>Relevant Success Criteria</h2>
+
+        <ul>
+            <li><strong><abbr title="Success Criterion">SC</abbr> 1.1.1:</strong> <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/text-equiv-all.html">Non-Text Content</a></li>
+        </ul>
+
+        <h2>Relevant Techniques</h2>
+
+        <ul>
+            <li><strong>H35:</strong> <a href="http://www.w3.org/TR/WCAG20-TECHS/H35">Providing text alternatives on applet elements</a></li>
+        </ul>
+    </body>
+</html>

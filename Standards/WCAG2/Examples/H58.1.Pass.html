@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en-AU" xml:lang="en-AU">
+    <head>
+        <title>H58.1 Valid Language Tags Test</title>
+    </head>
+    <body>
+        <h1>H58.1 Valid Language Tags Test</h1>
+
+        <div lang="en" xml:lang="en"><strong>en:</strong> English - Latin script presumed by "Suppress-Script" property</div>
+        <div lang="en-AU" xml:lang="en-AU"><strong>en-AU:</strong> English - Australia</div>
+        <div lang="zh" xml:lang="zh"><strong>zh:</strong> Chinese - no script presumed</div>
+        <div lang="zh-Hant" xml:lang="zh-Hant"><strong>zh-Hant:</strong> Chinese - "Traditional Han" script (as used in Taiwan, Hong Kong)</div>
+        <div lang="zh-Hans" xml:lang="zh-Hans"><strong>zh-Hans:</strong> Chinese - "Simplified Han" script (as used in mainland China, Singapore)</div>
+        <div lang="zh-Hant-HK" xml:lang="zh-Hant-HK"><strong>zh-Hant-HK:</strong> Chinese - "Traditional Han" script - Hong Kong</div>
+        <div lang="zh-Latn-pinyin" xml:lang="zh-Latn-pinyin"><strong>zh-Latn-pinyin:</strong> Chinese - Latin script, Pinyin romanisation variant - no country specified</div>
+        <div lang="en-AU-x-nsw" xml:lang="en-AU-x-nsw"><strong>en-AU-x-nsw:</strong> English - Australia - private use section "x-nsw"</div>
+        <div lang="en-AU-u-kf-upper" xml:lang="en-AU-u-kf-upper"><strong>en-AU-u-kf-upper:</strong> English - Australia - registered extension "u" (Unicode collation) with data</div>
+        <div lang="x-test" xml:lang="x-test"><strong>x-test:</strong> Private use tag "x-test"</div>
+        <div lang="tlh" xml:lang="tlh"><strong>tlh:</strong> Klingon (three-character language subtag)</div>
+        <div lang="i-klingon" xml:lang="i-klingon"><strong>i-klingon:</strong> Klingon (specified as irregular grandfathered tag)</div>
+
+        <p>Success Criterion 3.1.2 (Language of Parts) states that the changes in language should be marked
+        using language attributes to qualify for <abbr title="Double A">AA</abbr> conformance.</p>
+
+        <p>This example tests various examples of language tags that are known to be well-formed. To be considered
+        valid, the language subtags used have to be listed in the IANA
+        <a href="http://www.iana.org/assignments/language-subtag-registry">Language Subtag Registry</a>. HTML_CodeSniffer
+        does not have the ability to check subtags against this list, mainly due to its large size and frequency of update.</p>
+
+        <h2>Expected Not To Fail</h2>
+
+        <ul>
+            <li><em>[Standard]</em>.Principle3.Guideline3_1.3_1_1.H58.1.*: "The language specified in the &lt;lang | xml:lang&gt; attribute of this element does not appear to be well-formed."</li>
+        </ul>
+
+        <p><i>(The "*" represents either "Lang" or "XmlLang" depending on which attribute applies.)</i></p>
+
+        <h2>Relevant Success Criteria</h2>
+
+        <ul>
+            <li><strong><abbr title="Success Criterion">SC</abbr> 3.1.2:</strong> <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/meaning_other_lang_id.html">Language of Parts</a></li>
+        </ul>
+
+        <h2>Relevant Techniques</h2>
+
+        <ul>
+            <li><strong>H58:</strong> <a href="http://www.w3.org/TR/WCAG20-TECHS/H58">Using language attributes to identify changes in the human language</a></li>
+        </ul>
+    </body>
+</html>

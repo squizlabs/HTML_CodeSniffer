@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+    <head>
+        <title>H43/H63 Headers Not Associated (Headers or Scope Allowed) Failure</title>
+    </head>
+    <body>
+        <h1>H43/H63 Headers Not Associated (Headers or Scope Allowed) Failure</h1>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Header A</th>
+                    <th>Header B</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>Header 1</th>
+                    <td>Cell 1B</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Explanation</h2>
+
+        <p>According to Success Criterion 1.3.1 (Info and Relationships), the relationship between table headings and table data
+        (ie. th and td elements) must be programmatically determinable. This can be done using either the "scope" attribute on th elements,
+        or "headers" attributes on td elements - depending on the number and type of headings.</p>
+
+        <p>Because this table has one level of row headers and one level of column headers, some form of association is required, whether
+        by "scope" attribute or "headers" attribute. This shows a basic failure of this technique, where no attempt has been made to
+        perform either type of association.</p>
+
+        <h2>Expected Errors</h2>
+
+        <ul>
+            <li><em>[Standard]</em>.Principle1.Guideline1_3.1_3_1.H43,H63: "The relationship between td elements and their associated th elements is not defined. Use either the scope attribute on th elements, or the headers attribute on td elements."</li>
+        </ul>
+
+        <h2>Relevant Success Criteria</h2>
+
+        <ul>
+            <li><strong><abbr title="Success Criterion">SC</abbr> 1.3.1:</strong> <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/content-structure-separation-programmatic.html">Info and Relationships</a></li>
+        </ul>
+
+        <h2>Relevant Techniques</h2>
+
+        <ul>
+            <li><strong>H43:</strong> <a href="http://www.w3.org/TR/WCAG20-TECHS/H43">Using id and headers attributes to associate data cells with header cells in data tables</a></li>
+            <li><strong>H63:</strong> <a href="http://www.w3.org/TR/WCAG20-TECHS/H63">Using the scope attribute to associate header cells and data cells in data tables</a></li>
+        </ul>
+    </body>
+</html>

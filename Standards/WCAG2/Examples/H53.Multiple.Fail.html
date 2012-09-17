@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+    <head>
+        <title>H53 Absent Object Tag Alternative (Multiple Versions) Failure</title>
+    </head>
+    <body>
+        <h1>H53 Absent Object Tag Alternative (Multiple Versions) Failure</h1>
+
+        <object src="htmlcs.mov" type="video/quicktime">
+            <object src="htmlcs.png" type="image/png">
+            </object>
+        </object>
+
+        <h2>Explanation</h2>
+
+        <p>According to Success Criterion 1.1.1 (Non-text Content), all non-text content, including embedded objects, should contain a text alternative.</p>
+
+        <p>This example demonstrates the usage of both text and non-text alternatives - in this case, a static placeholder image if the QuickTime movie
+        cannot be loaded. However, it should emit an error for having an empty text alternative, which should be in the body of the innermost element.
+        The error should fire on the innermost object.</p>
+
+        <h2>Expected Errors</h2>
+
+        <ul>
+            <li><em>[Standard]</em>.Principle1.Guideline1_1.1_1_1.H53:</li>
+        </ul>
+
+        <h2>Relevant Success Criteria</h2>
+
+        <ul>
+            <li><strong><abbr title="Success Criterion">SC</abbr> 1.1.1:</strong> <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/text-equiv-all.html">Non-Text Content</a></li>
+        </ul>
+
+        <h2>Relevant Techniques</h2>
+
+        <ul>
+            <li><strong>H53:</strong> <a href="http://www.w3.org/TR/WCAG20-TECHS/H53">Using the body of the object element</a></li>
+        </ul>
+    </body>
+</html>

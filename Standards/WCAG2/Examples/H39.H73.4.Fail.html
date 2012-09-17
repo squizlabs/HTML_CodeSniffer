@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+    <head>
+        <title>H39/H73.4 Table Summary/Caption Duplication Failure</title>
+    </head>
+    <body>
+        <h1>H39/H73.4 Table Summary/Caption Duplication Failure</h1>
+
+        <table summary="Weekday Timetable">
+            <caption>Weekday Timetable</caption>
+            <thead>
+                <tr>
+                    <th scope="col">Stop Name</th>
+                    <th scope="col">Day Service</th>
+                    <th scope="col">Overnight Service</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">Sydney Central</th>
+                    <td>08:00</td>
+                    <td>19:00</td>
+                </tr>
+                <tr>
+                    <th scope="row">Canberra</th>
+                    <td>12:00</td>
+                    <td>23:00</td>
+                </tr>
+                <tr>
+                    <th scope="row">Albury</th>
+                    <td>15:00</td>
+                    <td>02:00</td>
+                </tr>
+                <tr>
+                    <th scope="row">Melbourne</th>
+                    <td>19:00</td>
+                    <td>06:00</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Explanation</h2>
+
+        <p>According to Success Criterion 1.3.1 (Info and Relationships), providing a caption and/or summary can improve the usability
+        of a table in different ways. A caption element titles the table and is seen by all users. A summary attribute (on the table
+        element) provides additional information for users requiring assistance, who may be reading the table cell-by-cell and therefore
+        cannot immediately grasp the concept of the table's organisation as a whole.</p>
+
+        <p>This example demonstrates incorrect usage of the summary element where there is also a caption - they should not duplicate
+        each other. If they are the same, the summary then provides no further information to users requiring assistance, and is
+        likely to still be inadequate to them.</p>
+
+        <h2>Expected Errors</h2>
+
+        <ul>
+            <li><em>[Standard]</em>.Principle1.Guideline1_3.1_3_1.H39,H73.4: "If this table is a data table, and both a summary attribute and a caption element are present, the summary should not duplicate the caption."</li>
+        </ul>
+
+        <h2>Relevant Success Criteria</h2>
+
+        <ul>
+            <li><strong><abbr title="Success Criterion">SC</abbr> 1.3.1:</strong> <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/content-structure-separation-programmatic.html">Info and Relationships</a></li>
+        </ul>
+
+        <h2>Relevant Techniques</h2>
+
+        <ul>
+            <li><strong>H39:</strong> <a href="http://www.w3.org/TR/WCAG20-TECHS/H39">Using caption elements to associate data table captions with data tables</a></li>
+            <li><strong>H73:</strong> <a href="http://www.w3.org/TR/WCAG20-TECHS/H73">Using the summary attribute of the table element to give an overview of data tables</a></li>
+        </ul>
+    </body>
+</html>

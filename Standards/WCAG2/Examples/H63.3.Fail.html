@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+    <head>
+        <title>H63 Invalid Scope Attribute Failure</title>
+    </head>
+    <body>
+        <h1>H63 Invalid Scope Attribute Failure</h1>
+
+        <table>
+            <thead>
+                <tr>
+                    <th scope="bogus">Header A</th>
+                    <th scope="col">Header B</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">Header 1</th>
+                    <td>Cell 1B</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Explanation</h2>
+
+        <p>According to Success Criterion 1.3.1 (Info and Relationships), the relationship between table headings and table data
+        (ie. th and td elements) must be programmatically determinable. This can be done using either the "scope" attribute on th elements,
+        or "headers" attributes on td elements - depending on the number and type of headings.</p>
+
+        <p>This table attempts (arguably) to associate the table headers to data cells using the "scope" attribute on the th elements.
+        However, the "scope" attribute on Header A ("bogus") is not valid.</p>
+
+        <p>HTML_CodeSniffer expects either "row" or "col" for scope attributes. There are also "rowgroup" and "colgroup" values and
+        these will not generate an error in itself, however it is likely that these tables have multiple levels of headers and thus
+        should be using the "headers" attribute.</p>
+
+        <h2>Expected Errors</h2>
+
+        <ul>
+            <li><em>[Standard]</em>.Principle1.Guideline1_3.1_3_1.H63.3: "Table cell has an invalid scope attribute. Valid values are row, col, rowgroup, or colgroup."</li>
+        </ul>
+
+        <h2>Relevant Success Criteria</h2>
+
+        <ul>
+            <li><strong><abbr title="Success Criterion">SC</abbr> 1.3.1:</strong> <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/content-structure-separation-programmatic.html">Info and Relationships</a></li>
+        </ul>
+
+        <h2>Relevant Techniques</h2>
+
+        <ul>
+            <li><strong>H63:</strong> <a href="http://www.w3.org/TR/WCAG20-TECHS/H63">Using the scope attribute to associate header cells and data cells in data tables</a></li>
+        </ul>
+    </body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+    <head>
+        <title>H67 Ignored Image Warning</title>
+    </head>
+    <body>
+        <h1>H67 Ignored Image Warning</h1>
+
+        <img src="htmlcs.png" alt="" title="" />
+
+        <h2>Explanation</h2>
+
+        <p>An img element must follow the guidelines of Success Criterion 1.1.1 (Non-text Content) with regards usage of alt and title attributes.</p>
+
+        <p>This example tests the correct usage of alt and title attributes where the image is intended to be ignored by assistive technology.
+        The title attribute in this case is empty. A warning is generated to alert the author to ensure that the image is not being ignored by
+        mistake (ie. it is not purely decorative), and provide relevant alt and title attributes as required.</p>
+
+        <h2>Expected Warnings</h2>
+
+        <ul>
+            <li><em>[Standard]</em>.Principle1.Guideline1_1.1_1_1.H67.2: &quot;Img element is marked so that it is ignored by Assistive Technology.&quot;</li>
+        </ul>
+
+        <h2>Relevant Success Criteria</h2>
+
+        <ul>
+            <li><strong><abbr title="Success Criterion">SC</abbr> 1.1.1:</strong> <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/text-equiv-all.html">Non-Text Content</a></li>
+        </ul>
+
+        <h2>Relevant Techniques</h2>
+
+        <ul>
+            <li><strong>H67:</strong> <a href="http://www.w3.org/TR/WCAG20-TECHS/H67">Using null alt text
+            and no title attribute on img elements for images that <acronym title="assistive technology">AT</acronym> should ignore</a></li>
+        </ul>
+    </body>
+</html>

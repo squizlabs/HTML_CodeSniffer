@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+    <head>
+        <title>H48.2 Lack of Ordered List Markup Warning</title>
+    </head>
+    <body>
+        <h1>H48.2 Lack of Ordered List Markup Warning</h1>
+
+        <p>
+        1. First Item<br/>
+        2. Second Item
+        </p>
+        <p>
+        1: First Item<br/>
+        2: Second Item
+        </p>
+        <p>
+        1 First Item<br/>
+        2 Second Item
+        </p>
+        <p>
+        1/ First Item<br/>
+        2/ Second Item
+        </p>
+        <p>
+        1    First Item<br/>
+        2    Second Item
+        </p>
+
+        <h2>Explanation</h2>
+
+        <p>According to Success Criterion 1.3.1 (Info and Relationships), authors should use semantic markup wherever possible. This
+        includes usage of ordered lists instead of manually numbered paragraphs.</p>
+
+        <p>This example should throw five warnings requesting that an ordered list be built out of the paragraph.</p>
+
+        <h2>Expected Warnings</h2>
+
+        <ul>
+            <li><em>[Standard]</em>.Principle1.Guideline1_3.1_3_1.H48.2: "Content appears to have the visual appearance of a numbered list. It may be appropriate to mark this content up using an ol element."</li>
+        </ul>
+
+        <h2>Relevant Success Criteria</h2>
+
+        <ul>
+            <li><strong><abbr title="Success Criterion">SC</abbr> 1.3.1:</strong> <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/content-structure-separation-programmatic.html">Info and Relationships</a></li>
+        </ul>
+
+        <h2>Relevant Techniques</h2>
+
+        <ul>
+            <li><strong>H48:</strong> <a href="http://www.w3.org/TR/WCAG20-TECHS/H48">Using ol, ul and dl for lists or groups of links</a></li>
+        </ul>
+    </body>
+</html>

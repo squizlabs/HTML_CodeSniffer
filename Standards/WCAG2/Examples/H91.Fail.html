@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+    <head>
+        <title>H91 Name/Role/Value/State Failure</title>
+    </head>
+    <body>
+        <h1>H91 Name/Role/Value/State Failure</h1>
+
+        <form>
+            <p>
+                <button type="button" id="button"></button>
+                <input type="button" id="input_button" value="" />
+                <input type="image" id="input_image" src="submit.png" />
+            </p>
+
+            <fieldset>
+                <input type="text" id="text" value="Text" />
+                <input type="file" id="file" />
+                <input type="password" id="password" />
+                <input type="checkbox" id="checkbox" checked="checked" />
+                <input type="radio" id="radio1" name="radio" />
+                <input type="radio" id="radio2" name="radio" />
+                <textarea id="textarea"></textarea>
+            </fieldset>
+
+            <p><select id="singleSelect">
+                    <option>Option 1</option>
+                    <option>Option 2</option>
+            </select></p>
+        </form>
+
+        <h2>Explanation</h2>
+
+        <p>According to Success Criterion 4.1.2 (Name, Role, Value), form controls and links should expose a "name, role,
+        value, state" model for interpreting by an "accessibility API". This API is exposed by the user agent and allows
+        programs or OS services to provide accessibility services to the user based on the browser contents.
+
+        <p>Default HTML form controls have a defined role and one or more slots for providing "name", "value" and "state",
+        and at least one of each should be provided to fulfil this requirement. User-created controls
+        should expose similar roles and values, for instance using <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr>
+        roles and attributes (as and when they are supported by recent browsers).</p>
+
+        <p>The "name" generally relates to the label given to the form name - for instance, a label or title attribute on
+        an input field, or the caption of a button, and so forth. This is different to the HTML definition of "name", which
+        programmatically identifies the field - the accessibility API "name" relates to a user-friendly name for the
+        input, ensuring that users requiring assistance have access to that name.</p>
+
+        <p>There is only limited "value" testing - and no "state" support - because a missing value defaults to an
+        empty string, and these are considered valid values. The main value test is ensuring a single selection field
+        includes one selected option.</p>
+
+        <h2>Expected Errors</h2>
+
+        <ul>
+            <li><em>[Standard]</em>.Principle4.Guideline4_1.4_1_2.H91.*.Name: "This &lt;node type&gt; does not have a name available to an accessibility API. Valid names are: &lt;valid name sources&gt;"</li>
+            <li><em>[Standard]</em>.Principle4.Guideline4_1.4_1_2.H91.*.Value:  "This &lt;node type&gt; does not have a value available to an accessibility API. Add one &lt;using valid value sources&gt;"</li>
+        </ul>
+
+        <p><i>(The "*" is replaced with the capitalised name of the tag, eg. "Select", "Button". If the tag is "input", the type of the input is also appended, eg. "InputFile", "InputRadio".)</i></p>
+
+        <h2>Relevant Success Criteria</h2>
+
+        <ul>
+            <li><strong><abbr title="Success Criterion">SC</abbr> 4.1.2:</strong> <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/ensure-compat-rsv.html">Name, Role, Value</a></li>
+        </ul>
+
+        <h2>Relevant Techniques</h2>
+
+        <ul>
+            <li><strong>H91:</strong> <a href="http://www.w3.org/TR/WCAG20-TECHS/H91">Using HTML form controls and links</a></li>
+        </ul>
+    </body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+    <head>
+        <title>H36 Absent Alt Attribute On Image Submit Failure</title>
+    </head>
+    <body>
+        <h1>H36 Absent Alt Attribute On Image Submit Failure</h1>
+
+        <form>
+            <input type="image" src="submit.png" />
+        </form>
+
+        <h2>Explanation</h2>
+
+        <p>According to Success Criterion 1.1.1 (Non-text Content), all non-text content, including images,
+        should contain a text alternative.</p>
+
+        <p>This example demonstrates an image submit button without an alt attribute. Without this, a user
+        requiring assistance may not be able to submit the form properly, if their assistive technology does
+        not allow them to submit the form another way. In this instance, it is similar to an image link with no alt text.</p>
+
+        <h2>Expected Errors</h2>
+
+        <ul>
+            <li><em>[Standard]</em>.Principle1.Guideline1_1.1_1_1.H36: "Image submit button missing an alt attribute. Specify a text alternative that describes the button's function, using the alt attribute."</li>
+        </ul>
+
+        <h2>Relevant Success Criteria</h2>
+
+        <ul>
+            <li><strong><abbr title="Success Criterion">SC</abbr> 1.1.1:</strong> <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/text-equiv-all.html">Non-Text Content</a></li>
+        </ul>
+
+        <h2>Relevant Techniques</h2>
+
+        <ul>
+            <li><strong>H36:</strong> <a href="http://www.w3.org/TR/WCAG20-TECHS/H36">Using alt attributes on images used as submit buttons</a></li>
+        </ul>
+    </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+    <head>
+        <title>H62.1 No Ruby Parenthesis Failure</title>
+    </head>
+    <body>
+        <h1>H62.1 No Ruby Parenthesis Failure</h1>
+
+        <p><ruby>HTML5 version<rt>Ruby text</rt></ruby></p>
+        <p><ruby><rb>XHTML 1.1 version</rb><rt>Ruby text</rt></ruby></p>
+
+        <h2>Explanation</h2>
+
+        <p>One of the methods to potentially satisfy Success Criterion 3.1.6 (Pronunciation) is to use ruby markup -
+        introduced in XHTML 1.1 and thus not widely used, but included in the HTML5 standard. Ruby markup consists of
+        smaller text around a run of text, indicating its pronunciation.</p>
+
+        <p>This demonstrates an <strong>almost correct</strong> usage of ruby text, in both markup dialects. Although
+        a ruby translation has been provided using the "rt" element, there is no "rp" element. This means that in user
+        agents that do not support ruby markup, the pronunciation will run into the base text.</p>
+
+        <p>Placing "rp" elements on either side of the "rt" element, containing surrounding parentheses - or other
+        suitable delineation - means that browsers not supporting ruby markup will degrade gracefully, with the
+        pronunciation being surrounded in the delineation.</p>
+
+        <h2>Expected Not To Fail</h2>
+
+        <ul>
+            <li><em>[Standard]</em>.Principle3.Guideline3_1.3_1_6.H62.1.*: " "Ruby element does not contain an rt element containing pronunciation information for &lt;its body text | the text inside the rb element&gt;.""</li>
+        </ul>
+
+        <p><i>(The "*" represents the language form of ruby text that was found: "HTML5" or "XHTML11")</i></p>
+
+        <h2>Expected Errors</h2>
+
+        <ul>
+            <li><em>[Standard]</em>.Principle3.Guideline3_1.3_1_6.H62.2: "Ruby element does not contain rp elements, which provide extra punctuation to browsers not supporting ruby text."</li>
+        </ul>
+
+        <h2>Relevant Success Criteria</h2>
+
+        <ul>
+            <li><strong><abbr title="Success Criterion">SC</abbr> 3.1.6:</strong> <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/meaning-pronunciation.html">Pronunciation</a></li>
+        </ul>
+
+        <h2>Relevant Techniques</h2>
+
+        <ul>
+            <li><strong>H62:</strong> <a href="http://www.w3.org/TR/WCAG20-TECHS/H62">Using the ruby element</a> <i>(focuses on XHTML 1.1 syntax)</i></li>
+        </ul>
+    </body>
+</html>
