@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+    <head>
+        <title>H73.3 Table Summary Notice</title>
+    </head>
+    <body>
+        <h1>H73.3 Table Summary Notice</h1>
+
+        <table summary="Summary of weekday Sydney-Melbourne services. Find your stop name from the first column, then read across that row to find departure times from that stop.">
+            <caption>Weekday Timetable</caption>
+            <thead>
+                <tr>
+                    <th scope="col">Stop Name</th>
+                    <th scope="col">Day Service</th>
+                    <th scope="col">Overnight Service</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">Sydney Central</th>
+                    <td>08:00</td>
+                    <td>19:00</td>
+                </tr>
+                <tr>
+                    <th scope="row">Canberra</th>
+                    <td>12:00</td>
+                    <td>23:00</td>
+                </tr>
+                <tr>
+                    <th scope="row">Albury</th>
+                    <td>15:00</td>
+                    <td>02:00</td>
+                </tr>
+                <tr>
+                    <th scope="row">Melbourne</th>
+                    <td>19:00</td>
+                    <td>06:00</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p><i>(Table summary attributes state, "Summary of weekday Sydney-Melbourne services. Find your stop name from the first column,
+        then read across that row to find departure times from that stop.")</i></p>
+
+        <h2>Explanation</h2>
+
+        <p>According to Success Criterion 1.3.1 (Info and Relationships), providing a caption and/or summary can improve the usability
+        of a table in different ways. A caption element titles the table and is seen by all users. A summary attribute (on the table
+        element) provides additional information for users requiring assistance, who may be reading the table cell-by-cell and therefore
+        cannot immediately grasp the concept of the table's organisation as a whole.</p>
+
+        <p>This example demonstrates correct usage of a summary element (and also a caption). A notice should be emitted to remind authors
+        that the summary should serve its purpose. In this case, the ordering of the table may not be apparent - if you simply hear
+        "Stop Name" in the top-left cell, for instance, do the stops go down the page or across it? The summary therefore provides
+        context and instructions on how to use the table.</p>
+
+        <p>If the summary is omitted in a case like this, it may still pass the Success Criterion if such instructions were embedded
+        ahead of the table in the body text, so all users can see it. If the table is difficult to understand by sighted users,
+        instructions may be better placed in body text so no-one is disadvantaged.</p>
+
+        <h2>Expected Notices</h2>
+
+        <ul>
+            <li><em>[Standard]</em>.Principle1.Guideline1_3.1_3_1.H39.3.Check: "If this table is a data table, check that the caption element accurately describes this table."</li>
+            <li><em>[Standard]</em>.Principle1.Guideline1_3.1_3_1.H73.3.Check: "If this table is a data table, check that the summary attribute describes the table\'s organization or explains how to use the table."</li>
+        </ul>
+
+        <h2>Relevant Success Criteria</h2>
+
+        <ul>
+            <li><strong><abbr title="Success Criterion">SC</abbr> 1.3.1:</strong> <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/content-structure-separation-programmatic.html">Info and Relationships</a></li>
+        </ul>
+
+        <h2>Relevant Techniques</h2>
+
+        <ul>
+            <li><strong>H39:</strong> <a href="http://www.w3.org/TR/WCAG20-TECHS/H39">Using caption elements to associate data table captions with data tables</a></li>
+            <li><strong>H73:</strong> <a href="http://www.w3.org/TR/WCAG20-TECHS/H73">Using the summary attribute of the table element to give an overview of data tables</a></li>
+        </ul>
+    </body>
+</html>

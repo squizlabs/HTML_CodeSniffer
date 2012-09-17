@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+    <head>
+        <title>H93 Duplicate Label For Attributes Failure</title>
+    </head>
+    <body>
+        <h1>H93 Duplicate Label For Attributes Failure</h1>
+
+        <form>
+            <label for="textinput">Text Input:</label>
+            <input type="text" id="textinput" value="" /> <label for="textinput">(required)</label>
+        </form>
+
+        <h2>Explanation</h2>
+
+        <p>According to Success Criterion 1.3.1 (Info and Relationships), most input fields should be explicitly associated with a label.</p>
+
+        <p>As a label is used to identify an input field in the "name, role, value, state" accessibility API structure - as per Success Criterion
+        4.1.2 (Name, Role, Value) - an input field is explicitly limited to having one label. The above example is incorrect due to having multiple labels.</p>
+
+        <p>The error also requests that you check for duplicate IDs for the input fields themselves. If you have duplicate "for" names for labels,
+        it is possible that you have duplicated field IDs.</p>
+
+        <h2>Expected Errors</h2>
+
+        <ul>
+            <li><em>[Standard]</em>.Principle1.Guideline1_3.1_3_1.H93: "Multiple labels exist with the same 'for' attribute. If these labels refer to different form controls, the controls should have unique 'id' attributes."</li>
+        </ul>
+
+        <h2>Relevant Success Criteria</h2>
+
+        <ul>
+            <li><strong><abbr title="Success Criterion">SC</abbr> 1.3.1:</strong> <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/content-structure-separation-programmatic.html">Info and Relationships</a></li>
+        </ul>
+
+        <h2>Relevant Techniques</h2>
+
+        <ul>
+            <li><strong>H93:</strong> <a href="http://www.w3.org/TR/WCAG20-TECHS/H93">Ensuring that id attributes are unique on a Web page</a></li>
+        </ul>
+    </body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en-AU" xml:lang="en-AU">
+    <head>
+        <title>H58.1 Invalid Language Tags Failure</title>
+    </head>
+    <body>
+        <h1>H58.1 Invalid Language Tags Failure</h1>
+
+        <div lang="test" xml:lang="test"><strong>test:</strong> Four character language subtag - well-formed but reserved.</div>
+        <div lang="english" xml:lang="english"><strong>english:</strong> Seven character language subtag - well-formed but needs to be registered if 5-8 characters. No languages have been registered with longer subtag names.</div>
+        <div lang="en-AUS" xml:lang="en-AUS"><strong>en-AUS:</strong> well-formed because it will be interpreted as a language plus extlang, rather than language plus country.</div>
+
+        <p>Success Criterion 3.1.2 (Language of Parts) states that the changes in language should be marked
+        using language attributes to qualify for <abbr title="Double A">AA</abbr> conformance.</p>
+
+        <p>This example should test the usage of lang and xml:lang attributes on a normal element that are well-formed,
+        but not likely valid. HTML_CodeSniffer cannot vouch for the validity of otherwise well-formed tags. For instance,
+        the "en-AUS" example below is well-formed because the "en" can be followed by a two-character country,
+        three-character "extlang", or four-character script subtag - therefore it will parse as language and extlang.
+        It is likely not what the author intended, which is likely "en-AU", and would not be valid if it was compared
+        against the IANA language register.</p>
+
+        <h2>Expected Not To Fail</h2>
+
+        <ul>
+            <li><em>[Standard]</em>.Principle3.Guideline3_1.3_1_1.H58.1.*: "The language specified in the &lt;lang | xml:lang&gt; attribute of this element does not appear to be well-formed."</li>
+        </ul>
+
+        <p><i>(The "*" represents either "Lang" or "XmlLang" depending on which attribute applies.)</i></p>
+
+        <h2>Relevant Success Criteria</h2>
+
+        <ul>
+            <li><strong><abbr title="Success Criterion">SC</abbr> 3.1.2:</strong> <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/meaning_other_lang_id.html">Language of Parts</a></li>
+        </ul>
+
+        <h2>Relevant Techniques</h2>
+
+        <ul>
+            <li><strong>H58:</strong> <a href="http://www.w3.org/TR/WCAG20-TECHS/H58">Using language attributes to identify changes in the human language</a></li>
+        </ul>
+    </body>
+</html>

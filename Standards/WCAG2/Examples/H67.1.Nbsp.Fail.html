@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+    <head>
+        <title>H67 NBSP Title on Ignored Image Failure</title>
+    </head>
+    <body>
+        <h1>H67 NBSP Title on Ignored Image Failure</h1>
+
+        <img src="htmlcs.png" alt="" title="&nbsp;" />
+
+        <h2>Explanation</h2>
+
+        <p>An img element must follow the guidelines of Success Criterion 1.1.1 (Non-text Content) with regards usage of alt and title attributes.</p>
+
+        <p>This example uses empty alt text, but also provides a title attribute that is not considered empty. Non-breaking spaces
+        are not counted as whitespace for the purpose of whether the title attribute is empty.</p>
+
+        <h2>Expected Errors</h2>
+
+        <ul>
+            <li><em>[Standard]</em>.Principle1.Guideline1_1.1_1_1.H67.1: &quot;Img element with empty alt text must have absent or empty title attribute.&quot;</li>
+        </ul>
+
+        <h2>Relevant Success Criteria</h2>
+
+        <ul>
+            <li><strong><abbr title="Success Criterion">SC</abbr> 1.1.1:</strong> <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/text-equiv-all.html">Non-Text Content</a></li>
+        </ul>
+
+        <h2>Relevant Techniques</h2>
+
+        <ul>
+            <li><strong>H67:</strong> <a href="http://www.w3.org/TR/WCAG20-TECHS/H67">Using null alt text
+            and no title attribute on img elements for images that <acronym title="assistive technology">AT</acronym> should ignore</a></li>
+        </ul>
+    </body>
+</html>

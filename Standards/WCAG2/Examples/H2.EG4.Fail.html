@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+    <head>
+        <title>H2 Failure Example 4</title>
+    </head>
+    <body>
+        <h1>H2 Failure Example 4</h1>
+
+        <a href="htmlcs.html"><img src="htmlcs.png" alt="" /></a> <a href="htmlcs.html">HTML_CodeSniffer</a>
+
+        <h2>Explanation</h2>
+
+        <p>According to Success Criterion 1.1.1 (Non-text Content), all non-text content, including images, should have a
+        short text alternative, and (if required) a long text alternative. Technique H2 provides a method for remedying a situation where
+        two links, one with an image and another with text, have the same text represntation. This results in screen readers
+        "stuttering" over the link, when they should instead be presented as one link.</p>
+
+        <p>This is an incorrect application of this technique. Although the duplicate text has been removed, it
+        leaves the image with no alt text, which means it will be ignored. This results in a link without link text,
+        which is undefined in terms of what assistive technology may do - for example, they may read the link location.</p>
+
+        <h2>Expected Errors</h2>
+
+        <ul>
+            <li><em>[Standard]</em>.Principle1.Guideline1_1.1_1_1.H2.EG4: &quot;Img element inside a link has empty or missing alt text when a link beside it contains link text. Consider combining the links.&quot;</li>
+            <li><em>[Standard]</em>.Principle1.Guideline1_1.1_1_1.H30.2: &quot;Img element is the only content of the link, but is missing alt text. The alt text should describe the purpose of the link.&quot;</li>
+        </ul>
+
+        <h2>Relevant Success Criteria</h2>
+
+        <ul>
+            <li><strong><abbr title="Success Criterion">SC</abbr> 1.1.1:</strong> <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/text-equiv-all.html">Non-Text Content</a></li>
+        </ul>
+
+        <h2>Relevant Techniques</h2>
+
+        <ul>
+            <li><strong>H2:</strong> <a href="http://www.w3.org/TR/WCAG20-TECHS/H2">Combining adjacent image and text links for the same resource</a></li>
+            <li><strong>H30:</strong> <a href="http://www.w3.org/TR/WCAG20-TECHS/H30">Providing link text that describes the purpose of a link for anchor elements</a></li>
+        </ul>
+    </body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en-AU" xml:lang="en-AU">
+    <head>
+        <title>H58.1 Invalid Language Tags Failure</title>
+    </head>
+    <body>
+        <h1>H58.1 Invalid Language Tags Failure</h1>
+
+       <div lang="en-AU-Latn" xml:lang="en-AU-Latn"><strong>en-AU-Latn:</strong> Script and language in wrong order. Should be "en-Latn-AU"</div>
+        <div lang="x" xml:lang="x"><strong>"x"</strong> on its own. Private use section needs data after it.</div>
+        <div lang="i" xml:lang="i"><strong>"i"</strong> on its own. Irregular tag identifer needs data after it.</div>
+
+        <p>Success Criterion 3.1.2 (Language of Parts) states that the changes in language should be marked
+        using language attributes to qualify for <abbr title="Double A">AA</abbr> conformance.</p>
+
+        <p>This example should test the usage of non-well-formed lang and xml:lang attributes on a normal element. Two errors should appear: one for the lang element and one for the xml:lang.</p>
+
+        <h2>Expected Errors</h2>
+
+        <ul>
+            <li><em>[Standard]</em>.Principle3.Guideline3_1.3_1_1.H58.1.*: "The language specified in the &lt;lang | xml:lang&gt; attribute of this element does not appear to be well-formed."</li>
+        </ul>
+
+        <p><i>(The "*" represents either "Lang" or "XmlLang" depending on which attribute applies.)</i></p>
+
+        <h2>Relevant Success Criteria</h2>
+
+        <ul>
+            <li><strong><abbr title="Success Criterion">SC</abbr> 3.1.2:</strong> <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/meaning_other_lang_id.html">Language of Parts</a></li>
+        </ul>
+
+        <h2>Relevant Techniques</h2>
+
+        <ul>
+            <li><strong>H58:</strong> <a href="http://www.w3.org/TR/WCAG20-TECHS/H58">Using language attributes to identify changes in the human language</a></li>
+        </ul>
+    </body>
+</html>

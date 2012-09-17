@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+    <head>
+        <title>H37 Absent Alt Attribute Failure</title>
+    </head>
+    <body>
+        <h1>H37 Absent Alt Attribute Failure</h1>
+
+        <img src="htmlcs.png" />
+
+        <h2>Explanation</h2>
+
+        <p>An img element must follow the guidelines of Success Criterion 1.1.1 (Non-text Content), by following either of the two situations:</p>
+
+        <ul>
+            <li>If the image is for decoration, visual formatting, or is invisible, then it should be marked as &quot;should be ignored
+            to assistive technology&quot; as per <a href="http://www.w3.org/TR/WCAG20-TECHS/H67">Technique H67, &quot;Using null alt text
+            and no title attribute on img elements for images that <acronym title="assistive technology">AT</acronym> should ignore&quot;</a>.</li>
+            <li>Otherwise, the img element should contain a short-text alternative using the alt attribute ("alt text"), as a minimum.
+            If alt text cannot fully describe the image, a long text description should be provided in some way.</li>
+        </ul>
+
+        <p>This img element does not contain an alt attribute, and as such assistive technology cannot make any assumptions as
+        to whether it is a &quot;decorative&quot; image or not. The handling of such an image is therefore undefined.</p>
+
+        <p>This is documented as explicitly failing the Success Criterion under
+        <a href="http://www.w3.org/TR/WCAG20-TECHS/F65">Common Failure F65, &quot;Failure of Success Criterion 1.1.1
+        due to omitting the alt attribute on img elements, area elements, and input elements of type 'image'&quot;</a>.</p>
+
+        <h2>Expected Errors</h2>
+
+        <ul>
+            <li><em>[Standard]</em>.Principle1.Guideline1_1.1_1_1.H37: &quot;Img element missing an alt attribute. Use the alt attribute to specify a short text alternative.&quot;</li>
+        </ul>
+
+        <h2>Relevant Success Criteria</h2>
+
+        <ul>
+            <li><strong><abbr title="Success Criterion">SC</abbr> 1.1.1:</strong> <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/text-equiv-all.html">Non-Text Content</a></li>
+        </ul>
+
+        <h2>Relevant Techniques</h2>
+
+        <ul>
+            <li><strong>H37:</strong> <a href="http://www.w3.org/TR/WCAG20-TECHS/H37">Using alt attributes on img elements</a></li>
+        </ul>
+    </body>
+</html>

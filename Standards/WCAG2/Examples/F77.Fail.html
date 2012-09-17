@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+    <head>
+        <title>F77 Duplicate ID Failure</title>
+    </head>
+    <body>
+        <h1>F77 Duplicate ID Failure</h1>
+
+        <form>
+            <input type="text" id="control1" value="field 1" title="Field 1" />
+            <input type="text" id="control1" value="field 2" title="Field 2" />
+            <input type="Submit" value="Submit Form" />
+        </form>
+
+        <p>A one-to-one relationship should be able to be determined between IDs and elements with IDs. Therefore,
+        controls with duplicate IDs are a failure of the specs of Success Criterion 4.1.1 (Parsing).
+        In XML serialisation, such a document would not be well-formed unless duplicate IDs are explicitly allowed.</p>
+
+        <p>HTML_CodeSniffer currently documents this as failure F77. It could be argued that it also fails F17,
+        about not being able to determine a one-to-one relationship between elements - if there were a label or script
+        that referenced the input fields, a one-to-one mapping would not be possible.</p>
+
+        <h2>Expected Errors</h2>
+
+        <ul>
+            <li><em>[Standard]</em>.Principle4.Guideline4_1.4_1_1.F77: "Duplicate id attribute value '&lt;ID&gt;' found on the web page."</li>
+        </ul>
+
+        <h2>Relevant Success Criteria</h2>
+
+        <ul>
+            <li><strong><abbr title="Success Criterion">SC</abbr> 4.1.1:</strong> <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/ensure-compat-parses.html">Parsing</a></li>
+        </ul>
+
+        <h2>Relevant Techniques</h2>
+
+        <ul>
+            <li><strong>F77:</strong> <a href="http://www.w3.org/TR/WCAG20-TECHS/F77">Failure of Success Criterion 4.1.1 due to duplicate values of type ID</a></li>
+            <li><strong>F17:</strong> <a href="http://www.w3.org/TR/WCAG20-TECHS/F17">Failure of Success Criterion 1.3.1 and 4.1.1 due to insufficient information in DOM to determine one-to-one relationships (e.g., between labels with same id) in HTML</a></li>
+        </ul>
+    </body>
+</html>

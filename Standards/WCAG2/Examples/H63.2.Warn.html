@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+    <head>
+        <title>H63 Invalid Scope Attribute Failure</title>
+    </head>
+    <body>
+        <h1>H63 Invalid Scope Attribute Failure</h1>
+
+        <table>
+            <thead>
+                <tr>
+                    <th scope="col">Header A</th>
+                    <th scope="col">Header B</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td scope="row"><strong>Header 1</strong></td>
+                    <td>Cell 1B</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Explanation</h2>
+
+        <p>According to Success Criterion 1.3.1 (Info and Relationships), the relationship between table headings and table data
+        (ie. th and td elements) must be programmatically determinable. This can be done using either the "scope" attribute on th elements,
+        or "headers" attributes on td elements - depending on the number and type of headings.</p>
+
+        <p>Whether this example is an issue depends on which standard you are writing to. In HTML 4.01 and XHTML 1.0, this is legal code,
+        and can be safely ignored unless and until rewritten in HTML5. In HTML5, however, td elements are written not to be headers, and thus the
+        <a href="http://dev.w3.org/html5/markup/td.html#td-constraints">scope attribute is obsolete on td elements</a>: "Use the scope
+        attribute on a th element instead".</p>
+
+        <p>Some country-level requirements for accessibility conformance state that a specification be used without its deprecated or obsolete
+        parts, as part of their conformance specifications. Therefore, this warning ensures authors using the HTML5 standard know that this
+        is not proper usage of the scope attribute, and thus could not claim conformance to their guidelines.</p>
+
+        <h2>Expected Warnings</h2>
+
+        <ul>
+            <li><em>[Standard]</em>.Principle1.Guideline1_3.1_3_1.H63.2: "Scope attributes on td elements that act as headings for other elements are obsolete in HTML5. Use a th element instead."</li>
+        </ul>
+
+        <h2>Relevant Success Criteria</h2>
+
+        <ul>
+            <li><strong><abbr title="Success Criterion">SC</abbr> 1.3.1:</strong> <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/content-structure-separation-programmatic.html">Info and Relationships</a></li>
+        </ul>
+
+        <h2>Relevant Techniques</h2>
+
+        <ul>
+            <li><strong>H63:</strong> <a href="http://www.w3.org/TR/WCAG20-TECHS/H63">Using the scope attribute to associate header cells and data cells in data tables</a></li>
+        </ul>
+    </body>
+</html>

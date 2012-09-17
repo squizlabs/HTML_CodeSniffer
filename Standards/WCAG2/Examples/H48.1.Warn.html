@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+    <head>
+        <title>H48.1 Lack of Unordered List Markup Warning</title>
+    </head>
+    <body>
+        <h1>H48.1 Lack of Unordered List Markup Warning</h1>
+
+        <p>
+        * First Item<br/>
+        * Second Item
+        </p>
+        <p>
+        *    First Item<br/>
+        *    Second Item
+        </p>
+        <p>
+        - First Item<br/>
+        - Second Item
+        </p>
+
+        <h2>Explanation</h2>
+
+        <p>According to Success Criterion 1.3.1 (Info and Relationships), authors should use semantic markup wherever possible. This
+        includes usage of ordered lists instead of manually numbered paragraphs.</p>
+
+        <p>This example should throw three warnings requesting that an unordered list be created from the paragraphs.</p>
+
+        <h2>Expected Warnings</h2>
+
+        <ul>
+            <li><em>[Standard]</em>.Principle1.Guideline1_3.1_3_1.H48.1: "Content appears to have the visual appearance of a bulleted list. It may be appropriate to mark this content up using a ul element."</li>
+        </ul>
+
+        <h2>Relevant Success Criteria</h2>
+
+        <ul>
+            <li><strong><abbr title="Success Criterion">SC</abbr> 1.3.1:</strong> <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/content-structure-separation-programmatic.html">Info and Relationships</a></li>
+        </ul>
+
+        <h2>Relevant Techniques</h2>
+
+        <ul>
+            <li><strong>H48:</strong> <a href="http://www.w3.org/TR/WCAG20-TECHS/H48">Using ol, ul and dl for lists or groups of links</a></li>
+        </ul>
+    </body>
+</html>

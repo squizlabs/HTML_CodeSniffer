@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+    <head>
+        <title>H44.1 Incorrect Positioning Of Label (Before Field) Failure</title>
+    </head>
+    <body>
+        <h1>H44.1 Incorrect Positioning Of Label (Before Field) Failure</h1>
+
+        <form>
+            <input type="text" id="textbox" value="" /> <label for="textbox">Text Box</label>
+            <input type="password" id="password" value="" /> <label for="password">Password</label>
+            <select id="select">
+                <option value="1">One</option>
+                <option value="2">Two</option>
+            </select> <label for="select">Select One.</label>
+            <textarea id="textarea"></textarea> <label for="textarea">Text Area</label>
+        </form>
+
+        <h2>Explanation</h2>
+
+        <p>According to Success Criterion 1.3.1 (Info and Relationships), most input fields should be explicitly associated with a label. Technique H44, which describes the use of label elements, states that labels should be consistently placed for each type of input field, according to expected conventions.</p>
+
+        <p>For text-based fields and select boxes, labels should be placed before the field - in left-to-right writing languages, this means "to the left or above" the input field. This shows several failures of this criterion, where the label has been placed after the element.</p>
+
+        <h2>Expected Errors</h2>
+
+        <ul>
+            <li><em>[Standard]</em>.Principle1.Guideline1_3.1_3_1.H44.1.Before: "The label element for this control should be placed before this element."</li>
+        </ul>
+
+        <h2>Relevant Success Criteria</h2>
+
+        <ul>
+            <li><strong><abbr title="Success Criterion">SC</abbr> 1.3.1:</strong> <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/content-structure-separation-programmatic.html">Info and Relationships</a></li>
+        </ul>
+
+        <h2>Relevant Techniques</h2>
+
+        <ul>
+            <li><strong>H44:</strong> <a href="http://www.w3.org/TR/WCAG20-TECHS/H44">Using label elements to associate text labels with form controls</a></li>
+        </ul>
+    </body>
+</html>

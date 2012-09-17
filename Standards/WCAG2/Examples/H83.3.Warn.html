@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+    <head>
+        <title>H83.3 New Window Advice Warning</title>
+    </head>
+    <body>
+        <h1>H83.3 New Window Advice Warning</h1>
+
+        <a href="htmlcs.html" target="_blank">Click me</a>
+
+        <h2>Explanation</h2>
+
+        <p>Success Criterion 3.2.5 (Change on Request) says that the content must have a mode available which requires no
+        automatic <a href="http://www.w3.org/TR/2008/REC-WCAG20-20081211/#context-changedef">change of context</a>
+        for the functionality to be completed. All changes of context should be initiated by the user, or a mechanism
+        is available to turn off any automated changes.</p>
+
+        <p>One possible issue with links is that they may open in a new window without warning, thus failing this Success
+        Criterion. If a user is told the link opens in a new window, it is OK.</p>
+
+        <p>If HTML_CodeSniffer sees a link with a target of "_blank", it will check for the mention of "new window" in the
+        link text. If it cannot, it will emit a warning.</p>
+
+        <p>Note that the "new window" mention has to be in the link text, since this is a <abbr title="Triple A">AAA</abbr> test,
+        and thus Success Crterion 2.4.9 (Link Purpose: Link Only) also applies.</p>
+
+        <p><em>Note:</em> This test must be performed at <abbr title="Triple-A">AAA</abbr> level. By default, the bookmarklet will
+        not show this message, as it defaults to <abbr title="Double-A">AA</abbr> level.</p>
+
+        <h2>Expected Warnings</h2>
+
+        <ul>
+            <li><em>[Standard]</em>.Principle3.Guideline3_2.3_2_5.H83.3: "Check that this link's link text contains information indicating that the link will open in a new window."</li>
+        </ul>
+
+        <h2>Relevant Success Criteria</h2>
+
+        <ul>
+            <li><strong><abbr title="Success Criterion">SC</abbr> 3.2.5:</strong> <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/content-structure-separation-programmatic.html">Change On Request</a></li>
+        </ul>
+
+        <h2>Relevant Techniques</h2>
+
+        <ul>
+            <li><strong>H83:</strong> <a href="http://www.w3.org/TR/WCAG20-TECHS/H83">Using the target attribute to open a new window on user request and indicating this in link text</a></li>
+        </ul>
+    </body>
+</html>

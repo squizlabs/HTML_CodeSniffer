@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+    <head>
+        <title>H44.1 Incorrect Positioning Of Label (After Field) Failure</title>
+    </head>
+    <body>
+        <h1>H44.1 Incorrect Positioning Of Label (After Field) Failure</h1>
+
+        <form>
+            <fieldset>
+                <legend>Radio Group</legend>
+                <label for="radiogroup_opt1">Option 1</label> <input type="radio" name="radiogroup" value="1" id="radiogroup_opt1" />
+                <label for="radiogroup_opt2">Option 2</label> <input type="radio" name="radiogroup" value="2" id="radiogroup_opt2" />
+            </fieldset>
+
+            <fieldset>
+                <legend>Check Box Group</legend>
+                <label for="cbgroup_optA">Option A</label> <input type="checkbox" name="cbgroup" value="A" id="cbgroup_optA" />
+                <label for="cbgroup_optB">Option B</label> <input type="checkbox" name="cbgroup" value="B" id="cbgroup_optB" />
+            </fieldset>
+        </form>
+
+        <h2>Explanation</h2>
+
+        <p>According to Success Criterion 1.3.1 (Info and Relationships), most input fields should be explicitly associated with a label. Technique H44, which describes the use of label elements, states that labels should be consistently placed for each type of input field, according to expected conventions.</p>
+
+        <p>For check-boxes and radio (option) buttons, labels should be placed after the field - in left-to-right writing languages, this means "to the right" of the input field. This example shows failures of this criterion, where the label has been placed after the element.</p>
+
+        <h2>Expected Errors</h2>
+
+        <ul>
+            <li><em>[Standard]</em>.Principle1.Guideline1_3.1_3_1.H44.1.After: "The label element for this control should be placed after this element."</li>
+        </ul>
+
+        <h2>Relevant Success Criteria</h2>
+
+        <ul>
+            <li><strong><abbr title="Success Criterion">SC</abbr> 1.3.1:</strong> <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/content-structure-separation-programmatic.html">Info and Relationships</a></li>
+        </ul>
+
+        <h2>Relevant Techniques</h2>
+
+        <ul>
+            <li><strong>H44:</strong> <a href="http://www.w3.org/TR/WCAG20-TECHS/H44">Using label elements to associate text labels with form controls</a></li>
+        </ul>
+    </body>
+</html>

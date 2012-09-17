@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en-AU" xml:lang="en-AU">
+    <head>
+        <title>H58 Language Of Parts Notice</title>
+    </head>
+    <body>
+        <h1>H58 Language Of Parts Notice</h1>
+
+        <div lang="en-NZ" xml:lang="en-NZ">Choice, bro.</div>
+
+        <p>Success Criterion 3.1.2 (Language of Parts) states that the changes in language should be marked
+        using language attributes to qualify for <abbr title="Double A">AA</abbr> conformance.</p>
+
+        <p>This example should successfully test the usage of lang and xml:lang attributes on a normal element.</p>
+
+        <p><em>Note:</em> This example document is a HTML serialisation of HTML5, which explicitly allows both "lang" and "xml:lang" - but only
+        the former takes effect, as in HTML 4.01. (If this were XHTML, the latter would prevail, as per the XML definition.) In HTML 4.01 and
+        earlier, the presence of "xml:lang" would make the document invalid, although not necessarily failing any Success Criteria.</p>
+
+        <h2>Expected Notices</h2>
+
+        <ul>
+            <li><em>[Standard]</em>.Principle3.Guideline3_1.3_1_1.H58: "Ensure that any change in language is marked using the lang and/or xml:lang attribute on an element, as appropriate."</li>
+        </ul>
+
+        <h2>Expected Not To Fail</h2>
+
+        <ul>
+            <li><em>[Standard]</em>.Principle3.Guideline3_1.3_1_1.H58.1.*: "The language specified in the &lt;lang | xml:lang&gt; attribute of this element does not appear to be well-formed."</li>
+        </ul>
+
+        <p><i>(The "*" represents either "Lang" or "XmlLang" depending on which attribute applies.)</i></p>
+
+        <h2>Relevant Success Criteria</h2>
+
+        <ul>
+            <li><strong><abbr title="Success Criterion">SC</abbr> 3.1.2:</strong> <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/meaning_other_lang_id.html">Language of Parts</a></li>
+        </ul>
+
+        <h2>Relevant Techniques</h2>
+
+        <ul>
+            <li><strong>H58:</strong> <a href="http://www.w3.org/TR/WCAG20-TECHS/H58">Using language attributes to identify changes in the human language</a></li>
+        </ul>
+    </body>
+</html>

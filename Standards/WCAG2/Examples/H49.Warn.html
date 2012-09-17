@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+    <head>
+        <title>H49 Presentational Markup Warning</title>
+    </head>
+    <body>
+        <h1>H49 Presentational Markup Warning</h1>
+
+        <p>
+            Don't use <b>bold text</b>, <i>italics</i> and <u>underlines</u> with impunity.<br/>
+            <s>Strike one</s>, <strike>strike two.</strike> <font size="5">Get out</font>. <tt>T_T</tt><br/>
+            You shouldn't feel too <big>big</big> not to use semantic content, nor too <small>small</small> to hide from it.<br/>
+        </p>
+        <center>Centre your eyes towards this presentational code.</center>
+        <p align="right">Then move them to the right, when you should be using CSS instead.</p>
+
+        <h2>Explanation</h2>
+
+        <p>According to Success Criterion 1.3.1 (Info and Relationships), authors should use semantic markup wherever possible.</p>
+
+        <p>In HTML 4.01, the above presentational elements and attributes are considered to have no semantic meaning, and thus should be
+        replaced with semantic elements where possible. However, also consider whether you are using the <em>correct</em> semantic element -
+        if you are using bold text for normal emphasis, it may be more correct to use the "em" element and redefine it to bold text using CSS.</p>
+
+        <p>In HTML5, some presentational elements such as "b", "i" and "u" have been redefined to have <em>limited</em> semantic meaning,
+        making them usable but only as a last resort.</p>
+
+        <p>Remember that presentational elements do not need to be completely eliminated, but they should be seriously considered, making sure
+        to check whether a semantic element should be used instead. For instance, if the contents of elements such as "b" meet the HTML5 definition
+        and do not require emphasis (as suggested by "strong" or "em"), the case can be made for keeping the "b" element. If there appears to be
+        no semantic meaning at all, it may be more prudent to replace with a span element and style using CSS.</p>
+
+        <h2>Expected Warnings</h2>
+
+        <ul>
+            <li><em>[Standard]</em>.Principle1.Guideline1_3.1_3_1.H49.*: "Semantic markup should be used to mark emphasised or special text so that it can be programmatically determined."</li>
+        </ul>
+
+        <p><i>(The "*" represents the name of the presentational tag being questioned, with first character capitalised, eg. "I", "Big", "Tt", etc.
+        Uses of the "align" attribute are end with "AlignAttr".)</i></p>
+
+        <h2>Relevant Success Criteria</h2>
+
+        <ul>
+            <li><strong><abbr title="Success Criterion">SC</abbr> 1.3.1:</strong> <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/content-structure-separation-programmatic.html">Info and Relationships</a></li>
+        </ul>
+
+        <h2>Relevant Techniques</h2>
+
+        <ul>
+            <li><strong>H49:</strong> <a href="http://www.w3.org/TR/WCAG20-TECHS/H49">Using semantic markup to mark emphasized or special text</a></li>
+        </ul>
+    </body>
+</html>

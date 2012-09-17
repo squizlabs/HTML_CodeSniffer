@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+    <head>
+        <title>H44.1 Implicit Label Failure</title>
+    </head>
+    <body>
+        <h1>H44.1 Implicit Label Failure</h1>
+
+        <form>
+            <label>
+                Text input: <input type="text" id="textinput" value="" />
+            </label>
+        </form>
+
+        <h2>Explanation</h2>
+
+        <p>According to Success Criterion 1.3.1 (Info and Relationships), most input fields should be explicitly associated with a label. This is done by using the &quot;for&quot; attribute of the label element, which is set to the ID of the relevant input.</p>
+
+        <p>This example tests the scenario where an implicit label is used. A label is considered &quot;implicit&quot; if the label element wraps around the entire label-and-field combination, rather than just the label. This is legal HTML, however it is not best practice from an accessibility point of view because it makes the label difficult to programmatically determine.</p>
+
+        <p>This is considered a failure of Success Criterion 1.3.1 but possibly also Success Criterion 4.1.2. The latter is also failed if the lack of an explicit label means the input does not have a &quot;name&quot; under the &quot;name, role, value&quot; model prescribed by that Success Criterion. See <a href="http://www.w3.org/TR/WCAG20-TECHS/F68">Common Failure F68, &quot;Failure of Success Criterion 1.3.1 and 4.1.2 due to the association of label and user interface controls not being programmatically determinable&quot;</a>.
+
+        <h2>Expected Errors</h2>
+
+        <ul>
+            <li><em>[Standard]</em>.Principle1.Guideline1_3.1_3_1.H44.1.Implicit: &quot;Label found without a &quot;for&quot; attribute, and therefore not explicitly associated with a form control.&quot;</li>
+        </ul>
+
+        <h2>Relevant Success Criteria</h2>
+
+        <ul>
+            <li><strong><abbr title="Success Criterion">SC</abbr> 1.3.1:</strong> <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/content-structure-separation-programmatic.html">Info and Relationships</a></li>
+            <li><strong><abbr title="Success Criterion">SC</abbr> 4.1.2:</strong> <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/ensure-compat-rsv.html">Name, Role, Value</a></li>
+        </ul>
+
+        <h2>Relevant Techniques</h2>
+
+        <ul>
+            <li><strong>H44:</strong> <a href="http://www.w3.org/TR/WCAG20-TECHS/H44">Using label elements to associate text labels with form controls</a></li>
+        </ul>
+    </body>
+</html>

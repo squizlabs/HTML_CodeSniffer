@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+    <head>
+        <title>G73/G74 Long Description Notice</title>
+    </head>
+    <body>
+        <h1>G73/G74 Long Description Notice</h1>
+
+        <p><img src="htmlcs.png" alt="HTML_CodeSniffer Image" /></p>
+
+        <h2>Explanation</h2>
+
+        <p>According to Success Criterion 1.1.1 (Non-Text Content), all non-text content should contain at least a short text alternative,
+        such as through alt text. However, if the short text alternative is not enough to fully describe the non-text content, a long
+        description should be provided. An example may be the contents of a graph: the alt text may say "Graph of sales by quarter" but
+        it does not describe the points of the graph.</p>
+
+        <p>HTML_CodeSniffer will emit notices for images to ensure that a long alternative is available. The longdesc attribute should
+        <em>not</em> be used, as this is outdated and obsolete in HTML5. Instead, a long alternative should be provided in the body
+        text immediately surrounding the element, or through a link to another page.</p>
+
+        <h2>Expected Notices</h2>
+
+        <ul>
+            <li><em>[Standard]</em>.Principle1.Guideline1_1.1_1_1.G73,G74: &quot;If this image cannot be fully described in a short text alternative, ensure a long text alternative is also available, such as in the body text or through a link.&quot;</li>
+        </ul>
+
+        <h2>Relevant Success Criteria</h2>
+
+        <ul>
+            <li><strong><abbr title="Success Criterion">SC</abbr> 1.1.1:</strong> <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/text-equiv-all.html">Non-Text Content</a></li>
+        </ul>
+
+        <h2>Relevant Techniques</h2>
+
+        <ul>
+            <li><strong>G73:</strong> <a href="http://www.w3.org/TR/WCAG20-TECHS/G73">Providing a long description in another location with a link to it that is immediately adjacent to the non-text content</a></li>
+            <li><strong>G74:</strong> <a href="http://www.w3.org/TR/WCAG20-TECHS/G74">Providing a long description in text near the non-text content, with a reference to the location of the long description in the short description</a></li>
+        </ul>
+    </body>
+</html>
