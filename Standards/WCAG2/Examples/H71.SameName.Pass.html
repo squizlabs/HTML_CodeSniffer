@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+    <head>
+        <title>H71 Fieldset for Elements With Same Name Test</title>
+    </head>
+    <body>
+        <h1>H71 Fieldset for Elements With Same Name Test</h1>
+
+        <form>
+            <fieldset>
+                <legend>Option group (select one or more)</legend>
+                <input type="checkbox" id="check1_1" name="check1" value="1" /> <label for="radio1_1">Option 1</label>
+                <input type="checkbox" id="check1_2" name="check1" value="2" /> <label for="radio1_2">Option 2</label>
+            </fieldset>
+        </form>
+
+        <h2>Explanation</h2>
+
+        <p>According to Success Criterion 1.3.1 (Info and Relationships), radio buttons or check boxes that are part
+        of the same group - that is, using the same name attribute - should be using fieldset elements to group the
+        options as a unit. This allows the author to provide additional context to the labels provided, and associating
+        the options as part of a logical grouping.</p>
+
+        <p>This example demonstrates correct usage with check boxes.</p>
+
+        <h3>Changes to technique test</h3>
+
+        <p>The 3 January 2012 update to the techniques document clarified the technique, removing the requirement for
+        a fieldset if the individual labels provide sufficient description, even when the name attributes are identical.
+        It was in conflict with the body text of the description, which suggested that the requirement for a fieldset
+        was not required where the fields themselves "clear instructions and distinct selections".</p>
+
+        <p>Failure of this technique is therefore being downgraded from an error to a warning - it is still important
+        for authors to check forms to ensure whether or not a fieldset is appropriate. In many cases it will be.</p>
+
+        <p>Where this technique is not required, <a href="http://www.w3.org/TR/WCAG20-TECHS/H44">technique H44,
+        &quot;Using label elements to associate text labels with form controls&quot;</a>, should be used instead.</p>
+
+        <h2>Expected Passes</h2>
+
+        <ul>
+            <li><em>[Standard]</em>.Principle1.Guideline1_3.1_3_1.H71.SameName: "If these radio buttons or check boxes require a further group-level description, they should be contained within a fieldset element."</li>
+        </ul>
+
+        <h2>Relevant Success Criteria</h2>
+
+        <ul>
+            <li><strong><abbr title="Success Criterion">SC</abbr> 1.3.1:</strong> <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/content-structure-separation-programmatic.html">Info and Relationships</a></li>
+        </ul>
+
+        <h2>Relevant Techniques</h2>
+
+        <ul>
+            <li><strong>H71:</strong> <a href="http://www.w3.org/TR/WCAG20-TECHS/H71">Providing a description for groups of form controls using fieldset and legend elements</a></li>
+        </ul>
+    </body>
+</html>

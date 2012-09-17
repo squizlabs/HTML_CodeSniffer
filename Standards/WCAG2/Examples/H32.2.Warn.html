@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+    <head>
+        <title>H32.2 No Submit Button Warning</title>
+    </head>
+    <body>
+        <h1>H32.2 No Submit Button Warning</h1>
+
+        <form>
+            <label for="input">Text Input:</label>
+            <input type="text" id="input" value="" />
+        </form>
+
+        <h2>Explanation</h2>
+
+        <p>Success Criterion 3.2.2 (On Input) states that inputting a value into a form field should not result in
+        a <a href="http://www.w3.org/TR/2008/REC-WCAG20-20081211/#context-changedef">change of context</a> unless the user is told that this
+        will happen. The intent is to ensure the user always feels in control with the form, as some may have problems with forms
+        that submit themselves without notice.
+
+        <p>Where this is not appropriate, a submit button should be provided for a form. This example does not have a submit button.</p>
+
+        <h2>Expected Warnings</h2>
+
+        <ul>
+            <li><em>[Standard]</em>.Principle3.Guideline3_2.3_2_2.H32.2: "If this form submits automatically on inputting of a field, ensure the user is informed. Otherwise, add a submit button (input type='submit', input type='image', or button type='submit')."</li>
+        </ul>
+
+        <h2>Relevant Success Criteria</h2>
+
+        <ul>
+            <li><strong><abbr title="Success Criterion">SC</abbr> 3.2.2:</strong> <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/consistent-behavior-unpredictable-change.html">On Input</a></li>
+        </ul>
+
+        <h2>Relevant Techniques</h2>
+
+        <ul>
+            <li><strong>H32:</strong> <a href="http://www.w3.org/TR/WCAG20-TECHS/H32">Providing submit buttons</a></li>
+        </ul>
+    </body>
+</html>

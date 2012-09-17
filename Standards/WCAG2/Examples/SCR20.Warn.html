@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+    <head>
+        <title>SCR20 Keyboard Events Warning</title>
+    </head>
+    <body>
+        <h1>SCR20 Keyboard Events Warning</h1>
+
+        <form>
+            <label for="input">Text Input:</label>
+            <input type="text" id="input" value="" onmousedown="return foo();" onmouseup="return bar();" onmousemove="return baz();" />
+            <div ondblclick="alert('Double Click');">Double Click Me!</div>
+            <div onmouseover="alert('Moused In');" onmouseout="alert('Moused Out');">Move into and out of me!</div>
+        </form>
+
+        <p>Success Criterion 2.1.1 (Keyboard) states that all functionality provided by the content should be operable using the
+        keyboard, "except where the underlying function requires input that depends on the path of the user's movement and not
+        just the endpoints". The <abbr title="Triple A">AAA</abbr> version of this is Success Criterion 2.1.3 (Keyboard: No Exception),
+        which precludes content requiring the quoted exception from reaching <abbr title="Triple A">AAA</abbr> conformance.</p>
+
+        <p>This example should fire warnings relating to the usage of mouse-specific events for performing functionality.
+        Authors should check that the functionality provided by these events are also provided by keyboard events in some fashion,
+        or consider using device-neutral events. The messages provide suggested alternative events, but these do not have to be
+        followed exactly as long as the functionality is available.</p>
+
+        <p>These warnings will appear even if there are the equivalent suggested keyboard events available, because the author
+        should check that the included keyboard events provide all of the functionality of the mouse events.</p>
+
+        <h2>Expected Warnings</h2>
+
+        <ul>
+            <li><em>[Standard]</em>.Principle2.Guideline2_1.2_1_1.SCR20.*: "Ensure the functionality provided by &lt;event name&gt; on this element is available through the keyboard; for instance, using &lt;alternative event&gt;."</li>
+        </ul>
+
+        <p><i>(The "*" in the message is replaced by the name of the mouse event: MouseDown, MouseUp, MouseMove, MouseOver, MouseOut, or DblClick.)</i></p>
+
+        <h2>Relevant Success Criteria</h2>
+
+        <ul>
+            <li><strong><abbr title="Success Criterion">SC</abbr> 2.1.1:</strong> <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/keyboard-operation-keyboard-operable.html">Keyboard</a></li>
+            <li><strong><abbr title="Success Criterion">SC</abbr> 2.1.3:</strong> <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/keyboard-operation-all-funcs.html">Keyboard (No Exception)</a></li>
+        </ul>
+
+        <h2>Relevant Techniques</h2>
+
+        <ul>
+            <li><strong>SCR20:</strong> <a href="http://www.w3.org/TR/WCAG20-TECHS/SCR20">Using both keyboard and other device-specific functions</a></li>
+        </ul>
+    </body>
+</html>

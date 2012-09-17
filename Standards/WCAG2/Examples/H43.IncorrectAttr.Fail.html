@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+    <head>
+        <title>H43 Incorrect Headers Attribute Failure</title>
+    </head>
+    <body>
+        <h1>H43 Incorrect Headers Attribute Failure</h1>
+
+        <table>
+            <thead>
+                <tr>
+                    <th id="a" colspan="2">Header A</th>
+                    <th id="b" rowspan="2">Header B</th>
+                </tr>
+                <tr>
+                    <th id="ai">Header Ai</th>
+                    <th id="aii">Header Aii</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td headers="a ai">Cell 1Ai</td>
+                    <td headers="aii">Cell 1Aii</td>
+                    <td headers="b">Cell 1B</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Explanation</h2>
+
+        <p>According to Success Criterion 1.3.1 (Info and Relationships), the relationship between table headings and table data
+        (ie. th and td elements) must be programmatically determinable. This can be done using either the "scope" attribute on th elements,
+        or "headers" attributes on td elements - depending on the number and type of headings.</p>
+
+        <p>Because this table contains two levels of headings, the "headers" attribute method must be used, and all relevant headers
+        should be assigned to each td element. In this case, the table data cell named "Cell 1Aii" does not list all of its headers:
+        it is missing the "a" cell from the first header row.</p>
+
+        <h2>Expected Errors</h2>
+
+        <ul>
+            <li><em>[Standard]</em>.Principle1.Guideline1_3.1_3_1.H43.IncorrectAttr: "Incorrect headers attribute on this td element. Expected '&lt;expected headers&gt;' but found '&lt;actual headers&gt;'"</li>
+        </ul>
+
+        <h2>Relevant Success Criteria</h2>
+
+        <ul>
+            <li><strong><abbr title="Success Criterion">SC</abbr> 1.3.1:</strong> <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/content-structure-separation-programmatic.html">Info and Relationships</a></li>
+        </ul>
+
+        <h2>Relevant Techniques</h2>
+
+        <ul>
+            <li><strong>H43:</strong> <a href="http://www.w3.org/TR/WCAG20-TECHS/H43">Using id and headers attributes to associate data cells with header cells in data tables</a></li>
+        </ul>
+    </body>
+</html>

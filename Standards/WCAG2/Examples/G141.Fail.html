@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+    <head>
+        <title>G141 Incorrectly Nested Headings Failure</title>
+    </head>
+    <body>
+        <h1>G141 Incorrectly Nested Headings Failure</h1>
+
+        <p>Lorem ipsum dolor</p>
+
+        <h4>nonummy</h4>
+
+        <p>etc. etc.</p>
+
+        <h2>Explanation</h2>
+
+        <p>This test page checks for incorrectly nested headings. Headings should be used properly to provide
+        a meaningful outline to users, allowing them to skim the page to get a grasp of the document. Some
+        users may use tools that use heading levels to programmatically generate such outline, so using headings
+        logically - making sure no levels are skipped, mainly - is important.</p>
+
+        <p>At <abbr title="Triple A">AAA</abbr> level, this warning turns into an error as a failure of
+        Success Criterion 2.4.10 (Section Headings). At lower levels, a warning is emitted: there are examples
+        in technique H42 (<a href="http://www.w3.org/TR/WCAG20-TECHS/H42">Using h1-h6 to identify headings</a>)
+        that suggest order in the document need not necessarily be relative.</p>
+
+        <h2>Expected Warnings/Errors</h2>
+
+        <ul>
+            <li><em>[Standard]</em>.Principle1.Guideline1_3.1_3_1.G141: "The heading structure is not logically nested. This h4 element should be an h2 to be properly nested."</li>
+        </ul>
+
+        <p><i>Error at <abbr title="Triple A">AAA</abbr> level; warning at lower levels. If the first heading is not a h1, the message instead states, eg. "This h4 element appears to be the primary document heading, so should be an h1 element."</i></p>
+
+        <h2>Relevant Success Criteria</h2>
+
+        <ul>
+            <li><strong><abbr title="Success Criterion">SC</abbr> 1.3.1:</strong> <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/content-structure-separation-programmatic.html">Info and Relationships</a></li>
+            <li><strong><abbr title="Success Criterion">SC</abbr> 2.4.10:</strong> <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/navigation-mechanisms-headings.html">Section Headings</a></li>
+        </ul>
+
+        <h2>Relevant Techniques</h2>
+
+        <ul>
+            <li><strong>G141:</strong> <a href="http://www.w3.org/TR/WCAG20-TECHS/G141">Organizing a page using headings</a></li>
+            <li><strong>H42:</strong> <a href="http://www.w3.org/TR/WCAG20-TECHS/H42">Using h1-h6 to identify headings</a></li>
+        </ul>
+    </body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+    <head>
+        <title>H24 Absent Area Alt Attribute Test</title>
+    </head>
+    <body>
+        <h1>H24 Absent Area Alt Attribute Test</h1>
+
+        <map id="foomap">
+            <area type="rect" coords="0,0,50,50" href="about.html" alt="Area 1" />
+            <area type="rect" coords="50,50,100,100" href="screenshots.html" alt="Area 2" />
+        </map>
+
+        <h2>Explanation</h2>
+
+        <p>According to Success Criterion 1.1.1 (Non-Text Content), all client-side image maps, using the map element, should have
+        alt text (a short-text alternative) for each of its constituent area elements.</p>
+
+        <p>This example demonstrates an image map with two areas, both containing alt elements as specified. A notice is emitted to remind authors of the responsibility of ensuring the contents of the area element "serves the same purpose as the part of image map image referenced by the area element". In this example, these alternatives are probably not adequate.</p>
+
+        <h2>Expected Not To Fail</h2>
+
+        <ul>
+            <li><em>[Standard]</em>.Principle1.Guideline1_1.1_1_1.H24: "Area element in an image map missing an alt attribute. Each area element must have a text alternative that describes the function of the image map area."</li>
+        </ul>
+
+        <h2>Expected Notices</h2>
+
+        <ul>
+            <li><em>[Standard]</em>.Principle1.Guideline1_1.1_1_1.H24.2: "Ensure that the area element's text alternative serves the same purpose as the part of image map image it references."</li>
+        </ul>
+
+        <h2>Relevant Success Criteria</h2>
+
+        <ul>
+            <li><strong><abbr title="Success Criterion">SC</abbr> 1.1.1:</strong> <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/text-equiv-all.html">Non-Text Content</a></li>
+        </ul>
+
+        <h2>Relevant Techniques</h2>
+
+        <ul>
+            <li><strong>H24:</strong> <a href="http://www.w3.org/TR/WCAG20-TECHS/H24">Providing text alternatives for the area elements of image maps</a></li>
+        </ul>
+    </body>
+</html>

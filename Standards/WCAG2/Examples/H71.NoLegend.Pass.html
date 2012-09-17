@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+    <head>
+        <title>H71 Fieldset with Legend Test</title>
+    </head>
+    <body>
+        <h1>H71 Fieldset with Legend Test</h1>
+
+        <form>
+            <fieldset>
+                <legend>Option group (select one)</legend>
+                <input type="radio" id="radio1_1" name="radio1" value="1" /> <label for="radio1_1">Option 1</label>
+                <input type="radio" id="radio1_2" name="radio1" value="2" /> <label for="radio1_2">Option 2</label>
+            </fieldset>
+        </form>
+
+        <h2>Explanation</h2>
+
+        <p>According to Success Criterion 1.3.1 (Info and Relationships), radio buttons or check boxes that are part
+        of the same group - that is, using the same name attribute - should be using fieldset elements to group the
+        options as a unit. This allows the author to provide additional context to the labels provided, and associating
+        the options as part of a logical grouping.</p>
+
+        <p>This example demonstrates successful usage of a fieldset with radio buttons, with a legend provided.</p>
+
+        <h2>Expected Not To Fail</h2>
+
+        <ul>
+            <li><em>[Standard]</em>.Principle1.Guideline1_3.1_3_1.H71.NoLegend: "Fieldset does not contain a legend element. All fieldsets should contain a legend element that describes a description of the field group."</li>
+        </ul>
+
+        <h2>Relevant Success Criteria</h2>
+
+        <ul>
+            <li><strong><abbr title="Success Criterion">SC</abbr> 1.3.1:</strong> <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/content-structure-separation-programmatic.html">Info and Relationships</a></li>
+        </ul>
+
+        <h2>Relevant Techniques</h2>
+
+        <ul>
+            <li><strong>H71:</strong> <a href="http://www.w3.org/TR/WCAG20-TECHS/H71">Providing a description for groups of form controls using fieldset and legend elements</a></li>
+        </ul>
+    </body>
+</html>

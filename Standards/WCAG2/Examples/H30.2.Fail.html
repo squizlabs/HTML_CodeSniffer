@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+    <head>
+        <title>H30.2 Empty Alt Text In Link Failure</title>
+    </head>
+    <body>
+        <h1>H30.2 Empty Alt Text In Link Failure</h1>
+
+        <a href="htmlcs.html"><img src="htmlcs.png" alt="" /></a>
+
+        <h2>Explanation</h2>
+
+        <p>According to Success Criterion 1.1.1 (Non-text Content), all non-text content, including images,
+        should have a short text alternative, and (if required) a long text alternative.</p>
+
+        <p>When an image is used as the only content within a link, the alt text of the image should indicate
+        the function of the link - this is slightly different to the normal requirement that it describe the
+        image (although in a perfect environment, it should describe both). If the alt text is missing, a
+        different message will be emitted to the usual.</p>
+
+        <h2>Expected Errors</h2>
+
+        <ul>
+            <li><em>[Standard]</em>.Principle1.Guideline1_1.1_1_1.H30.2: &quot;Img element is the only content of the link, but is missing alt text. The alt text should describe the purpose of the link.&quot;</li>
+        </ul>
+
+        <h2>Relevant Success Criteria</h2>
+
+        <ul>
+            <li><strong><abbr title="Success Criterion">SC</abbr> 1.1.1:</strong> <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/text-equiv-all.html">Non-Text Content</a></li>
+        </ul>
+
+        <h2>Relevant Techniques</h2>
+
+        <ul>
+            <li><strong>H30:</strong> <a href="http://www.w3.org/TR/WCAG20-TECHS/H30">Providing link text that describes the purpose of a link for anchor elements</a></li>
+        </ul>
+    </body>
+</html>
