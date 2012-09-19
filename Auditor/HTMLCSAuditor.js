@@ -1005,7 +1005,8 @@ var HTMLCSAuditor = new function()
                 next.className = next.className.replace(new RegExp(' ' + _prefix + 'disabled'), '');
             }
 
-            pageNum.innerHTML = 'Page ' + _page + ' of ' + totalPages;
+            pageNum.innerHTML = '';
+            pageNum.appendChild(document.createTextNode('Page ' + _page + ' of ' + totalPages));
 
             var issueList = _doc.querySelectorAll('.HTMLCS-issue-list')[0];
             issueList.style.marginLeft = ((_page - 1) * -300) + 'px';
@@ -1023,7 +1024,8 @@ var HTMLCSAuditor = new function()
                 prev.className = prev.className.replace(new RegExp(' ' + _prefix + 'disabled'), '');
             }
 
-            pageNum.innerHTML = 'Page ' + _page + ' of ' + totalPages;
+            pageNum.innerHTML = '';
+            pageNum.appendChild(document.createTextNode('Page ' + _page + ' of ' + totalPages));
 
             var issueList = _doc.querySelectorAll('.HTMLCS-issue-list')[0];
             issueList.style.marginLeft = ((_page - 1) * -300) + 'px';
