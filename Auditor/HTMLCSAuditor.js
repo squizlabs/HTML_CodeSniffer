@@ -1968,9 +1968,9 @@ var HTMLCSAuditor = new function()
             ) {
                 var self = this;
 
-                this.container.style.opacity = 0.5;
+                this.container.className += ' HTMLCS-translucent';
                 setTimeout(function() {
-                    self.container.style.opacity = 1;
+                    self.container.className = self.container.className.replace('HTMLCS-translucent', '');
                 }, 4000);
             }
 

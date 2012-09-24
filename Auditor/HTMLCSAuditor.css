@@ -46,6 +46,11 @@
     z-index: 100000;
 }
 
+#HTMLCS-wrapper.HTMLCS-translucent {
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+}
+
 #HTMLCS-wrapper strong {
     font-weight: bold;
 }
