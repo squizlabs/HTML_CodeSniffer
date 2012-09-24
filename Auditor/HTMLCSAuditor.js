@@ -1775,9 +1775,8 @@ var HTMLCSAuditor = new function()
             var myPointer = this.getPointer(elem);
             var doc       = elem.ownerDocument;
 
-            myPointer.style.display = 'block';
-            myPointer.style.opacity = 0;
-            myPointer.className     = myPointer.className.replace('HTMLCS-pointer-hidden', '');
+            myPointer.className  = myPointer.className.replace('HTMLCS-pointer-hidden', '');
+            myPointer.className += ' HTMLCS-pointer-hidden-block';
 
             this.pointerDim.height = 62;
             this.pointerDim.width  = 62;
@@ -1804,6 +1803,9 @@ var HTMLCSAuditor = new function()
                 // Right.
                 direction = 'right';
             }
+
+            myPointer.className  = myPointer.className.replace('HTMLCS-pointer-hidden-block', '');
+            myPointer.className += ' HTMLCS-pointer-hidden';
 
             return direction;
         },
@@ -1832,12 +1834,10 @@ var HTMLCSAuditor = new function()
             var direction = this.getPointerDirection(elem);
             var myPointer = this.getPointer(elem);
 
+            myPointer.className  = myPointer.className.replace('HTMLCS-pointer-hidden-block', '');
             if (direction === null) {
-                myPointer.style.display = 'none';
+                myPointer.className += ' HTMLCS-pointer-hidden';
             } else {
-                myPointer.style.display = 'block';
-                myPointer.style.opacity = null;
-
                 var isFixed = false;
                 if (HTMLCS.util.style(elem).position === 'fixed') {
                     var isFixed = true;
@@ -1967,9 +1967,10 @@ var HTMLCSAuditor = new function()
                 && coords.y2 >= midY
             ) {
                 var self = this;
-                this.container.style.opacity = 0.5;
+
+                this.container.className += ' HTMLCS-translucent';
                 setTimeout(function() {
-                    self.container.style.opacity = 1;
+                    self.container.className = self.container.className.replace('HTMLCS-translucent', '');
                 }, 4000);
             }
 
