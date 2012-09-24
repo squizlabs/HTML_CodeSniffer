@@ -806,6 +806,12 @@
     display: none;
 }
 
+.HTMLCS-pointer.HTMLCS-pointer-hidden-block {
+    opacity: 0;
+    filter: alpha(opacity=0);
+    display: block;
+}
+
 #HTMLCS-wrapper #HTMLCS-settings-use-standard label {
     color: #FFF;
     display: inline;
