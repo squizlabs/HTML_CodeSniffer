@@ -8,6 +8,37 @@ Items prefixed with "SC" refer to changes or fixes to the tests in that Success
 Criterion (or Criteria), and should be read in conjunction with the W3C's documentation
 for the [Web Content Accessibility Guidelines (WCAG) 2.0](http://www.w3.org/TR/WCAG20).
 
+## Version xx (xx Sep 2012)
+
+- **Auditor:** Fixed an issue where the auditor popup would not become semi-transparent
+in IE8 when the pointer is underneath the popup. ([Pull Request #47](http://squizlabs.github.com/HTML_CodeSniffer/issues/47))
+- **Auditor:** Fixed a bug where IE8 would throw an "Unknown runtime error" when
+attempting to change pages in the issue list if placed inside invalid HTML, such as
+nested forms. ([Pull Request #46](http://squizlabs.github.com/HTML_CodeSniffer/issues/46))
+- **Various Sniffs:** Certain sniffs that emit notices now fire on each found
+element, rather than one fired at the top of the document. This includes audio/video tag sniffs in
+Guidelines 1.2 and 1.4, as well as input fields in SC 3.2.1 ([Pull Request #42](http://squizlabs.github.com/HTML_CodeSniffer/issues/42))
+- **Auditor:** HTML_CodeSniffer now provides a reason as to why an element cannot be
+pointed to using the pointer. ([Pull Request #39](http://squizlabs.github.com/HTML_CodeSniffer/issues/39))
+- **Core:** Messages from sniffs that start from the top of the document are now
+listed in DOM order, like sniffs that focus on certain elements directly. This should reduce the amount of "bouncing"
+up and down a document due to elements being pointed to in different parts. ([Pull Request #38](http://squizlabs.github.com/HTML_CodeSniffer/issues/38))
+- **Auditor:** The bookmarklet can now accept an option, "ignoreMsgCodes", which allows
+for filtering of messages by one or more Perl-compatible regular expressions (either
+as strings or RegExp objects). ([Pull Request #37](http://squizlabs.github.com/HTML_CodeSniffer/issues/37))
+- **SC 1.3.1:** Updated the test for technique [H71: Providing a description for
+groups of form controls using fieldset and legend elements](http://www.w3.org/TR/WCAG20-TECHS/H71)
+to relate to the version in the 3 January 2012 version of the *Techniques for WCAG 2.0*
+document. Fieldsets are no longer required if each element in a radio or checkbox
+group "includes clear instructions [in a label] and distinct selections". As such,
+these tests have been rewritten and messages reduced from an Error to a Warning. ([Pull Request #36](http://squizlabs.github.com/HTML_CodeSniffer/issues/36))
+- **Auditor:** Fixed an issue where it was still possible to operate the toggle
+switch for a category of messages that was empty, and related issues that caused
+to the View Report button being not correctly enabled. ([Pull Request #35](http://squizlabs.github.com/HTML_CodeSniffer/issues/35))
+- **SC 1.3.1:** Fixed an issue in the test for lack of an ID on an input. Buttons
+and hidden inputs weren't being correctly detected when the type attribute was not
+all lowercase. ([Pull Request #34](http://squizlabs.github.com/HTML_CodeSniffer/issues/34))
+
 ## Version 33 (31 Aug 2012)
 
 - **Auditor:** Fixed an issue in Internet Explorer 9+ where the message type switches
