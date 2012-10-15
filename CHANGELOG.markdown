@@ -8,7 +8,7 @@ Items prefixed with "SC" refer to changes or fixes to the tests in that Success
 Criterion (or Criteria), and should be read in conjunction with the W3C's documentation
 for the [Web Content Accessibility Guidelines (WCAG) 2.0](http://www.w3.org/TR/WCAG20).
 
-## Version xx (xx Sep 2012)
+## Version 49 (15 Oct 2012)
 
 - **Auditor:** Fixed an issue where the auditor popup would not become semi-transparent
 in IE8 when the pointer is underneath the popup. ([Pull Request #47](http://squizlabs.github.com/HTML_CodeSniffer/issues/47))
@@ -28,7 +28,7 @@ for filtering of messages by one or more Perl-compatible regular expressions (ei
 as strings or RegExp objects). ([Pull Request #37](http://squizlabs.github.com/HTML_CodeSniffer/issues/37))
 - **SC 1.3.1:** Updated the test for technique [H71: Providing a description for
 groups of form controls using fieldset and legend elements](http://www.w3.org/TR/WCAG20-TECHS/H71)
-to relate to the version in the 3 January 2012 version of the *Techniques for WCAG 2.0*
+to the version in the 3 January 2012 version of the *Techniques for WCAG 2.0*
 document. Fieldsets are no longer required if each element in a radio or checkbox
 group "includes clear instructions [in a label] and distinct selections". As such,
 these tests have been rewritten and messages reduced from an Error to a Warning. ([Pull Request #36](http://squizlabs.github.com/HTML_CodeSniffer/issues/36))
