@@ -807,29 +807,20 @@ var HTMLCSAuditor = new function()
             msgElementSource.className = _prefix + 'issue-source';
             msgDiv.appendChild(msgElementSource);
 
-            var msgElementSourceHeader       = _doc.createElement('div');
-            msgElementSourceHeader.className = _prefix + 'issue-source-header';
-
-            var msgSourceHeaderText       = _doc.createElement('strong');
-            msgSourceHeaderText.innerHTML = 'Unable to Point to Element';
-
-            msgElementSourceHeader.appendChild(msgSourceHeaderText);
-            msgElementSource.appendChild(msgElementSourceHeader);
-
-            var msgElementSourceInner         = _doc.createElement('div');
-            msgElementSourceInner.style.clear = 'both';
+            var msgElementSourceInner       = _doc.createElement('div');
+            msgElementSourceInner.className = _prefix + 'issue-source-inner-u2p';
             var msg = 'Unable to point to the element associated with this issue.';
 
             if (message.element.ownerDocument === null) {
-                msg = 'This message relates to the entire document and thus cannot be pointed to.';
+                msg = 'Unable to point to this issue, as it relates to the entire document.';
             } else {
                 var body = message.element.ownerDocument.getElementsByTagName('body')[0];
                 if (HTMLCS.util.isInDocument(message.element) === false) {
-                    msg += ' It may have been removed from the document since the report was generated.';
+                    msg += 'Unable to point to this element as it has been removed from the document since the report was generated.';
                 } else if (HTMLCS.util.contains(body, message.element) === false) {
-                    msg = 'This message relates to an element outside of the document body, and thus cannot be pointed to.';
+                    msg = 'Unable to point to this element because it is located outside the document\'s body element.';
                 } else {
-                    msg += ' It may be hidden from view using styles, or may not have a visual representation.';
+                    msg += 'Unable to point to this element because it is hidden from view, or does not have a visual representation.';
                 }
             }
 
@@ -1074,6 +1065,39 @@ var HTMLCSAuditor = new function()
             loadStandards(standards, callback);
         });
 
+    };
+
+    /**
+     * Includes the specified JS file.
+     *
+     * @param {String}   src      The URL to the JS file.
+     * @param {Function} callback The function to call once the script is loaded.
+     */
+    var _includeScript = function(src, callback) {
+        var script    = document.createElement('script');
+        script.onload = function() {
+            script.onload = null;
+            script.onreadystatechange = null;
+
+            if ((callback instanceof Function) === true) {
+                callback.call(this);
+            }
+        };
+
+        script.onreadystatechange = function() {
+            if (/^(complete|loaded)$/.test(this.readyState) === true) {
+                script.onreadystatechange = null;
+                script.onload();
+            }
+        }
+
+        script.src = src;
+
+        if (document.head) {
+            document.head.appendChild(script);
+        } else {
+            document.getElementsByTagName('head')[0].appendChild(script);
+        }
     };
 
     this.getIssue = function(issueNumber)
@@ -1501,6 +1525,21 @@ var HTMLCSAuditor = new function()
         };
 
         _processSource(standard, _sources.concat([]));
+    };
+
+    this.versionCheck = function(response) {
+        if (response && (response.currentVersion !== null)) {
+            if (response.newVersion > response.currentVersion) {
+                var msgElementSource = _doc.createElement('div');
+                msgElementSource.id  = _prefix + 'settings-updated-notification';
+                _doc.documentElement.querySelector('.HTMLCS-settings').appendChild(msgElementSource);
+
+                var msg = 'HTML_CodeSniffer has been updated to version ' + response.newVersion + '.';
+                msg    += ' <a href="http://squizlabs.github.com/HTML_CodeSniffer/patches/' + response.newVersion + '">View the changelog</a>'
+
+                msgElementSource.innerHTML = msg;
+            }//end if
+        }//end if
     };
 
     this.close = function() {

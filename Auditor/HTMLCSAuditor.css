@@ -470,6 +470,11 @@
     overflow: auto;
 }
 
+#HTMLCS-wrapper .HTMLCS-issue-source-inner-u2p {
+    padding: 0.35em;
+    clear: both;
+}
+
 #HTMLCS-wrapper .HTMLCS-issue-source-not-supported {
     font-size: 1em;
     line-height: 1.4em;
@@ -919,12 +924,51 @@
 
 #HTMLCS-wrapper #HTMLCS-settings-issue-count-help {
     clear: both;
-    color: #AAAAAA;
+    color: #AAA;
     display: block;
     font-size: 1.3em;
     text-align: center;
     padding: 1em 0;
     text-shadow: 0 -1px rgba(0, 0, 0, 0.3);
+}
+
+#HTMLCS-wrapper #HTMLCS-settings-updated-notification {
+    color: #FFF;
+    display: block;
+    font-size: 1.3em;
+    text-align: left;
+    padding: 1em;
+}
+
+#HTMLCS-wrapper #HTMLCS-settings-updated-notification a,
+#HTMLCS-wrapper #HTMLCS-settings-updated-notification a:visited {
+    border-bottom: 1px solid #777;
+    color: #DBDBE1;
+    display: inline-block;
+    font-style: normal;
+    text-decoration: none;
+    line-height: 1.2em;
+    margin-right: 0.3em;
+}
+
+#HTMLCS-wrapper #HTMLCS-settings-updated-notification a:hover {
+    border-bottom-color: #87878E;
+}
+
+#HTMLCS-wrapper #HTMLCS-settings-updated-notification a:after {
+    background: url("Images/HTMLCS-tools.png") no-repeat scroll 0 -48px transparent;
+    content: "";
+    display: inline-block;
+    opacity: 0.6;
+    filter: alpha(opacity=60);
+    height: 11px;
+    margin: 0 0 0 0.5em;
+    width: 12px;
+}
+
+#HTMLCS-wrapper #HTMLCS-settings-updated-notification a:hover:after {
+    opacity: 1;
+    filter: alpha(opacity=100);
 }
 
 #HTMLCS-wrapper .HTMLCS-issue-tile {
