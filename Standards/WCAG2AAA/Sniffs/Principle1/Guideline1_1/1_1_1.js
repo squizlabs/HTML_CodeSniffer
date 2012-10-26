@@ -95,7 +95,18 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
             var nextNode = this._getNextSiblingElement(element, null);
 
             if ((prevNode === null) && (nextNode === null)) {
-                linkOnlyChild = true;
+                var textContent = element.parentNode.textContent;
+
+                if (element.parentNode.textContent !== undefined) {
+                    var textContent = element.parentNode.textContent;
+                } else {
+                    // Keep IE8 happy.
+                    var textContent = element.parentNode.innerText;
+                }
+
+                if (HTMLCS.isStringEmpty(textContent) === true) {
+                    linkOnlyChild = true;
+                }
             }
         }//end if
 

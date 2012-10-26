@@ -232,7 +232,7 @@ var HTMLCSAuditor = new function()
 
         var leftContents = [];
 
-        var divider = ', &nbsp;<span class="' + _prefix + 'divider"></span>';
+        var divider = ', &#160;<span class="' + _prefix + 'divider"></span>';
 
         if (errors > 0) {
             var typeName = 'Errors';
