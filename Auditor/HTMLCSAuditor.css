@@ -4,7 +4,6 @@
 #HTMLCS-wrapper * {
     margin: 0;
     padding: 0;
-    font-family: Arial,Sans Serif;
     float: none;
     height: inherit;
     height: auto;
@@ -13,6 +12,13 @@
     line-height: inherit;
     box-sizing: content-box;
     -moz-box-sizing: content-box;
+}
+
+#HTMLCS-wrapper p, #HTMLCS-wrapper div, #HTMLCS-wrapper ul, #HTMLCS-wrapper ol,
+#HTMLCS-wrapper li, #HTMLCS-wrapper table {
+    background: transparent;
+    color: black;
+    font-family: Arial,Sans Serif;
 }
 
 #HTMLCS-wrapper a,
