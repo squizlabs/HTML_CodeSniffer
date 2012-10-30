@@ -15,6 +15,12 @@
     -moz-box-sizing: content-box;
 }
 
+#HTMLCS-wrapper p, #HTMLCS-wrapper div, #HTMLCS-wrapper ul, #HTMLCS-wrapper ol,
+#HTMLCS-wrapper li, #HTMLCS-wrapper table {
+    background: transparent;
+    color: black;
+}
+
 #HTMLCS-wrapper a,
 #HTMLCS-wrapper a:visited {
     border: none;
@@ -483,6 +489,7 @@
 }
 
 #HTMLCS-wrapper .HTMLCS-issue-source-inner strong {
+    font-family: Monaco, monospace;
     font-weight: normal;
     color: #FFF;
 }
