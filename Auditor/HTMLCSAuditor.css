@@ -4,7 +4,6 @@
 #HTMLCS-wrapper * {
     margin: 0;
     padding: 0;
-    font-family: Arial,Sans Serif;
     float: none;
     height: inherit;
     height: auto;
@@ -19,6 +18,7 @@
 #HTMLCS-wrapper li, #HTMLCS-wrapper table {
     background: transparent;
     color: black;
+    font-family: Arial,Sans Serif;
 }
 
 #HTMLCS-wrapper a,
@@ -489,7 +489,6 @@
 }
 
 #HTMLCS-wrapper .HTMLCS-issue-source-inner strong {
-    font-family: Monaco, monospace;
     font-weight: normal;
     color: #FFF;
 }
