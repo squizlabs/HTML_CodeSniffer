@@ -486,7 +486,7 @@ var HTMLCSAuditor = new function()
         useStandardSelect.id        = _prefix + 'settings-use-standard-select';
         useStandardSelect.innerHTML = '';
 
-        var standards = ['WCAG2AAA', 'WCAG2AA', 'WCAG2A'];
+        var standards = HTMLCSAuditor.getStandardList();
         for (var i = 0; i < standards.length; i++) {
             var standard     = standards[i];
             var option       = _doc.createElement('option');
@@ -725,26 +725,11 @@ var HTMLCSAuditor = new function()
     }
 
     var buildMessageDetail = function(id, message, standard) {
-        var typeText  = '';
-
-        var principles = {
-            'Principle1': {
-                name: 'Perceivable',
-                link: 'http://www.w3.org/TR/WCAG20/#perceivable'
-               },
-            'Principle2': {
-                name: 'Operable',
-                link: 'http://www.w3.org/TR/WCAG20/#operable'
-               },
-            'Principle3': {
-                name: 'Understandable',
-                link: 'http://www.w3.org/TR/WCAG20/#understandable'
-               },
-            'Principle4': {
-                name: 'Robust',
-                link: 'http://www.w3.org/TR/WCAG20/#robust'
-               }
+        if (standard === undefined) {
+            standard = _standard;
         }
+
+        var typeText  = '';
 
         switch (message.type) {
             case HTMLCS.ERROR:
@@ -765,14 +750,11 @@ var HTMLCSAuditor = new function()
         }//end switch
 
         var typeClass     = _prefix + typeText.toLowerCase();
-        var msgCodeParts  = message.code.split('.', 5);
-        var principle     = msgCodeParts[1];
-        var techniques    = msgCodeParts[4].split(',');
-        var techniquesStr = [];
 
-        for (var i = 0; i < techniques.length; i++) {
-            techniques[i]  = techniques[i].split('.');
-            techniquesStr.push('<a href="http://www.w3.org/TR/WCAG20-TECHS/' + techniques[i][0] + '" target="_blank">' + techniques[i][0] + '</a>');
+        var standardObj = HTMLCS.util.getElementWindow(_doc)['HTMLCS_' + standard];
+        var msgInfo = [];
+        if (standardObj.getMsgInfo) {
+            msgInfo = standardObj.getMsgInfo(message.code);
         }
 
         var msgDiv = _doc.createElement('li');
@@ -789,16 +771,18 @@ var HTMLCSAuditor = new function()
         msgTitle.className = _prefix + 'issue-title';
         msgTitle.innerHTML = message.msg;
 
-        var msgWcagRef       = _doc.createElement('div');
-        msgWcagRef.className = _prefix + 'issue-wcag-ref';
+        var msgRef       = _doc.createElement('div');
+        msgRef.className = _prefix + 'issue-wcag-ref';
 
-        var refContent       = '<em>Principle:</em> <a href="' + principles[principle].link + '" target="_blank">' + principles[principle].name + '</a><br/>';
-        refContent          += '<em>Technique:</em> ' + techniquesStr.join(' '); + '<br/>';
-        msgWcagRef.innerHTML = refContent;
+        var refContent = '';
+        for (var i = 0; i < msgInfo.length; i++) {
+            refContent += '<em>' + msgInfo[i][0] + ':</em> ' + msgInfo[i][1] + '<br/>';
+        }
+        msgRef.innerHTML = refContent;
 
         msgDetailsDiv.appendChild(msgType);
         msgDetailsDiv.appendChild(msgTitle);
-        msgDetailsDiv.appendChild(msgWcagRef);
+        msgDetailsDiv.appendChild(msgRef);
         msgDiv.appendChild(msgDetailsDiv);
 
         // If the item cannot be pointed to, tell them why.
@@ -1302,13 +1286,28 @@ var HTMLCSAuditor = new function()
         }
     }
 
+    this.getStandardList = function() {
+        var pattern   = /^HTMLCS_[^_]+$/;
+        var standards = [];
+        for (i in window) {
+            if (pattern.test(i) === true) {
+                var standard = window[i];
+                if (standard.sniffs && standard.name) {
+                    standards.push(i.substr(7));
+                }
+            }
+        }
+
+        return standards;
+    };
+
     /**
      * Run HTML_CodeSniffer and place the results in the auditor.
      *
      * @returns undefined
      */
     this.run = function(standard, source, options) {
-        var standards       = ['WCAG2AAA', 'WCAG2AA', 'WCAG2A'];
+        var standards       = this.getStandardList();
         var standardsToLoad = [];
         for (var i = 0; i < standards.length; i++) {
             if (!window['HTMLCS_' + standards[i]]) {
@@ -1921,16 +1920,20 @@ var HTMLCSAuditor = new function()
         },
 
         getPointer: function(targetElement) {
-            var doc = targetElement.ownerDocument;
-            HTMLCSAuditor.includeCss('HTMLCS', doc);
-            var c = 'HTMLCS';
+            try {
+                var doc = targetElement.ownerDocument;
+                HTMLCSAuditor.includeCss('HTMLCS', doc);
+                var c = 'HTMLCS';
 
-            var myPointer = doc.getElementById(c + '-pointer');
-            if (!myPointer) {
-                myPointer = doc.createElement('div');
-                myPointer.id        = c + '-pointer';
-                myPointer.className = c + '-pointer ' + c + '-pointer-hidden';
-                doc.body.appendChild(myPointer);
+                var myPointer = doc.getElementById(c + '-pointer');
+                if (!myPointer) {
+                    myPointer = doc.createElement('div');
+                    myPointer.id        = c + '-pointer';
+                    myPointer.className = c + '-pointer ' + c + '-pointer-hidden';
+                    doc.body.appendChild(myPointer);
+                }
+            } catch (ex) {
+                // Can't get to owner document due to unsafe access.
             }
 
             return myPointer;

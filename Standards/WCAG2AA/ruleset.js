@@ -60,5 +60,8 @@ var HTMLCS_WCAG2AA = {
                'Principle4.Guideline4_1.4_1_2'
             ]
         }
-    ]
+    ],
+    getMsgInfo: function(code) {
+        return HTMLCS_WCAG2AAA.getMsgInfo(code);
+    }
 };
