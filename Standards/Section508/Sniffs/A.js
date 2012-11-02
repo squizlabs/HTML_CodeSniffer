@@ -123,4 +123,37 @@ var HTMLCS_Section508_Sniffs_A = {
             HTMLCS.addMessage(HTMLCS.NOTICE, errors.area.generalAlt[i], 'Ensure that the area element\'s text alternative serves the same purpose as the part of image map image it references.', 'Area.GeneralAlt');
         }
     },
+
+    /**
+     * Driver function for the media alternative (object/applet) tests.
+     *
+     * This takes the generic result given by the media alternative testing function,
+     * and converts them into WCAG 2.0-specific messages.
+     *
+     * @param {DOMNode} element The element to test.
+     */
+    addMediaAlternativesResults: function(top)
+    {
+        var errors = HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1.testMediaTextAlternatives(top);
+
+        for (var i = 0; i < errors.object.missingBody.length; i++) {
+            HTMLCS.addMessage(HTMLCS.ERROR, errors.object.missingBody[i], 'Object elements must contain a text alternative after all other alternatives are exhausted.', 'Object.MissingBody');
+        }
+
+        for (var i = 0; i < errors.object.generalAlt.length; i++) {
+            HTMLCS.addMessage(HTMLCS.NOTICE, errors.object.generalAlt[i], 'Check that short (and if appropriate, long) text alternatives are available for non-text content that serve the same purpose and present the same information.', 'Object.GeneralAlt');
+        }
+
+        for (var i = 0; i < errors.applet.missingBody.length; i++) {
+            HTMLCS.addMessage(HTMLCS.NOTICE, errors.applet.missingBody[i], 'Applet elements must contain a text alternative in the element\'s body, for browsers without support for the applet element.', 'Applet.MissingBody');
+        }
+
+        for (var i = 0; i < errors.applet.missingAlt.length; i++) {
+            HTMLCS.addMessage(HTMLCS.ERROR, errors.applet.missingAlt[i], 'Applet elements must contain an alt attribute, to provide a text alternative to browsers supporting the element but are unable to load the applet.', 'Applet.MissingAlt');
+        }
+
+        for (var i = 0; i < errors.applet.generalAlt.length; i++) {
+            HTMLCS.addMessage(HTMLCS.NOTICE, errors.applet.generalAlt[i], 'Check that short (and if appropriate, long) text alternatives are available for non-text content that serve the same purpose and present the same information.', 'Applet.GeneralAlt');
+        }
+    },
 };

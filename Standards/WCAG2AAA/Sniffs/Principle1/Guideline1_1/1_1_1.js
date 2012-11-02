@@ -41,6 +41,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
     {
         if (element === top) {
             this.addNullAltTextResults(top);
+            this.addMediaAlternativesResults(top);
         } else {
             var nodeName = element.nodeName.toLowerCase();
 
@@ -48,14 +49,6 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
                 case 'img':
                     this.testLinkStutter(element);
                     this.testLongdesc(element);
-                break;
-
-                case 'object':
-                    this.testObjectTextAlternative(element);
-                break;
-
-                case 'applet':
-                    this.testAppletTextAlternative(element);
                 break;
             }//end if
         }//end if
@@ -343,6 +336,39 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
         }//end if
     },
 
+    /**
+     * Driver function for the media alternative (object/applet) tests.
+     *
+     * This takes the generic result given by the media alternative testing function,
+     * and converts them into WCAG 2.0-specific messages.
+     *
+     * @param {DOMNode} element The element to test.
+     */
+    addMediaAlternativesResults: function(top)
+    {
+        var errors = this.testMediaTextAlternatives(top);
+
+        for (var i = 0; i < errors.object.missingBody.length; i++) {
+            HTMLCS.addMessage(HTMLCS.ERROR, errors.object.missingBody[i], 'Object elements must contain a text alternative after all other alternatives are exhausted.', 'H53');
+        }
+
+        for (var i = 0; i < errors.object.generalAlt.length; i++) {
+            HTMLCS.addMessage(HTMLCS.NOTICE, errors.object.generalAlt[i], 'Check that short (and if appropriate, long) text alternatives are available for non-text content that serve the same purpose and present the same information.', 'G94,G92.Object');
+        }
+
+        for (var i = 0; i < errors.applet.missingBody.length; i++) {
+            HTMLCS.addMessage(HTMLCS.NOTICE, errors.applet.missingBody[i], 'Applet elements must contain a text alternative in the element\'s body, for browsers without support for the applet element.', 'H35.3');
+        }
+
+        for (var i = 0; i < errors.applet.missingAlt.length; i++) {
+            HTMLCS.addMessage(HTMLCS.ERROR, errors.applet.missingAlt[i], 'Applet elements must contain an alt attribute, to provide a text alternative to browsers supporting the element but are unable to load the applet.', 'H35.2');
+        }
+
+        for (var i = 0; i < errors.applet.generalAlt.length; i++) {
+            HTMLCS.addMessage(HTMLCS.NOTICE, errors.applet.generalAlt[i], 'Check that short (and if appropriate, long) text alternatives are available for non-text content that serve the same purpose and present the same information.', 'G94,G92.Applet');
+        }
+    },
+
     testMediaTextAlternatives: function(top)
     {
         var errors = {
@@ -357,7 +383,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
             }
         };
 
-        var elements = top.querySelectorAll('object, applet');
+        var elements = top.querySelectorAll('object');
 
         for (var el = 0; el < elements.length; el++) {
             var element  = elements[el];
@@ -370,11 +396,41 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
             if (childObject === null) {
                 var textAlt = HTMLCS.util.getElementTextContent(element, true);
                 if (textAlt === '') {
-                    HTMLCS.addMessage(HTMLCS.ERROR, element, 'Object elements must contain a text alternative after all other alternatives are exhausted.', 'H53');
+                    errors.object.missingBody.push(element);
                 } else {
-                    HTMLCS.addMessage(HTMLCS.NOTICE, element, 'Check that short (and if appropriate, long) text alternatives are available for non-text content that serve the same purpose and present the same information.', 'G94,G92.Object');
+                    errors.object.generalAlt.push(element);
                 }
             }//end if
+        }//end if
+
+        var elements = top.querySelectorAll('applet');
+
+        for (var el = 0; el < elements.length; el++) {
+            // Test firstly for whether we have an object alternative.
+            var childObject = element.querySelector('object');
+            var hasError    = false;
+
+            // If we have an object as our alternative, skip it. Pass the blame onto
+            // the child. (This is a special case: those that don't understand APPLET
+            // may understand OBJECT, but APPLET shouldn't be nested.)
+            if (childObject === null) {
+                var textAlt = HTMLCS.util.getElementTextContent(element, true);
+                if (HTMLCS.isStringEmpty(textAlt) === true) {
+                    errors.applet.missingBody.push(element);
+                    hasError = true;
+                }
+            }//end if
+
+            var altAttr = element.getAttribute('alt') || '';
+            if (HTMLCS.isStringEmpty(altAttr) === true) {
+                errors.applet.missingAlt.push(element);
+                hasError = true;
+            }
+
+            if (hasError === false) {
+                // No error? Remind of obligations about equivalence of alternatives.
+                errors.applet.generalAlt.push(element);
+            }
         }//end if
     },
 

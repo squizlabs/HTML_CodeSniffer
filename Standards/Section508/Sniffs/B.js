@@ -11,7 +11,7 @@
  *
  */
 
-var HTMLCS_Section508_Sniffs_G = {
+var HTMLCS_Section508_Sniffs_B = {
     /**
      * Determines the elements to register for processing.
      *
@@ -23,7 +23,12 @@ var HTMLCS_Section508_Sniffs_G = {
     register: function()
     {
         return [
-            'table',
+            'object',
+            'applet',
+            'bgsound',
+            'embed',
+            'audio',
+            'video'
         ];
 
     },
@@ -36,10 +41,19 @@ var HTMLCS_Section508_Sniffs_G = {
      */
     process: function(element, top)
     {
-        // If no table headers, emit notice about the table.
-        if (HTMLCS.util.isLayoutTable(element) === true) {
-            HTMLCS.addMessage(HTMLCS.NOTICE, element, 'This table has no headers. If this is a data table, ensure row and column headers are identified using th elements.', 'TableHeaders');
-        }
-    }
+        var nodeName = element.nodeName.toLowerCase();
+        var hasVideo = true;
 
+        if ((nodeName === 'bgsound') || (nodeName === 'audio')) {
+            hasVideo = false;
+        }
+
+        if (hasVideo === false) {
+            HTMLCS.addMessage(HTMLCS.NOTICE, element, 'For multimedia containing audio only, ensure an alternative is available, such as a full text transcript.', 'Audio');
+        } else {
+            HTMLCS.addMessage(HTMLCS.NOTICE, element, 'For multimedia containing video, ensure a synchronised audio description or text alternative for the video portion is provided.', 'Video');
+            HTMLCS.addMessage(HTMLCS.NOTICE, element, 'For multimedia containing synchronised audio and video, ensure synchronised captions are provided for the audio portion.', 'Captions');
+        }
+
+    }
 };

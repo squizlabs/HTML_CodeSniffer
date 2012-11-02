@@ -11,7 +11,7 @@
  *
  */
 
-var HTMLCS_Section508_Sniffs_G = {
+var HTMLCS_Section508_Sniffs_N = {
     /**
      * Determines the elements to register for processing.
      *
@@ -23,7 +23,7 @@ var HTMLCS_Section508_Sniffs_G = {
     register: function()
     {
         return [
-            'table',
+            'form'
         ];
 
     },
@@ -36,9 +36,11 @@ var HTMLCS_Section508_Sniffs_G = {
      */
     process: function(element, top)
     {
-        // If no table headers, emit notice about the table.
-        if (HTMLCS.util.isLayoutTable(element) === true) {
-            HTMLCS.addMessage(HTMLCS.NOTICE, element, 'This table has no headers. If this is a data table, ensure row and column headers are identified using th elements.', 'TableHeaders');
+        var nodeName = element.nodeName.toLowerCase();
+        if (nodeName === 'form') {
+            HTMLCS.addMessage(HTMLCS.NOTICE, element, 'If an input error is automatically detected in this form, check that the item(s) in error are identified and the error(s) are described to the user in text.', 'Errors');
+            HTMLCS.addMessage(HTMLCS.NOTICE, element, 'Check that descriptive labels or instructions (including for required fields) are provided for user input in this form.', 'Labels');
+            HTMLCS.addMessage(HTMLCS.NOTICE, element, 'Ensure that this form can be navigated using the keyboard and other accessibility tools.', 'KeyboardNav');
         }
     }
 

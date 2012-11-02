@@ -24,11 +24,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
     {
         return [
             'a',
-            'button',
-            'fieldset',
-            'input',
-            'select',
-            'textarea'
+            '_top',
         ];
 
     },
@@ -41,11 +37,14 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
      */
     process: function(element, top)
     {
-        if (element.nodeName.toLowerCase() === 'a') {
+        if (element === top) {
+            var errors = this.processFormControls(top);
+            for (var i = 0; i < errors.length; i++) {
+                HTMLCS.addMessage(HTMLCS.ERROR, errors[i].element, errors[i].msg, 'H91.' + errors[i].subcode);
+            }
+        } else if (element.nodeName.toLowerCase() === 'a') {
             this._processLinks(element);
-        } else {
-            this._processFormControls(element, top);
-        }
+        }//end if
     },
 
     _processLinks: function(element)
@@ -108,8 +107,11 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
         }
     },
 
-    _processFormControls: function(element, top)
+    processFormControls: function(top)
     {
+        var elements = top.querySelectorAll('button, fieldset, input, select, textarea');
+        var errors   = [];
+
         var requiredNames = {
             button: ['@title', '_content'],
             fieldset: ['legend'],
@@ -128,151 +130,166 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
             select: 'option_selected'
         };
 
-        var nodeName   = element.nodeName.toLowerCase();
-        var msgSubCode = element.nodeName.substr(0, 1).toUpperCase() + element.nodeName.substr(1).toLowerCase();
-        if (nodeName === 'input') {
-            if (element.hasAttribute('type') === false) {
-                // If no type attribute, default to text.
-                nodeName += '_text';
-            } else {
-                nodeName += '_' + element.getAttribute('type').toLowerCase();
-            }
-
-            // Treat all input buttons as the same
-            if ((nodeName === 'input_submit') || (nodeName === 'input_reset')) {
-                nodeName = 'input_button';
-            }
-
-            // Get a format like "InputText".
-            var msgSubCode = 'Input' + nodeName.substr(6, 1).toUpperCase() + nodeName.substr(7).toLowerCase();
-        }//end if
-
-        var requiredName  = requiredNames[nodeName];
-        var requiredValue = requiredValues[nodeName];
-
-        // Check all possible combinations of names to ensure that one exists.
-        if (requiredName) {
-            for (var i = 0; i < requiredNames[nodeName].length; i++) {
-                var requiredName = requiredNames[nodeName][i];
-                if (requiredName === '_content') {
-                    // Work with content.
-                    var content = HTMLCS.util.getElementTextContent(element);
-                    if (/^\s*$/.test(content) === false) {
-                        break;
-                    }
-                } else if (requiredName === 'label') {
-                    // Label element.
-                    if ((element.hasAttribute('id')) && (/^\s*$/.test(element.getAttribute('id')) === false)) {
-                        if (/^\-?[A-Za-z][A-Za-z0-9\-_]*$/.test(element.getAttribute('id')) === true) {
-                            var label = top.querySelector('label[for=' + element.getAttribute('id') + ']');
-                            if (label !== null) {
-                                break;
-                            }
-                        } else {
-                            // Characters not suitable for querySelector. Use slower method.
-                            var labels = top.getElementsByTagName('label');
-                            var found  = false;
-                            for (var x = 0; x < labels.length; x++) {
-                                if ((labels[x].hasAttribute('for') === true) && (labels[x].getAttribute('for') === element.getAttribute('id'))) {
-                                    found = true;
-                                    break;
-                                }
-                            }//end for
-
-                            if (found === true) {
-                                break;
-                            }
-                        }//end if
-                    }//end if
-                } else if (requiredName.charAt(0) === '@') {
-                    // Attribute.
-                    requiredName = requiredName.substr(1, requiredName.length);
-                    if ((element.hasAttribute(requiredName) === true) && (/^\s*$/.test(element.getAttribute(requiredName)) === false)) {
-                        break;
-                    }
+        for (var el = 0; el < elements.length; el++) {
+            var element    = elements[el];
+            var nodeName   = element.nodeName.toLowerCase();
+            var msgSubCode = element.nodeName.substr(0, 1).toUpperCase() + element.nodeName.substr(1).toLowerCase();
+            if (nodeName === 'input') {
+                if (element.hasAttribute('type') === false) {
+                    // If no type attribute, default to text.
+                    nodeName += '_text';
                 } else {
-                    // Sub-element contents.
-                    var subEl = element.querySelector(requiredName);
-                    if (subEl !== null) {
-                        var content = HTMLCS.util.getElementTextContent(subEl);
+                    nodeName += '_' + element.getAttribute('type').toLowerCase();
+                }
+
+                // Treat all input buttons as the same
+                if ((nodeName === 'input_submit') || (nodeName === 'input_reset')) {
+                    nodeName = 'input_button';
+                }
+
+                // Get a format like "InputText".
+                var msgSubCode = 'Input' + nodeName.substr(6, 1).toUpperCase() + nodeName.substr(7).toLowerCase();
+            }//end if
+
+            var requiredName  = requiredNames[nodeName];
+            var requiredValue = requiredValues[nodeName];
+
+            // Check all possible combinations of names to ensure that one exists.
+            if (requiredName) {
+                for (var i = 0; i < requiredNames[nodeName].length; i++) {
+                    var requiredName = requiredNames[nodeName][i];
+                    if (requiredName === '_content') {
+                        // Work with content.
+                        var content = HTMLCS.util.getElementTextContent(element);
                         if (/^\s*$/.test(content) === false) {
                             break;
                         }
-                    }
-                }//end if
-            }//end for
+                    } else if (requiredName === 'label') {
+                        // Label element.
+                        if ((element.hasAttribute('id')) && (/^\s*$/.test(element.getAttribute('id')) === false)) {
+                            if (/^\-?[A-Za-z][A-Za-z0-9\-_]*$/.test(element.getAttribute('id')) === true) {
+                                var label = top.querySelector('label[for=' + element.getAttribute('id') + ']');
+                                if (label !== null) {
+                                    break;
+                                }
+                            } else {
+                                // Characters not suitable for querySelector. Use slower method.
+                                var labels = top.getElementsByTagName('label');
+                                var found  = false;
+                                for (var x = 0; x < labels.length; x++) {
+                                    if ((labels[x].hasAttribute('for') === true) && (labels[x].getAttribute('for') === element.getAttribute('id'))) {
+                                        found = true;
+                                        break;
+                                    }
+                                }//end for
 
-            if (i === requiredNames[nodeName].length) {
+                                if (found === true) {
+                                    break;
+                                }
+                            }//end if
+                        }//end if
+                    } else if (requiredName.charAt(0) === '@') {
+                        // Attribute.
+                        requiredName = requiredName.substr(1, requiredName.length);
+                        if ((element.hasAttribute(requiredName) === true) && (/^\s*$/.test(element.getAttribute(requiredName)) === false)) {
+                            break;
+                        }
+                    } else {
+                        // Sub-element contents.
+                        var subEl = element.querySelector(requiredName);
+                        if (subEl !== null) {
+                            var content = HTMLCS.util.getElementTextContent(subEl);
+                            if (/^\s*$/.test(content) === false) {
+                                break;
+                            }
+                        }
+                    }//end if
+                }//end for
+
+                if (i === requiredNames[nodeName].length) {
+                    var msgNodeType = nodeName + ' element';
+                    if (nodeName.substr(0, 6) === 'input_') {
+                        msgNodeType = nodeName.substr(6) + ' input element';
+                    }
+
+                    var builtAttrs = requiredNames[nodeName].slice(0, requiredNames[nodeName].length);
+                    for (var a = 0; a < builtAttrs.length; a++) {
+                        if (builtAttrs[a] === '_content') {
+                            builtAttrs[a] = 'element content';
+                        } else if (builtAttrs[a].charAt(0) === '@') {
+                            builtAttrs[a] = builtAttrs[a].substr(1) + ' attribute';
+                        } else {
+                            builtAttrs[a] = builtAttrs[a] + ' element';
+                        }
+                    }
+
+                    var msg = 'This ' + msgNodeType + ' does not have a name available to an accessibility API. Valid names are: ' + builtAttrs.join(', ') + '.';
+                    errors.push({
+                        element: element,
+                        msg: msg,
+                        subcode: (msgSubCode + '.Name')
+                    });
+                }
+            }//end if
+
+            var requiredValue = requiredValues[nodeName];
+            var valueFound    = false;
+
+            if (requiredValue === undefined) {
+                // Nothing required of us.
+                valueFound = true;
+            } else if (requiredValue === '_content') {
+                // Work with content.
+                var content = HTMLCS.util.getElementTextContent(element);
+                if (/^\s*$/.test(content) === false) {
+                    valueFound = true;
+                }
+            } else if (requiredValue === 'option_selected') {
+                // Select lists need a selected Option element.
+                if (element.hasAttribute('multiple') === false) {
+                    var selected = element.querySelector('option[selected]');
+                    if (selected !== null) {
+                        valueFound = true;
+                    }
+                } else {
+                    // Allow zero element selection to be valid where the SELECT
+                    // element has been declared as a multiple selection.
+                    valueFound = true;
+                }
+            } else if (requiredValue.charAt(0) === '@') {
+                // Attribute.
+                requiredValue = requiredValue.substr(1, requiredValue.length);
+                if ((element.hasAttribute(requiredValue) === true)) {
+                    valueFound = true;
+                }
+            }//end if
+
+            if (valueFound === false) {
                 var msgNodeType = nodeName + ' element';
                 if (nodeName.substr(0, 6) === 'input_') {
                     msgNodeType = nodeName.substr(6) + ' input element';
                 }
 
-                var builtAttrs = requiredNames[nodeName].slice(0, requiredNames[nodeName].length);
-                for (var a = 0; a < builtAttrs.length; a++) {
-                    if (builtAttrs[a] === '_content') {
-                        builtAttrs[a] = 'element content';
-                    } else if (builtAttrs[a].charAt(0) === '@') {
-                        builtAttrs[a] = builtAttrs[a].substr(1) + ' attribute';
-                    } else {
-                        builtAttrs[a] = builtAttrs[a] + ' element';
-                    }
+                var builtAttr = '';
+                if (requiredValue === '_content') {
+                    builtAttr = 'by adding content to the element';
+                } else if (requiredValue === 'option_selected') {
+                    builtAttr = 'by adding a "selected" attribute to one of its options';
+                } else if (requiredValue.charAt(0) === '@') {
+                    builtAttr = 'using the ' + requiredValue + ' attribute';
+                } else {
+                    builtAttr = 'using the ' + requiredValue + ' element';
                 }
 
-                HTMLCS.addMessage(HTMLCS.ERROR, element, 'This ' + msgNodeType + ' does not have a name available to an accessibility API. Valid names are: ' + builtAttrs.join(', ') + '.', 'H91.' + msgSubCode + '.Name');
-            }
-        }//end if
+                var msg = 'This ' + msgNodeType + ' does not have a value available to an accessibility API. Add one ' + builtAttr + '.';
+                errors.push({
+                    element: element,
+                    msg: msg,
+                    subcode: (msgSubCode + '.Value')
+                });
+            }//end if
+        }//end for
 
-        var requiredValue = requiredValues[nodeName];
-        var valueFound    = false;
-
-        if (requiredValue === undefined) {
-            // Nothing required of us.
-            valueFound = true;
-        } else if (requiredValue === '_content') {
-            // Work with content.
-            var content = HTMLCS.util.getElementTextContent(element);
-            if (/^\s*$/.test(content) === false) {
-                valueFound = true;
-            }
-        } else if (requiredValue === 'option_selected') {
-            // Select lists need a selected Option element.
-            if (element.hasAttribute('multiple') === false) {
-                var selected = element.querySelector('option[selected]');
-                if (selected !== null) {
-                    valueFound = true;
-                }
-            } else {
-                // Allow zero element selection to be valid where the SELECT
-                // element has been declared as a multiple selection.
-                valueFound = true;
-            }
-        } else if (requiredValue.charAt(0) === '@') {
-            // Attribute.
-            requiredValue = requiredValue.substr(1, requiredValue.length);
-            if ((element.hasAttribute(requiredValue) === true)) {
-                valueFound = true;
-            }
-        }//end if
-
-        if (valueFound === false) {
-            var msgNodeType = nodeName + ' element';
-            if (nodeName.substr(0, 6) === 'input_') {
-                msgNodeType = nodeName.substr(6) + ' input element';
-            }
-
-            var builtAttr = '';
-            if (requiredValue === '_content') {
-                builtAttr = 'by adding content to the element';
-            } else if (requiredValue === 'option_selected') {
-                builtAttr = 'by adding a "selected" attribute to one of its options';
-            } else if (requiredValue.charAt(0) === '@') {
-                builtAttr = 'using the ' + requiredValue + ' attribute';
-            } else {
-                builtAttr = 'using the ' + requiredValue + ' element';
-            }
-
-            HTMLCS.addMessage(HTMLCS.ERROR, element, 'This ' + msgNodeType + ' does not have a value available to an accessibility API. Add one ' + builtAttr + '.', 'H91.' + msgSubCode + '.Value');
-        }
+        return errors;
     }
 };

@@ -11,7 +11,7 @@
  *
  */
 
-var HTMLCS_Section508_Sniffs_G = {
+var HTMLCS_Section508_Sniffs_L = {
     /**
      * Determines the elements to register for processing.
      *
@@ -22,9 +22,7 @@ var HTMLCS_Section508_Sniffs_G = {
      */
     register: function()
     {
-        return [
-            'table',
-        ];
+        return ['_top'];
 
     },
 
@@ -36,9 +34,11 @@ var HTMLCS_Section508_Sniffs_G = {
      */
     process: function(element, top)
     {
-        // If no table headers, emit notice about the table.
-        if (HTMLCS.util.isLayoutTable(element) === true) {
-            HTMLCS.addMessage(HTMLCS.NOTICE, element, 'This table has no headers. If this is a data table, ensure row and column headers are identified using th elements.', 'TableHeaders');
+        if (element === top) {
+            var errors = HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2.processFormControls(element, top);
+            for (var i = 0; i < errors.length; i++) {
+                HTMLCS.addMessage(HTMLCS.ERROR, errors[i].element, errors[i].msg, 'FunctionalText.' + errors[i].subcode);
+            }
         }
     }
 
