@@ -25,8 +25,6 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
         return [
             '_top',
             'img',
-            'object',
-            'applet'
         ];
 
     },
@@ -432,76 +430,6 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
                 errors.applet.generalAlt.push(element);
             }
         }//end if
-    },
-
-    /**
-     * Test the inclusion of a text alternative on OBJECT tags (technique H53).
-     *
-     * OBJECT tags can be nested inside themselves to provide lesser-functioning
-     * alternatives to the primary (outermost) tag, but a text alternative must be
-     * provided inside. Alt text from an image is sufficient.
-     *
-     * @param {DOMNode} element The element to test.
-     *
-     * @returns void
-     */
-    testObjectTextAlternative: function(element)
-    {
-        // Test firstly for whether we have an object alternative.
-        var childObject = element.querySelector('object');
-
-        // If we have an object as our alternative, skip it. Pass the blame onto
-        // the child.
-        if (childObject === null) {
-            var textAlt = HTMLCS.util.getElementTextContent(element, true);
-            if (textAlt === '') {
-                HTMLCS.addMessage(HTMLCS.ERROR, element, 'Object elements must contain a text alternative after all other alternatives are exhausted.', 'H53');
-            } else {
-                HTMLCS.addMessage(HTMLCS.NOTICE, element, 'Check that short (and if appropriate, long) text alternatives are available for non-text content that serve the same purpose and present the same information.', 'G94,G92.Object');
-            }
-        }//end if
-    },
-
-    /**
-     * Test the inclusion of a text alternative on APPLET tags (technique H35).
-     *
-     * These might still be used in HTML 4.01 and XHTML 1.0 Transitional DTDs. Both
-     * alt text and body text alternative are required: Oracle's docs state that
-     * "alt" is for those that understand APPLET but not Java; the body text for
-     * those that don't understand APPLET. WCAG 2.0 suggests support for either alt
-     * method is inconsistent and therefore to use both.
-     *
-     * @param {DOMNode} element The element to test.
-     *
-     * @returns void
-     */
-    testAppletTextAlternative: function(element)
-    {
-        // Test firstly for whether we have an object alternative.
-        var childObject = element.querySelector('object');
-        var hasError    = false;
-
-        // If we have an object as our alternative, skip it. Pass the blame onto
-        // the child. (This is a special case: those that don't understand APPLET
-        // may understand OBJECT, but APPLET shouldn't be nested.)
-        if (childObject === null) {
-            var textAlt = HTMLCS.util.getElementTextContent(element, true);
-            if (HTMLCS.isStringEmpty(textAlt) === true) {
-                HTMLCS.addMessage(HTMLCS.ERROR, element, 'Applet elements must contain a text alternative in the element\'s body, for browsers without support for the applet element.', 'H35.3');
-                hasError = true;
-            }
-        }//end if
-
-        var altAttr = element.getAttribute('alt') || '';
-        if (HTMLCS.isStringEmpty(altAttr) === true) {
-            HTMLCS.addMessage(HTMLCS.ERROR, element, 'Applet elements must contain an alt attribute, to provide a text alternative to browsers supporting the element but are unable to load the applet.', 'H35.2');
-            hasError = true;
-        }
-
-        if (hasError === false) {
-            // No error? Remind of obligations about equivalence of alternatives.
-            HTMLCS.addMessage(HTMLCS.NOTICE, element, 'Check that short (and if appropriate, long) text alternatives are available for non-text content that serve the same purpose and present the same information.', 'G94,G92.Applet');
-        }
     },
 
     /**
