@@ -136,7 +136,7 @@ var HTMLCS_Section508_Sniffs_A = {
     {
         var errors = HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1.testMediaTextAlternatives(top);
 
-        for (var i = 0; i < errors.object.missingBody.length; i++) {
+        for (var i = 0; i < errors.object.missingBody.length; i++) {A
             HTMLCS.addMessage(HTMLCS.ERROR, errors.object.missingBody[i], 'Object elements must contain a text alternative after all other alternatives are exhausted.', 'Object.MissingBody');
         }
 
@@ -145,7 +145,7 @@ var HTMLCS_Section508_Sniffs_A = {
         }
 
         for (var i = 0; i < errors.applet.missingBody.length; i++) {
-            HTMLCS.addMessage(HTMLCS.NOTICE, errors.applet.missingBody[i], 'Applet elements must contain a text alternative in the element\'s body, for browsers without support for the applet element.', 'Applet.MissingBody');
+            HTMLCS.addMessage(HTMLCS.ERROR, errors.applet.missingBody[i], 'Applet elements must contain a text alternative in the element\'s body, for browsers without support for the applet element.', 'Applet.MissingBody');
         }
 
         for (var i = 0; i < errors.applet.missingAlt.length; i++) {

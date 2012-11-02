@@ -357,7 +357,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
         }
 
         for (var i = 0; i < errors.applet.missingBody.length; i++) {
-            HTMLCS.addMessage(HTMLCS.NOTICE, errors.applet.missingBody[i], 'Applet elements must contain a text alternative in the element\'s body, for browsers without support for the applet element.', 'H35.3');
+            HTMLCS.addMessage(HTMLCS.ERROR, errors.applet.missingBody[i], 'Applet elements must contain a text alternative in the element\'s body, for browsers without support for the applet element.', 'H35.3');
         }
 
         for (var i = 0; i < errors.applet.missingAlt.length; i++) {
