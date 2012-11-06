@@ -169,7 +169,11 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
         var nodeName  = element.nodeName.toLowerCase();
         var inputType = nodeName;
         if (inputType === 'input') {
-            inputType = element.getAttribute('type');
+            if (element.hasAttribute('type') === true) {
+                inputType = element.getAttribute('type');
+            } else {
+                inputType = 'text';
+            }
         }
 
         var isNoLabelControl = false;
