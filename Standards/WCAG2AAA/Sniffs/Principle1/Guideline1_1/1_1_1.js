@@ -24,7 +24,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
     {
         return [
             '_top',
-            'img',
+            'img'
         ];
 
     },
@@ -430,6 +430,8 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
                 errors.applet.generalAlt.push(element);
             }
         }//end if
+
+        return errors;
     },
 
     /**
