@@ -38,6 +38,15 @@ var HTMLCS_Section508_Sniffs_D = {
             HTMLCS.addMessage(HTMLCS.NOTICE, top, 'Ensure that content is ordered in a meaningful sequence when linearised, such as when style sheets are disabled.', 'Linearised');
             this.testPresentationMarkup(top);
             this.testHeadingOrder(top);
+
+            // Look for any script elements, and fire off another notice regarding
+            // potentially hidden text (eg. "click to expand" sections). For instance,
+            // such text should be stored semantically in the page, not loaded into
+            // a container through AJAX (and thus not accessible with scripting off).
+            var hasScript = top.querySelectorAll('script, link[rel="stylesheet"]');
+            if (hasScript.length > 0) {
+                HTMLCS.addMessage(HTMLCS.NOTICE, top, 'If content is hidden and made visible using scripting (such as "click to expand" sections), ensure this content is readable when scripts and style sheets are disabled.', 'HiddenText');
+            }
         }
     },
 

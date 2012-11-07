@@ -22,9 +22,7 @@ var HTMLCS_Section508_Sniffs_H = {
      */
     register: function()
     {
-        return [
-            'table',
-        ];
+        return ['table'];
 
     },
 
@@ -60,6 +58,6 @@ var HTMLCS_Section508_Sniffs_H = {
                 }
             }//end if
         }//end if
-    },
+    }
 
 };

@@ -35,6 +35,7 @@ var HTMLCS_Section508_Sniffs_L = {
     process: function(element, top)
     {
         if (element === top) {
+            // Grab "accessibility API name/value" tests from WCAG 2.0 SC 4.1.2.
             var errors = HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2.processFormControls(element, top);
             for (var i = 0; i < errors.length; i++) {
                 HTMLCS.addMessage(HTMLCS.ERROR, errors[i].element, errors[i].msg, 'FunctionalText.' + errors[i].subcode);

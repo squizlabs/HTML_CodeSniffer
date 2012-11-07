@@ -22,9 +22,7 @@ var HTMLCS_Section508_Sniffs_N = {
      */
     register: function()
     {
-        return [
-            'form'
-        ];
+        return ['form'];
 
     },
 

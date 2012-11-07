@@ -25,9 +25,7 @@ var HTMLCS_Section508_Sniffs_B = {
         return [
             'object',
             'applet',
-            'bgsound',
             'embed',
-            'audio',
             'video'
         ];
 
@@ -42,18 +40,8 @@ var HTMLCS_Section508_Sniffs_B = {
     process: function(element, top)
     {
         var nodeName = element.nodeName.toLowerCase();
-        var hasVideo = true;
-
-        if ((nodeName === 'bgsound') || (nodeName === 'audio')) {
-            hasVideo = false;
-        }
-
-        if (hasVideo === false) {
-            HTMLCS.addMessage(HTMLCS.NOTICE, element, 'For multimedia containing audio only, ensure an alternative is available, such as a full text transcript.', 'Audio');
-        } else {
-            HTMLCS.addMessage(HTMLCS.NOTICE, element, 'For multimedia containing video, ensure a synchronised audio description or text alternative for the video portion is provided.', 'Video');
-            HTMLCS.addMessage(HTMLCS.NOTICE, element, 'For multimedia containing synchronised audio and video, ensure synchronised captions are provided for the audio portion.', 'Captions');
-        }
+        HTMLCS.addMessage(HTMLCS.NOTICE, element, 'For multimedia containing video, ensure a synchronised audio description or text alternative for the video portion is provided.', 'Video');
+        HTMLCS.addMessage(HTMLCS.NOTICE, element, 'For multimedia containing synchronised audio and video, ensure synchronised captions are provided for the audio portion.', 'Captions');
 
     }
 };

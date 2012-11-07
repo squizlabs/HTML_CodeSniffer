@@ -22,9 +22,7 @@ var HTMLCS_Section508_Sniffs_J = {
      */
     register: function()
     {
-        return [
-            '_top',
-        ];
+        return ['_top'];
 
     },
 

@@ -27,7 +27,9 @@ var HTMLCS_Section508_Sniffs_A = {
             'input',
             'area',
             'object',
-            'applet'
+            'applet',
+            'bgsound',
+            'audio'
         ];
 
     },
@@ -40,38 +42,19 @@ var HTMLCS_Section508_Sniffs_A = {
      */
     process: function(element, top)
     {
-        this.addNullAltTextResults(top);
-        /*
-        var nodeName = element.nodeName.toLowerCase();
-
-        switch (nodeName) {
-            case 'img':
-                this.addNullAltTextResults(element);
-                //this.testLinkStutter(element);
-                //this.testLongdesc(element);
-            break;
-
-            case 'input':
-                // Only look for input type="image" tags.
-                if ((element.hasAttribute('type') === true) && (element.getAttribute('type') === 'image')) {
-                    this.addNullAltTextResults(element);
-                }
-            break;
-
-            case 'area':
-                // Client-side image maps.
-                this.addNullAltTextResults(element);
-            break;
-
-            case 'object':
-                //this.testObjectTextAlternative(element);
-            break;
-
-            case 'applet':
-                //this.testAppletTextAlternative(element);
-            break;
+        if (element === top) {
+            this.addNullAltTextResults(top);
+            this.addMediaAlternativesResults(top);
+        } else {
+            var nodeName = element.nodeName.toLowerCase();
+            if ((nodeName === 'object') || (nodeName === 'bgsound') || (nodeName === 'audio')) {
+                // Audio transcript notice. Yes, this is in A rather than B, since
+                // audio is not considered "multimedia" (roughly equivalent to a
+                // "synchronised media" presentation in WCAG 2.0). It is non-text,
+                // though, so a transcript is required.
+                HTMLCS.addMessage(HTMLCS.NOTICE, element, 'For multimedia containing audio only, ensure an alternative is available, such as a full text transcript.', 'Audio');
+            }
         }
-        */
     },
 
     /**
@@ -127,8 +110,9 @@ var HTMLCS_Section508_Sniffs_A = {
     /**
      * Driver function for the media alternative (object/applet) tests.
      *
-     * This takes the generic result given by the media alternative testing function,
-     * and converts them into WCAG 2.0-specific messages.
+     * This takes the generic result given by the media alternative testing function
+     * (located in WCAG 2.0 SC 1.1.1), and converts them into Section
+     * 508-specific messages.
      *
      * @param {DOMNode} element The element to test.
      */
@@ -155,5 +139,5 @@ var HTMLCS_Section508_Sniffs_A = {
         for (var i = 0; i < errors.applet.generalAlt.length; i++) {
             HTMLCS.addMessage(HTMLCS.NOTICE, errors.applet.generalAlt[i], 'Check that short (and if appropriate, long) text alternatives are available for non-text content that serve the same purpose and present the same information.', 'Applet.GeneralAlt');
         }
-    },
+    }
 };
