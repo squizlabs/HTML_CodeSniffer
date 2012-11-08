@@ -22,10 +22,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
      */
     register: function()
     {
-        return [
-            'a',
-            '_top'
-        ];
+        return ['_top'];
 
     },
 
@@ -42,69 +39,111 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
             for (var i = 0; i < errors.length; i++) {
                 HTMLCS.addMessage(HTMLCS.ERROR, errors[i].element, errors[i].msg, 'H91.' + errors[i].subcode);
             }
-        } else if (element.nodeName.toLowerCase() === 'a') {
-            this._processLinks(element);
+
+            this.addProcessLinksMessages(top);
         }//end if
     },
 
-    _processLinks: function(element)
+    addProcessLinksMessages: function(top)
     {
-        // Name is title attr or content
-        // Value is href
-
-        var nameFound = false;
-        var hrefFound = false;
-        var content   = HTMLCS.util.getElementTextContent(element);
-
-        if ((element.hasAttribute('title') === true) && (/^\s*$/.test(element.getAttribute('title')) === false)) {
-            nameFound = true;
-        } else if (/^\s*$/.test(content) === false) {
-            nameFound = true;
+        var errors = this.processLinks(top);
+        for (var i = 0; i < errors.empty.length; i++) {
+            HTMLCS.addMessage(HTMLCS.WARNING, errors.empty[i], 'Anchor element found with an ID but without a href or link text. Consider moving its ID to a parent or nearby element.', 'H91.A.Empty');
         }
 
-        if ((element.hasAttribute('href') === true) && (/^\s*$/.test(element.getAttribute('href')) === false)) {
-            hrefFound = true;
+        for (var i = 0; i < errors.emptyWithName.length; i++) {
+            HTMLCS.addMessage(HTMLCS.WARNING, errors.emptyWithName[i], 'Anchor element found with a name attribute but without a href or link text. Consider moving the name attribute to become an ID of a parent or nearby element.', 'H91.A.EmptyWithName');
         }
 
-        if (hrefFound === false) {
-            // No href. We don't want these because, although they are commonly used
-            // to create targets, they can be picked up by screen readers and
-            // displayed to the user as empty links. A elements are defined by H91 as
-            // having an (ARIA) role of "link", and using them as targets are
-            // essentially misusing them. Place an ID on a parent element instead.
-            if (/^\s*$/.test(content) === true) {
-                // Also no content. (eg. <a id=""></a> or <a name=""></a>)
-                if (element.hasAttribute('id') === true) {
-                    HTMLCS.addMessage(HTMLCS.WARNING, element, 'Anchor element found with an ID but without a href or link text. Consider moving its ID to a parent or nearby element.', 'H91.A.Empty');
-                } else if (element.hasAttribute('name') === true) {
-                    HTMLCS.addMessage(HTMLCS.WARNING, element, 'Anchor element found with a name attribute but without a href or link text. Consider moving the name attribute to become an ID of a parent or nearby element.', 'H91.A.EmptyWithName');
+        for (var i = 0; i < errors.emptyNoId.length; i++) {
+            HTMLCS.addMessage(HTMLCS.ERROR, errors.emptyNoId[i], 'Anchor element found with no link content and no name and/or ID attribute.', 'H91.A.EmptyNoId');
+        }
+
+        for (var i = 0; i < errors.noHref.length; i++) {
+            HTMLCS.addMessage(HTMLCS.WARNING, errors.noHref[i], 'Anchor elements should not be used for defining in-page link targets. If not using the ID for other purposes (such as CSS or scripting), consider moving it to a parent element.', 'H91.A.NoHref');
+        }
+
+        for (var i = 0; i < errors.placeholder.length; i++) {
+            HTMLCS.addMessage(HTMLCS.WARNING, errors.placeholder[i], 'Anchor element found with link content, but no href, ID or name attribute has been supplied.', 'H91.A.Placeholder');
+        }
+
+        for (var i = 0; i < errors.noContent.length; i++) {
+            HTMLCS.addMessage(HTMLCS.ERROR, errors.noContent[i], 'Anchor element found with a valid href attribute, but no link content has been supplied.', 'H91.A.NoContent');
+        }
+    },
+
+    processLinks: function(top)
+    {
+        var errors   = {
+            empty: [],
+            emptyWithName: [],
+            emptyNoId: [],
+            noHref: [],
+            placeholder: [],
+            noContent: []
+        };
+
+        var elements = top.querySelectorAll('a');
+
+        for (var el = 0; el < elements.length; el++) {
+            var element = elements[el];
+
+            var nameFound = false;
+            var hrefFound = false;
+            var content   = HTMLCS.util.getElementTextContent(element);
+
+            if ((element.hasAttribute('title') === true) && (/^\s*$/.test(element.getAttribute('title')) === false)) {
+                nameFound = true;
+            } else if (/^\s*$/.test(content) === false) {
+                nameFound = true;
+            }
+
+            if ((element.hasAttribute('href') === true) && (/^\s*$/.test(element.getAttribute('href')) === false)) {
+                hrefFound = true;
+            }
+
+            if (hrefFound === false) {
+                // No href. We don't want these because, although they are commonly used
+                // to create targets, they can be picked up by screen readers and
+                // displayed to the user as empty links. A elements are defined by H91 as
+                // having an (ARIA) role of "link", and using them as targets are
+                // essentially misusing them. Place an ID on a parent element instead.
+                if (/^\s*$/.test(content) === true) {
+                    // Also no content. (eg. <a id=""></a> or <a name=""></a>)
+                    if (element.hasAttribute('id') === true) {
+                        errors.empty.push(element);
+                    } else if (element.hasAttribute('name') === true) {
+                        errors.emptyWithName.push(element);
+                    } else {
+                        errors.emptyNoId.push(element);
+                    }
                 } else {
-                    HTMLCS.addMessage(HTMLCS.ERROR, element, 'Anchor element found with no link content and no name and/or ID attribute.', 'H91.A.EmptyNoId');
-                }
+                    // Giving a benefit of the doubt here - if a link has text and also
+                    // an ID, but no href, it might be because it is being manipulated by
+                    // a script.
+                    if ((element.hasAttribute('id') === true) || (element.hasAttribute('name') === true)) {
+                        errors.noHref.push(element);
+                    } else {
+                        // HTML5 allows A elements with text but no href, "for where a
+                        // link might otherwise have been placed, if it had been relevant".
+                        // Hence, thrown as a warning, not an error.
+                        errors.placeholder.push(element);
+                    }
+                }//end if
             } else {
-                // Giving a benefit of the doubt here - if a link has text and also
-                // an ID, but no href, it might be because it is being manipulated by
-                // a script.
-                if (element.hasAttribute('id') === true) {
-                    HTMLCS.addMessage(HTMLCS.WARNING, element, 'Anchor elements should not be used for defining in-page link targets. If not using the ID for other purposes (such as CSS or scripting), consider moving it to a parent element.', 'H91.A.NoHref');
-                } else {
-                    // HTML5 allows A elements with text but no href, "for where a
-                    // link might otherwise have been placed, if it had been relevant".
-                    // Hence, thrown as a warning, not an error.
-                    HTMLCS.addMessage(HTMLCS.WARNING, element, 'Anchor element found with link content, but no href and/or ID attribute has been supplied.', 'H91.A.Placeholder');
-                }
-            }
-        } else {
-            if (/^\s*$/.test(content) === true) {
-                // Href provided, but no content.
-                // We only fire this message when there are no images in the content.
-                // A link around an image with no alt text is already covered in SC
-                // 1.1.1 (test H30).
-                if (element.querySelectorAll('img').length === 0) {
-                    HTMLCS.addMessage(HTMLCS.ERROR, element, 'Anchor element found with a valid href attribute, but no link content has been supplied.', 'H91.A.NoContent');
-                }
-            }
-        }
+                if (/^\s*$/.test(content) === true) {
+                    // Href provided, but no content.
+                    // We only fire this message when there are no images in the content.
+                    // A link around an image with no alt text is already covered in SC
+                    // 1.1.1 (test H30).
+                    if (element.querySelectorAll('img').length === 0) {
+                        errors.noContent.push(element);
+                    }
+                }//end if
+            }//end if
+        }//end for
+
+        return errors;
     },
 
     processFormControls: function(top)
