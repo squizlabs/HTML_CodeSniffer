@@ -66,7 +66,16 @@
 
             <h2>WCAG 2.0 Standard: Level <abbr title="Double A">AA</abbr> Summary</h2>
 
-            <p>A summary of the Success Criteria that apply to Level <abbr title="Double A">AA</abbr> of the <a href="http://www.w3.org/TR/WCAG20">W3C Web Content Accessibility Guidelines, version 2.0</a> ("WCAG 2.0"). This page lists the entire WCAG 2.0 standard for reference; the sniffs that do not apply to this level of conformance are shown greyed and crossed out.</p>
+            <p>A summary of the Success Criteria that apply to Level <abbr title="Double A">AA</abbr> of the <a href="http://www.w3.org/TR/WCAG20">W3C Web Content Accessibility Guidelines, version 2.0</a> ("WCAG 2.0"), also <a href="http://www.w3.org/2012/07/wcag2pas-pr.html">known since October 2012 as the international standard ISO/IEC 40500:2012</a>. This page lists the entire WCAG 2.0 standard for reference; the sniffs that do not apply to this level of conformance are shown greyed and crossed out.</p>
+
+            <p>Anything that is not marked as an <strong>Error</strong> should be manually tested:</p>
+
+            <ul>
+                <li><strong>Warnings</strong> are items that HTML_CodeSniffer are able to detect as a potential problem,
+                but require manual inspection to determine whether it is a failure.</li>
+                <li><strong>Notices</strong> are items that HTML_CodeSniffer cannot automatically detect,
+                but should be manually inspected to ensure compliance with the standard.</li>
+            </ul>
 
             <p>Keep in mind when you read these success criteria, that any claim of conformance must meet the <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/conformance.html">Conformance Requirements</a>, of which meeting a certain level of conformance (eg. meeting all of the applicable Success Criteria for the target level and lower) is merely one. Other things to keep in mind:</p>
 
@@ -111,12 +120,12 @@
 <td id="sc1_1_1" rowspan="18" class="scrow"><h5 class="grey-heading"><a href="1_1_1"><abbr title="Success Criterion">SC</abbr> 1.1.1: Non-text Content (Level <abbr title="Single A">A</abbr>)</a></h5><p>All non-text content that is presented to the user has a text alternative that serves the equivalent purpose, except for the situations listed below.</p>
 
 <ul>
-<li><em>Controls, Input:</em> If non-text content is a control or accepts user input, then it has a name that describes its purpose. (Refer to <a href="#gl4_1">Guideline 4.1</a> for additional requirements for controls and content that accepts user input.)</li>
-<li><em>Time-Based Media:</em> If non-text content is time-based media, then text alternatives at least provide descriptive identification of the non-text content. (Refer to <a href="#gl1_2">Guideline 1.2</a> for additional requirements for media.)</li>
-<li><em>Test:</em> If non-text content is a test or exercise that would be invalid if presented in text, then text alternatives at least provide descriptive identification of the non-text content.</li>
-<li><em>Sensory:</em> If non-text content is primarily intended to create a specific sensory experience, then text alternatives at least provide descriptive identification of the non-text content.</li>
-<li><em>CAPTCHA:</em> If the purpose of non-text content is to confirm that content is being accessed by a person rather than a computer, then text alternatives that identify and describe the purpose of the non-text content are provided, and alternative forms of CAPTCHA using output modes for different types of sensory perception are provided to accommodate different disabilities.</li>
-<li><em>Decoration, Formatting, Invisible:</em> If non-text content is pure decoration, is used only for visual formatting, or is not presented to users, then it is implemented in a way that it can be ignored by assistive technology.</li>
+<li><em>Controls, Input</em>: If non-text content is a control or accepts user input, then it has a name that describes its purpose. (Refer to Guideline 4.1 for additional requirements for controls and content that accepts user input.)</li>
+<li><em>Time-Based Media</em>: If non-text content is time-based media, then text alternatives at least provide descriptive identification of the non-text content. (Refer to Guideline 1.2 for additional requirements for media.)</li>
+<li><em>Test</em>: If non-text content is a test or exercise that would be invalid if presented in text, then text alternatives at least provide descriptive identification of the non-text content.</li>
+<li><em>Sensory</em>: If non-text content is primarily intended to create a specific sensory experience, then text alternatives at least provide descriptive identification of the non-text content.</li>
+<li><em>CAPTCHA</em>: If the purpose of non-text content is to confirm that content is being accessed by a person rather than a computer, then text alternatives that identify and describe the purpose of the non-text content are provided, and alternative forms of CAPTCHA using output modes for different types of sensory perception are provided to accommodate different disabilities.</li>
+<li><em>Decoration, Formatting, Invisible</em>: If non-text content is pure decoration, is used only for visual formatting, or is not presented to users, then it is implemented in a way that it can be ignored by assistive technology.</li>
 </ul>
 </td><td headers="name_1_1 sc1_1_1" class=" error"><p><strong>Error:</strong> Img element is the only content of the link, but is missing alt text. The alt text should describe the purpose of the link.</p>
 <div class="fullcode">[Standard].Principle1.Guideline1_1.1_1_1.H30.2</div></div></td><td headers="applies_1_1 sc1_1_1" class=""><p>Image elements with an absent or empty alt attribute, that is the only non-blank content of a link.</p>
@@ -268,7 +277,7 @@
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/G166">G166</a></li>
 </ul>
 </td><tr class="top-row">
-<td id="sc1_2_2" rowspan="1" class="scrow"><h5 class="grey-heading"><a href="1_2_2"><abbr title="Success Criterion">SC</abbr> 1.2.2: Audio-only and Video-only (Prerecorded) (Level <abbr title="Single A">A</abbr>)</a></h5><p>Captions are provided for all prerecorded audio content in synchronized media, except when the media is a media alternative for text and is clearly labeled as such.</p>
+<td id="sc1_2_2" rowspan="1" class="scrow"><h5 class="grey-heading"><a href="1_2_2"><abbr title="Success Criterion">SC</abbr> 1.2.2: Captions (Prerecorded) (Level <abbr title="Single A">A</abbr>)</a></h5><p>Captions are provided for all prerecorded audio content in synchronized media, except when the media is a media alternative for text and is clearly labeled as such.</p>
 </td><td headers="name_1_2 sc1_2_2" class=" notice"><p><strong>Notice:</strong> If this embedded object contains pre-recorded synchronised media and is not provided as an alternative for text content, check that captions are provided for audio content.</p>
 <div class="fullcode">[Standard].Principle1.Guideline1_2.1_2_2.G87,G93</div></div></td><td headers="applies_1_2 sc1_2_2" class=""><p>Elements which may contain synchronised media.</p>
 </td><td headers="tech_1_2 sc1_2_2" class=""><ul>
@@ -276,8 +285,8 @@
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/G93">G93</a></li>
 </ul>
 </td><tr class="top-row">
-<td id="sc1_2_3" rowspan="1" class="scrow"><h5 class="grey-heading"><a href="1_2_3"><abbr title="Success Criterion">SC</abbr> 1.2.3: Audio Description or Media Alternative (Prerecorded) (Level <abbr title="Single A">A</abbr>)</a></h5><p>An alternative for time-based media or audio description of the prerecorded video content is provided for synchronized media, except when the media is a media alternative for text and is clearly labeled as such.</p>
-<p><strong>Editor's Note:</strong> Superseded at level AAA by both <a href="#sc1_2_5">Success Criterion 1.2.5</a> and <a href="#sc1_2_8">Success Criterion 1.2.8</a>. Superseded at level AA by <a href="#sc1_2_5">Success Criterion 1.2.5</a>. Implementing these would satisfy this Success Criterion automatically.</p>
+<td id="sc1_2_3" rowspan="1" class="scrow"><h5 class="grey-heading"><a href="1_2_3"><abbr title="Success Criterion">SC</abbr> 1.2.3: Audio Description or Media Alternative (Level <abbr title="Single A">A</abbr>)</a></h5><p>An alternative for time-based media or audio description of the prerecorded video content is provided for synchronized media, except when the media is a media alternative for text and is clearly labeled as such.</p>
+<p><strong>Editor's Note:</strong> Superseded at level AAA by both Success Criterion 1.2.5 and Success Criterion 1.2.8. Superseded at level AA by Success Criterion 1.2.5. Implementing these would satisfy this Success Criterion automatically.</p>
 </td><td headers="name_1_2 sc1_2_3" class="na notice"><p><strong>Notice:</strong> If this embedded object contains pre-recorded synchronised media and is not provided as an alternative for text content, check that an audio description of its video, and/or an alternative text version of the content is provided.</p>
 <div class="fullcode">[Standard].Principle1.Guideline1_2.1_2_3.G69,G78,G173,G8</div></div></td><td headers="applies_1_2 sc1_2_3" class="na"><p>Elements which may contain synchronised media.</p>
 </td><td headers="tech_1_2 sc1_2_3" class="na"><ul>
@@ -591,7 +600,7 @@
 </td><tr class="top-row">
 <td id="sc1_3_3" rowspan="1" class="scrow"><h5 class="grey-heading"><a href="1_3_3"><abbr title="Success Criterion">SC</abbr> 1.3.3: Sensory Characteristics (Level <abbr title="Single A">A</abbr>)</a></h5><p>Instructions provided for understanding and operating content do not rely solely on sensory characteristics of components such as shape, size, visual location, orientation, or sound.</p>
 
-<p><em>Note:</em> For requirements related to color, refer to <a href="#gl1_4">Guideline 1.4</a>.</p>
+<p><em>Note:</em> For requirements related to color, refer to Guideline 1.4.</p>
 </td><td headers="name_1_3 sc1_3_3" class=" notice"><p><strong>Notice:</strong> Where instructions are provided for understanding the content, do not rely on sensory characteristics alone (such as shape, size or location) to describe objects.</p>
 <div class="fullcode">[Standard].Principle1.Guideline1_3.1_3_3.G96</div></div></td><td headers="applies_1_3 sc1_3_3" class=""><p>Top element.</p>
 </td><td headers="tech_1_3 sc1_3_3" class=""><ul>
@@ -620,7 +629,7 @@
 <tr class="top-row">
 <td id="sc1_4_1" rowspan="1" class="scrow"><h5 class="grey-heading"><a href="1_4_1"><abbr title="Success Criterion">SC</abbr> 1.4.1: Use of Colour (Level <abbr title="Single A">A</abbr>)</a></h5><p>Colour is not used as the only visual means of conveying information, indicating an action, prompting a response, or distinguishing a visual element.</p>
 
-<p><em>Note:</em> This success criterion addresses colour perception specifically. Other forms of perception are covered in <a href="#gl1_3">Guideline 1.3</a> including programmatic access to colour and other visual presentation coding.</p>
+<p><em>Note:</em> This success criterion addresses colour perception specifically. Other forms of perception are covered in Guideline 1.3 including programmatic access to colour and other visual presentation coding.</p>
 </td><td headers="name_1_4 sc1_4_1" class=" notice"><p><strong>Notice:</strong> Check that any information conveyed using colour alone is also available in text, or through other visual cues.</p>
 <div class="fullcode">[Standard].Principle1.Guideline1_4.1_4_1.G14,G182</div></div></td><td headers="applies_1_4 sc1_4_1" class=""><p>Top element.</p>
 </td><td headers="tech_1_4 sc1_4_1" class=""><ul>
@@ -630,7 +639,7 @@
 </td><tr class="top-row">
 <td id="sc1_4_2" rowspan="1" class="scrow"><h5 class="grey-heading"><a href="1_4_2"><abbr title="Success Criterion">SC</abbr> 1.4.2: Audio Control (Level <abbr title="Single A">A</abbr>)</a></h5><p>If any audio on a Web page plays automatically for more than 3 seconds, either a mechanism is available to pause or stop the audio, or a mechanism is available to control audio volume independently from the overall system volume level.</p>
 
-<p><em>Note:</em> Since any content that does not meet this success criterion can interfere with a user's ability to use the whole page, all content on the Web page (whether or not it is used to meet other success criteria) must meet this success criterion. See <a href="http://www.w3.org/TR/2010/NOTE-UNDERSTANDING-WCAG20-20101014/conformance.html#uc-conf-req5-head">Conformance Requirement 5: Non-Interference</a>.</p>
+<p><em>Note:</em> Since any content that does not meet this success criterion can interfere with a user's ability to use the whole page, all content on the Web page (whether or not it is used to meet other success criteria) must meet this success criterion. See Conformance Requirement 5: Non-Interference.</p>
 </td><td headers="name_1_4 sc1_4_2" class=" notice"><p><strong>Notice:</strong> If any audio plays automatically for longer than 3 seconds, check that there is the ability to pause, stop or mute the audio.</p>
 <div class="fullcode">[Standard].Principle1.Guideline1_4.1_4_2.F23</div></div></td><td headers="applies_1_4 sc1_4_2" class=""><p>Top element.</p>
 </td><td headers="tech_1_4 sc1_4_2" class=""><ul>
@@ -644,7 +653,7 @@
 <li><em>Incidental:</em> Text or images of text that are part of an inactive user interface component, that are pure decoration, that are not visible to anyone, or that are part of a picture that contains significant other visual content, have no contrast requirement.</li>
 <li><em>Logotypes:</em> Text that is part of a logo or brand name has no minimum contrast requirement.</li>
 </ul>
-<p><strong>Editor's Note:</strong> Superseded by <a href="#sc1_4_6">Success Criterion 1.4.6</a> at level AAA, which is a stricter application of the same concept.</p>
+<p><strong>Editor's Note:</strong> Superseded by Success Criterion 1.4.6 at level AAA, which is a stricter application of the same concept.</p>
 </td><td headers="name_1_4 sc1_4_3" class=" error"><p><strong>Error:</strong> This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 4.5:1, but text in this element has a contrast ratio of {value}. Recommendation: {colour recommendations}.</p>
 <div class="fullcode">[Standard].Principle1.Guideline1_4.1_4_3.G18</div></div></td><td headers="applies_1_4 sc1_4_3" class=""><p>Elements with text with colours that have insufficient colour contrast for Level AA's requirements. The recommendation will contain a suggestion as to a colour change(s) that will satisfy the Success Criterion.</p>
 </td><td headers="tech_1_4 sc1_4_3" class=""><ul>
@@ -682,7 +691,7 @@
 </ul>
 </td><tr class="top-row">
 <td id="sc1_4_4" rowspan="1" class="scrow"><h5 class="grey-heading"><a href="1_4_4"><abbr title="Success Criterion">SC</abbr> 1.4.4: Resize Text (Level <abbr title="Double A">AA</abbr>)</a></h5><p>Except for captions and images of text, text can be resized without assistive technology up to 200 percent without loss of content or functionality.</p>
-<p><strong>Editor's Note:</strong> Superseded by <a href="#sc1_4_8">Success Criterion 1.4.8</a> at level AAA. That Success Criterion contains additional requirements when text is resized to 200%.</p>
+<p><strong>Editor's Note:</strong> Superseded by Success Criterion 1.4.8 at level AAA. That Success Criterion contains additional requirements when text is resized to 200%.</p>
 </td><td headers="name_1_4 sc1_4_4" class=" notice"><p><strong>Notice:</strong> Check that text can be resized without assistive technology up to 200 percent without loss of content or functionality.</p>
 <div class="fullcode">[Standard].Principle1.Guideline1_4.1_4_4.G142</div></div></td><td headers="applies_1_4 sc1_4_4" class=""><p>Top element.</p>
 </td><td headers="tech_1_4 sc1_4_4" class=""><ul>
@@ -697,7 +706,7 @@
 </ul>
 
 <p><em>Note:</em> Logotypes (text that is part of a logo or brand name) are considered essential.</p>
-<p><strong>Editor's Note:</strong> Superseded by <a href="#sc1_4_9">Success Criterion 1.4.9</a> at level AAA, which removes most of the exceptions.</p>
+<p><strong>Editor's Note:</strong> Superseded by Success Criterion 1.4.9 at level AAA, which removes most of the exceptions.</p>
 </td><td headers="name_1_4 sc1_4_5" class=" notice"><p><strong>Notice:</strong> If the technologies being used can achieve the visual presentation, check that text is used to convey information rather than images of text, except when the image of text is essential to the information being conveyed, or can be visually customised to the user's requirements.</p>
 <div class="fullcode">[Standard].Principle1.Guideline1_4.1_4_5.G140,C22,C30.AALevel</div></div></td><td headers="applies_1_4 sc1_4_5" class=""><p>Top element.</p>
 </td><td headers="tech_1_4 sc1_4_5" class=""><ul>
@@ -745,7 +754,7 @@
 <li><em>20 dB:</em> The background sounds are at least 20 decibels lower than the foreground speech content, with the exception of occasional sounds that last for only one or two seconds.</li>
 </ul>
 
-<p><em>Note:</em> Per the definition of "decibel," background sound that meets this requirement will be approximately four times quieter than the foreground speech content. </p>
+<p><em>Note:</em> Per the definition of "decibel," background sound that meets this requirement will be approximately four times quieter than the foreground speech content.</p>
 <p><strong>Editor's Note:</strong> The note may be confusing (as normally a 3 dB increase in power in anything, such as signal strength, is a 2x increase), but psychoacoustic models suggest a 10x increase in sound pressure (hence, 10 dB) is required for a 2x increase in loudness.</p>
 </td><td headers="name_1_4 sc1_4_7" class="na notice"><p><strong>Notice:</strong> For pre-recorded audio-only content that is primarily speech (such as narration), any background sounds should be muteable, or be at least 20 dB (or about 4 times) quieter than the speech.</p>
 <div class="fullcode">[Standard].Principle1.Guideline1_4.1_4_7.G56</div></div></td><td headers="applies_1_4 sc1_4_7" class="na"><p>Top element.</p>
@@ -755,13 +764,13 @@
 </td><tr class="top-row">
 <td id="sc1_4_8" rowspan="5" class="scrow"><h5 class="grey-heading"><a href="1_4_8"><abbr title="Success Criterion">SC</abbr> 1.4.8: Visual Presentation (Level <abbr title="Triple A">AAA</abbr>)</a></h5><p>For the visual presentation of blocks of text, a mechanism is available to achieve the following:</p>
 
-<ol>
+<ul>
 <li>Foreground and background colors can be selected by the user.</li>
 <li>Width is no more than 80 characters or glyphs (40 if CJK).</li>
 <li>Text is not justified (aligned to both the left and the right margins).</li>
 <li>Line spacing (leading) is at least space-and-a-half within paragraphs, and paragraph spacing is at least 1.5 times larger than the line spacing.</li>
 <li>Text can be resized without assistive technology up to 200 percent in a way that does not require the user to scroll horizontally to read a line of text on a full-screen window.</li>
-</ol>
+</ul>
 </td><td headers="name_1_4 sc1_4_8" class="na notice"><p><strong>Notice:</strong> Check that a mechanism is available for the user to select foreground and background colours for blocks of text, either through the Web page or the browser.</p>
 <div class="fullcode">[Standard].Principle1.Guideline1_4.1_4_8.G148,G156,G175</div></div></td><td headers="applies_1_4 sc1_4_8" class="na"><p>Top element.</p>
 </td><td headers="tech_1_4 sc1_4_8" class="na"><ul>
@@ -833,11 +842,9 @@
 <tr class="top-row">
 <td id="sc2_1_1" rowspan="6" class="scrow"><h5 class="grey-heading"><a href="2_1_1"><abbr title="Success Criterion">SC</abbr> 2.1.1: Keyboard (Level <abbr title="Single A">A</abbr>)</a></h5><p>All functionality of the content is operable through a keyboard interface without requiring specific timings for individual keystrokes, except where the underlying function requires input that depends on the path of the user's movement and not just the endpoints.</p>
 
-<ul>
-<li><p><em>Note 1:</em> This exception relates to the underlying function, not the input technique. For example, if using handwriting to enter text, the input technique (handwriting) requires path-dependent input but the underlying function (text input) does not.</p></li>
-<li><p><em>Note 2:</em> This does not forbid and should not discourage providing mouse input or other input methods in addition to keyboard operation.</p></li>
-</ul>
-<p><strong>Editor's Note:</strong> Technically superseded by <a href="#sc2_1_3">Success Criterion 2.1.3</a> at level AAA. To avoid redundancy, keyboard-related warnings will appear to come from Success Criterion 2.1.1 regardless of level.</p>
+<p><em>Note 1:</em> This exception relates to the underlying function, not the input technique. For example, if using handwriting to enter text, the input technique (handwriting) requires path-dependent input but the underlying function (text input) does not.<br />
+<em>Note 2:</em> This does not forbid and should not discourage providing mouse input or other input methods in addition to keyboard operation.</p>
+<p><strong>Editor's Note:</strong> Technically superseded by Success Criterion 2.1.3 at level AAA. To avoid redundancy, keyboard-related warnings will appear to come from Success Criterion 2.1.1 regardless of level.</p>
 </td><td headers="name_2_1 sc2_1_1" class=" warning"><p><strong>Warning:</strong> Ensure the functionality provided by double-clicking on this element is available through the keyboard.</p>
 <div class="fullcode">[Standard].Principle2.Guideline2_1.2_1_1.SCR20.DblClick</div></div></td><td headers="applies_2_1 sc2_1_1" class=""><p>Elements with an inline ondblclick attribute.</p>
 </td><td headers="tech_2_1 sc2_1_1" class=""><ul>
@@ -876,7 +883,7 @@
 </td><tr class="top-row">
 <td id="sc2_1_2" rowspan="1" class="scrow"><h5 class="grey-heading"><a href="2_1_2"><abbr title="Success Criterion">SC</abbr> 2.1.2: No Keyboard Trap (Level <abbr title="Single A">A</abbr>)</a></h5><p>If keyboard focus can be moved to a component of the page using a keyboard interface, then focus can be moved away from that component using only a keyboard interface, and, if it requires more than unmodified arrow or tab keys or other standard exit methods, the user is advised of the method for moving focus away.</p>
 
-<p><em>Note:</em> Since any content that does not meet this success criterion can interfere with a user's ability to use the whole page, all content on the Web page (whether or not it is used to meet other success criteria) must meet this success criterion. See <a href="http://www.w3.org/TR/2010/NOTE-UNDERSTANDING-WCAG20-20101014/conformance.html#uc-conf-req5-head">Conformance Requirement 5: Non-Interference</a>.</p>
+<p><em>Note:</em> Since any content that does not meet this success criterion can interfere with a user's ability to use the whole page, all content on the Web page (whether or not it is used to meet other success criteria) must meet this success criterion. See Conformance Requirement 5: Non-Interference.</p>
 </td><td headers="name_2_1 sc2_1_2" class=" warning"><p><strong>Warning:</strong> Check that this applet or plugin provides the ability to move the focus away from itself when using the keyboard.</p>
 <div class="fullcode">[Standard].Principle2.Guideline2_1.2_1_2.F10</div></div></td><td headers="applies_2_1 sc2_1_2" class=""><p>Applet or object elements.</p>
 </td><td headers="tech_2_1 sc2_1_2" class=""><ul>
@@ -884,7 +891,7 @@
 </ul>
 </td><tr class="top-row">
 <td id="sc2_1_3" rowspan="1" class="scrow"><h5 class="grey-heading"><a href="2_1_3"><abbr title="Success Criterion">SC</abbr> 2.1.3: Keyboard (No Exception) (Level <abbr title="Triple A">AAA</abbr>)</a></h5><p>All functionality of the content is operable through a keyboard interface without requiring specific timings for individual keystrokes.</p>
-<p><strong>Editor's Note:</strong> No additional techniques are provided over and above <a href="#sc2_1_1">Success Criterion 2.1.1</a>. Instead, if analogue, time-dependent input is required, the content simply <strong>cannot meet AAA conformance</strong>.</p>
+<p><strong>Editor's Note:</strong> No additional techniques are provided over and above Success Criterion 2.1.1. Instead, if analogue, time-dependent input is required, the content simply cannot meet AAA conformance.</p>
 </td><td colspan="3" headers="name_2_1 applies_2_1 tech_2_1 sc2_1_3">No tests for this Success Criterion.</td></tbody>
 </table>
 
@@ -906,7 +913,7 @@
 
 <tbody>
 <tr class="top-row">
-<td id="sc2_2_1" rowspan="2" class="scrow"><h5 class="grey-heading"><a href="2_2_1"><abbr title="Success Criterion">SC</abbr> 2.2.1: Timing Adjustable (Level <abbr title="Single A">A</abbr>)</a></h5><p>For each time limit that is set by the content, at least one of the following is true:</p>
+<td id="sc2_2_1" rowspan="2" class="scrow"><h5 class="grey-heading"><a href="2_2_1"><abbr title="Success Criterion">SC</abbr> 2.2.1: Non-text Content (Level <abbr title="Single A">A</abbr>)</a></h5><p>For each time limit that is set by the content, at least one of the following is true:</p>
 
 <ul>
 <li><em>Turn off:</em> The user is allowed to turn off the time limit before encountering it; or</li>
@@ -917,7 +924,7 @@
 <li><em>20 Hour Exception:</em> The time limit is longer than 20 hours.</li>
 </ul>
 
-<p><em>Note:</em> This success criterion helps ensure that users can complete tasks without unexpected changes in content or context that are a result of a time limit. This success criterion should be considered in conjunction with <a href="#sc3_2_1">Success Criterion 3.2.1</a>, which puts limits on changes of content or context as a result of user action.</p>
+<p><em>Note:</em> This success criterion helps ensure that users can complete tasks without unexpected changes in content or context that are a result of a time limit. This success criterion should be considered in conjunction with Success Criterion 3.2.1, which puts limits on changes of content or context as a result of user action.</p>
 </td><td headers="name_2_2 sc2_2_1" class=" error"><p><strong>Error:</strong> Meta refresh tag used to redirect to another page, with a time limit that is not zero. Users cannot control this time limit.</p>
 <div class="fullcode">[Standard].Principle2.Guideline2_2.2_2_1.F40.2</div></div></td><td headers="applies_2_2 sc2_2_1" class=""><p>Meta refresh element with a timeout greater than zero (with a URL to redirect to).</p>
 </td><td headers="tech_2_2 sc2_2_1" class=""><ul>
@@ -937,13 +944,10 @@
 <li><em>Auto-updating:</em> For any auto-updating information that (1) starts automatically and (2) is presented in parallel with other content, there is a mechanism for the user to pause, stop, or hide it or to control the frequency of the update unless the auto-updating is part of an activity where it is essential.</li>
 </ul>
 
-<p><em>Note 1:</em> For requirements related to flickering or flashing content, refer to <a href="#sc2_3_1">Guideline 2.3</a>.</p>
-
-<p><em>Note 2:</em> Since any content that does not meet this success criterion can interfere with a user's ability to use the whole page, all content on the Web page (whether or not it is used to meet other success criteria) must meet this success criterion. See <a href="http://www.w3.org/TR/2010/NOTE-UNDERSTANDING-WCAG20-20101014/conformance.html#uc-conf-req5-head">Conformance Requirement 5: Non-Interference</a>..</p>
-
-<p><em>Note 3:</em> Content that is updated periodically by software or that is streamed to the user agent is not required to preserve or present information that is generated or received between the initiation of the pause and resuming presentation, as this may not be technically possible, and in many situations could be misleading to do so.</p>
-
-<p><em>Note 4:</em> An animation that occurs as part of a preload phase or similar situation can be considered essential if interaction cannot occur during that phase for all users and if not indicating progress could confuse users or cause them to think that content was frozen or broken.</p>
+<p>*Note 1: For requirements related to flickering or flashing content, refer to Guideline 2.3.<br />
+*Note 2: Since any content that does not meet this success criterion can interfere with a user's ability to use the whole page, all content on the Web page (whether or not it is used to meet other success criteria) must meet this success criterion. See Conformance Requirement 5: Non-Interference.<br />
+*Note 3: Content that is updated periodically by software or that is streamed to the user agent is not required to preserve or present information that is generated or received between the initiation of the pause and resuming presentation, as this may not be technically possible, and in many situations could be misleading to do so.<br />
+*Note 4: An animation that occurs as part of a preload phase or similar situation can be considered essential if interaction cannot occur during that phase for all users and if not indicating progress could confuse users or cause them to think that content was frozen or broken.</p>
 </td><td headers="name_2_2 sc2_2_2" class=" notice"><p><strong>Notice:</strong> If any part of the content moves, scrolls or blinks for more than 5 seconds, or auto-updates, check that there is a mechanism available to pause, stop, or hide the content.</p>
 <div class="fullcode">[Standard].Principle2.Guideline2_2.2_2_2.SCR33,SCR22,G187,G152,G186,G191</div></div></td><td headers="applies_2_2 sc2_2_2" class=""><p>Top element.</p>
 </td><td headers="tech_2_2 sc2_2_2" class=""><ul>
@@ -1011,10 +1015,8 @@
 <tr class="top-row">
 <td id="sc2_3_1" rowspan="1" class="scrow"><h5 class="grey-heading"><a href="2_3_1"><abbr title="Success Criterion">SC</abbr> 2.3.1: Three Flashes or Below Threshold (Level <abbr title="Single A">A</abbr>)</a></h5><p>Web pages do not contain anything that flashes more than three times in any one second period, or the flash is below the general flash and red flash thresholds.</p>
 
-<p><em>Note:</em> Since any content that does not meet this success criterion can interfere with a user's ability to use the whole page, all content on the Web page (whether or not it is used to meet other success criteria) must meet this success criterion. See <a href="http://www.w3.org/TR/2010/NOTE-UNDERSTANDING-WCAG20-20101014/conformance.html#uc-conf-req5-head">Conformance Requirement 5: Non-Interference</a>.</p>
-<p><strong>Editor's Note:</strong> Superseded by <a href="#sc2_3_2">Success Criterion 2.3.2</a> at level AAA. That Success Criterion removes the flash threshold allowances.</p>
-
-<p>The notice about "sufficiently small" size is deliberately vague, since it depends on whether it is for general web usage, or where the screen size is known (such as for display in a foyer). In the former case, a baseline is given based on a minimum resolution and screen size. See technique <a href="http://www.w3.org/TR/WCAG20-TECHS/G176">G176: Keeping the flashing area small enough</a> for a further discussion.</p>
+<p><em>Note:</em> Since any content that does not meet this success criterion can interfere with a user's ability to use the whole page, all content on the Web page (whether or not it is used to meet other success criteria) must meet this success criterion. See Conformance Requirement 5: Non-Interference.</p>
+<p><strong>Editor's Note:</strong> Superseded by Success Criterion 2.3.2 at level AAA. That Success Criterion removes the flash threshold allowances.</p>
 </td><td headers="name_2_3 sc2_3_1" class=" notice"><p><strong>Notice:</strong> Check that no component of the content flashes more than three times in any 1-second period, or that the size of any flashing area is sufficiently small.</p>
 <div class="fullcode">[Standard].Principle2.Guideline2_3.2_3_1.G19,G176</div></div></td><td headers="applies_2_3 sc2_3_1" class=""><p>Top element.</p>
 </td><td headers="tech_2_3 sc2_3_1" class=""><ul>
@@ -1114,7 +1116,7 @@
 </ul>
 </td><tr class="top-row">
 <td id="sc2_4_4" rowspan="2" class="scrow"><h5 class="grey-heading"><a href="2_4_4"><abbr title="Success Criterion">SC</abbr> 2.4.4: Link Purpose (In Context) (Level <abbr title="Single A">A</abbr>)</a></h5><p>The purpose of each link can be determined from the link text alone or from the link text together with its programmatically determined link context, except where the purpose of the link would be ambiguous to users in general.</p>
-<p><strong>Editor's Note:</strong> Superseded by <a href="#sc2_4_9">Success Criterion 2.4.9</a> at AAA level.</p>
+<p><strong>Editor's Note:</strong> Superseded by Success Criterion 2.4.9 at AAA level, which removes the link context.</p>
 </td><td headers="name_2_4 sc2_4_4" class=" notice"><p><strong>Notice:</strong> Check that the link text combined with programmatically determined link context, or its title attribute, identifies the purpose of the link.</p>
 <div class="fullcode">[Standard].Principle2.Guideline2_4.2_4_4.H77,H78,H79,H80,H81,H33</div></div></td><td headers="applies_2_4 sc2_4_4" class=""><p>Anchor (A) elements in general, where they contain a title attribute.</p>
 </td><td headers="tech_2_4 sc2_4_4" class=""><ul>
@@ -1195,10 +1197,9 @@
 </td><tr class="top-row">
 <td id="sc2_4_10" rowspan="1" class="scrow"><h5 class="grey-heading"><a href="2_4_10"><abbr title="Success Criterion">SC</abbr> 2.4.10: Section Headings (Level <abbr title="Triple A">AAA</abbr>)</a></h5><p>Section headings are used to organize the content.</p>
 
-<p><em>Note 1:</em> "Heading" is used in its general sense and includes titles and other ways to add a heading to different types of content.</p>
-
-<p><em>Note 2:</em> This success criterion covers sections within writing, not user interface components. User Interface components are covered under <a href="#sc4_1_2">Success Criterion 4.1.2</a>.</p>
-<p><strong>Editor's Note:</strong> No specific test file provided. Where HTML is used, testing for relevant semantic headers (h1-h6) occurs in <a href="#sc1_3_1">Success Criterion 1.3.1</a> - incorrect heading nesting results in an error at AAA level.</p>
+<p><em>Note 1:</em> "Heading" is used in its general sense and includes titles and other ways to add a heading to different types of content.<br />
+<em>Note 2:</em> This success criterion covers sections within writing, not user interface components. User Interface components are covered under Success Criterion 4.1.2.</p>
+<p><strong>Editor's Note:</strong> No specific test file provided. Where HTML is used, testing for relevant semantic headers (h1-h6) occurs in Success Criterion 1.3.1 - incorrect heading nesting results in an error at AAA level.</p>
 </td><td colspan="3" headers="name_2_4 applies_2_4 tech_2_4 sc2_4_10">No tests for this Success Criterion.</td></tbody>
 </table>
 
@@ -1269,7 +1270,7 @@
 <li><a href="http://www.w3.org/TR/WCAG20-TECHS/G70">G70</a></li>
 </ul>
 </td><tr class="top-row">
-<td id="sc3_1_4" rowspan="1" class="scrow"><h5 class="grey-heading"><a href="3_1_4"><abbr title="Success Criterion">SC</abbr> 3.1.4: Abbreviations (Level <abbr title="Triple A">AAA</abbr>)</a></h5><p>A mechanism for identifying the expanded form or meaning of abbreviations is available. </p>
+<td id="sc3_1_4" rowspan="1" class="scrow"><h5 class="grey-heading"><a href="3_1_4"><abbr title="Success Criterion">SC</abbr> 3.1.4: Abbreviations (Level <abbr title="Triple A">AAA</abbr>)</a></h5><p>A mechanism for identifying the expanded form or meaning of abbreviations is available.</p>
 </td><td headers="name_3_1 sc3_1_4" class="na error"><p><strong>Error:</strong> Check that a mechanism for identifying the expanded form or meaning of abbreviations is available.</p>
 <div class="fullcode">[Standard].Principle3.Guideline3_1.3_1_4.G102,G55,G62,H28,G97</div></div></td><td headers="applies_3_1 sc3_1_4" class="na"><p>Top element.</p>
 </td><td headers="tech_3_1 sc3_1_4" class="na"><ul>
@@ -1418,7 +1419,7 @@
 <li><em>Checked:</em> Data entered by the user is checked for input errors and the user is provided an opportunity to correct them.</li>
 <li><em>Confirmed:</em> A mechanism is available for reviewing, confirming, and correcting information before finalizing the submission.</li>
 </ul>
-<p><strong>Editor's Note:</strong> Superseded by <a href="#sc3_3_6">Success Criterion 3.3.6</a> at level AAA, which extends this requirement to <strong>all</strong> forms.</p>
+<p><strong>Editor's Note:</strong> Superseded by Success Criterion 3.3.6 at level AAA, which extends this requirement to all forms.</p>
 </td><td headers="name_3_3 sc3_3_4" class=" notice"><p><strong>Notice:</strong> If this form would bind a user to a financial or legal commitment, modify/delete user-controllable data, or submit test responses, ensure that submissions are either reversible, checked for input errors, and/or confirmed by the user.</p>
 <div class="fullcode">[Standard].Principle3.Guideline3_3.3_3_4.G98,G99,G155,G164,G168.LegalForms</div></div></td><td headers="applies_3_3 sc3_3_4" class=""><p>Form elements in general.</p>
 </td><td headers="tech_3_3 sc3_3_4" class=""><ul>

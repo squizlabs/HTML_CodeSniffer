@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+    <head>
+        <title>H44 No Type Attribute on Input Element Regression Test</title>
+    </head>
+    <body>
+        <h1>H44 No Type Attribute on Input Element Regression Test</h1>
+
+        <form>
+            <p>Input field: <input id="inputField" value="" /></p>
+        </form>
+
+        <h2>Explanation</h2>
+
+        <p>This is a <strong>regression test</strong> for <a href="https://github.com/squizlabs/HTML_CodeSniffer/issues/57">Issue 57</a>. Script errors were being
+        reported in some browsers when input elements did not have type attributes.</p>
+
+        <p>Before the issue was fixed, the above field would throw a script error along the lines of "Unable to call toLowerCase() of null" in the
+        testLabelsOnInputs method in the SC 1.3.1 test. It should check to see whether the type attribute exists, and if not present, default to "text".</p>
+    </body>
+</html>
