@@ -3,7 +3,7 @@
 
 <head>
 
-<title>U.S. &quot;Section 508&quot; Guidelines Sniff List - HTML_CodeSniffer</title>
+<title>U.S. &quot;Section 508&quot; Guidelines: Summary - HTML_CodeSniffer</title>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
@@ -56,14 +56,13 @@
 
         <ul id="nav">
             <li><a href="../index.html"><img src="../images/home.png" alt="HTML_CodeSniffer Home"></a></li>
-            <li><a href="./WCAG2/AAA">Level AAA Summary</a></li>
-            <li><a href="./WCAG2/AA">Level AA Summary</a></li>
-            <li><a href="./WCAG2/A">Level A Summary</a></li>
+            <li><a href="./WCAG2">WCAG 2.0 Summary</a></li>
+            <li><a href="./Section508">Section 508 Summary</a></li>
         </ul>
 
         <div class="max-width">
 
-        <h2><abbr title="United States">U.S.</abbr> &quot;Section 508&quot; Guidelines</h2>
+        <h2><abbr title="United States">U.S.</abbr> &quot;Section 508&quot; Guidelines: Summary</h2>
 
         <p>HTML_CodeSniffer provides a set of sniffs for testing pages against the <a href="www.section508.gov/index.cfm?fuseAction=stdsdoc">U.S. &quot;Section 508&quot; accessibility guidelines</a>.
         Section 508 is a reference to the relevant section of the U.S. federal <em>Rehabilitation Act of 1973</em> (as amended), and requires that electronic and information
@@ -83,7 +82,7 @@
         <p>A refresh of the Section 508 guidelines is currently in progress, and the
         <a href="http://www.access-board.gov/sec508/refresh/draft-rule.htm">latest (2011) draft rule</a> proposes a new target for electronic media
         content to meet, based on Level <abbr title="Double-A">AA</abbr> conformance with <a href="http://www.w3.org/TR/WCAG20/"><abbr title="Web Content Accessibility Guidelines">WCAG</abbr>
-        2.0</a>. It would be prudent to also check and correct errors associated with the <a href="../WCAG2/AA">WCAG 2.0 AA</a> standard for
+        2.0</a>. It would be prudent to also check and correct errors associated with the <a href="./WCAG2">WCAG 2.0 AA</a> standard for
         this reason, so your site conforms with any future updates to Section 508.</p>
 
         </div>
@@ -102,7 +101,7 @@
 
             <p>A summary of the sixteen Section 508 rules, a brief discussion with pointers to equivalents in <abbr title="Web Content Accessibility Guidelines">WCAG</abbr> 1.0
             and 2.0, and a list of messages emitted by HTML_CodeSniffer for that rule. Although the current Section 508 was aligned with parts of WCAG 1.0, many messages
-            will be aligned with the wording used in the WCAG 2.0 standard.</p>
+            emitted by HTML\_CodeSniffer will be aligned with the wording used in its WCAG 2.0 standard set.</p>
 
             <p>Anything that is not marked as an <strong>Error</strong> should be manually tested:</p>
             <ul>
@@ -396,7 +395,7 @@ the button is actually another colour through use of, say, a high-contrast colou
 <tr class="">
 <td id="_name" headers="name_ sc warning">
 <p><strong>Warning:</strong> Semantic markup should be used to mark emphasised or special text so that it can be programmatically determined.</p>
-<div class="fullcode">Section508.D.msgCode</div></td>
+<div class="fullcode">Section508.D.[msgCode]</div></td>
 <td id="_applies" headers="applies_ sc">
 <p>Elements that may be considered presentational, including tags that use the align attribute.</p>
 </td>
@@ -546,7 +545,8 @@ definition has an "Until user agents..." rider on being able to control flicker,
 <a href="http://www.w3.org/TR/WCAG10-CORE-TECHS/#flicker">"seizures can be triggered by flickering or flashing in the 4 to 59 [Hz] range"</a>.</p>
 
 <p>In <a href="http://www.w3.org/TR/WCAG20">WCAG 2.0</a>, flashing should be kept to below 3 Hz. At Level <abbr title="Single-A">A</abbr>,
-an exception exists for flashing below a certain area of the screen. At Level <abbr title="Triple-A">AAA</abbr>, size exceptions do not apply.</p>
+an exception exists for flashing an area of the screen smaller than a certain size. At Level
+<abbr title="Triple-A">AAA</abbr>, size exceptions do not apply.</p>
 <table>
 <colgroup>
 <col width="58%">

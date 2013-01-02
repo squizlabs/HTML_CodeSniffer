@@ -7,7 +7,12 @@ function runHTMLCS(standard, source, resultsDiv, callback)
     resultsDiv.innerHTML = '<span class="loading"><img src="images/loading.gif" alt="Loading"> Sniffing...</span>';
 
     HTMLCS.process(standard, source, function() {
-        updateResults(resultsDiv);
+        if (standard === 'Section508') {
+            updateResults508(resultsDiv);
+        } else {
+            updateResults(resultsDiv);
+        }
+
         if (callback instanceof Function === true) {
             callback.call();
         }
@@ -111,7 +116,93 @@ function updateResults(resultsWrapper)
     content  = heading + content;
     content += '</table>';
     content += '<div id="test-results-noMessages"><em>No messages matched the types you selected</em></div>';
-    content += '<span class="footnote"><em>Add the WCAG bookmarklet to your browser to run this test on any web page.</em></span></div>';
+    content += '<span class="footnote"><em>Add the Accessibility Auditor bookmarklet to your browser to run this test on any web page.</em></span></div>';
+    resultsWrapper.innerHTML = content;
+
+    reorderResults();
+}
+
+function updateResults508(resultsWrapper)
+{
+    resultsWrapper.innerHTML = '';
+
+    var msgs = HTMLCS.getMessages();
+    console.info(msgs);
+    if (msgs.length === 0) {
+        resultsWrapper.innerHTML = 'No violations found';
+        return;
+    }
+
+    var content = '<table id="test-results-table"><tr>';
+    content    += '<th>#</th><th>Message</th><th>Rule</th></tr>';
+
+    var errors   = 0;
+    var warnings = 0;
+    var notices  = 0;
+
+    for (var i = 0; i < msgs.length; i++) {
+        var msg = msgs[i];
+        var type = '';
+        switch (msg.type) {
+            case HTMLCS.ERROR:
+                type = 'Error';
+                errors++;
+            break;
+
+            case HTMLCS.WARNING:
+                type = 'Warning';
+                warnings++;
+            break;
+
+            case HTMLCS.NOTICE:
+                type = 'Notice';
+                notices++;
+            break;
+
+            default:
+                type = 'Unknown';
+            break;
+        }
+
+        // Get the success criterion so we can provide a link.
+        var msgParts = msg.code.split('.');
+        var section  = msgParts[1];
+
+        // Build a message code without the standard name.
+        msgParts.shift();
+        msgParts.unshift('[Standard]');
+        var noStdMsgParts = msgParts.join('.');
+
+        content += '<tr class="' + type.toLowerCase() + '">';
+        content += '<td class="number"><span class="flag"></span></td>';
+        content += '<td class="messageText"><strong>' + type + ':</strong> ' + msg.msg + '</td>';
+        content += '<td class="messagePrinciple">';
+        content += '<a href="./Standards/Section508#pr' + section.toUpperCase() + '">1194.22 (' + section.toLowerCase() + ')</a>';
+        content += '</td>';
+        content += '</tr>';
+    }
+
+
+    var heading = '<h3>Test results</h3>';
+
+    var noticeActive     = '';
+    var testResultsClass = 'hide-notice';
+    if ((errors === 0) && (warnings === 0)) {
+        noticeActive     = ' class="active"';
+        testResultsClass = '';
+    }
+
+    heading += '<ul id="results-overview">';
+    heading += '<li class="active"><a href="#" onclick="return toggleMsgTypes.call(this, \'error\');"><span class="result-count result-count-errors">' + errors + '</span> <span class="result-type">errors</span></a></li>';
+    heading += '<li class="active"><a href="#" onclick="return toggleMsgTypes.call(this, \'warning\');"><span class="result-count result-count-warnings">' + warnings + '</span> <span class="result-type">warnings</span></a></li>';
+    heading += '<li' + noticeActive + '><a href="#" onclick="return toggleMsgTypes.call(this, \'notice\');"><span class="result-count result-count-notices">' + notices + '</span> <span class="result-type">notices</span></a></li>';
+    heading += '</ul>';
+    heading += '<div id="test-results" class="' + testResultsClass + '">';
+
+    content  = heading + content;
+    content += '</table>';
+    content += '<div id="test-results-noMessages"><em>No messages matched the types you selected</em></div>';
+    content += '<span class="footnote"><em>Add the Accessibility Auditor bookmarklet to your browser to run this test on any web page.</em></span></div>';
     resultsWrapper.innerHTML = content;
 
     reorderResults();
