@@ -164,28 +164,16 @@ td:last-child li {
  padding:0;
 }
 
-td.error:before,
-td.warning:before,
-td.notice:before {
- content: '';
- display: inline-block;
- position: absolute;
- height: 100%;
- width: 5px;
- top: 0;
- left: 0;
+td.error {
+ background-color: #eedede;
 }
 
-td.error:before {
- background-color: #921e1f;
+td.warning {
+ background-color: #f0e9d8;
 }
 
-td.warning:before {
- background-color: #b99538;
-}
-
-td.notice:before {
- background-color: #68676e;
+td.notice {
+ background-color: #ededef;
 }
 
 table p {
