@@ -69,5 +69,43 @@ var HTMLCS_WCAG2AAA = {
         'Principle3.Guideline3_3.3_3_6',
         'Principle4.Guideline4_1.4_1_1',
         'Principle4.Guideline4_1.4_1_2'
-    ]
+    ],
+    getMsgInfo: function(code) {
+        var principles = {
+            'Principle1': {
+                name: 'Perceivable',
+                link: 'http://www.w3.org/TR/WCAG20/#perceivable'
+               },
+            'Principle2': {
+                name: 'Operable',
+                link: 'http://www.w3.org/TR/WCAG20/#operable'
+               },
+            'Principle3': {
+                name: 'Understandable',
+                link: 'http://www.w3.org/TR/WCAG20/#understandable'
+               },
+            'Principle4': {
+                name: 'Robust',
+                link: 'http://www.w3.org/TR/WCAG20/#robust'
+               }
+        }
+
+        var msgCodeParts  = code.split('.', 5);
+        var principle     = msgCodeParts[1];
+        var techniques    = msgCodeParts[4].split(',');
+        var techniquesStr = [];
+
+        for (var i = 0; i < techniques.length; i++) {
+            techniques[i]  = techniques[i].split('.');
+            techniquesStr.push('<a href="http://www.w3.org/TR/WCAG20-TECHS/' + techniques[i][0] + '" target="_blank">' + techniques[i][0] + '</a>');
+        }
+
+        var principleStr = ['<a href="', principles[principle].link, '" target="_blank">', principles[principle].name, '</a>'].join('');
+        var retval = [
+            ['Principle', principleStr],
+            ['Techniques', techniquesStr.join(' ')]
+        ];
+
+        return retval;
+    }
 };

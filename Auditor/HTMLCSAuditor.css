@@ -479,9 +479,11 @@
 #HTMLCS-wrapper .HTMLCS-issue-source-inner-u2p {
     padding: 0.35em;
     clear: both;
+    color: white;
 }
 
 #HTMLCS-wrapper .HTMLCS-issue-source-not-supported {
+    color: white;
     font-size: 1em;
     line-height: 1.4em;
     margin: 0 0 0.5em 0.2em;

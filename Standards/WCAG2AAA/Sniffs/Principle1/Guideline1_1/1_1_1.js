@@ -23,11 +23,8 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
     register: function()
     {
         return [
-            'img',
-            'input',
-            'area',
-            'object',
-            'applet'
+            '_top',
+            'img'
         ];
 
     },
@@ -40,34 +37,67 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
      */
     process: function(element, top)
     {
-        var nodeName = element.nodeName.toLowerCase();
+        if (element === top) {
+            this.addNullAltTextResults(top);
+            this.addMediaAlternativesResults(top);
+        } else {
+            var nodeName = element.nodeName.toLowerCase();
 
-        switch (nodeName) {
-            case 'img':
-                this.testNullAltText(element);
-                this.testLinkStutter(element);
-                this.testLongdesc(element);
-            break;
+            switch (nodeName) {
+                case 'img':
+                    this.testLinkStutter(element);
+                    this.testLongdesc(element);
+                break;
+            }//end if
+        }//end if
+    },
 
-            case 'input':
-                // Only look for input type="image" tags.
-                if ((element.hasAttribute('type') === true) && (element.getAttribute('type') === 'image')) {
-                    this.testNullAltText(element);
-                }
-            break;
+    /**
+     * Driver function for the null alt text tests.
+     *
+     * This takes the generic result given by the alt text testing functions,
+     * and converts them into WCAG 2.0-specific messages.
+     *
+     * @param {DOMNode} element The element to test.
+     */
+    addNullAltTextResults: function(top)
+    {
+        var errors = this.testNullAltText(top);
 
-            case 'area':
-                // Client-side image maps.
-                this.testNullAltText(element);
-            break;
+        for (var i = 0; i < errors.img.emptyAltInLink.length; i++) {
+            HTMLCS.addMessage(HTMLCS.ERROR, errors.img.emptyAltInLink[i], 'Img element is the only content of the link, but is missing alt text. The alt text should describe the purpose of the link.', 'H30.2');
+        }
 
-            case 'object':
-                this.testObjectTextAlternative(element);
-            break;
+        for (var i = 0; i < errors.img.nullAltWithTitle.length; i++) {
+            HTMLCS.addMessage(HTMLCS.ERROR, errors.img.nullAltWithTitle[i], 'Img element with empty alt text must have absent or empty title attribute.', 'H67.1');
+        }
 
-            case 'applet':
-                this.testAppletTextAlternative(element);
-            break;
+        for (var i = 0; i < errors.img.ignored.length; i++) {
+            HTMLCS.addMessage(HTMLCS.WARNING, errors.img.ignored[i], 'Img element is marked so that it is ignored by Assistive Technology.', 'H67.2');
+        }
+
+        for (var i = 0; i < errors.img.missingAlt.length; i++) {
+            HTMLCS.addMessage(HTMLCS.ERROR, errors.img.missingAlt[i], 'Img element missing an alt attribute. Use the alt attribute to specify a short text alternative.', 'H37');
+        }
+
+        for (var i = 0; i < errors.img.generalAlt.length; i++) {
+            HTMLCS.addMessage(HTMLCS.NOTICE, errors.img.generalAlt[i], 'Ensure that the img element\'s alt text serves the same purpose and presents the same information as the image.', 'G94.Image');
+        }
+
+        for (var i = 0; i < errors.inputImage.missingAlt.length; i++) {
+            HTMLCS.addMessage(HTMLCS.ERROR, errors.inputImage.missingAlt[i], 'Image submit button missing an alt attribute. Specify a text alternative that describes the button\'s function, using the alt attribute.', 'H36');
+        }
+
+        for (var i = 0; i < errors.inputImage.generalAlt.length; i++) {
+            HTMLCS.addMessage(HTMLCS.NOTICE, errors.inputImage.generalAlt[i], 'Ensure that the image submit button\'s alt text identifies the purpose of the button.', 'G94.Button');
+        }
+
+        for (var i = 0; i < errors.area.missingAlt.length; i++) {
+            HTMLCS.addMessage(HTMLCS.ERROR, errors.area.missingAlt[i], 'Area element in an image map missing an alt attribute. Each area element must have a text alternative that describes the function of the image map area.', 'H24');
+        }
+
+        for (var i = 0; i < errors.area.generalAlt.length; i++) {
+            HTMLCS.addMessage(HTMLCS.NOTICE, errors.area.generalAlt[i], 'Ensure that the area element\'s text alternative serves the same purpose as the part of image map image it references.', 'H24.2');
         }
     },
 
@@ -81,86 +111,112 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
      *
      * @param {DOMNode} element The element to test.
      *
-     * @returns void
+     * @returns {Object} A structured list of errors.
      */
-    testNullAltText: function(element)
+    testNullAltText: function(top)
     {
-        var nodeName      = element.nodeName.toLowerCase();
-        var linkOnlyChild = false;
-        var missingAlt    = false;
-        var nullAlt       = false;
-
-        if (element.parentNode.nodeName.toLowerCase() === 'a') {
-            var prevNode = this._getPreviousSiblingElement(element, null);
-            var nextNode = this._getNextSiblingElement(element, null);
-
-            if ((prevNode === null) && (nextNode === null)) {
-                var textContent = element.parentNode.textContent;
-
-                if (element.parentNode.textContent !== undefined) {
-                    var textContent = element.parentNode.textContent;
-                } else {
-                    // Keep IE8 happy.
-                    var textContent = element.parentNode.innerText;
-                }
-
-                if (HTMLCS.isStringEmpty(textContent) === true) {
-                    linkOnlyChild = true;
-                }
+        var errors = {
+            img: {
+                generalAlt: [],
+                missingAlt: [],
+                ignored: [],
+                nullAltWithTitle: [],
+                emptyAltInLink: []
+            },
+            inputImage: {
+                generalAlt: [],
+                missingAlt: []
+            },
+            area: {
+                generalAlt: [],
+                missingAlt: []
             }
-        }//end if
+        };
 
-        if (element.hasAttribute('alt') === false) {
-            missingAlt = true;
-        } else if (!element.getAttribute('alt') || HTMLCS.isStringEmpty(element.getAttribute('alt')) === true) {
-            nullAlt = true;
-        }
+        elements = top.querySelectorAll('img, area, input[type="image"]');
 
-        // Now determine which test(s) should fire.
-        switch (nodeName) {
-            case 'img':
-                if ((linkOnlyChild === true) && ((missingAlt === true) || (nullAlt === true))) {
-                    // Img tags cannot have an empty alt text if it is the
-                    // only content in a link (as the link would not have a text
-                    // alternative).
-                    HTMLCS.addMessage(HTMLCS.ERROR, element.parentNode, 'Img element is the only content of the link, but is missing alt text. The alt text should describe the purpose of the link.', 'H30.2');
-                } else if (missingAlt === true) {
-                    HTMLCS.addMessage(HTMLCS.ERROR, element, 'Img element missing an alt attribute. Use the alt attribute to specify a short text alternative.', 'H37');
-                } else if (nullAlt === true) {
-                    if ((element.hasAttribute('title') === true) && (HTMLCS.isStringEmpty(element.getAttribute('title')) === false)) {
-                        // Title attribute present and not empty. This is wrong when
-                        // an image is marked as ignored.
-                        HTMLCS.addMessage(HTMLCS.ERROR, element, 'Img element with empty alt text must have absent or empty title attribute.', 'H67.1');
+        for (var el = 0; el < elements.length; el++) {
+            var element = elements[el];
+
+            var nodeName      = element.nodeName.toLowerCase();
+            var linkOnlyChild = false;
+            var missingAlt    = false;
+            var nullAlt       = false;
+
+            if (element.parentNode.nodeName.toLowerCase() === 'a') {
+                var prevNode = this._getPreviousSiblingElement(element, null);
+                var nextNode = this._getNextSiblingElement(element, null);
+
+                if ((prevNode === null) && (nextNode === null)) {
+                    var textContent = element.parentNode.textContent;
+
+                    if (element.parentNode.textContent !== undefined) {
+                        var textContent = element.parentNode.textContent;
                     } else {
-                        HTMLCS.addMessage(HTMLCS.WARNING, element, 'Img element is marked so that it is ignored by Assistive Technology.', 'H67.2');
+                        // Keep IE8 happy.
+                        var textContent = element.parentNode.innerText;
                     }
-                } else {
-                    HTMLCS.addMessage(HTMLCS.NOTICE, element, 'Ensure that the img element\'s alt text serves the same purpose and presents the same information as the image.', 'G94.Image');
-                }
-            break;
 
-            case 'input':
-                // Image submit buttons.
-                if ((missingAlt === true) || (nullAlt === true)) {
-                    HTMLCS.addMessage(HTMLCS.ERROR, element, 'Image submit button missing an alt attribute. Specify a text alternative that describes the button\'s function, using the alt attribute.', 'H36');
-                } else {
-                    HTMLCS.addMessage(HTMLCS.NOTICE, element, 'Ensure that the image submit button\'s alt text identifies the purpose of the button.', 'G94.Button');
+                    if (HTMLCS.isStringEmpty(textContent) === true) {
+                        linkOnlyChild = true;
+                    }
                 }
-            break;
+            }//end if
 
-            case 'area':
-                // Area tags in a client-side image map.
-                if ((missingAlt === true) || (nullAlt === true)) {
-                    HTMLCS.addMessage(HTMLCS.ERROR, element, 'Area element in an image map missing an alt attribute. Each area element must have a text alternative that describes the function of the image map area.', 'H24');
-                } else {
-                    HTMLCS.addMessage(HTMLCS.NOTICE, element, 'Ensure that the area element\'s text alternative serves the same purpose as the part of image map image it references.', 'H24.2');
-                }
-            break;
+            if (element.hasAttribute('alt') === false) {
+                missingAlt = true;
+            } else if (!element.getAttribute('alt') || HTMLCS.isStringEmpty(element.getAttribute('alt')) === true) {
+                nullAlt = true;
+            }
 
-            default:
-                // No other tags defined.
-            break;
-        }//end switch
+            // Now determine which test(s) should fire.
+            switch (nodeName) {
+                case 'img':
+                    if ((linkOnlyChild === true) && ((missingAlt === true) || (nullAlt === true))) {
+                        // Img tags cannot have an empty alt text if it is the
+                        // only content in a link (as the link would not have a text
+                        // alternative).
+                        errors.img.emptyAltInLink.push(element.parentNode);
+                    } else if (missingAlt === true) {
+                        errors.img.missingAlt.push(element);
+                    } else if (nullAlt === true) {
+                        if ((element.hasAttribute('title') === true) && (HTMLCS.isStringEmpty(element.getAttribute('title')) === false)) {
+                            // Title attribute present and not empty. This is wrong when
+                            // an image is marked as ignored.
+                            errors.img.nullAltWithTitle.push(element);
+                        } else {
+                            errors.img.ignored.push(element);
+                        }
+                    } else {
+                        errors.img.generalAlt.push(element);
+                    }
+                break;
+
+                case 'input':
+                    // Image submit buttons.
+                    if ((missingAlt === true) || (nullAlt === true)) {
+                        errors.inputImage.missingAlt.push(element);
+                    } else {
+                        errors.inputImage.generalAlt.push(element);
+                    }
+                break;
+
+                case 'area':
+                    // Area tags in a client-side image map.
+                    if ((missingAlt === true) || (nullAlt === true)) {
+                        errors.area.missingAlt.push(element);
+                    } else {
+                        errors.inputImage.generalAlt.push(element);
+                    }
+                break;
+
+                default:
+                    // No other tags defined.
+                break;
+            }//end switch
+        }//end for
+
+        return errors;
     },
 
     /**
@@ -279,73 +335,103 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
     },
 
     /**
-     * Test the inclusion of a text alternative on OBJECT tags (technique H53).
+     * Driver function for the media alternative (object/applet) tests.
      *
-     * OBJECT tags can be nested inside themselves to provide lesser-functioning
-     * alternatives to the primary (outermost) tag, but a text alternative must be
-     * provided inside. Alt text from an image is sufficient.
+     * This takes the generic result given by the media alternative testing function,
+     * and converts them into WCAG 2.0-specific messages.
      *
      * @param {DOMNode} element The element to test.
-     *
-     * @returns void
      */
-    testObjectTextAlternative: function(element)
+    addMediaAlternativesResults: function(top)
     {
-        // Test firstly for whether we have an object alternative.
-        var childObject = element.querySelector('object');
+        var errors = this.testMediaTextAlternatives(top);
 
-        // If we have an object as our alternative, skip it. Pass the blame onto
-        // the child.
-        if (childObject === null) {
-            var textAlt = HTMLCS.util.getElementTextContent(element, true);
-            if (textAlt === '') {
-                HTMLCS.addMessage(HTMLCS.ERROR, element, 'Object elements must contain a text alternative after all other alternatives are exhausted.', 'H53');
-            } else {
-                HTMLCS.addMessage(HTMLCS.NOTICE, element, 'Check that short (and if appropriate, long) text alternatives are available for non-text content that serve the same purpose and present the same information.', 'G94,G92.Object');
-            }
-        }//end if
+        for (var i = 0; i < errors.object.missingBody.length; i++) {
+            HTMLCS.addMessage(HTMLCS.ERROR, errors.object.missingBody[i], 'Object elements must contain a text alternative after all other alternatives are exhausted.', 'H53');
+        }
+
+        for (var i = 0; i < errors.object.generalAlt.length; i++) {
+            HTMLCS.addMessage(HTMLCS.NOTICE, errors.object.generalAlt[i], 'Check that short (and if appropriate, long) text alternatives are available for non-text content that serve the same purpose and present the same information.', 'G94,G92.Object');
+        }
+
+        for (var i = 0; i < errors.applet.missingBody.length; i++) {
+            HTMLCS.addMessage(HTMLCS.ERROR, errors.applet.missingBody[i], 'Applet elements must contain a text alternative in the element\'s body, for browsers without support for the applet element.', 'H35.3');
+        }
+
+        for (var i = 0; i < errors.applet.missingAlt.length; i++) {
+            HTMLCS.addMessage(HTMLCS.ERROR, errors.applet.missingAlt[i], 'Applet elements must contain an alt attribute, to provide a text alternative to browsers supporting the element but are unable to load the applet.', 'H35.2');
+        }
+
+        for (var i = 0; i < errors.applet.generalAlt.length; i++) {
+            HTMLCS.addMessage(HTMLCS.NOTICE, errors.applet.generalAlt[i], 'Check that short (and if appropriate, long) text alternatives are available for non-text content that serve the same purpose and present the same information.', 'G94,G92.Applet');
+        }
     },
 
-    /**
-     * Test the inclusion of a text alternative on APPLET tags (technique H35).
-     *
-     * These might still be used in HTML 4.01 and XHTML 1.0 Transitional DTDs. Both
-     * alt text and body text alternative are required: Oracle's docs state that
-     * "alt" is for those that understand APPLET but not Java; the body text for
-     * those that don't understand APPLET. WCAG 2.0 suggests support for either alt
-     * method is inconsistent and therefore to use both.
-     *
-     * @param {DOMNode} element The element to test.
-     *
-     * @returns void
-     */
-    testAppletTextAlternative: function(element)
+    testMediaTextAlternatives: function(top)
     {
-        // Test firstly for whether we have an object alternative.
-        var childObject = element.querySelector('object');
-        var hasError    = false;
+        var errors = {
+            object: {
+                missingBody: [],
+                generalAlt: []
+            },
+            applet: {
+                missingBody: [],
+                missingAlt: [],
+                generalAlt: []
+            }
+        };
 
-        // If we have an object as our alternative, skip it. Pass the blame onto
-        // the child. (This is a special case: those that don't understand APPLET
-        // may understand OBJECT, but APPLET shouldn't be nested.)
-        if (childObject === null) {
-            var textAlt = HTMLCS.util.getElementTextContent(element, true);
-            if (HTMLCS.isStringEmpty(textAlt) === true) {
-                HTMLCS.addMessage(HTMLCS.ERROR, element, 'Applet elements must contain a text alternative in the element\'s body, for browsers without support for the applet element.', 'H35.3');
+        var elements = top.querySelectorAll('object');
+
+        for (var el = 0; el < elements.length; el++) {
+            var element  = elements[el];
+            var nodeName = element.nodeName.toLowerCase();
+
+            var childObject = element.querySelector('object');
+
+            // If we have an object as our alternative, skip it. Pass the blame onto
+            // the child.
+            if (childObject === null) {
+                var textAlt = HTMLCS.util.getElementTextContent(element, true);
+                if (textAlt === '') {
+                    errors.object.missingBody.push(element);
+                } else {
+                    errors.object.generalAlt.push(element);
+                }
+            }//end if
+        }//end if
+
+        var elements = top.querySelectorAll('applet');
+
+        for (var el = 0; el < elements.length; el++) {
+            // Test firstly for whether we have an object alternative.
+            var childObject = element.querySelector('object');
+            var hasError    = false;
+
+            // If we have an object as our alternative, skip it. Pass the blame onto
+            // the child. (This is a special case: those that don't understand APPLET
+            // may understand OBJECT, but APPLET shouldn't be nested.)
+            if (childObject === null) {
+                var textAlt = HTMLCS.util.getElementTextContent(element, true);
+                if (HTMLCS.isStringEmpty(textAlt) === true) {
+                    errors.applet.missingBody.push(element);
+                    hasError = true;
+                }
+            }//end if
+
+            var altAttr = element.getAttribute('alt') || '';
+            if (HTMLCS.isStringEmpty(altAttr) === true) {
+                errors.applet.missingAlt.push(element);
                 hasError = true;
+            }
+
+            if (hasError === false) {
+                // No error? Remind of obligations about equivalence of alternatives.
+                errors.applet.generalAlt.push(element);
             }
         }//end if
 
-        var altAttr = element.getAttribute('alt') || '';
-        if (HTMLCS.isStringEmpty(altAttr) === true) {
-            HTMLCS.addMessage(HTMLCS.ERROR, element, 'Applet elements must contain an alt attribute, to provide a text alternative to browsers supporting the element but are unable to load the applet.', 'H35.2');
-            hasError = true;
-        }
-
-        if (hasError === false) {
-            // No error? Remind of obligations about equivalence of alternatives.
-            HTMLCS.addMessage(HTMLCS.NOTICE, element, 'Check that short (and if appropriate, long) text alternatives are available for non-text content that serve the same purpose and present the same information.', 'G94,G92.Applet');
-        }
+        return errors;
     },
 
     /**
