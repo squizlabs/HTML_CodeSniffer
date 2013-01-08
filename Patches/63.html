@@ -4,7 +4,7 @@
 
 <head>
 
-<title>Bookmarklet Release Notes: Version 62 - HTML_CodeSniffer</title>
+<title>Bookmarklet Release Notes: Version 63 - HTML_CodeSniffer</title>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
@@ -64,9 +64,9 @@
 
         <div class="max-width">
 
-            <h2>Bookmarklet Release Notes: Version 62</h2>
+            <h2>Bookmarklet Release Notes: Version 63</h2>
 
-            <p>A list of featured updates to the HTML_CodeSniffer bookmarklet in release version 62, released on 8th January 2013. This list is focused for users of the
+            <p>A list of featured updates to the HTML_CodeSniffer bookmarklet in release version 63, released on 8th January 2013. This list is focused for users of the
             bookmarklet, and focuses on changes to tests and the auditor interface. A full list of updates can also be found in the project's technical
             <a href="https://github.com/squizlabs/HTML_CodeSniffer/blob/gh-pages/CHANGELOG.markdown">bookmarklet changelog</a>.</p>
 
@@ -84,50 +84,40 @@
 
         <div class="max-width">
 
-        <h3 id="auditor">Auditor Interface</h3>
+        <h3 id="standards">Section 508 Standard Now Available</h3>
 
-        <h4>New or Updated Features</h4>
-
-        <h5>Section 508 Standard</h5>
-
-        <p>This release provides initial support for the U.S. <a href="www.section508.gov/index.cfm?fuseAction=stdsdoc">Rehabilitation Act Section 508 legislation</a>.
-        This is the initial version of a law primarily concerned with equal access to software procured by the U.S. federal government, and contains
-        16 rules for web documents that are mostly based upon WCAG 1.0.</p>
+        <p>This release provides initial support for the U.S. <a href="www.section508.gov/index.cfm?fuseAction=stdsdoc">"Section 508" legislation</a>.
+        This is based on the current version of a section of the federal Rehabilitation Act, primarily concerned with equal access to software procured
+        by the U.S. federal government. It contains (among other things) sixteen rules for web documents that are mostly based upon WCAG 1.0.</p>
 
         <p>This required a number of under-the-hood changes to the auditor, mainly to remove the assumption of only being a WCAG 2.0 bookmarklet.
         Notably, standards now define what should be displayed in the auditor. This is so the Section 508 standard can point to the section being violated,
         where WCAG 2.0's structure does not fit.</p>
 
-        <p><em>Note:</em> If you are preparing a website for the proposed <em>refresh</em> of Section 508, please use the WCAG 2.0 standard, at
+        <p>You don't need to re-download the bookmarklet for the Section 508 standard to be available: select "Section508" from the Standards drop-down.</p>
+
+        <p><em>Note:</em> If you are preparing a website for the proposed <em>refresh</em> of Section 508, you should use the WCAG 2.0 standard, at
         Level <abbr title="Double-A">AA</abbr> or higher.</p>
 
-        <h4>Bug Fixes</h4>
+        <h3 id="auditor">Auditor Interface</h3>
+
+        <h4>Updates and bug fixes</h4>
 
         <ul>
-            <li>The auditor now works on pages defined as </li>
-            <li>Fixed an issue where the auditor popup would not become semi-transparent in Internet Explorer 8.0 when the pointer is underneath the popup.</li>
+            <li>The auditor now correctly works on XHTML pages served as XML (Content type "application/xhtml+xml"). </li>
         </ul>
 
         <h3 id="standards">WCAG 2.0 Standards Updates</h3>
 
-        <h4>Fieldset tests updated (Success Criterion 1.3.1)</h4>
-
-        <p>This version of HTML_CodeSniffer updates the sniff for technique <a href="http://www.w3.org/TR/2012/NOTE-WCAG20-TECHS-20120103/H71">H71: Providing a description for groups of form controls using fieldset and legend elements</a>,
-        bring it up to date with the January 2012 version of the technique. Compared with the <a href="http://www.w3.org/TR/2012/NOTE-WCAG20-TECHS-20101014/H71">October 2010 version of technique H71</a>, the following crucial change has been made:</p>
-
-        <blockquote><p>However, when a group of related radio buttons or checkboxes (even having values for a single named field) includes clear instructions
-        and distinct selections (i.e. where the individual label associated with each particular control provides a sufficient description), the use of the
-        fieldset and legend elements is not required. <a href="http://www.w3.org/TR/2012/NOTE-WCAG20-TECHS-20120103/H44">H44: Using label elements to associate text labels with form controls</a> is sufficient in this case.</p>
-        <p><cite>Techniques for WCAG 2.0 (3 January 2012 version): <a href="http://www.w3.org/TR/2012/NOTE-WCAG20-TECHS-20120103/H71">H71: Providing a description for groups of form controls using fieldset and legend elements</a></cite></p>
-        </blockquote>
-
-        <p>In line with this new interpretation, these tests have been rewritten and messages emitted reduced from an Error to a Warning.</p>
-
-        <h4>Other updates and bug fixes</h4>
+        <h4>Updates and bug fixes</h4>
 
         <ul>
-            <li>Buttons and hidden inputs weren't being correctly detected in the test for IDs on inputs (in Success Criterion 1.3.1), when the type attribute was not all lowercase (eg. type="Submit").</li>
-            <li>Certain sniffs that emit notices now fire on each found element, rather than one fired at the top of the document. This includes audio/video tag sniffs in Guidelines 1.2 and 1.4, as well as input fields in Success Criterion 3.2.1.</li>
+            <li>In the test for labels on inputs (in Success Criterion 1.3.1), HTML\_CodeSniffer would throw JavaScript errors when it encountered an input
+            element without a "type" attribute. It now correctly handles them as the default "text" type.</li>
+            <li>In Success Criterion 1.1.1, links containing an image with missing alt text would emit an Error incorrectly if there was text also included, that was not wrapped inside a tag of its own, like a span.
+            For example, <code>&lt;a href="/"&gt;&lt;img src="home.gif" /&gt; Home&lt;/a&gt;</code> would emit a false positive. This has been fixed so the error
+            will no longer occur.</li>
+            <li>In Success Criterion 1.1.1, applet elements with a missing body were being misdiagnosed as a Notice. They are now properly considered an Error.</li>
         </ul>
 
         </div> <!-- end max-width -->

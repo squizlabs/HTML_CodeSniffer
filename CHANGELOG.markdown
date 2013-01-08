@@ -9,7 +9,7 @@ WCAG 2.0 Success Criterion (or Criteria), and should be read in conjunction with
 W3C's documentation for the [Web Content Accessibility Guidelines (WCAG) 2.0](http://www.w3.org/TR/WCAG20).
 Changes in other standards will be referenced by their standard name.
 
-## Release 62 (8 Jan 2013)
+## Release 63 (8 Jan 2013)
 
 - **Auditor:** Significant updates to allow Section 508 standards to fit within the
   auditor interface. This includes removing WCAG 2.0-related assumptions about what
