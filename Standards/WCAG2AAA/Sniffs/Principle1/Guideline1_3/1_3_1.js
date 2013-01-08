@@ -169,7 +169,11 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
         var nodeName  = element.nodeName.toLowerCase();
         var inputType = nodeName;
         if (inputType === 'input') {
-            inputType = element.getAttribute('type');
+            if (element.hasAttribute('type') === true) {
+                inputType = element.getAttribute('type');
+            } else {
+                inputType = 'text';
+            }
         }
 
         var isNoLabelControl = false;
@@ -340,7 +344,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
      */
     testTableHeaders: function(table)
     {
-        var headersAttr = this._testTableHeadersAttrs(table);
+        var headersAttr = HTMLCS.util.testTableHeaders(table);
         var scopeAttr   = this._testTableScopeAttrs(table);
 
         // Invalid scope attribute - emit always if scope tested.
@@ -491,179 +495,6 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
                     }//end if
                 }//end if
             }//end for
-        }//end for
-
-        return retval;
-    },
-
-    /**
-     * Test for the correct headers attributes on table cell elements.
-     *
-     * Return value contains the following elements:
-     * - required (Boolean):   Whether header association at all is required.
-     * - used (Boolean):       Whether headers attribute has been used on at least
-     *                         one table data (td) cell.
-     * - allowScope (Boolean): Whether scope is allowed to satisfy the association
-     *                         requirement (ie. max one row/one column).
-     * - correct (Boolean):    Whether headers have been correctly used.
-     * - missingThId (Array):  Array of th elements without IDs.
-     * - missingTd (Array):    Array of elements without headers attribute.
-     * - wrongHeaders (Array): Array of elements where headers attr is incorrect.
-     *                         Each is a structure with following keys: element,
-     *                         expected [headers attr], actual [headers attr].
-     *
-     * @param {DOMNode} element Table element to test upon.
-     *
-     * @return {Object} The above return value structure.
-     */
-    _testTableHeadersAttrs: function(element)
-    {
-        var retval = {
-            required: true,
-            used: false,
-            correct: true,
-            allowScope: true,
-            missingThId: [],
-            missingTd: [],
-            wrongHeaders: []
-        }
-
-        var rows      = element.getElementsByTagName('tr');
-        var tdCells   = {};
-        var skipCells = [];
-
-        // Header IDs already used.
-        var headerIds = {
-            rows: [],
-            cols: []
-        };
-        var multiHeaders = {
-            rows: 0,
-            cols: 0
-        }
-        var missingIds = false;
-
-        for (var rownum = 0; rownum < rows.length; rownum++) {
-            var row    = rows[rownum];
-            var colnum = 0;
-
-            for (var item = 0; item < row.childNodes.length; item++) {
-                var cell = row.childNodes[item];
-                if (cell.nodeType === 1) {
-                    // Skip columns that are skipped due to rowspan.
-                    if (skipCells[rownum]) {
-                        while (skipCells[rownum][0] === colnum) {
-                            skipCells[rownum].shift();
-                            colnum++;
-                        }
-                    }
-
-                    var nodeName = cell.nodeName.toLowerCase();
-                    var rowspan  = Number(cell.getAttribute('rowspan')) || 1;
-                    var colspan  = Number(cell.getAttribute('colspan')) || 1;
-
-                    // If rowspanned, mark columns as skippable in the following
-                    // row(s).
-                    if (rowspan > 1) {
-                        for (var i = rownum + 1; i < rownum + rowspan; i++) {
-                            if (!skipCells[i]) {
-                                skipCells[i] = [];
-                            }
-
-                            for (var j = colnum; j < colnum + colspan; j++) {
-                                skipCells[i].push(j);
-                            }
-                        }
-                    }
-
-                    if (nodeName === 'th') {
-                        var id = (cell.getAttribute('id') || '');
-
-                        // Save the fact that we have a missing ID on the header.
-                        if (id === '') {
-                            retval.correct = false;
-                            retval.missingThId.push(cell);
-                        }
-
-                        if ((rowspan > 1) && (colspan > 1)) {
-                            // Multi-column AND multi-row header. Abandon all hope,
-                            // As it must span across more than one row+column
-                            retval.allowScope = false;
-                        } else if (retval.allowScope === true) {
-                            // If we haven't had a th in this column (row) yet,
-                            // record it. if we find another th in this column (row),
-                            // record that has multi-ths. If we already have a column
-                            // (row) with multi-ths, we cannot use scope.
-                            if (headerIds.cols[colnum] === undefined) {
-                                headerIds.cols[colnum] = 0;
-                            }
-
-                            if (headerIds.rows[rownum] === undefined) {
-                                headerIds.rows[rownum] = 0;
-                            }
-
-                            headerIds.rows[rownum] += colspan;
-                            headerIds.cols[colnum] += rowspan;
-                        }//end if
-                    } else if ((nodeName === 'td')) {
-                        if ((cell.hasAttribute('headers') === true) && (/^\s*$/.test(cell.getAttribute('headers')) === false)) {
-                            retval.used = true;
-                        }
-                    }//end if
-
-                    colnum += colspan;
-                }//end if
-            }//end for
-        }//end for
-
-        for (var i = 0; i < headerIds.rows.length; i++) {
-            if (headerIds.rows[i] > 1) {
-                multiHeaders.rows++;
-            }
-        }
-
-        for (var i = 0; i < headerIds.cols.length; i++) {
-            if (headerIds.cols[i] > 1) {
-                multiHeaders.cols++;
-            }
-        }
-
-        if ((multiHeaders.rows > 1) || (multiHeaders.cols > 1)) {
-            retval.allowScope = false;
-        } else if ((retval.allowScope === true) && ((multiHeaders.rows === 0) || (multiHeaders.cols === 0))) {
-            // If only one column OR one row header.
-            retval.required = false;
-        }//end if
-
-        // Calculate expected heading IDs. If they are not there or incorrect, flag
-        // them.
-        var cells = HTMLCS.util.getCellHeaders(element);
-        for (var i = 0; i < cells.length; i++) {
-            var cell     = cells[i].cell;
-            var expected = cells[i].headers;
-
-            if (cell.hasAttribute('headers') === false) {
-                retval.correct = false;
-                retval.missingTd.push(cell);
-            } else {
-                var actual = (cell.getAttribute('headers') || '').split(/\s+/);
-                if (actual.length === 0) {
-                    retval.correct = false;
-                    retval.missingTd.push(cell);
-                } else {
-                    actual = ' ' + actual.sort().join(' ') + ' ';
-                    actual = actual.replace(/\s+/g, ' ').replace(/(\w+\s)\1+/g, '$1').replace(/^\s*(.*?)\s*$/g, '$1');
-                    if (expected !== actual) {
-                        retval.correct = false;
-                        var val = {
-                            element: cell,
-                            expected: expected,
-                            actual: (cell.getAttribute('headers') || '')
-                        }
-                        retval.wrongHeaders.push(val);
-                    }
-                }//end if
-            }//end if
         }//end for
 
         return retval;
