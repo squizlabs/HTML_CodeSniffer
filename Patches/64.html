@@ -112,7 +112,7 @@
         <h4>Updates and bug fixes</h4>
 
         <ul>
-            <li>In the test for labels on inputs (in Success Criterion 1.3.1), HTML\_CodeSniffer would throw JavaScript errors when it encountered an input
+            <li>In the test for labels on inputs (in Success Criterion 1.3.1), HTML_CodeSniffer would throw JavaScript errors when it encountered an input
             element without a "type" attribute. It now correctly handles them as the default "text" type.</li>
             <li>In Success Criterion 1.1.1, links containing an image with missing alt text would emit an Error incorrectly if there was text also included, that was not wrapped inside a tag of its own, like a span.
             For example, <code>&lt;a href="/"&gt;&lt;img src="home.gif" /&gt; Home&lt;/a&gt;</code> would emit a false positive. This has been fixed so the error
