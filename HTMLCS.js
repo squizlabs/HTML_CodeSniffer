@@ -1082,13 +1082,14 @@ var HTMLCS = function()
          */
         this.getElementTextContent = function(element, includeAlt)
         {
+            var i;
             if (includeAlt === undefined) {
                 includeAlt = true;
             }
 
             element = element.cloneNode(true);
             var nodes  = [];
-            for (var i = 0; i < element.childNodes.length; i++) {
+            for (i = 0; i < element.childNodes.length; i++) {
                 nodes.push(element.childNodes[i]);
             }
 
@@ -1104,7 +1105,7 @@ var HTMLCS = function()
                             text.push(node.getAttribute('alt'));
                         }
                     } else {
-                        for (var i = 0; i < node.childNodes.length; i++) {
+                        for (i = 0; i < node.childNodes.length; i++) {
                             nodes.push(node.childNodes[i]);
                         }
                     }
@@ -1166,6 +1167,7 @@ var HTMLCS = function()
             };
             var missingIds = false;
             var cell;
+            var i;
 
             for (var rownum = 0; rownum < rows.length; rownum++) {
                 var row    = rows[rownum];
@@ -1189,7 +1191,7 @@ var HTMLCS = function()
                         // If rowspanned, mark columns as skippable in the following
                         // row(s).
                         if (rowspan > 1) {
-                            for (var i = rownum + 1; i < rownum + rowspan; i++) {
+                            for (i = rownum + 1; i < rownum + rowspan; i++) {
                                 if (!skipCells[i]) {
                                     skipCells[i] = [];
                                 }
@@ -1240,13 +1242,13 @@ var HTMLCS = function()
                 }//end for
             }//end for
 
-            for (var i = 0; i < headerIds.rows.length; i++) {
+            for (i = 0; i < headerIds.rows.length; i++) {
                 if (headerIds.rows[i] > 1) {
                     multiHeaders.rows++;
                 }
             }
 
-            for (var i = 0; i < headerIds.cols.length; i++) {
+            for (i = 0; i < headerIds.cols.length; i++) {
                 if (headerIds.cols[i] > 1) {
                     multiHeaders.cols++;
                 }
@@ -1262,7 +1264,7 @@ var HTMLCS = function()
             // Calculate expected heading IDs. If they are not there or incorrect, flag
             // them.
             var cells = HTMLCS.util.getCellHeaders(element);
-            for (var i = 0; i < cells.length; i++) {
+            for (i = 0; i < cells.length; i++) {
                 cell     = cells[i].cell;
                 var expected = cells[i].headers;
 
@@ -1345,7 +1347,7 @@ var HTMLCS = function()
                     var colnum = 0;
 
                     for (var item = 0; item < row.childNodes.length; item++) {
-                        var thisCell = row.childNodes[item];
+                        var i, j, thisCell = row.childNodes[item];
                         if (thisCell.nodeType === 1) {
                             // Skip columns that are skipped due to rowspan.
                             if (skipCells[rownum]) {
@@ -1362,12 +1364,12 @@ var HTMLCS = function()
                             // If rowspanned, mark columns as skippable in the following
                             // row(s).
                             if (rowspan > 1) {
-                                for (var i = rownum + 1; i < rownum + rowspan; i++) {
+                                for (i = rownum + 1; i < rownum + rowspan; i++) {
                                     if (!skipCells[i]) {
                                         skipCells[i] = [];
                                     }
 
-                                    for (var j = colnum; j < colnum + colspan; j++) {
+                                    for (j = colnum; j < colnum + colspan; j++) {
                                         skipCells[i].push(j);
                                     }
                                 }
@@ -1378,7 +1380,7 @@ var HTMLCS = function()
                                     // Build up the cell headers.
                                     var id = (thisCell.getAttribute('id') || '');
 
-                                    for (var i = rownum; i < rownum + rowspan; i++) {
+                                    for (i = rownum; i < rownum + rowspan; i++) {
                                         headingIds.rows[i] = headingIds.rows[i] || {
                                             first: colnum,
                                             ids: []
@@ -1386,7 +1388,7 @@ var HTMLCS = function()
                                         headingIds.rows[i].ids.push(id);
                                     }
 
-                                    for (var i = colnum; i < colnum + colspan; i++) {
+                                    for (i = colnum; i < colnum + colspan; i++) {
                                         headingIds.cols[i] = headingIds.cols[i] || {
                                             first: rownum,
                                             ids: []
@@ -1396,8 +1398,8 @@ var HTMLCS = function()
                                 } else if (nodeName === 'td') {
                                     // Dump out the headers and cells.
                                     var exp = [];
-                                    for (var i = rownum; i < rownum + rowspan; i++) {
-                                        for (var j = colnum; j < colnum + colspan; j++) {
+                                    for (i = rownum; i < rownum + rowspan; i++) {
+                                        for (j = colnum; j < colnum + colspan; j++) {
                                             if ((headingIds.rows[i]) && (j >= headingIds.rows[i].first)) {
                                                 exp = exp.concat(headingIds.rows[i].ids);
                                             }
