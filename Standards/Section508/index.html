@@ -1,0 +1,938 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+
+<head>
+
+<title>U.S. &quot;Section 508&quot; Guidelines: Summary - HTML_CodeSniffer</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<link href="../../css/inside.css" rel="stylesheet" type="text/css">
+<link href="../../css/inside-print.css" rel="stylesheet" type="text/css" media="print">
+<link rel="Shortcut Icon" href="../../images/favicon.png">
+<script type="text/javascript" src="../../inside.js"></script>
+
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-359178-16']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+</head>
+
+<body>
+
+    <div id="back-to-top" class="off">
+        <span><a href="#">top</a></span>
+    </div>
+
+    <div id="header">
+
+        <div class="max-width">
+
+            <h1><a href="http://squizlabs.github.com/HTML_CodeSniffer"><span class="screen-hide">HTML_CodeSniffer</span></a></h1>
+
+            <map name="External Links">
+
+            <ul id="sprites">
+                <li><a href="http://squiz.com.au" class="header-sprite squiz-logo"><span class="screen-hide">Squiz</span></a></li>
+                <li><a href="https://github.com/squizlabs/HTML_CodeSniffer" class="header-sprite github-logo"><span class="screen-hide">HTML_CodeSniffer on GitHub</span></a></li>
+                <li><a href="http://twitter.com/htmlcs" class="header-sprite twitter-logo"><span class="screen-hide">Follow us on Twitter</span></a></li>
+            </ul>
+
+            </map>
+
+        </div>
+
+    </div>
+
+    <div id="introduction" style="min-height: 0px">
+
+        <ul id="nav">
+            <li><a href="../../index.html"><img src="../../images/home.png" alt="HTML_CodeSniffer Home"></a></li>
+            <li><a href="../WCAG2">WCAG 2.0 Summary</a></li>
+            <li><a href="../Section508">Section 508 Summary</a></li>
+        </ul>
+
+        <div class="max-width">
+
+        <h2><abbr title="United States">U.S.</abbr> &quot;Section 508&quot; Guidelines: Summary</h2>
+
+        <p>HTML_CodeSniffer provides a set of sniffs for testing pages against the <a href="www.section508.gov/index.cfm?fuseAction=stdsdoc">U.S. &quot;Section 508&quot; accessibility guidelines</a>.
+        Section 508 is a reference to the relevant section of the U.S. federal <em>Rehabilitation Act of 1973</em> (as amended), and requires that electronic and information
+        technology procured by federal government agencies (with some exceptions) be accessible at "comparable" levels to government employees
+        and members of the public with a disability.</p>
+
+        <p>Section 508 is composed of several paragraphs which describe requirements as they apply to computer hardware and software,
+        electronic content, telecommunications products, and so on. The applicable standard for web pages is paragraph 1194.22,
+        &quot;Web-based intranet and internet information and applications,&quot; and outlines 16 rules that Web content must fulfil. Some
+        of the rules are listed as having corresponding checkpoints in
+        <a href="http://www.w3.org/TR/WCAG10/"><abbr title="Web Content Accessibility Guidelines">WCAG</abbr> 1.0</a>. Others have no equivalent
+        to WCAG 1.0, but some success criteria in WCAG 2.0 cover them.</p>
+
+        <p>Web-based applications may also have to comply with paragraph 1194.21, &quot;Software applications and operating systems,&quot;
+        but this is currently outside of the scope of HTML_CodeSniffer except where they overlap with paragraph 1194.22.</p>
+
+        <p>A refresh of the Section 508 guidelines is currently in progress, and the
+        <a href="http://www.access-board.gov/sec508/refresh/draft-rule.htm">latest (2011) draft rule</a> proposes a new target for electronic media
+        content to meet, based on Level <abbr title="Double-A">AA</abbr> conformance with <a href="http://www.w3.org/TR/WCAG20/"><abbr title="Web Content Accessibility Guidelines">WCAG</abbr>
+        2.0</a>. It would be prudent to also check and correct errors associated with the <a href="./WCAG2">WCAG 2.0 AA</a> standard for
+        this reason, so your site conforms with any future updates to Section 508.</p>
+
+        </div>
+
+        <div class="zigzag">
+
+        </div>
+
+    </div> <!-- end introduction -->
+
+    <div id="test-area">
+
+        <div class="max-width">
+
+            <h3>Section 508 Rules</h3>
+
+            <p>A summary of the sixteen Section 508 rules, a brief discussion with pointers to equivalents in <abbr title="Web Content Accessibility Guidelines">WCAG</abbr> 1.0
+            and 2.0, and a list of messages emitted by HTML_CodeSniffer for that rule. Although the current Section 508 was aligned with parts of WCAG 1.0, many messages
+            emitted by HTML\_CodeSniffer will be aligned with the wording used in its WCAG 2.0 standard set.</p>
+
+            <p>Anything that is not marked as an <strong>Error</strong> should be manually tested:</p>
+            <ul>
+            <li><strong>Warnings</strong> are items that HTML_CodeSniffer are able to detect as a potential problem,
+            but require manual inspection to determine whether it is a failure.</li>
+            <li><strong>Notices</strong> are items that HTML_CodeSniffer cannot automatically detect,
+            but should be manually inspected to ensure compliance with the standard.</li>
+            </ul>
+
+            <h4 id="prA">(a) A text equivalent for every non-text element shall be provided (e.g., via "alt", "longdesc", or in element content).</h4>
+
+<p>Equivalent in wording to <a href="http://www.w3.org/TR/WCAG10">WCAG 1.0</a> checkpoint 1.1.</p>
+
+<p><a href="http://www.w3.org/TR/WCAG20">WCAG 2.0</a> equivalents are Success Criterion 1.1.1
+(Non-text Content), and also portions of Guideline 1.2 relating to audio-only or
+video-only content (requiring a text transcript or audio description respectively).
+These are not considered "multimedia" according to the Section 508 (or WCAG 1.0) standard.</p>
+<table>
+<colgroup>
+<col width="58%">
+<col width="42%">
+</colgroup>
+<tbody>
+<tr>
+<th id="name_">Message Name</th>
+<th id="applies_">Applies To</th>
+</tr>
+
+<tr class="">
+<td id="_name" headers="name_ sc notice">
+<p><strong>Notice:</strong> For multimedia containing audio only, ensure an alternative is available, such as a full text transcript.</p>
+<div class="fullcode">Section508.A.Audio</div></td>
+<td id="_applies" headers="applies_ sc">
+<p>Elements that may contain audio only.</p>
+</td>
+</tr>
+
+<tr class="">
+<td id="_name" headers="name_ sc error">
+<p><strong>Error:</strong> Img element is the only content of the link, but is missing alt text. The alt text should describe the purpose of the link.</p>
+<div class="fullcode">Section508.A.Img.EmptyAltInLink</div></td>
+<td id="_applies" headers="applies_ sc">
+<p>Img elements that are the only text content of their link (white space does not count), but do not contain alt text.</p>
+</td>
+</tr>
+
+<tr class="">
+<td id="_name" headers="name_ sc error">
+<p><strong>Error:</strong> Img element with empty alt text must have absent or empty title attribute.</p>
+<div class="fullcode">Section508.A.Img.NullAltWithTitle</div></td>
+<td id="_applies" headers="applies_ sc">
+<p>Img elements that contain empty alt text (suggesting they be ignored), but nonetheless have a title attribute.</p>
+</td>
+</tr>
+
+<tr class="">
+<td id="_name" headers="name_ sc warning">
+<p><strong>Warning:</strong> Img element is marked so that it is ignored by Assistive Technology.</p>
+<div class="fullcode">Section508.A.Img.Ignored</div></td>
+<td id="_applies" headers="applies_ sc">
+<p>Img elements that contain empty alt text and empty or omitted title text, suggesting they are purely decorative and therefore should be ignored.</p>
+</td>
+</tr>
+
+<tr class="">
+<td id="_name" headers="name_ sc error">
+<p><strong>Error:</strong> Img element missing an alt attribute. Use the alt attribute to specify a short text alternative.</p>
+<div class="fullcode">Section508.A.Img.MissingAlt</div></td>
+<td id="_applies" headers="applies_ sc">
+<p>Img elements that do not contain an alt attribute at all. The behaviour of an omitted alt attribute is undefined - to ignore an img element, provide an empty alt attribute.</p>
+</td>
+</tr>
+
+<tr class="">
+<td id="_name" headers="name_ sc notice">
+<p><strong>Notice:</strong> Ensure that the img element's alt text serves the same purpose and presents the same information as the image.</p>
+<div class="fullcode">Section508.A.Img.GeneralAlt</div></td>
+<td id="_applies" headers="applies_ sc">
+<p>Img elements that contain a validly filled alt attribute.</p>
+</td>
+</tr>
+
+<tr class="">
+<td id="_name" headers="name_ sc error">
+<p><strong>Error:</strong> Image submit button missing an alt attribute. Specify a text alternative that describes the button's function, using the alt attribute.</p>
+<div class="fullcode">Section508.A.InputImage.MissingAlt</div></td>
+<td id="_applies" headers="applies_ sc">
+<p>Image submit buttons that do not contain an alt attribute, or has one that is empty. These buttons cannot be ignored, as they perform a function.</p>
+</td>
+</tr>
+
+<tr class="">
+<td id="_name" headers="name_ sc notice">
+<p><strong>Notice:</strong> Ensure that the image submit button's alt text identifies the purpose of the button.</p>
+<div class="fullcode">Section508.A.InputImage.GeneralAlt</div></td>
+<td id="_applies" headers="applies_ sc">
+<p>Image submit button with validly filled alt text. As an image submit button is functional, it should contain alt text that describes the function of the button.</p>
+</td>
+</tr>
+
+<tr class="">
+<td id="_name" headers="name_ sc error">
+<p><strong>Error:</strong> Area element in an image map missing an alt attribute. Each area element must have a text alternative that describes the function of the image map area.</p>
+<div class="fullcode">Section508.A.Area.MissingAlt</div></td>
+<td id="_applies" headers="applies_ sc">
+<p>Area elements that do not have an alt attribute.</p>
+</td>
+</tr>
+
+<tr class="">
+<td id="_name" headers="name_ sc notice">
+<p><strong>Notice:</strong> Ensure that the area element's text alternative serves the same purpose as the part of image map image it references.</p>
+<div class="fullcode">Section508.A.Area.GeneralAlt</div></td>
+<td id="_applies" headers="applies_ sc">
+<p>Area elements that pass the requirement for an alt attribute.</p>
+</td>
+</tr>
+
+<tr class="">
+<td id="_name" headers="name_ sc error">
+<p><strong>Error:</strong> Object elements must contain a text alternative after all other alternatives are exhausted.</p>
+<div class="fullcode">Section508.A.Object.MissingBody</div></td>
+<td id="_applies" headers="applies_ sc">
+<p>Object elements that do not contain body text, or another object element.</p>
+</td>
+</tr>
+
+<tr class="">
+<td id="_name" headers="name_ sc notice">
+<p><strong>Notice:</strong> Check that short (and if appropriate, long) text alternatives are available for non-text content that serve the same purpose and present the same information.</p>
+<div class="fullcode">Section508.A.Object.GeneralAlt</div></td>
+<td id="_applies" headers="applies_ sc">
+<p>Object elements that contain body text.</p>
+</td>
+</tr>
+
+<tr class="">
+<td id="_name" headers="name_ sc error">
+<p><strong>Error:</strong> Applet elements must contain a text alternative in the element's body, for browsers without support for the applet element.</p>
+<div class="fullcode">Section508.A.Applet.MissingBody</div></td>
+<td id="_applies" headers="applies_ sc">
+<p>Applet elements that do not contain body text.</p>
+</td>
+</tr>
+
+<tr class="">
+<td id="_name" headers="name_ sc error">
+<p><strong>Error:</strong> Applet elements must contain an alt attribute, to provide a text alternative to browsers supporting the element but are unable to load the applet.</p>
+<div class="fullcode">Section508.A.Applet.MissingAlt</div></td>
+<td id="_applies" headers="applies_ sc">
+<p>Applet elements that do not contain an alt attribute.</p>
+</td>
+</tr>
+
+<tr class="">
+<td id="_name" headers="name_ sc notice">
+<p><strong>Notice:</strong> Check that short (and if appropriate, long) text alternatives are available for non-text content that serve the same purpose and present the same information.</p>
+<div class="fullcode">Section508.A.Applet.GeneralAlt</div></td>
+<td id="_applies" headers="applies_ sc">
+<p>Applet elements that contain an alt attribute and body text.</p>
+</td>
+</tr>
+
+</tbody></table><h4 id="prB">(b) Equivalent alternatives for any multimedia presentation shall be synchronized with the presentation.</h4>
+
+<p>Equivalent to <a href="http://www.w3.org/TR/WCAG10">WCAG 1.0</a> checkpoint 1.4, but that
+provides slightly more description, suggesting "captions or [audio description]" as
+equivalent alternatives for the audio or video portions, respectively.</p>
+
+<p>The portions of <a href="http://www.w3.org/TR/WCAG20">WCAG 2.0</a> relevant to this rule are
+the sections of Guideline 1.2 that apply to "synchronised media". Audio-only or
+video-only media do require a text alternative as per rule (a), but are not
+considered "multimedia" in the context of Section 508.</p>
+
+<p>Providing an audio description to a video-only media would likely make it
+"multimedia" and subject to the sync requirement, which makes sense. It is also required
+for certain types of videos as specified in Paragraph 1194.24 (on Video and Multimedia
+Products) of Section 508.</p>
+
+<p>Otherwise, a text description can be provided where appropriate, such as for slides
+in a silent presentation. This is contrary to WCAG 1.0 (Checkpoint 1.3), although for
+WCAG 2.0 this is permitted (Success Criterion 1.2.1).</p>
+<table>
+<colgroup>
+<col width="58%">
+<col width="42%">
+</colgroup>
+<tbody>
+<tr>
+<th id="name_">Message Name</th>
+<th id="applies_">Applies To</th>
+</tr>
+
+<tr class="">
+<td id="_name" headers="name_ sc notice">
+<p><strong>Notice:</strong> For multimedia containing video, ensure a synchronised audio description or text alternative for the video portion is provided.</p>
+<div class="fullcode">Section508.B.Video</div></td>
+<td id="_applies" headers="applies_ sc">
+<p>Elements that may contain video.</p>
+</td>
+</tr>
+
+<tr class="">
+<td id="_name" headers="name_ sc notice">
+<p><strong>Notice:</strong> For multimedia containing synchronised audio and video, ensure synchronised captions are provided for the audio portion.</p>
+<div class="fullcode">Section508.B.Captions</div></td>
+<td id="_applies" headers="applies_ sc">
+<p>Elements that may contain synchronised media.</p>
+</td>
+</tr>
+
+</tbody></table><h4 id="prC">(c) Web pages shall be designed so that all information conveyed with color is also available without color, for example from context or markup.</h4>
+
+<p>Equivalent in wording to <a href="http://www.w3.org/TR/WCAG10">WCAG 1.0</a> checkpoint 2.1, and
+in spirit to <a href="http://www.w3.org/TR/WCAG20">WCAG 2.0</a> Success Criterion 1.4.1 (Use of
+Colour).</p>
+<table>
+<colgroup>
+<col width="58%">
+<col width="42%">
+</colgroup>
+<tbody>
+<tr>
+<th id="name_">Message Name</th>
+<th id="applies_">Applies To</th>
+</tr>
+
+<tr class="">
+<td id="_name" headers="name_ sc notice">
+<p><strong>Notice:</strong> Ensure that any information conveyed using colour alone is also available without colour, such as through context or markup.</p>
+<div class="fullcode">Section508.C.Colour</div></td>
+<td id="_applies" headers="applies_ sc">
+<p>Root element being tested.</p>
+</td>
+</tr>
+
+</tbody></table><h4 id="prD">(d) Documents shall be organized so they are readable without requiring an associated style sheet.</h4>
+
+<p>Equivalent in wording to <a href="http://www.w3.org/TR/WCAG10">WCAG 1.0</a> checkpoint 6.1. The primary
+intention appears to be to accommodate users that require a default stylesheet to be turned
+off, to read the raw document or to replace it with their own stylesheet.</p>
+
+<p>The <a href="http://www.w3.org/TR/WCAG20">WCAG 2.0</a> recommendation is not as specific in terms of
+requiring stylesheets be optional to read the document. However, Guideline 1.3 is similar
+in spirit, advising web pages should be "adaptable" to alternative views "without losing
+information or structure". This includes:</p>
+
+<ul>
+<li>semantic markup such as the use of headings, and elements such as "strong" instead of "b";</li>
+<li>providing a meaningful linearised sequence;</li>
+<li>not relying on descriptions of actionable elements of the page using sensory characteristics
+(including colour - see Success Criterion 1.4.1, also see rule (c) above).</li>
+</ul>
+
+<p>The first two should improve the suitability of a page to be read without its style sheet
+(or with an alternative user-provided style sheet). The latter point is important not just
+for users with disabilities that reduce their ability to sense size, shape or colour, but
+also minimises confusion where such sensory characteristics are removed or replaced. For
+instance, "Press the red button to the right of screen" may be confusing when the button
+is either actually below it because CSS positioning information has been removed, or if
+the button is actually another colour through use of, say, a high-contrast colour scheme.</p>
+<table>
+<colgroup>
+<col width="58%">
+<col width="42%">
+</colgroup>
+<tbody>
+<tr>
+<th id="name_">Message Name</th>
+<th id="applies_">Applies To</th>
+</tr>
+
+<tr class="">
+<td id="_name" headers="name_ sc notice">
+<p><strong>Notice:</strong> Ensure that content is ordered in a meaningful sequence when linearised, such as when style sheets are disabled.</p>
+<div class="fullcode">Section508.D.Linearised</div></td>
+<td id="_applies" headers="applies_ sc">
+<p>Root element being tested.</p>
+</td>
+</tr>
+
+<tr class="">
+<td id="_name" headers="name_ sc notice">
+<p><strong>Notice:</strong> If content is hidden and made visible using scripting (such as "click to expand" sections), ensure this content is readable when scripts and style sheets are disabled.</p>
+<div class="fullcode">Section508.D.HiddenText</div></td>
+<td id="_applies" headers="applies_ sc">
+<p>Root element being tested.</p>
+</td>
+</tr>
+
+<tr class="">
+<td id="_name" headers="name_ sc warning">
+<p><strong>Warning:</strong> Semantic markup should be used to mark emphasised or special text so that it can be programmatically determined.</p>
+<div class="fullcode">Section508.D.[msgCode]</div></td>
+<td id="_applies" headers="applies_ sc">
+<p>Elements that may be considered presentational, including tags that use the align attribute.</p>
+</td>
+</tr>
+
+<tr class="">
+<td id="_name" headers="name_ sc error">
+<p><strong>Error:</strong> The heading structure is not logically nested. This [Node name, eg. h2] element appears to be the primary document heading, so should be an h1 element.</p>
+<div class="fullcode">Section508.D.HeadingOrder</div></td>
+<td id="_applies" headers="applies_ sc">
+<p>Any subordinate heading element (h2 to h6) that is the first heading element in the document order.</p>
+</td>
+</tr>
+
+<tr class="">
+<td id="_name" headers="name_ sc error">
+<p><strong>Error:</strong> The heading structure is not logically nested. This [Node name, eg. h4] element should be an [Expected heading node name, eg. h2] to be properly nested.</p>
+<div class="fullcode">Section508.D.HeadingOrder</div></td>
+<td id="_applies" headers="applies_ sc">
+<p>Any subordinate heading element (h2 to h6) that is more than one level below the previous heading. For instance, a h4 following a h1.</p>
+</td>
+</tr>
+
+</tbody></table><h4 id="prE">(e) Redundant text links shall be provided for each active region of a server-side image map.</h4>
+
+<p>Equivalent in wording to <a href="http://www.w3.org/TR/WCAG10">WCAG 1.0</a> checkpoint 1.2.
+It can be argued that, if server-side image maps are not necessary to fulfil rule
+(f), then rule (e) becomes ineffective.</p>
+
+<p>No direct reference to image maps in WCAG 2.0. However, if absolutely necessary, server-side image maps on their
+own would not fulfil Success Criterion 2.1.1 (requiring functionality to be available from the keyboard),
+as no hints to possible links are available from an image map processed on the server side
+(as the client only provides coordinates). Therefore, implementing this rule would go toward
+satisfying this Success Criterion.</p>
+<h4 id="prF">(f) Client-side image maps shall be provided instead of server-side image maps except where the regions cannot be defined with an available geometric shape.</h4>
+
+<p>Equivalent in wording to <a href="http://www.w3.org/TR/WCAG10">WCAG 1.0</a> checkpoint 9.1. It
+can be argued that with the "poly" image map area type, all possible geometric shapes can
+be drawn.</p>
+<h4 id="prG">(g) Row and column headers shall be identified for data tables.</h4>
+
+<p>Equivalent in wording to <a href="http://www.w3.org/TR/WCAG10">WCAG 1.0</a> checkpoint 5.1.</p>
+<table>
+<colgroup>
+<col width="58%">
+<col width="42%">
+</colgroup>
+<tbody>
+<tr>
+<th id="name_">Message Name</th>
+<th id="applies_">Applies To</th>
+</tr>
+
+<tr class="">
+<td id="_name" headers="name_ sc notice">
+<p><strong>Notice:</strong> This table has no headers. If this is a data table, ensure row and column headers are identified using th elements.</p>
+<div class="fullcode">Section508.G.TableHeaders</div></td>
+<td id="_applies" headers="applies_ sc">
+<p>Table that does not contain th elements, and thus is identified as a layout table.</p>
+</td>
+</tr>
+
+</tbody></table><h4 id="prH">(h) Markup shall be used to associate data cells and header cells for data tables that have two or more logical levels of row or column headers.</h4>
+
+<p>Equivalent in wording to <a href="http://www.w3.org/TR/WCAG10">WCAG 1.0</a> checkpoint 5.2.</p>
+
+<p>In <a href="http://www.w3.org/TR/WCAG20">WCAG 2.0</a>, this would be required under Success Criterion
+1.3.1 (Info and Relationships), notably <a href="http://www.w3.org/TR/WCAG20-TECHS/H43">technique H43</a>.</p>
+<table>
+<colgroup>
+<col width="58%">
+<col width="42%">
+</colgroup>
+<tbody>
+<tr>
+<th id="name_">Message Name</th>
+<th id="applies_">Applies To</th>
+</tr>
+
+<tr class="">
+<td id="_name" headers="name_ sc error">
+<p><strong>Error:</strong> Incorrect headers attribute on this td element. Expected "[Expected list of IDs]" but found "[Actual list of IDs]".</p>
+<div class="fullcode">Section508.H.IncorrectHeadersAttr</div></td>
+<td id="_applies" headers="applies_ sc">
+<p>A td element that contains a headers attribute that does not match the expected list of IDs that HTML_CodeSniffer calculates it should have based on its applicable th elements. The list can be matched in any order.</p>
+</td>
+</tr>
+
+<tr class="">
+<td id="_name" headers="name_ sc error">
+<p><strong>Error:</strong> The relationship between td elements and their associated th elements is not defined. As this table has multiple levels of th elements, you must use the headers attribute on td elements.</p>
+<div class="fullcode">Section508.H.MissingHeadersAttrs</div></td>
+<td id="_applies" headers="applies_ sc">
+<p>Table that requires headers attributes to associate multiple-level headers, but no attempt has been made to associate table headers with data cells.</p>
+</td>
+</tr>
+
+<tr class="">
+<td id="_name" headers="name_ sc error">
+<p><strong>Error:</strong> Not all th elements in this table contain an id attribute. These cells should contain ids so that they may be referenced by td elements headers attributes.'</p>
+<div class="fullcode">Section508.H.MissingHeaderIds</div></td>
+<td id="_applies" headers="applies_ sc">
+<p>Table that requires headers attributes to associate multiple-level headers, but where not all th elements (table header cells) contain an id attribute with which to associate them.</p>
+</td>
+</tr>
+
+<tr class="">
+<td id="_name" headers="name_ sc error">
+<p><strong>Error:</strong> Not all td elements in this table contain a headers attribute. Each headers attribute should list the ids of all th elements associated with that cell.</p>
+<div class="fullcode">Section508.H.IncompleteHeadersAttrs</div></td>
+<td id="_applies" headers="applies_ sc">
+<p>Table that requires headers attributes to associate multiple-level headers, but where not all td elements (table data cells) contain a headers attribute.</p>
+</td>
+</tr>
+
+</tbody></table><h4 id="prI">(i) Frames shall be titled with text that facilitates frame identification and navigation.</h4>
+
+<p>Equivalent in wording to <a href="http://www.w3.org/TR/WCAG10">WCAG 1.0</a> checkpoint 12.1.</p>
+
+<p>In <a href="http://www.w3.org/TR/WCAG20">WCAG 2.0</a>, this is still available as a sufficient
+technique (<a href="http://www.w3.org/TR/2012/NOTE-WCAG20-TECHS-20120103/H64.html">H64</a>), to
+satisfy Success Criterion 2.4.1 (Bypass Blocks).</p>
+<table>
+<colgroup>
+<col width="58%">
+<col width="42%">
+</colgroup>
+<tbody>
+<tr>
+<th id="name_">Message Name</th>
+<th id="applies_">Applies To</th>
+</tr>
+
+<tr class="">
+<td id="_name" headers="name_ sc error">
+<p><strong>Error:</strong> This [Node Name] element is missing title text. Frames should be titled with text that facilitates frame identification and navigation.</p>
+<div class="fullcode">Section508.I.Frames</div></td>
+<td id="_applies" headers="applies_ sc">
+<p>Frame or iframe elements without a title attribute.</p>
+</td>
+</tr>
+
+</tbody></table><h4 id="prJ">(j) Pages shall be designed to avoid causing the screen to flicker with a frequency greater than 2 Hz and lower than 55 Hz.</h4>
+
+<p>Equivalent in spirit to <a href="http://www.w3.org/TR/WCAG10">WCAG 1.0</a> checkpoint 7.1. The WCAG 1.0
+definition has an "Until user agents..." rider on being able to control flicker, and a different range to that stated in Section 508:
+<a href="http://www.w3.org/TR/WCAG10-CORE-TECHS/#flicker">"seizures can be triggered by flickering or flashing in the 4 to 59 [Hz] range"</a>.</p>
+
+<p>In <a href="http://www.w3.org/TR/WCAG20">WCAG 2.0</a>, flashing should be kept to below 3 Hz. At Level <abbr title="Single-A">A</abbr>,
+an exception exists for flashing an area of the screen smaller than a certain size. At Level
+<abbr title="Triple-A">AAA</abbr>, size exceptions do not apply.</p>
+<table>
+<colgroup>
+<col width="58%">
+<col width="42%">
+</colgroup>
+<tbody>
+<tr>
+<th id="name_">Message Name</th>
+<th id="applies_">Applies To</th>
+</tr>
+
+<tr class="">
+<td id="_name" headers="name_ sc notice">
+<p><strong>Notice:</strong> Check that no component of the content flickers at a rate of greater than 2 and less than 55 times per second.</p>
+<div class="fullcode">Section508.J.Flicker</div></td>
+<td id="_applies" headers="applies_ sc">
+<p>Root element being tested.</p>
+</td>
+</tr>
+
+</tbody></table><h4 id="prK">(k) A text-only page, with equivalent information or functionality, shall be provided to make a web site comply with the provisions of this part,
+                        when compliance cannot be accomplished in any other way. The content of the text-only page shall be updated whenever the primary page changes.</h4>
+
+<p>Equivalent to <a href="http://www.w3.org/TR/WCAG10">WCAG 1.0</a> checkpoint 11.4. The WCAG 1.0 definition
+states that an accessible page should only be offered "after best efforts" to make the primary
+page accessible.</p>
+
+<p>In <a href="http://www.w3.org/TR/WCAG20">WCAG 2.0</a>, the requirement for a conforming alternate version
+is part of Conformance Requirement 1, rather than as any Success Criterion.</p>
+<table>
+<colgroup>
+<col width="58%">
+<col width="42%">
+</colgroup>
+<tbody>
+<tr>
+<th id="name_">Message Name</th>
+<th id="applies_">Applies To</th>
+</tr>
+
+<tr class="">
+<td id="_name" headers="name_ sc notice">
+<p><strong>Notice:</strong> If this page cannot be made compliant, a text-only page with equivalent information or functionality should be provided. The alternative page needs to be updated in line with this page's content.</p>
+<div class="fullcode">Section508.K.AltVersion</div></td>
+<td id="_applies" headers="applies_ sc">
+<p>Root element being tested.</p>
+</td>
+</tr>
+
+</tbody></table><h4 id="prL">(l) When pages utilize scripting languages to display content, or to create interface elements,
+                        the information provided by the script shall be identified with functional text that can be read by assistive technology.</h4>
+
+<p>The closest equivalent in <a href="http://www.w3.org/TR/WCAG10">WCAG 1.0</a> is Checkpoint 8.1, which states
+scripting must be "directly accessible or compatible with assistive technologies". However, Checkpoint
+6.3 also states that sites must be usable without scripts and plugins turned on, or the information must be
+available on an alternative page.</p>
+
+<p>Section 508 instead permits scripts but that they must provide "functional text" that
+is available to assistive technology. The definition of "functional text" is provided
+elsewhere as:</p>
+
+<blockquote>
+  <p>"Text that when read conveys an accurate message as to what is being displayed by
+  the script or that describes what action will be performed."</p>
+  
+  <p><cite>- U.S. General Services Administration: <a href="https://app.buyaccessible.gov/baw/Glossary.jsp">BuyAccessible.gov: Glossary</a></cite></p>
+</blockquote>
+
+<p>This appears to state that content produced by the script, or runnable from a script,
+should be made accessible using common techniques such as alt and title text where
+appropriate.</p>
+
+<p>Therefore, most of the tests in rule (a) relating to non-text content apply here with
+script-generated content too. Some of the other techniques that can be used:</p>
+
+<ul>
+<li>Ensuring appropriate link text exists for links accessing scripts.</li>
+<li>Minimising the use of complex events, and making sure that events can be made
+accessible (such as providing a keyboard alternative to mouse-specific functions).</li>
+</ul>
+
+<p>However, HTML&#95;CodeSniffer can only test the <abbr title="Document Object Model">DOM</abbr> as it
+appears to it at the time of running. If your page can generate content through a script -
+whether through DOM manipulation, inserting contents through an Ajax request, or other means -
+do not rely on a single run of HTML&#95;CodeSniffer to certify your site as accessible. You can
+re-open the Accessibility Auditor (return to the home screen) to re-run the test and take action upon
+any new messages that appear.</p>
+<table>
+<colgroup>
+<col width="58%">
+<col width="42%">
+</colgroup>
+<tbody>
+<tr>
+<th id="name_">Message Name</th>
+<th id="applies_">Applies To</th>
+</tr>
+
+<tr class="">
+<td id="_name" headers="name_ sc error">
+<p><strong>Error:</strong> Anchor element found with no link content and no name and/or ID attribute.</p>
+<div class="fullcode">Section508.L.EmptyAnchorNoId</div></td>
+<td id="_applies" headers="applies_ sc">
+<p>Anchor (a) element that is completely empty.</p>
+</td>
+</tr>
+
+<tr class="">
+<td id="_name" headers="name_ sc warning">
+<p><strong>Warning:</strong> Anchor element found with link content, but no href, ID or name attribute has been supplied.</p>
+<div class="fullcode">Section508.L.PlaceholderAnchor</div></td>
+<td id="_applies" headers="applies_ sc">
+<p>Anchor (a) element that contains text, but has no source or destination anchor information.</p>
+</td>
+</tr>
+
+<tr class="">
+<td id="_name" headers="name_ sc error">
+<p><strong>Error:</strong> Anchor element found with a valid href attribute, but no link content has been supplied.</p>
+<div class="fullcode">Section508.L.NoContentAnchor</div></td>
+<td id="_applies" headers="applies_ sc">
+<p>Anchor (a) element that has a href, but no link text.</p>
+</td>
+</tr>
+
+<tr class="">
+<td id="_name" headers="name_ sc warning">
+<p><strong>Warning:</strong> Ensure the functionality provided by double-clicking on this element is available through the keyboard.</p>
+<div class="fullcode">Section508.L.DblClick</div></td>
+<td id="_applies" headers="applies_ sc">
+<p>Elements with an ondblclick attribute.</p>
+</td>
+</tr>
+
+<tr class="">
+<td id="_name" headers="name_ sc warning">
+<p><strong>Warning:</strong> Ensure the functionality provided by mousing over this element is available through the keyboard; for instance, using the focus event.</p>
+<div class="fullcode">Section508.L.MouseOver</div></td>
+<td id="_applies" headers="applies_ sc">
+<p>Elements with an onmouseover attribute.</p>
+</td>
+</tr>
+
+<tr class="">
+<td id="_name" headers="name_ sc warning">
+<p><strong>Warning:</strong> Ensure the functionality provided by mousing out of this element is available through the keyboard; for instance, using the blur event.</p>
+<div class="fullcode">Section508.L.MouseOut</div></td>
+<td id="_applies" headers="applies_ sc">
+<p>Elements with an onmouseout attribute.</p>
+</td>
+</tr>
+
+<tr class="">
+<td id="_name" headers="name_ sc warning">
+<p><strong>Warning:</strong> Ensure the functionality provided by moving the mouse on this element is available through the keyboard.</p>
+<div class="fullcode">Section508.L.MouseMove</div></td>
+<td id="_applies" headers="applies_ sc">
+<p>Elements with an onmousemove attribute.</p>
+</td>
+</tr>
+
+<tr class="">
+<td id="_name" headers="name_ sc warning">
+<p><strong>Warning:</strong> Ensure the functionality provided by mousing down on this element is available through the keyboard; for instance, using the keydown event.</p>
+<div class="fullcode">Section508.L.MouseDown</div></td>
+<td id="_applies" headers="applies_ sc">
+<p>Elements with an onmousedown attribute.</p>
+</td>
+</tr>
+
+<tr class="">
+<td id="_name" headers="name_ sc warning">
+<p><strong>Warning:</strong> Ensure the functionality provided by mousing up on this element is available through the keyboard; for instance, using the keyup event.</p>
+<div class="fullcode">Section508.L.MouseUp</div></td>
+<td id="_applies" headers="applies_ sc">
+<p>Elements with an onmouseup attribute.</p>
+</td>
+</tr>
+
+</tbody></table><h4 id="prM">(m) When a web page requires that an applet, plug-in or other application be present on the client system to interpret page content, the page must
+                        provide a link to a plug-in or applet that complies with [paragraph] 1194.21(a) through (l).</h4>
+
+<p>Has no equivalent in <a href="http://www.w3.org/TR/WCAG10">WCAG 1.0</a>: Checkpoint 11.1 requires users to use <abbr title="World Wide Web Consortium">W3C</abbr>
+technologies where available. One possible reading of this would suggest that plugins should be avoided where an alternative
+method of expressing such files as a W3C file type is available. For instance, PDF files would need to be expressed as
+HTML instead.</p>
+
+<p><a href="http://www.w3.org/TR/WCAG20">WCAG 2.0</a> does not deal
+with plugins directly, but it would be expected that such external documents used
+accessibility-supported technologies that made such documents themselves conforming
+to WCAG 2.0, and not to interfere with the remainder of the page (Conformance Requirement 5)
+if displayed inline.</p>
+<table>
+<colgroup>
+<col width="58%">
+<col width="42%">
+</colgroup>
+<tbody>
+<tr>
+<th id="name_">Message Name</th>
+<th id="applies_">Applies To</th>
+</tr>
+
+<tr class="">
+<td id="_name" headers="name_ sc notice">
+<p><strong>Notice:</strong> If external media requires a plugin or application to view, ensure a link is provided to a plugin or application that complies with Section 508 accessibility requirements for applications.</p>
+<div class="fullcode">Section508.M.PluginLink</div></td>
+<td id="_applies" headers="applies_ sc">
+<p>Elements that may require plugins to load (eg. object, applet, embed, audio, video, bgsound).</p>
+</td>
+</tr>
+
+</tbody></table><h4 id="prN">(n) When electronic forms are designed to be completed on-line, the form shall allow people using assistive technology to access the information,
+                        field elements, and functionality required for completion and submission of the form, including all directions and cues.</h4>
+
+<p>Has no single equivalent in <a href="http://www.w3.org/TR/WCAG10">WCAG 1.0</a>. Checkpoints 10.2
+and 12.4, both Priority 2 (Level <abbr title="Double-A">AA</abbr>), cover the cases of
+label positioning and explicit association.</p>
+
+<p>In <a href="http://www.w3.org/TR/WCAG20">WCAG 2.0</a>, this is
+covered by a number of Success Criteria, including the requirement for labels for
+form fields (in 1.3.1), and the criteria in Guideline 3.3 (Input Assistance) regarding
+instructions and error identification and correction.</p>
+
+<p>Note that in the cases of check boxes and radio buttons, the two versions of WCAG
+differ in their expectation of where the label should appear. WCAG 1.0 states that
+labels must always appear <em>before</em> the control, either on the same line or before it.
+WCAG 2.0's general sufficient technique relating to labels (<a href="http://www.w3.org/TR/2012/NOTE-WCAG20-TECHS-20120103/G162">G162</a>)
+states check boxes and radio buttons should have their label <em>after</em> the control -
+as it is the "most predictable" place for them. Placing labels for these fields after
+the control also allows the inputs to be aligned in a list as well as the labels,
+which is seen as an advantage as they have a fixed size (compared to text fields which
+can be of variable lengths).</p>
+<table>
+<colgroup>
+<col width="58%">
+<col width="42%">
+</colgroup>
+<tbody>
+<tr>
+<th id="name_">Message Name</th>
+<th id="applies_">Applies To</th>
+</tr>
+
+<tr class="">
+<td id="_name" headers="name_ sc notice">
+<p><strong>Notice:</strong> If an input error is automatically detected in this form, check that the item(s) in error are identified and the error(s) are described to the user in text.</p>
+<div class="fullcode">Section508.N.Errors</div></td>
+<td id="_applies" headers="applies_ sc">
+<p>Form elements.</p>
+</td>
+</tr>
+
+<tr class="">
+<td id="_name" headers="name_ sc notice">
+<p><strong>Notice:</strong> Check that descriptive labels or instructions (including for required fields) are provided for user input in this form.</p>
+<div class="fullcode">Section508.N.Labels</div></td>
+<td id="_applies" headers="applies_ sc">
+<p>Form elements.</p>
+</td>
+</tr>
+
+<tr class="">
+<td id="_name" headers="name_ sc notice">
+<p><strong>Notice:</strong> Ensure that this form can be navigated using the keyboard and other accessibility tools.</p>
+<div class="fullcode">Section508.N.KeyboardNav</div></td>
+<td id="_applies" headers="applies_ sc">
+<p>Form elements.</p>
+</td>
+</tr>
+
+</tbody></table><h4 id="prO">(o) A method shall be provided that permits users to skip repetitive navigation links.</h4>
+
+<p>The closest equivalent in <a href="http://www.w3.org/TR/WCAG10">WCAG 1.0</a> is a Priority 3 (Level
+<abbr title="Triple-A">AAA</abbr>) checkpoint (13.6) on being able to group related links
+and provide a method to bypass the group, for instance, by using a "Skip to content" link.</p>
+
+<p>In <a href="http://www.w3.org/TR/WCAG20">WCAG 2.0</a>, this is roughly equivalent to Success Criterion 2.4.1 (Bypass Blocks),
+which is a Level <abbr title="Single-A">A</abbr> criterion.</p>
+<table>
+<colgroup>
+<col width="58%">
+<col width="42%">
+</colgroup>
+<tbody>
+<tr>
+<th id="name_">Message Name</th>
+<th id="applies_">Applies To</th>
+</tr>
+
+<tr class="">
+<td id="_name" headers="name_ sc notice">
+<p><strong>Notice:</strong> Ensure that any common navigation elements can be bypassed; for instance, by use of skip links, header elements, or ARIA landmark roles.</p>
+<div class="fullcode">Section508.O.SkipLinks</div></td>
+<td id="_applies" headers="applies_ sc">
+<p>Root element being tested.</p>
+</td>
+</tr>
+
+<tr class="">
+<td id="_name" headers="name_ sc error">
+<p><strong>Error:</strong> This link points to a named anchor [ID] within the document, but no anchor exists with that name.</p>
+<div class="fullcode">Section508.O.NoSuchID</div></td>
+<td id="_applies" headers="applies_ sc">
+<p>Anchor (a) element that points to a named anchor (or element with an ID) in the same document, but that name does not exist in the ID/name namespace.</p>
+</td>
+</tr>
+
+<tr class="">
+<td id="_name" headers="name_ sc warning">
+<p><strong>Warning:</strong> This link points to a named anchor [ID] within the document, but no anchor exists with that name in the fragment tested.</p>
+<div class="fullcode">Section508.O.NoSuchIDFragment</div></td>
+<td id="_applies" headers="applies_ sc">
+<p>Anchor (a) element that points to a named anchor (or element with an ID) in the same document, but that name does not exist in the ID/name namespace. Thrown as a warning because without the context of a full document, such test cannot be authoritative.</p>
+</td>
+</tr>
+
+</tbody></table><h4 id="prP">(p) When a timed response is required, the user shall be alerted and given sufficient time to indicate more time is required.</h4>
+
+<p>In <a href="http://www.w3.org/TR/WCAG10">WCAG 1.0</a>, there is no fully equivalent checkpoint,
+however Checkpoints 7.4 and 7.5 (both Priority 2, or <abbr title="Double-A">AA</abbr> level)
+relate to the use of client-side redirects and refreshes, particularly using the Meta
+"refresh" element.</p>
+
+<p>In <a href="http://www.w3.org/TR/WCAG20">WCAG 2.0</a>, this is equivalent to Success Criterion
+2.2.1 (Timing Adjustable). The Section 508 requirement is equivalent to the "Extend"
+option, but being able to turn off the timeout period would also be acceptable.</p>
+<table>
+<colgroup>
+<col width="58%">
+<col width="42%">
+</colgroup>
+<tbody>
+<tr>
+<th id="name_">Message Name</th>
+<th id="applies_">Applies To</th>
+</tr>
+
+<tr class="">
+<td id="_name" headers="name_ sc notice">
+<p><strong>Notice:</strong> If a timed response is required on this page, alert the user and provide sufficient time to allow them to indicate that more time is required.</p>
+<div class="fullcode">Section508.P.TimeLimit</div></td>
+<td id="_applies" headers="applies_ sc">
+<p>Root element being tested.</p>
+</td>
+</tr>
+
+<tr class="">
+<td id="_name" headers="name_ sc error">
+<p><strong>Error:</strong> Meta refresh tag used to redirect to another page, with a time limit that is not zero. Users cannot control this time limit.</p>
+<div class="fullcode">Section508.P.MetaRedirect</div></td>
+<td id="_applies" headers="applies_ sc">
+<p>Meta refresh tag with a time limit that is not 0 seconds, and contains a URL to redirect to.</p>
+</td>
+</tr>
+
+<tr class="">
+<td id="_name" headers="name_ sc error">
+<p><strong>Error:</strong> Meta refresh tag used to refresh the current page. Users cannot control the time limit for this refresh.</p>
+<div class="fullcode">Section508.P.MetaRefresh</div></td>
+<td id="_applies" headers="applies_ sc">
+<p>Meta refresh tag with a time limit that is not 0 seconds, and does not contain a redirect URL, therefore meaning it would refresh the page automatically.</p>
+</td>
+</tr>
+
+</tbody></table>
+        </div> <!-- end max-width -->
+
+        <div class="zigzag zigzag-grey"></div>
+
+    </div> <!-- end test-area -->
+
+    <div id="footer">
+        <div class="max-width">
+            <p><strong>HTML_CodeSniffer</strong> developed by <strong><a href="http://www.squiz.com.au">Squiz</a></strong> Content Management Solutions</p>
+        </div>
+    </div>
+
+</body>
+</html>
+
+
+
+
+</head>
+<body>
+
+</body>
+</html>

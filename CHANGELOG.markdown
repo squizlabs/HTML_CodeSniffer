@@ -4,9 +4,31 @@ A list of the changes made to the HTML\_CodeSniffer bookmarklet since its initia
 release. This will be updated when the bookmarklet is updated on the [official
 HTML\_CodeSniffer web site](http://squizlabs.github.com/HTML_CodeSniffer).
 
-Items prefixed with "SC" refer to changes or fixes to the tests in that Success
-Criterion (or Criteria), and should be read in conjunction with the W3C's documentation
-for the [Web Content Accessibility Guidelines (WCAG) 2.0](http://www.w3.org/TR/WCAG20).
+Items prefixed with "SC" by itself refer to changes or fixes to the tests in that
+WCAG 2.0 Success Criterion (or Criteria), and should be read in conjunction with the
+W3C's documentation for the [Web Content Accessibility Guidelines (WCAG) 2.0](http://www.w3.org/TR/WCAG20).
+Changes in other standards will be referenced by their standard name.
+
+## Release 64 (8 Jan 2013)
+
+- **Auditor:** Significant updates to allow Section 508 standards to fit within the
+  auditor interface. This includes removing WCAG 2.0-related assumptions about what
+  standards are available, and allowing standards to specify what is displayed an
+  auditor message (in place of WCAG 2.0's "principle and technique").
+- **Section 508:** First release of U.S. Section 508 standards for HTML_CodeSniffer.
+- **SC 1.3.1:** Fixed a bug in the sniff that checked for presence and position of labels,
+  concerning input elements that did not have a "type"
+  attribute. HTML\_CodeSniffer did not correctly interpret them as the default "text"
+  input type, and instead emitted errors. ([Issue #57](http://squizlabs.github.com/HTML_CodeSniffer/issues/57))
+- **Auditor:** Removed an "nbsp" and replaced with its numeric unicode value, so that
+  the auditor would run correctly on XHTML pages properly served as "application/xhtml+xml".
+  The nbsp entity does not exist in XHTML served as XML by default, as XML itself does not
+  define it. ([Issue #53](http://squizlabs.github.com/HTML_CodeSniffer/issues/53))
+- **SC 1.1.1:** Fixed a bug in the sniff that fails links containing an image with
+  no alt text. It produced a false positive if such an image were in the same link along
+  with text that was all outside another element (such as a span). ([Issue #52](http://squizlabs.github.com/HTML_CodeSniffer/issues/52))
+- **SC 1.1.1:** Applet elements with a missing body were being misdiagnosed as a Notice. It
+  is now properly considered an Error.
 
 ## Version 49 (15 Oct 2012)
 

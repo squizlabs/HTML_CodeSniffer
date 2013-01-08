@@ -60,7 +60,9 @@
 
                     <p>HTML_CodeSniffer is a client-side script that checks HTML source code and detects violations of a defined coding standard. HTML_CodeSniffer is written entirely in JavaScript, does not require any server-side processing and can be extended by developers to enforce custom coding standards by creating your own "sniffs".</p>
 
-                    <p>To get you started, HTML_CodeSniffer comes with a set of 3 standards that enforce the <a href="http://www.w3.org/TR/WCAG/">Web Content Accessibility Guidelines (WCAG) 2.0</a>. An auditor interface is provided by a bookmarklet to let you try out the WCAG 2.0 checks on any web page.</p>
+                    <p>To get you started, HTML_CodeSniffer comes with standards that enforce the three conformance levels of the <a href="http://www.w3.org/TR/WCAG/">Web Content Accessibility Guidelines (WCAG) 2.0</a>, and the web-related components of the
+                    <a href="https://www.section508.gov/index.cfm?fuseAction=stdsdoc#Web"><abbr title="United States of America">U.S.</abbr> "Section 508" legislation</a>.
+                    An auditor interface is provided by a bookmarklet to let you try out these accessibility checks on any web page.</p>
 
                     <span class="introduction-divider"></span>
 
@@ -70,9 +72,8 @@
 
                     <map name="Coverage List">
                         <ul>
-                            <li><a href="Standards/WCAG2/AAA.html">WCAG 2.0 Level AAA</a></li>
-                            <li><a href="Standards/WCAG2/AA.html">WCAG 2.0 Level AA</a></li>
-                            <li><a href="Standards/WCAG2/A.html">WCAG 2.0 Level A</a></li>
+                            <li><a href="Standards/WCAG2">WCAG 2.0 (Level A, AA, AAA)</a></li>
+                            <li><a href="Standards/Section508">Section 508</a></li>
                         </ul>
                     </map>
 
@@ -125,7 +126,7 @@
                     <div class="button" onclick="alert('Drag this to your browser Bookmarks Bar to install.  Once installed, you can run the WCAG Bookmarklet over any page.'); return false;">
                         <a id="add-bookmarklet" onmousedown="_gaq.push(['_trackEvent', 'Viper', 'bookmarklet.clicked']);" href="javascript:(function() {var _p='http://squizlabs.github.com/HTML_CodeSniffer/build/';var _i=function(s,cb) {var sc=document.createElement('script');sc.onload = function() {sc.onload = null;sc.onreadystatechange = null;cb.call(this);};sc.onreadystatechange = function(){if(/^(complete|loaded)$/.test(this.readyState) === true){sc.onreadystatechange = null;sc.onload();}};sc.src=s;if (document.head) {document.head.appendChild(sc);} else {document.getElementsByTagName('head')[0].appendChild(sc);}}; var options={path:_p};_i(_p+'HTMLCS.js',function(){HTMLCSAuditor.run('WCAG2AA',null,options);});})();"><span class="screen-hide">HTML_CodeSniffer</span></a>
 
-                        <div id="button-title">Get the <strong>WCAG 2.0 Bookmarklet</strong><br>
+                        <div id="button-title">Get the <strong>Accessibility Auditor Bookmarklet</strong><br>
                         <span class="button-ins">Drag this link to your bookmarks bar to install</span>
                         </div>
                     </div>
@@ -158,11 +159,13 @@
                             <fieldset>
                                 <legend>Standard:</legend>
                             <ul>
-                                <li><input type="radio" value="WCAG2A" name="level" id="WCAG2A" class="radio-input"><span class="radio-gen"></span><label for="WCAG2A"> Level A</label></li>
+                                <li><input type="radio" value="WCAG2A" name="level" id="WCAG2A" class="radio-input"><span class="radio-gen"></span><label for="WCAG2A"> WCAG 2.0 Level A</label></li>
 
-                                <li><input type="radio" value="WCAG2AA" name="level" id="WCAG2AA" class="radio-input"><span class="radio-gen"></span><label for="WCAG2AA"> Level AA</label></li>
+                                <li><input type="radio" value="WCAG2AA" name="level" id="WCAG2AA" class="radio-input"><span class="radio-gen"></span><label for="WCAG2AA"> WCAG 2.0 Level AA</label></li>
 
-                                <li><input type="radio" value="WCAG2AAA" name="level" id="WCAG2AAA" class="radio-input" checked><span class="radio-gen radio-on"></span><label for="WCAG2AAA"> Level AAA</label></li>
+                                <li><input type="radio" value="WCAG2AAA" name="level" id="WCAG2AAA" class="radio-input" checked><span class="radio-gen radio-on"></span><label for="WCAG2AAA"> WCAG 2.0 Level AAA</label></li>
+
+                                <li><input type="radio" value="Section508" name="level" id="Section508" class="radio-input"><span class="radio-gen"></span><label for="Section508"> Section 508</label></li>
                             </ul>
                             </fieldset>
 
