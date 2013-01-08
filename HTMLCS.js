@@ -277,10 +277,8 @@ var HTMLCS = function()
                 // - Recurse into ourselves with remaining sniffs, with no callback.
                 // - Clear out the list of sniffs (so they aren't run again), so the
                 //   callback (if not already recursed) can run afterwards.
-                sniff.process(element, topElement, function() {
-                    _processSniffs(element, sniffs, topElement);
-                    sniffs = [];
-                });
+                sniff.process(element, topElement, _processSniffs(element, sniffs, topElement));
+                sniffs = [];
             } else {
                 // Process the sniff.
                 sniff.process(element, topElement);
