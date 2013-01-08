@@ -224,12 +224,11 @@ var HTMLCS = new function()
     var _run = function(elements, topElement, callback) {
         var topMsgs = [];
         while (elements.length > 0) {
-            var element = elements.shift();
-
+            var tagName, element = elements.shift();
             if (element === topElement) {
-                var tagName = '_top';
+                tagName = '_top';
             } else {
-                var tagName = element.tagName.toLowerCase();
+                tagName = element.tagName.toLowerCase();
             }
 
             // First check whether any "top" messages need to be shifted off for this
@@ -435,14 +434,14 @@ var HTMLCS = new function()
      */
     var _registerSniff = function(standard, sniff) {
         // Get the sniff object.
-        var sniffObj = _getSniff(standard, sniff);
+        var watchedTags, sniffObj = _getSniff(standard, sniff);
         if (!sniffObj) {
             return false;
         }
 
         // Call the register method of the sniff, it should return an array of tags.
         if (sniffObj.register) {
-            var watchedTags = sniffObj.register();
+            watchedTags = sniffObj.register();
         }
 
         if (watchedTags && watchedTags.length > 0) {
@@ -657,10 +656,11 @@ var HTMLCS = new function()
          */
         this.getElementWindow = function(element)
         {
+			var doc;
             if (element.ownerDocument) {
-                var doc = element.ownerDocument;
+                doc = element.ownerDocument;
             } else {
-                var doc = element;
+                doc = element;
             }
 
             var window = null;
@@ -847,7 +847,7 @@ var HTMLCS = new function()
          */
         this.relativeLum = function(colour) {
             if (colour.charAt) {
-                var colour = this.colourStrToRGB(colour);
+                colour = this.colourStrToRGB(colour);
             }
 
             var transformed = {};
@@ -1086,7 +1086,7 @@ var HTMLCS = new function()
                 includeAlt = true;
             }
 
-            var element = element.cloneNode(true);
+            element = element.cloneNode(true);
             var nodes  = [];
             for (var i = 0; i < element.childNodes.length; i++) {
                 nodes.push(element.childNodes[i]);
@@ -1165,13 +1165,14 @@ var HTMLCS = new function()
                 cols: 0
             };
             var missingIds = false;
+			var cell;
 
             for (var rownum = 0; rownum < rows.length; rownum++) {
                 var row    = rows[rownum];
                 var colnum = 0;
 
                 for (var item = 0; item < row.childNodes.length; item++) {
-                    var cell = row.childNodes[item];
+                    cell = row.childNodes[item];
                     if (cell.nodeType === 1) {
                         // Skip columns that are skipped due to rowspan.
                         if (skipCells[rownum]) {
@@ -1262,7 +1263,7 @@ var HTMLCS = new function()
             // them.
             var cells = HTMLCS.util.getCellHeaders(element);
             for (var i = 0; i < cells.length; i++) {
-                var cell     = cells[i].cell;
+                cell     = cells[i].cell;
                 var expected = cells[i].headers;
 
                 if (cell.hasAttribute('headers') === false) {
