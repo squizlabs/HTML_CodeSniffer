@@ -11,7 +11,7 @@
  *
  */
 
-var HTMLCS = new function()
+var HTMLCS = function()
 {
     var _standards    = {};
     var _sniffs       = [];
@@ -609,7 +609,7 @@ var HTMLCS = new function()
         return empty;
     };
 
-    this.util = new function() {
+    this.util = function() {
         /**
          * Trim off excess spaces on either side.
          *
