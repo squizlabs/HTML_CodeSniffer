@@ -656,7 +656,7 @@ var HTMLCS = function()
          */
         this.getElementWindow = function(element)
         {
-			var doc;
+            var doc;
             if (element.ownerDocument) {
                 doc = element.ownerDocument;
             } else {
@@ -1165,7 +1165,7 @@ var HTMLCS = function()
                 cols: 0
             };
             var missingIds = false;
-			var cell;
+            var cell;
 
             for (var rownum = 0; rownum < rows.length; rownum++) {
                 var row    = rows[rownum];
