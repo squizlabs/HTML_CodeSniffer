@@ -110,7 +110,7 @@ var HTMLCS = new function()
                 var elements = _getAllTags(element);
                 elements.unshift(element);
                 _run(elements, element, callback);
-            }
+            };
 
             // Satisfy IE which doesn't like onload being set dynamically.
             elementFrame.onreadystatechange = function() {
@@ -118,7 +118,7 @@ var HTMLCS = new function()
                     this.onreadystatechange = null;
                     this.load();
                 }
-            }
+            };
 
             elementFrame.onload = elementFrame.load;
 
@@ -179,7 +179,7 @@ var HTMLCS = new function()
         }
 
         return fullDoc;
-    }
+    };
 
     /**
      * Adds a message.
@@ -401,7 +401,7 @@ var HTMLCS = new function()
             var cb       = function() {
                 _registerSniff(standard, sniff);
                 callback.call(this);
-            }
+            };
 
             // Already loaded.
             if (sniffObj) {
@@ -555,7 +555,7 @@ var HTMLCS = new function()
                 script.onreadystatechange = null;
                 script.onload();
             }
-        }
+        };
 
         script.src = src;
 
@@ -861,7 +861,7 @@ var HTMLCS = new function()
 
             var lum = ((transformed.red * 0.2126) + (transformed.green * 0.7152) + (transformed.blue * 0.0722));
             return lum;
-        }
+        };
 
         /**
          * Convert a colour string to a structure with red/green/blue elements.
@@ -884,7 +884,7 @@ var HTMLCS = new function()
                     red: (matches[1] / 255),
                     green: (matches[2] / 255),
                     blue: (matches[3] / 255)
-                }
+                };
             } else {
                 // Hex digit format.
                 if (colour.charAt(0) === '#') {
@@ -1149,7 +1149,7 @@ var HTMLCS = new function()
                 missingThId: [],
                 missingTd: [],
                 wrongHeaders: []
-            }
+            };
 
             var rows      = element.getElementsByTagName('tr');
             var tdCells   = {};
@@ -1163,7 +1163,7 @@ var HTMLCS = new function()
             var multiHeaders = {
                 rows: 0,
                 cols: 0
-            }
+            };
             var missingIds = false;
 
             for (var rownum = 0; rownum < rows.length; rownum++) {
@@ -1282,7 +1282,7 @@ var HTMLCS = new function()
                                 element: cell,
                                 expected: expected,
                                 actual: (cell.getAttribute('headers') || '')
-                            }
+                            };
                             retval.wrongHeaders.push(val);
                         }
                     }//end if
