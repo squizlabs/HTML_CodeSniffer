@@ -48,7 +48,7 @@ var HTMLCS_Section508_Sniffs_L = {
         }
 
         for (var i = 0; i < errors.placeholder.length; i++) {
-            HTMLCS.addMessage(HTMLCS.WARNING, errors.placeholder[i], 'Anchor element found with link content, but no href and/or ID attribute has been supplied.', 'PlaceholderAnchor');
+            HTMLCS.addMessage(HTMLCS.WARNING, errors.placeholder[i], 'Anchor element found with link content, but no href, ID, or name attribute has been supplied.', 'PlaceholderAnchor');
         }
 
         for (var i = 0; i < errors.noContent.length; i++) {
