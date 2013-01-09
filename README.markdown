@@ -8,7 +8,7 @@ HTML_CodeSniffer is released under a BSD-style licence. For more information, pl
 
 ## Which standards and sniffs does HTML_CodeSniffer include?
 
-HTML_CodeSniffer comes with standards and sniffs that cover the three conformance levels of the W3C [Web Content Accessibility Guidelines (WCAG) 2.0](http://www.w3.org/TR/WCAG20).
+HTML_CodeSniffer comes with standards and sniffs that cover the three conformance levels of the W3C [Web Content Accessibility Guidelines (WCAG) 2.0](http://www.w3.org/TR/WCAG20), and the U.S. [Section 508](http://section508.gov/index.cfm?fuseAction=stdsdoc) legislation.
 
 ## Contributing and reporting issues
 
@@ -20,6 +20,6 @@ Contributions to the HTML_CodeSniffer code base are also welcome: please create 
 
 More information on HTML_CodeSniffer can be found on its GitHub site, [http://squizlabs.github.com/HTML_CodeSniffer/](http://squizlabs.github.com/HTML_CodeSniffer/). This site provides:
 
-- Information on the tests performed (and messages emitted) by HTML_CodeSniffer's WCAG 2.0 tests, organised by conformance level and Success Criterion;
+- Information on the tests performed (and messages emitted) by HTML_CodeSniffer's standards, organised by conformance level and Success Criterion;
 - A source test area that allows you to try out HTML_CodeSniffer with your own HTML source code; and
 - A link to the HTML_CodeSniffer bookmarklet, letting you check other pages using the pop-up auditor interface.
