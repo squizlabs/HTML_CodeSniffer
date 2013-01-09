@@ -9,7 +9,13 @@ WCAG 2.0 Success Criterion (or Criteria), and should be read in conjunction with
 W3C's documentation for the [Web Content Accessibility Guidelines (WCAG) 2.0](http://www.w3.org/TR/WCAG20).
 Changes in other standards will be referenced by their standard name.
 
-## Release 64 (8 Jan 2013)
+**Note:** Starting from the 8 Jan 2013 release, HTML\_CodeSniffer changed version numbering systems.
+The previous version was generally based on the pull request number used to update the bookmarklet.
+Version numbers have been applied retrospectively based on the size or significance of the update:
+the repository's [tags list](https://github.com/squizlabs/HTML_CodeSniffer/tags) relates the old
+pull number system to the new.
+
+## Version 2.0.0 (8 Jan 2013)
 
 - **Auditor:** Significant updates to allow Section 508 standards to fit within the
   auditor interface. This includes removing WCAG 2.0-related assumptions about what
@@ -30,7 +36,7 @@ Changes in other standards will be referenced by their standard name.
 - **SC 1.1.1:** Applet elements with a missing body were being misdiagnosed as a Notice. It
   is now properly considered an Error.
 
-## Version 49 (15 Oct 2012)
+## Version 1.3.0 (15 Oct 2012)
 
 - **Auditor:** Fixed an issue where the auditor popup would not become semi-transparent
 in IE8 when the pointer is underneath the popup. ([Pull Request #47](http://squizlabs.github.com/HTML_CodeSniffer/issues/47))
@@ -61,7 +67,7 @@ to the View Report button being not correctly enabled. ([Pull Request #35](http:
 and hidden inputs weren't being correctly detected when the type attribute was not
 all lowercase. ([Pull Request #34](http://squizlabs.github.com/HTML_CodeSniffer/issues/34))
 
-## Version 33 (31 Aug 2012)
+## Version 1.2.2 (31 Aug 2012)
 
 - **Auditor:** Fixed an issue in Internet Explorer 9+ where the message type switches
   would not work properly. ([Pull Request #32](http://squizlabs.github.com/HTML_CodeSniffer/issues/32))
@@ -69,14 +75,14 @@ all lowercase. ([Pull Request #34](http://squizlabs.github.com/HTML_CodeSniffer/
   relating to opacity issues - for instance, correctly showing that message type
   switches and the "View Report" button is disabled when necessary. ([Pull Request #32](http://squizlabs.github.com/HTML_CodeSniffer/issues/32))
 
-## Version 31 (27 Aug 2012)
+## Version 1.2.1 (27 Aug 2012)
 
 - **SC 2.2.2:** Fixed a bug that was causing testing on sites using Twitter's "Tweet
   button" to hang in Firefox. The lack of style on a sourceless, hidden inline frame
   it creates caused issues with a test for detecting blinking elements.
   ([Pull Request #30](http://squizlabs.github.com/HTML_CodeSniffer/issues/30))
 
-## Version 29 (24 Aug 2012)
+## Version 1.2.0 (24 Aug 2012)
 
 - **SC 1.4.3, 1.4.6:** New tests relating to contrast ratios between foreground and
   background colours. Instead of a general notice, HTML\_CodeSniffer will attempt to
@@ -93,13 +99,13 @@ all lowercase. ([Pull Request #34](http://squizlabs.github.com/HTML_CodeSniffer/
   warning depending on whether a full document (or at least a body tag) was passed,
   similar to the "named anchor" test in SC 2.4.1.
 
-## Version 24 (20 Aug 2012)
+## Version 1.1.8 (20 Aug 2012)
 
 - **SC 2.4.1:** When testing a same-page link for existence of a named anchor,
   HTML\_CodeSniffer now recognises "a" elements using the "name" attribute (as
   permitted in HTML 4.01) as named anchors, not just IDs. ([Pull Request #24](http://squizlabs.github.com/HTML_CodeSniffer/issues/24))
 
-## Version 23 (15 Aug 2012)
+## Version 1.1.7 (15 Aug 2012)
 
 - **SC 4.1.2:** HTML\_CodeSniffer no longer skips checking for explicit labels where
   a form control used an ID which was not a legal CSS selector, but is legal in
@@ -109,7 +115,7 @@ all lowercase. ([Pull Request #34](http://squizlabs.github.com/HTML_CodeSniffer/
   browsers would emit false errors, where a label would be stated as pointing to a
   non-existent ID, where that ID actually exists. ([Issue #22](http://squizlabs.github.com/HTML_CodeSniffer/issues/22))
 
-## Version 19 (24 Jul 2012)
+## Version 1.1.6 (24 Jul 2012)
 
 - **SC 1.3.1:** Form controls that have no ID, but a non-empty title attribute, no
   longer generate errors about not being able to have an explicit label. Their title
@@ -118,7 +124,7 @@ all lowercase. ([Pull Request #34](http://squizlabs.github.com/HTML_CodeSniffer/
   there was a single page of results (five or less) in the issue list view, or a
   single issue in the issue detail view. ([Pull Request #19](http://squizlabs.github.com/HTML_CodeSniffer/issues/19))
 
-## Version 17 (10 Jul 2012)
+## Version 1.1.5 (10 Jul 2012)
 
 - **Auditor:** Fixed a bug when closing the auditor in Internet Explorer 8, when
   used on a site with frames. ([Pull Request #17](http://squizlabs.github.com/HTML_CodeSniffer/issues/17))
@@ -128,7 +134,7 @@ all lowercase. ([Pull Request #34](http://squizlabs.github.com/HTML_CodeSniffer/
   after finding sites that use it in their own "reset" style sheet, overriding the
   auditor's styling. ([Pull Request #15](http://squizlabs.github.com/HTML_CodeSniffer/issues/15))
 
-## Version 14 (2 Jul 2012)
+## Version 1.1.4 (2 Jul 2012)
 
 - **SC 1.1.1:** Messages concerning images and long text alternatives have been
   changed. They now emit a Notice instead of a Warning, as HTML\_CodeSniffer cannot
@@ -136,20 +142,20 @@ all lowercase. ([Pull Request #34](http://squizlabs.github.com/HTML_CodeSniffer/
   slightly, as the previous text made it sound like a short text alternative was
   optional when a long alternative existed. ([Pull Request #14](http://squizlabs.github.com/HTML_CodeSniffer/issues/14))
 
-## Version 13 (19 Jun 2012)
+## Version 1.1.3 (19 Jun 2012)
 
 - **SC 4.1.2:** Messages concerning "a" elements with no link text, but being used as
   a destination anchor - through the use of an ID or name attribute - now emit as a
   Warning rather than an Error. Such use is not encouraged, but it is legal in HTML
   4.01. ([Pull Request #13](http://squizlabs.github.com/HTML_CodeSniffer/issues/13))
 
-## Version 12 (13 Jun 2012)
+## Version 1.1.2 (13 Jun 2012)
 
 - **Core:** Fixed a major bug with Version 11. Full documents that were not being
   sent as source were not being tested, causing the bookmarklet to not respond.
   ([Pull Request #12](http://squizlabs.github.com/HTML_CodeSniffer/issues/12))
 
-## Version 11 (7 Jun 2012)
+## Version 1.1.1 (7 Jun 2012)
 
 - **SC 2.4.1:** Testing for same-page links now works with IDs that are not legal
   CSS selectors. Also, if this test is not passed a full document, any messages
@@ -158,7 +164,7 @@ all lowercase. ([Pull Request #34](http://squizlabs.github.com/HTML_CodeSniffer/
   ([Pull Request #10](http://squizlabs.github.com/HTML_CodeSniffer/issues/10))
 - **Documentation:** Updated README. ([Pull Request #8](http://squizlabs.github.com/HTML_CodeSniffer/issues/8))
 
-## Version 6 (28 May 2012)
+## Version 1.1.0 (28 May 2012)
 
 - **Auditor:** Fix a bug in the opacity-setting code, where the Auditor should have
   been turning half-transparent when an element is being pointed to underneath it.
@@ -181,6 +187,6 @@ all lowercase. ([Pull Request #34](http://squizlabs.github.com/HTML_CodeSniffer/
   so removing the test for an Accessibility API value for these. Select elements
   not declared "multiple" must still have a selected option. ([Pull Request #2](http://squizlabs.github.com/HTML_CodeSniffer/issues/2))
 
-## Version 1 (10 May 2012)
+## Version 1.0.0 (10 May 2012)
 
 - Initial version of HTML_CodeSniffer bookmarklet.
