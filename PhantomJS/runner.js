@@ -16,7 +16,22 @@ var HTMLCS_RUNNER = new function() {
 
     this.output = function(msg) {
         // Simple output for now.
-        console.log(msg.type + '|' + msg.code + '|' + msg.msg);
+        var typeName = 'UNKNOWN';
+        switch (msg.type) {
+            case HTMLCS.ERROR:
+                typeName = 'ERROR';
+            break;
+
+            case HTMLCS.WARNING:
+                typeName = 'WARNING';
+            break;
+
+            case HTMLCS.NOTICE:
+                typeName = 'NOTICE';
+            break;
+        }//end switch
+
+        console.log(typeName + '|' + msg.code + '|' + msg.msg);
     };
 
 };
