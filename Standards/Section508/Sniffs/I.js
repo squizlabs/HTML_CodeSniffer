@@ -40,9 +40,13 @@ var HTMLCS_Section508_Sniffs_I = {
     {
         var nodeName   = element.nodeName.toLowerCase();
         var hasTitle   = element.hasAttribute('title');
-        var titleEmpty = HTMLCS.util.isStringEmpty(element.getAttribute('title'));
+        var titleEmpty = true;
 
-        if ((hasTitle === true) || (titleEmpty === true)) {
+        if (hasTitle === true) {
+            titleEmpty = HTMLCS.util.isStringEmpty(element.getAttribute('title'));
+        }
+
+        if (titleEmpty === true) {
             HTMLCS.addMessage(HTMLCS.ERROR, top, 'This ' + nodeName + ' element is missing title text. Frames should be titled with text that facilitates frame identification and navigation.', 'Frames');
         }
     }
