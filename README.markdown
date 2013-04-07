@@ -18,7 +18,7 @@ Contributions to the HTML_CodeSniffer code base are also welcome: please create 
 
 ## More Information
 
-More information on HTML_CodeSniffer can be found on its GitHub site, [http://squizlabs.github.com/HTML_CodeSniffer/](http://squizlabs.github.com/HTML_CodeSniffer/). This site provides:
+More information on HTML_CodeSniffer can be found on its GitHub site, [http://squizlabs.github.io/HTML_CodeSniffer/](http://squizlabs.github.io/HTML_CodeSniffer/). This site provides:
 
 - Information on the tests performed (and messages emitted) by HTML_CodeSniffer's WCAG 2.0 tests, organised by conformance level and Success Criterion;
 - A source test area that allows you to try out HTML_CodeSniffer with your own HTML source code; and
