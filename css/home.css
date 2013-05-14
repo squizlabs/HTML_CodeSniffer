@@ -1053,6 +1053,12 @@ td:last-child li {
  background: url(../images/external-link-hover.png) center right no-repeat;
 }
 
+.no-violations {
+ display: block;
+ padding: 20px;
+ text-align: center;
+}
+
 /* Stats Counter
 ****************************************/
 #issueCounterWrap {
