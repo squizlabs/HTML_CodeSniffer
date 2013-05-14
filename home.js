@@ -129,7 +129,7 @@ function updateResults508(resultsWrapper)
     var msgs = HTMLCS.getMessages();
     console.info(msgs);
     if (msgs.length === 0) {
-        resultsWrapper.innerHTML = 'No violations found';
+        resultsWrapper.innerHTML = '<span class="no-violations">No violations found</span>';
         return;
     }
 
