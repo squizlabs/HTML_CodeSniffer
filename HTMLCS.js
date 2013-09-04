@@ -11,7 +11,7 @@
  *
  */
 
-var HTMLCS = new function()
+var HTMLCS = function()
 {
     var _standards    = {};
     var _sniffs       = [];
@@ -110,7 +110,7 @@ var HTMLCS = new function()
                 var elements = _getAllTags(element);
                 elements.unshift(element);
                 _run(elements, element, callback);
-            }
+            };
 
             // Satisfy IE which doesn't like onload being set dynamically.
             elementFrame.onreadystatechange = function() {
@@ -118,7 +118,7 @@ var HTMLCS = new function()
                     this.onreadystatechange = null;
                     this.load();
                 }
-            }
+            };
 
             elementFrame.onload = elementFrame.load;
 
@@ -179,7 +179,7 @@ var HTMLCS = new function()
         }
 
         return fullDoc;
-    }
+    };
 
     /**
      * Adds a message.
@@ -224,12 +224,11 @@ var HTMLCS = new function()
     var _run = function(elements, topElement, callback) {
         var topMsgs = [];
         while (elements.length > 0) {
-            var element = elements.shift();
-
+            var tagName, element = elements.shift();
             if (element === topElement) {
-                var tagName = '_top';
+                tagName = '_top';
             } else {
-                var tagName = element.tagName.toLowerCase();
+                tagName = element.tagName.toLowerCase();
             }
 
             // First check whether any "top" messages need to be shifted off for this
@@ -278,10 +277,8 @@ var HTMLCS = new function()
                 // - Recurse into ourselves with remaining sniffs, with no callback.
                 // - Clear out the list of sniffs (so they aren't run again), so the
                 //   callback (if not already recursed) can run afterwards.
-                sniff.process(element, topElement, function() {
-                    _processSniffs(element, sniffs, topElement);
-                    sniffs = [];
-                });
+                sniff.process(element, topElement, _processSniffs(element, sniffs, topElement));
+                sniffs = [];
             } else {
                 // Process the sniff.
                 sniff.process(element, topElement);
@@ -401,7 +398,7 @@ var HTMLCS = new function()
             var cb       = function() {
                 _registerSniff(standard, sniff);
                 callback.call(this);
-            }
+            };
 
             // Already loaded.
             if (sniffObj) {
@@ -435,14 +432,14 @@ var HTMLCS = new function()
      */
     var _registerSniff = function(standard, sniff) {
         // Get the sniff object.
-        var sniffObj = _getSniff(standard, sniff);
+        var watchedTags, sniffObj = _getSniff(standard, sniff);
         if (!sniffObj) {
             return false;
         }
 
         // Call the register method of the sniff, it should return an array of tags.
         if (sniffObj.register) {
-            var watchedTags = sniffObj.register();
+            watchedTags = sniffObj.register();
         }
 
         if (watchedTags && watchedTags.length > 0) {
@@ -555,7 +552,7 @@ var HTMLCS = new function()
                 script.onreadystatechange = null;
                 script.onload();
             }
-        }
+        };
 
         script.src = src;
 
@@ -610,7 +607,7 @@ var HTMLCS = new function()
         return empty;
     };
 
-    this.util = new function() {
+    this.util = function() {
         /**
          * Trim off excess spaces on either side.
          *
@@ -657,10 +654,11 @@ var HTMLCS = new function()
          */
         this.getElementWindow = function(element)
         {
+            var doc;
             if (element.ownerDocument) {
-                var doc = element.ownerDocument;
+                doc = element.ownerDocument;
             } else {
-                var doc = element;
+                doc = element;
             }
 
             var window = null;
@@ -847,7 +845,7 @@ var HTMLCS = new function()
          */
         this.relativeLum = function(colour) {
             if (colour.charAt) {
-                var colour = this.colourStrToRGB(colour);
+                colour = this.colourStrToRGB(colour);
             }
 
             var transformed = {};
@@ -861,7 +859,7 @@ var HTMLCS = new function()
 
             var lum = ((transformed.red * 0.2126) + (transformed.green * 0.7152) + (transformed.blue * 0.0722));
             return lum;
-        }
+        };
 
         /**
          * Convert a colour string to a structure with red/green/blue elements.
@@ -884,7 +882,7 @@ var HTMLCS = new function()
                     red: (matches[1] / 255),
                     green: (matches[2] / 255),
                     blue: (matches[3] / 255)
-                }
+                };
             } else {
                 // Hex digit format.
                 if (colour.charAt(0) === '#') {
@@ -1082,13 +1080,14 @@ var HTMLCS = new function()
          */
         this.getElementTextContent = function(element, includeAlt)
         {
+            var i;
             if (includeAlt === undefined) {
                 includeAlt = true;
             }
 
-            var element = element.cloneNode(true);
+            element = element.cloneNode(true);
             var nodes  = [];
-            for (var i = 0; i < element.childNodes.length; i++) {
+            for (i = 0; i < element.childNodes.length; i++) {
                 nodes.push(element.childNodes[i]);
             }
 
@@ -1104,7 +1103,7 @@ var HTMLCS = new function()
                             text.push(node.getAttribute('alt'));
                         }
                     } else {
-                        for (var i = 0; i < node.childNodes.length; i++) {
+                        for (i = 0; i < node.childNodes.length; i++) {
                             nodes.push(node.childNodes[i]);
                         }
                     }
@@ -1149,7 +1148,7 @@ var HTMLCS = new function()
                 missingThId: [],
                 missingTd: [],
                 wrongHeaders: []
-            }
+            };
 
             var rows      = element.getElementsByTagName('tr');
             var tdCells   = {};
@@ -1163,15 +1162,17 @@ var HTMLCS = new function()
             var multiHeaders = {
                 rows: 0,
                 cols: 0
-            }
+            };
             var missingIds = false;
+            var cell;
+            var i;
 
             for (var rownum = 0; rownum < rows.length; rownum++) {
                 var row    = rows[rownum];
                 var colnum = 0;
 
                 for (var item = 0; item < row.childNodes.length; item++) {
-                    var cell = row.childNodes[item];
+                    cell = row.childNodes[item];
                     if (cell.nodeType === 1) {
                         // Skip columns that are skipped due to rowspan.
                         if (skipCells[rownum]) {
@@ -1188,7 +1189,7 @@ var HTMLCS = new function()
                         // If rowspanned, mark columns as skippable in the following
                         // row(s).
                         if (rowspan > 1) {
-                            for (var i = rownum + 1; i < rownum + rowspan; i++) {
+                            for (i = rownum + 1; i < rownum + rowspan; i++) {
                                 if (!skipCells[i]) {
                                     skipCells[i] = [];
                                 }
@@ -1239,13 +1240,13 @@ var HTMLCS = new function()
                 }//end for
             }//end for
 
-            for (var i = 0; i < headerIds.rows.length; i++) {
+            for (i = 0; i < headerIds.rows.length; i++) {
                 if (headerIds.rows[i] > 1) {
                     multiHeaders.rows++;
                 }
             }
 
-            for (var i = 0; i < headerIds.cols.length; i++) {
+            for (i = 0; i < headerIds.cols.length; i++) {
                 if (headerIds.cols[i] > 1) {
                     multiHeaders.cols++;
                 }
@@ -1261,8 +1262,8 @@ var HTMLCS = new function()
             // Calculate expected heading IDs. If they are not there or incorrect, flag
             // them.
             var cells = HTMLCS.util.getCellHeaders(element);
-            for (var i = 0; i < cells.length; i++) {
-                var cell     = cells[i].cell;
+            for (i = 0; i < cells.length; i++) {
+                cell     = cells[i].cell;
                 var expected = cells[i].headers;
 
                 if (cell.hasAttribute('headers') === false) {
@@ -1282,7 +1283,7 @@ var HTMLCS = new function()
                                 element: cell,
                                 expected: expected,
                                 actual: (cell.getAttribute('headers') || '')
-                            }
+                            };
                             retval.wrongHeaders.push(val);
                         }
                     }//end if
@@ -1344,7 +1345,7 @@ var HTMLCS = new function()
                     var colnum = 0;
 
                     for (var item = 0; item < row.childNodes.length; item++) {
-                        var thisCell = row.childNodes[item];
+                        var i, j, thisCell = row.childNodes[item];
                         if (thisCell.nodeType === 1) {
                             // Skip columns that are skipped due to rowspan.
                             if (skipCells[rownum]) {
@@ -1361,12 +1362,12 @@ var HTMLCS = new function()
                             // If rowspanned, mark columns as skippable in the following
                             // row(s).
                             if (rowspan > 1) {
-                                for (var i = rownum + 1; i < rownum + rowspan; i++) {
+                                for (i = rownum + 1; i < rownum + rowspan; i++) {
                                     if (!skipCells[i]) {
                                         skipCells[i] = [];
                                     }
 
-                                    for (var j = colnum; j < colnum + colspan; j++) {
+                                    for (j = colnum; j < colnum + colspan; j++) {
                                         skipCells[i].push(j);
                                     }
                                 }
@@ -1377,7 +1378,7 @@ var HTMLCS = new function()
                                     // Build up the cell headers.
                                     var id = (thisCell.getAttribute('id') || '');
 
-                                    for (var i = rownum; i < rownum + rowspan; i++) {
+                                    for (i = rownum; i < rownum + rowspan; i++) {
                                         headingIds.rows[i] = headingIds.rows[i] || {
                                             first: colnum,
                                             ids: []
@@ -1385,7 +1386,7 @@ var HTMLCS = new function()
                                         headingIds.rows[i].ids.push(id);
                                     }
 
-                                    for (var i = colnum; i < colnum + colspan; i++) {
+                                    for (i = colnum; i < colnum + colspan; i++) {
                                         headingIds.cols[i] = headingIds.cols[i] || {
                                             first: rownum,
                                             ids: []
@@ -1395,8 +1396,8 @@ var HTMLCS = new function()
                                 } else if (nodeName === 'td') {
                                     // Dump out the headers and cells.
                                     var exp = [];
-                                    for (var i = rownum; i < rownum + rowspan; i++) {
-                                        for (var j = colnum; j < colnum + colspan; j++) {
+                                    for (i = rownum; i < rownum + rowspan; i++) {
+                                        for (j = colnum; j < colnum + colspan; j++) {
                                             if ((headingIds.rows[i]) && (j >= headingIds.rows[i].first)) {
                                                 exp = exp.concat(headingIds.rows[i].ids);
                                             }
