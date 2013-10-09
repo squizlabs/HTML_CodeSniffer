@@ -157,7 +157,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
                         var textContent = element.parentNode.innerText;
                     }
 
-                    if (HTMLCS.isStringEmpty(textContent) === true) {
+                    if (HTMLCS.util.isStringEmpty(textContent) === true) {
                         linkOnlyChild = true;
                     }
                 }
@@ -165,7 +165,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
 
             if (element.hasAttribute('alt') === false) {
                 missingAlt = true;
-            } else if (!element.getAttribute('alt') || HTMLCS.isStringEmpty(element.getAttribute('alt')) === true) {
+            } else if (!element.getAttribute('alt') || HTMLCS.util.isStringEmpty(element.getAttribute('alt')) === true) {
                 nullAlt = true;
             }
 
@@ -180,7 +180,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
                     } else if (missingAlt === true) {
                         errors.img.missingAlt.push(element);
                     } else if (nullAlt === true) {
-                        if ((element.hasAttribute('title') === true) && (HTMLCS.isStringEmpty(element.getAttribute('title')) === false)) {
+                        if ((element.hasAttribute('title') === true) && (HTMLCS.util.isStringEmpty(element.getAttribute('title')) === false)) {
                             // Title attribute present and not empty. This is wrong when
                             // an image is marked as ignored.
                             errors.img.nullAltWithTitle.push(element);
@@ -413,14 +413,14 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
             // may understand OBJECT, but APPLET shouldn't be nested.)
             if (childObject === null) {
                 var textAlt = HTMLCS.util.getElementTextContent(element, true);
-                if (HTMLCS.isStringEmpty(textAlt) === true) {
+                if (HTMLCS.util.isStringEmpty(textAlt) === true) {
                     errors.applet.missingBody.push(element);
                     hasError = true;
                 }
             }//end if
 
             var altAttr = element.getAttribute('alt') || '';
-            if (HTMLCS.isStringEmpty(altAttr) === true) {
+            if (HTMLCS.util.isStringEmpty(altAttr) === true) {
                 errors.applet.missingAlt.push(element);
                 hasError = true;
             }
@@ -503,7 +503,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
         var prevNode = element.previousSibling;
         while (prevNode !== null) {
             if (prevNode.nodeType === 3) {
-                if ((HTMLCS.isStringEmpty(prevNode.nodeValue) === false) && (immediate === true)) {
+                if ((HTMLCS.util.isStringEmpty(prevNode.nodeValue) === false) && (immediate === true)) {
                     // Failed. Immediate node requested and we got text instead.
                     prevNode = null;
                     break;
@@ -559,7 +559,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
         var nextNode = element.nextSibling;
         while (nextNode !== null) {
             if (nextNode.nodeType === 3) {
-                if ((HTMLCS.isStringEmpty(nextNode.nodeValue) === false) && (immediate === true)) {
+                if ((HTMLCS.util.isStringEmpty(nextNode.nodeValue) === false) && (immediate === true)) {
                     // Failed. Immediate node requested and we got text instead.
                     nextNode = null;
                     break;
