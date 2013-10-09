@@ -176,14 +176,14 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
                             var oldBack = newBack;
                             var j = 1;
                             while (newBack === oldBack) {
-                                var newBack = multiplyColour(newBack, Math.pow(1 / multiplier, j));
+                                var newBack = this.multiplyColour(newBack, Math.pow(1 / multiplier, j));
                                 j++;
                             }
                         } else {
                             var oldFore = newFore;
                             var j = 1;
                             while (newFore === oldFore) {
-                                var newFore = multiplyColour(newFore, Math.pow(1 / multiplier, j));
+                                var newFore = this.multiplyColour(newFore, Math.pow(1 / multiplier, j));
                                 j++;
                             }
                         }
