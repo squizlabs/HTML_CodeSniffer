@@ -58,6 +58,124 @@ var HTMLCS_Section508_Sniffs_A = {
     },
 
     /**
+     * Test for missing or null alt text in certain elements.
+     *
+     * Tested elements are:
+     * - IMG elements
+     * - INPUT elements with type="image" (ie. image submit buttons).
+     * - AREA elements (ie. in client-side image maps).
+     *
+     * @param {DOMNode} element The element to test.
+     *
+     * @returns {Object} A structured list of errors.
+     */
+    testNullAltText: function(top)
+    {
+        var errors = {
+            img: {
+                generalAlt: [],
+                missingAlt: [],
+                ignored: [],
+                nullAltWithTitle: [],
+                emptyAltInLink: []
+            },
+            inputImage: {
+                generalAlt: [],
+                missingAlt: []
+            },
+            area: {
+                generalAlt: [],
+                missingAlt: []
+            }
+        };
+
+        elements = top.querySelectorAll('img, area, input[type="image"]');
+
+        for (var el = 0; el < elements.length; el++) {
+            var element = elements[el];
+
+            var nodeName      = element.nodeName.toLowerCase();
+            var linkOnlyChild = false;
+            var missingAlt    = false;
+            var nullAlt       = false;
+
+            if (element.parentNode.nodeName.toLowerCase() === 'a') {
+                var prevNode = this._getPreviousSiblingElement(element, null);
+                var nextNode = this._getNextSiblingElement(element, null);
+
+                if ((prevNode === null) && (nextNode === null)) {
+                    var textContent = element.parentNode.textContent;
+
+                    if (element.parentNode.textContent !== undefined) {
+                        var textContent = element.parentNode.textContent;
+                    } else {
+                        // Keep IE8 happy.
+                        var textContent = element.parentNode.innerText;
+                    }
+
+                    if (HTMLCS.util.isStringEmpty(textContent) === true) {
+                        linkOnlyChild = true;
+                    }
+                }
+            }//end if
+
+            if (element.hasAttribute('alt') === false) {
+                missingAlt = true;
+            } else if (!element.getAttribute('alt') || HTMLCS.util.isStringEmpty(element.getAttribute('alt')) === true) {
+                nullAlt = true;
+            }
+
+            // Now determine which test(s) should fire.
+            switch (nodeName) {
+                case 'img':
+                    if ((linkOnlyChild === true) && ((missingAlt === true) || (nullAlt === true))) {
+                        // Img tags cannot have an empty alt text if it is the
+                        // only content in a link (as the link would not have a text
+                        // alternative).
+                        errors.img.emptyAltInLink.push(element.parentNode);
+                    } else if (missingAlt === true) {
+                        errors.img.missingAlt.push(element);
+                    } else if (nullAlt === true) {
+                        if ((element.hasAttribute('title') === true) && (HTMLCS.util.isStringEmpty(element.getAttribute('title')) === false)) {
+                            // Title attribute present and not empty. This is wrong when
+                            // an image is marked as ignored.
+                            errors.img.nullAltWithTitle.push(element);
+                        } else {
+                            errors.img.ignored.push(element);
+                        }
+                    } else {
+                        errors.img.generalAlt.push(element);
+                    }
+                break;
+
+                case 'input':
+                    // Image submit buttons.
+                    if ((missingAlt === true) || (nullAlt === true)) {
+                        errors.inputImage.missingAlt.push(element);
+                    } else {
+                        errors.inputImage.generalAlt.push(element);
+                    }
+                break;
+
+                case 'area':
+                    // Area tags in a client-side image map.
+                    if ((missingAlt === true) || (nullAlt === true)) {
+                        errors.area.missingAlt.push(element);
+                    } else {
+                        errors.inputImage.generalAlt.push(element);
+                    }
+                break;
+
+                default:
+                    // No other tags defined.
+                break;
+            }//end switch
+        }//end for
+
+        return errors;
+    },
+
+    /**
      * Driver function for the null alt text tests.
      *
      * This takes the generic result given by the alt text testing functions
@@ -68,7 +186,7 @@ var HTMLCS_Section508_Sniffs_A = {
      */
     addNullAltTextResults: function(top)
     {
-        var errors = HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1.testNullAltText(top);
+        var errors = this.testNullAltText(top);
 
         for (var i = 0; i < errors.img.emptyAltInLink.length; i++) {
             HTMLCS.addMessage(HTMLCS.ERROR, errors.img.emptyAltInLink[i], 'Img element is the only content of the link, but is missing alt text. The alt text should describe the purpose of the link.', 'Img.EmptyAltInLink');
@@ -105,6 +223,73 @@ var HTMLCS_Section508_Sniffs_A = {
         for (var i = 0; i < errors.area.generalAlt.length; i++) {
             HTMLCS.addMessage(HTMLCS.NOTICE, errors.area.generalAlt[i], 'Ensure that the area element\'s text alternative serves the same purpose as the part of image map image it references.', 'Area.GeneralAlt');
         }
+    },
+
+    testMediaTextAlternatives: function(top)
+    {
+        var errors = {
+            object: {
+                missingBody: [],
+                generalAlt: []
+            },
+            applet: {
+                missingBody: [],
+                missingAlt: [],
+                generalAlt: []
+            }
+        };
+
+        var elements = top.querySelectorAll('object');
+
+        for (var el = 0; el < elements.length; el++) {
+            var element  = elements[el];
+            var nodeName = element.nodeName.toLowerCase();
+
+            var childObject = element.querySelector('object');
+
+            // If we have an object as our alternative, skip it. Pass the blame onto
+            // the child.
+            if (childObject === null) {
+                var textAlt = HTMLCS.util.getElementTextContent(element, true);
+                if (textAlt === '') {
+                    errors.object.missingBody.push(element);
+                } else {
+                    errors.object.generalAlt.push(element);
+                }
+            }//end if
+        }//end if
+
+        var elements = top.querySelectorAll('applet');
+
+        for (var el = 0; el < elements.length; el++) {
+            // Test firstly for whether we have an object alternative.
+            var childObject = element.querySelector('object');
+            var hasError    = false;
+
+            // If we have an object as our alternative, skip it. Pass the blame onto
+            // the child. (This is a special case: those that don't understand APPLET
+            // may understand OBJECT, but APPLET shouldn't be nested.)
+            if (childObject === null) {
+                var textAlt = HTMLCS.util.getElementTextContent(element, true);
+                if (HTMLCS.util.isStringEmpty(textAlt) === true) {
+                    errors.applet.missingBody.push(element);
+                    hasError = true;
+                }
+            }//end if
+
+            var altAttr = element.getAttribute('alt') || '';
+            if (HTMLCS.util.isStringEmpty(altAttr) === true) {
+                errors.applet.missingAlt.push(element);
+                hasError = true;
+            }
+
+            if (hasError === false) {
+                // No error? Remind of obligations about equivalence of alternatives.
+                errors.applet.generalAlt.push(element);
+            }
+        }//end if
+
+        return errors;
     },
 
     /**
