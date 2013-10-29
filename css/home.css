@@ -1047,7 +1047,7 @@ td:last-child li {
  background: url(../images/external-link-table.png) center right no-repeat;
 }
 
-#introduction a[href^='http:']:hover, #test-area a[href^='http:']:hover {
+#test-area table a[href^='http:']:hover {
  display:inline-block;
  padding-right:18px;
  background: url(../images/external-link-hover.png) center right no-repeat;
