@@ -665,17 +665,17 @@ box-shadow: -1px 0 0 rgba(255,255,255,.5) inset, 1px 0 0 rgba(0,0,0,.08) inset;
 
 #results-overview li.active {
   background:#e6e6e6;
-  box-shadow: 0 0 6px rgba(0,0,0,.1) inset, 1px 0 0 rgba(0,0,0,0.04) inset;
+  box-shadow: 0 0 6px rgba(0,0,0,0.2) inset, 1px 0 0 rgba(0,0,0,0.04) inset;
 }
 
 #results-overview li.active a:hover{
  background:#e1e1e1;
-   box-shadow: 0 0 6px rgba(0,0,0,.14) inset, 1px 0 0 rgba(0,0,0,0.04) inset;
+   box-shadow: 0 0 6px rgba(0,0,0,0.14) inset, 1px 0 0 rgba(0,0,0,0.04) inset;
 }
 
 #results-overview li.active a:hover:first-child{
  background:#e1e1e1;
-   box-shadow: 0 0 6px rgba(0,0,0,.14) inset, 1px 0 0 rgba(0,0,0,0.04);
+   box-shadow: 0 0 6px rgba(0,0,0,0.14) inset, 1px 0 0 rgba(0,0,0,0.04);
 }
 
 .result-count {
@@ -970,6 +970,12 @@ li label {
   padding-left:5px;
   letter-spacing:1px;
   margin:15px 0 15px 10px;
+  text-align:center;
+  display:block;
+  width:100%;
+  color:#18243b;
+  font-size:15px;
+  line-height:25px;
 }
 
 .loading img {
