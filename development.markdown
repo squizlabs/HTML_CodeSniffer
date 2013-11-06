@@ -4,9 +4,9 @@
 
 A **standard** provides an option in the dropdown against which to check your code. The default standards are WCAG2A, WCAG2AA, WCAG2AAA, and Section508. Each standard has a subdirectory in the Standards directory.
 
-A **ruleset** is a JavaScript object that defines the rules for a standard. The object is named window.HTMLCS_Foo, where Foo is the name of the standard. A ruleset is defined by a file called ruleset.js in the directory for that standard. A ruleset maps to a set of **sniffs** which may be defined in the same standard or other standards.
+A **ruleset** is a JavaScript object that defines the rules for a standard. The object is named `window.HTMLCS_Foo`, where `Foo` is the name of the standard. A ruleset is defined by a file called ruleset.js in the directory for that standard. A ruleset maps to a set of **sniffs** which may be defined in the same standard or other standards.
 
-Under the Standards directory is a directory called **Sniffs**, which in turn contains several JavaScript files (possibly within subdirectories). Within that file a JavaScript object is defined which contains a set of tests to run. The object is named window.HTMLCS_Foo_path_to_filename. (Note that forward slashes are replaced with underscores, which can be confusing as many of the file names also contain underscores.)
+Under the Standards directory is a directory called Sniffs, which in turn contains several JavaScript files (possibly within subdirectories). Within that file a JavaScript object is defined which contains a set of tests to run. The object is named `window.HTMLCS_Foo_path_to_filename`. (Note that forward slashes are replaced with underscores, which can be confusing as many of the file names also contain underscores.)
 
 ## ruleset.js
 
@@ -20,8 +20,8 @@ The following is an example of a ruleset object.
 	    	{
 	            standard: 'mystandard',
 	            include: [
-	                'cap1_formfields',
-	                'cap1_anchors'
+	                'formfields',
+	                'anchors'
 	            ]
 	        },
 	        {
@@ -104,7 +104,7 @@ The **process** function is run for each instance of each registered element. Fr
 ## HTMLCS.addMessage()
 
 The addMessage function takes four arguments:
-- *severity* (HTMLCS.ERROR, HTMLCS.WARNING, or HTMLCS.INFO)
+- **severity** (HTMLCS.ERROR, HTMLCS.WARNING, or HTMLCS.INFO)
 - **element** the affected element
 - **message** the message to display
 - **code** A code for additional information, used by get getMsgInfo function in ruleset.js
