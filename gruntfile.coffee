@@ -17,8 +17,9 @@ module.exports = (grunt)->
       dist:
         files: 
           'dist/HTMLCS.min.js': [
-            'HTMLCS.js'
             'Standards/**/*.js'
+            'HTMLCS.js'
+            'PhantomJS/runner.js'
           ]
 
     watch:
