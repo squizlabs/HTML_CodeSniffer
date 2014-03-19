@@ -1534,7 +1534,7 @@ var HTMLCSAuditor = new function()
                 _doc.documentElement.querySelector('.HTMLCS-settings').appendChild(msgElementSource);
 
                 var msg = 'HTML_CodeSniffer has been updated to version ' + response.newVersion + '.';
-                msg    += ' <a href="http://squizlabs.github.com/HTML_CodeSniffer/patches/' + response.newVersion + '">View the changelog</a>'
+                msg    += ' <a href="http://squizlabs.github.io/HTML_CodeSniffer/patches/' + response.newVersion + '">View the changelog</a>'
 
                 msgElementSource.innerHTML = msg;
             }//end if
