@@ -43,7 +43,7 @@ pull number system to the new.
   
   The bookmarklet link on the home page has been updated. Existing bookmarklets
   can be updated by removing the "http:" from the path near the start (so that
-  path reads "//squizlabs.github.io/HTML_CodeSniffer/build"). This ensures that
+  path reads "//squizlabs.github.io/HTML_CodeSniffer/build/"). This ensures that
   the same scheme (protocol) is used as the site you are testing.
 
 ## Version 2.0.0 (8 Jan 2013)
