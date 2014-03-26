@@ -391,16 +391,21 @@ td a:hover {
  display: block;
  color: #cdd7ec;
  font-size: 11px;
- margin-bottom: 5px;
+ padding:20px 60px 0px;
  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.6);
  letter-spacing:1px;
+}
+
+#bookmarklet .version a {
+ font-weight: bold;
+ color: #cdd7ec;
 }
 
 #bookmarklet .requirements {
  color:#7690cc;
  font-size:11px;
  text-align:center;
- padding:20px 60px;
+ padding:10px 60px 20px;
  text-shadow: 0 -1px 0 rgba(0,0,0,1);
  letter-spacing:1px;
 }
