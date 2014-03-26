@@ -15,6 +15,37 @@ Version numbers have been applied retrospectively based on the size or significa
 the repository's [tags list](https://github.com/squizlabs/HTML_CodeSniffer/tags) relates the old
 pull number system to the new.
 
+## Version 2.0.1 (27 Mar 2014)
+
+- **Auditor:** Fixed [issue #82](https://github.com/squizlabs/HTML_CodeSniffer/issues/82) which saw the standards
+  list dropdown empty in Internet Explorer 8.
+- **Section 508 (Rules A, L):** Unwound dependencies in the Section 508 standard so that it can be
+  distributed without needing the WCAG 2.0 standard as well.
+- **Section 508 (Rule J):** Fixed a JavaScript error for pages that did not have a *title* attribute
+  in their head ([issue #68](https://github.com/squizlabs/HTML_CodeSniffer/pull/68)).
+- **WCAG 2.0 (<abbr title="Success Criterion">SC</abbr> 1.3.1)**
+  Remove test for "Multiple *label* tags with same *for* attribute
+  ([issue #90](https://github.com/squizlabs/HTML_CodeSniffer/issues/90)).
+- **WCAG 2.0 (<abbr title="Success Criteria">SCs</abbr> 1.4.3, 1.4.6)**
+  If a contrast ratio test fails but would appear the same as the boundary value
+  to two decimal places, more decimals will be used to show the contrast ratio
+  to make it clear it is failing ([issue #89](https://github.com/squizlabs/HTML_CodeSniffer/issues/89)).
+- **WCAG 2.0 (<abbr title="Success Criteria">SCs</abbr> 1.4.3, 1.4.6)**
+  Fixed a JavaScript error if a contrast ratio test fails ([issue #78](https://github.com/squizlabs/HTML_CodeSniffer/issues/78)).
+- **Core:** Fixed a JavaScript error that could be triggered in isStringEmpty()
+  when passed a non-string ([issue #76](https://github.com/squizlabs/HTML_CodeSniffer/issues/76)).
+  Also removed duplicated code in **WCAG 2.0 (<abbr title="Success Criterion">SC</abbr> 1.1.1)**.
+  
+## 21 Mar 2014
+
+- Support for HTTPS sites should be possible now that Github has updated their
+  certificates to cover Github Pages sites.
+  
+  The bookmarklet link on the home page has been updated. Existing bookmarklets
+  can be updated by removing the "http:" from the path near the start (so that
+  path reads "//squizlabs.github.io/HTML_CodeSniffer/build"). This ensures that
+  the same scheme (protocol) is used as the site you are testing.
+
 ## Version 2.0.0 (8 Jan 2013)
 
 - **Auditor:** Significant updates to allow Section 508 standards to fit within the
