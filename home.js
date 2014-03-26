@@ -4,7 +4,7 @@ function runHTMLCS(standard, source, resultsDiv, callback)
         resultsDiv.className += ' resultsWrapperActive';
     }
 
-    resultsDiv.innerHTML = '<span class="loading"><img src="images/loading.gif" alt="Loading"> Sniffing...</span>';
+    resultsDiv.innerHTML = '<span class="loading"><img src="images/loading.gif" alt="Loading"><br>Sniffing</span>';
 
     HTMLCS.process(standard, source, function() {
         if (standard === 'Section508') {
