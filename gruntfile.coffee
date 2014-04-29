@@ -16,7 +16,7 @@ module.exports = (grunt)->
         banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %> */\n' 
       dist:
         files: 
-          'dist/HTMLCS.min.js': [
+          'build/HTMLCS.js': [
             'Standards/**/*.js'
             'HTMLCS.js'
             'PhantomJS/runner.js'
@@ -31,14 +31,14 @@ module.exports = (grunt)->
             flatten: true,
             src: 'Auditor/HTMLCSAuditor.css'
             rename: (dest, src) -> dest + '/HTMLCS.css'
-            dest: 'dist'
+            dest: 'build'
             filter: 'isFile'
           },
           {
             expand: true
             flatten: true,
             src: 'Auditor/Images/*'
-            dest: 'dist/Images'
+            dest: 'build/Images'
             filter: 'isFile'
           }
         ]
