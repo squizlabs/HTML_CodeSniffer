@@ -131,8 +131,8 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
                     }
                 }//end if
             } else {
-                if (/^\s*$/.test(content) === true) {
-                    // Href provided, but no content.
+                if (/^\s*$/.test(content) === true && element.hasAttribute(title) === false) {
+                    // Href provided, but no content or title.
                     // We only fire this message when there are no images in the content.
                     // A link around an image with no alt text is already covered in SC
                     // 1.1.1 (test H30).
