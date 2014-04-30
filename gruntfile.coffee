@@ -16,12 +16,32 @@ module.exports = (grunt)->
         banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %> */\n' 
       dist:
         files: 
-          'dist/HTMLCS.min.js': [
+          'build/HTMLCS.js': [
             'Standards/**/*.js'
             'HTMLCS.js'
             'PhantomJS/runner.js'
+            'Auditor/HTMLCSAuditor.js'
           ]
 
+    copy:
+      dist:
+        files: [
+          {
+            expand: true
+            flatten: true,
+            src: 'Auditor/HTMLCSAuditor.css'
+            rename: (dest, src) -> dest + '/HTMLCS.css'
+            dest: 'build'
+            filter: 'isFile'
+          },
+          {
+            expand: true
+            flatten: true,
+            src: 'Auditor/Images/*'
+            dest: 'build/Images'
+            filter: 'isFile'
+          }
+        ]
     watch:
       jade:
         files: ['<%= jshint.all %>']
@@ -30,4 +50,4 @@ module.exports = (grunt)->
   require('load-grunt-tasks') grunt
 
   grunt.registerTask 'default', ['jshint']
-  grunt.registerTask 'build',   ['uglify:dist']
+  grunt.registerTask 'build',   ['uglify:dist', 'copy:dist']
