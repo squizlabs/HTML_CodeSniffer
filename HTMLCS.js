@@ -852,9 +852,17 @@ var HTMLCS = new function()
          */
         this.rgbaBackgroundToRgb = function(colour, element) {
             var parent        = element.parentNode;
-            var currentColour = this.colourStrToRGB(colour);
+            var original      = this.colourStrToRGB(colour);
+            var backgrounds   = [];
+            var solidFound    = false;
 
-            while (currentColour.alpha != 1) {
+            if (original.alpha == 1) {
+                //Return early if it is already solid.
+                return original;
+            }
+
+            //Find all the background with transparancy until we get to a solid colour
+            while (solidFound == false) {
                 if ((!parent) || (!parent.ownerDocument)) {
                     break;
                 }
@@ -869,12 +877,22 @@ var HTMLCS = new function()
                     continue;
                 }
                 
-                currentColour = this.mixColours(parentColour, currentColour);
+                backgrounds.push(parentColour);
+                
+                if (parentColour.alpha == 1) {
+                    solidFound = true;
+                }
 
                 parent = parent.parentNode;
             }
             
-            return currentColour;
+            //Now we need to start with the solid color that we found, and work our way up to the original color.
+            var solidColour = backgrounds.pop();
+            while (backgrounds.length) {
+                solidColour = this.mixColours(solidColour, backgrounds.pop());
+            }
+            
+            return this.mixColours(solidColour, original);
         }
         
         this.mixColours = function(bg, fg) {
