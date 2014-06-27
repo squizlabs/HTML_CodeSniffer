@@ -1,6 +1,6 @@
 module.exports = (grunt)->
   grunt.initConfig
-    pkg: grunt.file.readJSON('package.json')
+    pkg: grunt.file.readJSON('../../package.json')
 
     jshint: 
       options: 
@@ -47,8 +47,8 @@ module.exports = (grunt)->
         files: ['<%= jshint.all %>']
         tasks: ['jshint:all']
 
-  require('load-grunt-tasks') grunt
   grunt.file.setBase '../../'
+  require('load-grunt-tasks') grunt
 
   grunt.registerTask 'default', ['jshint']
   grunt.registerTask 'build',   ['uglify:dist', 'copy:dist']
