@@ -844,6 +844,49 @@ var HTMLCS = new function()
         }
 
         /**
+         * Convert an rgba background to rgb, by traversing the dom and mixing colors as needed.
+         * 
+         * @param element
+         * @returns {Object|*}
+         */
+        this.rgbaBackgroundToRgb = function(element) {
+            var bgColour      = this.style(element).backgroundColor;
+            var parent        = element.parentNode;
+            var currentColour = this.colourStrToRGB(bgColour);
+
+            while (currentColour.alpha != 1) {
+                if ((!parent) || (!parent.ownerDocument)) {
+                    break;
+                }
+                
+                var parentStyle     = this.style(parent);
+                var parentColourStr = parentStyle.backgroundColor;
+                var parentColour    = this.colourStrToRGB(parentColourStr);
+                
+                if ((parentColourStr === 'transparent') || (parentColourStr === 'rgba(0, 0, 0, 0)')) {
+                    //Skip totally transparent parents until we find a solid color.
+                    parent = parent.parentNode;
+                    continue;
+                }
+                
+                currentColour = this.mixColours(parentColour, currentColour);
+
+                parent = parent.parentNode;
+            }
+            
+            return currentColour;
+        }
+        
+        this.mixColours = function(bg, fg) {
+            return {
+                red: Math.round(fg.alpha * (fg.red*255) + (1 - fg.alpha) * (bg.red*255)),
+                green: Math.round(fg.alpha * (fg.green*255) + (1 - fg.alpha) * (bg.green*255)),
+                blue: Math.round(fg.alpha * (fg.blue*255) + (1 - fg.alpha) * (bg.blue*255)),
+                alpha: bg.alpha
+            }
+        }
+
+        /**
          * Convert a colour string to a structure with red/green/blue elements.
          *
          * Supports rgb() and hex colours (3 or 6 hex digits, optional "#").
@@ -863,7 +906,11 @@ var HTMLCS = new function()
                 colour = {
                     red: (matches[1] / 255),
                     green: (matches[2] / 255),
-                    blue: (matches[3] / 255)
+                    blue: (matches[3] / 255),
+                    alpha: 1
+                }
+                if (matches[4]) {
+                    colour.alpha = parseFloat(/^,\s*(.*)$/.exec(matches[4])[1]);
                 }
             } else {
                 // Hex digit format.
@@ -878,7 +925,8 @@ var HTMLCS = new function()
                 colour = {
                     red: (parseInt(colour.substr(0, 2), 16) / 255),
                     green: (parseInt(colour.substr(2, 2), 16) / 255),
-                    blue: (parseInt(colour.substr(4, 2), 16) / 255)
+                    blue: (parseInt(colour.substr(4, 2), 16) / 255),
+                    alpha: 1
                 };
             }
 
