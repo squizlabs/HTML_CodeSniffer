@@ -47,8 +47,9 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
                     var style = HTMLCS.util.style(node);
 
                     if (style) {
-                        var bgColour = style.backgroundColor;
-                        var hasBgImg = false;
+                        var bgColour  = style.backgroundColor;
+                        var bgElement = node;
+                        var hasBgImg  = false;
 
                         if (style.backgroundImage !== 'none') {
                             hasBgImg = true;
@@ -79,12 +80,17 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
 
                             var parentStyle = HTMLCS.util.style(parent);
                             var bgColour    = parentStyle.backgroundColor;
+                            var bgElement   = parent;
                             if (parentStyle.backgroundImage !== 'none') {
                                 hasBgImg = true;
                             }
 
                             parent = parent.parentNode;
                         }//end while
+
+                        if (bgColour && bgColour.indexOf('rgba') === 0) {
+                            bgColour = HTMLCS.util.rgbaBackgroundToRgb(bgElement);
+                        }
 
                         if (hasBgImg === true) {
                             // If we have a background image, skip the contrast ratio checks,
