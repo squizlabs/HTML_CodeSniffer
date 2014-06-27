@@ -844,15 +844,15 @@ var HTMLCS = new function()
         }
 
         /**
-         * Convert an rgba background to rgb, by traversing the dom and mixing colors as needed.
-         * 
-         * @param element
-         * @returns {Object|*}
+         * Convert an rgba colour to rgb, by traversing the dom and mixing colors as needed.
+         *
+         * @param element - the element to compare the rgba color against.
+         * @param colour - the starting rgba color to check.
+         * @returns {Colour Object}
          */
-        this.rgbaBackgroundToRgb = function(element) {
-            var bgColour      = this.style(element).backgroundColor;
+        this.rgbaBackgroundToRgb = function(colour, element) {
             var parent        = element.parentNode;
-            var currentColour = this.colourStrToRGB(bgColour);
+            var currentColour = this.colourStrToRGB(colour);
 
             while (currentColour.alpha != 1) {
                 if ((!parent) || (!parent.ownerDocument)) {
