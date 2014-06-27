@@ -40,8 +40,8 @@ if (system.args.length < 3 || system.args.length > 3) {
                     }
                 };
 
-                injectAllStandards('../Standards');
-                page.injectJs('../HTMLCS.js');
+                injectAllStandards('../../Standards');
+                page.injectJs('../../HTMLCS.js');
                 page.injectJs('runner.js');
 
                 // Now Run. Note that page.evaluate() function is sanboxed to

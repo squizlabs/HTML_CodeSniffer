@@ -1,10 +1,10 @@
 module.exports = (grunt)->
   grunt.initConfig
-    pkg: grunt.file.readJSON('package.json')
+    pkg: grunt.file.readJSON('../../package.json')
 
     jshint: 
       options: 
-        jshintrc: '.jshintrc'
+        jshintrc: 'Integration/Grunt/.jshintrc'
 
       all: [
         'Standards/**/*.js'
@@ -20,7 +20,7 @@ module.exports = (grunt)->
             'Standards/**/*.js'
             'HTMLCS.js'
             'PhantomJS/runner.js'
-            'Auditor/HTMLCSAuditor.js'
+            'Auditor/HTMLCSAuditor.js'            
           ]
 
     copy:
@@ -40,6 +40,13 @@ module.exports = (grunt)->
             src: 'Auditor/Images/*'
             dest: 'build/Images'
             filter: 'isFile'
+          },
+          {
+            expand: true
+            flatten: true,
+            src: 'licence.txt'
+            dest: 'build'
+            filter: 'isFile'
           }
         ]
     watch:
@@ -47,6 +54,7 @@ module.exports = (grunt)->
         files: ['<%= jshint.all %>']
         tasks: ['jshint:all']
 
+  grunt.file.setBase '../../'
   require('load-grunt-tasks') grunt
 
   grunt.registerTask 'default', ['jshint']
