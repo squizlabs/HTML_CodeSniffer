@@ -48,6 +48,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
 
                     if (style) {
                         var bgColour  = style.backgroundColor;
+                        var foreColour = style.color;
                         var bgElement = node;
                         var hasBgImg  = false;
 
@@ -89,7 +90,11 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
                         }//end while
 
                         if (bgColour && bgColour.indexOf('rgba') === 0) {
-                            bgColour = HTMLCS.util.RGBtoColourStr(HTMLCS.util.rgbaBackgroundToRgb(bgElement));
+                            bgColour = HTMLCS.util.RGBtoColourStr(HTMLCS.util.rgbaBackgroundToRgb(bgColour, bgElement));
+                        }
+
+                        if (foreColour && foreColour.indexOf('rgba') === 0) {
+                            foreColour = HTMLCS.util.RGBtoColourStr(HTMLCS.util.rgbaBackgroundToRgb(foreColour, node));
                         }
 
                         if (hasBgImg === true) {
@@ -97,7 +102,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
                             // and push a warning instead.
                             failures.push({
                                 element: node,
-                                colour: style.color,
+                                colour: foreColour,
                                 bgColour: undefined,
                                 value: undefined,
                                 required: reqRatio,
@@ -111,12 +116,12 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
                             continue;
                         }
 
-                        var contrastRatio = HTMLCS.util.contrastRatio(bgColour, style.color);
+                        var contrastRatio = HTMLCS.util.contrastRatio(bgColour, foreColour);
 
 
 
                         if (contrastRatio < reqRatio) {
-                            var recommendation = this.recommendColour(bgColour, style.color, reqRatio);
+                            var recommendation = this.recommendColour(bgColour, foreColour, reqRatio);
 
                             failures.push({
                                 element: node,
