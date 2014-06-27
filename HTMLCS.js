@@ -878,10 +878,18 @@ var HTMLCS = new function()
         }
         
         this.mixColours = function(bg, fg) {
+            //Convert colors to int values for mixing.
+            bg.red   = Math.round(bg.red*255);
+            bg.green = Math.round(bg.green*255);
+            bg.blue  = Math.round(bg.blue*255);
+            fg.red   = Math.round(fg.red*255);
+            fg.green = Math.round(fg.green*255);
+            fg.blue  = Math.round(fg.blue*255);
+            
             return {
-                red: Math.round(fg.alpha * (fg.red*255) + (1 - fg.alpha) * (bg.red*255)),
-                green: Math.round(fg.alpha * (fg.green*255) + (1 - fg.alpha) * (bg.green*255)),
-                blue: Math.round(fg.alpha * (fg.blue*255) + (1 - fg.alpha) * (bg.blue*255)),
+                red: Math.round(fg.alpha * fg.red + (1 - fg.alpha) * bg.red) / 255,
+                green: Math.round(fg.alpha * fg.green + (1 - fg.alpha) * bg.green) / 255,
+                blue: Math.round(fg.alpha * fg.blue + (1 - fg.alpha) * bg.blue) / 255,
                 alpha: bg.alpha
             }
         }
