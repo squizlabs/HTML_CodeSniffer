@@ -20,7 +20,7 @@ module.exports = (grunt)->
             'Standards/**/*.js'
             'HTMLCS.js'
             'PhantomJS/runner.js'
-            'Auditor/HTMLCSAuditor.js'
+            'Auditor/HTMLCSAuditor.js'            
           ]
 
     copy:
@@ -39,6 +39,13 @@ module.exports = (grunt)->
             flatten: true,
             src: 'Auditor/Images/*'
             dest: 'build/Images'
+            filter: 'isFile'
+          },
+          {
+            expand: true
+            flatten: true,
+            src: 'licence.txt'
+            dest: 'build'
             filter: 'isFile'
           }
         ]
