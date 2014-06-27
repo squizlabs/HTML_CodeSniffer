@@ -89,7 +89,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
                         }//end while
 
                         if (bgColour && bgColour.indexOf('rgba') === 0) {
-                            bgColour = HTMLCS.util.rgbaBackgroundToRgb(bgElement);
+                            bgColour = HTMLCS.util.RGBtoColourStr(HTMLCS.util.rgbaBackgroundToRgb(bgElement));
                         }
 
                         if (hasBgImg === true) {
