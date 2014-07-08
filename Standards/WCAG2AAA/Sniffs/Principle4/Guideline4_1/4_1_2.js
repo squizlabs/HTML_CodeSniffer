@@ -204,6 +204,8 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
                             break;
                         }
                     } else if (requiredName === 'label') {
+                        var found = false;
+                        
                         // Label element.
                         if ((element.hasAttribute('id')) && (/^\s*$/.test(element.getAttribute('id')) === false)) {
                             if (/^\-?[A-Za-z][A-Za-z0-9\-_]*$/.test(element.getAttribute('id')) === true) {
@@ -214,7 +216,6 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
                             } else {
                                 // Characters not suitable for querySelector. Use slower method.
                                 var labels = top.getElementsByTagName('label');
-                                var found  = false;
                                 for (var x = 0; x < labels.length; x++) {
                                     if ((labels[x].hasAttribute('for') === true) && (labels[x].getAttribute('for') === element.getAttribute('id'))) {
                                         found = true;
@@ -227,6 +228,21 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
                                 }
                             }//end if
                         }//end if
+                        
+                        // implicit label
+                        var parent = element.parentNode;
+                        while (parent && parent.nodeType === 1) {
+                            if (parent.nodeName.toLowerCase() === requiredName) {
+                                found = true;
+                                break;
+                            }
+                            
+                            parent = parent.parentNode;
+                        }
+                        
+                        if (found) {
+                            break;
+                        }
                     } else if (requiredName.charAt(0) === '@') {
                         // Attribute.
                         requiredName = requiredName.substr(1, requiredName.length);
