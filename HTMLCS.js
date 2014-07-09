@@ -864,6 +864,13 @@ var HTMLCS = new function()
             //Find all the background with transparancy until we get to a solid colour
             while (solidFound == false) {
                 if ((!parent) || (!parent.ownerDocument)) {
+                    //No parent was found, assume a solid white background.
+                    backgrounds.push({
+                        red: 1,
+                        green: 1,
+                        blue: 1,
+                        alpha: 1
+                    });
                     break;
                 }
                 
