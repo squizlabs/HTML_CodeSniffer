@@ -868,7 +868,8 @@ var HTMLCS = new function()
                     backgrounds.push({
                         red: 1,
                         green: 1,
-                        blue: 1
+                        blue: 1,
+                        alpha: 1
                     });
                     break;
                 }
