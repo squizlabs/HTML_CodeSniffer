@@ -114,7 +114,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
                                 bgColour: undefined,
                                 value: undefined,
                                 required: reqRatio,
-                                hasBgImage: true,
+                                hasBgImage: true
                             });
                             continue;
                         } else if (isAbsolute === true) {
