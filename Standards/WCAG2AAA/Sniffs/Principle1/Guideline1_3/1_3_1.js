@@ -129,11 +129,6 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
                             var code  = 'H44.NonExistentFragment';
                         }
                         HTMLCS.addMessage(level, labels[i], msg, code);
-                    } else {
-                        var nodeName = refNode.nodeName.toLowerCase();
-                        if ((nodeName !== 'input') && (nodeName !== 'select') && (nodeName !== 'textarea')) {
-                            HTMLCS.addMessage(HTMLCS.ERROR, labels[i], 'This label\'s "for" attribute contains an ID that points to an element that is not a form control.', 'H44.NotFormControl');
-                        }
                     }
                 }
             } else {
