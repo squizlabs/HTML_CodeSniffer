@@ -90,7 +90,7 @@ var HTMLCS = new function()
 
             if (elementFrame.contentDocument) {
                 element = elementFrame.contentDocument;
-            } else if (element.contentWindow) {
+            } else if (elementFrame.contentWindow) {
                 element = elementFrame.contentWindow.document;
             }
 
