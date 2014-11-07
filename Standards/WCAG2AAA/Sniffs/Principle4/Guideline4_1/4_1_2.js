@@ -349,7 +349,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
                     builtAttr = ' A value is exposed using the "' + requiredValue + '" element.';
                 }
 
-                var msg += builtAttr;
+                msg += builtAttr;
                 if (warning === true) {
                     errors.push({
                         element: element,
