@@ -145,16 +145,31 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
     /**
      * Test for appropriate labels on inputs.
      *
-     * HTML_CodeSniffer tests:
-     * - whether a form control has a label associated with it,
-     * - how it is associated (implicit labels are not accessible - only use
-     *   explicit labels, ie. "for" attribute),
-     * - whether said form control should have a label at all (buttons shouldn't),
-     * - whether the label is placed correctly (it should be after radio buttons and
-     *   check boxes, but before text boxes and select lists).
+     * The appropriate WCAG2 techniques test is failure F68.
+     * This test uses the September 2014 version of the technique:
+     * http://www.w3.org/TR/2014/NOTE-WCAG20-TECHS-20140916/F68
      *
-     * The label position test is just "is it on the correct side". Proximity is
-     * not tested.
+     * For all input elements of type "radio", "checkbox", "text", "file" or "password",
+     * and all textarea and select elements in the Web page:
+     *
+     * 1. Check that the visual design uses a text label that identifies the purpose of the control
+     * 2. Check that these input elements have a programmatically determined label associated in one
+     *    of the following ways:
+     *    (a) the text label is contained in a label element that is correctly associated to the
+     *        respective input element via the label's for attribute (the id given as value in the
+     *        for attribute matches the id of the input element).
+     *    (b) the control is contained within a label element that contains the label text.
+     *    (c) the text label is correctly programmatically associated with the input element via the
+     *        aria-labelledby attribute (the id given as value in the aria-labelledby attribute
+     *        matches the id of the input element).
+     *    (d) the [label] is programmatically determined through the value of either its
+     *        aria-label or title attributes.
+     *
+     * This changed in March 2014. Before then, only 2(a) was permitted or 2(d) (title attribute only).
+     * Notably, labels made through wrapping an element in a label attribute were not permitted.
+     *
+     * Associated techniques: H44 (LABEL element), H65 (title attribute),
+     * ARIA6/ARIA14 (aria-label), ARIA9/ARIA16 (aria-labelledby).
      *
      * @param {DOMNode} element The element registered.
      * @param {DOMNode} top     The top element of the tested code.
@@ -171,92 +186,114 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
             }
         }
 
-        var isNoLabelControl = false;
-        if (/^(submit|reset|image|hidden|button)$/.test(inputType.toLowerCase()) === true) {
-            isNoLabelControl = true;
+        var hasLabel = false;
+        var addToLabelList = function(found) {
+            if (!hasLabel) hasLabel = {};
+            hasLabel[found] = true;
+        };
+
+        // Firstly, work out whether it needs a label.
+        var needsLabel = false;
+        var labelPos   = 'left';
+        var inputType  = inputType.toLowerCase();
+        if ((inputType === 'select' || inputType === 'textarea')) {
+            needsLabel = true;
+        } else if (/^(radio|checkbox|text|file|password)$/.test(inputType) === true) {
+            needsLabel = true;
         }
 
-        this._labelNames = {};
-        var labels = top.getElementsByTagName('label');
-        for (var i = 0; i < labels.length; i++) {
-            if (labels[i].hasAttribute('for') === true) {
-                var labelFor = labels[i].getAttribute('for');
-                this._labelNames[labelFor] = labels[i];
-            }//end if
-        }//end for
+        // Find an explicit label.
+        var explicitLabel = element.ownerDocument.querySelector('label[for="' + element.id + '"]');
+        if (explicitLabel) {
+            addToLabelList('explicit');
+        }
 
-        if ((element.hasAttribute('id') === false) && (isNoLabelControl === false)) {
-            // There is no id attribute at all on the control.
-            if (element.hasAttribute('title') === true) {
-                if (/^\s*$/.test(element.getAttribute('title')) === true) {
-                    // But the title attribute is empty. Whoops.
-                    HTMLCS.addMessage(HTMLCS.ERROR, element, 'Form control without a label contains an empty title attribute. The title attribute should identify the purpose of the control.', 'H65.3');
-                }
+        // Find an implicit label.
+        var implicitLabel = element.parentNode;
+        if (implicitLabel && (implicitLabel.nodeName.toLowerCase() === 'label')) {
+            addToLabelList('implicit');
+        }
+
+        // Find a title attribute.
+        var title = element.getAttribute('title');
+        if (title) {
+            if ((/^\s*$/.test(title) === true) && (needsLabel === true)) {
+                HTMLCS.addMessage(
+                    HTMLCS.WARNING,
+                    element,
+                    'This form control has a "title" attribute that is empty or contains only spaces. It will be ignored for labelling test purposes.',
+                    'F68'
+                );
             } else {
-                HTMLCS.addMessage(HTMLCS.ERROR, element, 'Form control does not have an ID, therefore it cannot have an explicit label.', 'H44.NoId');
-            }//end if
-        } else {
-            var id = element.getAttribute('id');
-            if (!this._labelNames[id]) {
-                // There is no label for this form control. For certain types of
-                // input, "no label" is not an error.
-                if (isNoLabelControl === false) {
-                    // If there is a title, we presume that H65 applies - the label
-                    // element cannot be used, and the title should be used as the
-                    // descriptive label instead.
-                    if (element.hasAttribute('title') === true) {
-                        if (/^\s*$/.test(element.getAttribute('title')) === true) {
-                            // But the title attribute is empty. Whoops.
-                            HTMLCS.addMessage(HTMLCS.ERROR, element, 'Form control without a label contains an empty title attribute. The title attribute should identify the purpose of the control.', 'H65.3');
-                        } else {
-                            // Manual check required as to the title. Making this a
-                            // warning because a manual tester also needs to confirm
-                            // that a label element is not feasible for the control.
-                            HTMLCS.addMessage(HTMLCS.WARNING, element, 'Check that the title attribute identifies the purpose of the control, and that a label element is not appropriate.', 'H65');
-                        }
-                    } else {
-                        HTMLCS.addMessage(HTMLCS.ERROR, element, 'Form control does not have an explicit label or title attribute, identifying the purpose of the control.', 'H44.2');
-                    }
-                }
+                addToLabelList('title');
+            }
+        }
+
+        // Find an aria-label attribute.
+        var ariaLabel = element.getAttribute('aria-label');
+        if (ariaLabel && (/^\s*$/.test(ariaLabel) === false)) {
+            if ((/^\s*$/.test(ariaLabel) === true) && (needsLabel === true)) {
+                HTMLCS.addMessage(
+                    HTMLCS.WARNING,
+                    element,
+                    'This form control has an "aria-label" attribute that is empty or contains only spaces. It will be ignored for labelling test purposes.',
+                    'F68'
+                );
             } else {
-                // There is a label for a form control that should not have a label,
-                // because the label is provided through other means (value of select
-                // reset, alt on image submit, button's content), or there is no
-                // visible field (hidden).
-                if (isNoLabelControl === true) {
-                    HTMLCS.addMessage(HTMLCS.ERROR, element, 'Label element should not be used for this type of form control.', 'H44.NoLabelAllowed');
-                } else {
-                    var labelOnRight = false;
-                    if (/^(checkbox|radio)$/.test(inputType) === true) {
-                        labelOnRight = true;
-                    }
+                addToLabelList('aria-label');
+            }
+        }
 
-                    // Work out the position of the element in comparison to its
-                    // label. A positive number means the element comes after the
-                    // label (correct where label is on left). Negative means element
-                    // is before the label (correct for "label on right").
-                    if (element.compareDocumentPosition) {
-                        // Firefox, Opera, IE 9+ standards mode.
-                        var pos = element.compareDocumentPosition(this._labelNames[id]);
-                        if ((pos & 0x02) === 0x02) {
-                            // Label precedes element.
-                            var posDiff = 1;
-                        } else if ((pos & 0x04) === 0x04) {
-                            // Label follows element.
-                            var posDiff = -1;
-                        }
-                    } else if (element.sourceIndex) {
-                        // IE < 9.
-                        var posDiff = element.sourceIndex - this._labelNames[id].sourceIndex;
-                    }
+        // Find an aria-labelledby attribute.
+        var ariaLabelledBy = element.getAttribute('aria-labelledby');
+        if (ariaLabelledBy && (/^\s*$/.test(ariaLabelledBy) === false)) {
+            var labelledByIds = ariaLabelledBy.split('\s+');
+            var ok = true;
 
-                    if ((labelOnRight === true) && (posDiff > 0)) {
-                        HTMLCS.addMessage(HTMLCS.ERROR, element, 'The label element for this control should be placed after this element.', 'H44.1.After');
-                    } else if ((labelOnRight === false) && (posDiff < 0)) {
-                        HTMLCS.addMessage(HTMLCS.ERROR, element, 'The label element for this control should be placed before this element.', 'H44.1.Before');
-                    }
-                }//end if
-            }//end if
+            // First check that all of the IDs (space separated) are present and correct.
+            for (x in labelledByIds) {
+                var labelledByElement = element.ownerDocument.querySelector('#' + labelledByIds[x]);
+                if (!labelledByElement) {
+                    HTMLCS.addMessage(
+                        HTMLCS.WARNING,
+                        element,
+                        'This form control contains an aria-labelledby attribute, however it includes an ID "' + labelledByIds[x] + '" that does not exist on an element. The aria-labelledby attribute will be ignored for labelling test purposes.',
+                        'ARIA16,ARIA9'
+                    );
+                    ok = false;
+                }
+            }
+
+            // We are all OK, add as a successful label technique.
+            if (ok === true) {
+                addToLabelList('aria-labelledby');
+            }
+        }
+
+        if ((hasLabel !== false) && (needsLabel === false)) {
+            // Note that it is okay for buttons to have aria-labelledby or
+            // aria-label, or title. The former two override the button text,
+            // while title is a lower priority than either: the button text,
+            // and in submit/reset cases, the localised name for the words
+            // "Submit" and "Reset".
+            // http://www.w3.org/TR/html-aapi/#accessible-name-and-description-calculation
+            if (inputType === 'hidden') {
+                HTMLCS.addMessage(
+                    HTMLCS.WARNING,
+                    element,
+                    'This hidden form field is labelled in some way. There should be no need to label a hidden form field.',
+                    'F68'
+                );
+            }
+        } else if ((hasLabel === false) && (needsLabel === true)) {
+            // Needs label.
+            HTMLCS.addMessage(
+                HTMLCS.WARNING,
+                element,
+                'This form field should be labelled in some way.' + ' ' +
+                'Use the label element (either with a "for" attribute or wrapped around the form field), or "title", "aria-label" or "aria-labelledby" attributes as appropriate.',
+                'F68'
+            );
         }//end if
     },
 
