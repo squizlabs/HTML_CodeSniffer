@@ -334,7 +334,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
                 }
 
                 msg += builtAttr;
-                if (warning === true) {
+                if (warning === false) {
                     errors.push({
                         element: element,
                         msg: msg,
