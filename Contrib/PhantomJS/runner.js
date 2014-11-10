@@ -15,8 +15,6 @@ var HTMLCS_RUNNER = new function() {
                 self.output(messages[i]);
                 msgCount[messages[i].type]++;
             }
-            console.log('Errors: ' + msgCount[HTMLCS.ERROR] + ', Warnings: ' + msgCount[HTMLCS.WARNING] +
-             ', Notices: ' + msgCount[HTMLCS.NOTICE]);
             console.log('done');
         }, function() {
             console.log('Something in HTML_CodeSniffer failed to parse. Cannot run.');
@@ -50,7 +48,7 @@ var HTMLCS_RUNNER = new function() {
         if (msg.element.id && (msg.element.id !== '')) {
             elementId = '#' + msg.element.id;
         }
-        console.log(typeName + '|' + msg.code + '|' + nodeName + '|' + elementId + '|' + msg.msg);
+        console.log('[HTMLCS] ' + typeName + '|' + msg.code + '|' + nodeName + '|' + elementId + '|' + msg.msg);
     };
 
 };
