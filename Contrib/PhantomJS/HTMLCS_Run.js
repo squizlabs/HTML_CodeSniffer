@@ -9,7 +9,7 @@ var messages = {
 
 if (system.args.length < 3 || system.args.length > 4) {
     console.log('Usage: phantomjs HTMLCS_Run.js URL standard [report]');
-    console.log('  available standards: "WCAG2A", "WCAG2AA", "WCAG2AAA"');
+    console.log('  available standards: "WCAG2A", "WCAG2AA", "WCAG2AAA", "Section508"');
     console.log('  available reports: "default" (default if omitted), "table"');
     phantom.exit();
 } else {
@@ -141,13 +141,10 @@ if (system.args.length < 3 || system.args.length > 4) {
                 // the loaded page's context. We can't pass any variable to it.
                 switch (standard) {
                     case 'WCAG2A':
-                        page.evaluate(function() {HTMLCS_RUNNER.run('WCAG2A');});
-                    break;
                     case 'WCAG2AA':
-                        page.evaluate(function() {HTMLCS_RUNNER.run('WCAG2AA');});
-                    break;
                     case 'WCAG2AAA':
-                        page.evaluate(function() {HTMLCS_RUNNER.run('WCAG2AAA');});
+                    case 'Section508':
+                        page.evaluate(function(standard) {HTMLCS_RUNNER.run(standard);}, standard);
                     break;
                     default:
                         console.log('Unknown standard.');
