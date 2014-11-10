@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>1.3.1 Labels</title>
+<!-- @HTMLCS_Test@
+Name: SC 1.3.1 Labels
+Standard: WCAG2AAA
+Assert: Error *.F68 on #noLabelText
+Assert: Error *.F68 on #noLabelDefault
+Assert: No Error *.F68 on #explicitLabelText
+Assert: No Error *.F68 on #explicitLabelDefault
+Assert: No Error *.F68 on #wrappedLabelText
+Assert: No Error *.F68 on #wrappedLabelDefault
+Assert: No Error *.F68 on #titleText
+Assert: No Error *.F68 on #titleDefault
+Assert: Warning *.H65 on #titleEmpty
+Assert: Error *.F68 on #titleEmpty
+Assert: No Error *.F68 on #ariaLabelText
+Assert: No Error *.F68 on #ariaLabelDefault
+Assert: Warning *.ARIA6 on #ariaLabelEmpty
+Assert: Error *.F68 on #ariaLabelEmpty
+Assert: No Error *.F68 on #ariaLabelledByText
+Assert: No Error *.F68 on #ariaLabelledByDefault
+Assert: No Error *.F68 on #ariaLabelledByMulti
+Assert: Warning *.ARIA16,ARIA9 on #ariaLabelledByNotExist
+Assert: Error *.F68 on #ariaLabelledByNotExist
+-->
+</head>
+<body>
+<form>
+	<!-- Basic Stuff with no label -->
+	<input type="text" id="noLabelText" />
+	<input id="noLabelDefault" />
+
+	<!-- Basic Stuff with explicit label -->
+	<label for="explicitLabelText">Text:</label> <input type="text" id="explicitLabelText" />
+	<label for="explicitLabelDefault">Text:</label> <input id="explicitLabelDefault" />
+
+	<!-- Basic Stuff with wrapped label -->
+	<label>Text: <input type="text" id="wrappedLabelText" /></label>
+	<label>Default: <input id="wrappedLabelDefault" /></label>
+
+	<!-- Basic Stuff with Aria Label -->
+	<input type="text" aria-label="Text" id="ariaLabelText" />
+	<input aria-label="Default" id="ariaLabelDefault" />
+	<input aria-label="" id="ariaLabelEmpty" />
+
+	<!-- Basic Stuff with Title -->
+	<input type="text" title="Text" id="titleText" />
+	<input title="Default" id="titleDefault" />
+	<input title="" id="titleEmpty" />
+
+	<!-- Basic Stuff with Aria Labelled-By -->
+	<span id="a_lby_t">Labelled By</span> <input type="text" aria-labelledby="a_lby_t" id="ariaLabelledByText" />
+	<span id="a_lby_d">Labelled By</span> <input aria-labelledby="a_lby_d" id="ariaLabelledByDefault" />
+	<span id="a_lby_m1">Labelled By</span> <input aria-labelledby="a_lby_m1 a_lby_m2" id="ariaLabelledByMulti" /> <span id="a_lby_m2">Multiple Entries</span>
+	<input aria-labelledby="a_lby_dne" id="ariaLabelledByNotExist" />
+</form>
+</body>
+</html>
