@@ -41,7 +41,16 @@ var HTMLCS_RUNNER = new function() {
             break;
         }//end switch
 
-        console.log(typeName + '|' + msg.code + '|' + msg.msg);
+        var nodeName = '';
+        if (msg.element) {
+            nodeName = msg.element.nodeName.toLowerCase();
+        }
+
+        var elementId = '';
+        if (msg.element.id && (msg.element.id !== '')) {
+            elementId = '#' + msg.element.id;
+        }
+        console.log(typeName + '|' + msg.code + '|' + nodeName + '|' + elementId + '|' + msg.msg);
     };
 
 };
