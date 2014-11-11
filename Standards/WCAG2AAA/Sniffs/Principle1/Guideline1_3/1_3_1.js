@@ -202,6 +202,10 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
             needsLabel = true;
         }
 
+        if (element.getAttribute('hidden') !== null) {
+            needsLabel = false;
+        }
+
         // Find an explicit label.
         var explicitLabel = element.ownerDocument.querySelector('label[for="' + element.id + '"]');
         if (explicitLabel) {
@@ -283,6 +287,13 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
                     element,
                     'This hidden form field is labelled in some way. There should be no need to label a hidden form field.',
                     'F68.Hidden'
+                );
+            } else if (element.getAttribute('hidden') !== null) {
+                HTMLCS.addMessage(
+                    HTMLCS.WARNING,
+                    element,
+                    'This form field is intended to be hidden (using the "hidden" attribute), but is also labelled in some way. There should be no need to label a hidden form field.',
+                    'F68.HiddenAttr'
                 );
             }
         } else if ((hasLabel === false) && (needsLabel === true)) {
