@@ -15,6 +15,44 @@ Version numbers have been applied retrospectively based on the size or significa
 the repository's [tags list](https://github.com/squizlabs/HTML_CodeSniffer/tags) relates the old
 pull number system to the new.
 
+## Version 2.0.2 (12 Nov 2014)
+
+- **WCAG 2.0 (<abbr title="Success Criterion">SC</abbr> 1.3.1)**
+  Rewrite "labelling inputs" code to take into account March 2014 changes
+  ([issue #107](https://github.com/squizlabs/HTML_CodeSniffer/issues/107)), incorporating:
+    - False positive on fields with an aria-label 
+      ([issue #77](https://github.com/squizlabs/HTML_CodeSniffer/issues/77))
+    - Sniffer should not suggest <label for> attribute for <input> fields with the "hidden" attribute
+      ([issue #80](https://github.com/squizlabs/HTML_CodeSniffer/issues/80))
+    - Label without for can be false positive
+      ([issue #104](https://github.com/squizlabs/HTML_CodeSniffer/issues/104))
+
+- **WCAG 2.0 (<abbr title="Success Criterion">SC</abbr> 1.3.1)**
+  Confusing "Multiple labels exist with the same "for" attribute." error
+  ([issue #90](https://github.com/squizlabs/HTML_CodeSniffer/issues/90)).
+
+- **WCAG 2.0 (<abbr title="Success Criterion">SC</abbr> 4.1.2)**
+  Rectified "Ruleset change request: an option in a select dropdown must be selected by default. This is false"
+  ([issue #79](https://github.com/squizlabs/HTML_CodeSniffer/issues/79)). It's now a warning rather than an error, as it is still
+  true with HTML 4 leaves the default value undefined, but HTML5 specifies the first option as the default.
+
+- **WCAG 2.0 (<abbr title="Success Criterion">SC</abbr> 4.1.2)**
+  A title is a valid name for a <a> in H91
+  ([issue #94](https://github.com/squizlabs/HTML_CodeSniffer/issues/94)).
+
+- **WCAG 2.0 (<abbr title="Success Criteria">SC</abbr> 1.4.3, 1.4.6)**
+  Contrast issues on elements that are absolutely positioned should be downgraded to a warning
+  ([issue #99](https://github.com/squizlabs/HTML_CodeSniffer/issues/99)).
+
+- **WCAG 2.0 (<abbr title="Success Criteria">SCs</abbr> 1.4.3, 1.4.6)**
+  Mark contrast errors with alpha transparency as warnings
+  ([issue #96](https://github.com/squizlabs/HTML_CodeSniffer/issues/96)).
+
+- **WCAG 2.0 (<abbr title="Success Criteria">SCs</abbr> 1.4.3, 1.4.6)**
+  False positive for contrast ratio
+  ([issue #89](https://github.com/squizlabs/HTML_CodeSniffer/issues/89)). The positive wasn't in fact false, but was beyond the precision HTML_CodeSniffer was showing. Close fails (at the third, fourth, etc decimal) are now shown at the required precision to show the failure.
+  </ul>
+
 ## Version 2.0.1 (27 Mar 2014)
 
 - **Auditor:** Fixed [issue #82](https://github.com/squizlabs/HTML_CodeSniffer/issues/82) which saw the standards
