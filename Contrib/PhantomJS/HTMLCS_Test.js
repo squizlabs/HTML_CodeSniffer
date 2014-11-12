@@ -15,8 +15,11 @@ if (system.args.length < 2 || system.args.length > 2) {
     phantom.exit(255);
 } else {
     testfile    = system.args[1];
-    address     = 'file://' + fs.absolute('../../') + 'Tests/' + testfile + '.html';
-    var content = fs.read('../../Tests/' + testfile + '.html');
+    if (testfile.substr(-5) !== '.html') {
+        testfile += '.html';
+    }
+    address     = 'file://' + fs.absolute('../../') + 'Tests/' + testfile;
+    var content = fs.read('../../Tests/' + testfile);
 
     if (!content) {
         console.log('Test file ' + testfile + ' doesn\'t exist?');
