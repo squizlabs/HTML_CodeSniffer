@@ -165,7 +165,7 @@ if (system.args.length < 2 || system.args.length > 2) {
 
                 injectAllStandards('../../Standards');
                 page.injectJs('../../HTMLCS.js');
-                page.injectJs('runner.js');
+                page.injectJs('../PhantomJS/runner.js');
 
                 // Now Run. Note that page.evaluate() function is sanboxed to
                 // the loaded page's context. We can't pass any variable to it.
