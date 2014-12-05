@@ -20,7 +20,12 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
         var failures  = [];
 
         if (!top.ownerDocument) {
-            var toProcess = [top.getElementsByTagName('body')[0]];
+            var toProcess = [];
+            var body = top.getElementsByTagName('body');
+            if (body.length) {
+                //SVG objects will not have a body element. Don't check them.
+                var toProcess = [body[0]];
+            }
         } else {
             var toProcess = [top];
         }
