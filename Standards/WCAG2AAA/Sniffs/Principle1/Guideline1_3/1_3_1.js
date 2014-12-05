@@ -202,6 +202,10 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
             needsLabel = true;
         }
 
+        if (element.getAttribute('hidden') !== null) {
+            needsLabel = false;
+        }
+
         // Find an explicit label.
         var explicitLabel = element.ownerDocument.querySelector('label[for="' + element.id + '"]');
         if (explicitLabel) {
@@ -216,13 +220,13 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
 
         // Find a title attribute.
         var title = element.getAttribute('title');
-        if (title) {
+        if (title !== null) {
             if ((/^\s*$/.test(title) === true) && (needsLabel === true)) {
                 HTMLCS.addMessage(
                     HTMLCS.WARNING,
                     element,
                     'This form control has a "title" attribute that is empty or contains only spaces. It will be ignored for labelling test purposes.',
-                    'F68'
+                    'H65'
                 );
             } else {
                 addToLabelList('title');
@@ -231,13 +235,13 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
 
         // Find an aria-label attribute.
         var ariaLabel = element.getAttribute('aria-label');
-        if (ariaLabel && (/^\s*$/.test(ariaLabel) === false)) {
+        if (ariaLabel !== null) {
             if ((/^\s*$/.test(ariaLabel) === true) && (needsLabel === true)) {
                 HTMLCS.addMessage(
                     HTMLCS.WARNING,
                     element,
                     'This form control has an "aria-label" attribute that is empty or contains only spaces. It will be ignored for labelling test purposes.',
-                    'F68'
+                    'ARIA6'
                 );
             } else {
                 addToLabelList('aria-label');
@@ -247,7 +251,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
         // Find an aria-labelledby attribute.
         var ariaLabelledBy = element.getAttribute('aria-labelledby');
         if (ariaLabelledBy && (/^\s*$/.test(ariaLabelledBy) === false)) {
-            var labelledByIds = ariaLabelledBy.split('\s+');
+            var labelledByIds = ariaLabelledBy.split(/\s+/);
             var ok = true;
 
             // First check that all of the IDs (space separated) are present and correct.
@@ -282,13 +286,20 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
                     HTMLCS.WARNING,
                     element,
                     'This hidden form field is labelled in some way. There should be no need to label a hidden form field.',
-                    'F68'
+                    'F68.Hidden'
+                );
+            } else if (element.getAttribute('hidden') !== null) {
+                HTMLCS.addMessage(
+                    HTMLCS.WARNING,
+                    element,
+                    'This form field is intended to be hidden (using the "hidden" attribute), but is also labelled in some way. There should be no need to label a hidden form field.',
+                    'F68.HiddenAttr'
                 );
             }
         } else if ((hasLabel === false) && (needsLabel === true)) {
             // Needs label.
             HTMLCS.addMessage(
-                HTMLCS.WARNING,
+                HTMLCS.ERROR,
                 element,
                 'This form field should be labelled in some way.' + ' ' +
                 'Use the label element (either with a "for" attribute or wrapped around the form field), or "title", "aria-label" or "aria-labelledby" attributes as appropriate.',

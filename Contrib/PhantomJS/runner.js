@@ -15,8 +15,6 @@ var HTMLCS_RUNNER = new function() {
                 self.output(messages[i]);
                 msgCount[messages[i].type]++;
             }
-            console.log('Errors: ' + msgCount[HTMLCS.ERROR] + ', Warnings: ' + msgCount[HTMLCS.WARNING] +
-             ', Notices: ' + msgCount[HTMLCS.NOTICE]);
             console.log('done');
         }, function() {
             console.log('Something in HTML_CodeSniffer failed to parse. Cannot run.');
@@ -41,7 +39,16 @@ var HTMLCS_RUNNER = new function() {
             break;
         }//end switch
 
-        console.log(typeName + '|' + msg.code + '|' + msg.msg);
+        var nodeName = '';
+        if (msg.element) {
+            nodeName = msg.element.nodeName.toLowerCase();
+        }
+
+        var elementId = '';
+        if (msg.element.id && (msg.element.id !== '')) {
+            elementId = '#' + msg.element.id;
+        }
+        console.log('[HTMLCS] ' + typeName + '|' + msg.code + '|' + nodeName + '|' + elementId + '|' + msg.msg);
     };
 
 };

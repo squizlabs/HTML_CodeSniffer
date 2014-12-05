@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>1.1.1 Null Alt Text on Images and Areas</title>
+<!-- @HTMLCS_Test@
+Name: SC 1.1.1 Null Alt Text on Images and Areas
+Standard: WCAG2AAA
+Assert: No Error *.H37 on #hasAltText
+Assert: Error *.H37 on #hasNoAltText
+Assert: Warning *.H67.2 on #hasEmptyAltText
+Assert: No Warning *.H67.1 on #hasEmptyAltTextWithTitle
+Assert: Error *.H67.1 on #hasEmptyAltTextWithTitle
+Assert: Warning *.H67.2 on #hasSpacedAltText
+Assert: No Error *.H24 on #areaWithAlt
+Assert: Error *.H24 on #areaWithNoAlt
+Assert: Error *.H24 on #areaWithEmptyAlt
+-->
+</head>
+<body>
+<img id="hasAltText" alt="Alt Text" />
+<img id="hasNoAltText" />
+<img id="hasEmptyAltText" alt="" />
+<img id="hasEmptyAltTextWithTitle" alt="" title="Empty" />
+<img id="hasSpacedAltText" alt=" " />
+
+<map>
+	<area id="areaWithAlt" alt="Has Alt" />
+	<area id="areaWithNoAlt" />
+	<area id="areaWithEmptyAlt" alt="" />
+</map>
+</body>
+</html>

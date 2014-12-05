@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>412_01</title>
+<!-- @HTMLCS_Test@
+Name: SC 4.1.2 testing of select fields
+Standard: WCAG2AAA
+Assert: Warning *.H91.Select.Value on #test1
+Assert: No Error *.H91.Select.Value on #test1
+Assert: No Warning *.H91.Select.Value on #test2
+Assert: No Error *.H91.Select.Value on #test2
+-->
+</head>
+<body>
+<form>
+	<select id="test1">
+		<option value="1">Option One</option>
+		<option value="2">Option Two</option>
+		<option value="3">Option Three</option>
+	</select>
+	<select id="test2">
+		<option selected="selected" value="1">Option One</option>
+		<option value="2">Option Two</option>
+		<option value="3">Option Three</option>
+	</select>
+</form>
+</body>
+</html>
