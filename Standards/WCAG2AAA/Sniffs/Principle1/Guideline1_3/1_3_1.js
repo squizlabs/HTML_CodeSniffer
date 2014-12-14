@@ -172,7 +172,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
      * @param {DOMNode} element The element registered.
      * @param {DOMNode} top     The top element of the tested code.
      */
-    testLabelsOnInputs: function(element, top)
+    testLabelsOnInputs: function(element, top, muteErrors)
     {
         var nodeName  = element.nodeName.toLowerCase();
         var inputType = nodeName;
@@ -272,38 +272,42 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
             }
         }
 
-        if ((hasLabel !== false) && (needsLabel === false)) {
-            // Note that it is okay for buttons to have aria-labelledby or
-            // aria-label, or title. The former two override the button text,
-            // while title is a lower priority than either: the button text,
-            // and in submit/reset cases, the localised name for the words
-            // "Submit" and "Reset".
-            // http://www.w3.org/TR/html-aapi/#accessible-name-and-description-calculation
-            if (inputType === 'hidden') {
+        if (!(muteErrors === true)) {
+            if ((hasLabel !== false) && (needsLabel === false)) {
+                // Note that it is okay for buttons to have aria-labelledby or
+                // aria-label, or title. The former two override the button text,
+                // while title is a lower priority than either: the button text,
+                // and in submit/reset cases, the localised name for the words
+                // "Submit" and "Reset".
+                // http://www.w3.org/TR/html-aapi/#accessible-name-and-description-calculation
+                if (inputType === 'hidden') {
+                    HTMLCS.addMessage(
+                        HTMLCS.WARNING,
+                        element,
+                        'This hidden form field is labelled in some way. There should be no need to label a hidden form field.',
+                        'F68.Hidden'
+                    );
+                } else if (element.getAttribute('hidden') !== null) {
+                    HTMLCS.addMessage(
+                        HTMLCS.WARNING,
+                        element,
+                        'This form field is intended to be hidden (using the "hidden" attribute), but is also labelled in some way. There should be no need to label a hidden form field.',
+                        'F68.HiddenAttr'
+                    );
+                }
+            } else if ((hasLabel === false) && (needsLabel === true)) {
+                // Needs label.
                 HTMLCS.addMessage(
-                    HTMLCS.WARNING,
+                    HTMLCS.ERROR,
                     element,
-                    'This hidden form field is labelled in some way. There should be no need to label a hidden form field.',
-                    'F68.Hidden'
+                    'This form field should be labelled in some way.' + ' ' +
+                    'Use the label element (either with a "for" attribute or wrapped around the form field), or "title", "aria-label" or "aria-labelledby" attributes as appropriate.',
+                    'F68'
                 );
-            } else if (element.getAttribute('hidden') !== null) {
-                HTMLCS.addMessage(
-                    HTMLCS.WARNING,
-                    element,
-                    'This form field is intended to be hidden (using the "hidden" attribute), but is also labelled in some way. There should be no need to label a hidden form field.',
-                    'F68.HiddenAttr'
-                );
-            }
-        } else if ((hasLabel === false) && (needsLabel === true)) {
-            // Needs label.
-            HTMLCS.addMessage(
-                HTMLCS.ERROR,
-                element,
-                'This form field should be labelled in some way.' + ' ' +
-                'Use the label element (either with a "for" attribute or wrapped around the form field), or "title", "aria-label" or "aria-labelledby" attributes as appropriate.',
-                'F68'
-            );
-        }//end if
+            }//end if
+        }
+
+        return hasLabel;
     },
 
     /**
