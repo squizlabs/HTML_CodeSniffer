@@ -106,7 +106,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
         this._labelNames = {};
         var labels = top.getElementsByTagName('label');
         for (var i = 0; i < labels.length; i++) {
-            if ((labels[i].hasAttribute('for') === true) && (labels[i].getAttribute('for') !== '')) {
+            if (labels[i].getAttribute('for') !== null) {
                 var labelFor = labels[i].getAttribute('for');
                 if ((this._labelNames[labelFor]) && (this._labelNames[labelFor] !== null)) {
                     this._labelNames[labelFor] = null;
@@ -136,9 +136,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
                         }
                     }
                 }
-            } else {
-                HTMLCS.addMessage(HTMLCS.ERROR, labels[i], 'Label found without a "for" attribute, and therefore not explicitly associated with a form control.', 'H44.NoForAttr');
-            }//end if
+            }
         }//end for
     },
 
