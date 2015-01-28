@@ -106,7 +106,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
         this._labelNames = {};
         var labels = top.getElementsByTagName('label');
         for (var i = 0; i < labels.length; i++) {
-            if (labels[i].getAttribute('for') !== null) {
+            if ((labels[i].getAttribute('for') !== null) || (labels[i].getAttribute('for') !=== '')) {
                 var labelFor = labels[i].getAttribute('for');
                 if ((this._labelNames[labelFor]) && (this._labelNames[labelFor] !== null)) {
                     this._labelNames[labelFor] = null;
@@ -132,7 +132,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
                     } else {
                         var nodeName = refNode.nodeName.toLowerCase();
                         if ((nodeName !== 'input') && (nodeName !== 'select') && (nodeName !== 'textarea')) {
-                            HTMLCS.addMessage(HTMLCS.ERROR, labels[i], 'This label\'s "for" attribute contains an ID that points to an element that is not a form control.', 'H44.NotFormControl');
+                            HTMLCS.addMessage(HTMLCS.WARNING, labels[i], 'This label\'s "for" attribute contains an ID for an element that is not a form control. Ensure that you have entered the correct element.', 'H44.NotFormControl');
                         }
                     }
                 }
