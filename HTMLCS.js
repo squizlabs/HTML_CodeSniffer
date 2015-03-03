@@ -717,6 +717,27 @@ var HTMLCS = new function()
         };
 
         /**
+         * Return true if an element is disabled.
+         *
+         * If the computed style of an element cannot be determined for some reason,
+         * it is presumed it is NOT hidden.
+         *
+         * @param {Node} element The element that is hiding, or not.
+         *
+         * @returns {Boolean}
+         */
+        this.isDisabled = function(element) {
+            var disabled = false;
+
+            // Do not point to elem if its hidden. Use computed styles.
+            if ((element.disabled === true) || (element.getAttribute('aria-disabled') === 'true')) {
+                disabled = true;
+            }
+
+            return disabled;
+        };
+
+        /**
          * Return true if an element is in a document.
          *
          * @param {Node} element The element that is in a doc, or not.

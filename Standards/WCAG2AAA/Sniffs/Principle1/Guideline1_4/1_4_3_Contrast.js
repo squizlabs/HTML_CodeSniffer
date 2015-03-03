@@ -34,7 +34,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
             var node = toProcess.shift();
 
             // This is an element.
-            if ((node.nodeType === 1) && (HTMLCS.util.isHidden(node) === false)) {
+            if ((node.nodeType === 1) && (HTMLCS.util.isHidden(node) === false) && (HTMLCS.util.isDisabled(node) === false)) {
                 var processNode = false;
                 for (var i = 0; i < node.childNodes.length; i++) {
                     // Load up new nodes, but also only process this node when
