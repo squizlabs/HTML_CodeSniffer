@@ -1,6 +1,6 @@
 var page = require('webpage').create(),
     system = require('system'),
-    address, standard, reportType;
+    address, standard, reportType, cwd;
 var messages = {
     'ERROR': [],
     'WARNING': [],
@@ -19,6 +19,17 @@ if (system.args.length < 3 || system.args.length > 4) {
     if (system.args.length > 3) {
         reportType = system.args[3];
     }
+
+    // Get the absolute working directory from the PWD var and
+    // and the command line $0 argument.
+    cwd = system.env['PWD'];
+    if (system.args[0].substr(0, 1) === '/') {
+        cwd = system.args[0];
+    } else {
+        cwd += '/' + system.args[0];
+    }
+
+    cwd = cwd.substr(0, cwd.lastIndexOf('/'));
 
     // Default reporter.
     var reportDefaultFn = function(cb) {
@@ -133,9 +144,9 @@ if (system.args.length < 3 || system.args.length > 4) {
                     }
                 };
 
-                injectAllStandards('../../Standards');
-                page.injectJs('../../HTMLCS.js');
-                page.injectJs('runner.js');
+                injectAllStandards(cwd + '/../../Standards');
+                page.injectJs(cwd + '/../../HTMLCS.js');
+                page.injectJs(cwd + '/runner.js');
 
                 // Now Run. Note that page.evaluate() function is sanboxed to
                 // the loaded page's context. We can't pass any variable to it.
