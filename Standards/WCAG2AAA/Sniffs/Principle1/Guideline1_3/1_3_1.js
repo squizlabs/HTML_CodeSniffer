@@ -131,7 +131,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
                         HTMLCS.addMessage(level, labels[i], msg, code);
                     } else {
                         var nodeName = refNode.nodeName.toLowerCase();
-                        if (('input|select|textarea|button|keygen|meter|output|progress'.indexOf(nodeName) === -1) {
+                        if ('input|select|textarea|button|keygen|meter|output|progress'.indexOf(nodeName) === -1) {
                             HTMLCS.addMessage(HTMLCS.WARNING, labels[i], 'This label\'s "for" attribute contains an ID for an element that is not a form control. Ensure that you have entered the correct ID for the intended element.', 'H44.NotFormControl');
                         }
                     }
