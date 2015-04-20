@@ -19,6 +19,7 @@ var HTMLCSAuditor = new function()
     var _sources  = [];
     var _options  = {};
     var _doc      = null;
+    var _top      = null;
     var _messages = [];
     var _page     = 1;
     var _sbWidth  = null;
@@ -753,6 +754,7 @@ var HTMLCSAuditor = new function()
         var typeClass     = _prefix + typeText.toLowerCase();
 
         var standardObj = HTMLCS.util.getElementWindow(_doc)['HTMLCS_' + standard];
+        var standardObj = _top['HTMLCS_' + standard];
         var msgInfo = [];
         if (standardObj.getMsgInfo) {
             msgInfo = standardObj.getMsgInfo(message.code);
@@ -1308,6 +1310,9 @@ var HTMLCSAuditor = new function()
      * @returns undefined
      */
     this.run = function(standard, source, options) {
+        // Save the top window.
+        _top = window;
+
         var standards       = this.getStandardList();
         var standardsToLoad = [];
         for (var i = 0; i < standards.length; i++) {
@@ -1331,10 +1336,10 @@ var HTMLCSAuditor = new function()
                 source.push(document);
             };
 
-            if (window.frames.length > 0) {
-                for (var i = 0; i < window.frames.length; i++) {
+            if (_top.frames.length > 0) {
+                for (var i = 0; i < _top.frames.length; i++) {
                     try {
-                        source.push(window.frames[i].document);
+                        source.push(_top.frames[i].document);
                     } catch (ex) {
                         // If no access permitted to the document (eg.
                         // cross-domain), then ignore.
@@ -1381,11 +1386,11 @@ var HTMLCSAuditor = new function()
 
         if (_options.parentElement) {
             parentEl = _options.parentElement;
-        } else if (window.frames.length > 0) {
+        } else if (_top.frames.length > 0) {
             var largestFrameSize = -1;
             var largestFrame     = null;
 
-            for (var i = 0; i < window.frames.length; i++) {
+            for (var i = 0; i < _top.frames.length; i++) {
                 try {
                     if (window.frames[i].frameElement.nodeName.toLowerCase() === 'frame') {
                         if (window.frames[i].document) {
