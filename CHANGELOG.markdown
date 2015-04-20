@@ -14,12 +14,22 @@ The previous version was generally based on the pull request number used to upda
 Version numbers have been applied retrospectively based on the size or significance of the update; the
 old version number is in brackets.
 
+## Version 2.0.5 (21 Apr 2015)
+
+- **WCAG 2.0 (<abbr title="Success Criterion">SC</abbr> 1.3.1)**
+  Button elements (and other "labellable elements" according to HTML5) no longer throw a warning about a label's "for" attribute not pointing to a form control
+  ([issue #118](https://github.com/squizlabs/HTML_CodeSniffer/issues/118)).
+  
+- **Auditor**
+ Fixed issue where clicking View Report caused a JavaScript error on a document using a Frameset.
+ ([issue #118](https://github.com/squizlabs/HTML_CodeSniffer/issues/118)).
+
 ## Version 2.0.4 (2 Feb 2015)
 
 - **WCAG 2.0 (<abbr title="Success Criteria">SC</abbr> 1.3.1)**
   If a "for" attribute on a label element is filled but does not point to the ID of a form control, this is now treated as a Warning rather than an Error 
   ([issue #100](https://github.com/squizlabs/HTML_CodeSniffer/issues/100)).
--
+
 - **WCAG 2.0 (<abbr title="Success Criteria">SC</abbr> 1.4.3, 1.4.6)**
   Elements which are marked as disabled using the "disabled" or "aria-disabled" attributes will now be ignored for colour contrast purposes ([issue #93](https://github.com/squizlabs/HTML_CodeSniffer/issues/93)).
 ## Version 2.0.3 (15 Dec 2014)
