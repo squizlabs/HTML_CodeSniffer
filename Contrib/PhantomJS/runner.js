@@ -48,7 +48,16 @@ var HTMLCS_RUNNER = new function() {
         if (msg.element.id && (msg.element.id !== '')) {
             elementId = '#' + msg.element.id;
         }
-        console.log('[HTMLCS] ' + typeName + '|' + msg.code + '|' + nodeName + '|' + elementId + '|' + msg.msg);
+
+        // Clone the node to get it's outerHTML (with inner replaced with ... for brevity)
+        var html = '';
+        if (msg.element.outerHTML) {
+            var node = msg.element.cloneNode(true);
+            node.innerHTML = '...';
+            html = node.outerHTML;
+        }
+
+        console.log('[HTMLCS] ' + typeName + '|' + msg.code + '|' + nodeName + '|' + elementId + '|' + msg.msg + '|' + html);
     };
 
 };
