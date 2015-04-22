@@ -14,7 +14,7 @@ The previous version was generally based on the pull request number used to upda
 Version numbers have been applied retrospectively based on the size or significance of the update; the
 old version number is in brackets.
 
-## Version 2.0.5 (21 Apr 2015)
+## <a id="2.0.5"></a>Version 2.0.5 (21 Apr 2015)
 
 - **WCAG 2.0 (<abbr title="Success Criterion">SC</abbr> 1.3.1)**
   Button elements (and other "labellable elements" according to HTML5) no longer throw a warning about a label's "for" attribute not pointing to a form control
@@ -24,7 +24,7 @@ old version number is in brackets.
  Fixed issue where clicking View Report caused a JavaScript error on a document using a Frameset.
  ([issue #118](https://github.com/squizlabs/HTML_CodeSniffer/issues/118)).
 
-## Version 2.0.4 (2 Feb 2015)
+## <a id="2.0.4"></a>Version 2.0.4 (2 Feb 2015)
 
 - **WCAG 2.0 (<abbr title="Success Criteria">SC</abbr> 1.3.1)**
   If a "for" attribute on a label element is filled but does not point to the ID of a form control, this is now treated as a Warning rather than an Error 
@@ -32,13 +32,13 @@ old version number is in brackets.
 
 - **WCAG 2.0 (<abbr title="Success Criteria">SC</abbr> 1.4.3, 1.4.6)**
   Elements which are marked as disabled using the "disabled" or "aria-disabled" attributes will now be ignored for colour contrast purposes ([issue #93](https://github.com/squizlabs/HTML_CodeSniffer/issues/93)).
-## Version 2.0.3 (15 Dec 2014)
+## <a id="2.0.3"></a>Version 2.0.3 (15 Dec 2014)
 
 - **WCAG 2.0 (<abbr title="Success Criteria">SC</abbr> 1.3.1, 4.1.2)**
   Remove H44 and H91 messages for labels wrapped around inputs
   ([issue #110](https://github.com/squizlabs/HTML_CodeSniffer/issues/110))
 
-## Version 2.0.2 (12 Nov 2014)
+## <a id="2.0.2"></a>Version 2.0.2 (12 Nov 2014)
 
 - **WCAG 2.0 (<abbr title="Success Criterion">SC</abbr> 1.3.1)**
   Rewrite "labelling inputs" code to take into account March 2014 changes
@@ -76,7 +76,7 @@ old version number is in brackets.
   ([issue #89](https://github.com/squizlabs/HTML_CodeSniffer/issues/89)). The positive wasn't in fact false, but was beyond the precision HTML_CodeSniffer was showing. Close fails (at the third, fourth, etc decimal) are now shown at the required precision to show the failure.
   </ul>
 
-## Version 2.0.1 (27 Mar 2014)
+## <a id="2.0.1"></a>Version 2.0.1 (27 Mar 2014)
 
 - **Auditor:** Fixed [issue #82](https://github.com/squizlabs/HTML_CodeSniffer/issues/82) which saw the standards
   list dropdown empty in Internet Explorer 8.
@@ -97,7 +97,7 @@ old version number is in brackets.
   when passed a non-string ([issue #76](https://github.com/squizlabs/HTML_CodeSniffer/issues/76)).
   Also removed duplicated code in **WCAG 2.0 (<abbr title="Success Criterion">SC</abbr> 1.1.1)**.
   
-## 21 Mar 2014
+## <a id="https-gh-pages"></a>21 Mar 2014
 
 - Support for HTTPS sites should be possible now that Github has updated their
   certificates to cover Github Pages sites.
@@ -107,7 +107,7 @@ old version number is in brackets.
   path reads "//squizlabs.github.io/HTML_CodeSniffer/build/"). This ensures that
   the same scheme (protocol) is used as the site you are testing.
 
-## Version 2.0.0 (64) (8 Jan 2013)
+## <a id="2.0.0"></a>Version 2.0.0 (64) (8 Jan 2013)
 
 - **Auditor:** Significant updates to allow Section 508 standards to fit within the
   auditor interface. This includes removing WCAG 2.0-related assumptions about what
@@ -128,7 +128,7 @@ old version number is in brackets.
 - **SC 1.1.1:** Applet elements with a missing body were being misdiagnosed as a Notice. It
   is now properly considered an Error.
 
-## Version 1.3.0 (49) (15 Oct 2012)
+## <a id="r49"></a>Version 1.3.0 (49) (15 Oct 2012)
 
 - **Auditor:** Fixed an issue where the auditor popup would not become semi-transparent
 in IE8 when the pointer is underneath the popup. ([Pull Request #47](https://github.com/squizlabs/HTML_CodeSniffer/issues/47))
@@ -159,7 +159,7 @@ to the View Report button being not correctly enabled. ([Pull Request #35](https
 and hidden inputs weren't being correctly detected when the type attribute was not
 all lowercase. ([Pull Request #34](https://github.com/squizlabs/HTML_CodeSniffer/issues/34))
 
-## Version 1.2.2 (33) (31 Aug 2012)
+## <a id="r33"></a>Version 1.2.2 (33) (31 Aug 2012)
 
 - **Auditor:** Fixed an issue in Internet Explorer 9+ where the message type switches
   would not work properly. ([Pull Request #32](https://github.com/squizlabs/HTML_CodeSniffer/issues/32))
@@ -167,14 +167,14 @@ all lowercase. ([Pull Request #34](https://github.com/squizlabs/HTML_CodeSniffer
   relating to opacity issues - for instance, correctly showing that message type
   switches and the "View Report" button is disabled when necessary. ([Pull Request #32](https://github.com/squizlabs/HTML_CodeSniffer/issues/32))
 
-## Version 1.2.1 (31) (27 Aug 2012)
+## <a id="r31"></a>Version 1.2.1 (31) (27 Aug 2012)
 
 - **SC 2.2.2:** Fixed a bug that was causing testing on sites using Twitter's "Tweet
   button" to hang in Firefox. The lack of style on a sourceless, hidden inline frame
   it creates caused issues with a test for detecting blinking elements.
   ([Pull Request #30](https://github.com/squizlabs/HTML_CodeSniffer/issues/30))
 
-## Version 1.2.0 (29) (24 Aug 2012)
+## <a id="r29"></a>Version 1.2.0 (29) (24 Aug 2012)
 
 - **SC 1.4.3, 1.4.6:** New tests relating to contrast ratios between foreground and
   background colours. Instead of a general notice, HTML\_CodeSniffer will attempt to
@@ -191,13 +191,13 @@ all lowercase. ([Pull Request #34](https://github.com/squizlabs/HTML_CodeSniffer
   warning depending on whether a full document (or at least a body tag) was passed,
   similar to the "named anchor" test in SC 2.4.1.
 
-## Version 1.1.8 (24) (20 Aug 2012)
+## <a id="r24"></a>Version 1.1.8 (24) (20 Aug 2012)
 
 - **SC 2.4.1:** When testing a same-page link for existence of a named anchor,
   HTML\_CodeSniffer now recognises "a" elements using the "name" attribute (as
   permitted in HTML 4.01) as named anchors, not just IDs. ([Pull Request #24](https://github.com/squizlabs/HTML_CodeSniffer/issues/24))
 
-## Version 1.1.7 (23) (15 Aug 2012)
+## <a id="r23"></a>Version 1.1.7 (23) (15 Aug 2012)
 
 - **SC 4.1.2:** HTML\_CodeSniffer no longer skips checking for explicit labels where
   a form control used an ID which was not a legal CSS selector, but is legal in
@@ -207,7 +207,7 @@ all lowercase. ([Pull Request #34](https://github.com/squizlabs/HTML_CodeSniffer
   browsers would emit false errors, where a label would be stated as pointing to a
   non-existent ID, where that ID actually exists. ([Issue #22](https://github.com/squizlabs/HTML_CodeSniffer/issues/22))
 
-## Version 1.1.6 (19) (24 Jul 2012)
+## <a id="r19"></a>Version 1.1.6 (19) (24 Jul 2012)
 
 - **SC 1.3.1:** Form controls that have no ID, but a non-empty title attribute, no
   longer generate errors about not being able to have an explicit label. Their title
@@ -216,7 +216,7 @@ all lowercase. ([Pull Request #34](https://github.com/squizlabs/HTML_CodeSniffer
   there was a single page of results (five or less) in the issue list view, or a
   single issue in the issue detail view. ([Pull Request #19](https://github.com/squizlabs/HTML_CodeSniffer/issues/19))
 
-## Version 1.1.5 (17) (10 Jul 2012)
+## <a id="r17"></a>Version 1.1.5 (17) (10 Jul 2012)
 
 - **Auditor:** Fixed a bug when closing the auditor in Internet Explorer 8, when
   used on a site with frames. ([Pull Request #17](https://github.com/squizlabs/HTML_CodeSniffer/issues/17))
@@ -226,7 +226,7 @@ all lowercase. ([Pull Request #34](https://github.com/squizlabs/HTML_CodeSniffer
   after finding sites that use it in their own "reset" style sheet, overriding the
   auditor's styling. ([Pull Request #15](https://github.com/squizlabs/HTML_CodeSniffer/issues/15))
 
-## Version 1.1.4 (14) (2 Jul 2012)
+## <a id="r14"></a>Version 1.1.4 (14) (2 Jul 2012)
 
 - **SC 1.1.1:** Messages concerning images and long text alternatives have been
   changed. They now emit a Notice instead of a Warning, as HTML\_CodeSniffer cannot
@@ -234,20 +234,20 @@ all lowercase. ([Pull Request #34](https://github.com/squizlabs/HTML_CodeSniffer
   slightly, as the previous text made it sound like a short text alternative was
   optional when a long alternative existed. ([Pull Request #14](https://github.com/squizlabs/HTML_CodeSniffer/issues/14))
 
-## Version 1.1.3 (13 (19 Jun 2012)
+## <a id="r13"></a>Version 1.1.3 (13) (19 Jun 2012)
 
 - **SC 4.1.2:** Messages concerning "a" elements with no link text, but being used as
   a destination anchor - through the use of an ID or name attribute - now emit as a
   Warning rather than an Error. Such use is not encouraged, but it is legal in HTML
   4.01. ([Pull Request #13](https://github.com/squizlabs/HTML_CodeSniffer/issues/13))
 
-## Version 1.1.2 (12) (13 Jun 2012)
+## <a id="r12"></a>Version 1.1.2 (12) (13 Jun 2012)
 
 - **Core:** Fixed a major bug with Version 11. Full documents that were not being
   sent as source were not being tested, causing the bookmarklet to not respond.
   ([Pull Request #12](https://github.com/squizlabs/HTML_CodeSniffer/issues/12))
 
-## Version 1.1.1 (11) (7 Jun 2012)
+## <a id="r11"></a>Version 1.1.1 (11) (7 Jun 2012)
 
 - **SC 2.4.1:** Testing for same-page links now works with IDs that are not legal
   CSS selectors. Also, if this test is not passed a full document, any messages
@@ -256,7 +256,7 @@ all lowercase. ([Pull Request #34](https://github.com/squizlabs/HTML_CodeSniffer
   ([Pull Request #10](https://github.com/squizlabs/HTML_CodeSniffer/issues/10))
 - **Documentation:** Updated README. ([Pull Request #8](https://github.com/squizlabs/HTML_CodeSniffer/issues/8))
 
-## Version 1.1.0 (6) (28 May 2012)
+## <a id="r6"></a>Version 1.1.0 (6) (28 May 2012)
 
 - **Auditor:** Fix a bug in the opacity-setting code, where the Auditor should have
   been turning half-transparent when an element is being pointed to underneath it.
@@ -279,6 +279,6 @@ all lowercase. ([Pull Request #34](https://github.com/squizlabs/HTML_CodeSniffer
   so removing the test for an Accessibility API value for these. Select elements
   not declared "multiple" must still have a selected option. ([Pull Request #2](https://github.com/squizlabs/HTML_CodeSniffer/issues/2))
 
-## Version 1.0.0 (1) (10 May 2012)
+## <a id="r1"></a>Version 1.0.0 (1) (10 May 2012)
 
 - Initial version of HTML_CodeSniffer bookmarklet.
