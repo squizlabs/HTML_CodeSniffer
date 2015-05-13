@@ -506,7 +506,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
 
         for (var tagType in elements) {
             for (var i = 0; i < elements[tagType].length; i++) {
-                element = elements[tagType][i];
+                var element = elements[tagType][i];
 
                 var scope = '';
                 if (element.hasAttribute('scope') === true) {
