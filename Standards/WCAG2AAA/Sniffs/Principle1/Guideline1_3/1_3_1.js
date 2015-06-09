@@ -253,7 +253,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
             var ok = true;
 
             // First check that all of the IDs (space separated) are present and correct.
-            for (x in labelledByIds) {
+            for (var x = 0; x < labelledByIds.length; x++) {
                 var labelledByElement = element.ownerDocument.querySelector('#' + labelledByIds[x]);
                 if (!labelledByElement) {
                     HTMLCS.addMessage(
