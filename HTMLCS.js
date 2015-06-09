@@ -30,7 +30,7 @@ var HTMLCS = new function()
     this.NOTICE  = 3;
 
     /**
-     * Loads the specifid standard and run the sniffs.
+     * Loads the specified standard and run the sniffs.
      *
      * @param {String}      standard The name of the standard to load.
      * @param {String|Node} An HTML string or a DOM node object.
