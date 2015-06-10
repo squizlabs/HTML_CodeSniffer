@@ -32,6 +32,7 @@ old version number is in brackets.
 
 - **WCAG 2.0 (<abbr title="Success Criteria">SC</abbr> 1.4.3, 1.4.6)**
   Elements which are marked as disabled using the "disabled" or "aria-disabled" attributes will now be ignored for colour contrast purposes ([issue #93](https://github.com/squizlabs/HTML_CodeSniffer/issues/93)).
+
 ## <a id="2.0.3"></a>Version 2.0.3 (15 Dec 2014)
 
 - **WCAG 2.0 (<abbr title="Success Criteria">SC</abbr> 1.3.1, 4.1.2)**
