@@ -45,6 +45,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_6 = {
                 var required  = failures[i].required;
                 var recommend = failures[i].recommendation;
                 var hasBgImg  = failures[i].hasBgImage || false;
+                var isAbsolute = failures[i].isAbsolute || false;
 
                 // If the values would look identical, add decimals to the value.
                 while (required === value) {
@@ -72,7 +73,10 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_6 = {
                     recommendText = ' Recommendation: change ' + recommendText.join(', ') + '.';
                 }
 
-                if (hasBgImg === true) {
+                if (isAbsolute === true) {
+                    code += '.Abs';
+                    HTMLCS.addMessage(HTMLCS.WARNING, element, 'This element is absolutely positioned and the background color can not be determined. Ensure the contrast ratio between the text and all covered parts of the background are at least ' + required + ':1.', code);
+                } else if (hasBgImg === true) {
                     code += '.BgImage';
                     HTMLCS.addMessage(HTMLCS.WARNING, element, 'This element\'s text is placed on a background image. Ensure the contrast ratio between the text and all covered parts of the image are at least ' + required + ':1.', code);
                 } else {
