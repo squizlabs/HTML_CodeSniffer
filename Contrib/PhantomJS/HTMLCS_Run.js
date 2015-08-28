@@ -115,13 +115,22 @@ if (system.args.length < 3 || system.args.length > 4) {
         cb();
     };
 
+    page.onError = function() {
+        // Suppress runtime errors
+    };
+
     page.open(address, function (status) {
         if (status !== 'success') {
-            console.log('Unable to load the address!');
+            if (reportType.toLowerCase() === 'json') {
+                console.log({
+                    error: 'Unable to load the address!'
+                });
+            } else {
+                console.log('Unable to load the address!');
+            }
             phantom.exit();
         } else {
             window.setTimeout(function () {
-
                 // Override onConsoleMessage function for outputting.
                 page.onConsoleMessage = function (msg) {
                     var thisMsg;
@@ -145,8 +154,6 @@ if (system.args.length < 3 || system.args.length > 4) {
                                 reportDefaultFn(cb);
                             break;
                         }
-                    } else {
-                        console.log(msg);
                     }
                 };
 
