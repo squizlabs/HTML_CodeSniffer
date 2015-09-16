@@ -111,26 +111,25 @@ if (system.args.length < 3 || system.args.length > 4) {
                 });
             }
         }
-        console.log(JSON.stringify(reportJSONData, null, '    '));
-        cb();
-    };
 
-    page.onError = function() {
-        // Suppress runtime errors
+        console.log('[');
+        reportJSONData.forEach(function(report, i) {
+            console.log(JSON.stringify(report, null, '    '));
+            if (i < reportJSONData.length-1) {
+                console.log(',');
+            }
+        });
+        console.log(']');
+        cb();
     };
 
     page.open(address, function (status) {
         if (status !== 'success') {
-            if (reportType.toLowerCase() === 'json') {
-                console.log({
-                    error: 'Unable to load the address!'
-                });
-            } else {
-                console.log('Unable to load the address!');
-            }
+            console.log('Unable to load the address!');
             phantom.exit();
         } else {
             window.setTimeout(function () {
+
                 // Override onConsoleMessage function for outputting.
                 page.onConsoleMessage = function (msg) {
                     var thisMsg;
@@ -154,6 +153,8 @@ if (system.args.length < 3 || system.args.length > 4) {
                                 reportDefaultFn(cb);
                             break;
                         }
+                    } else {
+                        console.log(msg);
                     }
                 };
 
