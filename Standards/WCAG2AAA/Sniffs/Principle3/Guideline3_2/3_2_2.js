@@ -48,11 +48,30 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_2_3_2_2 = {
      */
     checkFormSubmitButton: function(form)
     {
-        // Test for one of the three types of submit buttons.
-        var submitButton = form.querySelector('input[type=submit], input[type=image], button[type=submit]');
+        var ok = false;
 
-        if (submitButton === null) {
-            HTMLCS.addMessage(HTMLCS.ERROR, form, 'Form does not contain a submit button (input type="submit", input type="image", or button type="submit").', 'H32.2');
+        // Test for INPUT-based submit buttons. The type must be specified, as
+        // the default for INPUT is text.
+        var inputButtons = form.querySelectorAll('input[type=submit], input[type=image]');
+        if (inputButtons.length > 0) {
+            ok = true;
+        } else {
+            // Check for BUTTONs that aren't reset buttons, or normal buttons.
+            // If they're blank or invalid, they are submit buttons.
+            var buttonButtons    = form.querySelectorAll('button');
+            var nonSubmitButtons = form.querySelectorAll('button[type=reset], button[type=button]');
+            if (buttonButtons.length > nonSubmitButtons.length) {
+                ok = true;
+            }
+        }//end if
+
+        if (ok === false) {
+            HTMLCS.addMessage(
+                HTMLCS.ERROR,
+                form,
+                'This form does not contain a submit button, which creates issues for those who cannot submit the form using the keyboard. Submit buttons are INPUT elements with type attribute "submit" or "image", or BUTTON elements with type "submit" or omitted/invalid.',
+                'H32.2'
+            );
         }
     }
 };
