@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+
+{% include inside-head-tag.html %}
+
+<body>
+
+    {% include inside-header.html %}
+
+    <div id="introduction" style="min-height: 0px">
+
+        <ul id="nav">
+            <li><a href="{{ "/" | prepend: site.baseurl }}"><img src="{{ "/images/home.png" | prepend: site.baseurl }}" alt="{{ site.title }} Home"></a></li>
+            <!-- Navigation Links here -->
+        </ul>
+
+        <div class="max-width">
+
+            <h2>{{ page.title }}</h2>
+
+            {{ page.lead_content }}
+
+        </div>
+
+        <div class="zigzag">
+
+        </div>
+
+    </div> <!-- end introduction -->
+
+    <div id="test-area">
+
+        <div class="max-width">
+
+        {{ content }}
+
+        </div> <!-- end max-width -->
+
+        <div class="zigzag zigzag-grey"></div>
+
+    </div> <!-- end test-area -->
+
+{% include footer.html %}
+
+</body>
+</html>

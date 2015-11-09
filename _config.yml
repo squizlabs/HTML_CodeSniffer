@@ -1,0 +1,22 @@
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole blog, values
+# which you are expected to set up once and rarely need to edit after that.
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'jekyll serve'. If you change this file, please restart the server process.
+
+# Site settings
+title: HTML_CodeSniffer
+email: products@squiz.net
+description: > # this means to ignore newlines until "baseurl:"
+  HTML_CodeSniffer is a JavaScript-based application that can check HTML documents
+  against a certain standard. It comes included with standards that can check for
+  accessibility issues defined by the W3C's WCAG 2.0 standard, and the U.S. federal
+  government's Section 508 legislation.
+baseurl: "/HTML_CodeSniffer" # the subpath of your site, e.g. /blog
+url: "https://squizlabs.github.io" # the base hostname & protocol for your site
+twitter_username: HTML_CodeSniffer
+github_username:  squizlabs
+
+# Build settings
+markdown: kramdown
