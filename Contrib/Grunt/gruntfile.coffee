@@ -20,7 +20,7 @@ module.exports = (grunt)->
             'Standards/**/*.js'
             'HTMLCS.js'
             'PhantomJS/runner.js'
-            'Auditor/HTMLCSAuditor.js'            
+            'Auditor/HTMLCSAuditor.js'
           ]
 
     copy:
