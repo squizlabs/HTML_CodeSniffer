@@ -4,7 +4,7 @@ module.exports = (grunt)->
 
     jshint: 
       options: 
-        jshintrc: 'Integration/Grunt/.jshintrc'
+        jshintrc: 'Contrib/Grunt/.jshintrc'
 
       all: [
         'Standards/**/*.js'
