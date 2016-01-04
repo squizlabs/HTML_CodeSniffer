@@ -4,7 +4,7 @@ module.exports = (grunt)->
 
     jshint: 
       options: 
-        jshintrc: 'Integration/Grunt/.jshintrc'
+        jshintrc: 'Contrib/Grunt/.jshintrc'
 
       all: [
         'Standards/**/*.js'
@@ -20,7 +20,7 @@ module.exports = (grunt)->
             'Standards/**/*.js'
             'HTMLCS.js'
             'PhantomJS/runner.js'
-            'Auditor/HTMLCSAuditor.js'            
+            'Auditor/HTMLCSAuditor.js'
           ]
 
     copy:
