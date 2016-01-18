@@ -4,11 +4,11 @@ module.exports = (grunt)->
 
     jshint: 
       options: 
-        jshintrc: 'Integration/Grunt/.jshintrc'
+        jshintrc: 'Contrib/Grunt/.jshintrc'
 
       all: [
         'Standards/**/*.js'
-        'PhantomJS/*.js'
+        'Contrib/PhantomJS/*.js'
       ]
 
     uglify:
@@ -19,7 +19,7 @@ module.exports = (grunt)->
           'build/HTMLCS.js': [
             'Standards/**/*.js'
             'HTMLCS.js'
-            'PhantomJS/runner.js'
+            'Contrib/PhantomJS/runner.js'
             'Auditor/HTMLCSAuditor.js'            
           ]
 
