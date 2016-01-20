@@ -14,12 +14,32 @@ The previous version was generally based on the pull request number used to upda
 Version numbers have been applied retrospectively based on the size or significance of the update; the
 old version number is in brackets.
 
+## <a id="2.0.7"></a>Version 2.0.7 (19 Jan 2016)
+
+- **Core**
+    - Fixed doc comment typo ([issue #123](https://github.com/squizlabs/HTML_CodeSniffer/issues/123)).
+
+- **WCAG 2.0 (<abbr title="Success Criterion">SC</abbr> 1.3.1)**
+    - Changed for..in constructs to traditional for loops when run on arrays ([issue #121](https://github.com/squizlabs/HTML_CodeSniffer/issues/121)).
+    - Fixed a global variable leak. ([issue #122](https://github.com/squizlabs/HTML_CodeSniffer/issues/122)).
+    - Messages for H48 (plain text simulating a marked-up list) have been rewritten for clarity.
+
+- **WCAG 2.0 (<abbr title="Success Criterion">SC</abbr> 1.4.6)**
+    - <abbr title="Triple-A">AAA</abbr> mode only: "Hidden (offscreen) text reported as 1:NaN contrast error ([issue #119](https://github.com/squizlabs/HTML_CodeSniffer/issues/119)) - this test was in the <abbr title="Double-A">AA</abbr> test in <abbr title="Success Criterion">SC</abbr> 1.4.3 but not the <abbr title="Triple-A">AAA</abbr> test.
+    - Fixed a global variable leak. ([issue #122](https://github.com/squizlabs/HTML_CodeSniffer/issues/122)).
+    - Messages for H48 (plain text simulating a marked-up list) have been rewritten for clarity.
+
+- **WCAG 2.0 (<abbr title="Success Criterion">SC</abbr> 3.2.2)**
+    - Fixed a false-positive in checking whether a form has a submit button, when a form uses a BUTTON element with no "type" attribute ([issue #136](https://github.com/squizlabs/HTML_CodeSniffer/issues/136)) - BUTTON elements without a valid "type" attribute actually default to being submit buttons.
+
+*(Version 2.0.6 was tagged in December 2015, but the release was aborted.)*
+
 ## <a id="2.0.5"></a>Version 2.0.5 (21 Apr 2015)
 
 - **WCAG 2.0 (<abbr title="Success Criterion">SC</abbr> 1.3.1)**
   Button elements (and other "labellable elements" according to HTML5) no longer throw a warning about a label's "for" attribute not pointing to a form control
   ([issue #118](https://github.com/squizlabs/HTML_CodeSniffer/issues/118)).
-  
+
 - **Auditor**
  Fixed issue where clicking View Report caused a JavaScript error on a document using a Frameset.
  ([issue #118](https://github.com/squizlabs/HTML_CodeSniffer/issues/118)).
@@ -27,7 +47,7 @@ old version number is in brackets.
 ## <a id="2.0.4"></a>Version 2.0.4 (2 Feb 2015)
 
 - **WCAG 2.0 (<abbr title="Success Criteria">SC</abbr> 1.3.1)**
-  If a "for" attribute on a label element is filled but does not point to the ID of a form control, this is now treated as a Warning rather than an Error 
+  If a "for" attribute on a label element is filled but does not point to the ID of a form control, this is now treated as a Warning rather than an Error
   ([issue #100](https://github.com/squizlabs/HTML_CodeSniffer/issues/100)).
 
 - **WCAG 2.0 (<abbr title="Success Criteria">SC</abbr> 1.4.3, 1.4.6)**
@@ -44,7 +64,7 @@ old version number is in brackets.
 - **WCAG 2.0 (<abbr title="Success Criterion">SC</abbr> 1.3.1)**
   Rewrite "labelling inputs" code to take into account March 2014 changes
   ([issue #107](https://github.com/squizlabs/HTML_CodeSniffer/issues/107)), incorporating:
-    - False positive on fields with an aria-label 
+    - False positive on fields with an aria-label
       ([issue #77](https://github.com/squizlabs/HTML_CodeSniffer/issues/77))
     - Sniffer should not suggest <label for> attribute for <input> fields with the "hidden" attribute
       ([issue #80](https://github.com/squizlabs/HTML_CodeSniffer/issues/80))
@@ -97,12 +117,12 @@ old version number is in brackets.
 - **Core:** Fixed a JavaScript error that could be triggered in isStringEmpty()
   when passed a non-string ([issue #76](https://github.com/squizlabs/HTML_CodeSniffer/issues/76)).
   Also removed duplicated code in **WCAG 2.0 (<abbr title="Success Criterion">SC</abbr> 1.1.1)**.
-  
+
 ## <a id="https-gh-pages"></a>21 Mar 2014
 
 - Support for HTTPS sites should be possible now that Github has updated their
   certificates to cover Github Pages sites.
-  
+
   The bookmarklet link on the home page has been updated. Existing bookmarklets
   can be updated by removing the "http:" from the path near the start (so that
   path reads "//squizlabs.github.io/HTML_CodeSniffer/build/"). This ensures that
