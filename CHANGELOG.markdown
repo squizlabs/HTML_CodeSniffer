@@ -26,8 +26,6 @@ old version number is in brackets.
 
 - **WCAG 2.0 (<abbr title="Success Criterion">SC</abbr> 1.4.6)**
     - <abbr title="Triple-A">AAA</abbr> mode only: "Hidden (offscreen) text reported as 1:NaN contrast error ([issue #119](https://github.com/squizlabs/HTML_CodeSniffer/issues/119)) - this test was in the <abbr title="Double-A">AA</abbr> test in <abbr title="Success Criterion">SC</abbr> 1.4.3 but not the <abbr title="Triple-A">AAA</abbr> test.
-    - Fixed a global variable leak. ([issue #122](https://github.com/squizlabs/HTML_CodeSniffer/issues/122)).
-    - Messages for H48 (plain text simulating a marked-up list) have been rewritten for clarity.
 
 - **WCAG 2.0 (<abbr title="Success Criterion">SC</abbr> 3.2.2)**
     - Fixed a false-positive in checking whether a form has a submit button, when a form uses a BUTTON element with no "type" attribute ([issue #136](https://github.com/squizlabs/HTML_CodeSniffer/issues/136)) - BUTTON elements without a valid "type" attribute actually default to being submit buttons.
