@@ -298,8 +298,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
                     msgNodeType = nodeName.substr(6) + ' input element';
                 }
 
-                var msg = 'This ' + msgNodeType + ' does not have a value available to an accessibility API.';
-                
+                var msg       = 'This ' + msgNodeType + ' does not have a value available to an accessibility API.';
                 var builtAttr = '';
                 var warning   = false;
                 if (requiredValue === '_content') {
