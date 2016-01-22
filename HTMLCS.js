@@ -232,7 +232,7 @@ var HTMLCS = new function()
                 var tagName = element.tagName.toLowerCase();
             }
 
-            // First check whether any "top" messages need to be shifted off for this
+            // First check whether any "top" messages need to be shifted off for this
             // element. If so, dump off into the main messages.
             for (var i = 0; i < topMsgs.length;) {
                 if (element === topMsgs[i].element) {
