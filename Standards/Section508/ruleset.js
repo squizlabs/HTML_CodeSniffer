@@ -31,8 +31,8 @@ window.HTMLCS_Section508 = {
         'P'
     ],
     getMsgInfo: function(code) {
-        var msgCodeParts  = code.split('.', 3);
-        var paragraph     = msgCodeParts[1].toLowerCase();
+        var msgCodeParts = code.split('.', 3);
+        var paragraph    = msgCodeParts[1].toLowerCase();
 
         var retval = [
             ['Section', '1194.22 (' + paragraph + ')']
