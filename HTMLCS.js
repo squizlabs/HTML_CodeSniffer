@@ -443,9 +443,7 @@ var HTMLCS = new function()
         // Call the register method of the sniff, it should return an array of tags.
         if (sniffObj.register) {
             var watchedTags = sniffObj.register();
-        }
 
-        if (watchedTags && watchedTags.length > 0) {
             for (var i = 0; i < watchedTags.length; i++) {
                 if (!_tags[watchedTags[i]]) {
                     _tags[watchedTags[i]] = [];
