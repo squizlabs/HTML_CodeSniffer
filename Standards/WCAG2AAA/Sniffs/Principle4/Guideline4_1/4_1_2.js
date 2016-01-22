@@ -92,6 +92,10 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
         for (var el = 0; el < elements.length; el++) {
             var element = elements[el];
 
+            if (false === HTMLCS.util.isExposedToTheBrowserAccessibilityAPI(element)) {
+                continue;
+            }
+
             var nameFound = false;
             var hrefFound = false;
             var content   = HTMLCS.util.getElementTextContent(element);
