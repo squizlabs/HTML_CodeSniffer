@@ -1087,6 +1087,10 @@ var HTMLCSAuditor = new function()
         }
     };
 
+    this.setOption = function(name, value) {
+        _options[name] = value;
+    }
+
     this.getIssue = function(issueNumber)
     {
         return _messages[issueNumber];
@@ -1304,6 +1308,52 @@ var HTMLCSAuditor = new function()
         return standards;
     };
 
+    this.getParentElement = function() {
+        var parentEl = null;
+        if (_options.parentElement) {
+            parentEl = _options.parentElement;
+        } else if (_top.frames.length > 0) {
+            var largestFrameSize = -1;
+            var largestFrame     = null;
+
+            for (var i = 0; i < _top.frames.length; i++) {
+                try {
+                    if (window.frames[i].frameElement.nodeName.toLowerCase() === 'frame') {
+                        if (window.frames[i].document) {
+                            var frameSize = window.frames[i].innerWidth * window.frames[i].innerHeight;
+                            if (frameSize > largestFrameSize) {
+                                largestFrameSize = frameSize;
+                                largestFrame     = window.frames[i].document.body;
+                            }
+                        }//end if
+                    }//end if
+                } catch (ex) {
+                    // Skip cross-domain frames. Can't do much about those.
+                }//end try
+            }//end for
+
+            if (largestFrame === null) {
+                // They're all iframes. Just use the main document body.
+                parentEl = document.body;
+            } else {
+                parentEl = largestFrame;
+            }
+        } else {
+            parentEl = document.body;
+        }
+
+        return parentEl;
+    };
+
+    this.getOwnerDocument = function() {
+        var _doc = this.getParentElement();
+        if (_doc.ownerDocument) {
+            _doc = _doc.ownerDocument;
+        };
+
+        return _doc;
+    };
+
     /**
      * Run HTML_CodeSniffer and place the results in the auditor.
      *
@@ -1382,44 +1432,8 @@ var HTMLCSAuditor = new function()
         _screen   = '';
         _messages = [];
 
-        var parentEl = null;
-
-        if (_options.parentElement) {
-            parentEl = _options.parentElement;
-        } else if (_top.frames.length > 0) {
-            var largestFrameSize = -1;
-            var largestFrame     = null;
-
-            for (var i = 0; i < _top.frames.length; i++) {
-                try {
-                    if (window.frames[i].frameElement.nodeName.toLowerCase() === 'frame') {
-                        if (window.frames[i].document) {
-                            var frameSize = window.frames[i].innerWidth * window.frames[i].innerHeight;
-                            if (frameSize > largestFrameSize) {
-                                largestFrameSize = frameSize;
-                                largestFrame     = window.frames[i].document.body;
-                            }
-                        }//end if
-                    }//end if
-                } catch (ex) {
-                    // Skip cross-domain frames. Can't do much about those.
-                }//end try
-            }//end for
-
-            if (largestFrame === null) {
-                // They're all iframes. Just use the main document body.
-                parentEl = document.body;
-            } else {
-                parentEl = largestFrame;
-            }
-        } else {
-            parentEl = document.body;
-        }
-
-        _doc = parentEl;
-        if (_doc.ownerDocument) {
-            _doc = _doc.ownerDocument;
-        }
+        var parentEl = this.getParentElement();
+        _doc         = this.getOwnerDocument();
 
         if (!_options.path) {
             _options.path = './';
@@ -1489,7 +1503,7 @@ var HTMLCSAuditor = new function()
             }//end for
 
             if (_options.runCallback) {
-                var _newMsgs = _options.runCallback.call(this, _messages);
+                var _newMsgs = _options.runCallback.call(this, _messages, newlyOpen);
                 if ((_newMsgs instanceof Array) === true) {
                     _messages = _newMsgs;
                 }
@@ -1742,7 +1756,7 @@ var HTMLCSAuditor = new function()
 
             // Pixel width of the scroller.
             var scrollBarWidth = (widthNoScrollBar - widthWithScrollBar);
-            
+
             // Set the auditor-level variable so we don't have to run this again.
             _sbWidth = scrollBarWidth;
             return scrollBarWidth;
