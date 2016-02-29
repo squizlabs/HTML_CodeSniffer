@@ -1436,6 +1436,24 @@ var HTMLCS = new function()
             // Build the column and row headers that we expect.
             return cells;
         };
+
+        /**
+         * Check if the given element is exposed to the browser accessibility
+         * API. It is not if `role="presentation"` is declared on the element or
+         * on one of its parents.
+         *
+         * See http://www.w3.org/TR/wai-aria/roles#presentation.
+         */
+        this.isExposedToTheBrowserAccessibilityAPI = function(element) {
+            do {
+                if (element.hasAttribute('role') &&
+                    element.getAttribute('role') === 'presentation') {
+                    return false;
+                }
+            } while (element = element.parentElement);
+
+            return true;
+        };
     };
 
 };
