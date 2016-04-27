@@ -2,8 +2,8 @@ module.exports = (grunt)->
   grunt.initConfig
     pkg: grunt.file.readJSON('../../package.json')
 
-    jshint: 
-      options: 
+    jshint:
+      options:
         jshintrc: 'Contrib/Grunt/.jshintrc'
 
       all: [
@@ -12,15 +12,16 @@ module.exports = (grunt)->
       ]
 
     uglify:
-      options: 
-        banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %> */\n' 
+      options:
+        banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %> */\n'
       dist:
-        files: 
+        files:
           'build/HTMLCS.js': [
             'Standards/**/*.js'
             'HTMLCS.js'
+            'HTMLCS.Util.js'
             'Contrib/PhantomJS/runner.js'
-            'Auditor/HTMLCSAuditor.js'            
+            'Auditor/HTMLCSAuditor.js'
           ]
 
     copy:
