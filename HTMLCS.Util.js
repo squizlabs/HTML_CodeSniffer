@@ -102,7 +102,10 @@ HTMLCS.util = function() {
 					// Some tools don't like the lack of doctype for XHTML5 so permit
 					// an "about:legacy-compat" SYSTEM doctype.
 					if (document.contentType === 'application/xhtml+xml') {
-						retval = 'xhtml5';
+						var htmlElement = document.querySelector('html');
+						if (htmlElement.getAttribute('xmlns') === 'http://www.w3.org/1999/xhtml') {
+							retval = 'xhtml5';
+						}
 					}
 				}
 			}
@@ -110,7 +113,10 @@ HTMLCS.util = function() {
 			// XHTML5 has no doctype (at all) normally, but it only counts if the
 			// content type it was sent as is set correctly
 			if (document.contentType === 'application/xhtml+xml') {
-				retval = 'xhtml5';
+				var htmlElement = document.querySelector('html');
+				if (htmlElement.getAttribute('xmlns') === 'http://www.w3.org/1999/xhtml') {
+					retval = 'xhtml5';
+				}
 			}
 		}
 
