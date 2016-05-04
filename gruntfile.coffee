@@ -1,6 +1,6 @@
 module.exports = (grunt)->
   grunt.initConfig
-    pkg: grunt.file.readJSON('../../package.json')
+    pkg: grunt.file.readJSON('./package.json')
 
     jshint:
       options:
@@ -55,7 +55,7 @@ module.exports = (grunt)->
         files: ['<%= jshint.all %>']
         tasks: ['jshint:all']
 
-  grunt.file.setBase '../../'
+  grunt.file.setBase './'
   require('load-grunt-tasks') grunt
 
   grunt.registerTask 'default', ['jshint']
