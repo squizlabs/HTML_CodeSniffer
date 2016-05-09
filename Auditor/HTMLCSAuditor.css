@@ -836,7 +836,14 @@
 }
 #HTMLCS-wrapper #HTMLCS-settings-use-standard > select {
     float: right;
-    margin-top: -0.1em;
+    margin-top: -0.3em;
+    color: white;
+    background-color: #66656b;
+}
+#HTMLCS-wrapper #HTMLCS-settings-use-standard > select > option {
+    color: white;
+    background-color: #66656b;
+    padding: 0.1em 5px;
 }
 
 #HTMLCS-wrapper #HTMLCS-settings-use-standard:after {
