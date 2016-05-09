@@ -400,11 +400,10 @@
 #HTMLCS-wrapper .HTMLCS-issue-detail-list > li .HTMLCS-issue-wcag-ref > em {
     color: #8F8F94;
     background: none;
-    display: inline-block;
+    display: block;
     font-style: normal;
     font-weight: bold;
     margin-top: 0.5em;
-    min-width: 5.5em;
 }
 
 #HTMLCS-wrapper .HTMLCS-issue-detail-list > li .HTMLCS-issue-wcag-ref > a,

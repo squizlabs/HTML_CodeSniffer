@@ -90,8 +90,344 @@ window.HTMLCS_WCAG2AAA = {
                }
         }
 
+        /**
+         * List of success criteria, their links in the WCAG20 doc, and their
+         * "priority" (to use a WCAG1 term)... priority 1 = single-A, 3 = triple-A.
+         *
+         * Priority 0 indicates a conformance requirement. CR1 isn't shown because
+         * all it says is "to conform to each level, it must pass all at that level".
+         */
+        var successCritList = {
+            'CR2': {
+                name: 'Full pages',
+                landmark: 'cc2',
+                priority: 0,
+            },
+            'CR3': {
+                name: 'Complete processes',
+                landmark: 'cc3',
+                priority: 0,
+            },
+            'CR4': {
+                name: 'Only Accessibility-Supported Ways of Using Technologies',
+                landmark: 'cc4',
+                priority: 0,
+            },
+            'CR5': {
+                name: 'Non-Interference',
+                landmark: 'cc5',
+                priority: 0,
+            },
+            '1.1.1': {
+                name: 'Non-Text Content',
+                landmark: 'text-equiv-all',
+                priority: 1,
+            },
+            '1.2.1': {
+                name: 'Audio-only and Video-only (Prerecorded)',
+                landmark: 'media-equiv-av-only-alt',
+                priority: 1,
+            },
+            '1.2.2': {
+                name: 'Captions (Prerecorded)',
+                landmark: 'media-equiv-captions',
+                priority: 1,
+            },
+            '1.2.3': {
+                name: 'Audio Description or Media Alternative (Prerecorded)',
+                landmark: 'media-equiv-audio-desc',
+                priority: 1,
+            },
+            '1.2.4': {
+                name: 'Captions (Live)',
+                landmark: 'media-equiv-captions',
+                priority: 2,
+            },
+            '1.2.5': {
+                name: 'Audio Description (Prerecorded)',
+                landmark: 'media-equiv-audio-desc',
+                priority: 2,
+            },
+            '1.2.6': {
+                name: 'Sign Language (Prerecorded)',
+                landmark: 'media-equiv-sign',
+                priority: 3,
+            },
+            '1.2.7': {
+                name: 'Extended Audio Description (Prerecorded)',
+                landmark: 'media-equiv-extended-ad',
+                priority: 3,
+            },
+            '1.2.8': {
+                name: 'Media Alternative (Prerecorded)',
+                landmark: 'media-equiv-text-doc',
+                priority: 3,
+            },
+            '1.2.9': {
+                name: 'Audio-only (Live)',
+                landmark: 'media-equiv-live-audio-only',
+                priority: 3,
+            },
+            '1.3.1': {
+                name: 'Info and Relationships',
+                landmark: 'content-structure-separation-programmatic',
+                priority: 1,
+            },
+            '1.3.2': {
+                name: 'Meaningful Sequence',
+                landmark: 'content-structure-separation-sequence',
+                priority: 1,
+            },
+            '1.3.3': {
+                name: 'Sensory Characteristics',
+                landmark: 'content-structure-separation-understanding',
+                priority: 1,
+            },
+            '1.4.1': {
+                name: 'Use of Colour',
+                landmark: 'visual-audio-contrast-without-color',
+                priority: 1,
+            },
+            '1.4.2': {
+                name: 'Audio Control',
+                landmark: 'visual-audio-contrast-dis-audio',
+                priority: 1,
+            },
+            '1.4.3': {
+                name: 'Contrast (Minimum)',
+                landmark: 'visual-audio-contrast-contrast',
+                priority: 1,
+            },
+            '1.4.4': {
+                name: 'Resize Text',
+                landmark: 'visual-audio-contrast-scale',
+                priority: 1,
+            },
+            '1.4.5': {
+                name: 'Images of Text',
+                landmark: 'visual-audio-contrast-text-presentation',
+                priority: 1,
+            },
+            '1.4.6': {
+                name: 'Contrast (Enhanced)',
+                landmark: 'visual-audio-contrast7',
+                priority: 3,
+            },
+            '1.4.7': {
+                name: 'Low or No Background Audio',
+                landmark: 'visual-audio-contrast-noaudio',
+                priority: 3,
+            },
+            '1.4.8': {
+                name: 'Visual Presentation',
+                landmark: 'visual-audio-contrast-visual-presentation',
+                priority: 3,
+            },
+            '1.4.9': {
+                name: 'Images of Text (No Exception)',
+                landmark: 'visual-audio-contrast-text-images',
+                priority: 3,
+            },
+            '2.1.1': {
+                name: 'Keyboard',
+                landmark: 'keyboard-operation-keyboard-operable',
+                priority: 1,
+            },
+            '2.1.2': {
+                name: 'No Keyboard Trap',
+                landmark: 'keyboard-operation-trapping',
+                priority: 1,
+            },
+            '2.1.3': {
+                name: 'Keyboard (No Exception)',
+                landmark: 'keyboard-operation-all-funcs',
+                priority: 3,
+            },
+            '2.2.1': {
+                name: 'Timing Adjustable',
+                landmark: 'time-limits-required-behaviors',
+                priority: 1,
+            },
+            '2.2.2': {
+                name: 'Pause, Stop, Hide',
+                landmark: 'time-limits-pause',
+                priority: 1,
+            },
+            '2.2.3': {
+                name: 'No Timing',
+                landmark: 'time-limits-no-exceptions',
+                priority: 3,
+            },
+            '2.2.4': {
+                name: 'Interruptions',
+                landmark: 'time-limits-postponed',
+                priority: 3,
+            },
+            '2.2.5': {
+                name: 'Re-authenticating',
+                landmark: 'time-limits-server-timeout',
+                priority: 3,
+            },
+            '2.3.1': {
+                name: 'Three Flashes or Below Threshold',
+                landmark: 'seizure-does-not-violate',
+                priority: 1,
+            },
+            '2.3.2': {
+                name: 'Three Flashes',
+                landmark: 'seizure-three-times',
+                priority: 3,
+            },
+            '2.4.1': {
+                name: 'Bypass Blocks',
+                landmark: 'navigation-mechanisms-skip',
+                priority: 1,
+            },
+            '2.4.2': {
+                name: 'Page Titled',
+                landmark: 'navigation-mechanisms-title',
+                priority: 1,
+            },
+            '2.4.3': {
+                name: 'Focus Order',
+                landmark: 'navigation-mechanisms-focus-order',
+                priority: 1,
+            },
+            '2.4.4': {
+                name: 'Link Purpose (In Context)',
+                landmark: 'navigation-mechanisms-refs',
+                priority: 1,
+            },
+            '2.4.5': {
+                name: 'Multiple Ways',
+                landmark: 'navigation-mechanisms-mult-loc',
+                priority: 2,
+            },
+            '2.4.6': {
+                name: 'Headings and Labels',
+                landmark: 'navigation-mechanisms-descriptive',
+                priority: 2,
+            },
+            '2.4.7': {
+                name: 'Focus Visible',
+                landmark: 'navigation-mechanisms-focus-visible',
+                priority: 2,
+            },
+            '2.4.8': {
+                name: 'Location',
+                landmark: 'navigation-mechanisms-location',
+                priority: 3,
+            },
+            '2.4.9': {
+                name: 'Link Purpose (Link Only)',
+                landmark: 'navigation-mechanisms-link',
+                priority: 3,
+            },
+            '2.4.10': {
+                name: 'Section Headings',
+                landmark: 'navigation-mechanisms-headings',
+                priority: 3,
+            },
+            '3.1.1': {
+                name: 'Language of Page',
+                landmark: 'meaning-doc-lang-id',
+                priority: 1,
+            },
+            '3.1.2': {
+                name: 'Language of Parts',
+                landmark: 'meaning-other-lang-id',
+                priority: 2,
+            },
+            '3.1.3': {
+                name: 'Unusual Words',
+                landmark: 'meaning-idioms',
+                priority: 3,
+            },
+            '3.1.4': {
+                name: 'Abbreviations',
+                landmark: 'meaning-located',
+                priority: 3,
+            },
+            '3.1.5': {
+                name: 'Reading Level',
+                landmark: 'meaning-supplements',
+                priority: 3,
+            },
+            '3.1.6': {
+                name: 'Pronunciation',
+                landmark: 'meaning-pronunciation',
+                priority: 3,
+            },
+            '3.2.1': {
+                name: 'On Focus',
+                landmark: 'consistent-behavior-receive-focus',
+                priority: 1,
+            },
+            '3.2.2': {
+                name: 'On Input',
+                landmark: 'consistent-behavior-unpredictable-change',
+                priority: 1,
+            },
+            '3.2.3': {
+                name: 'Consistent Navigation',
+                landmark: 'consistent-behavior-consistent-locations',
+                priority: 2,
+            },
+            '3.2.4': {
+                name: 'Consistent Navigation',
+                landmark: 'consistent-behavior-consistent-functionality',
+                priority: 2,
+            },
+            '3.2.5': {
+                name: 'Change on Request',
+                landmark: 'consistent-behavior-no-extreme-changes-context',
+                priority: 3,
+            },
+            '3.3.1': {
+                name: 'Error Identification',
+                landmark: 'minimize-error-identified',
+                priority: 1,
+            },
+            '3.3.2': {
+                name: 'Labels or Instructions',
+                landmark: 'minimize-error-cues',
+                priority: 1,
+            },
+            '3.3.3': {
+                name: 'Error Suggestion',
+                landmark: 'minimize-error-suggestions',
+                priority: 2,
+            },
+            '3.3.4': {
+                name: 'Error Prevention (Legal, Financial, Data)',
+                landmark: 'minimize-error-reversible',
+                priority: 2,
+            },
+            '3.3.5': {
+                name: 'Help',
+                landmark: 'minimize-error-context-help',
+                priority: 3,
+            },
+            '3.3.6': {
+                name: 'Error Prevention (All)',
+                landmark: 'minimize-error-reversible-all',
+                priority: 3,
+            },
+            '4.1.1': {
+                name: 'Parsing',
+                landmark: 'ensure-compat-parses',
+                priority: 1,
+            },
+            '4.1.2': {
+                name: 'Name, Role, Value',
+                landmark: 'ensure-compat-rsv',
+                priority: 1,
+            },
+        };
+
         var msgCodeParts  = code.split('.', 5);
         var principle     = msgCodeParts[1];
+        var successCrit   = msgCodeParts[3].split('_').slice(0, 3).join('.');
         var techniques    = msgCodeParts[4].split(',');
         var techniquesStr = [];
 
@@ -100,10 +436,11 @@ window.HTMLCS_WCAG2AAA = {
             techniquesStr.push('<a href="http://www.w3.org/TR/WCAG20-TECHS/' + techniques[i][0] + '" target="_blank">' + techniques[i][0] + '</a>');
         }
 
-        var principleStr = ['<a href="', principles[principle].link, '" target="_blank">', principles[principle].name, '</a>'].join('');
+        var successCritStr = ['<a href="http://www.w3.org/TR/WCAG20/#' + successCritList[successCrit].landmark, '" target="_blank">', successCrit, ': ', successCritList[successCrit].name, '</a>'].join('');
+        var principleStr   = ['<a href="', principles[principle].link, '" target="_blank">', principles[principle].name, '</a>'].join('');
         var retval = [
-            ['Principle', principleStr],
-            ['Techniques', techniquesStr.join(' ')]
+            ['Success Criterion', successCritStr],
+            ['Suggested Techniques', techniquesStr.join(' ')]
         ];
 
         return retval;
