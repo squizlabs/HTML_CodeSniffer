@@ -9,7 +9,7 @@ standard.
 ### Standards included
 
 By default, HTML\_CodeSniffer comes with standards that cover the three conformance
-levels of W3C [Web Content Accessibility Guidelines (WCAG) 2.0](http://www.w3.org/TR/WCAG20),
+levels of the <abbr title="World Wide Web Consortium">W3C</abbr> [Web Content Accessibility Guidelines (WCAG) 2.0](http://www.w3.org/TR/WCAG20),
 and the <abbr title="United States of America">U.S.</abbr> [Section 508](http://section508.gov/index.cfm?fuseAction=stdsdoc) legislation.
 It also provides tools to write your own standards, which can be useful in situations
 where you wish to enforce consistency across a web site.
