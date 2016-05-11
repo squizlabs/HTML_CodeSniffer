@@ -12,9 +12,23 @@ module.exports = (grunt)->
       ]
 
     uglify:
-      options:
-        banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %> */\n'
+      debug:
+        options:
+            compress: false
+            mangle: false
+            beautify: true
+            preserveComments: true
+        files:
+          'build/HTMLCS.js': [
+            'Standards/**/*.js'
+            'HTMLCS.js'
+            'HTMLCS.Util.js'
+            'Contrib/PhantomJS/runner.js'
+            'Auditor/HTMLCSAuditor.js'
+          ]
       dist:
+        options:
+          banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %> */\n'
         files:
           'build/HTMLCS.js': [
             'Standards/**/*.js'
@@ -60,3 +74,4 @@ module.exports = (grunt)->
 
   grunt.registerTask 'default', ['jshint']
   grunt.registerTask 'build',   ['uglify:dist', 'copy:dist']
+  grunt.registerTask 'build-debug', ['uglify:debug', 'copy:dist']
