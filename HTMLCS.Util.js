@@ -123,6 +123,345 @@ HTMLCS.util = function() {
 		return retval;
 	};//end getDocumentType()
 
+
+	/**
+	 * Get list of fallbacks to use for an accessible name.
+	 *
+	 * If an element has no aria-labelledby or aria-label option, or if these should
+	 * be ignored - then use this list of fallbacks.
+	 *
+	 * This can also be used for an accessible description. This would be the SECOND
+	 * fallback used. ignoring those marked as ignorable.
+	 *
+	 * This function returns an array of strings representing possible alternatives,
+	 * in order of preference:
+	 * - Those starting with an "@" represent attributes.
+	 * - "label" will be a label attribute with the relevant "for" attribute set
+	 *   [TODO: what happens with labels that wrap around elements?]
+	 * - "=text" means use this text bare.
+	 * - Another element name (eg. "figcaption") relates to the text alternative of
+	 *   that element
+	 * - "*" means use the current element's subtree.
+	 * - "^" means this fallback should NOT be used for determining an accessible
+	 *   *description* - just for a name.
+	 *
+	 * @param {Node}  node  The node being tested
+	 *
+	 * @returns {Array}
+	 */
+	self.getAccessibleNameFallbacks = function(node) {
+		var nodeName  = node.nodeName.toLowerCase();
+		var inputType = '';
+		var retval    = [];
+		if (nodeName === 'textarea') {
+			nodeName  = 'input';
+			inputType = 'textarea';
+		}
+
+		if (nodeName === 'input') {
+			if (inputType === '') {
+				inputType = self.getAttributeNormalised(node, 'type', 'text').toLowerCase();
+			}
+			if ('text|password|search|tel|url|textarea'.indexOf(inputType) !== -1) {
+				retval = ['^label-for', '@placeholder', '@title', '^@aria-placeholder'];
+			} else if ('button|submit|reset'.indexOf(inputType) !== -1) {
+				retval = ['@value', '@title'];
+				// Add the default values for the Submit/Reset buttons.
+				if (inputType === 'submit') {
+					retval = retval.splice(1, 0, '^=Submit');
+				} else if (inputType === 'reset') {
+					retval = retval.splice(1, 0, '^=Reset');
+				}
+			} else if (inputType === 'image') {
+				retval = ['^@alt', '^@value', '^=Submit Query', '@title'];
+			} else if ('select'.indexOf(inputType) !== -1) {
+				retval = ['^label-for', '@title'];
+			}//end if
+		} else if (nodeName === 'button') {
+			retval = ['^*', '@title'];
+		} else if (nodeName === 'fieldset') {
+			retval = ['^legend', '@title'];
+		} else if (nodeName === 'legend') {
+			retval = ['^*', '@title'];
+		} else if (nodeName === 'summary') {
+			retval = ['^*', '@title'];
+		} else if (nodeName === 'figure') {
+			retval = ['^figcaption', '@title'];
+		} else if (nodeName === 'figcaption') {
+			retval = ['^*', '@title'];
+		} else if (nodeName === 'img') {
+			retval = ['^@alt', '@title'];
+		} else if (nodeName === 'table') {
+			retval = ['caption', '@title'];
+		} else if (nodeName === 'caption') {
+			retval = ['^*', '@title'];
+		} else if (nodeName === 'a') {
+			retval = ['^*', '@title'];
+		} else if ('body|article|section|nav|aside|header|footer|address|h1|h2|h3|h4|h5|h6'.indexOf(nodeName) === -1) {
+			// Section elements as per HTML5 definition
+			retval = ['@title'];
+		} else if ('p|hr|pre|blockquote|ol|ul|li|dl|dt|dd|main|div'.indexOf(nodeName) === -1) {
+			// Grouping elements (apart from figure/figcaption above) as per HTML5 definition
+			retval = ['@title'];
+		} else if ('em|strong|small|s|cite|q|dfn|attr|ruby|rt|rp|data|time|code|var|samp|kbd|sub|sup|i|b|u|mark|bdi|bdo|span|br|wbr'.indexOf(nodeName) === -1) {
+			// Text level elements (except listed above) as per HTML5 definition
+			// NOTE: Using the WHATWG standard, which means certain ruby elements (rb and rtc)
+			// which is in the W3C's definition of HTML5 are not listed above
+			retval = ['@title'];
+		}//end if
+
+		return retval;
+	};//end getAccessibleNameFallbacks()
+
+
+	/**
+	 * Gets a suitable text alternative for the node.
+	 *
+	 * This is using the algorithm provided by the draft of the W3C's "Accessible
+	 * Name and Description: Computation and API Mappings 1.1".
+	 * https://www.w3.org/TR/accname-aam-1.1/ [as accessed early May 2016].
+	 */
+	self.getTextAlternative = function(node, type) {
+		if (node.hasAttribute('id')) {
+			console.info('Testing #' + node.getAttribute('id'));
+		}
+
+		var recursing     = false;
+		var finalText     = '';
+		var previousNodes = [];
+		var previousIdref = false;
+		var hidden        = false;
+		var role          = '';
+		var retval        = null;
+		var i;
+		var label;
+
+		// Quickly get non-element nodes out of the way.
+		if (node.nodeType === 3) {
+			// Text node (see step 2G).
+			console.info('Text node');
+			return node.textContent;
+		} else if (node.nodeType !== 1) {
+			// Not an element (or a text node).
+			console.info('Not an element node');
+			return '';
+		}
+
+		if (arguments.length > 2) {
+			previousNodes = arguments[2];
+			if ((arguments.length > 3) && (arguments[3] === true)) {
+				previousIdref = true;
+			}
+		}
+
+		if (type === undefined) {
+			type = 'name';
+		}
+
+		if (previousNodes === undefined) {
+			previousNodes = [];
+		}
+
+		for (i = 0; i < previousNodes.length; i++) {
+			if (node === previousNodes[i]) {
+				recursing = true;
+				break;
+			}
+		}
+
+		if (recursing === false) {
+			previousNodes.push(node);
+		}
+
+		// Work out if the HTML element is hidden.
+		// TODO
+
+		// Step 2A. If hidden, unless being referenced by Aria-Labelledby/Aria-Describedby
+		if ((hidden === true) && (previousIdref === false)) {
+			console.info('Hidden');
+			return '';
+		}
+
+		switch (role) {
+			case 'none':
+				// Nothing to see here, unless we were referenced.
+				if (previousIdref === false) {
+					console.info('No role');
+					retval = '';
+				}
+			break;
+
+			case 'presentation':
+				// Nothing to see here, unless we were referenced.
+				if (previousIdref === false) {
+					console.info('Presentation');
+					retval = '';
+				}
+			break;
+
+			case 'textbox':
+				console.info('Textbox role');
+				retval = node.value;
+			break;
+
+			case 'button':
+				// Value of a button ()
+				console.info('Button role');
+				if (node.nodeName === 'button') {
+					// TODO: use the subtree.
+				} else {
+					retval = node.value;
+				}
+			break;
+
+			case 'combobox':
+				console.info('Combobox role');
+				var optionNode = node.querySelectorAll('option[selected]');
+				if (optionNode.length > 0) {
+					retval = optionNode[0].value;
+				} else {
+					retval = '';
+				}
+			break;
+
+			case 'range':
+				console.info('Range role');
+				var valueText = self.getAttributeNormalised(node, 'aria-valuetext');
+				var valueNow  = self.getAttributeNormalised(node, 'aria-valuenow');
+				if (valueText !== '') {
+					retval = valueText;
+				} else if (valueNow !== '') {
+					retval = valueNow;
+				} else {
+					// Not sure?
+				}
+			break;
+
+			default:
+				// Nothing to see here.
+			break;
+		}//end switch
+
+		// Step B. Aria-Labelledby / Aria-Describedby (unless already recursing)
+		if (retval === null) {
+			var idrefsList = '';
+			if (type === 'name') {
+				idrefsList = self.getAttributeNormalised(node, 'aria-labelledby');
+			} else if (type === 'description') {
+				idrefsList = self.getAttributeNormalised(node, 'aria-describedby');
+			}
+
+			if (idrefsList !== '') {
+				idrefsList = idrefsList.split('\s+');
+				console.info('List of idrefs: ', idrefsList);
+			}
+		}
+
+		// Step C. Aria-Label (unless already recursing)
+		if ((retval === null) && type === 'name') {
+			var ariaLabel = self.getAttributeNormalised(node, 'aria-label');
+			console.info('ARIA Label: ' + ariaLabel);
+			if (ariaLabel !== '') {
+				retval = ariaLabel;
+			}
+		}
+
+		// Now get the alternatives.
+		if (retval === null) {
+			var fallbacks   = self.getAccessibleNameFallbacks(node);
+			console.info('Fallback list: ' + fallbacks);
+			var alternative  = null;
+			var nameFallback = null;
+			var descFallback = null;
+			var useAsDesc = false;
+			var thisFallback = null;
+
+			for (i = 0; i < fallbacks.length; i++) {
+				// Those fallbacks with a "^" prefix are not to be used as a description
+				useAsDesc    = true;
+				thisFallback = null;
+				if (fallbacks[i].substr(0, 1) === '^') {
+					useAsDesc = false;
+					fallbacks[i] = fallbacks[i].substr(1, fallbacks[i].length);
+				}
+
+				if (fallbacks[i].substr(0, 1) === '@') {
+					// Get the attribute.
+					if (node.hasAttribute(fallbacks[i].substr(1, fallbacks[i].length))) {
+						thisFallback = self.getAttributeNormalised(fallbacks[i].substr(1, fallbacks[i].length));
+						if ((thisFallback === '') && (nodeName !== 'img')) {
+							// Don't accept empty attributes as valid fallbacks,
+							// EXCEPT if an img tag.
+							thisFallback = null;
+						}
+					}
+				} else if (fallbacks[i] === '*') {
+					// Get nodes from the subtree.
+					for (var j = 0; j < node.childNodes.length; j++) {
+						var childNode = node.childNodes[j];
+					}
+				} else if (fallbacks[i] === 'label-for') {
+					// Get the label relating to the "for" attribute.
+					var labelFor  = node.getAttributeNormalised('for');
+					var labelNode = null;
+					try {
+						labelNode = node.ownerDocument.querySelector('#' + labelFor);
+					} catch (ex) {
+						labelNode = null;
+					}
+
+					if (labelNode) {
+						thisFallback = self.getTextAlternative(labelNode, type, previousNodes, previousIdref);
+					}
+				} else {
+					// Get the child node with this tag name (and optional selectors).
+					var childNode = null;
+					try {
+						childNode = node.querySelector(fallbacks[i]);
+					} catch (ex) {
+						childNode = null;
+					}
+
+					if (childNode) {
+						thisFallback = self.getTextAlternative(childNode, type, previousNodes, previousIdref);
+					}
+				}//end if
+
+				if (thisFallback !== null) {
+					if (nameFallback === null) {
+						nameFallback = thisFallback;
+					} else if ((useAsDesc === true) && (descFallback === null)) {
+						descFallback = thisFallback;
+						break;
+					}
+				}//end if
+			}//end for
+		}//end if
+
+		return retval;
+
+	}//end getTextAlternative()
+
+
+	self.getAttributeNormalised = function(node, attr, defaultValue) {
+		if (defaultValue === undefined) {
+			defaultValue = '';
+		} else {
+			defaultValue = String(defaultValue);
+		}
+
+		var attrObj = node.getAttribute(attr);
+		var attrVal = '';
+		if (attrObj !== null) {
+			attrVal = self.trim(attrObj.replace('\s+', ' '));
+		} else {
+			attrVal = self.trim(defaultValue.replace('\s+', ' '))
+		}
+
+		return attrVal;
+	}//end getAttributeNormalised()
+
+
 	/**
 	 * Get the window object relating to the passed element.
 	 *
