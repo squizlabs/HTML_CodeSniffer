@@ -55,6 +55,12 @@ location.
 
 Then grab or copy the JavaScript from the auditor bookmarklet from the [HTML_CodeSniffer site](https://squizlabs.github.io/HTML_CodeSniffer),
 replace the directory at the start (//squizlabs.github.io/HTML_CodeSniffer/build) with your local URL, and save as a new bookmarklet.
+
+#### Debug build
+
+If you are developing using HTML\_CodeSniffer and require the code not minified for
+debugging purposes, follow the above steps, but run <code>grunt build-debug</code>
+(instead of just build). This will combine the files as normal, but not minify them.
   
 ### Command-Line processing
 
