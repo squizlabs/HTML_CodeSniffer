@@ -400,11 +400,10 @@
 #HTMLCS-wrapper .HTMLCS-issue-detail-list > li .HTMLCS-issue-wcag-ref > em {
     color: #8F8F94;
     background: none;
-    display: inline-block;
+    display: block;
     font-style: normal;
     font-weight: bold;
     margin-top: 0.5em;
-    min-width: 5.5em;
 }
 
 #HTMLCS-wrapper .HTMLCS-issue-detail-list > li .HTMLCS-issue-wcag-ref > a,
@@ -836,7 +835,14 @@
 }
 #HTMLCS-wrapper #HTMLCS-settings-use-standard > select {
     float: right;
-    margin-top: -0.1em;
+    margin-top: -0.3em;
+    color: white;
+    background-color: #66656b;
+}
+#HTMLCS-wrapper #HTMLCS-settings-use-standard > select > option {
+    color: white;
+    background-color: #66656b;
+    padding: 0.1em 5px;
 }
 
 #HTMLCS-wrapper #HTMLCS-settings-use-standard:after {
