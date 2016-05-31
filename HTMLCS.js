@@ -671,14 +671,15 @@ var HTMLCS = new function()
          *
          * @returns {Object}
          */
-        this.style = function(element) {
+        this.style = function(element, pseudo) {
             var computedStyle = null;
             var window        = this.getElementWindow(element);
+            var pseudo        = pseudo || null;
 
             if (element.currentStyle) {
                 computedStyle = element.currentStyle;
             } else if (window.getComputedStyle) {
-                computedStyle = window.getComputedStyle(element, null);
+                computedStyle = window.getComputedStyle(element, pseudo);
             }
 
             return computedStyle;
