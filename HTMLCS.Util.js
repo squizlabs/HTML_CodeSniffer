@@ -158,14 +158,15 @@ HTMLCS.util = function() {
 	 *
 	 * @returns {Object}
 	 */
-	self.style = function(element) {
+	self.style = function(element, pseudo) {
 		var computedStyle = null;
 		var window        = self.getElementWindow(element);
+		var pseudo        = pseudo || null;
 
 		if (element.currentStyle) {
 			computedStyle = element.currentStyle;
 		} else if (window.getComputedStyle) {
-			computedStyle = window.getComputedStyle(element, null);
+			computedStyle = window.getComputedStyle(element, pseudo);
 		}
 
 		return computedStyle;
@@ -357,6 +358,82 @@ HTMLCS.util = function() {
 
 		var lum = ((transformed.red * 0.2126) + (transformed.green * 0.7152) + (transformed.blue * 0.0722));
 		return lum;
+	};
+
+	/**
+	 * Convert an rgba colour to rgb, by traversing the dom and mixing colors as needed.
+	 *
+	 * @param element - the element to compare the rgba color against.
+	 * @param colour - the starting rgba color to check.
+	 * @returns {Colour Object}
+	 */
+	self.rgbaBackgroundToRgb = function(colour, element) {
+		var parent        = element.parentNode;
+		var original      = self.colourStrToRGB(colour);
+		var backgrounds   = [];
+		var solidFound    = false;
+
+		if (original.alpha == 1) {
+			//Return early if it is already solid.
+			return original;
+		}
+
+		//Find all the background with transparancy until we get to a solid colour
+		while (solidFound == false) {
+			if ((!parent) || (!parent.ownerDocument)) {
+				//No parent was found, assume a solid white background.
+				backgrounds.push({
+					red: 1,
+					green: 1,
+					blue: 1,
+					alpha: 1
+				});
+				break;
+			}
+
+			var parentStyle     = self.style(parent);
+			var parentColourStr = parentStyle.backgroundColor;
+			var parentColour    = self.colourStrToRGB(parentColourStr);
+
+			if ((parentColourStr === 'transparent') || (parentColourStr === 'rgba(0, 0, 0, 0)')) {
+				//Skip totally transparent parents until we find a solid color.
+				parent = parent.parentNode;
+				continue;
+			}
+
+			backgrounds.push(parentColour);
+
+			if (parentColour.alpha == 1) {
+				solidFound = true;
+			}
+
+			parent = parent.parentNode;
+		}
+
+		//Now we need to start with the solid color that we found, and work our way up to the original color.
+		var solidColour = backgrounds.pop();
+		while (backgrounds.length) {
+			solidColour = self.mixColours(solidColour, backgrounds.pop());
+		}
+
+		return self.mixColours(solidColour, original);
+	};
+
+	self.mixColours = function(bg, fg) {
+		//Convert colors to int values for mixing.
+		bg.red   = Math.round(bg.red*255);
+		bg.green = Math.round(bg.green*255);
+		bg.blue  = Math.round(bg.blue*255);
+		fg.red   = Math.round(fg.red*255);
+		fg.green = Math.round(fg.green*255);
+		fg.blue  = Math.round(fg.blue*255);
+
+		return {
+			red: Math.round(fg.alpha * fg.red + (1 - fg.alpha) * bg.red) / 255,
+			green: Math.round(fg.alpha * fg.green + (1 - fg.alpha) * bg.green) / 255,
+			blue: Math.round(fg.alpha * fg.blue + (1 - fg.alpha) * bg.blue) / 255,
+			alpha: bg.alpha
+		}
 	}
 
 	/**
@@ -379,7 +456,11 @@ HTMLCS.util = function() {
 			colour = {
 				red: (matches[1] / 255),
 				green: (matches[2] / 255),
-				blue: (matches[3] / 255)
+				blue: (matches[3] / 255),
+				alpha: 1.0
+			};
+			if (matches[4]) {
+				colour.alpha = parseFloat(/^,\s*(.*)$/.exec(matches[4])[1]);
 			}
 		} else {
 			// Hex digit format.
@@ -394,7 +475,8 @@ HTMLCS.util = function() {
 			colour = {
 				red: (parseInt(colour.substr(0, 2), 16) / 255),
 				green: (parseInt(colour.substr(2, 2), 16) / 255),
-				blue: (parseInt(colour.substr(4, 2), 16) / 255)
+				blue: (parseInt(colour.substr(4, 2), 16) / 255),
+				alpha: 1
 			};
 		}
 

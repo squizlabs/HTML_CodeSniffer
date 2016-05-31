@@ -20,7 +20,12 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
         var failures  = [];
 
         if (!top.ownerDocument) {
-            var toProcess = [top.getElementsByTagName('body')[0]];
+            var toProcess = [];
+            var body = top.getElementsByTagName('body');
+            if (body.length) {
+                //SVG objects will not have a body element. Don't check them.
+                var toProcess = [body[0]];
+            }
         } else {
             var toProcess = [top];
         }
@@ -52,8 +57,8 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
                         var bgElement = node;
                         var hasBgImg  = false;
                         var isAbsolute = false;
-                        
-			            if (style.backgroundImage !== 'none') {
+
+                        if (style.backgroundImage !== 'none') {
                             hasBgImg = true;
                         }
                         
@@ -86,22 +91,48 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
 
                             var parentStyle = HTMLCS.util.style(parent);
                             var bgColour    = parentStyle.backgroundColor;
+                            var bgElement   = parent;
                             if (parentStyle.backgroundImage !== 'none') {
                                 hasBgImg = true;
                             }
                             if (parentStyle.position == 'absolute') {
                                 isAbsolute = true;
                             }
+                            
+                            //Search for the smooth scrolling willChange: 'transform' background hack
+                            //See http://fourkitchens.com/blog/article/fix-scrolling-performance-css-will-change-property
+                            var beforeStyle = HTMLCS.util.style(parent, ':before');
+                            if (
+                                beforeStyle
+                                && beforeStyle.position == 'fixed'
+                                && beforeStyle.willChange == 'transform'
+                                //Make sure it is trying to cover the entire content area
+                                && beforeStyle.width == parentStyle.width
+                                && parseInt(beforeStyle.height, 10) <= parseInt(parentStyle.height, 10)
+                                //And finally it needs a background image
+                                && beforeStyle.backgroundImage !== 'none'
+                            ) {
+                                hasBgImg = true;
+                                break;
+                            }
 
                             parent = parent.parentNode;
                         }//end while
+
+                        if (bgColour && bgColour.indexOf('rgba') === 0) {
+                            bgColour = HTMLCS.util.RGBtoColourStr(HTMLCS.util.rgbaBackgroundToRgb(bgColour, bgElement));
+                        }
+
+                        if (foreColour && foreColour.indexOf('rgba') === 0) {
+                            foreColour = HTMLCS.util.RGBtoColourStr(HTMLCS.util.rgbaBackgroundToRgb(foreColour, node));
+                        }
 
                         if (hasBgImg === true) {
                             // If we have a background image, skip the contrast ratio checks,
                             // and push a warning instead.
                             failures.push({
                                 element: node,
-                                colour: style.color,
+                                colour: foreColour,
                                 bgColour: undefined,
                                 value: undefined,
                                 required: reqRatio,
@@ -117,6 +148,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
                                 required: reqRatio,
                                 isAbsolute: true
                             });
+                            continue;
                         } else if ((bgColour === 'transparent') || (bgColour === 'rgba(0, 0, 0, 0)')) {
                             // If the background colour is still transparent, this is probably
                             // a fragment with which we cannot reliably make a statement about
@@ -124,12 +156,12 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
                             continue;
                         }
 
-                        var contrastRatio = HTMLCS.util.contrastRatio(bgColour, style.color);
+                        var contrastRatio = HTMLCS.util.contrastRatio(bgColour, foreColour);
 
 
 
                         if (contrastRatio < reqRatio) {
-                            var recommendation = this.recommendColour(bgColour, style.color, reqRatio);
+                            var recommendation = this.recommendColour(bgColour, foreColour, reqRatio);
 
                             failures.push({
                                 element: node,
