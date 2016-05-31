@@ -98,6 +98,23 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
                             if (parentStyle.position == 'absolute') {
                                 isAbsolute = true;
                             }
+                            
+                            //Search for the smooth scrolling willChange: 'transform' background hack
+                            //See http://fourkitchens.com/blog/article/fix-scrolling-performance-css-will-change-property
+                            var beforeStyle = HTMLCS.util.style(parent, ':before');
+                            if (
+                                beforeStyle
+                                && beforeStyle.position == 'fixed'
+                                && beforeStyle.willChange == 'transform'
+                                //Make sure it is trying to cover the entire content area
+                                && beforeStyle.width == parentStyle.width
+                                && parseInt(beforeStyle.height, 10) <= parseInt(parentStyle.height, 10)
+                                //And finally it needs a background image
+                                && beforeStyle.backgroundImage !== 'none'
+                            ) {
+                                hasBgImg = true;
+                                break;
+                            }
 
                             parent = parent.parentNode;
                         }//end while
