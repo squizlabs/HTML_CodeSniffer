@@ -23,11 +23,9 @@ var HTMLCS_Section508_Sniffs_A = {
     register: function()
     {
         return [
+            '_top',
             'img',
-            'input',
-            'area',
             'object',
-            'applet',
             'bgsound',
             'audio'
         ];
