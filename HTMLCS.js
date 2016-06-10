@@ -10,7 +10,7 @@
  * +--------------------------------------------------------------------+
  *
  */
-
+(function (global) {
 var HTMLCS = new function()
 {
 	var _standards    = {};
@@ -594,3 +594,15 @@ var HTMLCS = new function()
 		return elArray;
 	};
 };
+
+if (typeof define === 'function' && define.amd) {
+    // AMD
+    define('HTMLCS', [], function () { return HTMLCS; });
+} else if (typeof exports === 'object') {
+    // Node, CommonJS-like
+    module.exports = HTMLCS;
+} else {
+    // File scope
+    global.HTMLCS = HTMLCS;
+}
+})(this);
