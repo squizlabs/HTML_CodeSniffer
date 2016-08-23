@@ -146,6 +146,7 @@ if (system.args.length < 3 || system.args.length > 4) {
 
                 injectAllStandards(cwd + '/../../Standards');
                 page.injectJs(cwd + '/../../HTMLCS.js');
+                page.injectJs(cwd + '/../../HTMLCS.Util.js');
                 page.injectJs(cwd + '/runner.js');
 
                 // Now Run. Note that page.evaluate() function is sanboxed to
