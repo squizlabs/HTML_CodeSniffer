@@ -494,6 +494,9 @@ var HTMLCS = new function()
 					// We have found our appropriate <script> tag that includes
 					// this file, we can extract the path.
 					path = scripts[i].src.replace(/HTMLCS\.js/,'');
+
+					// trim any trailing bits
+					path = path.substring(0, path.indexOf('?'));
 					break;
 				}
 			}
