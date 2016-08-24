@@ -232,7 +232,7 @@ var HTMLCS = new function()
                 var tagName = element.tagName.toLowerCase();
             }
 
-            // First check whether any "top" messages need to be shifted off for this
+            // First check whether any "top" messages need to be shifted off for this
             // element. If so, dump off into the main messages.
             for (var i = 0; i < topMsgs.length;) {
                 if (element === topMsgs[i].element) {
@@ -443,9 +443,7 @@ var HTMLCS = new function()
         // Call the register method of the sniff, it should return an array of tags.
         if (sniffObj.register) {
             var watchedTags = sniffObj.register();
-        }
 
-        if (watchedTags && watchedTags.length > 0) {
             for (var i = 0; i < watchedTags.length; i++) {
                 if (!_tags[watchedTags[i]]) {
                     _tags[watchedTags[i]] = [];
