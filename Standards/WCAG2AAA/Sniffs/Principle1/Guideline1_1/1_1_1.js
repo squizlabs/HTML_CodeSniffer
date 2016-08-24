@@ -133,7 +133,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
             }
         };
 
-        elements = top.querySelectorAll('img, area, input[type="image"]');
+        elements = HTMLCS.util.getAllElements(top, 'img, area, input[type="image"]');
 
         for (var el = 0; el < elements.length; el++) {
             var element = elements[el];
@@ -381,7 +381,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
             }
         };
 
-        var elements = top.querySelectorAll('object');
+        var elements = HTMLCS.util.getAllElements(top, 'object');
 
         for (var el = 0; el < elements.length; el++) {
             var element  = elements[el];
@@ -401,7 +401,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
             }//end if
         }//end if
 
-        var elements = top.querySelectorAll('applet');
+        var elements = HTMLCS.util.getAllElements(top, 'applet');
 
         for (var el = 0; el < elements.length; el++) {
             // Test firstly for whether we have an object alternative.

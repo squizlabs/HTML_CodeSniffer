@@ -43,7 +43,7 @@ var HTMLCS_Section508_Sniffs_D = {
             // potentially hidden text (eg. "click to expand" sections). For instance,
             // such text should be stored semantically in the page, not loaded into
             // a container through AJAX (and thus not accessible with scripting off).
-            var hasScript = top.querySelectorAll('script, link[rel="stylesheet"]');
+            var hasScript = HTMLCS.util.getAllElements(top, 'script, link[rel="stylesheet"]');
             if (hasScript.length > 0) {
                 HTMLCS.addMessage(HTMLCS.NOTICE, top, 'If content is hidden and made visible using scripting (such as "click to expand" sections), ensure this content is readable when scripts and style sheets are disabled.', 'HiddenText');
             }
@@ -58,7 +58,7 @@ var HTMLCS_Section508_Sniffs_D = {
     testPresentationMarkup: function(top)
     {
         // Presentation tags that should have no place in modern HTML.
-        var tags = top.querySelectorAll('b, i, u, s, strike, tt, big, small, center, font');
+        var tags = HTMLCS.util.getAllElements(top, 'b, i, u, s, strike, tt, big, small, center, font');
 
         for (var i = 0; i < tags.length; i++) {
             var msgCode = 'PresMarkup.' + tags[i].nodeName.substr(0, 1).toUpperCase() + tags[i].nodeName.substr(1).toLowerCase();
@@ -66,7 +66,7 @@ var HTMLCS_Section508_Sniffs_D = {
         }
 
         // Align attributes, too.
-        var tags = top.querySelectorAll('*[align]');
+        var tags = HTMLCS.util.getAllElements(top, '*[align]');
 
         for (var i = 0; i < tags.length; i++) {
             var msgCode = 'PresMarkup.AlignAttr';
@@ -76,7 +76,7 @@ var HTMLCS_Section508_Sniffs_D = {
 
     testHeadingOrder: function(top) {
         var lastHeading = 0;
-        var headings    = top.querySelectorAll('h1, h2, h3, h4, h5, h6');
+        var headings    = HTMLCS.util.getAllElements(top, 'h1, h2, h3, h4, h5, h6');
 
         for (var i = 0; i < headings.length; i++) {
             var headingNum = parseInt(headings[i].nodeName.substr(1, 1));

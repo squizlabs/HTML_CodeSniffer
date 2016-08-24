@@ -205,7 +205,7 @@ HTMLCS.util = function() {
 
 
     /**
-     * Returns true if the element is hidden from Accessibility APIs.
+     * Returns true if the element is deliberately hidden from Accessibility APIs.
      *
      * @param {Node} element The element to check.
      *
@@ -222,14 +222,6 @@ HTMLCS.util = function() {
         // WAI-ARIA hidden attribute.
         if (element.hasAttribute('aria-hidden') && element.getAttribute('aria-hidden') === 'true') {
             return true;
-        }
-
-        // Accessibility APIs will ignore visibility: hidden and display: none.
-        var style = self.style(element);
-        if (style !== null) {
-            if (style.visibility === 'hidden' || style.display === 'none') {
-                return true;
-            }
         }
 
         return false;
@@ -282,13 +274,15 @@ HTMLCS.util = function() {
     /**
      * Returns all elements that are visible to the accessibility API.
      *
-     * @param {Node} element The parent element to search.
+     * @param {Node}   element  The parent element to search.
+     * @param {String} selector Optional selector to pass to 
      *
      * @return {Array}
      */
-    self.getAllElements = function(element) {
+    self.getAllElements = function(element, selector) {
         element      = element || document;
-        var elements = Array.prototype.slice.call(element.getElementsByTagName('*'));
+        selector     = selector || '*';
+        var elements = Array.prototype.slice.call(element.querySelectorAll(selector));
         var hidden   = elements.filter(function(elem) {
             return HTMLCS.util.isAccessibilityHidden(elem) === true;
         });
@@ -301,7 +295,7 @@ HTMLCS.util = function() {
             });
         }
 
-        return elements
+        var visible = elements
             .filter(function(elem) {
                 // Filter out direct matches to hidden elems.
                 return hidden.indexOf(elem) === -1;
@@ -309,10 +303,11 @@ HTMLCS.util = function() {
             .filter(function(elem) {
                 // Filter out children of hidden elements.
                 return hidden.filter(function(hiddenElem) {
-                    console.log(hiddenElem, elem, hiddenElem.contains(elem));
                     return hiddenElem.contains(elem);
                 }).length ? false : true;
             });
+
+        return visible;
     };
 
     /**

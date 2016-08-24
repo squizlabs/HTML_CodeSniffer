@@ -35,7 +35,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_F24 = {
     process: function(element, top)
     {
         // Test for background/foreground stuff.
-        var elements = top.querySelectorAll('*');
+        var elements = HTMLCS.util.getAllElements(top, '*');
         for (var i = 0; i < elements.length; i++) {
             this.testColourComboFail(elements[i]);
         }

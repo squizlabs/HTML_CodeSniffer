@@ -87,7 +87,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
             noContent: []
         };
 
-        var elements = top.querySelectorAll('a:not([role="button"])');
+        var elements = HTMLCS.util.getAllElements(top, 'a:not([role="button"])');
 
         for (var el = 0; el < elements.length; el++) {
             var element = elements[el];
@@ -152,7 +152,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
 
     processFormControls: function(top)
     {
-        var elements = top.querySelectorAll('button, fieldset, input, select, textarea, [role="button"]');
+        var elements = HTMLCS.util.getAllElements(top, 'button, fieldset, input, select, textarea, [role="button"]');
         var errors   = [];
         var warnings = [];
 

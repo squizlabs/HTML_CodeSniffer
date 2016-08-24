@@ -330,28 +330,28 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
 		var doctype = HTMLCS.util.getDocumentType(_doc);
 
 		if ((doctype === 'html5') || (doctype === 'xhtml5')) {
-			var tags = top.querySelectorAll('strike, tt, big, center, font');
+			var tags = HTMLCS.util.getAllElements(top, 'strike, tt, big, center, font');
 			for (var i = 0; i < tags.length; i++) {
 				var msgCode = 'H49.' + tags[i].nodeName.substr(0, 1).toUpperCase() + tags[i].nodeName.substr(1).toLowerCase();
 				HTMLCS.addMessage(HTMLCS.ERROR, tags[i], 'Presentational markup used that has become obsolete in HTML5.', msgCode);
 			}
 
 			// Align attributes, too.
-			var tags = top.querySelectorAll('*[align]');
+			var tags = HTMLCS.util.getAllElements(top, '*[align]');
 
 			for (var i = 0; i < tags.length; i++) {
 				var msgCode = 'H49.AlignAttr';
 				HTMLCS.addMessage(HTMLCS.ERROR, tags[i], 'Align attributes .', msgCode);
 			}
 		} else {
-			var tags = top.querySelectorAll('b, i, u, s, strike, tt, big, small, center, font');
+			var tags = HTMLCS.util.getAllElements(top, 'b, i, u, s, strike, tt, big, small, center, font');
 			for (var i = 0; i < tags.length; i++) {
 				var msgCode = 'H49.' + tags[i].nodeName.substr(0, 1).toUpperCase() + tags[i].nodeName.substr(1).toLowerCase();
 				HTMLCS.addMessage(HTMLCS.WARNING, tags[i], 'Semantic markup should be used to mark emphasised or special text so that it can be programmatically determined.', msgCode);
 			}
 
 			// Align attributes, too.
-			var tags = top.querySelectorAll('*[align]');
+			var tags = HTMLCS.util.getAllElements(top, '*[align]');
 
 			for (var i = 0; i < tags.length; i++) {
 				var msgCode = 'H49.AlignAttr';
@@ -749,7 +749,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
 
 	testHeadingOrder: function(top, level) {
 		var lastHeading = 0;
-		var headings    = top.querySelectorAll('h1, h2, h3, h4, h5, h6');
+		var headings    = HTMLCS.util.getAllElements(top, 'h1, h2, h3, h4, h5, h6');
 
 		for (var i = 0; i < headings.length; i++) {
 			var headingNum = parseInt(headings[i].nodeName.substr(1, 1));

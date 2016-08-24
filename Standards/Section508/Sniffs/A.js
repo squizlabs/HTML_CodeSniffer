@@ -87,7 +87,7 @@ var HTMLCS_Section508_Sniffs_A = {
             }
         };
 
-        elements = top.querySelectorAll('img, area, input[type="image"]');
+        elements = HTMLCS.util.getAllElements(top, 'img, area, input[type="image"]');
 
         for (var el = 0; el < elements.length; el++) {
             var element = elements[el];
@@ -237,7 +237,7 @@ var HTMLCS_Section508_Sniffs_A = {
             }
         };
 
-        var elements = top.querySelectorAll('object');
+        var elements = HTMLCS.util.getAllElements(top, 'object');
 
         for (var el = 0; el < elements.length; el++) {
             var element  = elements[el];
@@ -257,7 +257,7 @@ var HTMLCS_Section508_Sniffs_A = {
             }//end if
         }//end if
 
-        var elements = top.querySelectorAll('applet');
+        var elements = HTMLCS.util.getAllElements(top, 'applet');
 
         for (var el = 0; el < elements.length; el++) {
             // Test firstly for whether we have an object alternative.

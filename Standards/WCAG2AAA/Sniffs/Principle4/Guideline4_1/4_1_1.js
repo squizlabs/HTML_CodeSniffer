@@ -37,7 +37,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_1 = {
     process: function(element, top)
     {
         if (element === top) {
-            var elsWithIds = top.querySelectorAll('*[id]');
+            var elsWithIds = HTMLCS.util.getAllElements(top, '*[id]');
             var usedIds    = {};
 
             for (var i = 0; i < elsWithIds.length; i++) {
