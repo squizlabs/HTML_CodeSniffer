@@ -212,17 +212,17 @@ HTMLCS.util = function() {
      * @return {Boolean}
      */
     self.isAccessibilityHidden = function(element) {
+        do {
+            // WAI-ARIA presentation role.
+            if (element.hasAttribute('role') && element.getAttribute('role') === 'presentation') {
+                return true;
+            }
 
-        // WAI-ARIA presentation role.
-        if (element.hasAttribute('role') && element.getAttribute('role') === 'presentation') {
-                    console.log(element);
-            return true;
-        }
-
-        // WAI-ARIA hidden attribute.
-        if (element.hasAttribute('aria-hidden') && element.getAttribute('aria-hidden') === 'true') {
-            return true;
-        }
+            // WAI-ARIA hidden attribute.
+            if (element.hasAttribute('aria-hidden') && element.getAttribute('aria-hidden') === 'true') {
+                return true;
+            }
+        } while (element = element.parentElement);
 
         return false;
     };
@@ -283,29 +283,17 @@ HTMLCS.util = function() {
         element      = element || document;
         selector     = selector || '*';
         var elements = Array.prototype.slice.call(element.querySelectorAll(selector));
-        var hidden   = elements.filter(function(elem) {
-            return HTMLCS.util.isAccessibilityHidden(elem) === true;
+        var visible  = elements.filter(function(elem) {
+            return HTMLCS.util.isAccessibilityHidden(elem) === false;
         });
 
         // We shouldn't be testing elements inside the injected auditor code if it's present.
         var auditor = document.getElementById('HTMLCS-wrapper');
         if (auditor) {
-            elements = elements.filter(function(elem) {
+            visible = visible.filter(function(elem) {
                 return auditor.contains(elem) === false;
             });
         }
-
-        var visible = elements
-            .filter(function(elem) {
-                // Filter out direct matches to hidden elems.
-                return hidden.indexOf(elem) === -1;
-            })
-            .filter(function(elem) {
-                // Filter out children of hidden elements.
-                return hidden.filter(function(hiddenElem) {
-                    return hiddenElem.contains(elem);
-                }).length ? false : true;
-            });
 
         return visible;
     };
