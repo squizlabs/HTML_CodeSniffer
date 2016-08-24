@@ -87,7 +87,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
             noContent: []
         };
 
-        var elements = top.querySelectorAll('a');
+        var elements = top.querySelectorAll('a:not([role="button"])');
 
         for (var el = 0; el < elements.length; el++) {
             var element = elements[el];
@@ -152,7 +152,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
 
     processFormControls: function(top)
     {
-        var elements = top.querySelectorAll('button, fieldset, input, select, textarea');
+        var elements = top.querySelectorAll('button, fieldset, input, select, textarea, [role="button"]');
         var errors   = [];
         var warnings = [];
 
@@ -195,13 +195,18 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
                 var msgSubCode = 'Input' + nodeName.substr(6, 1).toUpperCase() + nodeName.substr(7).toLowerCase();
             }//end if
 
-            var requiredName  = requiredNames[nodeName];
+            var matchingRequiredNames  = requiredNames[nodeName];
             var requiredValue = requiredValues[nodeName];
 
+            // Any element that doesn't have specific handling must have content.
+            if (!matchingRequiredNames) {
+                matchingRequiredNames = ['_content'];
+            }
+
             // Check all possible combinations of names to ensure that one exists.
-            if (requiredName) {
-                for (var i = 0; i < requiredNames[nodeName].length; i++) {
-                    var requiredName = requiredNames[nodeName][i];
+            if (matchingRequiredNames) {
+                for (var i = 0; i < matchingRequiredNames.length; i++) {
+                    var requiredName = matchingRequiredNames[i];
                     if (requiredName === '_content') {
                         // Work with content.
                         var content = HTMLCS.util.getElementTextContent(element);
@@ -234,13 +239,17 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
                     }//end if
                 }//end for
 
-                if (i === requiredNames[nodeName].length) {
+                if (i === matchingRequiredNames.length) {
                     var msgNodeType = nodeName + ' element';
                     if (nodeName.substr(0, 6) === 'input_') {
                         msgNodeType = nodeName.substr(6) + ' input element';
                     }
 
-                    var builtAttrs = requiredNames[nodeName].slice(0, requiredNames[nodeName].length);
+                    if (element.hasAttribute('role') && element.getAttribute('role') === 'button') {
+                        msgNodeType = 'element has a role of "button" but';
+                    }
+
+                    var builtAttrs = matchingRequiredNames.slice(0, matchingRequiredNames.length);
                     for (var a = 0; a < builtAttrs.length; a++) {
                         if (builtAttrs[a] === '_content') {
                             builtAttrs[a] = 'element content';
@@ -260,8 +269,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
                 }
             }//end if
 
-            var requiredValue = requiredValues[nodeName];
-            var valueFound    = false;
+            var valueFound = false;
 
             if (requiredValue === undefined) {
                 // Nothing required of us.
