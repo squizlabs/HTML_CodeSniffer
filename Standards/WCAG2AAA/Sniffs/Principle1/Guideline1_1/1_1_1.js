@@ -144,8 +144,8 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
             var nullAlt       = false;
 
             if (element.parentNode.nodeName.toLowerCase() === 'a') {
-                var prevNode = this._getPreviousSiblingElement(element, null);
-                var nextNode = this._getNextSiblingElement(element, null);
+                var prevNode = HTMLCS.util.getPreviousSiblingElement(element, null);
+                var nextNode = HTMLCS.util.getNextSiblingElement(element, null);
 
                 if ((prevNode === null) && (nextNode === null)) {
                     var textContent = element.parentNode.textContent;
@@ -286,8 +286,8 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
             //     (This leaves one link with no text at all - the two should be
             //      combined into one link.)
             if (nodes.anchor.text === '') {
-                var prevLink = this._getPreviousSiblingElement(anchor, 'a', true);
-                var nextLink = this._getNextSiblingElement(anchor, 'a', true);
+                var prevLink = HTMLCS.util.getPreviousSiblingElement(anchor, 'a', true);
+                var nextLink = HTMLCS.util.getNextSiblingElement(anchor, 'a', true);
 
                 if (prevLink !== null) {
                     nodes.previous = {
@@ -472,117 +472,5 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
         }
 
         return alt;
-    },
-
-    /**
-     * Get the previous sibling element.
-     *
-     * This is a substitute for previousSibling where there are text, comment and
-     * other nodes between elements.
-     *
-     * If tagName is null, immediate is ignored and effectively defaults to true: the
-     * previous element will be returned regardless of what it is.
-     *
-     * @param {DOMNode} element           Element to start from.
-     * @param {String}  [tagName=null]    Only match this tag. If null, match any.
-     *                                    Not case-sensitive.
-     * @param {Boolean} [immediate=false] Only match if the tag in tagName is the
-     *                                    immediately preceding non-whitespace node.
-     *
-     * @returns {DOMNode} The appropriate node or null if none is found.
-     */
-    _getPreviousSiblingElement: function(element, tagName, immediate) {
-        if (tagName === undefined) {
-            tagName = null;
-        }
-
-        if (immediate === undefined) {
-            immediate = false;
-        }
-
-        var prevNode = element.previousSibling;
-        while (prevNode !== null) {
-            if (prevNode.nodeType === 3) {
-                if ((HTMLCS.util.isStringEmpty(prevNode.nodeValue) === false) && (immediate === true)) {
-                    // Failed. Immediate node requested and we got text instead.
-                    prevNode = null;
-                    break;
-                }
-            } else if (prevNode.nodeType === 1) {
-                // If this an element, we break regardless. If it's an "a" node,
-                // it's the one we want. Otherwise, there is no adjacent "a" node
-                // and it can be ignored.
-                if ((tagName === null) || (prevNode.nodeName.toLowerCase() === tagName)) {
-                    // Correct element, or we aren't picky.
-                    break;
-                } else if (immediate === true) {
-                    // Failed. Immediate node requested and not correct tag name.
-                    prevNode = null;
-                    break;
-                }
-
-                break;
-            }//end if
-
-            prevNode = prevNode.previousSibling;
-        }//end if
-
-        return prevNode;
-    },
-
-    /**
-     * Get the next sibling element.
-     *
-     * This is a substitute for nextSibling where there are text, comment and
-     * other nodes between elements.
-     *
-     * If tagName is null, immediate is ignored and effectively defaults to true: the
-     * next element will be returned regardless of what it is.
-     *
-     * @param {DOMNode} element           Element to start from.
-     * @param {String}  [tagName=null]    Only match this tag. If null, match any.
-     *                                    Not case-sensitive.
-     * @param {Boolean} [immediate=false] Only match if the tag in tagName is the
-     *                                    immediately following non-whitespace node.
-     *
-     * @returns {DOMNode} The appropriate node or null if none is found.
-     */
-    _getNextSiblingElement: function(element, tagName, immediate) {
-        if (tagName === undefined) {
-            tagName = null;
-        }
-
-        if (immediate === undefined) {
-            immediate = false;
-        }
-
-        var nextNode = element.nextSibling;
-        while (nextNode !== null) {
-            if (nextNode.nodeType === 3) {
-                if ((HTMLCS.util.isStringEmpty(nextNode.nodeValue) === false) && (immediate === true)) {
-                    // Failed. Immediate node requested and we got text instead.
-                    nextNode = null;
-                    break;
-                }
-            } else if (nextNode.nodeType === 1) {
-                // If this an element, we break regardless. If it's an "a" node,
-                // it's the one we want. Otherwise, there is no adjacent "a" node
-                // and it can be ignored.
-                if ((tagName === null) || (nextNode.nodeName.toLowerCase() === tagName)) {
-                    // Correct element, or we aren't picky.
-                    break;
-                } else if (immediate === true) {
-                    // Failed. Immediate node requested and not correct tag name.
-                    nextNode = null;
-                    break;
-                }
-
-                break;
-            }//end if
-
-            nextNode = nextNode.nextSibling;
-        }//end if
-
-        return nextNode;
     }
 };

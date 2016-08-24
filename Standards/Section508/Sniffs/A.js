@@ -98,8 +98,8 @@ var HTMLCS_Section508_Sniffs_A = {
             var nullAlt       = false;
 
             if (element.parentNode.nodeName.toLowerCase() === 'a') {
-                var prevNode = this._getPreviousSiblingElement(element, null);
-                var nextNode = this._getNextSiblingElement(element, null);
+                var prevNode = HTMLCS.util.getPreviousSiblingElement(element, null);
+                var nextNode = HTMLCS.util.getNextSiblingElement(element, null);
 
                 if ((prevNode === null) && (nextNode === null)) {
                     var textContent = element.parentNode.textContent;
