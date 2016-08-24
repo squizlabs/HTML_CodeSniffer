@@ -172,7 +172,7 @@ HTMLCS.util = function() {
     };
 
     /**
-     * Return true if an element is hidden.
+     * Return true if an element is hidden visually.
      *
      * If the computed style of an element cannot be determined for some reason,
      * it is presumed it is NOT hidden.
@@ -181,7 +181,7 @@ HTMLCS.util = function() {
      *
      * @returns {Boolean}
      */
-    self.isHidden = function(element) {
+    self.isVisuallyHidden = function(element) {
         var hidden = false;
 
         // Do not point to elem if its hidden. Use computed styles.
@@ -201,6 +201,38 @@ HTMLCS.util = function() {
         }
 
         return hidden;
+    };
+
+
+    /**
+     * Returns true if the element is hidden from Accessibility APIs.
+     *
+     * @param {Node} element The element to check.
+     *
+     * @return {Boolean}
+     */
+    self.isAccessibilityHidden = function(element) {
+
+        // WAI-ARIA presentation role.
+        if (element.hasAttribute('role') && element.getAttribute('role') === 'presentation') {
+                    console.log(element);
+            return true;
+        }
+
+        // WAI-ARIA hidden attribute.
+        if (element.hasAttribute('aria-hidden') && element.getAttribute('aria-hidden') === 'true') {
+            return true;
+        }
+
+        // Accessibility APIs will ignore visibility: hidden and display: none.
+        var style = self.style(element);
+        if (style !== null) {
+            if (style.visibility === 'hidden' || style.display === 'none') {
+                return true;
+            }
+        }
+
+        return false;
     };
 
     /**
@@ -245,6 +277,42 @@ HTMLCS.util = function() {
         }
 
         return true;
+    };
+
+    /**
+     * Returns all elements that are visible to the accessibility API.
+     *
+     * @param {Node} element The parent element to search.
+     *
+     * @return {Array}
+     */
+    self.getAllElements = function(element) {
+        element      = element || document;
+        var elements = Array.prototype.slice.call(element.getElementsByTagName('*'));
+        var hidden   = elements.filter(function(elem) {
+            return HTMLCS.util.isAccessibilityHidden(elem) === true;
+        });
+
+        // We shouldn't be testing elements inside the injected auditor code if it's present.
+        var auditor = document.getElementById('HTMLCS-wrapper');
+        if (auditor) {
+            elements = elements.filter(function(elem) {
+                return auditor.contains(elem) === false;
+            });
+        }
+
+        return elements
+            .filter(function(elem) {
+                // Filter out direct matches to hidden elems.
+                return hidden.indexOf(elem) === -1;
+            })
+            .filter(function(elem) {
+                // Filter out children of hidden elements.
+                return hidden.filter(function(hiddenElem) {
+                    console.log(hiddenElem, elem, hiddenElem.contains(elem));
+                    return hiddenElem.contains(elem);
+                }).length ? false : true;
+            });
     };
 
     /**

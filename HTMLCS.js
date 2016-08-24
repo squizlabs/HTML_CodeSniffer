@@ -107,7 +107,7 @@ var HTMLCS = new function()
                     }
                 }
 
-                var elements = _getAllTags(element);
+                var elements = HTMLCS.util.getAllElements(element);
                 elements.unshift(element);
                 _run(elements, element, callback);
             }
@@ -143,7 +143,7 @@ var HTMLCS = new function()
 
         // Get all the elements in the parent element.
         // Add the parent element too, which will trigger "_top" element codes.
-        var elements = _getAllTags(element);
+        var elements = HTMLCS.util.getAllElements(element);
         elements.unshift(element);
 
         // Run the sniffs.
@@ -573,25 +573,5 @@ var HTMLCS = new function()
         } else {
             document.getElementsByTagName('head')[0].appendChild(script);
         }
-    };
-
-    /**
-     * Returns all the child elements in the given element.
-     *
-     * @param {Node|Document} [element=document] The parent element.
-     *
-     * @returns {Array} Array of Node objects.
-     */
-    var _getAllTags = function(element) {
-        element      = element || document;
-        var elements = element.getElementsByTagName('*');
-
-        // Convert to array. We can't use array features on a NodeList.
-        var elArray = [];
-        for (var i = 0; i < elements.length; i++) {
-            elArray.push(elements[i]);
-        }
-
-        return elArray;
     };
 };

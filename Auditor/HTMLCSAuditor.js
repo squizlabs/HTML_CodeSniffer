@@ -1815,7 +1815,7 @@ var HTMLCSAuditor = new function()
             }
 
             // Do not point to elem if its hidden. Use computed styles.
-            if (HTMLCS.util.isHidden(elem) === true) {
+            if (HTMLCS.util.isVisuallyHidden(elem) === true) {
                 return false;
             }
 
