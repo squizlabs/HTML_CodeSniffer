@@ -316,7 +316,7 @@ var HTMLCS = new function()
 
         // See if the ruleset object is already included (eg. if minified).
         var parts   = standard.split('/');
-        var ruleSet = window['HTMLCS_' + parts[(parts.length - 2)]];
+        var ruleSet = _global['HTMLCS_' + parts[(parts.length - 2)]];
         if (ruleSet) {
             // Already included.
             _registerStandard(standard, callback, failCallback, options);
@@ -340,7 +340,7 @@ var HTMLCS = new function()
         var parts = standard.split('/');
 
         // Get a copy of the ruleset object.
-        var oldRuleSet = window['HTMLCS_' + parts[(parts.length - 2)]];
+        var oldRuleSet = _global['HTMLCS_' + parts[(parts.length - 2)]];
         var ruleSet    = {};
 
         for (var x in oldRuleSet) {
@@ -526,12 +526,12 @@ var HTMLCS = new function()
         name    += _standards[standard].name + '_Sniffs_';
         name    += sniff.split('.').join('_');
 
-        if (!window[name]) {
+        if (!_global[name]) {
             return null;
         }
 
-        window[name]._name = sniff;
-        return window[name];
+        _global[name]._name = sniff;
+        return _global[name];
     };
 
     /**

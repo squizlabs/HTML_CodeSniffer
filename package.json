@@ -16,13 +16,12 @@
     "url": "https://github.com/squizlabs/HTML_CodeSniffer/issues"
   },
   "homepage": "http://squizlabs.github.io/HTML_CodeSniffer/",
-  "devDependencies": {
-    "grunt": "~0.4.2",
-    "grunt-notify": "~0.2.17",
-    "load-grunt-tasks": "~0.3.0",
-    "grunt-contrib-watch": "~0.5.3",
-    "grunt-contrib-jshint": "~0.8.0",
-    "grunt-contrib-uglify": "~0.3.2",
-    "grunt-contrib-copy": "~0.5.0"
+  "dependencies": {
+    "grunt": "^1.0.0",
+    "load-grunt-tasks": "~3.5.x",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-jshint": "^1.0.0",
+    "grunt-contrib-uglify": "^2.0.0",
+    "grunt-contrib-watch": "^1.0.0"
   }
 }

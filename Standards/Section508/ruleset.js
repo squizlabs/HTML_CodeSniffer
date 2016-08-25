@@ -11,7 +11,7 @@
  *
  */
 
-window.HTMLCS_Section508 = {
+_global.HTMLCS_Section508 = {
     name: 'Section508',
     description: 'U.S. Section 508 Standard',
     sniffs: [

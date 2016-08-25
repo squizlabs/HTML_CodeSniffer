@@ -158,28 +158,7 @@ if (system.args.length < 3 || system.args.length > 4) {
                     }
                 };
 
-                // Include all sniff files.
-                var fs = require('fs');
-                var injectAllStandards = function(dir) {
-                    var files = fs.list(dir),
-                        filesLen = files.length,
-                        absPath = '';
-                    for (var i = 0; i < filesLen; i++) {
-                        if (files[i] === '.' || files[i] === '..') continue;
-
-                        absPath = fs.absolute(dir + '/' + files[i]);
-                        if (fs.isDirectory(absPath) === true) {
-                            injectAllStandards(absPath);
-                        } else if (fs.isFile(absPath) === true) {
-                            page.injectJs(absPath);
-                        }
-                    }
-                };
-
-                injectAllStandards(cwd + '/../../Standards');
-                page.injectJs(cwd + '/../../HTMLCS.js');
-                page.injectJs(cwd + '/../../HTMLCS.Util.js');
-                page.injectJs(cwd + '/runner.js');
+                page.injectJs(cwd + '/../../build/HTMLCS.js');
 
                 // Now Run. Note that page.evaluate() function is sanboxed to
                 // the loaded page's context. We can't pass any variable to it.

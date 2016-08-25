@@ -11,7 +11,7 @@
  *
  */
 
-var HTMLCSAuditor = new function()
+_global.HTMLCSAuditor = new function()
 {
     var _prefix   = 'HTMLCS-';
     var _screen   = '';
@@ -493,7 +493,7 @@ var HTMLCSAuditor = new function()
             var standard     = standards[i];
             var option       = _doc.createElement('option');
             option.value     = standard;
-            option.innerHTML = window['HTMLCS_' + standard].name;
+            option.innerHTML = _global['HTMLCS_' + standard].name;
 
             if (standard === _standard) {
                 option.selected = true;
@@ -1366,7 +1366,7 @@ var HTMLCSAuditor = new function()
         var standards       = this.getStandardList();
         var standardsToLoad = [];
         for (var i = 0; i < standards.length; i++) {
-            if (!window['HTMLCS_' + standards[i]]) {
+            if (!_global['HTMLCS_' + standards[i]]) {
                 standardsToLoad.push(standards[i]);
             }
         }

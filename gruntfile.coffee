@@ -14,10 +14,12 @@ module.exports = (grunt)->
     uglify:
       debug:
         options:
-            compress: false
-            mangle: false
-            beautify: true
-            preserveComments: true
+          compress: false
+          mangle: false
+          beautify: true
+          preserveComments: true
+          banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %> */\n' + grunt.file.read('Contrib/Build/umd-header.js')
+          footer: grunt.file.read('Contrib/Build/umd-footer.js')
         files:
           'build/HTMLCS.js': [
             'Standards/**/*.js'
@@ -28,7 +30,8 @@ module.exports = (grunt)->
           ]
       dist:
         options:
-          banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %> */\n'
+          banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %> */\n' + grunt.file.read('Contrib/Build/umd-header.js')
+          footer: grunt.file.read('Contrib/Build/umd-footer.js')
         files:
           'build/HTMLCS.js': [
             'Standards/**/*.js'
@@ -36,7 +39,7 @@ module.exports = (grunt)->
             'HTMLCS.Util.js'
             'Contrib/PhantomJS/runner.js'
             'Auditor/HTMLCSAuditor.js'
-          ]
+          ],
 
     copy:
       dist:

@@ -11,7 +11,7 @@
  *
  */
 
-var HTMLCS_Section508_Sniffs_G = {
+_global.HTMLCS_Section508_Sniffs_G = {
     /**
      * Determines the elements to register for processing.
      *

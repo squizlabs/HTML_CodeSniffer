@@ -1,4 +1,4 @@
-var HTMLCS_RUNNER = new function() {
+var HTMLCS_RUNNER = _global.HTMLCS_RUNNER = new function() {
     this.run = function(standard, callback) {
         var self = this;
 

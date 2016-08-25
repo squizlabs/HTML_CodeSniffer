@@ -11,7 +11,7 @@
  *
  */
 
-window.HTMLCS_WCAG2AA = {
+_global.HTMLCS_WCAG2AA = {
     name: 'WCAG2AA',
     description: 'Web Content Accessibility Guidelines (WCAG) 2.0 AA',
     sniffs: [
