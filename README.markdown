@@ -64,6 +64,8 @@ debugging purposes, follow the above steps, but run <code>grunt build-debug</cod
   
 ### Command-Line processing
 
+#### PhantomJS
+
 If you are using command-line processing, you don't need to build the auditor as above.
 You will, however, need [PhantomJS](http://www.phantomjs.org/) installed if you wish to
 use the contributed command-line script. PhantomJS provides a headless Webkit-based
@@ -71,6 +73,34 @@ browser to run the scripts in, so it should provide results that are similar to
 recent (or slightly less than recent) versions of Safari.
 
 See the <code>Contrib/PhantomJS/HTMLCS_Run.js</code> file for more information.
+
+#### Node & JSDom.
+
+HTML_CodeSniffer requires a dom to run, however, it is possible to run it entirely
+server side without a headless browser using Node on arbitrary fragments of HTML using
+an environment wrapper like [JSDom](https://github.com/tmpvar/jsdom).
+
+An example node script:
+```javascript
+var jsdom  = require('jsdom');
+var fs     = require('fs');
+
+var vConsole = jsdom.createVirtualConsole();
+
+// Forward messages to the console.
+vConsole.on('log', function(message) {
+    console.log(message);
+})
+
+jsdom.env({
+    html: '<img src="test.png" />',
+    src: [fs.readFileSync('./build/HTMLCS.js')],
+    virtualConsole: vConsole,
+    done: function (err, window) {
+        window.HTMLCS_RUNNER.run('WCAG2AA');
+    }
+});
+```
 
 ### Contributing and reporting issues
 
