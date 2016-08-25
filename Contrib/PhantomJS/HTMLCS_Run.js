@@ -10,7 +10,7 @@ var messages = {
 if (system.args.length < 3 || system.args.length > 4) {
     console.log('Usage: phantomjs HTMLCS_Run.js URL standard [report]');
     console.log('  available standards: "WCAG2A", "WCAG2AA", "WCAG2AAA", "Section508"');
-    console.log('  available reports: "default" (default if omitted), "table"');
+    console.log('  available reports: "default" (default if omitted), "table", "json"');
     phantom.exit();
 } else {
     address    = system.args[1];
@@ -95,6 +95,34 @@ if (system.args.length < 3 || system.args.length > 4) {
         cb();
     }
 
+    var reportJSONFn = function(cb) {
+        var reportJSONData = [];
+        var levels = ['ERROR', 'WARNING', 'NOTICE'];
+        for (var lvl = 0; lvl < levels.length; lvl++) {
+            for (var i = 0; i < messages[levels[lvl]].length; i++) {
+                var thisMsg = messages[levels[lvl]][i];
+                reportJSONData.push({
+                    type: thisMsg[0],
+                    code: thisMsg[1],
+                    nodeName: thisMsg[2],
+                    id: thisMsg[3],
+                    msg: thisMsg[4],
+                    outerHTML: thisMsg[5]
+                });
+            }
+        }
+
+        console.log('[');
+        reportJSONData.forEach(function(report, i) {
+            console.log(JSON.stringify(report, null, '    '));
+            if (i < reportJSONData.length-1) {
+                console.log(',');
+            }
+        });
+        console.log(']');
+        cb();
+    };
+
     page.open(address, function (status) {
         if (status !== 'success') {
             console.log('Unable to load the address!');
@@ -115,6 +143,10 @@ if (system.args.length < 3 || system.args.length > 4) {
                         switch (reportType.toLowerCase()) {
                             case 'table':
                                 reportTableFn(cb);
+                            break;
+
+                            case 'json':
+                                reportJSONFn(cb);
                             break;
 
                             default:
