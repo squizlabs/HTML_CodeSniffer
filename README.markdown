@@ -40,9 +40,9 @@ earlier versions.
 
 * Install node.js with your package manager of choice.
 * You may need to update the Node.js package manager (npm) itself: 
-  <code>sudo npm update -g npm</code>
+  <code>npm update -g npm</code>
 * Install the Grunt CLI helper if you haven't already done so:  
-  <code>sudo npm install -g grunt-cli</code>
+  <code>npm install -g grunt-cli</code>
 * Get node.js to install the dependencies Grunt needs:  
   <code>npm install</code>
 * Run Grunt to build the auditor:
