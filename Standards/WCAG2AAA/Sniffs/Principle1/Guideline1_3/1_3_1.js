@@ -800,11 +800,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
 	 * @returns void
 	 */
 	testEmptyHeading: function(element) {
-		var text = element.textContent;
-
-		if (text === undefined) {
-			text = element.innerText;
-		}
+		var text = HTMLCS.util.getElementTextContent(element, true);
 
 		if (/^\s*$/.test(text) === true) {
 			HTMLCS.addMessage(HTMLCS.ERROR, element, 'Heading tag found with no content. Text that is not intended as a heading should not be marked up with heading tags.', 'H42.2');

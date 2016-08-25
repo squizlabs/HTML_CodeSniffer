@@ -639,7 +639,7 @@ HTMLCS.util = function() {
             nodes.push(element.childNodes[i]);
         }
 
-        var text = [];
+        var text = [element.textContent];
         while (nodes.length > 0) {
             var node = nodes.shift();
 
