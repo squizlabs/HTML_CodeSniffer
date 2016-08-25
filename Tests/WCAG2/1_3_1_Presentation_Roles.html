@@ -11,6 +11,8 @@ Assert: No Error *.H37 on #deliberateFail2
 Assert: No Error *.F92.ARIA4 on #ariaHidden
 Assert: Error *.F92.ARIA4 on #incorrectUsageTable
 Assert: No Error *.F92.ARIA4 on #correctUsage
+Assert: No Error *.F92.ARIA4 on #correctUsage
+Assert: No Error *.F92.ARIA4 on #correctUsageWithRoles
 -->
 </head>
 <body>
@@ -33,5 +35,10 @@ Assert: No Error *.F92.ARIA4 on #correctUsage
 <div id="correctUsage" role="presentation">
     <span></span>
 </div>
+<ul role="tree">
+    <li id="correctUsageWithRoles" role="presentation">
+        <a role="treeitem" aria-expanded="true">An expanded tree node</a> 
+    </li>
+</ul>
 </body>
 </html>
