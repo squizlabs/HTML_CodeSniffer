@@ -11,7 +11,7 @@
  *
  */
 
-var HTMLCS = new function()
+_global.HTMLCS = new function()
 {
     var _standards    = {};
     var _sniffs       = [];
