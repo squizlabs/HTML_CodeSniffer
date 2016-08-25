@@ -117,6 +117,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
                                 required: reqRatio,
                                 isAbsolute: true
                             });
+                            continue;
                         } else if ((bgColour === 'transparent') || (bgColour === 'rgba(0, 0, 0, 0)')) {
                             // If the background colour is still transparent, this is probably
                             // a fragment with which we cannot reliably make a statement about
@@ -125,9 +126,6 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
                         }
 
                         var contrastRatio = HTMLCS.util.contrastRatio(bgColour, style.color);
-
-
-
                         if (contrastRatio < reqRatio) {
                             var recommendation = this.recommendColour(bgColour, style.color, reqRatio);
 
