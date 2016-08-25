@@ -254,6 +254,15 @@ var HTMLCS = new function()
             }
         }//end while
 
+        // Due to filtering of presentation roles for general sniffing these need to be handled
+        // separately. The 1.3.1 sniff needs to run to detect any incorrect usage of the presentation
+        // role.
+        var presentationElems = topElement.querySelectorAll('[role="presentation"]');
+        _currentSniff         = HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1;
+        [].forEach.call(presentationElems, function(element) {
+            _currentSniff.testSemanticPresentationRole(element);
+        });
+
         if (callback instanceof Function === true) {
             callback.call(this);
         }

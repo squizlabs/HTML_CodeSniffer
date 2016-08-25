@@ -97,6 +97,27 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
 	},
 
 	/**
+	 * Test elements for presentation roles that also contain semantic child elements.
+	 *
+	 * @param {DOMNode} element The element to test.
+	 */
+	testSemanticPresentationRole: function(element)
+	{
+		if (element.hasAttribute('role') && element.getAttribute('role') === 'presentation') {
+			var permitted = ['div', 'span', 'b', 'i'];
+			var children  = element.querySelectorAll('*:not('+permitted.join('):not(')+')');
+			if (children.length) {
+				HTMLCS.addMessage(
+					HTMLCS.ERROR,
+					element,
+					'This element\'s role is "presentation" but contains child elements with semantic meaning.',
+					'F92,ARIA4'
+				);
+			}
+		}
+	},
+
+	/**
 	 * Top-level test for labels that have no for attribute, or duplicate ones.
 	 *
 	 * @param {DOMNode} top The top element of the tested code.
