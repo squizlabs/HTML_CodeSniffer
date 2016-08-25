@@ -606,7 +606,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
 
 		// In HTML5, Summary no longer exists, so only run this for older versions.
 		var doctype = HTMLCS.util.getDocumentType(table.ownerDocument);
-		if (doctype.indexOf('html5') === -1) {
+		if (doctype && doctype.indexOf('html5') === -1) {
 			summary = summary.replace(/^\s*(.*?)\s*$/g, '$1');
 			if (summary !== '') {
 				if (HTMLCS.util.isLayoutTable(table) === true) {
