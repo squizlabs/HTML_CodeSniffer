@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>4.1.2 Aria Labels</title>
+<!-- @HTMLCS_Test@
+Name: SC 4.1.2 Aria Labels
+Standard: WCAG2AAA
+Assert: Error *.H91.* on #unlabelledButton
+Assert: No Error *.H91 on #labelledButton
+Assert: Error *.H91.* on #emptyLabelledButton
+Assert: No Error * on #labelledByButton
+-->
+</head>
+<body>
+<form>
+
+<button id="unlabelledButton">
+  <span class="dd-icon glyph glyphicon-heart" aria-hidden="true"></span>
+</button>
+
+<button id="labelledButton" aria-label="my icon button">
+  <span class="dd-icon glyph glyphicon-heart" aria-hidden="true"></span>
+</button>
+
+<button id="emptyLabelledButton" aria-label="">
+  <span class="dd-icon glyph glyphicon-heart" aria-hidden="true"></span>
+</button>
+
+<div id="billing">Billing Address</div>
+<div>
+    <div id="name">Name</div>
+    <input id="labelledByButton" type="text" aria-labelledby="billing name"/>
+</div>
+
+</form>
+</body>
+</html>

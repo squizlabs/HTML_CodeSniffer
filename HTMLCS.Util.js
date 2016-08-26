@@ -150,6 +150,39 @@ _global.HTMLCS.util = function() {
     };
 
     /**
+     * Returns true if the element has a valid aria label.
+     *
+     * @param {Node} element The element we are checking.
+     *
+     * @return {Boolean}
+     */
+    self.hasValidAriaLabel = function(element)
+    {
+        var found = false;
+        if (element.hasAttribute('aria-labelledby') === true) {
+            // Checking aria-labelled by where the label exists AND it has text available
+            // to an accessibility API.
+            var labelledByIds = element.getAttribute('aria-labelledby').split(/\s+/);
+            labelledByIds.forEach(function(id) {
+                var elem = document.getElementById(id);
+                if (elem) {
+                    var text = self.getElementTextContent(elem);
+                    if (/^\s*$/.test(text) === false) {
+                        found = true;
+                    }
+                }
+            });
+        } else if (element.hasAttribute('aria-label') === true) {
+            var text = element.getAttribute('aria-label');
+            if (/^\s*$/.test(text) === false) {
+                found = true;
+            }
+        }
+
+        return found;
+    };
+
+    /**
      * Return the appropriate computed style object for an element.
      *
      * It's accessed in different ways depending on whether it's IE or not.

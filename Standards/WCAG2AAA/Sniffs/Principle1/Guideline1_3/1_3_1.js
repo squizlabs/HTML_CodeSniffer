@@ -256,9 +256,8 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
 		}
 
 		// Find an aria-label attribute.
-		var ariaLabel = element.getAttribute('aria-label');
-		if (ariaLabel !== null) {
-			if ((/^\s*$/.test(ariaLabel) === true) && (needsLabel === true)) {
+		if (element.hasAttribute('aria-label') === true) {
+			if (HTMLCS.util.hasValidAriaLabel(element) === false) {
 				HTMLCS.addMessage(
 					HTMLCS.WARNING,
 					element,
@@ -270,28 +269,17 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
 			}
 		}
 
+
 		// Find an aria-labelledby attribute.
-		var ariaLabelledBy = element.getAttribute('aria-labelledby');
-		if (ariaLabelledBy && (/^\s*$/.test(ariaLabelledBy) === false)) {
-			var labelledByIds = ariaLabelledBy.split(/\s+/);
-			var ok = true;
-
-			// First check that all of the IDs (space separated) are present and correct.
-			for (var x = 0; x < labelledByIds.length; x++) {
-				var labelledByElement = element.ownerDocument.querySelector('#' + labelledByIds[x]);
-				if (!labelledByElement) {
-					HTMLCS.addMessage(
-						HTMLCS.WARNING,
-						element,
-						'This form control contains an aria-labelledby attribute, however it includes an ID "' + labelledByIds[x] + '" that does not exist on an element. The aria-labelledby attribute will be ignored for labelling test purposes.',
-						'ARIA16,ARIA9'
-					);
-					ok = false;
-				}
-			}
-
-			// We are all OK, add as a successful label technique.
-			if (ok === true) {
+		if (element.hasAttribute('aria-labelledby') === true) {
+			if (HTMLCS.util.hasValidAriaLabel(element) === false) {
+				HTMLCS.addMessage(
+					HTMLCS.WARNING,
+					element,
+					'This form control contains an aria-labelledby attribute, however it includes an ID "' + element.getAttribute('aria-labelledby') + '" that does not exist on an element. The aria-labelledby attribute will be ignored for labelling test purposes.',
+					'ARIA16,ARIA9'
+				);
+			} else {
 				addToLabelList('aria-labelledby');
 			}
 		}
