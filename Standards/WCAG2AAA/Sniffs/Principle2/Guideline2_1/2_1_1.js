@@ -38,6 +38,20 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_1_2_1_1 = {
         // events. Note: onclick is considered keyboard accessible, as it is actually
         // tied to the default action of a link or button - not merely a click.
         if (element === top) {
+
+            // Cannot detect event listeners here so only onclick attributes are checked.
+            var keyboardTriggers = HTMLCS.util.getAllElements(top, '*[onclick], *[onkeyup], *[onkeydown], *[onkeypress], *[onfocus], *[onblur]');
+            keyboardTriggers.forEach(function(elem) {
+                if (HTMLCS.util.isKeyboardNavigable(elem) === false) {
+                    HTMLCS.addMessage(
+                        HTMLCS.WARNING,
+                        elem,
+                        'Ensure the functionality provided by an event handler for this element is available through the keyboard',
+                        'G90'
+                    );
+                }
+            });
+
             var dblClickEls = HTMLCS.util.getAllElements(top, '*[ondblclick]');
             for (var i = 0; i < dblClickEls.length; i++) {
                 HTMLCS.addMessage(HTMLCS.WARNING, dblClickEls[i], 'Ensure the functionality provided by double-clicking on this element is available through the keyboard.', 'SCR20.DblClick');

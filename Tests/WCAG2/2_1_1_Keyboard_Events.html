@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>2.1.1 Providing keyboard-triggered event handlers</title>
+<!-- @HTMLCS_Test@
+Name: SC 2.1.1 Providing keyboard-triggered event handlers
+Standard: WCAG2AAA
+Assert: No Warning *.G90 on #standardLink
+Assert: No Warning *.G90 on #standardLinkKeyUp
+Assert: No Warning *.G90 on #standardButton
+Assert: No Warning *.G90 on #staticElemTabIndex
+Assert: No Warning *.G90 on #staticElemAccessKey
+Assert: Warning *.G90 on #standardLinkNoHrefError
+Assert: Warning *.G90 on #standardLinkKeyUpError
+Assert: Warning *.G90 on #staticElemError
+-->
+</head>
+<body>
+
+<!-- keyboard tabbing no errors -->
+<a href="#" id="standardLink" onclick="alert('1');">std1</a>
+<a href="#" id="standardLinkKeyUp" onkeyup="alert('1');">std1</a>
+<button id="standardButton" onclick="alert('2');">std2</button>
+<div id="staticElemTabIndex" tabindex="0" onclick="alert('3');">std3</div>
+<div id="staticElemAccessKey" accesskey="s" onclick="alert('4');">std4</div>
+
+<!-- keyboard tabbing errors -->
+<a id="standardLinkNoHrefError" onclick="alert('5');">std5</a>
+<a href="#" id="standardLinkKeyUpError" tabindex="-1" onkeyup="alert('1');">std1</a>
+<div id="staticElemError" onclick="alert('6');">std6</div>
+
+</body>
+</html>
+
+

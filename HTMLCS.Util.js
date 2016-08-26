@@ -227,6 +227,75 @@ _global.HTMLCS.util = function() {
         return false;
     };
 
+
+    /**
+     * Returns TRUE if the element is able to be focused .
+     *
+     * @param {Node} element DOM Node to test.
+     *
+     * @return {Boolean}
+     */
+    self.isFocusable = function(element)
+    {
+        var nodeName = element.nodeName.toLowerCase();
+        if (self.isDisabled(element) === true) {
+            return false;
+        }
+
+        if (self.isVisuallyHidden(element) === true) {
+            return false;
+        }
+
+        // Form elements.
+        if (/^(input|select|textarea|button|object)$/.test(nodeName)) {
+            return true;
+        }
+
+        // Hyperlinks without empty hrefs are focusable.
+        if (nodeName === 'a' && element.hasAttribute('href') && /^\s*$/.test(element.getAttribute('href')) === false) {
+            return true;
+        }
+
+        return false;
+    };
+
+    /**
+     * Returns TRUE if the element is able to be focused by keyboard tabbing.
+     *
+     * @param {Node} element DOM Node to test.
+     *
+     * @return {Boolean}
+     */
+    self.isKeyboardTabbable = function(element)
+    {
+        if (element.hasAttribute('tabindex') === true) {
+            var index = element.getAttribute('tabindex');
+            if (index === "-1") {
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        return self.isFocusable(element);
+    };
+
+    /**
+     * Returns TRUE if the element is able to be accessed via the keyboard.
+     *
+     * @param {Node} element DOM Node to test.
+     *
+     * @return {Boolean}
+     */
+    self.isKeyboardNavigable = function(element)
+    {
+        if (element.hasAttribute('accesskey') && /^\s*$/.test(element.getAttribute('accesskey')) === false) {
+            return true;
+        }
+
+        return self.isKeyboardTabbable(element);
+    };
+
     /**
      * Return true if an element is disabled.
      *
