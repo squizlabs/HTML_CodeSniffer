@@ -347,11 +347,11 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
         var errors = this.testMediaTextAlternatives(top);
 
         for (var i = 0; i < errors.object.missingBody.length; i++) {
-            HTMLCS.addMessage(HTMLCS.ERROR, errors.object.missingBody[i], 'Object elements must contain a text alternative after all other alternatives are exhausted.', 'H53');
+            HTMLCS.addMessage(HTMLCS.ERROR, errors.object.missingBody[i], 'Object elements must contain a text alternative after all other alternatives are exhausted.', 'H53,ARIA6');
         }
 
         for (var i = 0; i < errors.object.generalAlt.length; i++) {
-            HTMLCS.addMessage(HTMLCS.NOTICE, errors.object.generalAlt[i], 'Check that short (and if appropriate, long) text alternatives are available for non-text content that serve the same purpose and present the same information.', 'G94,G92.Object');
+            HTMLCS.addMessage(HTMLCS.NOTICE, errors.object.generalAlt[i], 'Check that short (and if appropriate, long) text alternatives are available for non-text content that serve the same purpose and present the same information.', 'G94,G92.Object,ARIA6');
         }
 
         for (var i = 0; i < errors.applet.missingBody.length; i++) {
@@ -392,11 +392,14 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
             // If we have an object as our alternative, skip it. Pass the blame onto
             // the child.
             if (childObject === null) {
-                var textAlt = HTMLCS.util.getElementTextContent(element, true);
-                if (textAlt === '') {
-                    errors.object.missingBody.push(element);
+                if (HTMLCS.util.isStringEmpty(HTMLCS.util.getElementTextContent(element, true)) === true) {
+                    if (HTMLCS.util.hasValidAriaLabel(element) === false) {
+                        errors.object.missingBody.push(element);
+                    }
                 } else {
-                    errors.object.generalAlt.push(element);
+                    if (HTMLCS.util.hasValidAriaLabel(element) === false) {
+                        errors.object.generalAlt.push(element);
+                    }
                 }
             }//end if
         }//end if
@@ -423,6 +426,11 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
             if (HTMLCS.util.isStringEmpty(altAttr) === true) {
                 errors.applet.missingAlt.push(element);
                 hasError = true;
+            }
+
+            // Catch anything with a valid aria label.
+            if (HTMLCS.util.hasValidAriaLabel(element) === true) {
+                hasError = false;
             }
 
             if (hasError === false) {

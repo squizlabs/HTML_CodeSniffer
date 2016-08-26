@@ -7,8 +7,11 @@ Name: SC 4.1.2 Aria Labels
 Standard: WCAG2AAA
 Assert: Error *.H91.* on #unlabelledButton
 Assert: No Error *.H91 on #labelledButton
-Assert: Error *.H91.* on #emptyLabelledButton
-Assert: No Error * on #labelledByButton
+Assert: Error *.H91.Button.Name on #emptyLabelledButton
+Assert: No Error *.H91.Button.Name on #labelledByButton
+Assert: Error *.H53.ARIA6 on #objectNoLabel
+Assert: No Error *.H53.ARIA6 on #objectLabelledBy
+Assert: No Error *.H53.ARIA6 on #objectLabel
 -->
 </head>
 <body>
@@ -31,6 +34,13 @@ Assert: No Error * on #labelledByButton
     <div id="name">Name</div>
     <input id="labelledByButton" type="text" aria-labelledby="billing name"/>
 </div>
+
+<object id="objectNoLabel" data="x.jpg"></object>
+
+<object id="objectLabelledBy" data="x.jpg" aria-labelledby="monkey"></object>
+<div id="monkey">My monkey</div>
+
+<object id="objectLabel" data="x.jpg" aria-label="monkey"></object>
 
 </form>
 </body>
