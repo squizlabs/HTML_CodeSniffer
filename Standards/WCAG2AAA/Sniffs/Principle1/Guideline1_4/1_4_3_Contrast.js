@@ -66,7 +66,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
                         // Calculate font size. Note that CSS 2.1 fixes a reference pixel
                         // as 96 dpi (hence "pixel ratio" workarounds for Hi-DPI devices)
                         // so this calculation should be safe.
-                        var fontSize      = parseInt(style.fontSize, 10) * (72 / 96);
+                        var fontSize      = parseFloat(style.fontSize, 10) * (72 / 96);
                         var minLargeSize  = 18;
 
                         if ((style.fontWeight === 'bold') || (parseInt(style.fontWeight, 10) >= 600)) {

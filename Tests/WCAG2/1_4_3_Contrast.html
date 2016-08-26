@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>1.4.3 Contrast</title>
+<!-- @HTMLCS_Test@
+Name: SC 1.4.3 Contrast
+Standard: WCAG2AA
+Assert: Error *.G18 on #basicContrastFail
+Assert: No Error *.G18 on #issue155
+-->
+</head>
+<body>
+
+<p id="basicContrastFail" style="color: #222; background-color: #000;">Basic failing text</p>
+
+<p>Sample: <span id="issue155" style="color: #7c7cff; background-color: #ffffff; font-size: 14pt; font-weight: bold;">I am 14pt bold text and should pass</span></p>
+
+</body>
+</html>
+
+
