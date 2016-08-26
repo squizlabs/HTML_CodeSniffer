@@ -90,13 +90,13 @@ _global.HTMLCS.util = function() {
             if (doctypeName.toLowerCase() === 'html') {
                 if (publicId === '' && systemId === '') {
                     retval = 'html5';
-                } else if (publicId.indexOf('//DTD HTML 4.01//') !== -1 && ((systemId === '') || (systemId.indexOf('w3.org/TR/html4/strict.dtd') !== -1))) {
+                } else if (publicId.indexOf('//DTD HTML 4.01') !== -1 || systemId.indexOf('w3.org/TR/html4/strict.dtd') !== -1) {
                     retval = 'html401';
-                } else if (publicId.indexOf('//DTD HTML 4.0//') !== -1 && ((systemId === '') || (systemId.indexOf('w3.org/TR/REC-html40/strict.dtd') !== -1))) {
+                } else if (publicId.indexOf('//DTD HTML 4.0') !== -1 || systemId.indexOf('w3.org/TR/REC-html40/strict.dtd') !== -1) {
                     retval = 'html40';
-                } else if (publicId.indexOf('//DTD XHTML 1.0 Strict//') !== -1 && systemId.indexOf('w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd') !== -1) {
+                } else if (publicId.indexOf('//DTD XHTML 1.0 Strict') !== -1 && systemId.indexOf('w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd') !== -1) {
                     retval = 'xhtml10';
-                } else if (publicId.indexOf('//DTD XHTML 1.1//') !== -1 && systemId.indexOf('w3.org/TR/xhtml11/DTD/xhtml11.dtd') !== -1) {
+                } else if (publicId.indexOf('//DTD XHTML 1.1') !== -1 && systemId.indexOf('w3.org/TR/xhtml11/DTD/xhtml11.dtd') !== -1) {
                     retval = 'xhtml11';
                 } if (systemId.indexOf('about:legacy-compat') !== -1) {
                     // Some tools don't like the lack of doctype for XHTML5 so permit

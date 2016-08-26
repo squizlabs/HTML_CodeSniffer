@@ -353,7 +353,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
 		var _doc    = HTMLCS.util.getElementWindow(top).document;
 		var doctype = HTMLCS.util.getDocumentType(_doc);
 
-		if ((doctype === 'html5') || (doctype === 'xhtml5')) {
+		if (doctype && (doctype === 'html5' || doctype === 'xhtml5')) {
 			var tags = HTMLCS.util.getAllElements(top, 'strike, tt, big, center, font');
 			for (var i = 0; i < tags.length; i++) {
 				var msgCode = 'H49.' + tags[i].nodeName.substr(0, 1).toUpperCase() + tags[i].nodeName.substr(1).toLowerCase();

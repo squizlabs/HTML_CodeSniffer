@@ -57,21 +57,7 @@ _global.HTMLCS_Section508_Sniffs_D = {
      */
     testPresentationMarkup: function(top)
     {
-        // Presentation tags that should have no place in modern HTML.
-        var tags = HTMLCS.util.getAllElements(top, 'b, i, u, s, strike, tt, big, small, center, font');
-
-        for (var i = 0; i < tags.length; i++) {
-            var msgCode = 'PresMarkup.' + tags[i].nodeName.substr(0, 1).toUpperCase() + tags[i].nodeName.substr(1).toLowerCase();
-            HTMLCS.addMessage(HTMLCS.WARNING, tags[i], 'Semantic markup should be used to mark emphasised or special text so that it can be programmatically determined.', msgCode);
-        }
-
-        // Align attributes, too.
-        var tags = HTMLCS.util.getAllElements(top, '*[align]');
-
-        for (var i = 0; i < tags.length; i++) {
-            var msgCode = 'PresMarkup.AlignAttr';
-            HTMLCS.addMessage(HTMLCS.WARNING, tags[i], 'Semantic markup should be used to mark emphasised or special text so that it can be programmatically determined.', msgCode);
-        }
+        _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1.testPresentationMarkup(top);
     },
 
     testHeadingOrder: function(top) {
