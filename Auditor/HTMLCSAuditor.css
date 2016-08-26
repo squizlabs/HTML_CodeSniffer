@@ -1,6 +1,10 @@
 /* set defaults
 ********************************************************/
 
+#HTMLCS-wrapper {
+    direction: ltr !important;
+}
+
 #HTMLCS-wrapper * {
     margin: 0;
     padding: 0;
