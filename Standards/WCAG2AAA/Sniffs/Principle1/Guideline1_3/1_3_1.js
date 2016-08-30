@@ -175,6 +175,7 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
 	testLabelsOnInputs: function(element, top, muteErrors)
 	{
 		var nodeName  = element.nodeName.toLowerCase();
+		var style = HTMLCS.util.style(element);
 		var inputType = nodeName;
 		if (inputType === 'input') {
 			if (element.hasAttribute('type') === true) {
@@ -201,6 +202,10 @@ var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
 		}
 
 		if (element.getAttribute('hidden') !== null) {
+			needsLabel = false;
+		}
+		
+		if ('none' === style.display) {
 			needsLabel = false;
 		}
 
