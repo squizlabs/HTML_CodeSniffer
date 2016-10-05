@@ -455,6 +455,15 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
 			HTMLCS.addMessage(HTMLCS.ERROR, headersAttr.wrongHeaders[i].element, 'Incorrect headers attribute on this td element. Expected "' + headersAttr.wrongHeaders[i].expected + '" but found "' + headersAttr.wrongHeaders[i].actual + '"', 'H43.IncorrectAttr');
 		}
 
+		// Incorrect usage of headers - error; emit warnings.
+		for (var i = 0; i < headersAttr.wrongHeadersWarning.length; i++) {
+			HTMLCS.addMessage(
+				HTMLCS.WARNING,
+				headersAttr.wrongHeadersWarning[i].element,
+				'Check headers attribute on this td element. Expected "' + headersAttr.wrongHeadersWarning[i].expected + '" but found "' + headersAttr.wrongHeadersWarning[i].actual + '"', 'H43.IncorrectAttr'
+			);
+		}
+
 		// Errors where headers are compulsory.
 		if ((headersAttr.required === true) && (headersAttr.allowScope === false)) {
 			if (headersAttr.used === false) {

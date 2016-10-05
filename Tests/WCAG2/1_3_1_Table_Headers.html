@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>1.3.1 Table Headers</title>
+<!-- @HTMLCS_Test@
+Name: SC 1.3.1 Table Headers
+Standard: WCAG2AA
+Assert: No Error *.H43.IncorrectAttr on #standard
+Assert: Error *.H43.IncorrectAttr on #fail
+Assert: Warning *.H43.IncorrectAttr on #tfoot-span
+-->
+</head>
+<body>
+
+<table summary="invoice" id="fail">
+    <caption>Order from October 25, 2015</caption>
+    <thead>
+        <tr>
+            <th scope="col" id="name">Name</th>
+            <th scope="col" id="quantity">Quantity</th>
+            <th scope="col" id="cost">Cost</th>
+            <th scope="col" id="subtotal">Subtotal</th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <th scope="row" colspan="3" id="total">Total:</th>
+            <td headers="total">$86.93</td>
+        </tr>
+    </tfoot>
+    <tbody>
+        <tr>
+            <td headers="mismatched-id">Anvil</td>
+            <td headers="quantity">1</td>
+            <td headers="cost">$29.95</td>
+            <td headers="subtotal">$29.95</td>
+        </tr>
+        <tr>
+            <td headers="name">Pseudo Tunnel</td>
+            <td headers="quantity">4</td>
+            <td headers="cost">$4.25</td>
+            <td headers="subtotal">$17.00</td>
+        </tr>
+        <tr>
+            <td headers="name">Rocket</td>
+            <td headers="quantity">2</td>
+            <td headers="cost">$19.99</td>
+            <td headers="subtotal">$39.98</td>
+        </tr>
+    </tbody>
+</table>
+
+<table summary="product comparisons" id="standard">
+    <caption>Acme Widgets For The Win</caption>
+    <thead>
+    <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Purpose</th>
+        <th scope="col">Cost</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Anvil</td>
+            <td>Very heavy block of iron</td>
+            <td>Smashing the RoadRunner</td>
+            <td>$29.95</td>
+        </tr>
+        <tr>
+            <td>Rocket</td>
+            <td>Jet power</td>
+            <td>Go as fast as the bird</td>
+            <td>$19.99</td>
+        </tr>
+        <tr>
+            <td>Tornado Generator</td>
+            <td>Create a local tornado</td>
+            <td>Create chaos</td>
+            <td>$4,590</td>
+        </tr>
+        <tr>
+            <td>Pseudo Tunnel</td>
+            <td>Make a rock look like a tunnel</td>
+            <td>Watch the bird run into a rock</td>
+            <td>$4.25</td>
+        </tr>
+    </tbody>
+</table>
+
+<table summary="invoice" id="tfoot-span">
+    <caption>Order from October 25, 2015</caption>
+    <thead>
+        <tr>
+            <th scope="col" id="name">Name</th>
+            <th scope="col" id="quantity">Quantity</th>
+            <th scope="col" id="cost">Cost</th>
+            <th scope="col" id="subtotal">Subtotal</th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <th scope="row" colspan="3" id="total">Total:</th>
+            <td headers="total">$86.93</td>
+        </tr>
+    </tfoot>
+    <tbody>
+        <tr>
+            <td headers="name">Anvil</td>
+            <td headers="quantity">1</td>
+            <td headers="cost">$29.95</td>
+            <td headers="subtotal">$29.95</td>
+        </tr>
+        <tr>
+            <td headers="name">Pseudo Tunnel</td>
+            <td headers="quantity">4</td>
+            <td headers="cost">$4.25</td>
+            <td headers="subtotal">$17.00</td>
+        </tr>
+        <tr>
+            <td headers="name">Rocket</td>
+            <td headers="quantity">2</td>
+            <td headers="cost">$19.99</td>
+            <td headers="subtotal">$39.98</td>
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

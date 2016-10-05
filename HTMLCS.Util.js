@@ -797,7 +797,8 @@ _global.HTMLCS.util = function() {
             allowScope: true,
             missingThId: [],
             missingTd: [],
-            wrongHeaders: []
+            wrongHeaders: [],
+            wrongHeadersWarning: []
         }
 
         var rows      = element.getElementsByTagName('tr');
@@ -923,16 +924,27 @@ _global.HTMLCS.util = function() {
                     retval.correct = false;
                     retval.missingTd.push(cell);
                 } else {
-                    actual = ' ' + actual.sort().join(' ') + ' ';
-                    actual = actual.replace(/\s+/g, ' ').replace(/(\w+\s)\1+/g, '$1').replace(/^\s*(.*?)\s*$/g, '$1');
-                    if (expected !== actual) {
+                    var textActual = ' ' + actual.sort().join(' ') + ' ';
+                    textActual = textActual.replace(/\s+/g, ' ').replace(/(\w+\s)\1+/g, '$1').replace(/^\s*(.*?)\s*$/g, '$1');
+                    if (expected !== textActual) {
                         retval.correct = false;
                         var val = {
                             element: cell,
                             expected: expected,
                             actual: (cell.getAttribute('headers') || '')
                         }
-                        retval.wrongHeaders.push(val);
+
+                        var partialMatches = expected.split(/\s+/).filter(function(id) {
+                            return actual.indexOf(id) !== -1;
+                        });
+
+                        // If we have a partial match we want a warning to check if the header is wrong
+                        // rather than grouping all incorrect headers together.
+                        if (partialMatches.length >= 1) {
+                            retval.wrongHeadersWarning.push(val);
+                        } else {
+                            retval.wrongHeaders.push(val);
+                        }
                     }
                 }//end if
             }//end if
