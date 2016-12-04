@@ -199,7 +199,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
             var requiredValue = requiredValues[nodeName];
 
             // Any element that doesn't have specific handling must have content.
-            if (!matchingRequiredNames) {
+            if (!matchingRequiredNames && nodeName !== 'input_hidden') {
                 matchingRequiredNames = ['_content'];
             }
 
