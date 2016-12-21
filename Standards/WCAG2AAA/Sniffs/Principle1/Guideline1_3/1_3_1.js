@@ -130,7 +130,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
 		this._labelNames = {};
 		var labels = top.getElementsByTagName('label');
 		for (var i = 0; i < labels.length; i++) {
-			if ((labels[i].getAttribute('for') !== null) || (labels[i].getAttribute('for') !== '')) {
+			if ((labels[i].getAttribute('for') !== null) && (labels[i].getAttribute('for') !== '')) {
 				var labelFor = labels[i].getAttribute('for');
 				if ((this._labelNames[labelFor]) && (this._labelNames[labelFor] !== null)) {
 					this._labelNames[labelFor] = null;
