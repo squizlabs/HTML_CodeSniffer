@@ -47,13 +47,13 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
                     var style = HTMLCS.util.style(node);
 
                     if (style) {
-                        var bgColour  = style.backgroundColor;
+                        var bgColour   = style.backgroundColor;
                         var foreColour = style.color;
-                        var bgElement = node;
-                        var hasBgImg  = false;
+                        var bgElement  = node;
+                        var hasBgImg   = false;
                         var isAbsolute = false;
                         
-			            if (style.backgroundImage !== 'none') {
+			if (style.backgroundImage !== 'none') {
                             hasBgImg = true;
                         }
                         
@@ -66,8 +66,8 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
                         // Calculate font size. Note that CSS 2.1 fixes a reference pixel
                         // as 96 dpi (hence "pixel ratio" workarounds for Hi-DPI devices)
                         // so this calculation should be safe.
-                        var fontSize      = parseFloat(style.fontSize, 10) * (72 / 96);
-                        var minLargeSize  = 18;
+                        var fontSize     = parseFloat(style.fontSize, 10) * (72 / 96);
+                        var minLargeSize = 18;
 
                         if ((style.fontWeight === 'bold') || (parseInt(style.fontWeight, 10) >= 600)) {
                             var minLargeSize = 14;
