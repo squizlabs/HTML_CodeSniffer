@@ -24,6 +24,9 @@ Assert: No Error *.F68 on #ariaLabelledByDefault
 Assert: No Error *.F68 on #ariaLabelledByMulti
 Assert: Warning *.ARIA16,ARIA9 on #ariaLabelledByNotExist
 Assert: Error *.F68 on #ariaLabelledByNotExist
+Assert: Error *.H44.NonExistent on #labelNoFor
+Assert: No Error *.H44 on #labelImplicitFor
+Assert: Error *.H44.MultipleControls on #labelImplicitForTooMany
 -->
 </head>
 <body>
@@ -55,6 +58,20 @@ Assert: Error *.F68 on #ariaLabelledByNotExist
 	<span id="a_lby_d">Labelled By</span> <input aria-labelledby="a_lby_d" id="ariaLabelledByDefault" />
 	<span id="a_lby_m1">Labelled By</span> <input aria-labelledby="a_lby_m1 a_lby_m2" id="ariaLabelledByMulti" /> <span id="a_lby_m2">Multiple Entries</span>
 	<input aria-labelledby="a_lby_dne" id="ariaLabelledByNotExist" />
-</form>
+
+    <label id="labelNoFor">No For</label>
+
+    <label id="labelImplicitFor">
+        Name:
+        <input type="text" name="labelImplicitFor_input" />
+    </label>
+
+    <label id="labelImplicitForTooMany">
+        Name:
+        <input type="text" name="labelImplicitFor_input_toomany" />
+        <select name="labelImplicitFor_select_toomany">
+            <option value="">Test</option>
+        </select>
+    </label></form>
 </body>
 </html>

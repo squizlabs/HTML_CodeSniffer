@@ -160,6 +160,23 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
 						}
 					}
 				}
+			} else {
+				var formElems = labels[i].querySelectorAll('input,select,textarea,button,keygen,meter,output,progress');
+				if (formElems.length > 1) {
+					HTMLCS.addMessage(
+						HTMLCS.ERROR,
+						labels[i],
+						'This label has more than one form control implicitly associated as a child element.',
+						'H44.MultipleControls'
+					);
+				} else if (formElems.length !== 1) {
+					HTMLCS.addMessage(
+						HTMLCS.ERROR,
+						labels[i],
+						'This label does not contain a "for" attribute and has no implicitly associated form controls.',
+						'H44.NonExistent'
+					);
+				}
 			}
 		}//end for
 	},
