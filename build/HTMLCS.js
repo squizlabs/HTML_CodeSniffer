@@ -1,4 +1,4 @@
-/*! HTML_CodeSniffer - v2.0.7 - 2017-05-30 */
+/*! HTML_CodeSniffer - v2.1.0 - 2017-05-30 */
 /**
  * +--------------------------------------------------------------------+
  * | This HTML_CodeSniffer file is Copyright (c)                        |
