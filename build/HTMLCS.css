@@ -1,6 +1,10 @@
 /* set defaults
 ********************************************************/
 
+#HTMLCS-wrapper {
+    direction: ltr !important;
+}
+
 #HTMLCS-wrapper * {
     margin: 0;
     padding: 0;
@@ -400,11 +404,10 @@
 #HTMLCS-wrapper .HTMLCS-issue-detail-list > li .HTMLCS-issue-wcag-ref > em {
     color: #8F8F94;
     background: none;
-    display: inline-block;
+    display: block;
     font-style: normal;
     font-weight: bold;
     margin-top: 0.5em;
-    min-width: 5.5em;
 }
 
 #HTMLCS-wrapper .HTMLCS-issue-detail-list > li .HTMLCS-issue-wcag-ref > a,
@@ -836,7 +839,10 @@
 }
 #HTMLCS-wrapper #HTMLCS-settings-use-standard > select {
     float: right;
-    margin-top: -0.1em;
+    margin-top: -0.3em;
+}
+#HTMLCS-wrapper #HTMLCS-settings-use-standard > select > option {
+    padding: 0.1em 5px;
 }
 
 #HTMLCS-wrapper #HTMLCS-settings-use-standard:after {
