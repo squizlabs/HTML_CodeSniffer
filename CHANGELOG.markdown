@@ -14,6 +14,32 @@ The previous version was generally based on the pull request number used to upda
 Version numbers have been applied retrospectively based on the size or significance of the update; the
 old version number is in brackets.
 
+## <a id="2.1.0"></a>Version 2.1.0 (30 May 2017)
+
+- **Core**
+    - `aria-label` and `aria-labelledby` support. Both attributes are now valid text label alternatives for:
+        - `<object>` resolves #158 and #159
+        - `<button>` and other form fields resolves #160 
+    - Build updates:
+        - `grunt build` and `grunt build-debug` now outputs code which wraps HTML_CodeSniffer objects in UMD format. This resolves #166 and #73.
+        - PhantomJS scripts now use the result of the build script `./build/HTMLCS.js`. This resolves #167.
+    - #152 - Text direction now explicitly set to left to right for the injected auditor CSS.
+    - #155 - Fixed font size calculations that incorrectly rounded computed font size down to the nearest integer which resulted in spurious contrast errors.
+    - #86 - Non-html5 doctypes are detected in checks for valid anchors.
+    - #88 - Elements that have event attributes that can be triggered via the keyboard (e.g. `onclick`) now test if the element is able to be accessed via the keyboard and provides a warning referencing [G90](https://www.w3.org/TR/WCAG20-TECHS/G90.html).
+    - #133 - Relaxed doctype detection to allow variations that in include transitional. Doctypes should now report correctly in most instances and will affect any checks that behaves differently based on doctype (e.g. named anchors vs id anchors in html4 vs html5).
+    - #147 - Fixed spurious colour contrast errors on absolutely positioned elements. Errors will no longer occur, but warnings should still be heeded as the contrast values will require human checks.
+    - #175 - Doctype detection will return null if it can't be detected and this wasn't being handled correctly on calling code.
+    - #72 - JSON format was added from a pull request and is now available when calling the phantomjs scripts. Call with `phantomjs Contrib/PhantomJS/HTMLCS_Run.js <url to check> json`.
+    - #85 - Fixed text content extraction for given element. Was previously missing some use cases where text alternatives should have been provided.
+    - Presentation role and `aria-hidden`:
+        - #151, #149 - Added support to detect and filter out elements from the main group of accessibility checks that should be hidden from accessibility APIs.
+        - Added new check for elements utilising role="presentation" to ensure they are used correctly (i.e. do not contain elements with semantic markup whose meaning will be lost).
+    - #169 - Resolved missing methods for Section508 checks.
+    - #163 - Merged pull request that trims query string from loaded urls (internal methods).
+    - #150 - Merged code quality fix.
+    - Various code quality fixes.
+
 ## <a id="2.0.7"></a>Version 2.0.7 (19 Jan 2016)
 
 - **Core**
