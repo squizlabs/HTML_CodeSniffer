@@ -40,6 +40,18 @@ module.exports = (grunt)->
             'Contrib/PhantomJS/runner.js'
             'Auditor/HTMLCSAuditor.js'
           ],
+      beacon:
+        options:
+          banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %> */\n' + grunt.file.read('Contrib/Build/umd-header.js')
+          footer: grunt.file.read('Contrib/Build/umd-footer.js')
+        files:
+          'build/HTMLCS.js': [
+            'Standards/**/*.js'
+            'HTMLCS.js'
+            'HTMLCS.Util.js'
+            'Contrib/PhantomJS/runner.js'
+            'Auditor/Auditor_with_beacon.js'
+          ],
 
     copy:
       dist:
@@ -77,4 +89,5 @@ module.exports = (grunt)->
 
   grunt.registerTask 'default', ['jshint']
   grunt.registerTask 'build',   ['uglify:dist', 'copy:dist']
+  grunt.registerTask 'build-beacon', ['uglify:beacon', 'copy:dist']
   grunt.registerTask 'build-debug', ['uglify:debug', 'copy:dist']
