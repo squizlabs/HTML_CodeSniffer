@@ -1,4 +1,4 @@
-/*! HTML_CodeSniffer - v2.1.0 - 2017-05-30 */
+/*! HTML_CodeSniffer - v2.1.0 - 2017-06-06 */
 /**
  * +--------------------------------------------------------------------+
  * | This HTML_CodeSniffer file is Copyright (c)                        |
@@ -12,15 +12,9 @@
  *
  */
 (function (root, factory) {
-    if (typeof define === 'function' && define.amd) {
-        define(['htmlcs'], factory);
-    } else if (typeof exports === 'object') {
-        module.exports = factory();
-    } else {
-        var exports = factory();
-        for (var prop in exports) {
-            root[prop] = exports[prop];
-        }
+    var exports = factory();
+    for (var prop in exports) {
+        root[prop] = exports[prop];
     }
 }(this, function () {
     var _global = {}
