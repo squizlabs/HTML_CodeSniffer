@@ -136,11 +136,13 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
                 }//end if
             } else {
                 if (nameFound === false) {
-                    // Href provided, but no content or title.
+                    // Href provided, but no content, title or valid aria label.
                     // We only fire this message when there are no images in the content.
                     // A link around an image with no alt text is already covered in SC
                     // 1.1.1 (test H30).
-                    if (element.querySelectorAll('img').length === 0) {
+                    if (element.querySelectorAll('img').length === 0
+                        && HTMLCS.util.hasValidAriaLabel(element) === false
+                    ) {
                         errors.noContent.push(element);
                     }
                 }//end if
