@@ -1,23 +1,25 @@
-# HTML_CodeSniffer README
+# BOSA Accessibility Check README
 
-## What is HTML_CodeSniffer?
+## What is BOSA Accessibility Check?
 
-HTML_CodeSniffer is a JavaScript application that checks a HTML document
+BOSA Accessibility Check is a JavaScript application that checks a HTML document
 or source code, and detects violations of a defined presentation or accessibility
 standard.
 
+This is a fork of [HTML_CodeSniffer](https://github.com/squizlabs/HTML_CodeSniffer), which is released under a BSD-style license.
+
 ### Standards included
 
-By default, HTML\_CodeSniffer comes with standards that cover the three conformance
+By default, BOSA Accessiblity Check comes with standards that cover the three conformance
 levels of the <abbr title="World Wide Web Consortium">W3C</abbr> [Web Content Accessibility Guidelines (WCAG) 2.0](http://www.w3.org/TR/WCAG20),
 and the <abbr title="United States of America">U.S.</abbr> [Section 508](http://section508.gov/index.cfm?fuseAction=stdsdoc) legislation.
 It also provides tools to write your own standards, which can be useful in situations
 where you wish to enforce consistency across a web site.
 
-### Using HTML_CodeSniffer
+### Using BOSA Accessibility Check
 
-HTML\_CodeSniffer can be called in multiple ways:
-* Called directly in JavaScript source, HTML_CodeSniffer will provide a list of known
+BOSA Accessiblity Check can be called in multiple ways:
+* Called directly in JavaScript source, BOSA Accessibility Check will provide a list of known
   and potential violations to the calling script.
 * It also comes with a pop-up auditor interface, accessible via a bookmarklet,
   letting you browse through messages emitted from one of the defined standards. 
@@ -26,14 +28,14 @@ HTML\_CodeSniffer can be called in multiple ways:
 
 ### Licence
 
-HTML_CodeSniffer is released under a BSD-style licence. For more information,
+BOSA Accessibility Check is released under a BSD-style licence. For more information,
 please see the file "licence.txt".
 
 ## Using the source code
 
 ### Building the auditor
 
-The HTML\_CodeSniffer auditor can be built using [node.js](https://nodejs.org/) and the Grunt
+The BOSA Accessiblity Check auditor can be built using [node.js](https://nodejs.org/) and the Grunt
 tasker (http://gruntjs.com/). It has been tested with the latest version of node.js
 (at time of writing: version 6.0) and Grunt, but should also work with recent
 earlier versions. 
@@ -53,12 +55,12 @@ dependencies), and <code>build</code> (containing your auditor). You can then mo
 (or symlink as appropriate) your <code>build</code> directory to a web-accessible
 location.
 
-Then grab or copy the JavaScript from the auditor bookmarklet from the [HTML_CodeSniffer site](https://squizlabs.github.io/HTML_CodeSniffer),
-replace the directory at the start (//squizlabs.github.io/HTML_CodeSniffer/build) with your local URL, and save as a new bookmarklet.
+Then grab or copy the JavaScript from the auditor bookmarklet from the [BOSA Accessibility Check site](https://openfed.github.io/AccessibilityCheck),
+replace the directory at the start (//openfed.github.io/AccessibilityCheck/build) with your local URL, and save as a new bookmarklet.
 
 #### Debug build
 
-If you are developing using HTML\_CodeSniffer and require the code not minified for
+If you are developing using BOSA Accessiblity Check and require the code not minified for
 debugging purposes, follow the above steps, but run <code>grunt build-debug</code>
 (instead of just build). This will combine the files as normal, but not minify them.
   
@@ -76,7 +78,7 @@ See the <code>Contrib/PhantomJS/HTMLCS_Run.js</code> file for more information.
 
 #### Node & JSDom.
 
-HTML_CodeSniffer requires a dom to run, however, it is possible to run it entirely
+BOSA Accessibility Check requires a dom to run, however, it is possible to run it entirely
 server side without a headless browser using Node on arbitrary fragments of HTML using
 an environment wrapper like [JSDom](https://github.com/tmpvar/jsdom).
 
@@ -104,10 +106,10 @@ jsdom.env({
 
 ### Contributing and reporting issues
 
-To report any issues with using HTML_CodeSniffer, please use the
-[HTML_CodeSniffer Issue Tracker](http://github.com/squizlabs/HTML_CodeSniffer/issues).
+To report any issues with using BOSA Accessibility Check, please use the
+[BOSA Accessibility Check Issue Tracker](http://github.com/openfed/AccessibilityCheck/issues).
 
-Contributions to the HTML_CodeSniffer code base are also welcome: please create a
+Contributions to the BOSA Accessibility Check code base are also welcome: please create a
 fork of the main repository, then submit your modified code through a
 [Pull Request](http://help.github.com/send-pull-requests/) for review. A Pull Request
 also automatically creates an issue in the Issue Tracker, so if you have code to
@@ -115,9 +117,7 @@ contribute, you do not need to do both.
 
 ## More Information
 
-More information on HTML_CodeSniffer can be found on its GitHub site,
-[http://squizlabs.github.io/HTML_CodeSniffer/](http://squizlabs.github.io/HTML_CodeSniffer/). This site provides:
+More information on BOSA Accessibility Check can be found on its GitHub site,
+[http://openfed.github.io/AccessibilityCheck/](http://openfed.github.io/AccessibilityCheck/). This site provides:
 
-- Information on the tests performed (and messages emitted) by HTML_CodeSniffer's standards, organised by conformance level and Success Criterion;
-- A source test area that allows you to try out HTML_CodeSniffer with your own HTML source code; and
-- A link to the HTML_CodeSniffer bookmarklet, letting you check other pages using the pop-up auditor interface.
+- A link to the BOSA Accessibility Check bookmarklet, letting you check other pages using the pop-up auditor interface.
