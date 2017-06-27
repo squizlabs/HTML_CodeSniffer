@@ -13,6 +13,19 @@
 
 _global.HTMLCSAuditor = new function()
 {
+    WebFontConfig = {
+      google: {
+        families: ['Roboto']
+      }
+    };
+
+    (function(d) {
+      var wf = d.createElement('script'), s = d.scripts[0];
+      wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js';
+      wf.async = true;
+      s.parentNode.insertBefore(wf, s);
+    })(document);
+
     var _prefix   = 'HTMLCS-';
     var _screen   = '';
     var _standard = '';
@@ -150,7 +163,7 @@ _global.HTMLCSAuditor = new function()
     var buildHeaderSection = function(standard, wrapper) {
         var header       = _doc.createElement('div');
         header.className = _prefix + 'header';
-        header.innerHTML = 'HTML_CodeSniffer by Squiz';
+        header.innerHTML = 'BOSA Accessibility Check';
         header.setAttribute('title', 'Using standard ' + standard);
 
         var dragging = false;
