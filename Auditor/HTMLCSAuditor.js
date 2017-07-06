@@ -526,6 +526,20 @@ _global.HTMLCSAuditor = new function()
         issueCountHelpDiv.id        = _prefix + 'settings-issue-count-help';
         issueCountHelpDiv.innerHTML = 'Select the types of issues to include in the report';
 
+        var advancedBosaSettingsDiv       = _doc.createElement('div');
+        advancedBosaSettingsDiv.id        = _prefix + 'settings-advanced';
+
+        var skipIframesLabel = _doc.createElement('label');
+        skipIframesLabel.innerHTML = 'Skip iframes';
+        skipIframesLabel.setAttribute('for', _prefix + 'skip-iframes');
+        var skipIframesChecked = HTMLCS.getBosaOption('skipIframes');
+        var skipIframesCheckbox = buildCheckbox(_prefix + 'skip-iframes', 'Toggle iframe checking', skipIframesChecked, false, function(input) {
+            HTMLCS.setBosaOption('skipIframes', input.checked);
+            self.run(_standard, _sources, _options);
+        });
+        advancedBosaSettingsDiv.appendChild(skipIframesLabel);
+        advancedBosaSettingsDiv.appendChild(skipIframesCheckbox);
+
         var viewReportDiv       = _doc.createElement('div');
         viewReportDiv.id        = _prefix + 'settings-view-report';
         viewReportDiv.innerHTML = 'View Report';
@@ -647,6 +661,7 @@ _global.HTMLCSAuditor = new function()
         settingsDiv.appendChild(useStandardDiv);
         settingsDiv.appendChild(issueCountDiv);
         settingsDiv.appendChild(issueCountHelpDiv);
+        settingsDiv.appendChild(advancedBosaSettingsDiv);
         settingsDiv.appendChild(viewReportDiv);
 
         return settingsDiv;

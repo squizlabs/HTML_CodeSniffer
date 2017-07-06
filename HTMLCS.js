@@ -13,6 +13,7 @@
 
 _global.HTMLCS = new function()
 {
+    var _bosaOptions  = { skipIframes : false };
     var _standards    = {};
     var _sniffs       = [];
     var _tags         = {};
@@ -28,6 +29,14 @@ _global.HTMLCS = new function()
     this.ERROR   = 1;
     this.WARNING = 2;
     this.NOTICE  = 3;
+
+    this.getBosaOption = function(key) {
+        return _bosaOptions[key];
+    };
+
+    this.setBosaOption = function(key, value) {
+        _bosaOptions[key] = value;
+    };
 
     /**
      * Loads the specified standard and run the sniffs.

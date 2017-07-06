@@ -255,6 +255,12 @@ _global.HTMLCS.util = function() {
             if (element.hasAttribute('aria-hidden') && element.getAttribute('aria-hidden') === 'true') {
                 return true;
             }
+
+            // Consider iframes to be "invisible" as well, if the setting is set, so that
+            // checks don't run for external widgets we don't have control over.
+            if (element.tagName == 'IFRAME' && HTMLCS.getBosaOption('skipIframes') == true) {
+                return true;
+            }
         } while (element = element.parentElement);
 
         return false;
@@ -377,7 +383,7 @@ _global.HTMLCS.util = function() {
      * Returns all elements that are visible to the accessibility API.
      *
      * @param {Node}   element  The parent element to search.
-     * @param {String} selector Optional selector to pass to 
+     * @param {String} selector Optional selector to pass to
      *
      * @return {Array}
      */

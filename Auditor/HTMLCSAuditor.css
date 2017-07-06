@@ -1043,3 +1043,29 @@
     margin-right: -1.6em;
     right: 50%;
 }
+
+#HTMLCS-settings-advanced {
+    clear: both;
+    display: block;
+    border: 1px solid #d4cac7;
+    border-radius: 0.4em 0.4em 0.4em 0.4em;
+    font-size: 1.3em;
+    margin: 0 0 1em;
+    padding: 0.7em 0.7em 0.8em;
+    text-align: left;
+}
+
+#HTMLCS-settings-advanced .HTMLCS-checkbox {
+   border: none;
+   margin-bottom: 0.8em;
+   font-size: 0.9em;
+}
+
+#HTMLCS-settings-advanced .HTMLCS-checkbox-switch {
+   margin-top: -1.3em;
+}
+
+#HTMLCS-settings-advanced label {
+  top: 0.5em;
+  position: relative;
+}
