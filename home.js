@@ -340,7 +340,7 @@ function loadHTMLCSStats(callback)
     var feed = 'list';
     var key  = '11-b5pnWBTbfMLW7Ykrl00IouWxf-trB3D8WDegrAIWY';
     var worksheet = 'opjrjtk';
-    $.getJSON('http://spreadsheets.google.com/feeds/' + feed + '/' + key + '/' + worksheet + '/public/values?alt=json-in-script&single=true&callback=?', null, function(data) {
+    $.getJSON('https://spreadsheets.google.com/feeds/' + feed + '/' + key + '/' + worksheet + '/public/values?alt=json-in-script&single=true&callback=?', null, function(data) {
         var stats = {};
         var entry = data.feed.entry[0];
         var sec   = data.feed.entry[1];
@@ -351,7 +351,7 @@ function loadHTMLCSStats(callback)
         stats.errorSeconds   = parseInt(sec.gsx$errors.$t);
         stats.warningSeconds = parseInt(sec.gsx$warnings.$t);
         stats.noticesSeconds = parseInt(sec.gsx$notices.$t);
-console.info(stats);
+        console.info(stats);
         callback.call(this, stats);
     });
 }
