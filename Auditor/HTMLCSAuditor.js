@@ -296,7 +296,10 @@ _global.HTMLCSAuditor = new function()
         // Issue totals.
         var lineageTotalsItem       = _doc.createElement('li');
         lineageTotalsItem.className = _prefix + 'lineage-item';
+
         lineageTotalsItem.innerHTML = leftContents.join(divider);
+        // Add link to printable report.
+        lineageTotalsItem.innerHTML += ' (<a class="export" href="#" onclick="HTMLCSAuditor.bosaExportReport();">Export</a>)';
 
         lineageHomeItem.appendChild(lineageHomeLink);
         lineage.appendChild(lineageHomeItem);
@@ -306,6 +309,136 @@ _global.HTMLCSAuditor = new function()
         rightPane.appendChild(_doc.createTextNode(String.fromCharCode(160)));
 
         return summary;
+    };
+
+    /**
+     * Opens a new window with a printable, exported version of the report.
+     */
+    this.bosaExportReport = function() {
+      var win = window.open("", "Export");
+      var newWrapper = self.bosaBuildReport(_standard, _messages, _options);
+      var intro = "<h2>Report for " + window.location.href + "</h2>" +
+                  "<h3>Standard: " + _standard + "</h3>";
+      var styleSrc = self.bosaAddCurrentProtocol(_options.path) + 'HTMLCS.css';
+      win.document.body.parentElement.innerHTML = "<html><head><title>Export of " + window.location.href + "</title>" +
+                                    "<link rel=\"stylesheet\" type=\"text/css\" href=\"" + styleSrc + "\"></head>" +
+                                    "<body class=\"bosareport\">" + intro + newWrapper.outerHTML + "</body></html>";
+      return false;
+    }
+
+    /**
+     * Adds the current protocol if the URL starts with "//".
+     *
+     * @return string
+     */
+    this.bosaAddCurrentProtocol = function(path) {
+       if (path.slice(0,2) == '//') {
+         var url = window.location.href;
+         return url.split("/")[0] + path;
+       }
+       return path;
+    }
+
+    /**
+     * Builds the body of the printable version of the report.
+     *
+     * @return {HTMLDivElement}
+     */
+    this.bosaBuildReport = function(standard, messages, options) {
+        var wrapper = null;
+        var errors   = 0;
+        var warnings = 0;
+        var notices  = 0;
+
+        for (var i = 0; i < messages.length; i++) {
+            // Filter only the wanted error types.
+            var ignore = false;
+            switch (messages[i].type) {
+                case HTMLCS.ERROR:
+                    if (_options.show.error === false) {
+                        ignore = true;
+                    } else {
+                        errors++;
+                    }
+                break;
+
+                case HTMLCS.WARNING:
+                    if (_options.show.warning === false) {
+                        ignore = true;
+                    } else {
+                        warnings++;
+                    }
+                break;
+
+                case HTMLCS.NOTICE:
+                    if (_options.show.notice === false) {
+                        ignore = true;
+                    } else {
+                        notices++;
+                    }
+                break;
+            }//end switch
+
+            if (ignore === true) {
+                messages.splice(i, 1);
+                i--;
+            }
+        }//end for
+
+        var settingsContents = '';
+
+        var details   = _doc.createElement('ul');
+
+        var liErrors = _doc.createElement('li');
+        var liWarnings = _doc.createElement('li');
+        var liNotices = _doc.createElement('li');
+        var liIframes = _doc.createElement('li');
+
+        if (_options.show.error === false) {
+            liErrors.innerHTML = 'Ignoring Errors';
+        } else {
+            liErrors.innerHTML = errors + ' Errors';
+        }
+        if (_options.show.warning === false) {
+            liWarnings.innerHTML = 'Ignoring Warnings';
+        } else {
+            liWarnings.innerHTML = warnings + ' Warnings';
+        }
+        if (_options.show.notice === false) {
+            liNotices.innerHTML = 'Ignoring Notices';
+        } else {
+            liNotices.innerHTML = notices + ' Notices';
+        }
+        if (HTMLCS.getBosaOption('skipIframes')) {
+            liIframes.innerHTML = 'Iframes are also checked';
+        } else {
+            liIframes.innerHTML = 'Iframes are not checked';
+        }
+        details.appendChild(liErrors);
+        details.appendChild(liWarnings);
+        details.appendChild(liNotices);
+        details.appendChild(liIframes);
+
+
+        var wrapper       = _doc.createElement('div');
+        wrapper.id        = _prefix + 'bosareport-wrapper';
+
+        var outerWrapper       = _doc.createElement('div');
+        outerWrapper.className = _prefix + 'bosareport-outer-wrapper';
+
+        var innerWrapper       = _doc.createElement('div');
+        innerWrapper.id        = _prefix + 'bosareport-issues-detail-wrapper';
+        innerWrapper.className = _prefix + 'bosareport-inner-wrapper';
+
+        var issueDetail = buildIssueDetailSection(messages);
+
+        innerWrapper.appendChild(details);
+        innerWrapper.appendChild(issueDetail);
+        outerWrapper.appendChild(innerWrapper);
+
+        wrapper.appendChild(outerWrapper);
+
+        return wrapper;
     };
 
     /**

@@ -1069,3 +1069,35 @@
   top: 0.5em;
   position: relative;
 }
+
+#HTMLCS-wrapper .HTMLCS-summary-left a.export,
+#HTMLCS-wrapper .HTMLCS-summary-left a.export:visited {
+    border-bottom: 1px solid #008bac;
+    color: #008bac;
+    display: inline-block;
+    font-style: normal;
+    text-decoration: none;
+    line-height: 1.2em;
+    margin-right: 0.3em;
+}
+
+#HTMLCS-wrapper .HTMLCS-summary-left a.export:hover {
+    border-bottom-color: #195065;
+}
+
+#HTMLCS-bosareport-wrapper ol.HTMLCS-issue-detail-list li {
+  margin-bottom: 20px;
+}
+
+#HTMLCS-bosareport-wrapper  span.HTMLCS-error:before {
+  content: "Error: ";
+}
+#HTMLCS-bosareport-wrapper  span.HTMLCS-warning:before {
+  content: "Warning: ";
+}
+#HTMLCS-bosareport-wrapper  span.HTMLCS-notice:before {
+  content: "Notice: ";
+}
+#HTMLCS-bosareport-wrapper .HTMLCS-issue-source-inner-u2p {
+  display: none;
+}
