@@ -410,9 +410,9 @@ _global.HTMLCSAuditor = new function()
             liNotices.innerHTML = notices + ' Notices';
         }
         if (HTMLCS.getBosaOption('skipIframes')) {
-            liIframes.innerHTML = 'Iframes are also checked';
-        } else {
             liIframes.innerHTML = 'Iframes are not checked';
+        } else {
+            liIframes.innerHTML = 'Iframes are also checked';
         }
         details.appendChild(liErrors);
         details.appendChild(liWarnings);
