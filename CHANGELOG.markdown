@@ -16,6 +16,12 @@ old version number is in brackets.
 
 ## <a id="2.1.0"></a>Version 2.1.0 (30 May 2017)
 
+- **Fixes**
+    - #160 Now allow hyperlinks to use aria-label to describe their alternative values.
+    - #196 Added HTML5 input types (email, search, date, datetime-local, month, number, tel, time, url, week) to form input validation for criteria 4.1..2
+
+## <a id="2.1.0"></a>Version 2.1.0 (30 May 2017)
+
 - **Core**
     - `aria-label` and `aria-labelledby` support. Both attributes are now valid text label alternatives for:
         - `<object>` resolves #158 and #159
