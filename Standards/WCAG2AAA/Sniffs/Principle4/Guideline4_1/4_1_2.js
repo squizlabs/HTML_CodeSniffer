@@ -172,11 +172,16 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
             textarea: ['label', '@title', '@aria-label', '@aria-labelledby']
         }
 
+        var html5inputTypes = ['email', 'search', 'date', 'datetime-local', 'month', 'number', 'tel', 'time', 'url', 'week'];
+        for (var i = 0, l = html5inputTypes.length; i < l; i++) {
+            requiredNames['input_'+html5inputTypes[i]] = ['label', '@title', '@aria-label', '@aria-labelledby'];
+        }
+
         var requiredValues = {
             select: 'option_selected'
         };
 
-        for (var el = 0; el < elements.length; el++) {
+        for (var el = 0, ll = elements.length; el < ll; el++) {
             var element    = elements[el];
             var nodeName   = element.nodeName.toLowerCase();
             var msgSubCode = element.nodeName.substr(0, 1).toUpperCase() + element.nodeName.substr(1).toLowerCase();
