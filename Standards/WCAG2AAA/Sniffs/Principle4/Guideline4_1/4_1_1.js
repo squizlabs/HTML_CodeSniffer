@@ -42,6 +42,11 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_1 = {
 
             for (var i = 0; i < elsWithIds.length; i++) {
                 var id = elsWithIds[i].getAttribute('id');
+
+                if (/^\s*$/.test(id) === true) {
+                    continue;
+                }
+
                 if (usedIds[id] !== undefined) {
                     // F77 = "Failure of SC 4.1.1 due to duplicate values of type ID".
                     // Appropriate technique in HTML is H93.
