@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>1.3.1 Table Heading Attributes</title>
+<!-- @HTMLCS_Test@
+Name: SC 1.3.1 Table Heading Attributes
+Standard: WCAG2AAA
+Assert: No Error *.H43.IncorrectAttr on #correctTableHeaders
+-->
+</head>
+<body>
+    <table id="correctTableHeaders">
+        <tr>
+            <th id="h">Row Id</th>
+            <th id="e">Row Name</th>
+            <th id="p">Row Files</th>
+        </tr>
+        <tr>
+            <td headers="h">1</td>
+            <td headers="e">Row 1</td>
+            <td headers="p">
+                <div style="margin: 5px">
+                    <table>
+                        <tr>
+                            <th id="X">File Id</th>
+                            <th id="Y">File Name</th>
+                            <th id="Z">File Extension</th>
+                        </tr>
+                        <tr>
+                            <td headers="X">1</td>
+                            <td headers="Y">File 1</td>
+                            <td headers="Z">DOCX</td>
+                        </tr>
+                        <tr>
+                            <td headers="X">2</td>
+                            <td headers="Y">File 2</td>
+                            <td headers="Z">PDF</td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

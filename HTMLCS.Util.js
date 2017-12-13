@@ -768,6 +768,53 @@ _global.HTMLCS.util = function() {
         return text;
     };
 
+
+    /**
+     * Find a parent node matching a selector.
+     *
+     * @param {DOMNode} node     Node to search from.
+     * @param {String}  selector The selector to search.
+     *
+     * @return DOMNode|null
+     */
+    self.findParentNode = function(node, selector) {
+        if (node && node.matches && node.matches(selector)) {
+            return node;
+        }
+
+        while (node && node.parentNode) {
+            node = node.parentNode;
+
+            if (node && node.matches && node.matches(selector)) {
+                return node;
+            }
+        }
+
+        return null;
+    };
+
+
+    self.getChildrenForTable = function(table, childNodeName)
+    {
+        if (table.nodeName.toLowerCase() !== 'table') {
+            return null;
+        }
+
+        var rows    = [];
+        var allRows = table.getElementsByTagName(childNodeName);
+
+        // Filter out rows that don't belong to this table.
+        for (var i = 0, l = allRows.length; i<l; i++) {
+            if (self.findParentNode(allRows[i], 'table') === table) {
+                rows.push(allRows[i]);
+            }
+        }
+
+        return rows;
+
+    };
+
+
     /**
      * Test for the correct headers attributes on table cell elements.
      *
@@ -800,7 +847,7 @@ _global.HTMLCS.util = function() {
             wrongHeaders: []
         }
 
-        var rows      = element.getElementsByTagName('tr');
+        var rows      = self.getChildrenForTable(element, 'tr');
         var tdCells   = {};
         var skipCells = [];
 
@@ -971,7 +1018,7 @@ _global.HTMLCS.util = function() {
         }
 
 
-        var rows       = table.getElementsByTagName('tr');
+        var rows       = self.getChildrenForTable(table, 'tr');
         var skipCells  = [];
         var headingIds = {
             rows: {},
