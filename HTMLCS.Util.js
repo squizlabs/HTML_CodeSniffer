@@ -236,6 +236,26 @@ _global.HTMLCS.util = function() {
         return hidden;
     };
 
+    /**
+     * Returns true if the element is deliberately hidden from Accessibility APIs using ARIA hidden.
+     *
+     * Not: This is separate to isAccessibilityHidden() due to a need to check specifically for aria hidden.
+     * 
+     * @param {Node} element The element to check.
+     *
+     * @return {Boolean}
+     */
+    self.isAriaHidden = function(element) {
+        do {
+            // WAI-ARIA hidden attribute.
+            if (element.hasAttribute('aria-hidden') && element.getAttribute('aria-hidden') === 'true') {
+                return true;
+            }
+        } while (element = element.parentElement);
+
+        return false;
+    };
+
 
     /**
      * Returns true if the element is deliberately hidden from Accessibility APIs.

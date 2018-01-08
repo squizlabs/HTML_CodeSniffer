@@ -103,7 +103,10 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
 	 */
 	testSemanticPresentationRole: function(element)
 	{
-		if (element.hasAttribute('role') && element.getAttribute('role') === 'presentation') {
+		if (HTMLCS.util.isAriaHidden(element) === false
+			&& element.hasAttribute('role')
+			&& element.getAttribute('role') === 'presentation'
+		) {
 			var permitted = ['div', 'span', 'b', 'i'];
 			var children  = element.querySelectorAll('*:not('+permitted.join('):not(')+')');
 			children      = [].filter.call(children, function(child) {
