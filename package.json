@@ -11,8 +11,7 @@
     "type": "git",
     "url": "https://github.com/squizlabs/HTML_CodeSniffer.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Squiz",
   "bugs": {
     "url": "https://github.com/squizlabs/HTML_CodeSniffer/issues"
   },
