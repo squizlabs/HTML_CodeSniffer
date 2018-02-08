@@ -814,6 +814,39 @@ _global.HTMLCS.util = function() {
     };
 
 
+    /**
+     * Iterate parent nodes of an element.
+     *
+     * @param {DOMNode}  node Node to search from.
+     * @param {Function} cb    Callback function providing each parent node.
+     *
+     * @return void
+     */
+    self.eachParentNode = function(node, cb) {
+        while (node && node.parentNode) {
+            cb(node);
+            node = node.parentNode;
+        };
+    };
+
+
+    /**
+     * Returns TRUE if the provided node name is not a valid phrasing node.
+     *
+     * @param {String} nodeName The node name to test.
+     *
+     * @return {Boolean}
+     */
+    self.isPhrasingNode = function(nodeName) {
+        var nodeNames = [ 'abbr', 'audio', 'b', 'bdo', 'br', 'button', 'canvas', 'cite', 'code', 'command', 'data',
+            'datalist', 'dfn', 'em', 'embed', 'i', 'iframe', 'img', 'input', 'kbd', 'keygen', 'label', 'mark', 'math',
+            'meter', 'noscript', 'object', 'output', 'progress', 'q', 'ruby', 'samp', 'script', 'select', 'small',
+            'span', 'strong', 'sub', 'sup', 'svg', 'textarea', 'time', 'var', 'video', 'wbr'];
+
+        return nodeNames.indexOf(nodeName.toLowerCase()) !== -1;
+    };
+
+
     self.getChildrenForTable = function(table, childNodeName)
     {
         if (table.nodeName.toLowerCase() !== 'table') {

@@ -238,8 +238,15 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
 		}
 
 		// Find an implicit label.
-		var implicitLabel = element.parentNode;
-		if (implicitLabel && (implicitLabel.nodeName.toLowerCase() === 'label')) {
+		var foundImplicit = false;
+		if (element.parentNode) {
+			HTMLCS.util.eachParentNode(element, function(parent) {
+				if (parent.nodeName.toLowerCase() === 'label') {
+					foundImplicit = true;
+				}
+			});
+		}
+		if (foundImplicit === true) {
 			addToLabelList('implicit');
 		}
 
