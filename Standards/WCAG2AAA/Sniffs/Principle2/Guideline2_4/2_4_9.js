@@ -34,7 +34,6 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_4_2_4_9 = {
      */
     process: function(element, top)
     {
-        HTMLCS.addMessage(HTMLCS.NOTICE, element, 'Check that text of the link describes the purpose of the link.', 'H30');
-
+        HTMLCS.addMessage(HTMLCS.NOTICE, element, _global.translation["2_4_9_H30"], 'H30');
     }
 };

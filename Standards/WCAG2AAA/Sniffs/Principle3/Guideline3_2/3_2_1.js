@@ -39,7 +39,6 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_2_3_2_1 = {
      */
     process: function(element, top)
     {
-        HTMLCS.addMessage(HTMLCS.NOTICE, element, 'Check that a change of context does not occur when this input field receives focus.', 'G107');
-
+        HTMLCS.addMessage(HTMLCS.NOTICE, element, _global.translation["3_2_1_G107"], 'G107');
     }
 };

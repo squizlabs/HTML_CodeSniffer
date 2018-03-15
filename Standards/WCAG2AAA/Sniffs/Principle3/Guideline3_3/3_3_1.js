@@ -34,6 +34,6 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_3_3_3_1 = {
      */
     process: function(element, top)
     {
-        HTMLCS.addMessage(HTMLCS.NOTICE, element, 'If an input error is automatically detected in this form, check that the item(s) in error are identified and the error(s) are described to the user in text.', 'G83,G84,G85');
+        HTMLCS.addMessage(HTMLCS.NOTICE, element, _global.translation["3_3_1_G83,G84,G85"], 'G83,G84,G85');
     }
 };
