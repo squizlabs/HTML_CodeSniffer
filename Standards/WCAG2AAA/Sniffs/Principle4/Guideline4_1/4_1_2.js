@@ -205,9 +205,9 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
             var matchingRequiredNames  = requiredNames[nodeName];
             var requiredValue = requiredValues[nodeName];
 
-            // Any element that doesn't have specific handling must have content.
+            // Any element that doesn't have specific handling must have content or aria labels.
             if (!matchingRequiredNames && nodeName !== 'input_hidden') {
-                matchingRequiredNames = ['_content'];
+                matchingRequiredNames = ['_content', '@aria-label', '@aria-labelledby'];
             }
 
             // Check all possible combinations of names to ensure that one exists.
@@ -230,7 +230,6 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
                     } else if (requiredName.charAt(0) === '@') {
                         // Attribute.
                         requiredName = requiredName.substr(1, requiredName.length);
-
                         if ((requiredName === 'aria-label' || requiredName === 'aria-labelledby') && HTMLCS.util.hasValidAriaLabel(element)) {
                             break;
                         }

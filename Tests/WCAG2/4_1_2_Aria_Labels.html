@@ -13,6 +13,8 @@ Assert: Error *.H53.ARIA6 on #objectNoLabel
 Assert: No Error *.H53.ARIA6 on #objectLabelledBy
 Assert: No Error *.H53.ARIA6 on #objectLabel
 Assert: No Error *.H91.A.NoContent on #hyperlinkLabel
+Assert: Error *.H91.* on #buttonRoleFail
+Assert: No Error *.H91.Name on #buttonRoleSuccess
 -->
 </head>
 <body>
@@ -44,6 +46,9 @@ Assert: No Error *.H91.A.NoContent on #hyperlinkLabel
 <object id="objectLabel" data="x.jpg" aria-label="monkey"></object>
 
 <a id="hyperlinkLabel" href="http://www.squiz.net" aria-label="Label as valid content"></a>
+
+<div role="button" id="buttonRoleFail"></div>
+<div role="button" id="buttonRoleSuccess" title="Toggle time list" aria-label="Toggle Time List" aria-controls="myid"></div>
 
 </form>
 </body>
