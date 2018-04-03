@@ -27,15 +27,15 @@ var HTMLCS_RUNNER = _global.HTMLCS_RUNNER = new function() {
         var typeName = 'UNKNOWN';
         switch (msg.type) {
             case HTMLCS.ERROR:
-                typeName = 'ERROR';
+                typeName = _global.translation["auditor_errors"];
             break;
 
             case HTMLCS.WARNING:
-                typeName = 'WARNING';
+                typeName = _global.translation["auditor_warnings"];
             break;
 
             case HTMLCS.NOTICE:
-                typeName = 'NOTICE';
+                typeName = _global.translation["auditor_notices"];
             break;
         }//end switch
 

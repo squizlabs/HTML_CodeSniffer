@@ -24,18 +24,17 @@ _global.translation = {
   ,"auditor_toggle_display_of" : 'Przełącz wyświetlanie'
   ,"auditor_messages" : 'komunikatów'
   ,"auditor_unable_to_point" : 'Nie można wskazać elementu powiązanego z tym kryterium.'
-  ,"auditor_unable_to_point_entire" : 'Unable to point to this issue, as it relates to the entire document.'
-  ,"auditor_unable_to_point_removed" : 'Unable to point to this element as it has been removed from the document since the report was generated.'
-  ,"auditor_unable_to_point_outside" : 'Unable to point to this element because it is located outside the document\'s body element.'
-  ,"auditor_unable_to_point_hidden" : 'Unable to point to this element because it is hidden from view, or does not have a visual representation.'
+  ,"auditor_unable_to_point_entire" : 'Nie można wskazać tego problemu, ponieważ dotyczy on całego dokumentu.'
+  ,"auditor_unable_to_point_removed" : 'Nie można wskazać tego elementu, ponieważ został on usunięty z dokumentu od momentu wygenerowania raportu.'
+  ,"auditor_unable_to_point_outside" : 'Nie można wskazać tego elementu, ponieważ znajduje się poza elementem treści dokumentu.'
+  ,"auditor_unable_to_point_hidden" : 'Nie można wskazać tego elementu, ponieważ jest on niewidoczny lub nie ma reprezentacji wizualnej.'
   ,"auditor_point_to_element" : 'Pokaż element'
-  ,"auditor_unsupported_browser" : 'The code snippet functionality is not supported in this browser.'
+  ,"auditor_unsupported_browser" : 'Funkcja nie jest obsługiwana w tej przeglądarce.'
   ,"auditor_page" : 'Strona'
   ,"auditor_updated_to" : 'HTML_CodeSniffer został zaktualizowany do wersji'
   ,"auditor_view_the_changelog" : 'Zobacz dziennik zmian'
   ,"auditor_success_criterion" : "Kryteria sukcesu"
   ,"auditor_suggested_techniques" : "Sugerowane techniki"
-
 
   //1_1_1.js
   ,"1_1_1_H30.2" : 'Grafika jest jedyną treścią linku i powinna zostać uzupełniona o opis alternatywny opisujący jego funkcję.'

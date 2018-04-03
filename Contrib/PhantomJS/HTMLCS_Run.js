@@ -90,8 +90,8 @@ if (system.args.length < 3 || system.args.length > 4) {
         }
 
         console.log('');
-        console.log('Errors: ' + messages['ERROR'].length + ', Warnings: ' + messages['WARNING'].length +
-            ', Notices: ' + messages['NOTICE'].length);
+        console.log(_global.translation["auditor_errors"] + ': ' + messages['ERROR'].length + ', ' + _global.translation["auditor_warnings"] + ': ' + messages['WARNING'].length +
+            ', ' + _global.translation["auditor_notices"] + ': ' + messages['NOTICE'].length);
         cb();
     }
 
