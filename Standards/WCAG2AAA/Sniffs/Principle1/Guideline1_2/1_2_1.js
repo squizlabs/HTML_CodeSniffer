@@ -44,11 +44,11 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_2_1_2_1 = {
         var nodeName = element.nodeName.toLowerCase();
 
         if (nodeName !== 'video') {
-            HTMLCS.addMessage(HTMLCS.NOTICE, element, 'If this embedded object contains pre-recorded audio only, and is not provided as an alternative for text content, check that an alternative text version is available.', 'G158');
+            HTMLCS.addMessage(HTMLCS.NOTICE, element, _global.translation["1_2_1_G158"], 'G158');
         }
 
         if ((nodeName !== 'bgsound') && (nodeName !== 'audio')) {
-            HTMLCS.addMessage(HTMLCS.NOTICE, element, 'If this embedded object contains pre-recorded video only, and is not provided as an alternative for text content, check that an alternative text version is available, or an audio track is provided that presents equivalent information.', 'G159,G166');
+            HTMLCS.addMessage(HTMLCS.NOTICE, element, _global.translation["1_2_1_G159,G166"], 'G159,G166');
         }
 
     }

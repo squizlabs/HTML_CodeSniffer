@@ -77,9 +77,9 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_4_2_4_1 = {
             }
 
             if (hasTitle === false) {
-                HTMLCS.addMessage(HTMLCS.ERROR, element, 'Iframe element requires a non-empty title attribute that identifies the frame.', 'H64.1');
+                HTMLCS.addMessage(HTMLCS.ERROR, element, _global.translation["2_4_1_H64.1"], 'H64.1');
             } else {
-                HTMLCS.addMessage(HTMLCS.NOTICE, element, 'Check that the title attribute of this element contains text that identifies the frame.', 'H64.2');
+                HTMLCS.addMessage(HTMLCS.NOTICE, element, _global.translation["2_4_1_H64.2"], 'H64.2');
             }
         }//end if
     },
@@ -93,7 +93,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_4_2_4_1 = {
      */
     testGenericBypassMsg: function(top)
     {
-        HTMLCS.addMessage(HTMLCS.NOTICE, top, 'Ensure that any common navigation elements can be bypassed; for instance, by use of skip links, header elements, or ARIA landmark roles.', 'G1,G123,G124,H69');
+        HTMLCS.addMessage(HTMLCS.NOTICE, top, _global.translation["2_4_1_G1,G123,G124,H69"], 'G1,G123,G124,H69');
     },
 
     /**
@@ -139,9 +139,9 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_4_2_4_1 = {
 
                     if ((target === null) || (HTMLCS.util.contains(top, target) === false)) {
                         if ((HTMLCS.isFullDoc(top) === true) || (top.nodeName.toLowerCase() === 'body')) {
-                            HTMLCS.addMessage(HTMLCS.ERROR, element, 'This link points to a named anchor "' + id + '" within the document, but no anchor exists with that name.', 'G1,G123,G124.NoSuchID');
+                            HTMLCS.addMessage(HTMLCS.ERROR, element, _global.translation["2_4_1_G1,G123,G124.NoSuchID"].replace(/\{\{id\}\}/g, id), 'G1,G123,G124.NoSuchID');
                         } else {
-                            HTMLCS.addMessage(HTMLCS.WARNING, element, 'This link points to a named anchor "' + id + '" within the document, but no anchor exists with that name in the fragment tested.', 'G1,G123,G124.NoSuchIDFragment');
+                            HTMLCS.addMessage(HTMLCS.WARNING, element, _global.translation["2_4_1_G1,G123,G124.NoSuchIDFragment"].replace(/\{\{id\}\}/g, id), 'G1,G123,G124.NoSuchIDFragment');
                         }
                     }
                 } catch (ex) {

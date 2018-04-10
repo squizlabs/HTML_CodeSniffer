@@ -85,9 +85,9 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_F24 = {
 
         if (hasBg !== hasFg) {
             if (hasBg === true) {
-                HTMLCS.addMessage(HTMLCS.WARNING, element, 'Check that this element has an inherited foreground colour to complement the corresponding inline background colour or image.', 'F24.BGColour');
+                HTMLCS.addMessage(HTMLCS.WARNING, element, _global.translation["1_4_3_F24.BGColour"], 'F24.BGColour');
             } else {
-                HTMLCS.addMessage(HTMLCS.WARNING, element, 'Check that this element has an inherited background colour or image to complement the corresponding inline foreground colour.', 'F24.FGColour');
+                HTMLCS.addMessage(HTMLCS.WARNING, element, _global.translation["1_4_3_F24.FGColour"], 'F24.FGColour');
             }
         }
     }

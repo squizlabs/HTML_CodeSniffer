@@ -34,7 +34,6 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_4 = {
      */
     process: function(element, top)
     {
-        HTMLCS.addMessage(HTMLCS.NOTICE, top, 'Check that text can be resized without assistive technology up to 200 percent without loss of content or functionality.', 'G142');
-
+        HTMLCS.addMessage(HTMLCS.NOTICE, top, _global.translation["1_4_4_G142"], 'G142');
     }
 };

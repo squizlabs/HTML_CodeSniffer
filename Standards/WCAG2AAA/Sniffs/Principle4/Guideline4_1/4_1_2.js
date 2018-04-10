@@ -52,27 +52,27 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
     {
         var errors = this.processLinks(top);
         for (var i = 0; i < errors.empty.length; i++) {
-            HTMLCS.addMessage(HTMLCS.WARNING, errors.empty[i], 'Anchor element found with an ID but without a href or link text. Consider moving its ID to a parent or nearby element.', 'H91.A.Empty');
+            HTMLCS.addMessage(HTMLCS.WARNING, errors.empty[i], _global.translation["4_1_2_H91.A.Empty"], 'H91.A.Empty');
         }
 
         for (var i = 0; i < errors.emptyWithName.length; i++) {
-            HTMLCS.addMessage(HTMLCS.WARNING, errors.emptyWithName[i], 'Anchor element found with a name attribute but without a href or link text. Consider moving the name attribute to become an ID of a parent or nearby element.', 'H91.A.EmptyWithName');
+            HTMLCS.addMessage(HTMLCS.WARNING, errors.emptyWithName[i],  _global.translation["4_1_2_H91.A.EmptyWithName"], 'H91.A.EmptyWithName');
         }
 
         for (var i = 0; i < errors.emptyNoId.length; i++) {
-            HTMLCS.addMessage(HTMLCS.ERROR, errors.emptyNoId[i], 'Anchor element found with no link content and no name and/or ID attribute.', 'H91.A.EmptyNoId');
+            HTMLCS.addMessage(HTMLCS.ERROR, errors.emptyNoId[i], _global.translation["4_1_2_H91.A.EmptyNoId"], 'H91.A.EmptyNoId');
         }
 
         for (var i = 0; i < errors.noHref.length; i++) {
-            HTMLCS.addMessage(HTMLCS.WARNING, errors.noHref[i], 'Anchor elements should not be used for defining in-page link targets. If not using the ID for other purposes (such as CSS or scripting), consider moving it to a parent element.', 'H91.A.NoHref');
+            HTMLCS.addMessage(HTMLCS.WARNING, errors.noHref[i], _global.translation["4_1_2_H91.A.NoHref"], 'H91.A.NoHref');
         }
 
         for (var i = 0; i < errors.placeholder.length; i++) {
-            HTMLCS.addMessage(HTMLCS.WARNING, errors.placeholder[i], 'Anchor element found with link content, but no href, ID or name attribute has been supplied.', 'H91.A.Placeholder');
+            HTMLCS.addMessage(HTMLCS.WARNING, errors.placeholder[i], _global.translation["4_1_2_H91.A.Placeholder"], 'H91.A.Placeholder');
         }
 
         for (var i = 0; i < errors.noContent.length; i++) {
-            HTMLCS.addMessage(HTMLCS.ERROR, errors.noContent[i], 'Anchor element found with a valid href attribute, but no link content has been supplied.', 'H91.A.NoContent');
+            HTMLCS.addMessage(HTMLCS.ERROR, errors.noContent[i], _global.translation["4_1_2_H91.A.NoContent"], 'H91.A.NoContent');
         }
     },
 
@@ -250,27 +250,27 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
                 }//end for
 
                 if (i === matchingRequiredNames.length) {
-                    var msgNodeType = nodeName + ' element';
+                    var msgNodeType = nodeName + ' ' + _global.translation["4_1_2_element"];
                     if (nodeName.substr(0, 6) === 'input_') {
-                        msgNodeType = nodeName.substr(6) + ' input element';
+                        msgNodeType = nodeName.substr(6) + _global.translation["4_1_2_input_element"];
                     }
 
                     if (element.hasAttribute('role') && element.getAttribute('role') === 'button') {
-                        msgNodeType = 'element has a role of "button" but';
+                        msgNodeType = _global.translation["4_1_2_role_of_button"];
                     }
 
                     var builtAttrs = matchingRequiredNames.slice(0, matchingRequiredNames.length);
                     for (var a = 0; a < builtAttrs.length; a++) {
                         if (builtAttrs[a] === '_content') {
-                            builtAttrs[a] = 'element content';
+                            builtAttrs[a] = _global.translation["4_1_2_element_content"];
                         } else if (builtAttrs[a].charAt(0) === '@') {
-                            builtAttrs[a] = builtAttrs[a].substr(1) + ' attribute';
+                            builtAttrs[a] = builtAttrs[a].substr(1) + ' '+ _global.translation["4_1_2_attribute"];
                         } else {
-                            builtAttrs[a] = builtAttrs[a] + ' element';
+                            builtAttrs[a] = builtAttrs[a] + ' ' + _global.translation["4_1_2_element"];
                         }
                     }
 
-                    var msg = 'This ' + msgNodeType + ' does not have a name available to an accessibility API. Valid names are: ' + builtAttrs.join(', ') + '.';
+                    var msg = _global.translation["4_1_2_msg_pattern"].replace(/\{\{msgNodeType\}\}/g, msgNodeType).replace(/\{\{builtAttrs\}\}/g, builtAttrs.join(', '));
                     errors.push({
                         element: element,
                         msg: msg,
@@ -316,28 +316,27 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
             }
 
             if (valueFound === false) {
-                var msgNodeType = nodeName + ' element';
+                var msgNodeType = nodeName + ' ' + _global.translation["4_1_2_element"];
                 if (nodeName.substr(0, 6) === 'input_') {
                     msgNodeType = nodeName.substr(6) + ' input element';
                 }
 
-                var msg = 'This ' + msgNodeType + ' does not have a value available to an accessibility API.';
+                var msg = _global.translation["4_1_2_msg_pattern2"].replace(/\{\{msgNodeType\}\}/g, msgNodeType);
 
                 var builtAttr = '';
                 var warning   = false;
                 if (requiredValue === '_content') {
-                    builtAttr = ' Add one by adding content to the element.';
+                    builtAttr = ' ' + _global.translation["4_1_2_msg_add_one"];
                 } else if (requiredValue === 'option_selected') {
                     // Change the message instead. The value is only undefined in HTML 4/XHTML 1;
                     // in HTML5 the first option in a single select dropdown is automatically selected.
                     // Because of this, it should also be sent out as a warning, not an error.
                     warning = true;
-                    msg = 'This ' + msgNodeType + ' does not have an initially selected option.' + ' ' +
-                        'Depending on your HTML version, the value exposed to an accessibility API may be undefined.';
+                    msg = _global.translation["4_1_2_msg_pattern2"].replace(/\{\{msgNodeType\}\}/g, msgNodeType);
                 } else if (requiredValue.charAt(0) === '@') {
-                    builtAttr = ' A value is exposed using the "' + requiredValue + '" attribute.';
+                    builtAttr = ' ' +  _global.translation["4_1_2_value_exposed_using_attribute"].replace(/\{\{requiredValue\}\}/g, requiredValue);
                 } else {
-                    builtAttr = ' A value is exposed using the "' + requiredValue + '" element.';
+                    builtAttr = ' ' +  _global.translation["4_1_2_value_exposed_using_element"].replace(/\{\{requiredValue\}\}/g, requiredValue);
                 }
 
                 msg += builtAttr;
