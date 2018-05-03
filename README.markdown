@@ -64,10 +64,11 @@ debugging purposes, follow the above steps, but run <code>grunt build-debug</cod
   
 ### Command-Line processing
 
+**Note:** These examples assume a built version of HTMLCS exported to `./build/HTMLCS.js`
+
 #### PhantomJS
 
-If you are using command-line processing, you don't need to build the auditor as above.
-You will, however, need [PhantomJS](http://www.phantomjs.org/) installed if you wish to
+You will need [PhantomJS](http://www.phantomjs.org/) installed if you wish to
 use the contributed command-line script. PhantomJS provides a headless Webkit-based
 browser to run the scripts in, so it should provide results that are similar to 
 recent (or slightly less than recent) versions of Safari.
