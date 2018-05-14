@@ -34,7 +34,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_1_3_1_3 = {
      */
     process: function(element, top)
     {
-        HTMLCS.addMessage(HTMLCS.NOTICE, top, _global.translation["3_1_3_H40,H54,H60,G62,G70"], 'H40,H54,H60,G62,G70');
+        HTMLCS.addMessage(HTMLCS.NOTICE, top, _global.HTMLCS.getTranslation("3_1_3_H40,H54,H60,G62,G70"), 'H40,H54,H60,G62,G70');
 
     }
 };

@@ -53,7 +53,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_2_3_2_5 = {
         if (hasTarget === true) {
             var target = link.getAttribute('target') || '';
             if ((target === '_blank') && (/new window/i.test(link.innerHTML) === false)) {
-                HTMLCS.addMessage(HTMLCS.WARNING, link, _global.translation["3_2_5_H83.3"], 'H83.3');
+                HTMLCS.addMessage(HTMLCS.WARNING, link, _global.HTMLCS.getTranslation("3_2_5_H83.3"), 'H83.3');
             }
         }
     }

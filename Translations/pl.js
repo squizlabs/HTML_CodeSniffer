@@ -1,4 +1,4 @@
-_global.translation = {
+_global.translation['pl'] = {
 
   //HTMLCSAuditor.js
   "auditor_name" : 'Squiz HTML_CodeSniffer'

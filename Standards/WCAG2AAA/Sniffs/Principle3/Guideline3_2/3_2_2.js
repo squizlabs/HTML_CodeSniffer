@@ -69,7 +69,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_2_3_2_2 = {
             HTMLCS.addMessage(
                 HTMLCS.ERROR,
                 form,
-                _global.translation["3_2_2_H32.2"],
+                _global.HTMLCS.getTranslation("3_2_2_H32.2"),
                 'H32.2'
             );
         }

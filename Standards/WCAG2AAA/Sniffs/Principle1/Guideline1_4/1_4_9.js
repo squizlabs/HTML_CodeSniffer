@@ -37,7 +37,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_9 = {
         var imgObj = top.querySelector('img');
 
         if (imgObj !== null) {
-            HTMLCS.addMessage(HTMLCS.NOTICE, top,  _global.translation["1_4_9_G140,C22,C30.NoException"], 'G140,C22,C30.NoException');
+            HTMLCS.addMessage(HTMLCS.NOTICE, top,  _global.HTMLCS.getTranslation("1_4_9_G140,C22,C30.NoException"), 'G140,C22,C30.NoException');
         }
     }
 };

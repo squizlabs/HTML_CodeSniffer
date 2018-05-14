@@ -41,9 +41,9 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_1_3_1_6 = {
             // the presumption is that we are using HTML5 that uses the body of the ruby
             // element for the same purpose (otherwise, assume XHTML 1.1 with rb element).
             if (rb.length === 0) {
-                HTMLCS.addMessage(HTMLCS.ERROR, element, _global.translation["3_1_6_H62.1.HTML5"], 'H62.1.HTML5');
+                HTMLCS.addMessage(HTMLCS.ERROR, element, _global.HTMLCS.getTranslation("3_1_6_H62.1.HTML5"), 'H62.1.HTML5');
             } else {
-                HTMLCS.addMessage(HTMLCS.ERROR, element, _global.translation["3_1_6_H62.1.XHTML11"], 'H62.1.XHTML11');
+                HTMLCS.addMessage(HTMLCS.ERROR, element, _global.HTMLCS.getTranslation("3_1_6_H62.1.XHTML11"), 'H62.1.XHTML11');
             }
         }
 
@@ -51,7 +51,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_1_3_1_6 = {
         if (rp.length === 0) {
             // No "ruby parentheses" tags for those user agents that don't support
             // ruby at all.
-            HTMLCS.addMessage(HTMLCS.ERROR, element, _global.translation["3_1_6_H62.2"], 'H62.2');
+            HTMLCS.addMessage(HTMLCS.ERROR, element, _global.HTMLCS.getTranslation("3_1_6_H62.2"), 'H62.2');
         }
     }
 };

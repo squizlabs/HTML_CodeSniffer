@@ -16,4 +16,6 @@
         root[prop] = exports[prop];
     }
 }(this, function () {
-    var _global = {}
+    var _global = {
+        translation: {}
+    };

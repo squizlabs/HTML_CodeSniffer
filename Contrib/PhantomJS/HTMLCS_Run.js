@@ -90,8 +90,8 @@ if (system.args.length < 3 || system.args.length > 4) {
         }
 
         console.log('');
-        console.log(_global.translation["auditor_errors"] + ': ' + messages['ERROR'].length + ', ' + _global.translation["auditor_warnings"] + ': ' + messages['WARNING'].length +
-            ', ' + _global.translation["auditor_notices"] + ': ' + messages['NOTICE'].length);
+        console.log(_global.HTMLCS.getTranslation("auditor_errors") + ': ' + messages['ERROR'].length + ', ' + _global.HTMLCS.getTranslation("auditor_warnings") + ': ' + messages['WARNING'].length +
+            ', ' + _global.HTMLCS.getTranslation("auditor_notices") + ': ' + messages['NOTICE'].length);
         cb();
     }
 

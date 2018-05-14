@@ -62,26 +62,26 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_6 = {
                 var recommendText = [];
                 if (recommend) {
                     if (recommend.fore.from !== recommend.fore.to) {
-                        recommendText.push(_global.translation["1_4_6_G18_or_G17.Fail.Recomendation.Text"] + ' ' + recommend.fore.to);
+                        recommendText.push(_global.HTMLCS.getTranslation("1_4_6_G18_or_G17.Fail.Recomendation.Text") + ' ' + recommend.fore.to);
                     }
                     if (recommend.back.from !== recommend.back.to) {
-                        recommendText.push(_global.translation["1_4_6_G18_or_G17.Fail.Recomendation.Background"] + recommend.back.to);
+                        recommendText.push(_global.HTMLCS.getTranslation("1_4_6_G18_or_G17.Fail.Recomendation.Background") + recommend.back.to);
                     }
                 }//end if
 
                 if (recommendText.length > 0) {
-                    recommendText = ' ' + _global.translation["1_4_6_G18_or_G17.Fail.Recomendation"] + ' ' + recommendText.join(', ') + '.';
+                    recommendText = ' ' + _global.HTMLCS.getTranslation("1_4_6_G18_or_G17.Fail.Recomendation") + ' ' + recommendText.join(', ') + '.';
                 }
 
                 if (isAbsolute === true) {
                     code += '.Abs';
-                    HTMLCS.addMessage(HTMLCS.WARNING, element, _global.translation["1_4_6_G18_or_G17.Abs"].replace(/\{\{required\}\}/g, required), code);
+                    HTMLCS.addMessage(HTMLCS.WARNING, element, _global.HTMLCS.getTranslation("1_4_6_G18_or_G17.Abs").replace(/\{\{required\}\}/g, required), code);
                 } else if (hasBgImg === true) {
                     code += '.BgImage';
-                    HTMLCS.addMessage(HTMLCS.WARNING, element, _global.translation["1_4_6_G18_or_G17.BgImage"].replace(/\{\{required\}\}/g, required), code);
+                    HTMLCS.addMessage(HTMLCS.WARNING, element, _global.HTMLCS.getTranslation("1_4_6_G18_or_G17.BgImage").replace(/\{\{required\}\}/g, required), code);
                 } else {
                     code += '.Fail';
-                    HTMLCS.addMessage(HTMLCS.ERROR, element, _global.translation["1_4_6_G18_or_G17.Fail"].replace(/\{\{required\}\}/g, required).replace(/\{\{value\}\}/g, value) + recommendText, code);
+                    HTMLCS.addMessage(HTMLCS.ERROR, element, _global.HTMLCS.getTranslation("1_4_6_G18_or_G17.Fail").replace(/\{\{required\}\}/g, required).replace(/\{\{value\}\}/g, value) + recommendText, code);
                 }//end if
             }//end for
         }//end if

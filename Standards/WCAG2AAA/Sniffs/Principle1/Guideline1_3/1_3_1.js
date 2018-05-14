@@ -116,7 +116,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
 				HTMLCS.addMessage(
 					HTMLCS.ERROR,
 					element,
-                    _global.translation["1_3_1_F92,ARIA4"],
+                    _global.HTMLCS.getTranslation("1_3_1_F92,ARIA4"),
 					'F92,ARIA4'
 				);
 			}
@@ -148,18 +148,18 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
 
 					if (refNode === null) {
 						var level = HTMLCS.ERROR;
-                        var msg   = _global.translation["1_3_1_H44.NonExistent"];
+                        var msg   = _global.HTMLCS.getTranslation("1_3_1_H44.NonExistent");
 						var code  = 'H44.NonExistent';
 						if ((HTMLCS.isFullDoc(top) === true) || (top.nodeName.toLowerCase() === 'body')) {
 							level = HTMLCS.WARNING;
-                            msg   = _global.translation["1_3_1_H44.NonExistentFragment"];
+                            msg   = _global.HTMLCS.getTranslation("1_3_1_H44.NonExistentFragment");
 							var code  = 'H44.NonExistentFragment';
 						}
 						HTMLCS.addMessage(level, labels[i], msg, code);
 					} else {
 						var nodeName = refNode.nodeName.toLowerCase();
 						if ('input|select|textarea|button|keygen|meter|output|progress'.indexOf(nodeName) === -1) {
-							HTMLCS.addMessage(HTMLCS.WARNING, labels[i], _global.translation["1_3_1_H44.NotFormControl"], 'H44.NotFormControl');
+							HTMLCS.addMessage(HTMLCS.WARNING, labels[i], _global.HTMLCS.getTranslation("1_3_1_H44.NotFormControl"), 'H44.NotFormControl');
 						}
 					}
 				}
@@ -257,7 +257,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
 				HTMLCS.addMessage(
 					HTMLCS.WARNING,
 					element,
-                    _global.translation["1_3_1_H65"],
+                    _global.HTMLCS.getTranslation("1_3_1_H65"),
                     'H65'
 				);
 			} else {
@@ -271,7 +271,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
 				HTMLCS.addMessage(
 					HTMLCS.WARNING,
 					element,
-                    _global.translation["1_3_1_ARIA6"],
+                    _global.HTMLCS.getTranslation("1_3_1_ARIA6"),
 					'ARIA6'
 				);
 			} else {
@@ -286,7 +286,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
 				HTMLCS.addMessage(
 					HTMLCS.WARNING,
 					element,
-                    _global.translation["1_3_1_ARIA16,ARIA9"].replace(/\{\{id\}\}/g, element.getAttribute('aria-labelledby')),
+                    _global.HTMLCS.getTranslation("1_3_1_ARIA16,ARIA9").replace(/\{\{id\}\}/g, element.getAttribute('aria-labelledby')),
 					'ARIA16,ARIA9'
 				);
 			} else {
@@ -306,14 +306,14 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
 					HTMLCS.addMessage(
 						HTMLCS.WARNING,
 						element,
-                        _global.translation["1_3_1_F68.Hidden"],
+                        _global.HTMLCS.getTranslation("1_3_1_F68.Hidden"),
 						'F68.Hidden'
 					);
 				} else if (element.getAttribute('hidden') !== null) {
 					HTMLCS.addMessage(
 						HTMLCS.WARNING,
 						element,
-                        _global.translation["1_3_1_F68.HiddenAttr"],
+                        _global.HTMLCS.getTranslation("1_3_1_F68.HiddenAttr"),
 						'F68.HiddenAttr'
 					);
 				}
@@ -322,7 +322,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
 				HTMLCS.addMessage(
 					HTMLCS.ERROR,
 					element,
-                    _global.translation["1_3_1_F68"],
+                    _global.HTMLCS.getTranslation("1_3_1_F68"),
 					'F68'
 				);
 			}//end if
@@ -354,7 +354,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
 			var tags = HTMLCS.util.getAllElements(top, 'strike, tt, big, center, font');
 			for (var i = 0; i < tags.length; i++) {
 				var msgCode = 'H49.' + tags[i].nodeName.substr(0, 1).toUpperCase() + tags[i].nodeName.substr(1).toLowerCase();
-				HTMLCS.addMessage(HTMLCS.ERROR, tags[i],  _global.translation["1_3_1_H49."], msgCode);
+				HTMLCS.addMessage(HTMLCS.ERROR, tags[i],  _global.HTMLCS.getTranslation("1_3_1_H49."), msgCode);
 			}
 
 			// Align attributes, too.
@@ -368,7 +368,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
 			var tags = HTMLCS.util.getAllElements(top, 'b, i, u, s, strike, tt, big, small, center, font');
 			for (var i = 0; i < tags.length; i++) {
 				var msgCode = 'H49.' + tags[i].nodeName.substr(0, 1).toUpperCase() + tags[i].nodeName.substr(1).toLowerCase();
-				HTMLCS.addMessage(HTMLCS.WARNING, tags[i], _global.translation["1_3_1_H49.Semantic"], msgCode);
+				HTMLCS.addMessage(HTMLCS.WARNING, tags[i], _global.HTMLCS.getTranslation("1_3_1_H49.Semantic"), msgCode);
 			}
 
 			// Align attributes, too.
@@ -376,7 +376,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
 
 			for (var i = 0; i < tags.length; i++) {
 				var msgCode = 'H49.AlignAttr';
-				HTMLCS.addMessage(HTMLCS.WARNING, tags[i], _global.translation["1_3_1_H49.AlignAttr.Semantic"], msgCode);
+				HTMLCS.addMessage(HTMLCS.WARNING, tags[i], _global.HTMLCS.getTranslation("1_3_1_H49.AlignAttr.Semantic"), msgCode);
 			}
 		}
 	},
@@ -402,7 +402,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
 				var childTag = children[0].nodeName.toLowerCase();
 
 				if (/^(strong|em|b|i|u)$/.test(childTag) === true) {
-					HTMLCS.addMessage(HTMLCS.WARNING, element, _global.translation["1_3_1_H42"], 'H42');
+					HTMLCS.addMessage(HTMLCS.WARNING, element, _global.HTMLCS.getTranslation("1_3_1_H42"), 'H42');
 				}
 			}
 		}
@@ -436,13 +436,13 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
 
 		// Invalid scope attribute - emit always if scope tested.
 		for (var i = 0; i < scopeAttr.invalid.length; i++) {
-			HTMLCS.addMessage(HTMLCS.ERROR, scopeAttr.invalid[i],  _global.translation["1_3_1_H63.3"], 'H63.3');
+			HTMLCS.addMessage(HTMLCS.ERROR, scopeAttr.invalid[i],  _global.HTMLCS.getTranslation("1_3_1_H63.3"), 'H63.3');
 		}
 
 		// TDs with scope attributes are obsolete in HTML5 - emit warnings if
 		// scope tested, but not as errors as they are valid HTML4.
 		for (var i = 0; i < scopeAttr.obsoleteTd.length; i++) {
-			HTMLCS.addMessage(HTMLCS.WARNING, scopeAttr.obsoleteTd[i], _global.translation["1_3_1_H63.2"], 'H63.2');
+			HTMLCS.addMessage(HTMLCS.WARNING, scopeAttr.obsoleteTd[i], _global.HTMLCS.getTranslation("1_3_1_H63.2"), 'H63.2');
 		}
 
 		if (headersAttr.allowScope === true) {
@@ -454,30 +454,30 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
 			}
 		} else {
 			if (scopeAttr.used === true) {
-				HTMLCS.addMessage(HTMLCS.WARNING, table, _global.translation["1_3_1_H43.ScopeAmbiguous"], 'H43.ScopeAmbiguous');
+				HTMLCS.addMessage(HTMLCS.WARNING, table, _global.HTMLCS.getTranslation("1_3_1_H43.ScopeAmbiguous"), 'H43.ScopeAmbiguous');
 				scopeAttr = null;
 			}
 		}//end if
 
 		// Incorrect usage of headers - error; emit always.
 		for (var i = 0; i < headersAttr.wrongHeaders.length; i++) {
-			HTMLCS.addMessage(HTMLCS.ERROR, headersAttr.wrongHeaders[i].element, _global.translation["1_3_1_H43.IncorrectAttr"].replace(/\{\{expected\}\}/g, headersAttr.wrongHeaders[i].expected).replace(/\{\{actual\}\}/g, headersAttr.wrongHeaders[i].actual), 'H43.IncorrectAttr');
+			HTMLCS.addMessage(HTMLCS.ERROR, headersAttr.wrongHeaders[i].element, _global.HTMLCS.getTranslation("1_3_1_H43.IncorrectAttr").replace(/\{\{expected\}\}/g, headersAttr.wrongHeaders[i].expected).replace(/\{\{actual\}\}/g, headersAttr.wrongHeaders[i].actual), 'H43.IncorrectAttr');
 		}
 
 		// Errors where headers are compulsory.
 		if ((headersAttr.required === true) && (headersAttr.allowScope === false)) {
 			if (headersAttr.used === false) {
 				// Headers not used at all, and they are mandatory.
-				HTMLCS.addMessage(HTMLCS.ERROR, table,  _global.translation["1_3_1_H43.HeadersRequired"], 'H43.HeadersRequired');
+				HTMLCS.addMessage(HTMLCS.ERROR, table,  _global.HTMLCS.getTranslation("1_3_1_H43.HeadersRequired"), 'H43.HeadersRequired');
 			} else {
 				// Missing TH IDs - error; emit at this stage only if headers are compulsory.
 				if (headersAttr.missingThId.length > 0) {
-					HTMLCS.addMessage(HTMLCS.ERROR, table, _global.translation["1_3_1_H43.MissingHeaderIds"], 'H43.MissingHeaderIds');
+					HTMLCS.addMessage(HTMLCS.ERROR, table, _global.HTMLCS.getTranslation("1_3_1_H43.MissingHeaderIds"), 'H43.MissingHeaderIds');
 				}
 
 				// Missing TD headers attributes - error; emit at this stage only if headers are compulsory.
 				if (headersAttr.missingTd.length > 0) {
-					HTMLCS.addMessage(HTMLCS.ERROR, table, _global.translation["1_3_1_H43.MissingHeadersAttrs"], 'H43.MissingHeadersAttrs');
+					HTMLCS.addMessage(HTMLCS.ERROR, table, _global.HTMLCS.getTranslation("1_3_1_H43.MissingHeadersAttrs"), 'H43.MissingHeadersAttrs');
 				}
 			}//end if
 		}//end if
@@ -490,23 +490,23 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
 		if ((headersAttr.required === true) && (headersAttr.allowScope === true) && (headersAttr.correct === false) && (scopeAttr.correct === false)) {
 			if ((scopeAttr.used === false) && (headersAttr.used === false)) {
 				// Nothing used at all.
-				HTMLCS.addMessage(HTMLCS.ERROR, table, _global.translation["1_3_1_H43,H63"], 'H43,H63');
+				HTMLCS.addMessage(HTMLCS.ERROR, table, _global.HTMLCS.getTranslation("1_3_1_H43,H63"), 'H43,H63');
 			} else if ((scopeAttr.used === false) && ((headersAttr.missingThId.length > 0) || (headersAttr.missingTd.length > 0))) {
 				// Headers attribute is used, but not all th elements have ids.
 				if (headersAttr.missingThId.length > 0) {
-					HTMLCS.addMessage(HTMLCS.ERROR, table, _global.translation["1_3_1_H43.MissingHeaderIds"], 'H43.MissingHeaderIds');
+					HTMLCS.addMessage(HTMLCS.ERROR, table, _global.HTMLCS.getTranslation("1_3_1_H43.MissingHeaderIds"), 'H43.MissingHeaderIds');
 				}
 
 				// Headers attribute is used, but not all td elements have headers attrs.
 				if (headersAttr.missingTd.length > 0) {
-					HTMLCS.addMessage(HTMLCS.ERROR, table, _global.translation["1_3_1_H43.MissingHeadersAttrs"], 'H43.MissingHeadersAttrs');
+					HTMLCS.addMessage(HTMLCS.ERROR, table, _global.HTMLCS.getTranslation("1_3_1_H43.MissingHeadersAttrs"), 'H43.MissingHeadersAttrs');
 				}
 			} else if ((scopeAttr.missing.length > 0) && (headersAttr.used === false)) {
 				// Scope is used rather than headers, but not all th elements have them.
-				HTMLCS.addMessage(HTMLCS.ERROR, table, _global.translation["1_3_1_H63.1"], 'H63.1');
+				HTMLCS.addMessage(HTMLCS.ERROR, table, _global.HTMLCS.getTranslation("1_3_1_H63.1"), 'H63.1');
 			} else if ((scopeAttr.missing.length > 0) && ((headersAttr.missingThId.length > 0) || (headersAttr.missingTd.length > 0))) {
 				// Both are used and both were done incorrectly. Provide generic message.
-				HTMLCS.addMessage(HTMLCS.ERROR, table, _global.translation["1_3_1_H43,H63"], 'H43,H63');
+				HTMLCS.addMessage(HTMLCS.ERROR, table, _global.HTMLCS.getTranslation("1_3_1_H43,H63"), 'H43,H63');
 			}
 		}
 	},
@@ -607,30 +607,30 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
 			summary = summary.replace(/^\s*(.*?)\s*$/g, '$1');
 			if (summary !== '') {
 				if (HTMLCS.util.isLayoutTable(table) === true) {
-					HTMLCS.addMessage(HTMLCS.ERROR, table, _global.translation["1_3_1_H73.3.LayoutTable"], 'H73.3.LayoutTable');
+					HTMLCS.addMessage(HTMLCS.ERROR, table, _global.HTMLCS.getTranslation("1_3_1_H73.3.LayoutTable"), 'H73.3.LayoutTable');
 				} else {
 					if (caption === summary) {
-						HTMLCS.addMessage(HTMLCS.ERROR, table, _global.translation["1_3_1_H39,H73.4"], 'H39,H73.4');
+						HTMLCS.addMessage(HTMLCS.ERROR, table, _global.HTMLCS.getTranslation("1_3_1_H39,H73.4"), 'H39,H73.4');
 					}
 
-					HTMLCS.addMessage(HTMLCS.NOTICE, table,  _global.translation["1_3_1_H73.3.Check"], 'H73.3.Check');
+					HTMLCS.addMessage(HTMLCS.NOTICE, table,  _global.HTMLCS.getTranslation("1_3_1_H73.3.Check"), 'H73.3.Check');
 				}
 			} else {
 				if (HTMLCS.util.isLayoutTable(table) === false) {
-					HTMLCS.addMessage(HTMLCS.WARNING, table, _global.translation["1_3_1_H73.3.NoSummary"], 'H73.3.NoSummary');
+					HTMLCS.addMessage(HTMLCS.WARNING, table, _global.HTMLCS.getTranslation("1_3_1_H73.3.NoSummary"), 'H73.3.NoSummary');
 				}
 			}//end if
 		}//end if
 
 		if (caption !== '') {
 			if (HTMLCS.util.isLayoutTable(table) === true) {
-				HTMLCS.addMessage(HTMLCS.ERROR, table, _global.translation["1_3_1_H39.3.LayoutTable"], 'H39.3.LayoutTable');
+				HTMLCS.addMessage(HTMLCS.ERROR, table, _global.HTMLCS.getTranslation("1_3_1_H39.3.LayoutTable"), 'H39.3.LayoutTable');
 			} else {
-				HTMLCS.addMessage(HTMLCS.NOTICE, table, _global.translation["1_3_1_H39.3.Check"], 'H39.3.Check');
+				HTMLCS.addMessage(HTMLCS.NOTICE, table, _global.HTMLCS.getTranslation("1_3_1_H39.3.Check"), 'H39.3.Check');
 			}
 		} else {
 			if (HTMLCS.util.isLayoutTable(table) === false) {
-				HTMLCS.addMessage(HTMLCS.WARNING, table, _global.translation["1_3_1_H39.3.NoCaption"], 'H39.3.NoCaption');
+				HTMLCS.addMessage(HTMLCS.WARNING, table, _global.HTMLCS.getTranslation("1_3_1_H39.3.NoCaption"), 'H39.3.NoCaption');
 			}
 		}//end if
 	},
@@ -644,7 +644,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
 		var legend = fieldset.querySelector('legend');
 
 		if ((legend === null) || (legend.parentNode !== fieldset)) {
-			HTMLCS.addMessage(HTMLCS.ERROR, fieldset, _global.translation["1_3_1_H71.NoLegend"], 'H71.NoLegend');
+			HTMLCS.addMessage(HTMLCS.ERROR, fieldset, _global.HTMLCS.getTranslation("1_3_1_H71.NoLegend"), 'H71.NoLegend');
 		}
 	},
 
@@ -660,7 +660,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
 
 		if (optgroup === null) {
 			// Optgroup isn't being used.
-			HTMLCS.addMessage(HTMLCS.WARNING, select, _global.translation["1_3_1_H85.2"], 'H85.2');
+			HTMLCS.addMessage(HTMLCS.WARNING, select, _global.HTMLCS.getTranslation("1_3_1_H85.2"), 'H85.2');
 		}
 	},
 
@@ -703,7 +703,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
 				// Multiple names detected = should be in a fieldset.
 				// Either first instance or this one wasn't in a fieldset, or they
 				// are in different fieldsets.
-				HTMLCS.addMessage(HTMLCS.WARNING, form, _global.translation["1_3_1_H71.SameName"], 'H71.SameName');
+				HTMLCS.addMessage(HTMLCS.WARNING, form, _global.HTMLCS.getTranslation("1_3_1_H71.SameName"), 'H71.SameName');
 				break;
 			}//end if
 		}//end for
@@ -757,11 +757,11 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
 			for (var i = 0; i < items.length; i++) {
 				if (/^[\-*]\s+/.test(items[0]) === true) {
 					// Test for "- " or "* " cases.
-					HTMLCS.addMessage(HTMLCS.WARNING, element,  _global.translation["1_3_1_H48.1"], 'H48.1');
+					HTMLCS.addMessage(HTMLCS.WARNING, element,  _global.HTMLCS.getTranslation("1_3_1_H48.1"), 'H48.1');
 					break;
 				} if (/^\d+[:\/\-.]?\s+/.test(items[0]) === true) {
 					// Test for "1 " cases (or "1. ", "1: ", "1- ").
-					HTMLCS.addMessage(HTMLCS.WARNING, element, _global.translation["1_3_1_H48.2"], 'H48.2');
+					HTMLCS.addMessage(HTMLCS.WARNING, element, _global.HTMLCS.getTranslation("1_3_1_H48.2"), 'H48.2');
 					break;
 				}
 			}//end for
@@ -779,10 +779,10 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
 				if (lastHeading === 0) {
 					// If last heading is empty, we are at document top and we are
 					// expecting a H1, generally speaking.
-                    HTMLCS.addMessage(level, headings[i], _global.translation["1_3_1_G141_a"].replace(/\{\{headingNum\}\}/g, headingNum), 'G141');
+                    HTMLCS.addMessage(level, headings[i], _global.HTMLCS.getTranslation("1_3_1_G141_a").replace(/\{\{headingNum\}\}/g, headingNum), 'G141');
 				}
 
-                HTMLCS.addMessage(level, headings[i], _global.translation["1_3_1_G141_b"].replace(/\{\{headingNum\}\}/g, headingNum).replace(/\{\{properHeadingNum\}\}/g, lastHeading + 1), 'G141');
+                HTMLCS.addMessage(level, headings[i], _global.HTMLCS.getTranslation("1_3_1_G141_b").replace(/\{\{headingNum\}\}/g, headingNum).replace(/\{\{properHeadingNum\}\}/g, lastHeading + 1), 'G141');
 			}
 
 			lastHeading = headingNum;
@@ -800,7 +800,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
 		var text = HTMLCS.util.getElementTextContent(element, true);
 
 		if (/^\s*$/.test(text) === true) {
-			HTMLCS.addMessage(HTMLCS.ERROR, element, _global.translation["1_3_1_H42.2"], 'H42.2');
+			HTMLCS.addMessage(HTMLCS.ERROR, element, _global.HTMLCS.getTranslation("1_3_1_H42.2"), 'H42.2');
 		}
 	},
 
@@ -836,7 +836,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
 			}
 
 			if (parent === null) {
-				HTMLCS.addMessage(HTMLCS.WARNING, element, _global.translation["1_3_1_H48"], 'H48');
+				HTMLCS.addMessage(HTMLCS.WARNING, element, _global.HTMLCS.getTranslation("1_3_1_H48"), 'H48');
 			}
 		}//end if
 	},
@@ -851,9 +851,9 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
 	 */
 	testGeneralTable: function(table) {
 		if (HTMLCS.util.isLayoutTable(table) === true) {
-			HTMLCS.addMessage(HTMLCS.NOTICE, table, _global.translation["1_3_1_LayoutTable"], 'LayoutTable');
+			HTMLCS.addMessage(HTMLCS.NOTICE, table, _global.HTMLCS.getTranslation("1_3_1_LayoutTable"), 'LayoutTable');
 		} else {
-            HTMLCS.addMessage(HTMLCS.NOTICE, table, _global.translation["1_3_1_DataTable"], 'DataTable');
+            HTMLCS.addMessage(HTMLCS.NOTICE, table, _global.HTMLCS.getTranslation("1_3_1_DataTable"), 'DataTable');
 		}
 	}
 };

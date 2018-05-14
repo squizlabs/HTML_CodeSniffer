@@ -35,7 +35,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_1_3_1_2 = {
     process: function(element, top)
     {
         // Generic message for changes in language.
-        HTMLCS.addMessage(HTMLCS.NOTICE, top,  _global.translation["3_1_2_H58"], 'H58');
+        HTMLCS.addMessage(HTMLCS.NOTICE, top,  _global.HTMLCS.getTranslation("3_1_2_H58"), 'H58');
 
         // Alias the SC 3.1.1 object, which contains our "valid language tag" test.
         var sc3_1_1 = HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_1_3_1_1;
@@ -58,14 +58,14 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_1_3_1_2 = {
                 if (langEl.hasAttribute('lang') === true) {
                     var lang = langEl.getAttribute('lang');
                     if (sc3_1_1.isValidLanguageTag(lang) === false) {
-                        HTMLCS.addMessage(HTMLCS.ERROR, langEl, _global.translation["3_1_2_H58.1.Lang"], 'H58.1.Lang');
+                        HTMLCS.addMessage(HTMLCS.ERROR, langEl, _global.HTMLCS.getTranslation("3_1_2_H58.1.Lang"), 'H58.1.Lang');
                     }
                 }
 
                 if (langEl.hasAttribute('xml:lang') === true) {
                     var lang = langEl.getAttribute('xml:lang');
                     if (sc3_1_1.isValidLanguageTag(lang) === false) {
-                        HTMLCS.addMessage(HTMLCS.ERROR, langEl, _global.translation["3_1_2_H58.1.XmlLang"], 'H58.1.XmlLang');
+                        HTMLCS.addMessage(HTMLCS.ERROR, langEl, _global.HTMLCS.getTranslation("3_1_2_H58.1.XmlLang"), 'H58.1.XmlLang');
                     }
                 }
             }//end if

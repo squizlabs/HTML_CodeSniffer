@@ -90,7 +90,7 @@ if (system.args.length < 2 || system.args.length > 2) {
             assertion = testData.assertions[assert];
             for (var i = 0; i < messages.length; i++) {
                 thisMsg = messages[i];
-                if (assertion.level === thisMsg[0]) {
+                if (assertion.level.toLowerCase() === thisMsg[0].toLowerCase()) {
                     if (assertion.code.test(thisMsg[1]) === true) {
                         if (assertion.id === thisMsg[3]) {
                             assertion.triggered = true;
