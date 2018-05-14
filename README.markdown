@@ -74,7 +74,7 @@ recent (or slightly less than recent) versions of Safari.
 
 See the <code>Contrib/PhantomJS/HTMLCS_Run.js</code> file for more information.
 
-#### Node & JSDom.
+#### Node & JSDom
 
 HTML_CodeSniffer requires a dom to run, however, it is possible to run it entirely
 server side without a headless browser using Node on arbitrary fragments of HTML using
@@ -101,6 +101,21 @@ jsdom.env({
     }
 });
 ```
+
+### Translations
+
+HTML_CodeSniffer supports _very_ basic string translations. The auditor will use the current language of the document it is being run in (e.g. `<html lang="en">`). A language code can be supplied if you need to tell HTML_CodeSniffer which language you want to use.
+
+Example usage:
+```javascript
+HTMLCSAuditor.run('WCAG2AA', null, {
+  lang: 'pl'
+});
+```
+
+**Note:** HTML_CodeSniffer only has english (default) and polish language.
+
+If other language support is required a custom version can be built by adding more translations in `Translations/<code>.js` and using the grunt build process described above.
 
 ### Contributing and reporting issues
 
