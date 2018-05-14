@@ -29,14 +29,25 @@ _global.HTMLCS = new function()
     this.WARNING = 2;
     this.NOTICE  = 3;
 
+    // The current language to use.
+    this.lang = 'en';
+
     /**
      * Loads the specified standard and run the sniffs.
      *
-     * @param {String}      standard The name of the standard to load.
-     * @param {String|Node} An HTML string or a DOM node object.
-     * @param {Function}    The function that will be called when the testing is completed.
+     * @param {String}      standard     The name of the standard to load.
+     * @param {String|Node} content      An HTML string or a DOM node object.
+     * @param {Function}    callback     The function that will be called when the testing is completed.
+     * @param {Function}    failCallback The fail callback which will be called if the standard load has failed.
+     * @param {String}      language     The language to use for text output.
      */
-    this.process = function(standard, content, callback, failCallback) {
+    this.process = function(
+        standard,
+        content,
+        callback,
+        failCallback,
+        language
+    ) {
         // Clear previous runs.
         _standards    = {};
         _sniffs       = [];
@@ -47,12 +58,33 @@ _global.HTMLCS = new function()
             return false;
         }
 
+        // Set a language to use.
+        var languages = Object.keys(_global.translation);
+        if (language && languages.indexOf(language) !== -1) {
+            this.lang = language;
+        }
+
         if (_standards[_getStandardPath(standard)]) {
             HTMLCS.run(callback, content);
         } else {
             this.loadStandard(standard, function() {
                 HTMLCS.run(callback, content);
             }, failCallback);
+        }
+    };
+
+    /**
+     * Gets a translation for a text value.
+     *
+     * @param {String} text The text to get the translation for.
+     *
+     * @return {String}
+     */
+    this.getTranslation = function(text) {
+        try {
+            return _global.translation[this.lang][text];
+        } catch (e) {
+            throw new Error('Translation for "' + text + '" does not exist in current language ' + this.lang);
         }
     };
 

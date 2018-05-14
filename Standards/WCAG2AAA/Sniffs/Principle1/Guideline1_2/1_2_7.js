@@ -40,7 +40,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_2_1_2_7 = {
     process: function(element, top)
     {
         // Check for elements that could potentially contain video.
-        HTMLCS.addMessage(HTMLCS.NOTICE, element, 'If this embedded object contains synchronised media, and where pauses in foreground audio is not sufficient to allow audio descriptions to convey the sense of pre-recorded video, check that an extended audio description is provided, either through scripting or an alternate version.', 'G8');
+        HTMLCS.addMessage(HTMLCS.NOTICE, element,  _global.HTMLCS.getTranslation("1_2_7_G8"), 'G8');
 
     }
 };

@@ -46,7 +46,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_1_2_1_1 = {
                     HTMLCS.addMessage(
                         HTMLCS.WARNING,
                         elem,
-                        'Ensure the functionality provided by an event handler for this element is available through the keyboard',
+                        _global.HTMLCS.getTranslation("2_1_1_G90"),
                         'G90'
                     );
                 }
@@ -54,32 +54,32 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_1_2_1_1 = {
 
             var dblClickEls = HTMLCS.util.getAllElements(top, '*[ondblclick]');
             for (var i = 0; i < dblClickEls.length; i++) {
-                HTMLCS.addMessage(HTMLCS.WARNING, dblClickEls[i], 'Ensure the functionality provided by double-clicking on this element is available through the keyboard.', 'SCR20.DblClick');
+                HTMLCS.addMessage(HTMLCS.WARNING, dblClickEls[i], _global.HTMLCS.getTranslation("2_1_1_SCR20.DblClick"), 'SCR20.DblClick');
             }
 
             var mouseOverEls = HTMLCS.util.getAllElements(top, '*[onmouseover]');
             for (var i = 0; i < mouseOverEls.length; i++) {
-                HTMLCS.addMessage(HTMLCS.WARNING, mouseOverEls[i], 'Ensure the functionality provided by mousing over this element is available through the keyboard; for instance, using the focus event.', 'SCR20.MouseOver');
+                HTMLCS.addMessage(HTMLCS.WARNING, mouseOverEls[i], _global.HTMLCS.getTranslation("2_1_1_SCR20.MouseOver"), 'SCR20.MouseOver');
             }
 
             var mouseOutEls = HTMLCS.util.getAllElements(top, '*[onmouseout]');
             for (var i = 0; i < mouseOutEls.length; i++) {
-                HTMLCS.addMessage(HTMLCS.WARNING, mouseOutEls[i], 'Ensure the functionality provided by mousing out of this element is available through the keyboard; for instance, using the blur event.', 'SCR20.MouseOut');
+                HTMLCS.addMessage(HTMLCS.WARNING, mouseOutEls[i],  _global.HTMLCS.getTranslation("2_1_1_SCR20.MouseOut"), 'SCR20.MouseOut');
             }
 
             var mouseMoveEls = HTMLCS.util.getAllElements(top, '*[onmousemove]');
             for (var i = 0; i < mouseMoveEls.length; i++) {
-                HTMLCS.addMessage(HTMLCS.WARNING, mouseMoveEls[i], 'Ensure the functionality provided by moving the mouse on this element is available through the keyboard.', 'SCR20.MouseMove');
+                HTMLCS.addMessage(HTMLCS.WARNING, mouseMoveEls[i], _global.HTMLCS.getTranslation("2_1_1_SCR20.MouseMove"), 'SCR20.MouseMove');
             }
 
             var mouseDownEls = HTMLCS.util.getAllElements(top, '*[onmousedown]');
             for (var i = 0; i < mouseDownEls.length; i++) {
-                HTMLCS.addMessage(HTMLCS.WARNING, mouseDownEls[i], 'Ensure the functionality provided by mousing down on this element is available through the keyboard; for instance, using the keydown event.', 'SCR20.MouseDown');
+                HTMLCS.addMessage(HTMLCS.WARNING, mouseDownEls[i], _global.HTMLCS.getTranslation("2_1_1_SCR20.MouseDown"), 'SCR20.MouseDown');
             }
 
             var mouseUpEls = HTMLCS.util.getAllElements(top, '*[onmouseup]');
             for (var i = 0; i < mouseUpEls.length; i++) {
-                HTMLCS.addMessage(HTMLCS.WARNING, mouseUpEls[i], 'Ensure the functionality provided by mousing up on this element is available through the keyboard; for instance, using the keyup event.', 'SCR20.MouseUp');
+                HTMLCS.addMessage(HTMLCS.WARNING, mouseUpEls[i], _global.HTMLCS.getTranslation("2_1_1_SCR20.MouseUp"), 'SCR20.MouseUp');
             }
         }
 

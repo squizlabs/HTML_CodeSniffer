@@ -19,7 +19,7 @@ var HTMLCS_RUNNER = _global.HTMLCS_RUNNER = new function() {
         }, function() {
             console.log('Something in HTML_CodeSniffer failed to parse. Cannot run.');
             console.log('done');
-        });
+        }, 'en');
     };
 
     this.output = function(msg) {
@@ -27,15 +27,15 @@ var HTMLCS_RUNNER = _global.HTMLCS_RUNNER = new function() {
         var typeName = 'UNKNOWN';
         switch (msg.type) {
             case HTMLCS.ERROR:
-                typeName = 'ERROR';
+                typeName = _global.HTMLCS.getTranslation("auditor_error");
             break;
 
             case HTMLCS.WARNING:
-                typeName = 'WARNING';
+                typeName = _global.HTMLCS.getTranslation("auditor_warning");
             break;
 
             case HTMLCS.NOTICE:
-                typeName = 'NOTICE';
+                typeName = _global.HTMLCS.getTranslation("auditor_notice");
             break;
         }//end switch
 

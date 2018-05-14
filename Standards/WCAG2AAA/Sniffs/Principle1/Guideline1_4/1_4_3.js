@@ -63,26 +63,26 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3 = {
                 var recommendText = [];
                 if (recommend) {
                     if (recommend.fore.from !== recommend.fore.to) {
-                        recommendText.push('text colour to ' + recommend.fore.to);
+                        recommendText.push(_global.HTMLCS.getTranslation("1_4_3_G18_or_G145.Fail.Recomendation.Text") + ' ' + recommend.fore.to);
                     }
                     if (recommend.back.from !== recommend.back.to) {
-                        recommendText.push('background to ' + recommend.back.to);
+                        recommendText.push(_global.HTMLCS.getTranslation("1_4_3_G18_or_G145.Fail.Recomendation.Background") + ' ' + recommend.back.to);
                     }
                 }//end if
 
                 if (recommendText.length > 0) {
-                    recommendText = ' Recommendation: change ' + recommendText.join(', ') + '.';
+                    recommendText = ' ' + _global.HTMLCS.getTranslation("1_4_3_G18_or_G145.Fail.Recomendation") + ' ' + recommendText.join(', ') + '.';
                 }
 
                 if (isAbsolute === true) {
                     code += '.Abs';
-                    HTMLCS.addMessage(HTMLCS.WARNING, element, 'This element is absolutely positioned and the background color can not be determined. Ensure the contrast ratio between the text and all covered parts of the background are at least ' + required + ':1.', code);
+                    HTMLCS.addMessage(HTMLCS.WARNING, element, _global.HTMLCS.getTranslation("1_4_3_G18_or_G145.Abs").replace(/\{\{required\}\}/g, required), code);
                 } else if (hasBgImg === true) {
                     code += '.BgImage';
-                    HTMLCS.addMessage(HTMLCS.WARNING, element, 'This element\'s text is placed on a background image. Ensure the contrast ratio between the text and all covered parts of the image are at least ' + required + ':1.', code);
+                    HTMLCS.addMessage(HTMLCS.WARNING, element,  _global.HTMLCS.getTranslation("1_4_3_G18_or_G145.BgImage").replace(/\{\{required\}\}/g, required), code);
                 } else {
                     code += '.Fail';
-                    HTMLCS.addMessage(HTMLCS.ERROR, element, 'This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least ' + required + ':1, but text in this element has a contrast ratio of ' + value + ':1.' + recommendText, code);
+                    HTMLCS.addMessage(HTMLCS.ERROR, element, _global.HTMLCS.getTranslation("1_4_3_G18_or_G145.Fail").replace(/\{\{required\}\}/g, required).replace(/\{\{value\}\}/g, value) + recommendText, code);
                 }//end if
             }//end for
         }//end if

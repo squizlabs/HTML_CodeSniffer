@@ -69,7 +69,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_2_3_2_2 = {
             HTMLCS.addMessage(
                 HTMLCS.ERROR,
                 form,
-                'This form does not contain a submit button, which creates issues for those who cannot submit the form using the keyboard. Submit buttons are INPUT elements with type attribute "submit" or "image", or BUTTON elements with type "submit" or omitted/invalid.',
+                _global.HTMLCS.getTranslation("3_2_2_H32.2"),
                 'H32.2'
             );
         }
