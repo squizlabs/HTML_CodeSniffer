@@ -48,7 +48,7 @@ module.exports = (grunt)->
           footer: grunt.file.read('Contrib/Build/umd-footer.js')
         files:
           'build/HTMLCS.js': [
-            'Translations/<%= pkg.lang %>.js'
+            'Translations/*.js'
             'Standards/**/*.js'
             'HTMLCS.js'
             'HTMLCS.Util.js'
