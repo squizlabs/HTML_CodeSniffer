@@ -14,7 +14,21 @@ The previous version was generally based on the pull request number used to upda
 Version numbers have been applied retrospectively based on the size or significance of the update; the
 old version number is in brackets.
 
-## <a id="2.1.0"></a>Version 2.1.0 (30 May 2017)
+## <a id="2.2.0"></a>Version 2.2.0 (14 May 2017)
+
+- **Features**
+    - Basic string translation has been added and can be invoked in the Auditor via detection of the language in `<html lang="{string}">` by default, or being specifically provided a language code in the Auditor options (see README.markdown).
+
+- **Fixes**
+    - #160 - Allow unmatched elements for 4.1.2 which are role='button' to use aria labels to pass as valid names for an accessibility API. This will trigger on any element using that role.
+    - #210 - Added 'range' to the list of input types that are tested for labels.
+    - #209 - Changed wrapping input label to detect any parent <label> rather than just a direct parent.
+    - #191 - Now test for aria-hidden on element with role=presentation assigned and all parent nodes before checking any child elements that have semantic meaning.
+    - #204 - Tests for table headers now restricted to elements that belong to the table being tested rather than including possible child tables.
+    - #201 - No longer store and report on duplicate ids if the id is empty.
+    - #208 - No longer throws an obscure error when required by a node module.
+
+## <a id="2.1.1"></a>Version 2.1.1 (12 Sep 2017)
 
 - **Fixes**
     - #160 Now allow hyperlinks to use aria-label to describe their alternative values.
