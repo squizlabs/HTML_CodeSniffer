@@ -23,6 +23,11 @@ HTML\_CodeSniffer can be called in multiple ways:
   letting you browse through messages emitted from one of the defined standards. 
   Where possible, the auditor also points you to the HTML element causing the problem.
 * It can also be run on the command line with the assistance of a headless browser app.
+* Using npm:
+```
+$ npm i -g npm
+$ npm i --save html_codesniffer
+```
 
 ### Licence
 
