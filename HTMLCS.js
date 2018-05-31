@@ -286,6 +286,8 @@ _global.HTMLCS = new function()
             }
         }//end while
 
+        _messages = _messages.concat(topMsgs);
+
         // Due to filtering of presentation roles for general sniffing these need to be handled
         // separately. The 1.3.1 sniff needs to run to detect any incorrect usage of the presentation
         // role.

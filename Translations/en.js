@@ -35,6 +35,7 @@ _global.translation['en'] = {
   ,"auditor_view_the_changelog" : 'View the changelog'
   ,"auditor_success_criterion" : "Success Criterion"
   ,"auditor_suggested_techniques" : "Suggested Techniques"
+  ,"auditor_applies_entire_document" : "This applies to the entire document"
 
   //1_1_1.js
   ,"1_1_1_H30.2" : 'Img element is the only content of the link, but is missing alt text. The alt text should describe the purpose of the link.'

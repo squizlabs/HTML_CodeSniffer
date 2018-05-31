@@ -816,7 +816,9 @@ _global.HTMLCSAuditor = new function()
             msgElementSourceInner.className = _prefix + 'issue-source-inner-u2p';
             var msg = _global.HTMLCS.getTranslation('auditor_unable_to_point');
 
-            if (message.element.ownerDocument === null) {
+            if (message.element.nodeName === '#document') {
+                msg = _global.HTMLCS.getTranslation('auditor_applies_entire_document');
+            } else if (message.element.ownerDocument === null) {
                 msg = _global.HTMLCS.getTranslation('auditor_unable_to_point_removed');
             } else {
                 var body = message.element.ownerDocument.getElementsByTagName('body')[0];
@@ -943,12 +945,14 @@ _global.HTMLCSAuditor = new function()
                 msgElementSourceInner.appendChild(msgElementSourceMain);
                 msgElementSourceInner.appendChild(_doc.createTextNode(postText));
                 msgElementSource.appendChild(msgElementSourceInner);
+            } else if (message.element.nodeName === '#document') {
+                // Show nothing, it's the document root.
             } else {
                 // No support for outerHTML.
                 var msgElementSourceInner       = _doc.createElement('div');
                 msgElementSourceInner.className = _prefix + 'issue-source-not-supported';
 
-                var nsText = 'The code snippet functionality is not supported in this browser.';
+                var nsText = _global.HTMLCS.getTranslation('auditor_unsupported_browser');
 
                 msgElementSourceInner.appendChild(_doc.createTextNode(nsText));
                 msgElementSource.appendChild(msgElementSourceInner);

@@ -35,6 +35,7 @@ _global.translation['pl'] = {
   ,"auditor_view_the_changelog" : 'Zobacz dziennik zmian'
   ,"auditor_success_criterion" : "Kryteria sukcesu"
   ,"auditor_suggested_techniques" : "Sugerowane techniki"
+  ,"auditor_applies_entire_document" : "Dotyczy to całego dokumentu"
 
   //1_1_1.js
   ,"1_1_1_H30.2" : 'Grafika jest jedyną treścią linku i powinna zostać uzupełniona o opis alternatywny opisujący jego funkcję.'
