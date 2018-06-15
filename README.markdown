@@ -88,24 +88,25 @@ an environment wrapper like [JSDom](https://github.com/tmpvar/jsdom).
 
 An example node script:
 ```javascript
-var jsdom  = require('jsdom');
-var fs     = require('fs');
+var jsdom = require('jsdom');
+var { JSDOM } = jsdom;
+var fs = require('fs');
 
-var vConsole = jsdom.createVirtualConsole();
+var htmlSniffer = fs.readFileSync('./build/HTMLCS.js', 'utf-8');
+var vConsole = new jsdom.VirtualConsole();
 
 // Forward messages to the console.
 vConsole.on('log', function(message) {
-    console.log(message);
-})
-
-jsdom.env({
-    html: '<img src="test.png" />',
-    src: [fs.readFileSync('./build/HTMLCS.js')],
-    virtualConsole: vConsole,
-    done: function (err, window) {
-        window.HTMLCS_RUNNER.run('WCAG2AA');
-    }
+    console.log(message)
 });
+
+var dom = new JSDOM('<img src="test.png" />', {
+    runScripts: "dangerously",
+    virtualConsole: vConsole
+});
+
+dom.window.eval(htmlSniffer);
+dom.window.HTMLCS_RUNNER.run('WCAG2AA');
 ```
 
 ### Translations
