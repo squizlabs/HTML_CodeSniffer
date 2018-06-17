@@ -84,28 +84,29 @@ See the <code>Contrib/PhantomJS/HTMLCS_Run.js</code> file for more information.
 
 HTML_CodeSniffer requires a dom to run, however, it is possible to run it entirely
 server side without a headless browser using Node on arbitrary fragments of HTML using
-an environment wrapper like [JSDom](https://github.com/tmpvar/jsdom).
+an environment wrapper like [JSDom](https://github.com/jsdom/jsdom).
 
 An example node script:
 ```javascript
-var jsdom  = require('jsdom');
-var fs     = require('fs');
+var jsdom = require('jsdom');
+var { JSDOM } = jsdom;
+var fs = require('fs');
 
-var vConsole = jsdom.createVirtualConsole();
+var HTMLCS = fs.readFileSync('./build/HTMLCS.js', 'utf-8');
+var vConsole = new jsdom.VirtualConsole();
 
 // Forward messages to the console.
 vConsole.on('log', function(message) {
-    console.log(message);
-})
-
-jsdom.env({
-    html: '<img src="test.png" />',
-    src: [fs.readFileSync('./build/HTMLCS.js')],
-    virtualConsole: vConsole,
-    done: function (err, window) {
-        window.HTMLCS_RUNNER.run('WCAG2AA');
-    }
+    console.log(message)
 });
+
+var dom = new JSDOM('<img src="test.png" />', {
+    runScripts: "dangerously",
+    virtualConsole: vConsole
+});
+
+dom.window.eval(HTMLCS);
+dom.window.HTMLCS_RUNNER.run('WCAG2AA');
 ```
 
 ### Translations
