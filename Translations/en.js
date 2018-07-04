@@ -177,6 +177,7 @@ _global.translation['en'] = {
   //1_4_3.js
   ,"1_4_3_G18_or_G145.Abs" : 'This element is absolutely positioned and the background color can not be determined. Ensure the contrast ratio between the text and all covered parts of the background are at least {{required}}:1.'
   ,"1_4_3_G18_or_G145.BgImage" : 'This element\'s text is placed on a background image. Ensure the contrast ratio between the text and all covered parts of the image are at least {{required}}:1.'
+  ,"1_4_3_G18_or_G145.Alpha" : 'This element\'s text or background contains transparency. Ensure the contrast ratio between the text and background are at least {{required}}:1.'
   ,"1_4_3_G18_or_G145.Fail" : 'This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least {{required}}:1, but text in this element has a contrast ratio of {{value}}:1.'
   ,"1_4_3_G18_or_G145.Fail.Recomendation" : 'Recommendation: change'
   ,"1_4_3_G18_or_G145.Fail.Recomendation.Text" : 'text colour to'

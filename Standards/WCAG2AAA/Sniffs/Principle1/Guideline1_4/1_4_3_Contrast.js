@@ -23,7 +23,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
             var toProcess = [];
             var body = top.getElementsByTagName('body');
             if (body.length) {
-                //SVG objects will not have a body element. Don't check them.
+                // SVG objects will not have a body element. Don't check them.
                 var toProcess = [body[0]];
             }
         } else {
@@ -99,8 +99,8 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
                                 isAbsolute = true;
                             }
 
-                            //Search for the smooth scrolling willChange: 'transform' background hack
-                            //See http://fourkitchens.com/blog/article/fix-scrolling-performance-css-will-change-property
+                            // Search for the smooth scrolling willChange: 'transform' background hack
+                            // See http://fourkitchens.com/blog/article/fix-scrolling-performance-css-will-change-property
                             var beforeStyle = HTMLCS.util.style(parent, ':before');
                             if (
                                 beforeStyle
@@ -119,15 +119,31 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
                             parent = parent.parentNode;
                         }//end while
 
-                        if (bgColour && bgColour.indexOf('rgba') === 0) {
-                            bgColour = HTMLCS.util.RGBtoColourStr(HTMLCS.util.rgbaBackgroundToRgb(bgColour, bgElement));
-                        }
-
-                        if (foreColour && foreColour.indexOf('rgba') === 0) {
-                            foreColour = HTMLCS.util.RGBtoColourStr(HTMLCS.util.rgbaBackgroundToRgb(foreColour, node));
-                        }
-
-                        if (hasBgImg === true) {
+                        if (bgColour && HTMLCS.util.colourStrToRGB(bgColour).alpha < 1.0) {
+                            // If we have a rgba background colour, skip the contrast ratio checks,
+                            // and push a warning instead.
+                            failures.push({
+                                element: node,
+                                colour: foreColour,
+                                bgColour: bgColour,
+                                value: undefined,
+                                required: reqRatio,
+                                hasAlpha: true,
+                            });
+                            continue;
+                        } else if (foreColour && HTMLCS.util.colourStrToRGB(foreColour).alpha < 1.0) {
+                            // If we have a rgba fore colour, skip the contrast ratio checks,
+                            // and push a warning instead.
+                            failures.push({
+                                element: node,
+                                colour: foreColour,
+                                bgColour: foreColour,
+                                value: undefined,
+                                required: reqRatio,
+                                hasAlpha: true
+                            });
+                            continue;
+                        } else if (hasBgImg === true) {
                             // If we have a background image, skip the contrast ratio checks,
                             // and push a warning instead.
                             failures.push({
