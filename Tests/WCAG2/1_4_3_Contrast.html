@@ -7,6 +7,8 @@ Name: SC 1.4.3 Contrast
 Standard: WCAG2AA
 Assert: Error *.G18.Fail on #basicContrastFail
 Assert: No Error *.G18 on #issue155
+Assert: Warning *.G145.Alpha on #rgba
+Assert: Warning *.G18.Alpha on #rgba2
 -->
 </head>
 <body>
@@ -14,6 +16,15 @@ Assert: No Error *.G18 on #issue155
 <p id="basicContrastFail" style="color: #222; background-color: #000;">Basic failing text</p>
 
 <p>Sample: <span id="issue155" style="color: #7c7cff; background-color: #ffffff; font-size: 14pt; font-weight: bold;">I am 14pt bold text and should pass</span></p>
+
+<div>Warning: <div id="pr134" style="color: #7c7cff; background-color: #0000000C; font-size: 14pt; font-weight: bold;">I am 14pt bold text on a transparent background and should generate a warning</div></div>
+
+<div>Warning RGBA: <div id="rgba" style="color: #7c7cff; background-color: rgba(0,0,0,0.5); font-size: 14pt; font-weight: bold;">I am 14pt bold text on a transparent background and should generate a warning</div></div>
+
+<div style="background-color: #ccc">
+    <span>Warning RBGA in BG</span>
+    <div id="rgba2" style="background-color: rgba(0,0,0,0.2);">Text</div>
+</div>
 
 </body>
 </html>

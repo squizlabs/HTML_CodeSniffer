@@ -191,14 +191,15 @@ _global.HTMLCS.util = function() {
      *
      * @returns {Object}
      */
-    self.style = function(element) {
+    self.style = function(element, pseudo) {
         var computedStyle = null;
         var window        = self.getElementWindow(element);
+        var pseudo        = pseudo || null;
 
         if (element.currentStyle) {
             computedStyle = element.currentStyle;
         } else if (window.getComputedStyle) {
-            computedStyle = window.getComputedStyle(element, null);
+            computedStyle = window.getComputedStyle(element, pseudo);
         }
 
         return computedStyle;
@@ -240,7 +241,7 @@ _global.HTMLCS.util = function() {
      * Returns true if the element is deliberately hidden from Accessibility APIs using ARIA hidden.
      *
      * Not: This is separate to isAccessibilityHidden() due to a need to check specifically for aria hidden.
-     * 
+     *
      * @param {Node} element The element to check.
      *
      * @return {Boolean}
@@ -397,7 +398,7 @@ _global.HTMLCS.util = function() {
      * Returns all elements that are visible to the accessibility API.
      *
      * @param {Node}   element  The parent element to search.
-     * @param {String} selector Optional selector to pass to 
+     * @param {String} selector Optional selector to pass to
      *
      * @return {Array}
      */
@@ -533,10 +534,9 @@ _global.HTMLCS.util = function() {
     }
 
     /**
-     * Convert a colour string to a structure with red/green/blue elements.
+     * Convert a colour string to a structure with red/green/blue/alpha elements.
      *
-     * Supports rgb() and hex colours (3 or 6 hex digits, optional "#").
-     * rgba() also supported but the alpha channel is currently ignored.
+     * Supports rgb() and hex colours (3, 4, 6 or 8 hex digits, optional "#").
      * Each red/green/blue element is in the range [0.0, 1.0].
      *
      * @param {String} colour The colour to convert.
@@ -552,7 +552,11 @@ _global.HTMLCS.util = function() {
             colour = {
                 red: (matches[1] / 255),
                 green: (matches[2] / 255),
-                blue: (matches[3] / 255)
+                blue: (matches[3] / 255),
+                alpha: 1.0
+            };
+            if (matches[4]) {
+                colour.alpha = parseFloat(/^,\s*(.*)$/.exec(matches[4])[1]);
             }
         } else {
             // Hex digit format.
@@ -564,10 +568,20 @@ _global.HTMLCS.util = function() {
                 colour = colour.replace(/^(.)(.)(.)$/, '$1$1$2$2$3$3');
             }
 
+            if (colour.length === 4) {
+                colour = colour.replace(/^(.)(.)(.)(.)$/, '$1$1$2$2$3$3$4$4');
+            }
+
+            var alpha = 1; // Default if alpha is not specified
+            if (colour.length === 8) {
+                alpha = parseInt(colour.substr(6, 2), 16) / 255;
+            }
+
             colour = {
                 red: (parseInt(colour.substr(0, 2), 16) / 255),
                 green: (parseInt(colour.substr(2, 2), 16) / 255),
-                blue: (parseInt(colour.substr(4, 2), 16) / 255)
+                blue: (parseInt(colour.substr(4, 2), 16) / 255),
+                alpha: alpha,
             };
         }
 
