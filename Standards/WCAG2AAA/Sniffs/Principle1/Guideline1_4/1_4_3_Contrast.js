@@ -119,7 +119,10 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
                             parent = parent.parentNode;
                         }//end while
 
-                        if (bgColour && HTMLCS.util.colourStrToRGB(bgColour).alpha < 1.0) {
+                        var bgAlpha = HTMLCS.util.colourStrToRGB(bgColour).alpha;
+                        var fgAlpha = HTMLCS.util.colourStrToRGB(foreColour).alpha;
+
+                        if (bgColour && bgAlpha < 1.0 && bgAlpha > 0) {
                             // If we have a rgba background colour, skip the contrast ratio checks,
                             // and push a warning instead.
                             failures.push({
@@ -131,7 +134,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
                                 hasAlpha: true,
                             });
                             continue;
-                        } else if (foreColour && HTMLCS.util.colourStrToRGB(foreColour).alpha < 1.0) {
+                        } else if (foreColour && fgAlpha < 1.0 && fgAlpha > 0) {
                             // If we have a rgba fore colour, skip the contrast ratio checks,
                             // and push a warning instead.
                             failures.push({
