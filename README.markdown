@@ -143,3 +143,11 @@ More information on HTML_CodeSniffer can be found on its GitHub site,
 - Information on the tests performed (and messages emitted) by HTML_CodeSniffer's standards, organised by conformance level and Success Criterion;
 - A source test area that allows you to try out HTML_CodeSniffer with your own HTML source code; and
 - A link to the HTML_CodeSniffer bookmarklet, letting you check other pages using the pop-up auditor interface.
+
+
+## Translation Contributors
+
+Special thanks to:
+
+* [nsulzycki](https://github.com/nsulzycki) (Polish Translation)
+* [dmassini](https://github.com/dmassiani) (French Translation)
