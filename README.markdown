@@ -150,4 +150,4 @@ More information on HTML_CodeSniffer can be found on its GitHub site,
 Special thanks to:
 
 * [nsulzycki](https://github.com/nsulzycki) (Polish Translation)
-* [dmassini](https://github.com/dmassiani) (French Translation)
+* [dmassiani](https://github.com/dmassiani) (French Translation)
