@@ -1111,8 +1111,7 @@ _global.HTMLCS.util = function() {
                     if (thisCell.nodeType === 1) {
                         // Skip columns that are skipped due to rowspan.
                         if (skipCells[rownum]) {
-                            while (skipCells[rownum][0] === colnum) {
-                                skipCells[rownum].shift();
+                            while (skipCells[rownum][colnum]) {
                                 colnum++;
                             }
                         }
@@ -1130,7 +1129,7 @@ _global.HTMLCS.util = function() {
                                 }
 
                                 for (var j = colnum; j < colnum + colspan; j++) {
-                                    skipCells[i].push(j);
+                                    skipCells[i][j] = true;
                                 }
                             }
                         }
