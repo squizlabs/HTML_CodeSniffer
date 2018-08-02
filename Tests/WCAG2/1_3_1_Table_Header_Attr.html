@@ -7,6 +7,12 @@ Name: SC 1.3.1 Table Heading Attributes
 Standard: WCAG2AAA
 Assert: No Error *.H43.IncorrectAttr on #correctTableHeaders
 Assert: No Error *.H43.IncorrectAttr on #correctTableHeadersComplexRowspan
+Assert: No Error *.H43.ScopeAmbiguous on #correctTableHeadersComplexRowspan
+Assert: No Error *.H43.HeadersRequired on #correctTableHeadersComplexRowspan
+Assert: No Error *.H43.MissingHeaderIds on #correctTableHeadersComplexRowspan
+Assert: No Error *.H43.MissingHeadersAttrs on #correctTableHeadersComplexRowspan
+Assert: No Error *.H63.1 on #correctTableHeadersComplexRowspan
+Assert: No Error *.H43,H63 on #correctTableHeadersComplexRowspan
 -->
 </head>
 <body>
@@ -61,7 +67,7 @@ Assert: No Error *.H43.IncorrectAttr on #correctTableHeadersComplexRowspan
         <tbody>
             <tr>
                 <td rowspan="2" headers="h1-0">1.0</td>
-                <td headers="h13-1-5 h2-1">1.1.1</td>
+                <td headers="h1-1-5 h2-1">1.1.1</td>
                 <td headers="h1-1-5 h2-2">1.2.1</td>
                 <td headers="h1-1-5 h2-3">1.3.1</td>
                 <td headers="h1-1-5 h2-4">1.4.1</td>
