@@ -1170,7 +1170,11 @@ _global.HTMLCS.util = function() {
                                 }//end for
 
                                 if (exp.length > 0) {
-                                    exp = ' ' + exp.sort().join(' ') + ' ';
+                                    // Sort and filter expected ids by unique value.
+                                    var filteredExp = exp.sort().filter(function(value, index, self) {
+                                        return self.indexOf(value) === index;
+                                    });
+                                    exp = ' ' + filteredExp.join(' ') + ' ';
                                     exp = exp.replace(/\s+/g, ' ').replace(/(\w+\s)\1+/g, '$1').replace(/^\s*(.*?)\s*$/g, '$1');
                                     cells.push({
                                         cell: thisCell,
