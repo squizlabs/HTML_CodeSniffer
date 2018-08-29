@@ -218,6 +218,12 @@ _global.HTMLCS.util = function() {
     self.isVisuallyHidden = function(element) {
         var hidden = false;
 
+        // Handle titles in svg as a special visually hidden case (hidden by browsers but
+        // available to accessibility apis.
+        if (element.nodeName.toLowerCase() === 'title' && self.findParentNode(element, 'svg') !== null) {
+            return true;
+        }
+
         // Do not point to elem if its hidden. Use computed styles.
         var style = self.style(element);
         if (style !== null) {
