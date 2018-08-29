@@ -66,6 +66,28 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_2_3_2_2 = {
         }//end if
 
         if (ok === false) {
+            // Look for buttons with form attributes, outside of the form.
+            if (form.id) {
+                var externalButtons = document.querySelectorAll('button[form], input[form][type=submit], input[form][type=image]');
+                externalButtons.forEach(
+                    function(el) {
+                        // Check they aren't reset buttons, or normal buttons.
+                        switch (el.getAttribute('type')) {
+                            case 'reset':
+                            case 'button':
+                                return;
+                        }
+
+                        // Confirm they are associated with the form.
+                        if (el.attributes['form'].value === form.id) {
+                          ok = true;
+                        }
+                    }
+                );
+            }
+        }
+
+        if (ok === false) {
             HTMLCS.addMessage(
                 HTMLCS.ERROR,
                 form,

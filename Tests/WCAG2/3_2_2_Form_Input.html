@@ -7,6 +7,7 @@ Name: SC 3.2.2 Form Input
 Standard: WCAG2AAA
 Assert: Error *.H32.2 on #missingSubmit
 Assert: No Error *.H32.2 on #defaultSubmitType
+Assert: No Error *.H32.2 on #externalSubmitType
 -->
 </head>
 <body>
@@ -16,6 +17,9 @@ Assert: No Error *.H32.2 on #defaultSubmitType
 <form id="defaultSubmitType">
     <button>Submit</button>
 </form>
+
+<form id="externalSubmitType"></form>
+<button form="externalSubmitType">Submit</button>
 
 </body>
 </html>
