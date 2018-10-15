@@ -19,6 +19,7 @@
   },
   "homepage": "http://squizlabs.github.io/HTML_CodeSniffer/",
   "dependencies": {
+    "file-saver": "^2.0.0-rc.3",
     "grunt": "^1.0.0",
     "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-jshint": "^1.0.0",
