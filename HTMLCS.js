@@ -11,6 +11,45 @@
  *
  */
 
+
+ /**
+  *  Runs the sniffs and downloads the results to a text file 
+  *  
+  */
+_global.downloadHTMLCS = function () {
+
+    function q(s) {
+        return '"' + (s || "").toString().replace(/"/g, '""') + '"';
+    }
+
+    function elementToString(element) {
+        if(!element) {
+            return "";
+        }
+        var html = element.outerHTML;
+        if (!html) {
+            return "";
+        }
+        if (html.length > 100) { 
+            return html.substring(0, 100) + "..."; 
+        }
+        return html;
+    }
+
+    HTMLCS.run(function() { 
+
+        var header = '"Type", Code","Message","Element","Data"';
+        var body = this.getMessages().map(function (m) {
+            return [m.type, q(m.code), q(m.msg), q(elementToString(m.element)), q(m.data)].join(",")
+        }).join("\n");
+        var csvContents = header + "\n" + body;
+
+        var filename = "HTML_Codesniffer" + Math.random() + ".csv";
+
+        saveAs(new Blob([csvContents], { type: "text/plain;charset=utf-8" }), filename);
+    })
+}
+
 _global.HTMLCS = new function()
 {
     var _standards    = {};
@@ -22,8 +61,9 @@ _global.HTMLCS = new function()
     var _messages     = [];
     var _msgOverrides = {};
 
+    
     /*
-        Message type constants.
+        Message type constants. 
     */
     this.ERROR   = 1;
     this.WARNING = 2;
@@ -243,6 +283,7 @@ _global.HTMLCS = new function()
      * @returns {Array} Array of message objects.
      */
     this.getMessages = function() {
+
         return _messages.concat([]);
     };
 

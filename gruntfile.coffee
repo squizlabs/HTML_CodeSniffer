@@ -27,7 +27,8 @@ module.exports = (grunt)->
             'HTMLCS.js'
             'HTMLCS.Util.js'
             'Contrib/PhantomJS/runner.js'
-            'Auditor/HTMLCSAuditor.js'
+            'Auditor/HTMLCSAuditor.js',
+            'node_modules/file-saver/dist/FileSaver.js'
           ]
       dist:
         options:
@@ -40,7 +41,8 @@ module.exports = (grunt)->
             'HTMLCS.js'
             'HTMLCS.Util.js'
             'Contrib/PhantomJS/runner.js'
-            'Auditor/HTMLCSAuditor.js'
+            'Auditor/HTMLCSAuditor.js',
+            'node_modules/file-saver/dist/FileSaver.js'
           ],
       bookmarklet:
         options:
@@ -53,7 +55,8 @@ module.exports = (grunt)->
             'HTMLCS.js'
             'HTMLCS.Util.js'
             'Contrib/PhantomJS/runner.js'
-            'Auditor/Auditor_with_beacon.js'
+            'Auditor/Auditor_with_beacon.js',
+            'node_modules/file-saver/dist/FileSaver.js'
           ],
 
     copy:

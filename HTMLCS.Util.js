@@ -13,6 +13,13 @@
 _global.HTMLCS.util = function() {
     var self = {};
 
+    /** 
+     * Work around a bug in FileSaver.js
+     * 
+     * https://github.com/eligrey/FileSaver.js/issues/475
+     */
+    window.module = window.module || {};
+
     /**
      * Trim off excess spaces on either side.
      *
