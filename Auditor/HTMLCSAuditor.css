@@ -219,6 +219,13 @@
 
 #HTMLCS-wrapper .HTMLCS-summary-right {
   text-align: right;
+  color: #000;
+  font-size: 1.35em;
+  line-height: 2.1em;
+  text-overflow: ellipsis;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+  white-space: nowrap;
+  cursor: pointer;
 }
 
 #HTMLCS-wrapper .HTMLCS-outer-wrapper {
@@ -901,6 +908,49 @@
     filter: alpha(opacity=40);
     opacity: 0.4;
 }
+
+
+
+#HTMLCS-wrapper #HTMLCS-settings-download {
+    background-color: #3A3940;
+    border: 1px solid #2B2B2B;
+    border-radius: 0.3em 0.3em 0.3em 0.3em;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 0 rgba(255, 255, 255, 0.15), 0 -1.4em 1.6em rgba(0, 0, 0, 0.4) inset;
+    color: #FFF;
+    cursor: pointer;
+    font-size: 1.9em;
+    line-height: 3em;
+    position: relative;
+    text-shadow: 0 -1px 0 #000;
+    -moz-transition: opacity 0.3s ease;
+    -webkit-transition: opacity 0.3s ease;
+    opacity: 1;
+    text-align: center;
+}
+
+#HTMLCS-wrapper #HTMLCS-settings-download:after {
+    background: url("Images/HTMLCS-tools.png") no-repeat scroll 0 -108px transparent;
+    content: "";
+    height: 14px;
+    margin-top: -7px;
+    position: absolute;
+    right: 1em;
+    top: 50%;
+    width: 9px;
+}
+
+#HTMLCS-wrapper #HTMLCS-settings-download:hover {
+    background-color: #2B2B2B;
+}
+
+#HTMLCS-wrapper.HTMLCS-processing #HTMLCS-settings-download,
+#HTMLCS-wrapper #HTMLCS-settings-download.disabled {
+    cursor: default;
+    filter: alpha(opacity=40);
+    opacity: 0.4;
+}
+
+
 
 #HTMLCS-wrapper .HTMLCS-button.disabled {
     cursor: default;
