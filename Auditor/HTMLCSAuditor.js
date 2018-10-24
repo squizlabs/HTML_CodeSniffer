@@ -197,7 +197,7 @@ _global.HTMLCSAuditor = new function()
         };
 
         _doc.onmouseup = function(e) {
-            var maxHeight = window.innerHeight - 30;
+            var maxHeight = window.innerHeight - e.clientHeight;
             
             if (mouseX > maxHeight) {
                 wrapper.style.top = maxHeight + 'px';
