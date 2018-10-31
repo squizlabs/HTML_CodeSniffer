@@ -20,7 +20,7 @@ HTML\_CodeSniffer can be called in multiple ways:
 * Called directly in JavaScript source, HTML_CodeSniffer will provide a list of known
   and potential violations to the calling script.
 * It also comes with a pop-up auditor interface, accessible via a bookmarklet,
-  letting you browse through messages emitted from one of the defined standards. 
+  letting you browse through messages emitted from one of the defined standards.
   Where possible, the auditor also points you to the HTML element causing the problem.
 * It can also be run on the command line with the assistance of a headless browser app.
 * Using npm:
@@ -41,10 +41,10 @@ please see the file "licence.txt".
 The HTML\_CodeSniffer auditor can be built using [node.js](https://nodejs.org/) and the Grunt
 tasker (http://gruntjs.com/). It has been tested with the latest version of node.js
 (at time of writing: version 6.0) and Grunt, but should also work with recent
-earlier versions. 
+earlier versions.
 
 * Install node.js with your package manager of choice.
-* You may need to update the Node.js package manager (npm) itself: 
+* You may need to update the Node.js package manager (npm) itself:
   <code>npm update -g npm</code>
 * Install the Grunt CLI helper if you haven't already done so:  
   <code>npm install -g grunt-cli</code>
@@ -52,7 +52,7 @@ earlier versions.
   <code>npm install</code>
 * Run Grunt to build the auditor:
   <code>grunt build</code>
-  
+
 You should see two new directories: <code>node_modules</code> (containing the node.js
 dependencies), and <code>build</code> (containing your auditor). You can then move
 (or symlink as appropriate) your <code>build</code> directory to a web-accessible
@@ -66,7 +66,7 @@ replace the directory at the start (//squizlabs.github.io/HTML_CodeSniffer/build
 If you are developing using HTML\_CodeSniffer and require the code not minified for
 debugging purposes, follow the above steps, but run <code>grunt build-debug</code>
 (instead of just build). This will combine the files as normal, but not minify them.
-  
+
 ### Command-Line processing
 
 **Note:** These examples assume a built version of HTMLCS exported to `./build/HTMLCS.js`
@@ -75,10 +75,47 @@ debugging purposes, follow the above steps, but run <code>grunt build-debug</cod
 
 You will need [PhantomJS](http://www.phantomjs.org/) installed if you wish to
 use the contributed command-line script. PhantomJS provides a headless Webkit-based
-browser to run the scripts in, so it should provide results that are similar to 
+browser to run the scripts in, so it should provide results that are similar to
 recent (or slightly less than recent) versions of Safari.
 
 See the <code>Contrib/PhantomJS/HTMLCS_Run.js</code> file for more information.
+
+#### Headless Google Chrome via Puppeteer
+
+[Puppeteer](https://developers.google.com/web/tools/puppeteer/get-started) offers an
+easy way to interact with the page via Google Chrome.
+
+This example assumes that there is the latest version of Google Chrome installed,
+hence only the `puppeteer-core` will be needed:
+
+```sh
+npm i puppeteer-core
+```
+
+The test script assumes a recent version of Node.js to be available.
+
+```javascript
+const puppeteer = require('puppeteer-core');
+
+(async () => {
+  const browser = await puppeteer.launch({
+    executablePath: 'Google Chrome binary location'
+  });
+  const page = await browser.newPage();
+  page.on('console', msg => console.log(msg.text()));
+
+  await page.goto('web site URL');
+
+  await page.addScriptTag({
+    path: 'build/HTMLCS.js'
+  });
+  await page.evaluate(function () {
+    HTMLCS_RUNNER.run('WCAG2AA');
+  });
+
+  await browser.close();
+})();
+```
 
 #### Node & JSDom
 
