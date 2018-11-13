@@ -2,11 +2,8 @@
 module.exports = function (grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('./package.json'),
-        jshint: {
-            options: {
-                jshintrc: '.jshintrc'
-            },
-            all: ['Standards/**/*.js', 'Contrib/PhantomJS/*.js']
+        eslint: {
+            target: ['Standards/**/*.js', 'Contrib/PhantomJS/*.js']
         },
         uglify: {
             debug: {
@@ -68,19 +65,13 @@ module.exports = function (grunt) {
                     }
                 ]
             }
-        },
-        watch: {
-            jade: {
-                files: ['<%= jshint.all %>'],
-                tasks: ['jshint:all']
-            }
         }
     });
 
     grunt.file.setBase('./');
     require('load-grunt-tasks')(grunt);
 
-    grunt.registerTask('default', ['jshint']);
+    grunt.registerTask('default', ['eslint']);
     grunt.registerTask('build', ['uglify:dist', 'copy:dist']);
     grunt.registerTask('build-bookmarklet', ['uglify:bookmarklet', 'copy:dist']);
 

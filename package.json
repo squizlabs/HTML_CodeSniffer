@@ -20,10 +20,10 @@
   },
   "homepage": "http://squizlabs.github.io/HTML_CodeSniffer/",
   "dependencies": {
-    "grunt": "^1.0.0",
+    "grunt": "^1.0.3",
     "grunt-contrib-copy": "^1.0.0",
-    "grunt-contrib-jshint": "^1.0.0",
     "grunt-contrib-watch": "^1.0.0",
+    "grunt-eslint": "^21.0.0",
     "load-grunt-tasks": "^3.5.2"
   },
   "devDependencies": {
