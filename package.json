@@ -8,8 +8,19 @@
     "htmlcs"
   ],
   "scripts": {
+    "prepack": "grunt build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "files": [
+    "Auditor",
+    "build",
+    "Contrib",
+    "Standards",
+    "Translations",
+    "HTMLCS.js",
+    "HTMLCS.Util.js",
+    "index.js"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/squizlabs/HTML_CodeSniffer.git"
@@ -19,14 +30,12 @@
     "url": "https://github.com/squizlabs/HTML_CodeSniffer/issues"
   },
   "homepage": "http://squizlabs.github.io/HTML_CodeSniffer/",
-  "dependencies": {
+  "devDependencies": {
     "grunt": "^1.0.3",
     "grunt-contrib-copy": "^1.0.0",
-    "grunt-contrib-watch": "^1.0.0",
     "grunt-eslint": "^21.0.0",
-    "load-grunt-tasks": "^3.5.2"
-  },
-  "devDependencies": {
-    "grunt-contrib-uglify": "^2.3.0"
+    "grunt-contrib-watch": "^1.1.0",
+    "load-grunt-tasks": "^4.0.0",
+    "grunt-contrib-uglify": "^4.0.0"
   }
 }
