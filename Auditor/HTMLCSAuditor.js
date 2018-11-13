@@ -197,6 +197,14 @@ _global.HTMLCSAuditor = new function()
         };
 
         _doc.onmouseup = function(e) {
+            var maxHeight = window.innerHeight - e.clientHeight;
+            
+            if (mouseX > maxHeight) {
+                wrapper.style.top = maxHeight + 'px';
+            } else if (mouseX < 0) {
+                wrapper.style.top = 0 + 'px';
+            }
+            
             dragging = false;
         };
 
