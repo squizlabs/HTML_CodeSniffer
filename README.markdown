@@ -188,3 +188,7 @@ Special thanks to:
 
 * [nsulzycki](https://github.com/nsulzycki) (Polish Translation)
 * [dmassiani](https://github.com/dmassiani) (French Translation)
+
+## License
+
+Licensed under [the BSD 3-Clause "New" or "Revised" License](https://opensource.org/licenses/BSD-3-Clause).

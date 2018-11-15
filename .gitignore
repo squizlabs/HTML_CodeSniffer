@@ -5,6 +5,7 @@ package-lock.json
 build/
 node_modules/
 Auditor/Auditor_with_beacon.js
+*.tgz
 
 # OS generated files #
 ######################
