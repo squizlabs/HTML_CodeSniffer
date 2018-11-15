@@ -437,6 +437,7 @@ _global.HTMLCS_WCAG2AAA = {
         }
 
         var successCritStr = ['<a href="http://www.w3.org/TR/WCAG20/#' + successCritList[successCrit].landmark, '" target="_blank">', successCrit, ': ', successCritList[successCrit].name, '</a>'].join('');
+        /* eslint-disable-next-line no-unused-vars */
         var principleStr   = ['<a href="', principles[principle].link, '" target="_blank">', principles[principle].name, '</a>'].join('');
         var retval = [
             [_global.HTMLCS.getTranslation("auditor_success_criterion"), successCritStr],

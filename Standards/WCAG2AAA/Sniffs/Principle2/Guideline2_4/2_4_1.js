@@ -145,6 +145,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_4_2_4_1 = {
                         }
                     }
                 } catch (ex) {
+                    // Ignore error
                 }//end try
             }//end if
         }

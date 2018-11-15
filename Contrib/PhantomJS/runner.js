@@ -1,3 +1,4 @@
+/* exported HTMLCS_RUNNER */
 var HTMLCS_RUNNER = _global.HTMLCS_RUNNER = new function() {
     this.run = function(standard, callback) {
         var self = this;

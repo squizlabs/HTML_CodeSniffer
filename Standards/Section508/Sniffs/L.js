@@ -71,16 +71,17 @@ _global.HTMLCS_Section508_Sniffs_L = {
 
         for (var el = 0; el < elements.length; el++) {
             var element = elements[el];
-
-            var nameFound = false;
             var hrefFound = false;
             var content   = HTMLCS.util.getElementTextContent(element);
 
+            /*
+            var nameFound = false;
             if ((element.hasAttribute('title') === true) && (/^\s*$/.test(element.getAttribute('title')) === false)) {
                 nameFound = true;
             } else if (/^\s*$/.test(content) === false) {
                 nameFound = true;
             }
+            */
 
             if ((element.hasAttribute('href') === true) && (/^\s*$/.test(element.getAttribute('href')) === false)) {
                 hrefFound = true;

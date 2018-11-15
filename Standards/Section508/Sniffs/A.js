@@ -241,7 +241,6 @@ _global.HTMLCS_Section508_Sniffs_A = {
 
         for (var el = 0; el < elements.length; el++) {
             var element  = elements[el];
-            var nodeName = element.nodeName.toLowerCase();
 
             var childObject = element.querySelector('object');
 

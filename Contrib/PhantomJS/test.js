@@ -1,4 +1,4 @@
-let data = '';
+var data = '';
 
 process.stdin.resume();
 process.stdin.setEncoding('utf8');
@@ -15,8 +15,8 @@ function toHTML(obj) {
 }
 
 process.stdin.on('end', function() {
-    let issues = JSON.parse(data);
-    let html = `<table>
+    var issues = JSON.parse(data);
+    var html = `<table>
         <thead>
             <tr>
                 <th>Code</th>

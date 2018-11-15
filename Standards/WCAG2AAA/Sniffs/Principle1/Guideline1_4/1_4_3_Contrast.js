@@ -14,9 +14,6 @@
 _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
     testContrastRatio: function (top, minContrast, minLargeContrast)
     {
-        var startDate = new Date();
-        var count     = 0;
-        var xcount    = 0;
         var failures  = [];
 
         if (!top.ownerDocument) {
@@ -54,7 +51,6 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
                     if (style) {
                         var bgColour   = style.backgroundColor;
                         var foreColour = style.color;
-                        var bgElement  = node;
                         var hasBgImg   = false;
                         var isAbsolute = false;
 
@@ -91,7 +87,6 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
 
                             var parentStyle = HTMLCS.util.style(parent);
                             var bgColour    = parentStyle.backgroundColor;
-                            var bgElement   = parent;
                             if (parentStyle.backgroundImage !== 'none') {
                                 hasBgImg = true;
                             }
@@ -227,7 +222,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
             }
 
             var hsv     = HTMLCS.util.sRGBtoHSV(newCol);
-            var chroma  = hsv.saturation * hsv.value;
+            // var chroma  = hsv.saturation * hsv.value;
             var newFore = fore;
             var newBack = back;
             var changed = false;
@@ -268,7 +263,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
                         }
 
                         hsv     = HTMLCS.util.sRGBtoHSV(hsv);
-                        chroma  = hsv.saturation * hsv.value;
+                        // chroma  = hsv.saturation * hsv.value;
                         changed = true;
                     }
                 }

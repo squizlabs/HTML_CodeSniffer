@@ -219,7 +219,6 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
 
         // Firstly, work out whether it needs a label.
         var needsLabel = false;
-        var labelPos   = 'left';
         var inputType  = inputType.toLowerCase();
         if ((inputType === 'select' || inputType === 'textarea')) {
             needsLabel = true;
@@ -755,11 +754,11 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
             }
 
             for (var i = 0; i < items.length; i++) {
-                if (/^[\-*]\s+/.test(items[0]) === true) {
+                if (/^[-*]\s+/.test(items[0]) === true) {
                     // Test for "- " or "* " cases.
                     HTMLCS.addMessage(HTMLCS.WARNING, element,  _global.HTMLCS.getTranslation("1_3_1_H48.1"), 'H48.1');
                     break;
-                } if (/^\d+[:\/\-.]?\s+/.test(items[0]) === true) {
+                } if (/^\d+[:/\-.]?\s+/.test(items[0]) === true) {
                     // Test for "1 " cases (or "1. ", "1: ", "1- ").
                     HTMLCS.addMessage(HTMLCS.WARNING, element, _global.HTMLCS.getTranslation("1_3_1_H48.2"), 'H48.2');
                     break;
@@ -775,7 +774,6 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
         for (var i = 0; i < headings.length; i++) {
             var headingNum = parseInt(headings[i].nodeName.substr(1, 1));
             if (headingNum - lastHeading > 1) {
-                var exampleMsg = 'should be an h' + (lastHeading + 1) + ' to be properly nested';
                 if (lastHeading === 0) {
                     // If last heading is empty, we are at document top and we are
                     // expecting a H1, generally speaking.
@@ -813,7 +811,6 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
 	 */
     testUnstructuredNavLinks: function(element)
     {
-        var nodeName    = element.nodeName.toLowerCase();
         var linksLength = 0;
 
         var childNodes  = element.childNodes;

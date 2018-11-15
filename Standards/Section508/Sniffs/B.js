@@ -39,7 +39,6 @@ _global.HTMLCS_Section508_Sniffs_B = {
      */
     process: function(element, top)
     {
-        var nodeName = element.nodeName.toLowerCase();
         HTMLCS.addMessage(HTMLCS.NOTICE, element, 'For multimedia containing video, ensure a synchronised audio description or text alternative for the video portion is provided.', 'Video');
         HTMLCS.addMessage(HTMLCS.NOTICE, element, 'For multimedia containing synchronised audio and video, ensure synchronised captions are provided for the audio portion.', 'Captions');
 
