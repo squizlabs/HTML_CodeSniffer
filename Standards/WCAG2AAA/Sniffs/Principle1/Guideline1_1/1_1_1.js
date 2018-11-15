@@ -44,9 +44,9 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
             var nodeName = element.nodeName.toLowerCase();
 
             switch (nodeName) {
-                case 'img':
-                    this.testLinkStutter(element);
-                    this.testLongdesc(element);
+            case 'img':
+                this.testLinkStutter(element);
+                this.testLongdesc(element);
                 break;
             }//end if
         }//end if
@@ -171,47 +171,47 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
 
             // Now determine which test(s) should fire.
             switch (nodeName) {
-                case 'img':
-                    if ((linkOnlyChild === true) && ((missingAlt === true) || (nullAlt === true))) {
-                        // Img tags cannot have an empty alt text if it is the
-                        // only content in a link (as the link would not have a text
-                        // alternative).
-                        errors.img.emptyAltInLink.push(element.parentNode);
-                    } else if (missingAlt === true) {
-                        errors.img.missingAlt.push(element);
-                    } else if (nullAlt === true) {
-                        if ((element.hasAttribute('title') === true) && (HTMLCS.util.isStringEmpty(element.getAttribute('title')) === false)) {
-                            // Title attribute present and not empty. This is wrong when
-                            // an image is marked as ignored.
-                            errors.img.nullAltWithTitle.push(element);
-                        } else {
-                            errors.img.ignored.push(element);
-                        }
+            case 'img':
+                if ((linkOnlyChild === true) && ((missingAlt === true) || (nullAlt === true))) {
+                    // Img tags cannot have an empty alt text if it is the
+                    // only content in a link (as the link would not have a text
+                    // alternative).
+                    errors.img.emptyAltInLink.push(element.parentNode);
+                } else if (missingAlt === true) {
+                    errors.img.missingAlt.push(element);
+                } else if (nullAlt === true) {
+                    if ((element.hasAttribute('title') === true) && (HTMLCS.util.isStringEmpty(element.getAttribute('title')) === false)) {
+                        // Title attribute present and not empty. This is wrong when
+                        // an image is marked as ignored.
+                        errors.img.nullAltWithTitle.push(element);
                     } else {
-                        errors.img.generalAlt.push(element);
+                        errors.img.ignored.push(element);
                     }
+                } else {
+                    errors.img.generalAlt.push(element);
+                }
                 break;
 
-                case 'input':
-                    // Image submit buttons.
-                    if ((missingAlt === true) || (nullAlt === true)) {
-                        errors.inputImage.missingAlt.push(element);
-                    } else {
-                        errors.inputImage.generalAlt.push(element);
-                    }
+            case 'input':
+                // Image submit buttons.
+                if ((missingAlt === true) || (nullAlt === true)) {
+                    errors.inputImage.missingAlt.push(element);
+                } else {
+                    errors.inputImage.generalAlt.push(element);
+                }
                 break;
 
-                case 'area':
-                    // Area tags in a client-side image map.
-                    if ((missingAlt === true) || (nullAlt === true)) {
-                        errors.area.missingAlt.push(element);
-                    } else {
-                        errors.inputImage.generalAlt.push(element);
-                    }
+            case 'area':
+                // Area tags in a client-side image map.
+                if ((missingAlt === true) || (nullAlt === true)) {
+                    errors.area.missingAlt.push(element);
+                } else {
+                    errors.inputImage.generalAlt.push(element);
+                }
                 break;
 
-                default:
-                    // No other tags defined.
+            default:
+                // No other tags defined.
                 break;
             }//end switch
         }//end for
@@ -262,7 +262,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
                     text: HTMLCS.util.getElementTextContent(anchor, false),
                     alt: this._getLinkAltText(anchor)
                 }
-            }
+            };
 
             if (nodes.anchor.alt === null) {
                 nodes.anchor.alt = '';
@@ -293,7 +293,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
                         href: prevLink.getAttribute('href'),
                         text: HTMLCS.util.getElementTextContent(prevLink, false),
                         alt: this._getLinkAltText(prevLink)
-                    }
+                    };
 
                     if (nodes.previous.alt === null) {
                         nodes.previous.alt = '';
@@ -305,7 +305,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
                         href: nextLink.getAttribute('href'),
                         text: HTMLCS.util.getElementTextContent(nextLink, false),
                         alt: this._getLinkAltText(nextLink)
-                    }
+                    };
 
                     if (nodes.next.alt === null) {
                         nodes.next.alt = '';

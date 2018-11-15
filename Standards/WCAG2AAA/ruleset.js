@@ -75,20 +75,20 @@ _global.HTMLCS_WCAG2AAA = {
             'Principle1': {
                 name: 'Perceivable',
                 link: 'http://www.w3.org/TR/WCAG20/#perceivable'
-               },
+            },
             'Principle2': {
                 name: 'Operable',
                 link: 'http://www.w3.org/TR/WCAG20/#operable'
-               },
+            },
             'Principle3': {
                 name: 'Understandable',
                 link: 'http://www.w3.org/TR/WCAG20/#understandable'
-               },
+            },
             'Principle4': {
                 name: 'Robust',
                 link: 'http://www.w3.org/TR/WCAG20/#robust'
-               }
-        }
+            }
+        };
 
         /**
          * List of success criteria, their links in the WCAG20 doc, and their

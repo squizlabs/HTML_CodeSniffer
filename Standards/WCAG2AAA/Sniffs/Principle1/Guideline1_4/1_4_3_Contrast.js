@@ -295,7 +295,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
                     from: back,
                     to: newBack
                 }
-            }
+            };
         }//end if
 
         return recommendation;
@@ -323,4 +323,4 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
         var newColour = HTMLCS.util.RGBtoColourStr(HTMLCS.util.HSVtosRGB(hsvColour));
         return newColour;
     }
-}
+};

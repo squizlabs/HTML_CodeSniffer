@@ -45,13 +45,13 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_4_2_4_1 = {
             var nodeName = element.nodeName.toLowerCase();
 
             switch (nodeName) {
-                case 'iframe':
-                    this.testIframeTitle(element);
+            case 'iframe':
+                this.testIframeTitle(element);
                 break;
 
-                case 'a':
-                case 'area':
-                    this.testSameDocFragmentLinks(element, top);
+            case 'a':
+            case 'area':
+                this.testSameDocFragmentLinks(element, top);
                 break;
             }
         }

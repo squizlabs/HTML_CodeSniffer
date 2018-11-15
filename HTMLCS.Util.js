@@ -537,7 +537,7 @@ _global.HTMLCS.util = function() {
 
         var lum = ((transformed.red * 0.2126) + (transformed.green * 0.7152) + (transformed.blue * 0.0722));
         return lum;
-    }
+    };
 
     /**
      * Convert a colour string to a structure with red/green/blue/alpha elements.
@@ -722,34 +722,34 @@ _global.HTMLCS.util = function() {
             var interCol    = chroma * (1 - Math.abs(interHueMod - 1));
 
             switch(Math.floor(interHue)) {
-                case 0:
-                    colour.red   = chroma;
-                    colour.green = interCol;
+            case 0:
+                colour.red   = chroma;
+                colour.green = interCol;
                 break;
 
-                case 1:
-                    colour.green = chroma;
-                    colour.red   = interCol;
+            case 1:
+                colour.green = chroma;
+                colour.red   = interCol;
                 break;
 
-                case 2:
-                    colour.green = chroma;
-                    colour.blue  = interCol;
+            case 2:
+                colour.green = chroma;
+                colour.blue  = interCol;
                 break;
 
-                case 3:
-                    colour.blue  = chroma;
-                    colour.green = interCol;
+            case 3:
+                colour.blue  = chroma;
+                colour.green = interCol;
                 break;
 
-                case 4:
-                    colour.blue = chroma;
-                    colour.red  = interCol;
+            case 4:
+                colour.blue = chroma;
+                colour.red  = interCol;
                 break;
 
-                case 5:
-                    colour.red  = chroma;
-                    colour.blue = interCol;
+            case 5:
+                colour.red  = chroma;
+                colour.blue = interCol;
                 break;
             }//end switch
 
@@ -846,7 +846,7 @@ _global.HTMLCS.util = function() {
         while (node && node.parentNode) {
             cb(node);
             node = node.parentNode;
-        };
+        }
     };
 
 
@@ -918,7 +918,7 @@ _global.HTMLCS.util = function() {
             missingThId: [],
             missingTd: [],
             wrongHeaders: []
-        }
+        };
 
         var rows      = self.getChildrenForTable(element, 'tr');
         var tdCells   = {};
@@ -932,7 +932,7 @@ _global.HTMLCS.util = function() {
         var multiHeaders = {
             rows: 0,
             cols: 0
-        }
+        };
         var missingIds = false;
 
         for (var rownum = 0; rownum < rows.length; rownum++) {
@@ -1051,7 +1051,7 @@ _global.HTMLCS.util = function() {
                             element: cell,
                             expected: expected,
                             actual: (cell.getAttribute('headers') || '')
-                        }
+                        };
                         retval.wrongHeaders.push(val);
                     }
                 }//end if
