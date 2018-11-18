@@ -80,6 +80,43 @@ recent (or slightly less than recent) versions of Safari.
 
 See the <code>Contrib/PhantomJS/HTMLCS_Run.js</code> file for more information.
 
+#### Headless Google Chrome via Puppeteer
+
+[Puppeteer](https://developers.google.com/web/tools/puppeteer/get-started) offers an
+easy way to interact with the page via Google Chrome.
+
+This example assumes that there is the latest version of Google Chrome installed,
+hence only the `puppeteer-core` will be needed:
+
+```sh
+npm i puppeteer-core
+```
+
+The test script assumes a recent version of Node.js to be available.
+
+```javascript
+const puppeteer = require('puppeteer-core');
+
+(async () => {
+  const browser = await puppeteer.launch({
+    executablePath: 'Google Chrome binary location'
+  });
+  const page = await browser.newPage();
+  page.on('console', msg => console.log(msg.text()));
+
+  await page.goto('web site URL');
+
+  await page.addScriptTag({
+    path: 'build/HTMLCS.js'
+  });
+  await page.evaluate(function () {
+    HTMLCS_RUNNER.run('WCAG2AA');
+  });
+
+  await browser.close();
+})();
+```
+
 #### Node & JSDom
 
 HTML_CodeSniffer requires a dom to run, however, it is possible to run it entirely
