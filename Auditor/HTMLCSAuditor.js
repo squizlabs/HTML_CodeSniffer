@@ -238,7 +238,7 @@ _global.HTMLCSAuditor = new function()
 
         var rightPane       = _doc.createElement('div');
         rightPane.className = _prefix + 'summary-right';
-        rightPane.onclick = _global.downloadHTMLCS;
+        rightPane.onclick   = HTMLCS.downloadCSV;
         summary.appendChild(rightPane);
 
         var leftContents = [];

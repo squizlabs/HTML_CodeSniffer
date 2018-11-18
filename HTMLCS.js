@@ -12,44 +12,6 @@
  */
 
 
- /**
-  *  Runs the sniffs and downloads the results to a text file 
-  *  
-  */
-_global.downloadHTMLCS = function () {
-
-    function q(s) {
-        return '"' + (s || "").toString().replace(/"/g, '""') + '"';
-    }
-
-    function elementToString(element) {
-        if(!element) {
-            return "";
-        }
-        var html = element.outerHTML;
-        if (!html) {
-            return "";
-        }
-        if (html.length > 100) { 
-            return html.substring(0, 100) + "..."; 
-        }
-        return html;
-    }
-
-    HTMLCS.run(function() { 
-
-        var header = '"Type", Code","Message","Element","Data"';
-        var body = this.getMessages().map(function (m) {
-            return [m.type, q(m.code), q(m.msg), q(elementToString(m.element)), q(m.data)].join(",")
-        }).join("\n");
-        var csvContents = header + "\n" + body;
-
-        var filename = "HTML_Codesniffer" + Math.random() + ".csv";
-
-        saveAs(new Blob([csvContents], { type: "text/plain;charset=utf-8" }), filename);
-    })
-}
-
 _global.HTMLCS = new function()
 {
     var _standards    = {};
@@ -61,7 +23,6 @@ _global.HTMLCS = new function()
     var _messages     = [];
     var _msgOverrides = {};
 
-    
     /*
         Message type constants. 
     */
@@ -657,5 +618,43 @@ _global.HTMLCS = new function()
         } else {
             document.getElementsByTagName('head')[0].appendChild(script);
         }
+    };
+
+
+    /**
+     * Run the auditor and trigger a download of the result as CSV.
+     */
+    this.downloadCSV = function () {
+
+        function q(s) {
+            return '"' + (s || "").toString().replace(/"/g, '""') + '"';
+        }
+    
+        function elementToString(element) {
+            if(!element) {
+                return "";
+            }
+            var html = element.outerHTML;
+            if (!html) {
+                return "";
+            }
+            if (html.length > 100) { 
+                return html.substring(0, 100) + "..."; 
+            }
+            return html;
+        }
+    
+        HTMLCS.run(function() { 
+    
+            var header = '"Type", Code","Message","Element","Data"';
+            var body = this.getMessages().map(function (m) {
+                return [m.type, q(m.code), q(m.msg), q(elementToString(m.element)), q(m.data)].join(",")
+            }).join("\n");
+            var csvContents = header + "\n" + body;
+    
+            var filename = 'HTML_Codesniffer' + Math.random() + '.csv';
+    
+            saveAs(new Blob([csvContents], { type: 'text/plain;charset=utf-8' }), filename);
+        });
     };
 };
