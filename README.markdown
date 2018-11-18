@@ -97,18 +97,29 @@ The test script assumes a recent version of Node.js to be available.
 ```javascript
 const puppeteer = require('puppeteer-core');
 
+// Replace with the path to the chrome executable in your file system. This one assumes MacOSX.
+const executablePath = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
+
+// Replace with the url you wish to test.
+const url = 'https://www.squiz.net';
+
 (async () => {
   const browser = await puppeteer.launch({
-    executablePath: 'Google Chrome binary location'
+    executablePath
   });
-  const page = await browser.newPage();
-  page.on('console', msg => console.log(msg.text()));
 
-  await page.goto('web site URL');
+  const page = await browser.newPage();
+
+  page.on('console', msg => {
+    console.log(msg.text())
+  });
+  
+  await page.goto(url);
 
   await page.addScriptTag({
     path: 'build/HTMLCS.js'
   });
+
   await page.evaluate(function () {
     HTMLCS_RUNNER.run('WCAG2AA');
   });
