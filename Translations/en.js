@@ -9,6 +9,7 @@ _global.translation['en'] = {
     ,"auditor_select_types" : 'Select the types of issues to include in the report'
     ,"auditor_home" : 'Home'
     ,"auditor_view_report" : 'View Report'
+    ,"auditor_download_report": 'Download Report'
     ,"auditor_report" : 'Report'
     ,"auditor_back_to_report" : 'Back to Report'
     ,"auditor_previous_issue" : 'Previous Issue'

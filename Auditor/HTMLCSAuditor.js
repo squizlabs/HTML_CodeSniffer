@@ -238,6 +238,7 @@ _global.HTMLCSAuditor = new function()
 
         var rightPane       = _doc.createElement('div');
         rightPane.className = _prefix + 'summary-right';
+        rightPane.onclick = _global.downloadHTMLCS;
         summary.appendChild(rightPane);
 
         var leftContents = [];
@@ -298,7 +299,7 @@ _global.HTMLCSAuditor = new function()
         lineage.appendChild(lineageTotalsItem);
         leftPane.appendChild(lineage);
 
-        rightPane.appendChild(_doc.createTextNode(String.fromCharCode(160)));
+        rightPane.appendChild(_doc.createTextNode('CSV'));
 
         return summary;
     };
