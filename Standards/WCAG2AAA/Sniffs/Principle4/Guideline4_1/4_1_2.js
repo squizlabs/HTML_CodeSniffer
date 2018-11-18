@@ -170,7 +170,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
             input_image: ['@alt', '@title', '@aria-label', '@aria-labelledby'],
             select: ['label', '@title', '@aria-label', '@aria-labelledby'],
             textarea: ['label', '@title', '@aria-label', '@aria-labelledby']
-        }
+        };
 
         var html5inputTypes = ['email', 'search', 'date', 'datetime-local', 'month', 'number', 'tel', 'time', 'url', 'week', 'range', 'color'];
         for (var i = 0, l = html5inputTypes.length; i < l; i++) {

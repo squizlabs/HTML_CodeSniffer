@@ -1,3 +1,4 @@
+/* exported HTMLCS_RUNNER */
 var HTMLCS_RUNNER = _global.HTMLCS_RUNNER = new function() {
     this.run = function(standard, callback) {
         var self = this;
@@ -26,16 +27,16 @@ var HTMLCS_RUNNER = _global.HTMLCS_RUNNER = new function() {
         // Simple output for now.
         var typeName = 'UNKNOWN';
         switch (msg.type) {
-            case HTMLCS.ERROR:
-                typeName = _global.HTMLCS.getTranslation("auditor_error");
+        case HTMLCS.ERROR:
+            typeName = _global.HTMLCS.getTranslation("auditor_error");
             break;
 
-            case HTMLCS.WARNING:
-                typeName = _global.HTMLCS.getTranslation("auditor_warning");
+        case HTMLCS.WARNING:
+            typeName = _global.HTMLCS.getTranslation("auditor_warning");
             break;
 
-            case HTMLCS.NOTICE:
-                typeName = _global.HTMLCS.getTranslation("auditor_notice");
+        case HTMLCS.NOTICE:
+            typeName = _global.HTMLCS.getTranslation("auditor_notice");
             break;
         }//end switch
 

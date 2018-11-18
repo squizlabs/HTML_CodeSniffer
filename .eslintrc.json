@@ -1,7 +1,7 @@
 {
     "env": {
         "browser": true,
-        "node": true
+        "node": false
     },
     "extends": "eslint:recommended",
     "rules": {
@@ -17,7 +17,13 @@
             "error",
             "always"
         ],
+        "no-console": 0,
         "no-undef": 0,
+        "no-unused-vars": [
+            "error", {
+                "args": "none"
+            }
+        ],
         "no-redeclare": 0
     }
 }

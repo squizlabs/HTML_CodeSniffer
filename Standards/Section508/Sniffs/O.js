@@ -68,6 +68,7 @@ _global.HTMLCS_Section508_Sniffs_O = {
                             }
                         }
                     } catch (ex) {
+                        // Ignore error
                     }//end try
                 }//end if
             }
