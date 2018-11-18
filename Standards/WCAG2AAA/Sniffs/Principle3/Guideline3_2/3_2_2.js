@@ -69,7 +69,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_2_3_2_2 = {
             // Look for buttons with form attributes, outside of the form.
             if (form.id) {
                 var externalButtons = document.querySelectorAll('button[form], input[form][type=submit], input[form][type=image]');
-                externalButtons.forEach(
+                Array.prototype.slice.call(externalButtons).forEach(
                     function(el) {
                         // Check they aren't reset buttons, or normal buttons.
                         switch (el.getAttribute('type')) {
