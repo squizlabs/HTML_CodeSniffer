@@ -467,21 +467,58 @@ _global.HTMLCS.util = function() {
     /**
      * Returns true if the table passed is a layout table.
      *
-     * If the passed table contains headings - through the use of the th
-     * element - HTML_CodeSniffer will assume it is a data table. This is in line
-     * with most other online checkers.
+     * It uses this conditions:
+     * https://squizlabs.github.io/HTML_CodeSniffer/Standards/WCAG2/1_3_1#what-is-a-data-table
      *
      * @param {Node} table The table to check.
      *
      * @returns {Boolean}
      */
     self.isLayoutTable = function(table) {
-        var th = table.querySelector('th');
-        if (th === null) {
-            return true;
+        var score = 0;
+
+        // The use of the role attribute with the value presentation
+        var role = table.getAttribute('role');
+        if (role === 'presentation') {
+            // Probably a layout table
+            score += 1;
         }
 
-        return false;
+        // The use of the border attribute with the non-conforming value 0
+        var border = table.getAttribute('border');
+        if (border == 0) {
+            // Probably a layout table
+            score += 1;
+        } else {
+            // Probably a non-layout table
+            score -= 1;
+        }
+
+        // The use of the non-conforming cellspacing and cellpadding attributes with the value 0
+        var spacing = table.getAttribute('cellspacing');
+        var padding = table.getAttribute('cellpadding');
+        if (spacing == 0 && padding == 0) {
+            // Probably a layout table
+            score += 1;
+        }
+
+        // The use of caption, thead, or th elements
+        var headers = table.querySelectorAll('caption, thead, th');
+        var excludeHeaders = table.querySelectorAll('table caption, table thead, table th');
+        if (headers.length > excludeHeaders.length) {
+            // Probably a non-layout table
+            score -= 1;
+        }
+
+        // The use of the headers and scope attributes
+        var cells = table.querySelectorAll('td[header], th[scope]');
+        var excludeCells = table.querySelectorAll('table td[header], table th[scope]');
+        if (cells.length > excludeCells.length) {
+            // Probably a non-layout table
+            score -= 1;
+        }
+
+        return score > 0;
     };
 
     /**
