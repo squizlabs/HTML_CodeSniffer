@@ -1556,6 +1556,8 @@ _global.HTMLCSAuditor = new function()
                 }
             }//end for
 
+            // -- Google Analytics Beacon Placeholder -- //
+
             if (_options.runCallback) {
                 var _newMsgs = _options.runCallback.call(this, _messages, newlyOpen);
                 if ((_newMsgs instanceof Array) === true) {
