@@ -14,7 +14,21 @@ The previous version was generally based on the pull request number used to upda
 Version numbers have been applied retrospectively based on the size or significance of the update; the
 old version number is in brackets.
 
-## <a id="2.2.0"></a>Version 2.2.0 (14 May 2017)
+## <a id="2.3.0"></a>Version 2.3.0 (18 Jan 2019)
+
+Change list.
+
+* Various fixes submitted by @paazmaya including eslint, node/npm changes, grunt configuration & headless chrome.
+* Fixed position of auditor if dragged above or below the visible window area. Solution submitted by @djdany01.
+* jshint replaced with eslint for code standards checking
+* SVG title elements are no longer treated as visible elements for contrast checking
+* Now checks for submit buttons outside of a form element. Solution submitted by @fuzzbomb 
+* Improved support for tables that have spanned rows. Solution submitted by @mgwalker 
+* French translation submitted by @dmassiani 
+* Support for alpha in colour contrast checks submitted by @phillbaker 
+* Fixed a bug where messages relating to the parent document (only notices in this case) were not being included in the main message set.
+
+## <a id="2.2.0"></a>Version 2.2.0 (14 May 2018)
 
 - **Features**
     - Basic string translation has been added and can be invoked in the Auditor via detection of the language in `<html lang="{string}">` by default, or being specifically provided a language code in the Auditor options (see README.markdown).
