@@ -989,7 +989,7 @@ _global.HTMLCSAuditor = new function()
         var pageNum       = _doc.createElement('span');
         pageNum.className = _prefix + 'page-number';
         // pageNum.innerHTML = 'Page ' + page + ' of ' + totalPages;
-        pageNum.innerHTML = _global.HTMLCS.getTranslation("auditor_issue") + ' ' + page + ' ' + _global.HTMLCS.getTranslation("auditor_of") + ' ' + totalPages;
+        pageNum.innerHTML = _global.HTMLCS.getTranslation("auditor_page") + ' ' + page + ' ' + _global.HTMLCS.getTranslation("auditor_of") + ' ' + totalPages;
         navDiv.appendChild(pageNum);
 
         var next       = _doc.createElement('span');
@@ -1015,7 +1015,7 @@ _global.HTMLCSAuditor = new function()
             }
 
             pageNum.innerHTML = '';
-            pageNum.appendChild(document.createTextNode(_global.HTMLCS.getTranslation("auditor_issue") + ' ' + _page + ' ' + _global.HTMLCS.getTranslation("auditor_of") + ' ' + totalPages));
+            pageNum.appendChild(document.createTextNode(_global.HTMLCS.getTranslation("auditor_page") + ' ' + _page + ' ' + _global.HTMLCS.getTranslation("auditor_of") + ' ' + totalPages));
 
             var issueList = _doc.querySelectorAll('.HTMLCS-issue-list')[0];
             issueList.style.marginLeft = ((_page - 1) * -300) + 'px';
@@ -1034,7 +1034,7 @@ _global.HTMLCSAuditor = new function()
             }
 
             pageNum.innerHTML = '';
-            pageNum.appendChild(document.createTextNode(_global.HTMLCS.getTranslation("auditor_issue") + ' ' + _page + ' ' + _global.HTMLCS.getTranslation("auditor_of") + ' ' + totalPages));
+            pageNum.appendChild(document.createTextNode(_global.HTMLCS.getTranslation("auditor_page") + ' ' + _page + ' ' + _global.HTMLCS.getTranslation("auditor_of") + ' ' + totalPages));
 
             var issueList = _doc.querySelectorAll('.HTMLCS-issue-list')[0];
             issueList.style.marginLeft = ((_page - 1) * -300) + 'px';
