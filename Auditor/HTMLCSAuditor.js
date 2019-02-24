@@ -120,7 +120,7 @@ _global.HTMLCSAuditor = new function()
             }//end if
 
             return false;
-        }
+        };
 
         return label;
     };
@@ -164,7 +164,7 @@ _global.HTMLCSAuditor = new function()
         var header       = _doc.createElement('div');
         header.className = _prefix + 'header';
         header.innerHTML = 'BOSA Accessibility Check (Beta)';
-        header.setAttribute('title', 'Using standard ' + standard);
+        header.setAttribute('title', _global.HTMLCS.getTranslation("auditor_using_standard") + standard);
 
         var dragging = false;
         var prevX    = 0;
@@ -210,15 +210,23 @@ _global.HTMLCSAuditor = new function()
         };
 
         _doc.onmouseup = function(e) {
+            var maxHeight = window.innerHeight - wrapper.offsetHeight;
+
+            if (mouseY > maxHeight) {
+                wrapper.style.top = maxHeight + 'px';
+            } else if (mouseY < 0) {
+                wrapper.style.top = 0 + 'px';
+            }
+
             dragging = false;
         };
 
         var closeIcon       = _doc.createElement('div');
         closeIcon.className = _prefix + 'close';
-        closeIcon.setAttribute('title', 'Close');
+        closeIcon.setAttribute('title', _global.HTMLCS.getTranslation("auditor_close"));
         closeIcon.onmousedown = function() {
             self.close.call(self);
-        }
+        };
 
         header.appendChild(closeIcon);
 
@@ -250,25 +258,25 @@ _global.HTMLCSAuditor = new function()
         var divider = ', &#160;<span class="' + _prefix + 'divider"></span>';
 
         if (errors > 0) {
-            var typeName = 'Errors';
+            var typeName = _global.HTMLCS.getTranslation("auditor_errors");
             if (errors === 1) {
-                typeName = 'Error';
+                typeName = _global.HTMLCS.getTranslation("auditor_error");
             }
             leftContents.push('<strong>' + errors + '</strong> ' + typeName);
         }
 
         if (warnings > 0) {
-            var typeName = 'Warnings';
+            var typeName = _global.HTMLCS.getTranslation("auditor_warnings");
             if (warnings === 1) {
-                typeName = 'Warning';
+                typeName = _global.HTMLCS.getTranslation("auditor_warning");
             }
             leftContents.push('<strong>' + warnings + '</strong> ' + typeName);
         }
 
         if (notices > 0) {
-            var typeName = 'Notices';
+            var typeName = _global.HTMLCS.getTranslation("auditor_notices");
             if (notices === 1) {
-                typeName = 'Notice';
+                typeName = _global.HTMLCS.getTranslation("auditor_notice");
             }
             leftContents.push('<strong>' + notices + '</strong> ' + typeName);
         }
@@ -471,7 +479,7 @@ _global.HTMLCSAuditor = new function()
         lineageHomeLink.href      = 'javascript:';
 
         var lineageHomeSpan       = _doc.createElement('span');
-        lineageHomeSpan.innerHTML = 'Home';
+        lineageHomeSpan.innerHTML = _global.HTMLCS.getTranslation("auditor_home");
         lineageHomeLink.appendChild(lineageHomeSpan);
 
         lineageHomeLink.onmousedown = function() {
@@ -485,8 +493,8 @@ _global.HTMLCSAuditor = new function()
         var lineageReportLink       = _doc.createElement('a');
         lineageReportLink.className = _prefix + 'lineage-link';
         lineageReportLink.href      = 'javascript:';
-        lineageReportLink.innerHTML = 'Report';
-        lineageReportLink.setAttribute('title', 'Back to Report');
+        lineageReportLink.innerHTML = _global.HTMLCS.getTranslation("auditor_report");
+        lineageReportLink.setAttribute('title', _global.HTMLCS.getTranslation("auditor_back_to_report"));
 
         lineageReportLink.onmousedown = function() {
             var list = _doc.querySelectorAll('.HTMLCS-inner-wrapper')[0];
@@ -501,7 +509,7 @@ _global.HTMLCSAuditor = new function()
         // Issue Count item.
         var lineageTotalsItem       = _doc.createElement('li');
         lineageTotalsItem.className = _prefix + 'lineage-item';
-        lineageTotalsItem.innerHTML = 'Issue ' + issue + ' of ' + totalIssues;
+        lineageTotalsItem.innerHTML = _global.HTMLCS.getTranslation("auditor_issue") + ' ' + issue + ' ' + _global.HTMLCS.getTranslation("auditor_of") + ' ' + totalIssues;
 
         lineageHomeItem.appendChild(lineageHomeLink);
         lineageReportItem.appendChild(lineageReportLink);
@@ -513,7 +521,7 @@ _global.HTMLCSAuditor = new function()
         var buttonGroup       = _doc.createElement('div');
         buttonGroup.className = _prefix + 'button-group';
 
-        var prevButton = buildSummaryButton(_prefix + 'button-previous-issue', 'previous', 'Previous Issue', function(target) {
+        var prevButton = buildSummaryButton(_prefix + 'button-previous-issue', 'previous', _global.HTMLCS.getTranslation("auditor_previous_issue"), function(target) {
             var newIssue = Number(issue) - 1;
 
             if (newIssue >= 1) {
@@ -529,7 +537,7 @@ _global.HTMLCSAuditor = new function()
             }//end if
         });
 
-        var nextButton = buildSummaryButton(_prefix + 'button-next-issue', 'next', 'Next Issue', function(target) {
+        var nextButton = buildSummaryButton(_prefix + 'button-next-issue', 'next', _global.HTMLCS.getTranslation("auditor_next_issue"), function(target) {
             var newIssue = Number(issue) + 1;
 
             if (newIssue <= _messages.length) {
@@ -627,7 +635,7 @@ _global.HTMLCSAuditor = new function()
         useStandardDiv.id = _prefix + 'settings-use-standard';
 
         var useStandardLabel       = _doc.createElement('label');
-        useStandardLabel.innerHTML = 'Standards:';
+        useStandardLabel.innerHTML = _global.HTMLCS.getTranslation("auditor_standards") + ':';
         useStandardLabel.setAttribute('for', _prefix + 'settings-use-standard-select');
 
         var useStandardSelect       = _doc.createElement('select');
@@ -649,7 +657,7 @@ _global.HTMLCSAuditor = new function()
             useStandardSelect.onchange = function() {
                 _standard = this.options[this.selectedIndex].value;
                 self.run(_standard, _sources, _options);
-            }
+            };
         }
 
         var issueCountDiv = _doc.createElement('div');
@@ -657,7 +665,7 @@ _global.HTMLCSAuditor = new function()
 
         var issueCountHelpDiv       = _doc.createElement('div');
         issueCountHelpDiv.id        = _prefix + 'settings-issue-count-help';
-        issueCountHelpDiv.innerHTML = 'Select the types of issues to include in the report';
+        issueCountHelpDiv.innerHTML = _global.HTMLCS.getTranslation("auditor_select_types");
 
         var advancedBosaSettingsDiv       = _doc.createElement('div');
         advancedBosaSettingsDiv.id        = _prefix + 'settings-advanced';
@@ -675,7 +683,7 @@ _global.HTMLCSAuditor = new function()
 
         var viewReportDiv       = _doc.createElement('div');
         viewReportDiv.id        = _prefix + 'settings-view-report';
-        viewReportDiv.innerHTML = 'View Report';
+        viewReportDiv.innerHTML = _global.HTMLCS.getTranslation("auditor_view_report");
 
         viewReportDiv.onclick = function() {
             if (/disabled/.test(this.className) === false) {
@@ -683,7 +691,7 @@ _global.HTMLCSAuditor = new function()
                     error: _doc.getElementById(_prefix + 'include-error').checked,
                     warning: _doc.getElementById(_prefix + 'include-warning').checked,
                     notice: _doc.getElementById(_prefix + 'include-notice').checked
-                }
+                };
 
                 var wrapper    = _doc.getElementById(_prefix + 'wrapper');
                 var newWrapper = self.build(_standard, _messages, _options);
@@ -712,7 +720,7 @@ _global.HTMLCSAuditor = new function()
                 error: true,
                 warning: true,
                 notice: false
-            }
+            };
 
             if ((levels.error === 0) && (levels.warning === 0)) {
                 _options.show.notice = true;
@@ -723,14 +731,32 @@ _global.HTMLCSAuditor = new function()
             var msgCount       = levels[level];
             var levelDiv       = _doc.createElement('div');
             levelDiv.className = _prefix + 'issue-tile ' + _prefix + level.toLowerCase();
-
+            var levelName = null;
             var levelCountDiv       = _doc.createElement('div');
             levelCountDiv.className = 'HTMLCS-tile-text';
 
-            var content = '<strong>' + msgCount + '</strong> ' + level.substr(0, 1).toUpperCase() + level.substr(1);
-            if (msgCount !== 1) {
-                content += 's';
+            if(level == "error") {
+                levelName = _global.HTMLCS.getTranslation('auditor_error');
+                if (msgCount !== 1) {
+                    levelName = _global.HTMLCS.getTranslation('auditor_errors');
+                }
             }
+
+            if(level == "warning") {
+                levelName = _global.HTMLCS.getTranslation('auditor_warning');
+                if (msgCount !== 1) {
+                    levelName = _global.HTMLCS.getTranslation('auditor_warnings');
+                }
+            }
+
+            if(level == "notice") {
+                levelName = _global.HTMLCS.getTranslation('auditor_notice');
+                if (msgCount !== 1) {
+                    levelName = _global.HTMLCS.getTranslation('auditor_notices');
+                }
+            }
+            var content = '<strong>' + msgCount + '</strong> ' + levelName;
+
 
             levelCountDiv.innerHTML = content;
 
@@ -806,20 +832,20 @@ _global.HTMLCSAuditor = new function()
         var typeClass = '';
 
         switch (message.type) {
-            case HTMLCS.ERROR:
-                typeText = 'Error';
+        case HTMLCS.ERROR:
+            typeText = 'Error';
             break;
 
-            case HTMLCS.WARNING:
-                typeText = 'Warning';
+        case HTMLCS.WARNING:
+            typeText = 'Warning';
             break;
 
-            case HTMLCS.NOTICE:
-                typeText = 'Notice';
+        case HTMLCS.NOTICE:
+            typeText = 'Notice';
             break;
 
-            default:
-                // Not defined.
+        default:
+            // Not defined.
             break;
         }//end switch
 
@@ -867,7 +893,7 @@ _global.HTMLCSAuditor = new function()
 
             var oldSummary = _doc.querySelectorAll('.HTMLCS-summary')[0];
             oldSummary.style.display = 'none';
-        }
+        };
 
         return msg;
     };
@@ -885,7 +911,7 @@ _global.HTMLCSAuditor = new function()
         if (_options.showIssueCallback) {
             _options.showIssueCallback.call(this, id);
         }
-    }
+    };
 
     var buildMessageDetail = function(id, message, standard) {
         if (standard === undefined) {
@@ -895,20 +921,20 @@ _global.HTMLCSAuditor = new function()
         var typeText  = '';
 
         switch (message.type) {
-            case HTMLCS.ERROR:
-                typeText = 'Error';
+        case HTMLCS.ERROR:
+            typeText = 'Error';
             break;
 
-            case HTMLCS.WARNING:
-                typeText = 'Warning';
+        case HTMLCS.WARNING:
+            typeText = 'Warning';
             break;
 
-            case HTMLCS.NOTICE:
-                typeText = 'Notice';
+        case HTMLCS.NOTICE:
+            typeText = 'Notice';
             break;
 
-            default:
-                // Not defined.
+        default:
+            // Not defined.
             break;
         }//end switch
 
@@ -957,18 +983,20 @@ _global.HTMLCSAuditor = new function()
 
             var msgElementSourceInner       = _doc.createElement('div');
             msgElementSourceInner.className = _prefix + 'issue-source-inner-u2p';
-            var msg = 'Unable to point to the element associated with this issue.';
+            var msg = _global.HTMLCS.getTranslation('auditor_unable_to_point');
 
-            if (message.element.ownerDocument === null) {
-                msg = 'Unable to point to this issue, as it relates to the entire document.';
+            if (message.element.nodeName === '#document') {
+                msg = _global.HTMLCS.getTranslation('auditor_applies_entire_document');
+            } else if (message.element.ownerDocument === null) {
+                msg = _global.HTMLCS.getTranslation('auditor_unable_to_point_removed');
             } else {
                 var body = message.element.ownerDocument.getElementsByTagName('body')[0];
                 if (HTMLCS.util.isInDocument(message.element) === false) {
-                    msg += 'Unable to point to this element as it has been removed from the document since the report was generated.';
+                    msg += _global.HTMLCS.getTranslation('auditor_unable_to_point_entire');
                 } else if (HTMLCS.util.contains(body, message.element) === false) {
-                    msg = 'Unable to point to this element because it is located outside the document\'s body element.';
+                    msg = _global.HTMLCS.getTranslation('auditor_unable_to_point_outside');
                 } else {
-                    msg += 'Unable to point to this element because it is hidden from view, or does not have a visual representation.';
+                    msg += _global.HTMLCS.getTranslation('auditor_unable_to_point_outside');
                 }
             }
 
@@ -998,9 +1026,9 @@ _global.HTMLCSAuditor = new function()
             msgElementSourceHeader.className = _prefix + 'issue-source-header';
 
             var msgSourceHeaderText       = _doc.createElement('strong');
-            msgSourceHeaderText.innerHTML = 'Code Snippet';
+            msgSourceHeaderText.innerHTML =  _global.HTMLCS.getTranslation("auditor_code_snippet");
 
-            var btnPointTo = buildSummaryButton(_prefix + 'button-point-to-element-' + id, 'pointer', 'Point to Element', function() {
+            var btnPointTo = buildSummaryButton(_prefix + 'button-point-to-element-' + id, 'pointer', _global.HTMLCS.getTranslation("auditor_point_to_element"), function() {
                 self.pointToElement(message.element);
             });
 
@@ -1086,12 +1114,14 @@ _global.HTMLCSAuditor = new function()
                 msgElementSourceInner.appendChild(msgElementSourceMain);
                 msgElementSourceInner.appendChild(_doc.createTextNode(postText));
                 msgElementSource.appendChild(msgElementSourceInner);
+            } else if (message.element.nodeName === '#document') {
+                // Show nothing, it's the document root.
             } else {
                 // No support for outerHTML.
                 var msgElementSourceInner       = _doc.createElement('div');
                 msgElementSourceInner.className = _prefix + 'issue-source-not-supported';
 
-                var nsText = 'The code snippet functionality is not supported in this browser.';
+                var nsText = _global.HTMLCS.getTranslation('auditor_unsupported_browser');
 
                 msgElementSourceInner.appendChild(_doc.createTextNode(nsText));
                 msgElementSource.appendChild(msgElementSourceInner);
@@ -1119,7 +1149,8 @@ _global.HTMLCSAuditor = new function()
 
         var pageNum       = _doc.createElement('span');
         pageNum.className = _prefix + 'page-number';
-        pageNum.innerHTML = 'Page ' + page + ' of ' + totalPages;
+        // pageNum.innerHTML = 'Page ' + page + ' of ' + totalPages;
+        pageNum.innerHTML = _global.HTMLCS.getTranslation("auditor_page") + ' ' + page + ' ' + _global.HTMLCS.getTranslation("auditor_of") + ' ' + totalPages;
         navDiv.appendChild(pageNum);
 
         var next       = _doc.createElement('span');
@@ -1145,11 +1176,11 @@ _global.HTMLCSAuditor = new function()
             }
 
             pageNum.innerHTML = '';
-            pageNum.appendChild(document.createTextNode('Page ' + _page + ' of ' + totalPages));
+            pageNum.appendChild(document.createTextNode(_global.HTMLCS.getTranslation("auditor_page") + ' ' + _page + ' ' + _global.HTMLCS.getTranslation("auditor_of") + ' ' + totalPages));
 
             var issueList = _doc.querySelectorAll('.HTMLCS-issue-list')[0];
             issueList.style.marginLeft = ((_page - 1) * -300) + 'px';
-        }
+        };
 
         next.onclick = function() {
             if (_page < totalPages) {
@@ -1164,14 +1195,14 @@ _global.HTMLCSAuditor = new function()
             }
 
             pageNum.innerHTML = '';
-            pageNum.appendChild(document.createTextNode('Page ' + _page + ' of ' + totalPages));
+            pageNum.appendChild(document.createTextNode(_global.HTMLCS.getTranslation("auditor_page") + ' ' + _page + ' ' + _global.HTMLCS.getTranslation("auditor_of") + ' ' + totalPages));
 
             var issueList = _doc.querySelectorAll('.HTMLCS-issue-list')[0];
             issueList.style.marginLeft = ((_page - 1) * -300) + 'px';
-        }
+        };
 
         return navDiv;
-    }
+    };
 
     var pointToIssueElement = function(issue) {
         var msg = _messages[Number(issue)];
@@ -1237,7 +1268,7 @@ _global.HTMLCSAuditor = new function()
                 script.onreadystatechange = null;
                 script.onload();
             }
-        }
+        };
 
         script.src = src;
 
@@ -1250,7 +1281,7 @@ _global.HTMLCSAuditor = new function()
 
     this.setOption = function(name, value) {
         _options[name] = value;
-    }
+    };
 
     this.getIssue = function(issueNumber)
     {
@@ -1268,16 +1299,16 @@ _global.HTMLCSAuditor = new function()
 
         for (var i = 0; i < messages.length; i++) {
             switch (messages[i].type) {
-                case HTMLCS.ERROR:
-                    counts.error++;
+            case HTMLCS.ERROR:
+                counts.error++;
                 break;
 
-                case HTMLCS.WARNING:
-                    counts.warning++;
+            case HTMLCS.WARNING:
+                counts.warning++;
                 break;
 
-                case HTMLCS.NOTICE:
-                    counts.notice++;
+            case HTMLCS.NOTICE:
+                counts.notice++;
                 break;
             }//end switch
         }//end for
@@ -1299,28 +1330,28 @@ _global.HTMLCSAuditor = new function()
             // Filter only the wanted error types.
             var ignore = false;
             switch (messages[i].type) {
-                case HTMLCS.ERROR:
-                    if (_options.show.error === false) {
-                        ignore = true;
-                    } else {
-                        errors++;
-                    }
+            case HTMLCS.ERROR:
+                if (_options.show.error === false) {
+                    ignore = true;
+                } else {
+                    errors++;
+                }
                 break;
 
-                case HTMLCS.WARNING:
-                    if (_options.show.warning === false) {
-                        ignore = true;
-                    } else {
-                        warnings++;
-                    }
+            case HTMLCS.WARNING:
+                if (_options.show.warning === false) {
+                    ignore = true;
+                } else {
+                    warnings++;
+                }
                 break;
 
-                case HTMLCS.NOTICE:
-                    if (_options.show.notice === false) {
-                        ignore = true;
-                    } else {
-                        notices++;
-                    }
+            case HTMLCS.NOTICE:
+                if (_options.show.notice === false) {
+                    ignore = true;
+                } else {
+                    notices++;
+                }
                 break;
             }//end switch
 
@@ -1452,7 +1483,7 @@ _global.HTMLCSAuditor = new function()
             cssLink.href = _options.path + prefix + '.css';
             head.appendChild(cssLink);
         }
-    }
+    };
 
     this.getStandardList = function() {
         var pattern   = /^HTMLCS_[^_]+$/;
@@ -1510,9 +1541,28 @@ _global.HTMLCSAuditor = new function()
         var _doc = this.getParentElement();
         if (_doc.ownerDocument) {
             _doc = _doc.ownerDocument;
-        };
+        }
 
         return _doc;
+    };
+
+    /**
+     * Get the current document's language.
+     *
+     * @return string
+     */
+    this.getDocumentLanguage = function() {
+        var defaultLang = 'en';
+        var doc = this.getOwnerDocument();
+        var html = doc.getElementsByTagName('html')[0];
+        if (html) {
+            var lang = html.getAttribute('lang');
+            if (lang) { 
+                return lang;
+            }
+        }
+
+        return defaultLang;
     };
 
     /**
@@ -1545,7 +1595,7 @@ _global.HTMLCSAuditor = new function()
 
             if (document.querySelectorAll('frameset').length === 0) {
                 source.push(document);
-            };
+            }
 
             if (_top.frames.length > 0) {
                 for (var i = 0; i < _top.frames.length; i++) {
@@ -1598,6 +1648,10 @@ _global.HTMLCSAuditor = new function()
 
         if (!_options.path) {
             _options.path = './';
+        }
+
+        if (!options.lang) {
+            _options.lang = this.getDocumentLanguage();
         }
 
         if (_options.includeCss === undefined) {
@@ -1663,6 +1717,8 @@ _global.HTMLCSAuditor = new function()
                 }
             }//end for
 
+            // -- Google Analytics Beacon Placeholder -- //
+
             if (_options.runCallback) {
                 var _newMsgs = _options.runCallback.call(this, _messages, newlyOpen);
                 if ((_newMsgs instanceof Array) === true) {
@@ -1701,7 +1757,7 @@ _global.HTMLCSAuditor = new function()
                 } else {
                     _processSource(standard, sources);
                 }
-            });
+            }, function() {}, options.lang);
         };
 
         _processSource(standard, _sources.concat([]));
@@ -1715,7 +1771,7 @@ _global.HTMLCSAuditor = new function()
                 _doc.documentElement.querySelector('.HTMLCS-settings').appendChild(msgElementSource);
 
                 var msg = 'HTML_CodeSniffer has been updated to version ' + response.newVersion + '.';
-                msg    += ' <a href="http://squizlabs.github.io/HTML_CodeSniffer/patches/' + response.newVersion + '">View the changelog</a>'
+                msg    += ' <a href="http://squizlabs.github.io/HTML_CodeSniffer/patches/' + response.newVersion + '">View the changelog</a>';
 
                 msgElementSource.innerHTML = msg;
             }//end if
@@ -2134,35 +2190,35 @@ _global.HTMLCSAuditor = new function()
             var left         = 0;
             var bounceHeight = 20;
             switch (direction) {
-                case 'up':
-                    bounceHeight = (-bounceHeight);
-                    top          = rect.y2;
-                    if ((rect.x2 - rect.x1) < 250) {
-                        left = (this.getRectMidPnt(rect) - (this.pointerDim.width / 2));
-                    } else {
-                        left = rect.x1;
-                    }
+            case 'up':
+                bounceHeight = (-bounceHeight);
+                top          = rect.y2;
+                if ((rect.x2 - rect.x1) < 250) {
+                    left = (this.getRectMidPnt(rect) - (this.pointerDim.width / 2));
+                } else {
+                    left = rect.x1;
+                }
                 break;
 
-                case 'down':
-                default:
-                    top = (rect.y1 - this.pointerDim.height);
-                    if ((rect.x2 - rect.x1) < 250) {
-                        left = (this.getRectMidPnt(rect) - (this.pointerDim.width / 2));
-                    } else {
-                        left = rect.x1;
-                    }
+            case 'down':
+            default:
+                top = (rect.y1 - this.pointerDim.height);
+                if ((rect.x2 - rect.x1) < 250) {
+                    left = (this.getRectMidPnt(rect) - (this.pointerDim.width / 2));
+                } else {
+                    left = rect.x1;
+                }
                 break;
 
-                case 'left':
-                    left = rect.x2;
-                    top  = (this.getRectMidPnt(rect, true) - (this.pointerDim.height / 2));
+            case 'left':
+                left = rect.x2;
+                top  = (this.getRectMidPnt(rect, true) - (this.pointerDim.height / 2));
                 break;
 
-                case 'right':
-                    bounceHeight = (-bounceHeight);
-                    left         = (rect.x1 - this.pointerDim.width);
-                    top          = (this.getRectMidPnt(rect, true) - (this.pointerDim.height / 2));
+            case 'right':
+                bounceHeight = (-bounceHeight);
+                left         = (rect.x1 - this.pointerDim.width);
+                top          = (this.getRectMidPnt(rect, true) - (this.pointerDim.height / 2));
                 break;
 
             }//end switch
@@ -2218,18 +2274,18 @@ _global.HTMLCSAuditor = new function()
             var maxBounce        = 5;
 
             switch (direction) {
-                case 'up':
-                    currentDirection = direction + '-op';
-                    initalPosOffset  = dist;
-                case 'down':
-                    style = 'top';
+            case 'up':
+                currentDirection = direction + '-op';
+                initalPosOffset  = dist;
+            case 'down':
+                style = 'top';
                 break;
 
-                case 'left':
-                    currentDirection = direction + '-op';
-                    initalPosOffset  = dist;
-                case 'right':
-                    style = 'left';
+            case 'left':
+                currentDirection = direction + '-op';
+                initalPosOffset  = dist;
+            case 'right':
+                style = 'left';
                 break;
             }
 
@@ -2291,6 +2347,6 @@ _global.HTMLCSAuditor = new function()
             }
         }
 
-    }
+    };
 
 };

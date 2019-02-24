@@ -43,7 +43,7 @@ if (system.args.length < 3 || system.args.length > 4) {
         }
 
         cb();
-    }
+    };
 
     // Table reporter.
     var reportTableFn = function(cb) {
@@ -90,10 +90,10 @@ if (system.args.length < 3 || system.args.length > 4) {
         }
 
         console.log('');
-        console.log('Errors: ' + messages['ERROR'].length + ', Warnings: ' + messages['WARNING'].length +
-            ', Notices: ' + messages['NOTICE'].length);
+        console.log(_global.HTMLCS.getTranslation("auditor_errors") + ': ' + messages['ERROR'].length + ', ' + _global.HTMLCS.getTranslation("auditor_warnings") + ': ' + messages['WARNING'].length +
+            ', ' + _global.HTMLCS.getTranslation("auditor_notices") + ': ' + messages['NOTICE'].length);
         cb();
-    }
+    };
 
     var reportJSONFn = function(cb) {
         var reportJSONData = [];
@@ -139,18 +139,18 @@ if (system.args.length < 3 || system.args.length > 4) {
                     } else if (msg === 'done') {
                         var cb = function() {
                             phantom.exit();
-                        }
+                        };
                         switch (reportType.toLowerCase()) {
-                            case 'table':
-                                reportTableFn(cb);
+                        case 'table':
+                            reportTableFn(cb);
                             break;
 
-                            case 'json':
-                                reportJSONFn(cb);
+                        case 'json':
+                            reportJSONFn(cb);
                             break;
 
-                            default:
-                                reportDefaultFn(cb);
+                        default:
+                            reportDefaultFn(cb);
                             break;
                         }
                     } else {
@@ -163,15 +163,15 @@ if (system.args.length < 3 || system.args.length > 4) {
                 // Now Run. Note that page.evaluate() function is sanboxed to
                 // the loaded page's context. We can't pass any variable to it.
                 switch (standard) {
-                    case 'WCAG2A':
-                    case 'WCAG2AA':
-                    case 'WCAG2AAA':
-                    case 'Section508':
-                        page.evaluate(function(standard) {HTMLCS_RUNNER.run(standard);}, standard);
+                case 'WCAG2A':
+                case 'WCAG2AA':
+                case 'WCAG2AAA':
+                case 'Section508':
+                    page.evaluate(function(standard) {HTMLCS_RUNNER.run(standard);}, standard);
                     break;
-                    default:
-                        console.log('Unknown standard.');
-                        phantom.exit();
+                default:
+                    console.log('Unknown standard.');
+                    phantom.exit();
                     break;
                 }
             }, 200);

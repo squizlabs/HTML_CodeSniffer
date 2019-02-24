@@ -1,7 +1,11 @@
+package-lock.json
+
 # Build files #
 ###############
 build/
 node_modules/
+Auditor/Auditor_with_beacon.js
+*.tgz
 
 # OS generated files #
 ######################

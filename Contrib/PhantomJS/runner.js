@@ -1,3 +1,4 @@
+/* exported HTMLCS_RUNNER */
 var HTMLCS_RUNNER = _global.HTMLCS_RUNNER = new function() {
     this.run = function(standard, callback) {
         var self = this;
@@ -19,23 +20,23 @@ var HTMLCS_RUNNER = _global.HTMLCS_RUNNER = new function() {
         }, function() {
             console.log('Something in HTML_CodeSniffer failed to parse. Cannot run.');
             console.log('done');
-        });
+        }, 'en');
     };
 
     this.output = function(msg) {
         // Simple output for now.
         var typeName = 'UNKNOWN';
         switch (msg.type) {
-            case HTMLCS.ERROR:
-                typeName = 'ERROR';
+        case HTMLCS.ERROR:
+            typeName = _global.HTMLCS.getTranslation("auditor_error");
             break;
 
-            case HTMLCS.WARNING:
-                typeName = 'WARNING';
+        case HTMLCS.WARNING:
+            typeName = _global.HTMLCS.getTranslation("auditor_warning");
             break;
 
-            case HTMLCS.NOTICE:
-                typeName = 'NOTICE';
+        case HTMLCS.NOTICE:
+            typeName = _global.HTMLCS.getTranslation("auditor_notice");
             break;
         }//end switch
 

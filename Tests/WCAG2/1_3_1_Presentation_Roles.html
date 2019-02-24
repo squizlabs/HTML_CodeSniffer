@@ -13,6 +13,8 @@ Assert: Error *.F92.ARIA4 on #incorrectUsageTable
 Assert: No Error *.F92.ARIA4 on #correctUsage
 Assert: No Error *.F92.ARIA4 on #correctUsage
 Assert: No Error *.F92.ARIA4 on #correctUsageWithRoles
+Assert: No Error *.F92.ARIA4 on #incorrectUsageTable2
+Assert: No Error *.F92.ARIA4 on #incorrectUsageTable3
 -->
 </head>
 <body>
@@ -40,5 +42,31 @@ Assert: No Error *.F92.ARIA4 on #correctUsageWithRoles
         <a role="treeitem" aria-expanded="true">An expanded tree node</a> 
     </li>
 </ul>
+<div aria-hidden="true">
+    <h2>Aria Hidden stops presentation role check</h2>
+        <table id="incorrectUsageTable2" role="presentation">
+        <tr>
+            <th>Col 1</th>
+            <th>Col 2</th>
+        </tr>
+        <tr>
+            <td>Row 1 Col 1</td>
+            <th>Row 1 Col 2</th>
+        </tr>
+    </table>
+</div>
+<div>
+    <h2>Aria Hidden stops presentation role check with aria-hidden on same element as role</h2>
+        <table id="incorrectUsageTable3" aria-hidden="true" role="presentation">
+        <tr>
+            <th>Col 1</th>
+            <th>Col 2</th>
+        </tr>
+        <tr>
+            <td>Row 1 Col 1</td>
+            <th>Row 1 Col 2</th>
+        </tr>
+    </table>
+</div>
 </body>
 </html>

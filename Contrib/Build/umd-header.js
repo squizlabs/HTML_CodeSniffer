@@ -22,4 +22,6 @@
         }
     }
 }(this, function () {
-    var _global = {}
+    var _global = {
+        translation: {}
+    };

@@ -75,20 +75,20 @@ _global.HTMLCS_WCAG2AAA = {
             'Principle1': {
                 name: 'Perceivable',
                 link: 'http://www.w3.org/TR/WCAG20/#perceivable'
-               },
+            },
             'Principle2': {
                 name: 'Operable',
                 link: 'http://www.w3.org/TR/WCAG20/#operable'
-               },
+            },
             'Principle3': {
                 name: 'Understandable',
                 link: 'http://www.w3.org/TR/WCAG20/#understandable'
-               },
+            },
             'Principle4': {
                 name: 'Robust',
                 link: 'http://www.w3.org/TR/WCAG20/#robust'
-               }
-        }
+            }
+        };
 
         /**
          * List of success criteria, their links in the WCAG20 doc, and their
@@ -437,10 +437,11 @@ _global.HTMLCS_WCAG2AAA = {
         }
 
         var successCritStr = ['<a href="http://www.w3.org/TR/WCAG20/#' + successCritList[successCrit].landmark, '" target="_blank">', successCrit, ': ', successCritList[successCrit].name, '</a>'].join('');
+        /* eslint-disable-next-line no-unused-vars */
         var principleStr   = ['<a href="', principles[principle].link, '" target="_blank">', principles[principle].name, '</a>'].join('');
         var retval = [
-            ['Success Criterion', successCritStr],
-            ['Suggested Techniques', techniquesStr.join(' ')]
+            [_global.HTMLCS.getTranslation("auditor_success_criterion"), successCritStr],
+            [_global.HTMLCS.getTranslation("auditor_suggested_techniques"), techniquesStr.join(' ')]
         ];
 
         return retval;

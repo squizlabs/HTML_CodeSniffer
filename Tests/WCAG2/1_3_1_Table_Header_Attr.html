@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>1.3.1 Table Heading Attributes</title>
+<!-- @HTMLCS_Test@
+Name: SC 1.3.1 Table Heading Attributes
+Standard: WCAG2AAA
+Assert: No Error *.H43.IncorrectAttr on #correctTableHeaders
+Assert: No Error *.H43.IncorrectAttr on #correctTableHeadersComplexRowspan
+Assert: No Error *.H43.ScopeAmbiguous on #correctTableHeadersComplexRowspan
+Assert: No Error *.H43.HeadersRequired on #correctTableHeadersComplexRowspan
+Assert: No Error *.H43.MissingHeaderIds on #correctTableHeadersComplexRowspan
+Assert: No Error *.H43.MissingHeadersAttrs on #correctTableHeadersComplexRowspan
+Assert: No Error *.H63.1 on #correctTableHeadersComplexRowspan
+Assert: No Error *.H43,H63 on #correctTableHeadersComplexRowspan
+-->
+</head>
+<body>
+    <table id="correctTableHeaders">
+        <tr>
+            <th id="h">Row Id</th>
+            <th id="e">Row Name</th>
+            <th id="p">Row Files</th>
+        </tr>
+        <tr>
+            <td headers="h">1</td>
+            <td headers="e">Row 1</td>
+            <td headers="p">
+                <div style="margin: 5px">
+                    <table>
+                        <tr>
+                            <th id="X">File Id</th>
+                            <th id="Y">File Name</th>
+                            <th id="Z">File Extension</th>
+                        </tr>
+                        <tr>
+                            <td headers="X">1</td>
+                            <td headers="Y">File 1</td>
+                            <td headers="Z">DOCX</td>
+                        </tr>
+                        <tr>
+                            <td headers="X">2</td>
+                            <td headers="Y">File 2</td>
+                            <td headers="Z">PDF</td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <table id="correctTableHeadersComplexRowspan">
+        <thead>
+            <tr>
+                <th rowspan="2" id="h1-0"></th>
+                <th colspan="5" id="h1-1-5">long header</th>
+                <th rowspan="2" id="h1-6">last header</th>
+            </tr>
+            <tr>
+                <th id="h2-1">sub1</th>
+                <th id="h2-2">sub2</th>
+                <th id="h2-3">sub3</th>
+                <th id="h2-4">sub4</th>
+                <th id="h2-5">sub5</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td rowspan="2" headers="h1-0">1.0</td>
+                <td headers="h1-1-5 h2-1">1.1.1</td>
+                <td headers="h1-1-5 h2-2">1.2.1</td>
+                <td headers="h1-1-5 h2-3">1.3.1</td>
+                <td headers="h1-1-5 h2-4">1.4.1</td>
+                <td headers="h1-1-5 h2-5">1.5.1</td>
+                <td rowspan="2" headers="h1-6">1.6</td>
+            </tr>
+            <tr>
+                <td headers="h1-1-5 h2-1">1.1.2</td>
+                <td headers="h1-1-5 h2-2">1.2.2</td>
+                <td headers="h1-1-5 h2-3">1.3.2</td>
+                <td headers="h1-1-5 h2-4">1.4.2</td>
+                <td headers="h1-1-5 h2-5">1.5.2</td>
+            </tr>
+            <tr>
+                <td rowspan="2" headers="h1-0">2.0</td>
+                <td headers="h1-1-5 h2-1">2.1.1</td>
+                <td headers="h1-1-5 h2-2">2.2.1</td>
+                <td headers="h1-1-5 h2-3">2.3.1</td>
+                <td headers="h1-1-5 h2-4">2.4.1</td>
+                <td headers="h1-1-5 h2-5">2.5.1</td>
+                <td rowspan="2" headers="h1-6">2.6</td>
+            </tr>
+            <tr>
+                <td headers="h1-1-5 h2-1">2.1.2</td>
+                <td headers="h1-1-5 h2-2">2.2.2</td>
+                <td headers="h1-1-5 h2-3">2.3.2</td>
+                <td headers="h1-1-5 h2-4">2.4.2</td>
+                <td headers="h1-1-5 h2-5">2.5.2</td>
+            </tr>
+            <tr>
+                <td rowspan="2" headers="h1-0">3.0</td>
+                <td headers="h1-1-5 h2-1">3.1</td>
+                <td headers="h1-1-5 h2-2">3.2</td>
+                <td headers="h1-1-5 h2-3">3.3</td>
+                <td headers="h1-1-5 h2-4">3.4</td>
+                <td headers="h1-1-5 h2-5">3.5</td>
+                <td rowspan="2" headers="h1-6">3.6</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

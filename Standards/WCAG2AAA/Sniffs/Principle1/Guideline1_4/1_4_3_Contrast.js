@@ -14,13 +14,15 @@
 _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
     testContrastRatio: function (top, minContrast, minLargeContrast)
     {
-        var startDate = new Date();
-        var count     = 0;
-        var xcount    = 0;
         var failures  = [];
 
         if (!top.ownerDocument) {
-            var toProcess = [top.getElementsByTagName('body')[0]];
+            var toProcess = [];
+            var body = top.getElementsByTagName('body');
+            if (body.length) {
+                // SVG objects will not have a body element. Don't check them.
+                var toProcess = [body[0]];
+            }
         } else {
             var toProcess = [top];
         }
@@ -49,14 +51,13 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
                     if (style) {
                         var bgColour   = style.backgroundColor;
                         var foreColour = style.color;
-                        var bgElement  = node;
                         var hasBgImg   = false;
                         var isAbsolute = false;
-                        
-			if (style.backgroundImage !== 'none') {
+
+                        if (style.backgroundImage !== 'none') {
                             hasBgImg = true;
                         }
-                        
+
                         if (style.position == 'absolute') {
                             isAbsolute = true;
                         }
@@ -93,15 +94,59 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
                                 isAbsolute = true;
                             }
 
+                            // Search for the smooth scrolling willChange: 'transform' background hack
+                            // See http://fourkitchens.com/blog/article/fix-scrolling-performance-css-will-change-property
+                            var beforeStyle = HTMLCS.util.style(parent, ':before');
+                            if (
+                                beforeStyle
+                                && beforeStyle.position == 'fixed'
+                                && beforeStyle.willChange == 'transform'
+                                //Make sure it is trying to cover the entire content area
+                                && beforeStyle.width == parentStyle.width
+                                && parseInt(beforeStyle.height, 10) <= parseInt(parentStyle.height, 10)
+                                //And finally it needs a background image
+                                && beforeStyle.backgroundImage !== 'none'
+                            ) {
+                                hasBgImg = true;
+                                break;
+                            }
+
                             parent = parent.parentNode;
                         }//end while
 
-                        if (hasBgImg === true) {
+                        var bgAlpha = HTMLCS.util.colourStrToRGB(bgColour).alpha;
+                        var fgAlpha = HTMLCS.util.colourStrToRGB(foreColour).alpha;
+
+                        if (bgColour && bgAlpha < 1.0 && bgAlpha > 0) {
+                            // If we have a rgba background colour, skip the contrast ratio checks,
+                            // and push a warning instead.
+                            failures.push({
+                                element: node,
+                                colour: foreColour,
+                                bgColour: bgColour,
+                                value: undefined,
+                                required: reqRatio,
+                                hasAlpha: true,
+                            });
+                            continue;
+                        } else if (foreColour && fgAlpha < 1.0 && fgAlpha > 0) {
+                            // If we have a rgba fore colour, skip the contrast ratio checks,
+                            // and push a warning instead.
+                            failures.push({
+                                element: node,
+                                colour: foreColour,
+                                bgColour: foreColour,
+                                value: undefined,
+                                required: reqRatio,
+                                hasAlpha: true
+                            });
+                            continue;
+                        } else if (hasBgImg === true) {
                             // If we have a background image, skip the contrast ratio checks,
                             // and push a warning instead.
                             failures.push({
                                 element: node,
-                                colour: style.color,
+                                colour: foreColour,
                                 bgColour: undefined,
                                 value: undefined,
                                 required: reqRatio,
@@ -125,9 +170,10 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
                             continue;
                         }
 
-                        var contrastRatio = HTMLCS.util.contrastRatio(bgColour, style.color);
+                        var contrastRatio = HTMLCS.util.contrastRatio(bgColour, foreColour);
+
                         if (contrastRatio < reqRatio) {
-                            var recommendation = this.recommendColour(bgColour, style.color, reqRatio);
+                            var recommendation = this.recommendColour(bgColour, foreColour, reqRatio);
 
                             failures.push({
                                 element: node,
@@ -176,7 +222,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
             }
 
             var hsv     = HTMLCS.util.sRGBtoHSV(newCol);
-            var chroma  = hsv.saturation * hsv.value;
+            // var chroma  = hsv.saturation * hsv.value;
             var newFore = fore;
             var newBack = back;
             var changed = false;
@@ -217,7 +263,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
                         }
 
                         hsv     = HTMLCS.util.sRGBtoHSV(hsv);
-                        chroma  = hsv.saturation * hsv.value;
+                        // chroma  = hsv.saturation * hsv.value;
                         changed = true;
                     }
                 }
@@ -244,7 +290,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
                     from: back,
                     to: newBack
                 }
-            }
+            };
         }//end if
 
         return recommendation;
@@ -272,4 +318,4 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
         var newColour = HTMLCS.util.RGBtoColourStr(HTMLCS.util.HSVtosRGB(hsvColour));
         return newColour;
     }
-}
+};

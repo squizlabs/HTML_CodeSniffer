@@ -39,45 +39,45 @@ if (system.args.length < 2 || system.args.length > 2) {
         for (var i = 0; i < testContent.length; i++) {
             var words = testContent[i].split(' ');
             switch (words[0]) {
-                case 'Name:':
-                    testData.name = words.slice(1, words.length).join(' ');
+            case 'Name:':
+                testData.name = words.slice(1, words.length).join(' ');
                 break;
 
-                case 'Standard:':
-                    testData.standard = words.slice(1, words.length).join(' ');
+            case 'Standard:':
+                testData.standard = words.slice(1, words.length).join(' ');
                 break;
 
-                case 'Assert:':
-                    var assertion = {
-                        line: null,
-                        expected: true,
-                        level: null,
-                        code: null,
-                        id: null,
-                        triggered: false
-                    };
+            case 'Assert:':
+                var assertion = {
+                    line: null,
+                    expected: true,
+                    level: null,
+                    code: null,
+                    id: null,
+                    triggered: false
+                };
 
-                    // Get rid of "Assert";
+                // Get rid of "Assert";
+                words.shift();
+
+                assertion.line = words.join(' ');
+
+                if (words[0].toLowerCase() === 'no') {
                     words.shift();
+                    assertion.expected = false;
+                }
+                assertion.level = words.shift().toUpperCase();
+                assertion.code = words.shift();
+                assertion.code = assertion.code.replace('.', '\\.');
+                assertion.code = assertion.code.replace('*', '.*');
+                assertion.code = new RegExp('^' + assertion.code + '$');
 
-                    assertion.line = words.join(' ');
+                if (words[0].toLowerCase() === 'on') {
+                    words.shift();
+                    assertion.id = words.shift();
+                }
 
-                    if (words[0].toLowerCase() === 'no') {
-                        words.shift();
-                        assertion.expected = false;
-                    }
-                    assertion.level = words.shift().toUpperCase();
-                    assertion.code = words.shift();
-                    assertion.code = assertion.code.replace('.', '\\.');
-                    assertion.code = assertion.code.replace('*', '.*');
-                    assertion.code = new RegExp('^' + assertion.code + '$');
-
-                    if (words[0].toLowerCase() === 'on') {
-                        words.shift();
-                        assertion.id = words.shift();
-                    }
-
-                    testData.assertions.push(assertion);
+                testData.assertions.push(assertion);
                 break;
             }//end switch
         }//end for
@@ -90,7 +90,7 @@ if (system.args.length < 2 || system.args.length > 2) {
             assertion = testData.assertions[assert];
             for (var i = 0; i < messages.length; i++) {
                 thisMsg = messages[i];
-                if (assertion.level === thisMsg[0]) {
+                if (assertion.level.toLowerCase() === thisMsg[0].toLowerCase()) {
                     if (assertion.code.test(thisMsg[1]) === true) {
                         if (assertion.id === thisMsg[3]) {
                             assertion.triggered = true;
@@ -103,7 +103,7 @@ if (system.args.length < 2 || system.args.length > 2) {
         }
 
         var failures = 0;
-                console.info('Results for ' + testData.name + ' (' + testData.standard + '):');
+        console.info('Results for ' + testData.name + ' (' + testData.standard + '):');
         for (var assert = 0; assert < testData.assertions.length; assert++) {
             assertion = testData.assertions[assert];
             if (assertion.triggered !== assertion.expected) {
@@ -151,15 +151,15 @@ if (system.args.length < 2 || system.args.length > 2) {
                 // Now Run. Note that page.evaluate() function is sanboxed to
                 // the loaded page's context. We can't pass any variable to it.
                 switch (testData.standard) {
-                    case 'WCAG2A':
-                    case 'WCAG2AA':
-                    case 'WCAG2AAA':
-                    case 'Section508':
-                        page.evaluate(function(standard) {HTMLCS_RUNNER.run(standard);}, testData.standard);
+                case 'WCAG2A':
+                case 'WCAG2AA':
+                case 'WCAG2AAA':
+                case 'Section508':
+                    page.evaluate(function(standard) {HTMLCS_RUNNER.run(standard);}, testData.standard);
                     break;
-                    default:
-                        console.log('Unknown standard.');
-                        phantom.exit(2);
+                default:
+                    console.log('Unknown standard.');
+                    phantom.exit(2);
                     break;
                 }
             }, 200);

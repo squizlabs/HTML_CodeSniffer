@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>412_wrapping_label</title>
+<!-- @HTMLCS_Test@
+Name: SC 4.1.2 testing of wrapping labels
+Standard: WCAG2AAA
+Assert: No Warning *.H91.InputRadio.Name on #test1
+Assert: No Error *.H91.InputRadio.Name on #test1
+Assert: Error *.H91.InputRadio.Name on #test2
+-->
+</head>
+<body>
+<form>
+    <div>
+        <label>
+          <span>
+            <input type="radio" name="foo" value="foo" id="test1" />
+          </span>
+          <span>
+            Lorem ipsum
+          </span>
+        </label>
+    </div>
+    <div>
+      <span>
+        <input type="radio" name="foo" value="foo" id="test2" />
+      </span>
+      <span>
+        Lorem ipsum
+      </span>
+    </div>
+</form>
+</body>
+</html>

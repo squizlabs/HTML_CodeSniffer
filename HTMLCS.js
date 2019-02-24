@@ -37,15 +37,25 @@ _global.HTMLCS = new function()
     this.setBosaOption = function(key, value) {
         _bosaOptions[key] = value;
     };
+    // The current language to use.
+    this.lang = 'en';
 
     /**
      * Loads the specified standard and run the sniffs.
      *
-     * @param {String}      standard The name of the standard to load.
-     * @param {String|Node} An HTML string or a DOM node object.
-     * @param {Function}    The function that will be called when the testing is completed.
+     * @param {String}      standard     The name of the standard to load.
+     * @param {String|Node} content      An HTML string or a DOM node object.
+     * @param {Function}    callback     The function that will be called when the testing is completed.
+     * @param {Function}    failCallback The fail callback which will be called if the standard load has failed.
+     * @param {String}      language     The language to use for text output.
      */
-    this.process = function(standard, content, callback, failCallback) {
+    this.process = function(
+        standard,
+        content,
+        callback,
+        failCallback,
+        language
+    ) {
         // Clear previous runs.
         _standards    = {};
         _sniffs       = [];
@@ -56,12 +66,33 @@ _global.HTMLCS = new function()
             return false;
         }
 
+        // Set a language to use.
+        var languages = Object.keys(_global.translation);
+        if (language && languages.indexOf(language) !== -1) {
+            this.lang = language;
+        }
+
         if (_standards[_getStandardPath(standard)]) {
             HTMLCS.run(callback, content);
         } else {
             this.loadStandard(standard, function() {
                 HTMLCS.run(callback, content);
             }, failCallback);
+        }
+    };
+
+    /**
+     * Gets a translation for a text value.
+     *
+     * @param {String} text The text to get the translation for.
+     *
+     * @return {String}
+     */
+    this.getTranslation = function(text) {
+        try {
+            return _global.translation[this.lang][text];
+        } catch (e) {
+            throw new Error('Translation for "' + text + '" does not exist in current language ' + this.lang);
         }
     };
 
@@ -119,7 +150,7 @@ _global.HTMLCS = new function()
                 var elements = HTMLCS.util.getAllElements(element);
                 elements.unshift(element);
                 _run(elements, element, callback);
-            }
+            };
 
             // Satisfy IE which doesn't like onload being set dynamically.
             elementFrame.onreadystatechange = function() {
@@ -127,7 +158,7 @@ _global.HTMLCS = new function()
                     this.onreadystatechange = null;
                     this.load();
                 }
-            }
+            };
 
             elementFrame.onload = elementFrame.load;
 
@@ -188,7 +219,7 @@ _global.HTMLCS = new function()
         }
 
         return fullDoc;
-    }
+    };
 
     /**
      * Adds a message.
@@ -262,6 +293,8 @@ _global.HTMLCS = new function()
                 }
             }
         }//end while
+
+        _messages = _messages.concat(topMsgs);
 
         // Due to filtering of presentation roles for general sniffing these need to be handled
         // separately. The 1.3.1 sniff needs to run to detect any incorrect usage of the presentation
@@ -419,7 +452,7 @@ _global.HTMLCS = new function()
             var cb       = function() {
                 _registerSniff(standard, sniff);
                 callback.call(this);
-            }
+            };
 
             // Already loaded.
             if (sniffObj) {
@@ -582,7 +615,7 @@ _global.HTMLCS = new function()
                 script.onreadystatechange = null;
                 script.onload();
             }
-        }
+        };
 
         script.src = src;
 
