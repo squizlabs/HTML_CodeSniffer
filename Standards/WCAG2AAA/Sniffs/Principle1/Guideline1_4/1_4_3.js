@@ -63,10 +63,10 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3 = {
                 var recommendText = [];
                 if (recommend) {
                     if (recommend.fore.from !== recommend.fore.to) {
-                        recommendText.push(_global.HTMLCS.getTranslation("1_4_3_G18_or_G145.Fail.Recomendation.Text") + ' ' + recommend.fore.to);
+                        recommendText.push(_global.HTMLCS.getTranslation("1_4_3_G18_or_G145.Fail.Recomendation.Text").replace(/\{\{value\}\}/g, recommend.fore.to));
                     }
                     if (recommend.back.from !== recommend.back.to) {
-                        recommendText.push(_global.HTMLCS.getTranslation("1_4_3_G18_or_G145.Fail.Recomendation.Background") + ' ' + recommend.back.to);
+                        recommendText.push(_global.HTMLCS.getTranslation("1_4_3_G18_or_G145.Fail.Recomendation.Background").replace(/\{\{value\}\}/g, recommend.back.to));
                     }
                 }//end if
 

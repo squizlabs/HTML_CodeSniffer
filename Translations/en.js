@@ -179,9 +179,9 @@ _global.translation['en'] = {
     ,"1_4_3_G18_or_G145.BgImage" : 'This element\'s text is placed on a background image. Ensure the contrast ratio between the text and all covered parts of the image are at least {{required}}:1.'
     ,"1_4_3_G18_or_G145.Alpha" : 'This element\'s text or background contains transparency. Ensure the contrast ratio between the text and background are at least {{required}}:1.'
     ,"1_4_3_G18_or_G145.Fail" : 'This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least {{required}}:1, but text in this element has a contrast ratio of {{value}}:1.'
-    ,"1_4_3_G18_or_G145.Fail.Recomendation" : 'Recommendation: change'
-    ,"1_4_3_G18_or_G145.Fail.Recomendation.Text" : 'text colour to'
-    ,"1_4_3_G18_or_G145.Fail.Recomendation.Background" : 'background to'
+    ,"1_4_3_G18_or_G145.Fail.Recomendation" : 'Recommendation: '
+    ,"1_4_3_G18_or_G145.Fail.Recomendation.Text" : 'change text colour to {{value}}'
+    ,"1_4_3_G18_or_G145.Fail.Recomendation.Background" : 'change background to {{value}}'
 
 
     //1_4_4.js
@@ -196,9 +196,9 @@ _global.translation['en'] = {
     ,"1_4_6_G18_or_G17.Abs" : 'This element is absolutely positioned and the background color can not be determined. Ensure the contrast ratio between the text and all covered parts of the background are at least {{required}}:1.'
     ,"1_4_6_G18_or_G17.BgImage" : 'This element\'s text is placed on a background image. Ensure the contrast ratio between the text and all covered parts of the image are at least {{required}}:1.'
     ,"1_4_6_G18_or_G17.Fail" : 'This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least {{required}}:1, but text in this element has a contrast ratio of {{value}}:1.'
-    ,"1_4_6_G18_or_G17.Fail.Recomendation" : 'Recommendation: change'
-    ,"1_4_6_G18_or_G17.Fail.Recomendation.Text" : 'text colour to'
-    ,"1_4_6_G18_or_G17.Fail.Recomendation.Background" : 'background to'
+    ,"1_4_6_G18_or_G17.Fail.Recomendation" : 'Recommendation: '
+    ,"1_4_6_G18_or_G17.Fail.Recomendation.Text" : 'change text colour to {{value}}'
+    ,"1_4_6_G18_or_G17.Fail.Recomendation.Background" : 'change background to {{value}}'
 
 
 
@@ -399,10 +399,10 @@ _global.translation['en'] = {
 
 
     ,"4_1_2_input_element" : 'input element'
-    ,"4_1_2_role_of_button" : 'element has a role of "button" but'
     ,"4_1_2_element_content" : 'element content'
     ,"4_1_2_element" : 'element'
     ,"4_1_2_msg_pattern" : 'This {{msgNodeType}} does not have a name available to an accessibility API. Valid names are: {{builtAttrs}}.'
+    ,"4_1_2_msg_pattern_role_of_button" : 'This element has role of "button" but does not have a name available to an accessibility API. Valid names are: {{builtAttrs}}.'
     ,"4_1_2_msg_pattern2" : 'This {{msgNodeType}} does not have a value available to an accessibility API.'
     ,"4_1_2_msg_add_one" : 'Add one by adding content to the element.'
     ,"4_1_2_msg_pattern3" : 'This {{msgNodeType}} does not have an initially selected option. Depending on your HTML version, the value exposed to an accessibility API may be undefined.'
