@@ -1032,7 +1032,10 @@ _global.HTMLCSAuditor = new function()
                 self.pointToElement(message.element);
             });
 
-            msgElementSourceHeader.appendChild(msgSourceHeaderText);
+            // Don't print "Code snippet" message if none is available (noise in print reports)
+            if (message.element.outerHTML) {
+               msgElementSourceHeader.appendChild(msgSourceHeaderText);
+            }
             msgElementSourceHeader.appendChild(btnPointTo);
             msgElementSource.appendChild(msgElementSourceHeader);
 

@@ -429,6 +429,42 @@
     filter: alpha(opacity=100);
 }
 
+#HTMLCS-wrapper .HTMLCS-issue-detail-list > li .HTMLCS-issue-title > ul {
+    margin-left: 15px;
+    margin-top: 5px;
+}
+
+#HTMLCS-wrapper .HTMLCS-issue-detail-list > li .HTMLCS-issue-title > a,
+#HTMLCS-wrapper .HTMLCS-issue-detail-list > li .HTMLCS-issue-title > a:visited {
+    border-bottom: 1px solid #008bac;
+    color: #008bac;
+    display: inline-block;
+    font-style: normal;
+    text-decoration: none;
+    line-height: 1.2em;
+    margin-right: 0.3em;
+}
+
+#HTMLCS-wrapper .HTMLCS-issue-detail-list > li .HTMLCS-issue-title > a:hover {
+    border-bottom-color: #195065;
+}
+
+#HTMLCS-wrapper .HTMLCS-issue-detail-list > li .HTMLCS-issue-title > a:after {
+    background: url("Images/HTMLCS-tools.png") no-repeat scroll 0 -48px transparent;
+    content: "";
+    display: inline-block;
+    opacity: 0.6;
+    filter: alpha(opacity=60);
+    height: 11px;
+    margin: 0 0 0 0.5em;
+    width: 12px;
+}
+
+#HTMLCS-wrapper .HTMLCS-issue-detail-list > li .HTMLCS-issue-title > a:hover:after {
+    opacity: 1;
+    filter: alpha(opacity=100);
+}
+
 #HTMLCS-wrapper .HTMLCS-issue-source {
     position: relative;
     display: block;
@@ -1078,7 +1114,6 @@
     font-style: normal;
     text-decoration: none;
     line-height: 1.2em;
-    margin-right: 0.3em;
 }
 
 #HTMLCS-wrapper .HTMLCS-summary-left a.export:hover {
@@ -1099,5 +1134,8 @@
   content: "Notice: ";
 }
 #HTMLCS-bosareport-wrapper .HTMLCS-issue-source-inner-u2p {
+  display: none;
+}
+#HTMLCS-bosareport-wrapper .HTMLCS-button {
   display: none;
 }

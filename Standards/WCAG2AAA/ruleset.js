@@ -13,7 +13,7 @@
 
 _global.HTMLCS_WCAG2AAA = {
     name: 'WCAG2AAA',
-    description: 'Web Content Accessibility Guidelines (WCAG) 2.0 AAA',
+    description: 'Web Content Accessibility Guidelines (WCAG) 2.1 AAA',
     sniffs: [
         'Principle1.Guideline1_1.1_1_1',
         'Principle1.Guideline1_2.1_2_1',
@@ -28,6 +28,9 @@ _global.HTMLCS_WCAG2AAA = {
         'Principle1.Guideline1_3.1_3_1_AAA',
         'Principle1.Guideline1_3.1_3_2',
         'Principle1.Guideline1_3.1_3_3',
+        'Principle1.Guideline1_3.1_3_4',
+        'Principle1.Guideline1_3.1_3_5',
+        'Principle1.Guideline1_3.1_3_6',
         'Principle1.Guideline1_4.1_4_1',
         'Principle1.Guideline1_4.1_4_2',
         'Principle1.Guideline1_4.1_4_3_F24',
@@ -36,13 +39,20 @@ _global.HTMLCS_WCAG2AAA = {
         'Principle1.Guideline1_4.1_4_7',
         'Principle1.Guideline1_4.1_4_8',
         'Principle1.Guideline1_4.1_4_9',
+        'Principle1.Guideline1_4.1_4_10',
+        'Principle1.Guideline1_4.1_4_11',
+        'Principle1.Guideline1_4.1_4_12',
+        'Principle1.Guideline1_4.1_4_13',
         'Principle2.Guideline2_1.2_1_1',
         'Principle2.Guideline2_1.2_1_2',
+        'Principle2.Guideline2_1.2_1_4',
         'Principle2.Guideline2_2.2_2_2',
         'Principle2.Guideline2_2.2_2_3',
         'Principle2.Guideline2_2.2_2_4',
         'Principle2.Guideline2_2.2_2_5',
+        'Principle2.Guideline2_2.2_2_6',
         'Principle2.Guideline2_3.2_3_2',
+        'Principle2.Guideline2_3.2_3_3',
         'Principle2.Guideline2_4.2_4_1',
         'Principle2.Guideline2_4.2_4_2',
         'Principle2.Guideline2_4.2_4_3',
@@ -51,6 +61,12 @@ _global.HTMLCS_WCAG2AAA = {
         'Principle2.Guideline2_4.2_4_7',
         'Principle2.Guideline2_4.2_4_8',
         'Principle2.Guideline2_4.2_4_9',
+        'Principle2.Guideline2_5.2_5_1',
+        'Principle2.Guideline2_5.2_5_2',
+        'Principle2.Guideline2_5.2_5_3',
+        'Principle2.Guideline2_5.2_5_4',
+        'Principle2.Guideline2_5.2_5_5',
+        'Principle2.Guideline2_5.2_5_6',
         'Principle3.Guideline3_1.3_1_1',
         'Principle3.Guideline3_1.3_1_2',
         'Principle3.Guideline3_1.3_1_3',
@@ -68,30 +84,31 @@ _global.HTMLCS_WCAG2AAA = {
         'Principle3.Guideline3_3.3_3_5',
         'Principle3.Guideline3_3.3_3_6',
         'Principle4.Guideline4_1.4_1_1',
-        'Principle4.Guideline4_1.4_1_2'
+        'Principle4.Guideline4_1.4_1_2',
+        'Principle4.Guideline4_1.4_1_3'
     ],
     getMsgInfo: function(code) {
         var principles = {
             'Principle1': {
                 name: 'Perceivable',
-                link: 'http://www.w3.org/TR/WCAG20/#perceivable'
+                link: 'http://www.w3.org/TR/WCAG21/#perceivable'
             },
             'Principle2': {
                 name: 'Operable',
-                link: 'http://www.w3.org/TR/WCAG20/#operable'
+                link: 'http://www.w3.org/TR/WCAG21/#operable'
             },
             'Principle3': {
                 name: 'Understandable',
-                link: 'http://www.w3.org/TR/WCAG20/#understandable'
+                link: 'http://www.w3.org/TR/WCAG21/#understandable'
             },
             'Principle4': {
                 name: 'Robust',
-                link: 'http://www.w3.org/TR/WCAG20/#robust'
+                link: 'http://www.w3.org/TR/WCAG21/#robust'
             }
         };
 
         /**
-         * List of success criteria, their links in the WCAG20 doc, and their
+         * List of success criteria, their links in the WCAG21 doc, and their
          * "priority" (to use a WCAG1 term)... priority 1 = single-A, 3 = triple-A.
          *
          * Priority 0 indicates a conformance requirement. CR1 isn't shown because
@@ -120,308 +137,393 @@ _global.HTMLCS_WCAG2AAA = {
             },
             '1.1.1': {
                 name: 'Non-Text Content',
-                landmark: 'text-equiv-all',
+                landmark: 'non-text-content',
                 priority: 1,
             },
             '1.2.1': {
                 name: 'Audio-only and Video-only (Prerecorded)',
-                landmark: 'media-equiv-av-only-alt',
+                landmark: 'audio-only-and-video-only-prerecorded',
                 priority: 1,
             },
             '1.2.2': {
                 name: 'Captions (Prerecorded)',
-                landmark: 'media-equiv-captions',
+                landmark: 'captions-prerecorded',
                 priority: 1,
             },
             '1.2.3': {
                 name: 'Audio Description or Media Alternative (Prerecorded)',
-                landmark: 'media-equiv-audio-desc',
+                landmark: 'audio-description-or-media-alternative-prerecorded',
                 priority: 1,
             },
             '1.2.4': {
                 name: 'Captions (Live)',
-                landmark: 'media-equiv-captions',
+                landmark: 'captions-live',
                 priority: 2,
             },
             '1.2.5': {
                 name: 'Audio Description (Prerecorded)',
-                landmark: 'media-equiv-audio-desc',
+                landmark: 'audio-description-prerecorded',
                 priority: 2,
             },
             '1.2.6': {
                 name: 'Sign Language (Prerecorded)',
-                landmark: 'media-equiv-sign',
+                landmark: 'sign-language-prerecorded',
                 priority: 3,
             },
             '1.2.7': {
                 name: 'Extended Audio Description (Prerecorded)',
-                landmark: 'media-equiv-extended-ad',
+                landmark: 'extended-audio-description-prerecorded',
                 priority: 3,
             },
             '1.2.8': {
                 name: 'Media Alternative (Prerecorded)',
-                landmark: 'media-equiv-text-doc',
+                landmark: 'media-alternative-prerecorded',
                 priority: 3,
             },
             '1.2.9': {
                 name: 'Audio-only (Live)',
-                landmark: 'media-equiv-live-audio-only',
+                landmark: 'audio-only-live',
                 priority: 3,
             },
             '1.3.1': {
                 name: 'Info and Relationships',
-                landmark: 'content-structure-separation-programmatic',
+                landmark: 'info-and-relationships',
                 priority: 1,
             },
             '1.3.2': {
                 name: 'Meaningful Sequence',
-                landmark: 'content-structure-separation-sequence',
+                landmark: 'meaningful-sequence',
                 priority: 1,
             },
             '1.3.3': {
                 name: 'Sensory Characteristics',
-                landmark: 'content-structure-separation-understanding',
+                landmark: 'sensory-characteristics',
                 priority: 1,
+            },
+            '1.3.4': {
+                name: 'Orientation',
+                landmark: 'orientation',
+                priority: 2,
+            },
+            '1.3.5': {
+                name: 'Identify Input Purpose',
+                landmark: 'identify-input-purpose',
+                priority: 2,
+            },
+            '1.3.6': {
+                name: 'Identify Purpose',
+                landmark: 'identify-purpose',
+                priority: 3,
             },
             '1.4.1': {
                 name: 'Use of Colour',
-                landmark: 'visual-audio-contrast-without-color',
+                landmark: 'use-of-color',
                 priority: 1,
             },
             '1.4.2': {
                 name: 'Audio Control',
-                landmark: 'visual-audio-contrast-dis-audio',
+                landmark: 'audio-control',
                 priority: 1,
             },
             '1.4.3': {
                 name: 'Contrast (Minimum)',
-                landmark: 'visual-audio-contrast-contrast',
+                landmark: 'contrast-minimum',
                 priority: 1,
             },
             '1.4.4': {
                 name: 'Resize Text',
-                landmark: 'visual-audio-contrast-scale',
+                landmark: 'resize-text',
                 priority: 1,
             },
             '1.4.5': {
                 name: 'Images of Text',
-                landmark: 'visual-audio-contrast-text-presentation',
+                landmark: 'images-of-text',
                 priority: 1,
             },
             '1.4.6': {
                 name: 'Contrast (Enhanced)',
-                landmark: 'visual-audio-contrast7',
+                landmark: 'contrast-enhanced',
                 priority: 3,
             },
             '1.4.7': {
                 name: 'Low or No Background Audio',
-                landmark: 'visual-audio-contrast-noaudio',
+                landmark: 'low-or-no-background-audio',
                 priority: 3,
             },
             '1.4.8': {
                 name: 'Visual Presentation',
-                landmark: 'visual-audio-contrast-visual-presentation',
+                landmark: 'visual--presentation',
                 priority: 3,
             },
             '1.4.9': {
                 name: 'Images of Text (No Exception)',
-                landmark: 'visual-audio-contrast-text-images',
+                landmark: 'images-of-text-no-exception',
                 priority: 3,
+            },
+            '1.4.10': {
+                name: 'Reflow',
+                landmark: 'reflow',
+                priority: 2,
+            },
+            '1.4.11': {
+                name: 'Non-text Contrast',
+                landmark: 'non-text-contrast',
+                priority: 2,
+            },
+            '1.4.12': {
+                name: 'Text Spacing',
+                landmark: 'text-spacing',
+                priority: 2,
+            },
+            '1.4.13': {
+                name: 'Content on Hover or Focus',
+                landmark: 'content-on-hover-or-focus',
+                priority: 2,
             },
             '2.1.1': {
                 name: 'Keyboard',
-                landmark: 'keyboard-operation-keyboard-operable',
+                landmark: 'keyboard',
                 priority: 1,
             },
             '2.1.2': {
                 name: 'No Keyboard Trap',
-                landmark: 'keyboard-operation-trapping',
+                landmark: 'no-keyboard-trap',
                 priority: 1,
             },
             '2.1.3': {
                 name: 'Keyboard (No Exception)',
-                landmark: 'keyboard-operation-all-funcs',
+                landmark: 'keyboard-no-exception',
                 priority: 3,
+            },
+            '2.1.4': {
+                name: 'Character Key Shortcuts',
+                landmark: 'character-key-shortcuts',
+                priority: 1,
             },
             '2.2.1': {
                 name: 'Timing Adjustable',
-                landmark: 'time-limits-required-behaviors',
+                landmark: 'timing-adjustable',
                 priority: 1,
             },
             '2.2.2': {
                 name: 'Pause, Stop, Hide',
-                landmark: 'time-limits-pause',
+                landmark: 'pause-stop-hide',
                 priority: 1,
             },
             '2.2.3': {
                 name: 'No Timing',
-                landmark: 'time-limits-no-exceptions',
+                landmark: 'no-timing',
                 priority: 3,
             },
             '2.2.4': {
                 name: 'Interruptions',
-                landmark: 'time-limits-postponed',
+                landmark: 'interruptions',
                 priority: 3,
             },
             '2.2.5': {
                 name: 'Re-authenticating',
-                landmark: 'time-limits-server-timeout',
+                landmark: 're-authenticating',
+                priority: 3,
+            },
+            '2.2.6': {
+                name: 'Timeouts',
+                landmark: 'timeouts',
                 priority: 3,
             },
             '2.3.1': {
                 name: 'Three Flashes or Below Threshold',
-                landmark: 'seizure-does-not-violate',
+                landmark: 'three-flashes-or-below-threshold',
                 priority: 1,
             },
             '2.3.2': {
                 name: 'Three Flashes',
-                landmark: 'seizure-three-times',
+                landmark: 'three-flashes',
+                priority: 3,
+            },
+            '2.3.3': {
+                name: 'Animation from Interactions',
+                landmark: 'animation-from-interactions',
                 priority: 3,
             },
             '2.4.1': {
                 name: 'Bypass Blocks',
-                landmark: 'navigation-mechanisms-skip',
+                landmark: 'bypass-blocks',
                 priority: 1,
             },
             '2.4.2': {
                 name: 'Page Titled',
-                landmark: 'navigation-mechanisms-title',
+                landmark: 'page-titled',
                 priority: 1,
             },
             '2.4.3': {
                 name: 'Focus Order',
-                landmark: 'navigation-mechanisms-focus-order',
+                landmark: 'focus-order',
                 priority: 1,
             },
             '2.4.4': {
                 name: 'Link Purpose (In Context)',
-                landmark: 'navigation-mechanisms-refs',
+                landmark: 'link-purpose-in-context',
                 priority: 1,
             },
             '2.4.5': {
                 name: 'Multiple Ways',
-                landmark: 'navigation-mechanisms-mult-loc',
+                landmark: 'multiple-ways',
                 priority: 2,
             },
             '2.4.6': {
                 name: 'Headings and Labels',
-                landmark: 'navigation-mechanisms-descriptive',
+                landmark: 'headings-and-labels',
                 priority: 2,
             },
             '2.4.7': {
                 name: 'Focus Visible',
-                landmark: 'navigation-mechanisms-focus-visible',
+                landmark: 'focus-visible',
                 priority: 2,
             },
             '2.4.8': {
                 name: 'Location',
-                landmark: 'navigation-mechanisms-location',
+                landmark: 'location',
                 priority: 3,
             },
             '2.4.9': {
                 name: 'Link Purpose (Link Only)',
-                landmark: 'navigation-mechanisms-link',
+                landmark: 'link-purpose-link-only',
                 priority: 3,
             },
             '2.4.10': {
                 name: 'Section Headings',
-                landmark: 'navigation-mechanisms-headings',
+                landmark: 'section-headings',
+                priority: 3,
+            },
+            '2.5.1': {
+                name: 'Pointer Gestures',
+                landmark: 'pointer-gestures',
+                priority: 1,
+            },
+            '2.5.2': {
+                name: 'Pointer Cancellation',
+                landmark: 'pointer-cancellation',
+                priority: 1,
+            },
+            '2.5.3': {
+                name: 'Label In Name',
+                landmark: 'label-in-name',
+                priority: 1,
+            },
+            '2.5.4': {
+                name: 'Motion Actuation',
+                landmark: 'motion-actuation',
+                priority: 1,
+            },
+            '2.5.5': {
+                name: 'Target Size',
+                landmark: 'target-size',
+                priority: 3,
+            },
+            '2.5.6': {
+                name: 'Concurrent Input Mechanisms',
+                landmark: 'concurrent-input-mechanisms',
                 priority: 3,
             },
             '3.1.1': {
                 name: 'Language of Page',
-                landmark: 'meaning-doc-lang-id',
+                landmark: 'language-of-page',
                 priority: 1,
             },
             '3.1.2': {
                 name: 'Language of Parts',
-                landmark: 'meaning-other-lang-id',
+                landmark: 'language-of-parts',
                 priority: 2,
             },
             '3.1.3': {
                 name: 'Unusual Words',
-                landmark: 'meaning-idioms',
+                landmark: 'unusual-words',
                 priority: 3,
             },
             '3.1.4': {
                 name: 'Abbreviations',
-                landmark: 'meaning-located',
+                landmark: 'abbreviations',
                 priority: 3,
             },
             '3.1.5': {
                 name: 'Reading Level',
-                landmark: 'meaning-supplements',
+                landmark: 'reading-level',
                 priority: 3,
             },
             '3.1.6': {
                 name: 'Pronunciation',
-                landmark: 'meaning-pronunciation',
+                landmark: 'pronunciation',
                 priority: 3,
             },
             '3.2.1': {
                 name: 'On Focus',
-                landmark: 'consistent-behavior-receive-focus',
+                landmark: 'on-focus',
                 priority: 1,
             },
             '3.2.2': {
                 name: 'On Input',
-                landmark: 'consistent-behavior-unpredictable-change',
+                landmark: 'on-input',
                 priority: 1,
             },
             '3.2.3': {
                 name: 'Consistent Navigation',
-                landmark: 'consistent-behavior-consistent-locations',
+                landmark: 'consistent-navigation',
                 priority: 2,
             },
             '3.2.4': {
-                name: 'Consistent Navigation',
-                landmark: 'consistent-behavior-consistent-functionality',
+                name: 'Consistent Identification',
+                landmark: 'consistent-identification',
                 priority: 2,
             },
             '3.2.5': {
                 name: 'Change on Request',
-                landmark: 'consistent-behavior-no-extreme-changes-context',
+                landmark: 'change-on-request',
                 priority: 3,
             },
             '3.3.1': {
                 name: 'Error Identification',
-                landmark: 'minimize-error-identified',
+                landmark: 'error-identification',
                 priority: 1,
             },
             '3.3.2': {
                 name: 'Labels or Instructions',
-                landmark: 'minimize-error-cues',
+                landmark: 'labels-or-instructions',
                 priority: 1,
             },
             '3.3.3': {
                 name: 'Error Suggestion',
-                landmark: 'minimize-error-suggestions',
+                landmark: 'error-suggestion',
                 priority: 2,
             },
             '3.3.4': {
                 name: 'Error Prevention (Legal, Financial, Data)',
-                landmark: 'minimize-error-reversible',
+                landmark: 'error-prevention-legal-financial-data',
                 priority: 2,
             },
             '3.3.5': {
                 name: 'Help',
-                landmark: 'minimize-error-context-help',
+                landmark: 'help',
                 priority: 3,
             },
             '3.3.6': {
                 name: 'Error Prevention (All)',
-                landmark: 'minimize-error-reversible-all',
+                landmark: 'error-prevention-all',
                 priority: 3,
             },
             '4.1.1': {
                 name: 'Parsing',
-                landmark: 'ensure-compat-parses',
+                landmark: 'parsing',
                 priority: 1,
             },
             '4.1.2': {
                 name: 'Name, Role, Value',
-                landmark: 'ensure-compat-rsv',
+                landmark: 'name-role-value',
                 priority: 1,
+            },
+            '4.1.3': {
+                name: 'Status Messages',
+                landmark: 'status-messages',
+                priority: 2,
             },
         };
 
@@ -430,19 +532,62 @@ _global.HTMLCS_WCAG2AAA = {
         var successCrit   = msgCodeParts[3].split('_').slice(0, 3).join('.');
         var techniques    = msgCodeParts[4].split(',');
         var techniquesStr = [];
+        function getPrefix(x) {
+            if (x.startsWith('ARIA')) {
+                return 'aria/';
+            }
+            if (x.startsWith('SCR')) {
+                return 'client-side-script/';
+            }
+            if (x.startsWith('C')) {
+                return 'css/';
+            }
+            if (x.startsWith('FLASH')) {
+                return 'flash/';
+            }
+            if (x.startsWith('F')) {
+                return 'failures/';
+            }
+            if (x.startsWith('G')) {
+                return 'general/';
+            }
+            if (x.startsWith('H')) {
+                return 'html/';
+            }
+            if (x.startsWith('PDF')) {
+                return 'pdf/';
+            }
+            if (x.startsWith('SVR')) {
+                return 'server-side-script/';
+            }
+            if (x.startsWith('SL')) {
+                return 'silverlight/';
+            }
+            if (x.startsWith('SM')) {
+                return 'smil/';
+            }
+            if (x.startsWith('T')) {
+                return 'text/';
+            }
+            return '';
+        }
 
         for (var i = 0; i < techniques.length; i++) {
             techniques[i]  = techniques[i].split('.');
-            techniquesStr.push('<a href="http://www.w3.org/TR/WCAG20-TECHS/' + techniques[i][0] + '" target="_blank">' + techniques[i][0] + '</a>');
+            if (techniques[i][0] !== '') {
+                techniquesStr.push('<a href="https://www.w3.org/WAI/WCAG21/Techniques/' + getPrefix(techniques[i][0]) + techniques[i][0] + '" target="_blank">' + techniques[i][0] + '</a>');
+            }
         }
 
-        var successCritStr = ['<a href="http://www.w3.org/TR/WCAG20/#' + successCritList[successCrit].landmark, '" target="_blank">', successCrit, ': ', successCritList[successCrit].name, '</a>'].join('');
+        var successCritStr = ['<a href="http://www.w3.org/TR/WCAG21/#' + successCritList[successCrit].landmark, '" target="_blank">', successCrit, ': ', successCritList[successCrit].name, '</a>'].join('');
         /* eslint-disable-next-line no-unused-vars */
         var principleStr   = ['<a href="', principles[principle].link, '" target="_blank">', principles[principle].name, '</a>'].join('');
         var retval = [
             [_global.HTMLCS.getTranslation("auditor_success_criterion"), successCritStr],
-            [_global.HTMLCS.getTranslation("auditor_suggested_techniques"), techniquesStr.join(' ')]
         ];
+        if (techniquesStr.length > 0) {
+            retval.push([_global.HTMLCS.getTranslation("auditor_suggested_techniques"), techniquesStr.join(' ')]);
+        }
 
         return retval;
     }
