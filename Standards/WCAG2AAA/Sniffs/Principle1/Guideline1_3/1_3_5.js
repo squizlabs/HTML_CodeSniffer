@@ -24,6 +24,11 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
     return ["input", "select", "textarea"];
   },
 
+  /**
+   * Checks that the values of the autocomplete attribute are values listed in the HTML 5.2 spec.
+   *
+   * @param {DOMNode} element The element registered.
+   */
   checkValidAttributes: function(element) {
     var valid_attributes = [
       "additional-name",
@@ -90,12 +95,17 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
       "work"
     ];
 
-    var values = element.getAttribute("autocomplete");
-    var values_arr = values.split(" ").map(x => x.trim());
+    var values = element
+      .getAttribute("autocomplete")
+      .split(" ")
+      .map(function(x) {
+        return x.trim();
+      });
+
     if (
-      values_arr.some(
-        x => !valid_attributes.includes(x) && !x.indexOf("section-") !== 0
-      )
+      values.some(function(x) {
+        return !valid_attributes.includes(x) && !x.indexOf("section-") !== 0;
+      })
     ) {
       HTMLCS.addMessage(
         HTMLCS.WARNING,
@@ -107,6 +117,14 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
     }
   },
 
+  /**
+   * Checks that the values of the autocomplete attribute match the right control groups.
+   *
+   * This uses the logic from the followingtable in the HTML 5.2 spec:
+   * https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute
+   *
+   * @param {DOMNode} element The element registered.
+   */
   checkControlGroups: function(element) {
     var textFields = [
       "name",
@@ -248,88 +266,95 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
       element.tagName === "TEXTAREA" ||
       element.tagName === "SELECT";
 
-    values.forEach(function(x) {
-      if (textFields.includes(value) && !isText) {
-        HTMLCS.addMessage(
-          HTMLCS.ERROR,
-          element,
-          "Invalid autocomplete value: " +
-            value +
-            ". Element does not belong to Text control group. See https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute",
-          "H98"
-        );
-      }
-      if (multilineFields.includes(value) && !isMultiline) {
-        HTMLCS.addMessage(
-          HTMLCS.ERROR,
-          element,
-          "Invalid autocomplete value: " +
-            value +
-            ". Element does not belong to Multiline control group. See https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute",
-          "H98"
-        );
-      }
-      if (passwordFields.includes(value) && !isPassword) {
-        HTMLCS.addMessage(
-          HTMLCS.ERROR,
-          element,
-          "Invalid autocomplete value: " +
-            value +
-            ". Element does not belong to Password control group. See https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute",
-          "H98"
-        );
-      }
-      if (urlFields.includes(value) && !isUrl) {
-        HTMLCS.addMessage(
-          HTMLCS.ERROR,
-          element,
-          "Invalid autocomplete value: " +
-            value +
-            ". Element does not belong to Url control group. See https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute",
-          "H98"
-        );
-      }
-      if (telFields.includes(value) && !isTel) {
-        HTMLCS.addMessage(
-          HTMLCS.ERROR,
-          element,
-          "Invalid autocomplete value: " +
-            value +
-            ". Element does not belong to Telephone control group. See https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute",
-          "H98"
-        );
-      }
-      if (numericFields.includes(value) && !isNumeric) {
-        HTMLCS.addMessage(
-          HTMLCS.ERROR,
-          element,
-          "Invalid autocomplete value: " +
-            value +
-            ". Element does not belong to Numeric control group. See https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute",
-          "H98"
-        );
-      }
-      if (monthFields.includes(value) && !isMonth) {
-        HTMLCS.addMessage(
-          HTMLCS.ERROR,
-          element,
-          "Invalid autocomplete value: " +
-            value +
-            ". Element does not belong to Month control group. See https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute",
-          "H98"
-        );
-      }
-      if (dateFields.includes(value) && !isDate) {
-        HTMLCS.addMessage(
-          HTMLCS.ERROR,
-          element,
-          "Invalid autocomplete value: " +
-            value +
-            ". Element does not belong to Date control group. See https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute",
-          "H98"
-        );
-      }
-    });
+    var values = element.getAttribute("autocomplete");
+
+    values
+      .split(" ")
+      .map(function(x) {
+        return x.trim();
+      })
+      .forEach(function(x) {
+        if (textFields.includes(value) && !isText) {
+          HTMLCS.addMessage(
+            HTMLCS.ERROR,
+            element,
+            "Invalid autocomplete value: " +
+              value +
+              ". Element does not belong to Text control group. See https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute",
+            "H98"
+          );
+        }
+        if (multilineFields.includes(value) && !isMultiline) {
+          HTMLCS.addMessage(
+            HTMLCS.ERROR,
+            element,
+            "Invalid autocomplete value: " +
+              value +
+              ". Element does not belong to Multiline control group. See https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute",
+            "H98"
+          );
+        }
+        if (passwordFields.includes(value) && !isPassword) {
+          HTMLCS.addMessage(
+            HTMLCS.ERROR,
+            element,
+            "Invalid autocomplete value: " +
+              value +
+              ". Element does not belong to Password control group. See https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute",
+            "H98"
+          );
+        }
+        if (urlFields.includes(value) && !isUrl) {
+          HTMLCS.addMessage(
+            HTMLCS.ERROR,
+            element,
+            "Invalid autocomplete value: " +
+              value +
+              ". Element does not belong to Url control group. See https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute",
+            "H98"
+          );
+        }
+        if (telFields.includes(value) && !isTel) {
+          HTMLCS.addMessage(
+            HTMLCS.ERROR,
+            element,
+            "Invalid autocomplete value: " +
+              value +
+              ". Element does not belong to Telephone control group. See https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute",
+            "H98"
+          );
+        }
+        if (numericFields.includes(value) && !isNumeric) {
+          HTMLCS.addMessage(
+            HTMLCS.ERROR,
+            element,
+            "Invalid autocomplete value: " +
+              value +
+              ". Element does not belong to Numeric control group. See https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute",
+            "H98"
+          );
+        }
+        if (monthFields.includes(value) && !isMonth) {
+          HTMLCS.addMessage(
+            HTMLCS.ERROR,
+            element,
+            "Invalid autocomplete value: " +
+              value +
+              ". Element does not belong to Month control group. See https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute",
+            "H98"
+          );
+        }
+        if (dateFields.includes(value) && !isDate) {
+          HTMLCS.addMessage(
+            HTMLCS.ERROR,
+            element,
+            "Invalid autocomplete value: " +
+              value +
+              ". Element does not belong to Date control group. See https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute",
+            "H98"
+          );
+        }
+      });
   },
 
   /**
