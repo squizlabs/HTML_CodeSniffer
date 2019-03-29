@@ -21,7 +21,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_10 = {
    * @returns {Array} The list of elements.
    */
   register: function() {
-    return ["_top", "pre"];
+    return ["_top", "pre", "meta"];
   },
 
   /**
@@ -69,6 +69,15 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_10 = {
             "C32,C31,C33,C38,SCR34,G206"
           );
           break;
+        case "meta":
+          if (!!element.getAttribute("maximum-scale") || !!element.getAttribute("minimum-scale") || element.getAttribute("user-scalable") === 'no' || element.getAttribute("user-scalable") === '0') {
+            HTMLCS.addMessage(
+                HTMLCS.WARNING,
+                element,
+                "Interfering with a user agent's ability to zoom may be a failure of this Success Criterion.",
+                "C32,C31,C33,C38,SCR34,G206"
+              );
+          }
       }
     }
   }
