@@ -50,7 +50,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_5_2_5_3 = {
             if (!nameEl) {
               return "";
             }
-            nameParts.push(nameEl.getText());
+            nameParts.push(nameEl.innerText);
           }
           return nameParts.join(" ");
         } else if (el.getAttribute("aria-label")) {
@@ -73,15 +73,15 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_5_2_5_3 = {
       var accessibleName = "";
       switch (nodeName) {
         case "a":
-          visibleLabel = element.getText();
+          visibleLabel = element.innerText;
           accessibleName = getAccessibleName(element);
           break;
         case "button":
-          visibleLabel = element.getText();
+          visibleLabel = element.innerText;
           accessibleName = getAccessibleName(element);
           break;
         case "label":
-          visibleLabel = element.getText();
+          visibleLabel = element.innerText;
           var labelFor = element.getAttribute("for");
           if (!!labelFor) {
             if (top.ownerDocument) {
