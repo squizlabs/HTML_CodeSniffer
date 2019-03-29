@@ -21,7 +21,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
    * @returns {Array} The list of elements.
    */
   register: function() {
-    return ["input", "select", "textarea"];
+    return ["_top", "input", "select", "textarea"];
   },
 
   /**
@@ -95,18 +95,19 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
       "work"
     ];
 
-    var values = element
-      .getAttribute("autocomplete")
-      .split(" ")
-      .map(function(x) {
-        return x.trim();
-      });
+    var values = element.getAttribute("autocomplete").split(" ");
 
-    if (
-      values.some(function(x) {
-        return !valid_attributes.includes(x) && !x.indexOf("section-") !== 0;
-      })
-    ) {
+    var hasFaultyValue = false;
+
+    for (var i = 0; i < values.length; i++) {
+      values[i] = values[i].trim();
+      var x = values[i];
+      if (valid_attributes.indexOf(x) === -1 && x.indexOf("section-") !== 0) {
+        hasFaultyValue = true;
+      }
+    }
+
+    if (hasFaultyValue === true) {
       HTMLCS.addMessage(
         HTMLCS.WARNING,
         element,
@@ -266,95 +267,92 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
       element.tagName === "TEXTAREA" ||
       element.tagName === "SELECT";
 
-    var values = element.getAttribute("autocomplete");
+    var values = element.getAttribute("autocomplete").split(" ");
 
-    values
-      .split(" ")
-      .map(function(x) {
-        return x.trim();
-      })
-      .forEach(function(x) {
-        if (textFields.includes(value) && !isText) {
-          HTMLCS.addMessage(
-            HTMLCS.ERROR,
-            element,
-            "Invalid autocomplete value: " +
-              value +
-              ". Element does not belong to Text control group. See https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute",
-            "H98"
-          );
-        }
-        if (multilineFields.includes(value) && !isMultiline) {
-          HTMLCS.addMessage(
-            HTMLCS.ERROR,
-            element,
-            "Invalid autocomplete value: " +
-              value +
-              ". Element does not belong to Multiline control group. See https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute",
-            "H98"
-          );
-        }
-        if (passwordFields.includes(value) && !isPassword) {
-          HTMLCS.addMessage(
-            HTMLCS.ERROR,
-            element,
-            "Invalid autocomplete value: " +
-              value +
-              ". Element does not belong to Password control group. See https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute",
-            "H98"
-          );
-        }
-        if (urlFields.includes(value) && !isUrl) {
-          HTMLCS.addMessage(
-            HTMLCS.ERROR,
-            element,
-            "Invalid autocomplete value: " +
-              value +
-              ". Element does not belong to Url control group. See https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute",
-            "H98"
-          );
-        }
-        if (telFields.includes(value) && !isTel) {
-          HTMLCS.addMessage(
-            HTMLCS.ERROR,
-            element,
-            "Invalid autocomplete value: " +
-              value +
-              ". Element does not belong to Telephone control group. See https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute",
-            "H98"
-          );
-        }
-        if (numericFields.includes(value) && !isNumeric) {
-          HTMLCS.addMessage(
-            HTMLCS.ERROR,
-            element,
-            "Invalid autocomplete value: " +
-              value +
-              ". Element does not belong to Numeric control group. See https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute",
-            "H98"
-          );
-        }
-        if (monthFields.includes(value) && !isMonth) {
-          HTMLCS.addMessage(
-            HTMLCS.ERROR,
-            element,
-            "Invalid autocomplete value: " +
-              value +
-              ". Element does not belong to Month control group. See https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute",
-            "H98"
-          );
-        }
-        if (dateFields.includes(value) && !isDate) {
-          HTMLCS.addMessage(
-            HTMLCS.ERROR,
-            element,
-            "Invalid autocomplete value: " +
-              value +
-              ". Element does not belong to Date control group. See https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute",
-            "H98"
-          );
-        }
-      });
+    for (var i = 0; i < values.length; i++) {
+      values[i] = values[i].trim();
+      var x = values[i];
+      if (textFields.indexOf(x) > -1 && !isText) {
+        HTMLCS.addMessage(
+          HTMLCS.ERROR,
+          element,
+          "Invalid autocomplete value: " +
+            value +
+            ". Element does not belong to Text control group. See https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute",
+          "H98"
+        );
+      }
+      if (multilineFields.indexOf(x) > -1 && !isMultiline) {
+        HTMLCS.addMessage(
+          HTMLCS.ERROR,
+          element,
+          "Invalid autocomplete value: " +
+            value +
+            ". Element does not belong to Multiline control group. See https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute",
+          "H98"
+        );
+      }
+      if (passwordFields.indexOf(x) > -1 && !isPassword) {
+        HTMLCS.addMessage(
+          HTMLCS.ERROR,
+          element,
+          "Invalid autocomplete value: " +
+            value +
+            ". Element does not belong to Password control group. See https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute",
+          "H98"
+        );
+      }
+      if (urlFields.indexOf(x) > -1 && !isUrl) {
+        HTMLCS.addMessage(
+          HTMLCS.ERROR,
+          element,
+          "Invalid autocomplete value: " +
+            value +
+            ". Element does not belong to Url control group. See https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute",
+          "H98"
+        );
+      }
+      if (telFields.indexOf(x) > -1 && !isTel) {
+        HTMLCS.addMessage(
+          HTMLCS.ERROR,
+          element,
+          "Invalid autocomplete value: " +
+            value +
+            ". Element does not belong to Telephone control group. See https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute",
+          "H98"
+        );
+      }
+      if (numericFields.indexOf(x) > -1 && !isNumeric) {
+        HTMLCS.addMessage(
+          HTMLCS.ERROR,
+          element,
+          "Invalid autocomplete value: " +
+            value +
+            ". Element does not belong to Numeric control group. See https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute",
+          "H98"
+        );
+      }
+      if (monthFields.indexOf(x) > -1 && !isMonth) {
+        HTMLCS.addMessage(
+          HTMLCS.ERROR,
+          element,
+          "Invalid autocomplete value: " +
+            value +
+            ". Element does not belong to Month control group. See https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute",
+          "H98"
+        );
+      }
+      if (dateFields.indexOf(x) > -1 && !isDate) {
+        HTMLCS.addMessage(
+          HTMLCS.ERROR,
+          element,
+          "Invalid autocomplete value: " +
+            value +
+            ". Element does not belong to Date control group. See https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute",
+          "H98"
+        );
+      }
+    }
   },
 
   /**
@@ -364,38 +362,43 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
    * @param {DOMNode} top     The top element of the tested code.
    */
   process: function(element, top) {
-    HTMLCS.addMessage(
-      HTMLCS.NOTICE,
-      top,
-      'Check that the input field serves a purpose identified in the <a href="https://www.w3.org/TR/WCAG21/#input-purposes" target="_blank">Input Purposes for User Interface Components</a> section; and that the content is implemented using technologies with support for identifying the expected meaning for form input data.',
-      "H98"
-    );
-
-    // See table in https://www.w3.org/TR/html52/sec-forms.html#the-input-element
-    var types_to_skip = [
-      "hidden",
-      "checkbox",
-      "radio",
-      "file",
-      "submit",
-      "image",
-      "reset",
-      "button"
-    ];
-    if (types_to_skip.includes(element.getAttribute("type"))) {
-      // Skip any further validation for input types where the autocomplete attribute does not apply, or where the autocomplete element wears the "autofill anchor mantle".
-      return;
-    }
-    if (element.hasAttribute("autocomplete") === false) {
+    if (element === top) {
+      var els = HTMLCS.util.getAllElements(element, '*[autocomplete]');
+      for (var i = 0; i < els.length; i++) {
+        var x = els
+        this.checkValidAttributes(x);
+        this.checkControlGroups(x);
+      }
+    } else {
       HTMLCS.addMessage(
         HTMLCS.NOTICE,
-        element,
-        "This element does not have an autocomplete attribute. If this field collects information about the user, consider adding one to comply with this Success Criterion.",
+        top,
+        'Check that the input field serves a purpose identified in the <a href="https://www.w3.org/TR/WCAG21/#input-purposes" target="_blank">Input Purposes for User Interface Components</a> section; and that the content is implemented using technologies with support for identifying the expected meaning for form input data.',
         "H98"
       );
-    } else {
-      this.checkValidAttributes(element);
-      this.checkControlGroups(element);
+      // See table in https://www.w3.org/TR/html52/sec-forms.html#the-input-element
+      var types_to_skip = [
+        "hidden",
+        "checkbox",
+        "radio",
+        "file",
+        "submit",
+        "image",
+        "reset",
+        "button"
+      ];
+      if (types_to_skip.indexOf(element.getAttribute("type")) > -1) {
+        // Skip any further validation for input types where the autocomplete attribute does not apply, or where the autocomplete element wears the "autofill anchor mantle".
+        return;
+      }
+      if (element.hasAttribute("autocomplete") === false) {
+        HTMLCS.addMessage(
+          HTMLCS.NOTICE,
+          element,
+          "This element does not have an autocomplete attribute. If this field collects information about the user, consider adding one to comply with this Success Criterion.",
+          "H98"
+        );
+      }
     }
   }
 };
