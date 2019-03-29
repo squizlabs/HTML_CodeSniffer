@@ -1,5 +1,3 @@
-import { access, accessSync } from "fs";
-
 /**
  * +--------------------------------------------------------------------+
  * | This HTML_CodeSniffer file is Copyright (c)                        |
