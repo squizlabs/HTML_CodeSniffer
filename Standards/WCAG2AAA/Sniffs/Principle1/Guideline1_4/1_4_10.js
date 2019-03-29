@@ -12,33 +12,64 @@
  */
 
 _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_10 = {
-    /**
-     * Determines the elements to register for processing.
-     *
-     * Each element of the returned array can either be an element name, or "_top"
-     * which is the top element of the tested code.
-     *
-     * @returns {Array} The list of elements.
-     */
-    register: function()
-    {
-        return ['_top'];
+  /**
+   * Determines the elements to register for processing.
+   *
+   * Each element of the returned array can either be an element name, or "_top"
+   * which is the top element of the tested code.
+   *
+   * @returns {Array} The list of elements.
+   */
+  register: function() {
+    return ["_top", "pre"];
+  },
 
-    },
+  /**
+   * Process the registered element.
+   *
+   * @param {DOMNode} element The element registered.
+   * @param {DOMNode} top     The top element of the tested code.
+   */
+  process: function(element, top) {
+    if (element === top) {
+      HTMLCS.addMessage(
+        HTMLCS.NOTICE,
+        top,
+        "Check that content can be presented without loss of information or functionality, and without requiring scrolling in two dimensions for: \
+            <ul> \
+            <li>Vertical scrolling content at a width equivalent to 320 CSS pixels;</li> \
+            <li>Horizontal scrolling content at a height equivalent to 256 CSS pixels;</li> \
+            <li>Except for parts of the content which require two-dimensional layout for usage or meaning.</li> \
+            </ul>",
+        "C32,C31,C33,C38,SCR34,G206"
+      );
 
-    /**
-     * Process the registered element.
-     *
-     * @param {DOMNode} element The element registered.
-     * @param {DOMNode} top     The top element of the tested code.
-     */
-    process: function(element, top)
-    {
-        HTMLCS.addMessage(HTMLCS.NOTICE, top, 'Check that content can be presented without loss of information or functionality, and without requiring scrolling in two dimensions for: \
-        <ul> \
-          <li>Vertical scrolling content at a width equivalent to 320 CSS pixels;</li> \
-          <li>Horizontal scrolling content at a height equivalent to 256 CSS pixels;</li> \
-          <li>Except for parts of the content which require two-dimensional layout for usage or meaning.</li> \
-        </ul>', 'C32,C31,C33,C38,SCR34,G206');
+      element.getElementsByTagName("*").forEach(function(x) {
+        if (
+          window.getComputedStyle(x, null).getPropertyValue("position") ==
+          "fixed"
+        ) {
+          HTMLCS.addMessage(
+            HTMLCS.WARNING,
+            x,
+            'This element has "position: fixed". This may require scrolling in two dimensions, which is considered a failure of this Success Criterion.',
+            "C32,C31,C33,C38,SCR34,G206"
+          );
+        }
+      });
+    } else {
+      var nodeName = element.nodeName.toLowerCase();
+
+      switch (nodeName) {
+        case "pre":
+          HTMLCS.addMessage(
+            HTMLCS.WARNING,
+            top,
+            "Preformatted text may require scrolling in two dimensions, which is considered a failure of this Success Criterion.",
+            "C32,C31,C33,C38,SCR34,G206"
+          );
+          break;
+      }
     }
+  }
 };

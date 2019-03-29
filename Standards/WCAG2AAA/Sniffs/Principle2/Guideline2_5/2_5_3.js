@@ -1,3 +1,5 @@
+import { access, accessSync } from "fs";
+
 /**
  * +--------------------------------------------------------------------+
  * | This HTML_CodeSniffer file is Copyright (c)                        |
@@ -12,28 +14,105 @@
  */
 
 _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_5_2_5_3 = {
-    /**
-     * Determines the elements to register for processing.
-     *
-     * Each element of the returned array can either be an element name, or "_top"
-     * which is the top element of the tested code.
-     *
-     * @returns {Array} The list of elements.
-     */
-    register: function()
-    {
-        return ['_top'];
+  /**
+   * Determines the elements to register for processing.
+   *
+   * Each element of the returned array can either be an element name, or "_top"
+   * which is the top element of the tested code.
+   *
+   * @returns {Array} The list of elements.
+   */
+  register: function() {
+    return ["_top", "a", "button", "label"];
+  },
 
-    },
+  /**
+   * Process the registered element.
+   *
+   * @param {DOMNode} element The element registered.
+   * @param {DOMNode} top     The top element of the tested code.
+   */
+  process: function(element, top) {
+    if (element == top) {
+      HTMLCS.addMessage(
+        HTMLCS.NOTICE,
+        top,
+        "Check that for user interface components with labels that include text or images of text, the name contains the text that is presented visually.",
+        "F96"
+      );
+    } else {
+      function getAccessibleName(el) {
+        // See https://www.w3.org/TR/accname-1.1/#terminology
+        if (el.getAttribute("aria-labelledby")) {
+          var nameParts = [];
+          el.getAttribute("aria-labelledby")
+            .split(" ")
+            .forEach(function(x) {
+              var nameEl = top.getElementById(el.getAttribute("aria-label"));
+              if (!nameEl) {
+                return "";
+              }
+              nameParts.push(nameEl.getText());
+            });
+          return nameParts.join(" ");
+        } else if (el.getAttribute("aria-label")) {
+          return el.getAttribute("aria-label");
+        } else if (el.getAttribute("title")) {
+          if (
+            el.getAttribute("role") !== "presentation" &&
+            el.getAttribute("role") !== "none"
+          ) {
+            return el.getAttribute("aria-label");
+          }
+        }
+        // Give up - we only test the 3 most obvious cases.
+        return "";
+      }
 
-    /**
-     * Process the registered element.
-     *
-     * @param {DOMNode} element The element registered.
-     * @param {DOMNode} top     The top element of the tested code.
-     */
-    process: function(element, top)
-    {
-        HTMLCS.addMessage(HTMLCS.NOTICE, top, 'Check that for user interface components with labels that include text or images of text, the name contains the text that is presented visually.', 'F96');
+      var nodeName = element.nodeName.toLowerCase();
+
+      var visibleLabel = "";
+      var accessibleName = "";
+      switch (nodeName) {
+        case "a":
+          visibleLabel = element.getText();
+          accessibleName = getAccessibleName(element);
+          break;
+        case "button":
+          visibleLabel = element.getText();
+          accessibleName = getAccessibleName(element);
+          break;
+        case "label":
+          visibleLabel = element.getText();
+          var labelFor = element.getAttribute("for");
+          if (!!labelFor) {
+            if (top.ownerDocument) {
+              var refNode = top.ownerDocument.getElementById(labelFor);
+            } else {
+              var refNode = top.getElementById(labelFor);
+            }
+            accessibleName = getAccessibleName(refNode);
+          }
+          break;
+        case "input":
+          if (element.getAttribute("type") === "submit") {
+            visibleLabel = element.getAttribute("value");
+          }
+          accessibleName = getAccessibleName(element);
+          break;
+      }
+      if (visibleLabel !== "" && accessibleName !== "") {
+        var a = visibleLabel.replace(/[^A-Za-z]/g, "").toLowerCase();
+        var b = accessibleName.r(/[^A-Za-z]/g, "").toLowerCase();
+        if (a !== "" && b !== "" && b.indexOf(a) === -1) {
+          HTMLCS.addMessage(
+            HTMLCS.WARNING,
+            element,
+            "Accessible name for his element does not contain the visible label text. Check that for user interface components with labels that include text or images of text, the name contains the text that is presented visually.",
+            "F96"
+          );
+        }
+      }
     }
+  }
 };
