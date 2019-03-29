@@ -45,37 +45,37 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_5_2_5_2 = {
     );
 
     if (element == top) {
-        var all = element.getElementsByTagName("*");
-        for (var i = 0; i < all.length; i++) {
-            var x = all[i];
-        if (!!x.onclick || !!x.getAttribute("onmousedown")) {
-          HTMLCS.addMessage(
-            HTMLCS.NOTICE,
-            element,
-            "This element has an mousedown event listener. Check that for functionality that can be operated using a single pointer, at least one of the following is true: \
-                    <ul> \
-                        <li>No Down-Event: The down-event of the pointer is not used to execute any part of the function;</li> \
-                        <li>Abort or Undo: Completion of the function is on the up-event, and a mechanism is available to abort the function before completion or to undo the function after completion;</li> \
-                        <li>Up Reversal: The up-event reverses any outcome of the preceding down-event;</li> \
-                        <li>Essential: Completing the function on the down-event is essential.</li> \
-                    </ul>",
-            ""
-          );
-        }
-        if (!!x.ontouchstart || x.getAttribute("ontouchstart")) {
-          HTMLCS.addMessage(
-            HTMLCS.NOTICE,
-            element,
-            "This element has a touchstart event listener. Check that for functionality that can be operated using a single pointer, at least one of the following is true: \
-                    <ul> \
-                        <li>No Down-Event: The down-event of the pointer is not used to execute any part of the function;</li> \
-                        <li>Abort or Undo: Completion of the function is on the up-event, and a mechanism is available to abort the function before completion or to undo the function after completion;</li> \
-                        <li>Up Reversal: The up-event reverses any outcome of the preceding down-event;</li> \
-                        <li>Essential: Completing the function on the down-event is essential.</li> \
-                    </ul>",
-            ""
-          );
-        }
+      var allMousedown = HTMLCS.util.getAllElements(top, "*[onmousedown]");
+      for (var i = 0; i < allMousedown.length; i++) {
+        var x = allMousedown[i];
+        HTMLCS.addMessage(
+          HTMLCS.NOTICE,
+          x,
+          "This element has an mousedown event listener. Check that for functionality that can be operated using a single pointer, at least one of the following is true: \
+                      <ul> \
+                          <li>No Down-Event: The down-event of the pointer is not used to execute any part of the function;</li> \
+                          <li>Abort or Undo: Completion of the function is on the up-event, and a mechanism is available to abort the function before completion or to undo the function after completion;</li> \
+                          <li>Up Reversal: The up-event reverses any outcome of the preceding down-event;</li> \
+                          <li>Essential: Completing the function on the down-event is essential.</li> \
+                      </ul>",
+          ""
+        );
+      }
+      var allTouchstart = HTMLCS.util.getAllElements(top, "*[ontouchstart]");
+      for (var i = 0; i < allTouchstart.length; i++) {
+        var x = allTouchstart[i];
+        HTMLCS.addMessage(
+          HTMLCS.NOTICE,
+          x,
+          "This element has a touchstart event listener. Check that for functionality that can be operated using a single pointer, at least one of the following is true: \
+                      <ul> \
+                          <li>No Down-Event: The down-event of the pointer is not used to execute any part of the function;</li> \
+                          <li>Abort or Undo: Completion of the function is on the up-event, and a mechanism is available to abort the function before completion or to undo the function after completion;</li> \
+                          <li>Up Reversal: The up-event reverses any outcome of the preceding down-event;</li> \
+                          <li>Essential: Completing the function on the down-event is essential.</li> \
+                      </ul>",
+          ""
+        );
       }
     }
   }

@@ -39,6 +39,13 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_5_2_5_3 = {
         "F96"
       );
     } else {
+      function getTextContent(el) {
+        if (el.textContent !== undefined) {
+          return el.textContent;
+        } else {
+          return el.innerText;
+        }
+      }
       function getAccessibleName(el) {
         // See https://www.w3.org/TR/accname-1.1/#terminology
         if (el.getAttribute("aria-labelledby")) {
@@ -50,7 +57,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_5_2_5_3 = {
             if (!nameEl) {
               return "";
             }
-            nameParts.push(nameEl.innerText);
+            nameParts.push(nameEl.textContent);
           }
           return nameParts.join(" ");
         } else if (el.getAttribute("aria-label")) {
@@ -73,15 +80,15 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_5_2_5_3 = {
       var accessibleName = "";
       switch (nodeName) {
         case "a":
-          visibleLabel = element.innerText;
+          visibleLabel = getTextContent(element);
           accessibleName = getAccessibleName(element);
           break;
         case "button":
-          visibleLabel = element.innerText;
+          visibleLabel = getTextContent(element);
           accessibleName = getAccessibleName(element);
           break;
         case "label":
-          visibleLabel = element.innerText;
+          visibleLabel = getTextContent(textContent);
           var labelFor = element.getAttribute("for");
           if (!!labelFor) {
             if (top.ownerDocument) {

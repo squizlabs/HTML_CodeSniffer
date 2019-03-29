@@ -44,7 +44,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_10 = {
         "C32,C31,C33,C38,SCR34,G206"
       );
 
-      var all = element.getElementsByTagName("*");
+      var all = HTMLCS.util.getAllElements(top, '*');
       for (var i = 0; i < all.length; i++) {
         var x = all[i];
         if (
