@@ -45,7 +45,9 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_5_2_5_2 = {
     );
 
     if (element == top) {
-      element.getElementsByTagName("*").forEach(function(x) {
+        var all = element.getElementsByTagName("*");
+        for (var i = 0; i < all.length; i++) {
+            var x = all[i];
         if (!!x.onclick || !!x.getAttribute("onmousedown")) {
           HTMLCS.addMessage(
             HTMLCS.NOTICE,
@@ -74,7 +76,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_5_2_5_2 = {
             ""
           );
         }
-      });
+      }
     }
   }
 };

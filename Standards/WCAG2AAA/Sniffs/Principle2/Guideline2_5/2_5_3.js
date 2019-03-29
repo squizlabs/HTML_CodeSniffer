@@ -43,15 +43,15 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_5_2_5_3 = {
         // See https://www.w3.org/TR/accname-1.1/#terminology
         if (el.getAttribute("aria-labelledby")) {
           var nameParts = [];
-          el.getAttribute("aria-labelledby")
-            .split(" ")
-            .forEach(function(x) {
-              var nameEl = top.getElementById(el.getAttribute("aria-label"));
-              if (!nameEl) {
-                return "";
-              }
-              nameParts.push(nameEl.getText());
-            });
+          var parts = el.getAttribute("aria-labelledby").split(" ");
+          for (var i = 0; i < parts.length; i++) {
+            var x = parts[i];
+            var nameEl = top.getElementById(el.getAttribute("aria-label"));
+            if (!nameEl) {
+              return "";
+            }
+            nameParts.push(nameEl.getText());
+          }
           return nameParts.join(" ");
         } else if (el.getAttribute("aria-label")) {
           return el.getAttribute("aria-label");

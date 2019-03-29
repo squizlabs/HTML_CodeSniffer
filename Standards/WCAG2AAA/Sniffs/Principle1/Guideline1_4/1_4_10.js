@@ -44,7 +44,9 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_10 = {
         "C32,C31,C33,C38,SCR34,G206"
       );
 
-      element.getElementsByTagName("*").forEach(function(x) {
+      var all = element.getElementsByTagName("*");
+      for (var i = 0; i < all.length; i++) {
+        var x = all[i];
         if (
           window.getComputedStyle(x, null).getPropertyValue("position") ==
           "fixed"
@@ -56,7 +58,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_10 = {
             "C32,C31,C33,C38,SCR34,G206"
           );
         }
-      });
+      }
     } else {
       var nodeName = element.nodeName.toLowerCase();
 
@@ -70,13 +72,18 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_10 = {
           );
           break;
         case "meta":
-          if (!!element.getAttribute("maximum-scale") || !!element.getAttribute("minimum-scale") || element.getAttribute("user-scalable") === 'no' || element.getAttribute("user-scalable") === '0') {
+          if (
+            !!element.getAttribute("maximum-scale") ||
+            !!element.getAttribute("minimum-scale") ||
+            element.getAttribute("user-scalable") === "no" ||
+            element.getAttribute("user-scalable") === "0"
+          ) {
             HTMLCS.addMessage(
-                HTMLCS.WARNING,
-                element,
-                "Interfering with a user agent's ability to zoom may be a failure of this Success Criterion.",
-                "C32,C31,C33,C38,SCR34,G206"
-              );
+              HTMLCS.WARNING,
+              element,
+              "Interfering with a user agent's ability to zoom may be a failure of this Success Criterion.",
+              "C32,C31,C33,C38,SCR34,G206"
+            );
           }
       }
     }
