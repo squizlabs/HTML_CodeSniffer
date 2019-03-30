@@ -73,7 +73,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_10 = {
                 break;
             case "meta":
                 var content = element.getAttribute('content');
-                var name = element.getAttribute('viewport');
+                var name = element.getAttribute('name');
                 if (content === 'viewport' && !!name &&
                     (name.indexOf("maximum-scale") > -1 ||
                     name.indexOf("minimum-scale") ||
