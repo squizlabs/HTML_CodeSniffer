@@ -113,7 +113,8 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
                 HTMLCS.WARNING,
                 element,
                 "This element contains a potentially faulty value in its autocomplete attribute: " +
-                valuesStr,
+                valuesStr +
+                '. See <a href="https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute">https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute</a>.',
                 "H98"
             );
         }
@@ -279,7 +280,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
                     element,
                     "Invalid autocomplete value: " +
             value +
-            ". Element does not belong to Text control group. See https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute",
+            ". Element does not belong to Text control group. See <a href=\"https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute\">https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute</a>",
                     "H98"
                 );
             }
@@ -289,7 +290,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
                     element,
                     "Invalid autocomplete value: " +
             value +
-            ". Element does not belong to Multiline control group. See https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute",
+            ". Element does not belong to Multiline control group. See <a href=\"https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute\">https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute</a>",
                     "H98"
                 );
             }
@@ -299,7 +300,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
                     element,
                     "Invalid autocomplete value: " +
             value +
-            ". Element does not belong to Password control group. See https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute",
+            ". Element does not belong to Password control group. See <a href=\"https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute\">https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute</a>",
                     "H98"
                 );
             }
@@ -309,7 +310,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
                     element,
                     "Invalid autocomplete value: " +
             value +
-            ". Element does not belong to Url control group. See https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute",
+            ". Element does not belong to Url control group. See <a href=\"https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute\">https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute</a>",
                     "H98"
                 );
             }
@@ -319,7 +320,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
                     element,
                     "Invalid autocomplete value: " +
             value +
-            ". Element does not belong to Telephone control group. See https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute",
+            ". Element does not belong to Telephone control group. See <a href=\"https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute\">https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute</a>",
                     "H98"
                 );
             }
@@ -329,7 +330,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
                     element,
                     "Invalid autocomplete value: " +
             value +
-            ". Element does not belong to Numeric control group. See https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute",
+            ". Element does not belong to Numeric control group. See <a href=\"https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute\">https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute</a>",
                     "H98"
                 );
             }
@@ -339,7 +340,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
                     element,
                     "Invalid autocomplete value: " +
             value +
-            ". Element does not belong to Month control group. See https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute",
+            ". Element does not belong to Month control group. See <a href=\"https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute\">https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute</a>",
                     "H98"
                 );
             }
@@ -349,7 +350,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
                     element,
                     "Invalid autocomplete value: " +
             value +
-            ". Element does not belong to Date control group. See https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute",
+            ". Element does not belong to Date control group. See <a href=\"https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute\">https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute</a>",
                     "H98"
                 );
             }
