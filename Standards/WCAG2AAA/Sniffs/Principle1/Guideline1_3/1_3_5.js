@@ -95,7 +95,8 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
             "work"
         ];
 
-        var values = element.getAttribute("autocomplete").split(" ");
+        var valuesStr = element.getAttribute("autocomplete");
+        var values = valuesStr.split(" ");
 
         var hasFaultyValue = false;
 
@@ -112,7 +113,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
                 HTMLCS.WARNING,
                 element,
                 "This element contains a potentially faulty value in its autocomplete attribute: " +
-          values,
+                valuesStr,
                 "H98"
             );
         }

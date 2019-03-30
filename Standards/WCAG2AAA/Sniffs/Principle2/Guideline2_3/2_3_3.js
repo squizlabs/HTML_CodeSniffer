@@ -34,6 +34,6 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_3_2_3_3 = {
      */
     process: function(element, top)
     {
-        HTMLCS.addMessage(HTMLCS.NOTICE, top, 'Check that Motion animation triggered by interaction can be disabled, unless the animation is essential to the functionality or the information being conveyed.', 'C39');
+        HTMLCS.addMessage(HTMLCS.NOTICE, top, 'Check that motion animation triggered by interaction can be disabled, unless the animation is essential to the functionality or the information being conveyed.', 'C39');
     }
 };

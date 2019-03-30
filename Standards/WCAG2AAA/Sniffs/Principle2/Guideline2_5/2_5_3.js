@@ -21,7 +21,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_5_2_5_3 = {
    * @returns {Array} The list of elements.
    */
     register: function() {
-        return ["_top", "a", "button", "label"];
+        return ["_top", "a", "button", "label", "input"];
     },
 
     /**
