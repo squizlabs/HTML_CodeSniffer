@@ -90,7 +90,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_5_2_5_3 = {
                 accessibleName = getAccessibleName(element);
                 break;
             case "label":
-                visibleLabel = getTextContent(textContent);
+                visibleLabel = getTextContent(element);
                 var labelFor = element.getAttribute("for");
                 if (labelFor) {
                     if (top.ownerDocument) {
@@ -108,10 +108,10 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_5_2_5_3 = {
                 accessibleName = getAccessibleName(element);
                 break;
             }
-            if (visibleLabel !== "" && accessibleName !== "") {
+            if (!!visibleLabel && !!accessibleName) {
                 var a = visibleLabel.replace(/[^A-Za-z]/g, "").toLowerCase();
-                var b = accessibleName.r(/[^A-Za-z]/g, "").toLowerCase();
-                if (a !== "" && b !== "" && b.indexOf(a) === -1) {
+                var b = accessibleName.replace(/[^A-Za-z]/g, "").toLowerCase();
+                if (!!a && !!b && b.indexOf(a) === -1) {
                     HTMLCS.addMessage(
                         HTMLCS.WARNING,
                         element,
