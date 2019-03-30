@@ -76,9 +76,9 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_10 = {
                 var name = element.getAttribute('name');
                 if (name === 'viewport' && !!content &&
                     (content.indexOf("maximum-scale") > -1 ||
-                    content.indexOf("minimum-scale") ||
-                    content.indexOf("user-scalable=no") ||
-                    content.indexOf("user-scalable=0"))
+                    content.indexOf("minimum-scale") > -1 ||
+                    content.indexOf("user-scalable=no") > -1 ||
+                    content.indexOf("user-scalable=0") > -1)
                 ) {
                     HTMLCS.addMessage(
                         HTMLCS.WARNING,
