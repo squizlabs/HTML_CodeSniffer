@@ -74,11 +74,11 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_10 = {
             case "meta":
                 var content = element.getAttribute('content');
                 var name = element.getAttribute('name');
-                if (content === 'viewport' && !!name &&
-                    (name.indexOf("maximum-scale") > -1 ||
-                    name.indexOf("minimum-scale") ||
-                    name.indexOf("user-scalable=no") ||
-                    name.indexOf("user-scalable=0"))
+                if (name === 'viewport' && !!content &&
+                    (content.indexOf("maximum-scale") > -1 ||
+                    content.indexOf("minimum-scale") ||
+                    content.indexOf("user-scalable=no") ||
+                    content.indexOf("user-scalable=0"))
                 ) {
                     HTMLCS.addMessage(
                         HTMLCS.WARNING,
