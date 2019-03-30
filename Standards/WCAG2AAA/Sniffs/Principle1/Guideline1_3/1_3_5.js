@@ -279,7 +279,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
                     HTMLCS.ERROR,
                     element,
                     "Invalid autocomplete value: " +
-            value +
+            x +
             ". Element does not belong to Text control group. See <a href=\"https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute\">https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute</a>",
                     "H98"
                 );
@@ -289,7 +289,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
                     HTMLCS.ERROR,
                     element,
                     "Invalid autocomplete value: " +
-            value +
+            x +
             ". Element does not belong to Multiline control group. See <a href=\"https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute\">https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute</a>",
                     "H98"
                 );
@@ -299,7 +299,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
                     HTMLCS.ERROR,
                     element,
                     "Invalid autocomplete value: " +
-            value +
+            x +
             ". Element does not belong to Password control group. See <a href=\"https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute\">https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute</a>",
                     "H98"
                 );
@@ -309,7 +309,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
                     HTMLCS.ERROR,
                     element,
                     "Invalid autocomplete value: " +
-            value +
+            x +
             ". Element does not belong to Url control group. See <a href=\"https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute\">https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute</a>",
                     "H98"
                 );
@@ -319,7 +319,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
                     HTMLCS.ERROR,
                     element,
                     "Invalid autocomplete value: " +
-            value +
+            x +
             ". Element does not belong to Telephone control group. See <a href=\"https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute\">https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute</a>",
                     "H98"
                 );
@@ -329,7 +329,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
                     HTMLCS.ERROR,
                     element,
                     "Invalid autocomplete value: " +
-            value +
+            x +
             ". Element does not belong to Numeric control group. See <a href=\"https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute\">https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute</a>",
                     "H98"
                 );
@@ -339,7 +339,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
                     HTMLCS.ERROR,
                     element,
                     "Invalid autocomplete value: " +
-            value +
+            x +
             ". Element does not belong to Month control group. See <a href=\"https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute\">https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute</a>",
                     "H98"
                 );
@@ -349,7 +349,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
                     HTMLCS.ERROR,
                     element,
                     "Invalid autocomplete value: " +
-            value +
+            x +
             ". Element does not belong to Date control group. See <a href=\"https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute\">https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute</a>",
                     "H98"
                 );
@@ -374,7 +374,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
         } else {
             HTMLCS.addMessage(
                 HTMLCS.NOTICE,
-                top,
+                element,
                 'Check that the input field serves a purpose identified in the <a href="https://www.w3.org/TR/WCAG21/#input-purposes" target="_blank">Input Purposes for User Interface Components</a> section; and that the content is implemented using technologies with support for identifying the expected meaning for form input data.',
                 "H98"
             );
