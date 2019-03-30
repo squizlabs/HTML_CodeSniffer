@@ -115,7 +115,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_5_2_5_3 = {
                     HTMLCS.addMessage(
                         HTMLCS.WARNING,
                         element,
-                        "Accessible name for his element does not contain the visible label text. Check that for user interface components with labels that include text or images of text, the name contains the text that is presented visually.",
+                        "Accessible name for this element does not contain the visible label text. Check that for user interface components with labels that include text or images of text, the name contains the text that is presented visually.",
                         "F96"
                     );
                 }
