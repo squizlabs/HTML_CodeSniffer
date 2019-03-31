@@ -268,7 +268,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
 
                     var msg = _global.HTMLCS.getTranslation("4_1_2_msg_pattern").replace(/\{\{msgNodeType\}\}/g, msgNodeType).replace(/\{\{builtAttrs\}\}/g, builtAttrs.join(', '));
                     if (element.hasAttribute('role') && element.getAttribute('role') === 'button') {
-                        msg = _global.HTMLCS.getTranslation("4_1_2_msg_pattern_role_of_button").replace(/\{\{builtAttrs\}\}/g, builtAttrs.join(', '))
+                        msg = _global.HTMLCS.getTranslation("4_1_2_msg_pattern_role_of_button").replace(/\{\{builtAttrs\}\}/g, builtAttrs.join(', '));
                     }
                     errors.push({
                         element: element,

@@ -10,7 +10,7 @@
   "scripts": {
     "prepack": "grunt build",
     "build": "grunt build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "grunt eslint"
   },
   "engines": {
     "node": ">=6"
