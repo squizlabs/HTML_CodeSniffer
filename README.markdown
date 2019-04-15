@@ -187,6 +187,7 @@ Special thanks to:
 * [nsulzycki](https://github.com/nsulzycki) (Polish Translation)
 * [dmassiani](https://github.com/dmassiani) (French Translation)
 * [jamadam](https://github.com/jamadam) (Japanese Translation)
+* [tassoman](https://github.com/tassoman) (Italian Translation)
 
 ## License
 
