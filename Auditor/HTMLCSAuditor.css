@@ -864,6 +864,20 @@
     padding: 0.1em 5px;
 }
 
+#HTMLCS-wrapper #HTMLCS-settings-bosa-show-results-wrapper {
+  padding-top: 10px;
+  padding-bottom: 5px;
+}
+
+#HTMLCS-wrapper #HTMLCS-settings-bosa-show-results-wrapper > select {
+    float: right;
+    margin-top: 0.3em;
+    font-family: Roboto, Arial, Sans Serif;
+}
+#HTMLCS-wrapper #HTMLCS-settings-bosa-show-results-wrapper > select > option {
+    padding: 0.1em 5px;
+}
+
 #HTMLCS-wrapper #HTMLCS-settings-use-standard:after {
     clear: both;
     display: block;

@@ -307,6 +307,13 @@ _global.HTMLCSAuditor = new function()
 
         lineageTotalsItem.innerHTML = leftContents.join(divider);
         // Add link to printable report.
+        if (HTMLCS.getBosaOption('showResultsFor') === HTMLCS.RESULTS_FOR_DEVELOPERS) {
+            lineageTotalsItem.innerHTML += " - Filter: Dev";
+        } else if (HTMLCS.getBosaOption('showResultsFor') === HTMLCS.RESULTS_FOR_CONTENT_MANAGERS) {
+            lineageTotalsItem.innerHTML += " - Filter: Content Mgr";
+        } else {
+            lineageTotalsItem.innerHTML += " - All Results";
+        }
         lineageTotalsItem.innerHTML += ' (<a class="export" href="#" onclick="HTMLCSAuditor.bosaExportReport();">Export</a>)';
 
         lineageHomeItem.appendChild(lineageHomeLink);
@@ -401,32 +408,45 @@ _global.HTMLCSAuditor = new function()
         var liWarnings = _doc.createElement('li');
         var liNotices = _doc.createElement('li');
         var liIframes = _doc.createElement('li');
+        var liResultsFor = _doc.createElement('li');
 
         if (_options.show.error === false) {
             liErrors.innerHTML = 'Ignoring Errors';
         } else {
-            liErrors.innerHTML = errors + ' Errors';
+            liErrors.innerHTML = errors + (errors === 1 ? ' Error' : ' Errors');
         }
         if (_options.show.warning === false) {
             liWarnings.innerHTML = 'Ignoring Warnings';
         } else {
-            liWarnings.innerHTML = warnings + ' Warnings';
+            liWarnings.innerHTML = warnings + (warnings === 1 ? ' Warning' : ' Warnings');
         }
         if (_options.show.notice === false) {
             liNotices.innerHTML = 'Ignoring Notices';
         } else {
-            liNotices.innerHTML = notices + ' Notices';
+            liNotices.innerHTML = notices + (errors === 1 ? ' Notice' : ' Notices')
         }
         if (HTMLCS.getBosaOption('skipIframes')) {
             liIframes.innerHTML = 'Iframes are not checked';
         } else {
             liIframes.innerHTML = 'Iframes are also checked';
         }
+
+        var showResultsFor = HTMLCS.getBosaOption('showResultsFor');
+        if (showResultsFor === HTMLCS.RESULTS_FOR_ALL) {
+            liResultsFor.innerHTML = 'Showing results for: all';
+        } else if (showResultsFor === HTMLCS.RESULTS_FOR_DEVELOPERS) {
+            liResultsFor.innerHTML = 'Results filtered for: Developers';
+        } else if (showResultsFor === HTMLCS.RESULTS_FOR_CONTENT_MANAGERS) {
+            liResultsFor.innerHTML = 'Results filtered for: Content managers';
+        }
+        else {
+            alert('error');
+        }
         details.appendChild(liErrors);
         details.appendChild(liWarnings);
         details.appendChild(liNotices);
         details.appendChild(liIframes);
-
+        details.appendChild(liResultsFor);
 
         var wrapper       = _doc.createElement('div');
         wrapper.id        = _prefix + 'bosareport-wrapper';
@@ -660,6 +680,55 @@ _global.HTMLCSAuditor = new function()
             };
         }
 
+        var resultsForDiv = _doc.createElement('div');
+        resultsForDiv.id = _prefix + 'settings-bosa-show-results-wrapper';
+
+        var resultsForLabel       = _doc.createElement('label');
+        resultsForLabel.innerHTML = 'Show results for:';
+        resultsForLabel.setAttribute('for', _prefix + 'settings-bosa-show-results-select');
+
+        var resultsForSelect       = _doc.createElement('select');
+        resultsForSelect.id        = _prefix + 'settings-bosa-show-results-select';
+        resultsForSelect.innerHTML = '';
+
+        resultsForDiv.appendChild(resultsForLabel);
+        resultsForDiv.appendChild(resultsForSelect);
+
+        var allOption       = _doc.createElement('option');
+        allOption.innerHTML = 'All';
+        allOption.value     = HTMLCS.RESULTS_FOR_ALL;
+
+        var showResultsFor = HTMLCS.getBosaOption('showResultsFor');
+        if (showResultsFor === allOption.value) {
+            allOption.selected = true;
+        }
+        resultsForSelect.appendChild(allOption);
+
+        var devOption       = _doc.createElement('option');
+        devOption.innerHTML = 'Developers';
+        devOption.value     = HTMLCS.RESULTS_FOR_DEVELOPERS;
+
+        var showResultsFor = HTMLCS.getBosaOption('showResultsFor');
+        if (showResultsFor === devOption.value) {
+            devOption.selected = true;
+        }
+        resultsForSelect.appendChild(devOption);
+
+        var cmOption       = _doc.createElement('option');
+        cmOption.innerHTML = 'Content Managers';
+        cmOption.value     = HTMLCS.RESULTS_FOR_CONTENT_MANAGERS;
+
+        var showResultsFor = HTMLCS.getBosaOption('showResultsFor');
+        if (showResultsFor === cmOption.value) {
+            cmOption.selected = true;
+        }
+        resultsForSelect.appendChild(cmOption);
+
+        resultsForSelect.onchange = function() {
+            HTMLCS.setBosaOption('showResultsFor', this.options[this.selectedIndex].value);
+            self.run(_standard, _sources, _options);
+        };
+
         var issueCountDiv = _doc.createElement('div');
         issueCountDiv.id  = _prefix + 'settings-issue-count';
 
@@ -680,6 +749,8 @@ _global.HTMLCSAuditor = new function()
         });
         advancedBosaSettingsDiv.appendChild(skipIframesLabel);
         advancedBosaSettingsDiv.appendChild(skipIframesCheckbox);
+
+        advancedBosaSettingsDiv.appendChild(resultsForDiv);
 
         var viewReportDiv       = _doc.createElement('div');
         viewReportDiv.id        = _prefix + 'settings-view-report';
