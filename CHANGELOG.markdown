@@ -14,6 +14,17 @@ The previous version was generally based on the pull request number used to upda
 Version numbers have been applied retrospectively based on the size or significance of the update; the
 old version number is in brackets.
 
+## <a id="2.4.0"></a>Version 2.4.0 (21 May 2019)
+
+Change List.
+
+* Italian translation added by @tassoman
+* Japanese translation added by @jamadam
+* Travis CI config added by @jamadam
+* Various translation improvements by @jamadam
+* Chinese translation by @gafish
+* Npm test refinement by @jamadam
+
 ## <a id="2.3.0"></a>Version 2.3.0 (18 Jan 2019)
 
 Change list.
