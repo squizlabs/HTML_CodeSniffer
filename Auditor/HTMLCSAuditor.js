@@ -835,7 +835,7 @@ _global.HTMLCSAuditor = new function()
                 } else if (HTMLCS.util.contains(body, message.element) === false) {
                     msg = _global.HTMLCS.getTranslation('auditor_unable_to_point_outside');
                 } else {
-                    msg += _global.HTMLCS.getTranslation('auditor_unable_to_point_outside');
+                    msg += ' ' + _global.HTMLCS.getTranslation('auditor_unable_to_point_outside');
                 }
             }
 
