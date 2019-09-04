@@ -62,14 +62,8 @@ replace the directory at the start (//openfed.github.io/AccessibilityCheck/build
 
 ### Debug build
 
-<<<<<<< HEAD
 If you are developing using BOSA Accessiblity Check and require the code not minified for
 debugging purposes, follow the above steps, but run <code>grunt build-debug</code>
-=======
-If you are developing using HTML_CodeSniffer and require the code not minified for
-debugging purposes, follow the above steps, but run `grunt build-debug`
-
-> > > > > > > 5ca0b9b0accb597faaeb13f27e7c961d2a3d301f
 > > > > > > > (instead of just build). This will combine the files as normal, but not minify them.
 
 ## Command-Line processing
