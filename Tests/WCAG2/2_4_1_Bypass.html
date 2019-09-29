@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>2.4.1 Bypass</title>
+<!-- @HTMLCS_Test@
+Name: SC 2.4.1 Bypass
+Standard: WCAG2AA
+Assert: No Error *.G1,G123,G124.NoSuchID on #hidden-anchor
+-->
+<style type="text/css">
+.d-none {
+  display: none;
+}
+</style>
+</head>
+<body>
+
+<a href="#main-content" id="hidden-anchor" class="d-none">
+  Skip to main content
+</a>
+
+</body>
+</html>
+
+
