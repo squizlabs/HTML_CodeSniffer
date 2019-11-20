@@ -20,10 +20,10 @@ Change List.
 
 * Italian translation added by @tassoman
 * Japanese translation added by @jamadam
-* Travis CI config added by @jamadam
+* Travis CI config added by @paazmaya
 * Various translation improvements by @jamadam
 * Chinese translation by @gafish
-* Npm test refinement by @jamadam
+* Npm test refinement by @paazmaya
 
 ## <a id="2.3.0"></a>Version 2.3.0 (18 Jan 2019)
 
