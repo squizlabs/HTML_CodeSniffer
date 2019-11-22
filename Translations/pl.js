@@ -179,9 +179,9 @@ _global.translation['pl'] = {
     ,"1_4_3_G18_or_G145.BgImage" : 'Tekst elementu wyświetlany jest na obrazku. Należy upewnić się, że stosunek kontrastu tekstu do tła wynosi co najmniej {{required}}:1.'
     ,"1_4_3_G18_or_G145.Alpha" : 'Tekst lub tło tego elementu jest przezroczyste. Upewnij się, że współczynnik kontrastu między tekstem a tłem wynosi co najmniej {{required}}:1.'
     ,"1_4_3_G18_or_G145.Fail" : 'Ten element ma niewystarczający na tym poziomie zgodności stosunek kontrastu tekstu do tła. Powinien wynosić co najmniej {{required}}:1, a tekst umieszczony w tym elemencie posiada stosunek {{value}}:1.'
-    ,"1_4_3_G18_or_G145.Fail.Recomendation" : 'Zalecenie: zmiana'
-    ,"1_4_3_G18_or_G145.Fail.Recomendation.Text" : 'koloru tekstu na'
-    ,"1_4_3_G18_or_G145.Fail.Recomendation.Background" : 'koloru tła na'
+    ,"1_4_3_G18_or_G145.Fail.Recomendation" : 'Zalecenie: '
+    ,"1_4_3_G18_or_G145.Fail.Recomendation.Text" : 'zmiana koloru tekstu na {{value}}'
+    ,"1_4_3_G18_or_G145.Fail.Recomendation.Background" : 'zmiana koloru tła na {{value}}'
 
 
     //1_4_4.js
@@ -196,9 +196,9 @@ _global.translation['pl'] = {
     ,"1_4_6_G18_or_G17.Abs" : 'Ten element jest pozycjonowany absolutnie i nie jest możliwe zweryfikowanie jego kontrastu. Sprawdź samodzielnie czy kontrast jest na wystarczającym poziomie: {{required}}:1.'
     ,"1_4_6_G18_or_G17.BgImage" : 'Tekst elementu wyświetlany jest na obrazku. Należy upewnić się, że stosunek kontrastu tekstu do tła wynosi conajmniej {{required}}:1.'
     ,"1_4_6_G18_or_G17.Fail" : 'Ten element ma niewystarczający stosunek kontrastu tekstu do tła. Powinien wynosić co najmniej {{required}}:1, a tekst umieszczony w tym elemencie posiada stosunek {{value}}:1.'
-    ,"1_4_6_G18_or_G17.Fail.Recomendation" : 'Zalecenie: zmiana'
-    ,"1_4_6_G18_or_G17.Fail.Recomendation.Text" : 'koloru tekstu na'
-    ,"1_4_6_G18_or_G17.Fail.Recomendation.Background" : 'koloru tła na'
+    ,"1_4_6_G18_or_G17.Fail.Recomendation" : 'Zalecenie: '
+    ,"1_4_6_G18_or_G17.Fail.Recomendation.Text" : 'zmiana koloru tekstu na {{value}}'
+    ,"1_4_6_G18_or_G17.Fail.Recomendation.Background" : 'zmiana koloru tła na {{value}}'
 
 
 
@@ -399,10 +399,10 @@ _global.translation['pl'] = {
 
 
     ,"4_1_2_input_element" : 'pole formularza'
-    ,"4_1_2_role_of_button" : 'element ma rolę "button" ale'
     ,"4_1_2_element_content" : 'zawartość elementu'
     ,"4_1_2_element" : 'element'
     ,"4_1_2_msg_pattern" : '{{msgNodeType}} nie posiada prawidłowej nazwy (np. atrybutu) dla "accessibility API". Dopuszczalne opcje to: {{builtAttrs}}'
+    ,"4_1_2_msg_pattern_role_of_button" : 'element ma rolę "button" ale nie posiada prawidłowej nazwy (np. atrybutu) dla "accessibility API". Dopuszczalne opcje to: {{builtAttrs}}'
     ,"4_1_2_msg_pattern2" : '{{msgNodeType}} nie ma wartości, która mogłaby być dostępna dla "accessibility API".'
     ,"4_1_2_msg_add_one" : 'Add one by adding content to the element.'
     ,"4_1_2_msg_pattern3" : 'This {{msgNodeType}} does not have an initially selected option. Depending on your HTML version, the value exposed to an accessibility API may be undefined.'

@@ -255,10 +255,6 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
                         msgNodeType = nodeName.substr(6) + _global.HTMLCS.getTranslation("4_1_2_input_element");
                     }
 
-                    if (element.hasAttribute('role') && element.getAttribute('role') === 'button') {
-                        msgNodeType = _global.HTMLCS.getTranslation("4_1_2_role_of_button");
-                    }
-
                     var builtAttrs = matchingRequiredNames.slice(0, matchingRequiredNames.length);
                     for (var a = 0; a < builtAttrs.length; a++) {
                         if (builtAttrs[a] === '_content') {
@@ -271,6 +267,9 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
                     }
 
                     var msg = _global.HTMLCS.getTranslation("4_1_2_msg_pattern").replace(/\{\{msgNodeType\}\}/g, msgNodeType).replace(/\{\{builtAttrs\}\}/g, builtAttrs.join(', '));
+                    if (element.hasAttribute('role') && element.getAttribute('role') === 'button') {
+                        msg = _global.HTMLCS.getTranslation("4_1_2_msg_pattern_role_of_button").replace(/\{\{builtAttrs\}\}/g, builtAttrs.join(', '));
+                    }
                     errors.push({
                         element: element,
                         msg: msg,
@@ -318,7 +317,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
             if (valueFound === false) {
                 var msgNodeType = nodeName + ' ' + _global.HTMLCS.getTranslation("4_1_2_element");
                 if (nodeName.substr(0, 6) === 'input_') {
-                    msgNodeType = nodeName.substr(6) + ' input element';
+                    msgNodeType = nodeName.substr(6) + _global.HTMLCS.getTranslation("4_1_2_input_element");
                 }
 
                 var msg = _global.HTMLCS.getTranslation("4_1_2_msg_pattern2").replace(/\{\{msgNodeType\}\}/g, msgNodeType);
