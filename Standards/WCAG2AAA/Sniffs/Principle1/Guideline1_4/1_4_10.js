@@ -35,12 +35,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_10 = {
             HTMLCS.addMessage(
                 HTMLCS.NOTICE,
                 top,
-                "Check that content can be presented without loss of information or functionality, and without requiring scrolling in two dimensions for: \
-            <ul> \
-            <li>Vertical scrolling content at a width equivalent to 320 CSS pixels;</li> \
-            <li>Horizontal scrolling content at a height equivalent to 256 CSS pixels;</li> \
-            <li>Except for parts of the content which require two-dimensional layout for usage or meaning.</li> \
-            </ul>",
+                _global.HTMLCS.getTranslation("1_4_10_C32,C31,C33,C38,SCR34,G206.Check"),
                 "C32,C31,C33,C38,SCR34,G206"
             );
 
@@ -54,7 +49,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_10 = {
                     HTMLCS.addMessage(
                         HTMLCS.WARNING,
                         x,
-                        'This element has "position: fixed". This may require scrolling in two dimensions, which is considered a failure of this Success Criterion.',
+                        _global.HTMLCS.getTranslation("1_4_10_C32,C31,C33,C38,SCR34,G206.Fixed"),
                         "C32,C31,C33,C38,SCR34,G206"
                     );
                 }
@@ -67,7 +62,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_10 = {
                 HTMLCS.addMessage(
                     HTMLCS.WARNING,
                     top,
-                    "Preformatted text may require scrolling in two dimensions, which is considered a failure of this Success Criterion.",
+                    _global.HTMLCS.getTranslation("1_4_10_C32,C31,C33,C38,SCR34,G206.Scrolling"),
                     "C32,C31,C33,C38,SCR34,G206"
                 );
                 break;
@@ -83,7 +78,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_10 = {
                     HTMLCS.addMessage(
                         HTMLCS.WARNING,
                         element,
-                        "Interfering with a user agent's ability to zoom may be a failure of this Success Criterion.",
+                        _global.HTMLCS.getTranslation("1_4_10_C32,C31,C33,C38,SCR34,G206.Zoom"),
                         "C32,C31,C33,C38,SCR34,G206"
                     );
                 }

@@ -34,12 +34,6 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_12 = {
      */
     process: function(element, top)
     {
-        HTMLCS.addMessage(HTMLCS.NOTICE, top, 'Check that no loss of content or functionality occurs by setting all of the following and by changing no other style property: \
-        <ul> \
-            <li>Line height (line spacing) to at least 1.5 times the font size;</li> \
-            <li>Spacing following paragraphs to at least 2 times the font size;</li> \
-            <li>Letter spacing (tracking) to at least 0.12 times the font size;</li> \
-            <li>Word spacing to at least 0.16 times the font size.</li> \
-        </ul>', 'C36,C35');
+        HTMLCS.addMessage(HTMLCS.NOTICE, top, _global.HTMLCS.getTranslation("1_4_12_C36,C35.Check"), 'C36,C35');
     }
 };

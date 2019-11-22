@@ -34,11 +34,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_5_2_5_4 = {
         HTMLCS.addMessage(
             HTMLCS.NOTICE,
             top,
-            "Check that functionality that can be operated by device motion or user motion can also be operated by user interface components and responding to the motion can be disabled to prevent accidental actuation, except when: \
-        <ul> \
-            <li>Supported Interface: The motion is used to operate functionality through an accessibility supported interface;</li> \
-            <li>Essential: The motion is essential for the function and doing so would invalidate the activity.</li> \
-        </ul>",
+            _global.HTMLCS.getTranslation("2_5_4.Check"),
             ""
         );
 
@@ -49,11 +45,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_5_2_5_4 = {
                 HTMLCS.addMessage(
                     HTMLCS.WARNING,
                     x,
-                    "This element has a devicemotion event listener. Check that functionality that can be operated by device motion or user motion can also be operated by user interface components and responding to the motion can be disabled to prevent accidental actuation, except when: \
-                    <ul> \
-                        <li>Supported Interface: The motion is used to operate functionality through an accessibility supported interface;</li> \
-                        <li>Essential: The motion is essential for the function and doing so would invalidate the activity.</li> \
-                    </ul>",
+                    _global.HTMLCS.getTranslation("2_5_4.Devicemotion"),
                     ""
                 );
             }

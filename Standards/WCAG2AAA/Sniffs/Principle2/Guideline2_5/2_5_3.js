@@ -50,7 +50,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_5_2_5_3 = {
                     var x = parts[i];
                     var nameEl = top.getElementById(x);
                     if (nameEl) {
-                      nameParts.push(nameEl.textContent);
+                        nameParts.push(nameEl.textContent);
                     }
                 }
                 return nameParts.join(" ");
@@ -72,7 +72,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_5_2_5_3 = {
             HTMLCS.addMessage(
                 HTMLCS.NOTICE,
                 top,
-                "Check that for user interface components with labels that include text or images of text, the name contains the text that is presented visually.",
+                _global.HTMLCS.getTranslation("2_5_3_F96.Check"),
                 "F96"
             );
         } else {
@@ -115,7 +115,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_5_2_5_3 = {
                     HTMLCS.addMessage(
                         HTMLCS.WARNING,
                         element,
-                        "Accessible name for this element does not contain the visible label text. Check that for user interface components with labels that include text or images of text, the name contains the text that is presented visually.",
+                        _global.HTMLCS.getTranslation("2_5_3_F96.AccessibleName"),
                         "F96"
                     );
                 }

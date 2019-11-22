@@ -35,6 +35,6 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_4 = {
     process: function(element, top)
     {
         HTMLCS.addMessage(HTMLCS.NOTICE, top,
-            'Check that content does not restrict its view and operation to a single display orientation, such as portrait or landscape, unless a specific display orientation is essential.', '');
+            _global.HTMLCS.getTranslation("1_3_4.RestrictView"), '');
     }
 };

@@ -112,9 +112,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
             HTMLCS.addMessage(
                 HTMLCS.WARNING,
                 element,
-                "This element contains a potentially faulty value in its autocomplete attribute: " +
-                valuesStr +
-                '. See <a href="https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute">https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute</a>.',
+                _global.HTMLCS.getTranslation("1_3_5_H98.FaultyValue").replace(/\{\{valuesStr\}\}/g, valuesStr),
                 "H98"
             );
         }
@@ -278,9 +276,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
                 HTMLCS.addMessage(
                     HTMLCS.ERROR,
                     element,
-                    "Invalid autocomplete value: " +
-            x +
-            ". Element does not belong to Text control group. See <a href=\"https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute\">https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute</a>",
+                    _global.HTMLCS.getTranslation("1_3_5_H98.InvalidAutoComplete_Text").replace(/\{\{x\}\}/g, x),
                     "H98"
                 );
             }
@@ -288,9 +284,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
                 HTMLCS.addMessage(
                     HTMLCS.ERROR,
                     element,
-                    "Invalid autocomplete value: " +
-            x +
-            ". Element does not belong to Multiline control group. See <a href=\"https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute\">https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute</a>",
+                    _global.HTMLCS.getTranslation("1_3_5_H98.InvalidAutoComplete_Multiline").replace(/\{\{x\}\}/g, x),
                     "H98"
                 );
             }
@@ -298,9 +292,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
                 HTMLCS.addMessage(
                     HTMLCS.ERROR,
                     element,
-                    "Invalid autocomplete value: " +
-            x +
-            ". Element does not belong to Password control group. See <a href=\"https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute\">https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute</a>",
+                    _global.HTMLCS.getTranslation("1_3_5_H98.InvalidAutoComplete_Password").replace(/\{\{x\}\}/g, x),
                     "H98"
                 );
             }
@@ -308,9 +300,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
                 HTMLCS.addMessage(
                     HTMLCS.ERROR,
                     element,
-                    "Invalid autocomplete value: " +
-            x +
-            ". Element does not belong to Url control group. See <a href=\"https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute\">https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute</a>",
+                    _global.HTMLCS.getTranslation("1_3_5_H98.InvalidAutoComplete_Url").replace(/\{\{x\}\}/g, x),
                     "H98"
                 );
             }
@@ -318,9 +308,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
                 HTMLCS.addMessage(
                     HTMLCS.ERROR,
                     element,
-                    "Invalid autocomplete value: " +
-            x +
-            ". Element does not belong to Telephone control group. See <a href=\"https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute\">https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute</a>",
+                    _global.HTMLCS.getTranslation("1_3_5_H98.InvalidAutoComplete_Telephone").replace(/\{\{x\}\}/g, x),
                     "H98"
                 );
             }
@@ -328,9 +316,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
                 HTMLCS.addMessage(
                     HTMLCS.ERROR,
                     element,
-                    "Invalid autocomplete value: " +
-            x +
-            ". Element does not belong to Numeric control group. See <a href=\"https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute\">https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute</a>",
+                    _global.HTMLCS.getTranslation("1_3_5_H98.InvalidAutoComplete_Numeric").replace(/\{\{x\}\}/g, x),
                     "H98"
                 );
             }
@@ -338,9 +324,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
                 HTMLCS.addMessage(
                     HTMLCS.ERROR,
                     element,
-                    "Invalid autocomplete value: " +
-            x +
-            ". Element does not belong to Month control group. See <a href=\"https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute\">https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute</a>",
+                    _global.HTMLCS.getTranslation("1_3_5_H98.InvalidAutoComplete_Month").replace(/\{\{x\}\}/g, x),
                     "H98"
                 );
             }
@@ -348,9 +332,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
                 HTMLCS.addMessage(
                     HTMLCS.ERROR,
                     element,
-                    "Invalid autocomplete value: " +
-            x +
-            ". Element does not belong to Date control group. See <a href=\"https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute\">https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute</a>",
+                    _global.HTMLCS.getTranslation("1_3_5_H98.InvalidAutoComplete_Date").replace(/\{\{x\}\}/g, x),
                     "H98"
                 );
             }
@@ -375,7 +357,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
             HTMLCS.addMessage(
                 HTMLCS.NOTICE,
                 element,
-                'Check that the input field serves a purpose identified in the <a href="https://www.w3.org/TR/WCAG21/#input-purposes" target="_blank">Input Purposes for User Interface Components</a> section; and that the content is implemented using technologies with support for identifying the expected meaning for form input data.',
+                _global.HTMLCS.getTranslation("1_3_5_H98.Purpose"),
                 "H98"
             );
             // See table in https://www.w3.org/TR/html52/sec-forms.html#the-input-element
@@ -397,7 +379,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
                 HTMLCS.addMessage(
                     HTMLCS.NOTICE,
                     element,
-                    "This element does not have an autocomplete attribute. If this field collects information about the user, consider adding one to comply with this Success Criterion.",
+                    _global.HTMLCS.getTranslation("1_3_5_H98.MissingAutocomplete"),
                     "H98"
                 );
             }

@@ -34,10 +34,6 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_11 = {
      */
     process: function(element, top)
     {
-        HTMLCS.addMessage(HTMLCS.NOTICE, top, 'Check that the visual presentation of the following have a contrast ratio of at least 3:1 against adjacent color(s): \
-        <ul> \
-          <li>User Interface Components: Visual information required to identify user interface components and states, except for inactive components or where the appearance of the component is determined by the user agent and not modified by the author;</li> \
-          <li>Graphical Objects: Parts of graphics required to understand the content, except when a particular presentation of graphics is essential to the information being conveyed.</li> \
-        </ul>', 'G195,G207,G18,G145,G174,F78');
+        HTMLCS.addMessage(HTMLCS.NOTICE, top, _global.HTMLCS.getTranslation("1_4_11_G195,G207,G18,G145,G174,F78.Check"), 'G195,G207,G18,G145,G174,F78');
     }
 };

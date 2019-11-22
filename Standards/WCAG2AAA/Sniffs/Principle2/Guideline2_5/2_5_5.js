@@ -34,12 +34,6 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_5_2_5_5 = {
      */
     process: function(element, top)
     {
-        HTMLCS.addMessage(HTMLCS.NOTICE, top, 'Check that the size of the target for pointer inputs is at least 44 by 44 CSS pixels except when: \
-        <ul> \
-            <li>Equivalent: The target is available through an equivalent link or control on the same page that is at least 44 by 44 CSS pixels;</li> \
-            <li>Inline: The target is in a sentence or block of text;</li> \
-            <li>User Agent Control: The size of the target is determined by the user agent and is not modified by the author;</li> \
-            <li>Essential: A particular presentation of the target is essential to the information being conveyed.</li> \
-        </ul>', '');
+        HTMLCS.addMessage(HTMLCS.NOTICE, top, _global.HTMLCS.getTranslation("2_5_5.Check"), '');
     }
 };
