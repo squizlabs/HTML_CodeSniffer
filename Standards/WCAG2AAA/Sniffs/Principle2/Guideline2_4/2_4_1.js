@@ -110,7 +110,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_4_2_4_1 = {
      */
     testSameDocFragmentLinks: function(element, top)
     {
-        if (element.hasAttribute('href') === true) {
+        if (element.hasAttribute('href') === true && HTMLCS.util.isFocusable(element) === true) {
             var href = element.getAttribute('href');
             href     = HTMLCS.util.trim(href);
             if ((href.length > 1) && (href.charAt(0) === '#')) {

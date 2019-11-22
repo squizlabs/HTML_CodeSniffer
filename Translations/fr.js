@@ -179,9 +179,9 @@ _global.translation['fr'] = {
     ,"1_4_3_G18_or_G145.BgImage" : 'Le texte de cet élément est placé sur une image de fond. Assurez-vous que le rapport de contraste entre le texte et toutes les parties couvertes de l\'image est d\'au moins {{nécessaire}}:1.'
     ,"1_4_3_G18_or_G145.Alpha" : 'Le texte ou l\'arrière-plan de cet élément contient de la transparence. Assurez-vous que le rapport de contraste entre le texte et l\'arrière-plan est d\'au moins {{nécessaire}}:1.'
     ,"1_4_3_G18_or_G145.Fail" : 'Cet élément a un contraste insuffisant à ce niveau de conformité. On s\'attendait à un rapport de contraste d\'au moins {{required}}:1, mais le texte dans cet élément a un rapport de contraste de {{value}}:1.'
-    ,"1_4_3_G18_or_G145.Fail.Recomendation" : 'Recommandation : changement'
-    ,"1_4_3_G18_or_G145.Fail.Recomendation.Text" : 'Couleur du texte à'
-    ,"1_4_3_G18_or_G145.Fail.Recomendation.Background" : 'Fond à'
+    ,"1_4_3_G18_or_G145.Fail.Recomendation" : 'Recommandation : '
+    ,"1_4_3_G18_or_G145.Fail.Recomendation.Text" : 'changement Couleur du texte à {{value}}'
+    ,"1_4_3_G18_or_G145.Fail.Recomendation.Background" : 'changement Fond à {{value}}'
 
 
     //1_4_4.js
@@ -196,9 +196,9 @@ _global.translation['fr'] = {
     ,"1_4_6_G18_or_G17.Abs" : 'Cet élément est absolument positionné et la couleur de fond ne peut pas être déterminée. Assurez-vous que le rapport de contraste entre le texte et toutes les parties couvertes de l\'arrière-plan est d\'au moins {{nécessaire}}:1.'
     ,"1_4_6_G18_or_G17.BgImage" : 'Le texte de cet élément est placé sur une image de fond. Assurez-vous que le rapport de contraste entre le texte et toutes les parties couvertes de l\'image est d\'au moins {{nécessaire}}:1.'
     ,"1_4_6_G18_or_G17.Fail" : 'Cet élément a un contraste insuffisant à ce niveau de conformité. On s\'attendait à un rapport de contraste d\'au moins {{required}}:1, mais le texte dans cet élément a un rapport de contraste de {{value}}:1.'
-    ,"1_4_6_G18_or_G17.Fail.Recomendation" : 'Recommandation : changement'
-    ,"1_4_6_G18_or_G17.Fail.Recomendation.Text" : 'Couleur du texte à'
-    ,"1_4_6_G18_or_G17.Fail.Recomendation.Background" : 'Fond à'
+    ,"1_4_6_G18_or_G17.Fail.Recomendation" : 'Recommandation : '
+    ,"1_4_6_G18_or_G17.Fail.Recomendation.Text" : 'changement Couleur du texte à {{value}}'
+    ,"1_4_6_G18_or_G17.Fail.Recomendation.Background" : 'changement Fond à {{value}}'
 
 
     //1_4_7.js
@@ -396,10 +396,10 @@ _global.translation['fr'] = {
 
 
     ,"4_1_2_input_element" : 'élément d\'entrée'
-    ,"4_1_2_role_of_button" : 'l\'élément a un rôle de "bouton" mais'
     ,"4_1_2_element_content" : 'contenu de l\'élément'
     ,"4_1_2_element" : 'élément'
     ,"4_1_2_msg_pattern" : 'Ce {{msgNodeType}} n\'a pas de nom disponible pour une API d\'accessibilité. Les noms valides le sont : {{builtAttrs}}.'
+    ,"4_1_2_msg_pattern_role_of_button" : 'Ce l\'élément a un rôle de "bouton" mais n\'a pas de nom disponible pour une API d\'accessibilité. Les noms valides le sont : {{builtAttrs}}.'
     ,"4_1_2_msg_pattern2" : 'Cette {{{msgNodeType}} n\'a pas de valeur disponible pour une API d\'accessibilité.'
     ,"4_1_2_msg_add_one" : 'Ajouter un en ajoutant du contenu à l\'élément.'
     ,"4_1_2_msg_pattern3" : 'Cette {{msgNodeType}} n\'a pas d\'option initialement sélectionnée. Selon votre version HTML, la valeur exposée à une API d\'accessibilité peut être indéfinie.'

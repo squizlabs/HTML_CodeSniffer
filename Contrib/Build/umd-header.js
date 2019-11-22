@@ -12,7 +12,7 @@
  */
 (function (root, factory) {
     if (typeof define === 'function' && define.amd) {
-        define(['htmlcs'], factory);
+        define('htmlcs', factory);
     } else if (typeof exports === 'object') {
         module.exports = factory();
     } else {

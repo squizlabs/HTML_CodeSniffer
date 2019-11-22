@@ -1,41 +1,41 @@
-_global.translation['en'] = {
+_global.translation['it'] = {
 
     //HTMLCSAuditor.js
-    "auditor_name" : 'HTML_CodeSniffer by Squiz'
-    ,"auditor_using_standard" : 'Using standard'
-    ,"auditor_standards" : 'Standards'
-    ,"auditor_code_snippet" : 'Code Snippet'
-    ,"auditor_close" : 'Close'
-    ,"auditor_select_types" : 'Select the types of issues to include in the report'
-    ,"auditor_home" : 'Home'
-    ,"auditor_view_report" : 'View Report'
+    "auditor_name" : 'HTML_CodeSniffer di Squiz'
+    ,"auditor_using_standard" : 'Standard in uso: '
+    ,"auditor_standards" : 'Standard'
+    ,"auditor_code_snippet" : 'Codice coinvolto'
+    ,"auditor_close" : 'Chiudi'
+    ,"auditor_select_types" : 'Seleziona il tipo di verifiche da includere nel report'
+    ,"auditor_home" : 'Inizio'
+    ,"auditor_view_report" : 'Risultati del report'
     ,"auditor_report" : 'Report'
-    ,"auditor_back_to_report" : 'Back to Report'
-    ,"auditor_previous_issue" : 'Previous Issue'
-    ,"auditor_next_issue" : 'Next Issue'
-    ,"auditor_issue" : 'Issue'
-    ,"auditor_of" : 'of'
-    ,"auditor_errors" : 'Errors'
-    ,"auditor_error" : 'Error'
-    ,"auditor_warnings" : 'Warnings'
-    ,"auditor_warning" : 'Warning'
-    ,"auditor_notices" : 'Notices'
-    ,"auditor_notice" : 'Notice'
-    ,"auditor_toggle_display_of" : 'Toggle display of'
-    ,"auditor_messages" : 'messages'
+    ,"auditor_back_to_report" : 'Torna al report'
+    ,"auditor_previous_issue" : 'Problema Precedente'
+    ,"auditor_next_issue" : 'Problema Successivo'
+    ,"auditor_issue" : 'Problema'
+    ,"auditor_of" : 'di'
+    ,"auditor_errors" : 'Errori'
+    ,"auditor_error" : 'Errore'
+    ,"auditor_warnings" : 'Avvisi'
+    ,"auditor_warning" : 'Avviso'
+    ,"auditor_notices" : 'Note'
+    ,"auditor_notice" : 'Nota'
+    ,"auditor_toggle_display_of" : 'Visibilità di'
+    ,"auditor_messages" : 'messaggi'
     ,"auditor_unable_to_point" : 'Unable to point to the element associated with this issue.'
     ,"auditor_unable_to_point_entire" : 'Unable to point to this issue, as it relates to the entire document.'
     ,"auditor_unable_to_point_removed" : 'Unable to point to this element as it has been removed from the document since the report was generated.'
     ,"auditor_unable_to_point_outside" : 'Unable to point to this element because it is located outside the document\'s body element.'
     ,"auditor_unable_to_point_hidden" : 'Unable to point to this element because it is hidden from view, or does not have a visual representation.'
     ,"auditor_point_to_element" : 'Point to Element'
-    ,"auditor_unsupported_browser" : 'The code snippet functionality is not supported in this browser.'
-    ,"auditor_page" : 'Page'
-    ,"auditor_updated_to" : 'HTML_CodeSniffer has been updated to version'
-    ,"auditor_view_the_changelog" : 'View the changelog'
-    ,"auditor_success_criterion" : "Success Criterion"
-    ,"auditor_suggested_techniques" : "Suggested Techniques"
-    ,"auditor_applies_entire_document" : "This applies to the entire document"
+    ,"auditor_unsupported_browser" : 'La funzionalità «parte di codice» non funziona su questo browser.'
+    ,"auditor_page" : 'Pagina'
+    ,"auditor_updated_to" : 'Abbiamo aggiornato HTML_CodeSniffer alla versione'
+    ,"auditor_view_the_changelog" : 'Elenco delle modifiche'
+    ,"auditor_success_criterion" : "Requisito di successo"
+    ,"auditor_suggested_techniques" : "Tecniche suggerite"
+    ,"auditor_applies_entire_document" : "Si applica a tutto il documento"
 
     //1_1_1.js
     ,"1_1_1_H30.2" : 'Img element is the only content of the link, but is missing alt text. The alt text should describe the purpose of the link.'
@@ -179,9 +179,9 @@ _global.translation['en'] = {
     ,"1_4_3_G18_or_G145.BgImage" : 'This element\'s text is placed on a background image. Ensure the contrast ratio between the text and all covered parts of the image are at least {{required}}:1.'
     ,"1_4_3_G18_or_G145.Alpha" : 'This element\'s text or background contains transparency. Ensure the contrast ratio between the text and background are at least {{required}}:1.'
     ,"1_4_3_G18_or_G145.Fail" : 'This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least {{required}}:1, but text in this element has a contrast ratio of {{value}}:1.'
-    ,"1_4_3_G18_or_G145.Fail.Recomendation" : 'Recommendation: '
-    ,"1_4_3_G18_or_G145.Fail.Recomendation.Text" : 'change text colour to {{value}}'
-    ,"1_4_3_G18_or_G145.Fail.Recomendation.Background" : 'change background to {{value}}'
+    ,"1_4_3_G18_or_G145.Fail.Recomendation" : 'Recommendation: change'
+    ,"1_4_3_G18_or_G145.Fail.Recomendation.Text" : 'text colour to'
+    ,"1_4_3_G18_or_G145.Fail.Recomendation.Background" : 'background to'
 
 
     //1_4_4.js
@@ -196,9 +196,9 @@ _global.translation['en'] = {
     ,"1_4_6_G18_or_G17.Abs" : 'This element is absolutely positioned and the background color can not be determined. Ensure the contrast ratio between the text and all covered parts of the background are at least {{required}}:1.'
     ,"1_4_6_G18_or_G17.BgImage" : 'This element\'s text is placed on a background image. Ensure the contrast ratio between the text and all covered parts of the image are at least {{required}}:1.'
     ,"1_4_6_G18_or_G17.Fail" : 'This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least {{required}}:1, but text in this element has a contrast ratio of {{value}}:1.'
-    ,"1_4_6_G18_or_G17.Fail.Recomendation" : 'Recommendation: '
-    ,"1_4_6_G18_or_G17.Fail.Recomendation.Text" : 'change text colour to {{value}}'
-    ,"1_4_6_G18_or_G17.Fail.Recomendation.Background" : 'change background to {{value}}'
+    ,"1_4_6_G18_or_G17.Fail.Recomendation" : 'Recommendation: change'
+    ,"1_4_6_G18_or_G17.Fail.Recomendation.Text" : 'text colour to'
+    ,"1_4_6_G18_or_G17.Fail.Recomendation.Background" : 'background to'
 
 
 
@@ -399,10 +399,10 @@ _global.translation['en'] = {
 
 
     ,"4_1_2_input_element" : 'input element'
+    ,"4_1_2_role_of_button" : 'element has a role of "button" but'
     ,"4_1_2_element_content" : 'element content'
     ,"4_1_2_element" : 'element'
     ,"4_1_2_msg_pattern" : 'This {{msgNodeType}} does not have a name available to an accessibility API. Valid names are: {{builtAttrs}}.'
-    ,"4_1_2_msg_pattern_role_of_button" : 'This element has role of "button" but does not have a name available to an accessibility API. Valid names are: {{builtAttrs}}.'
     ,"4_1_2_msg_pattern2" : 'This {{msgNodeType}} does not have a value available to an accessibility API.'
     ,"4_1_2_msg_add_one" : 'Add one by adding content to the element.'
     ,"4_1_2_msg_pattern3" : 'This {{msgNodeType}} does not have an initially selected option. Depending on your HTML version, the value exposed to an accessibility API may be undefined.'

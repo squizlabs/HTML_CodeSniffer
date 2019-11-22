@@ -9,6 +9,8 @@ Assert: Error *.G18.Fail on #basicContrastFail
 Assert: No Error *.G18 on #issue155
 Assert: Warning *.G145.Alpha on #rgba
 Assert: Warning *.G18.Alpha on #rgba2
+Assert: No Error *.G17.BgImage on #gradientBg1
+Assert: No Error *.G17.BgImage on #gradientBg2
 -->
 </head>
 <body>
@@ -24,6 +26,14 @@ Assert: Warning *.G18.Alpha on #rgba2
 <div style="background-color: #ccc">
     <span>Warning RBGA in BG</span>
     <div id="rgba2" style="background-color: rgba(0,0,0,0.2);">Text</div>
+</div>
+
+<div id="gradientBg1" style="background: linear-gradient(180deg, #f6f6f6 0, #e9e9ea);">
+    Test linear gradient BG
+</div>
+
+<div id="gradientBg2" class="testLinear">
+    Test external class linear gradient BG
 </div>
 
 </body>
