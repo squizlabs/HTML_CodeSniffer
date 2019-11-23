@@ -305,14 +305,16 @@ _global.HTMLCSAuditor = new function()
         var lineageTotalsItem       = _doc.createElement('li');
         lineageTotalsItem.className = _prefix + 'lineage-item';
 
-        lineageTotalsItem.innerHTML = leftContents.join(divider);
+        // Used to default to leftContents.join(divider), but removed due to lack of space.
+        // See https://github.com/openfed/AccessibilityCheck/issues/12
+        lineageTotalsItem.innerHTML = '';
         // Add link to printable report.
         if (HTMLCS.getBosaOption('showResultsFor') === HTMLCS.RESULTS_FOR_DEVELOPERS) {
-            lineageTotalsItem.innerHTML += " - Filter: Dev";
+            lineageTotalsItem.innerHTML += "Filter: Dev";
         } else if (HTMLCS.getBosaOption('showResultsFor') === HTMLCS.RESULTS_FOR_CONTENT_MANAGERS) {
-            lineageTotalsItem.innerHTML += " - Filter: Content Mgr";
+            lineageTotalsItem.innerHTML += "Filter: Content Mgr";
         } else {
-            lineageTotalsItem.innerHTML += " - All Results";
+            lineageTotalsItem.innerHTML += "All Results";
         }
         lineageTotalsItem.innerHTML += ' (<a class="export" href="#" onclick="HTMLCSAuditor.bosaExportReport();">Export</a>)';
 
