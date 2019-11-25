@@ -204,6 +204,10 @@ _global.translation['en'] = {
     ,"1_4_3_G18_or_G145.Fail.Recomendation" : 'Recommendation: '
     ,"1_4_3_G18_or_G145.Fail.Recomendation.Text" : 'change text colour to {{value}}'
     ,"1_4_3_G18_or_G145.Fail.Recomendation.Background" : 'change background to {{value}}'
+    ,"1_4_3_G18_or_G145.FailHover" : 'This element (when hovered) has insufficient contrast at this conformance level. Expected a contrast ratio of at least {{required}}:1, but text in this element has a contrast ratio of {{value}}:1.'
+    ,"1_4_3_G18_or_G145.FailHover.Recomendation" : 'Recommendation: '
+    ,"1_4_3_G18_or_G145.FailHover.Recomendation.Text" : 'change hover text colour to {{value}}'
+    ,"1_4_3_G18_or_G145.FailHover.Recomendation.Background" : 'change hover background to {{value}}'
 
 
     //1_4_4.js
