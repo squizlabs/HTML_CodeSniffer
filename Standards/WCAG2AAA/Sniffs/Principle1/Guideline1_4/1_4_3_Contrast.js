@@ -185,7 +185,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
                             });
                         }//end if
 
-                        var hoverIsUnderlined = HTMLCS.util.getPseudoSelectorPropertyValue(node, ':hover', 'text-decoration') === 'underline';
+                        var hoverIsUnderlined = HTMLCS.util.getPseudoSelectorPropertyValue(node, ':hover', 'textDecoration') === 'underline';
 
                         var hoverForeColour = HTMLCS.util.getPseudoSelectorPropertyValue(node, ':hover', 'color');
                         var hoverBgColour = HTMLCS.util.getPseudoSelectorPropertyValue(node, ':hover', 'backgroundColor');

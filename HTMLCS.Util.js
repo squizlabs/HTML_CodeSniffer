@@ -1337,7 +1337,7 @@ _global.HTMLCS.util = function() {
                 var rules = sheets[i].rules || sheets[i].cssRules;
                 for (var r in rules) {
                     if (rules[r].selectorText.includes(pseudoSelector) && el.matches(rules[r].selectorText.replace(pseudoSelector, ''))) {
-                        return rules[r][property];
+                        return rules[r].style[property];
                     }
                 }
             } catch (e) {
