@@ -1336,7 +1336,7 @@ _global.HTMLCS.util = function() {
             try {
                 var rules = sheets[i].rules || sheets[i].cssRules;
                 for (var r in rules) {
-                    if (rules[r].selectorText.includes(pseudoSelector) && el.matches(rules[r].selectorText)) {
+                    if (rules[r].selectorText.includes(pseudoSelector) && el.replace(pseudoSelector, '').matches(rules[r].selectorText)) {
                         return rules[r][property];
                     }
                 }
