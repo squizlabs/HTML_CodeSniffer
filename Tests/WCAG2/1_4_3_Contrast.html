@@ -3,8 +3,9 @@
 <head>
 <title>1.4.3 Contrast</title>
 <style>
- #basicHoverContrastFail:hover {
-     color: white;
+ #basicHoverContrastFail {
+    color: #222;
+    background-color: #000;
  }
 </style>
 <!-- @HTMLCS_Test@
@@ -23,7 +24,7 @@ Assert: No Error *.G17.BgImage on #gradientBg2
 
 <p id="basicContrastFail" style="color: #222; background-color: #000;">Basic failing text</p>
 
-<p><a href="#" id="basicHoverContrastFail">Basic failing text</a></p>
+<p><a id="basicHoverContrastFail" href="#">Basic failing text</a></p>
 
 <p>Sample: <span id="issue155" style="color: #7c7cff; background-color: #ffffff; font-size: 14pt; font-weight: bold;">I am 14pt bold text and should pass</span></p>
 

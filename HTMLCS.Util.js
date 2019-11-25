@@ -1329,7 +1329,7 @@ _global.HTMLCS.util = function() {
      * @returns {String} The appropriate property value or undefined if none is found.
      */
     self.getPseudoSelectorPropertyValue = function (el, pseudoSelector, property) {
-        var sheets = document.styleSheets;
+        var sheets = el.ownerDocument.styleSheets;
         el.matches = el.matches || el.webkitMatchesSelector || el.mozMatchesSelector
             || el.msMatchesSelector || el.oMatchesSelector;
         for (var i in sheets) {
