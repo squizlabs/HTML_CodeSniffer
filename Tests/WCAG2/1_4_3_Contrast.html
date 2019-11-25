@@ -2,10 +2,16 @@
 <html>
 <head>
 <title>1.4.3 Contrast</title>
+<style>
+ #basicHoverContrastFail:hover {
+     color: white;
+ }
+</style>
 <!-- @HTMLCS_Test@
 Name: SC 1.4.3 Contrast
 Standard: WCAG2AA
 Assert: Error *.G18.Fail on #basicContrastFail
+Assert: Error *.G18.FailHover on #basicHoverContrastFail
 Assert: No Error *.G18 on #issue155
 Assert: Warning *.G145.Alpha on #rgba
 Assert: Warning *.G18.Alpha on #rgba2
@@ -16,6 +22,8 @@ Assert: No Error *.G17.BgImage on #gradientBg2
 <body>
 
 <p id="basicContrastFail" style="color: #222; background-color: #000;">Basic failing text</p>
+
+<p><a href="#" id="basicHoverContrastFail">Basic failing text</a></p>
 
 <p>Sample: <span id="issue155" style="color: #7c7cff; background-color: #ffffff; font-size: 14pt; font-weight: bold;">I am 14pt bold text and should pass</span></p>
 

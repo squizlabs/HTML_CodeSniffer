@@ -47,6 +47,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3 = {
                 var hasBgImg  = failures[i].hasBgImage || false;
                 var isAbsolute = failures[i].isAbsolute || false;
                 var hasAlpha   = failures[i].hasAlpha || false;
+                var isHover = failures[i].isHover || false;
 
                 // If the values would look identical, add decimals to the value.
                 while (required === value) {
