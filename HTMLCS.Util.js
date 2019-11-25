@@ -1318,5 +1318,32 @@ _global.HTMLCS.util = function() {
         return nextNode;
     };
 
+    /**
+     * Get the value of a given pseudo-selector for a given CSS property that
+     * applies to a given element.
+     *
+     * @param {DOMNode} element           Element to look up the CSS declarations for.
+     * @param {String}  pseudoSelector    Pseudo-selector to look up the value for (eg. ".hover")
+     * @param {String}  property          CSS property to look up (e.g. "color")
+     *
+     * @returns {String} The appropriate property value or undefined if none is found.
+     */
+    self.getPseudoSelectorPropertyValue = function (el, pseudoSelector, property) {
+        var sheets = document.styleSheets;
+        el.matches = el.matches || el.webkitMatchesSelector || el.mozMatchesSelector
+            || el.msMatchesSelector || el.oMatchesSelector;
+        for (var i in sheets) {
+            try {
+                var rules = sheets[i].rules || sheets[i].cssRules;
+                for (var r in rules) {
+                    if (rules[r].selectorText.includes(pseudoSelector) && el.matches(rules[r].selectorText)) {
+                        return rules[r][property];
+                    }
+                }
+            } catch (e) {
+            }
+        }
+    }
+
     return self;
 }();
