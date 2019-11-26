@@ -1326,7 +1326,7 @@ _global.HTMLCS.util = function() {
         } else {
             return element.innerText;
         }
-    }
+    };
 
 
     /**
@@ -1364,7 +1364,7 @@ _global.HTMLCS.util = function() {
         }
         // Give up - we only test the 3 most obvious cases.
         return "";
-    }
+    };
 
     return self;
 }();
