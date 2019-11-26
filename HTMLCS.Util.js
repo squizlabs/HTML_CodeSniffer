@@ -1346,7 +1346,7 @@ _global.HTMLCS.util = function() {
             var parts = element.getAttribute("aria-labelledby").split(" ");
             for (var i = 0; i < parts.length; i++) {
                 var x = parts[i];
-                var nameElement = top.getElementById(x);
+                var nameElement = document.getElementById(x);
                 if (nameElement) {
                     nameParts.push(nameElement.textContent);
                 }
