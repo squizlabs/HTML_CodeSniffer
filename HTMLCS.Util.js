@@ -1312,5 +1312,59 @@ _global.HTMLCS.util = function() {
         return nextNode;
     };
 
+
+    /**
+     * Get the text content of a DOM node.
+     * 
+     * @param {DOMNode} element           Element to process.
+     * 
+     * @returns {String} The text content.
+     */
+    self.getTextContent = function(element) {
+        if (element.textContent !== undefined) {
+            return element.textContent;
+        } else {
+            return element.innerText;
+        }
+    }
+
+
+    /**
+     * Get the accessible name.
+     *
+     * @param {DOMNode} element           Element to process.
+     *
+     * @returns {String} The accessible name.
+     */
+    self.getAccessibleName = function(element) {
+        // See https://www.w3.org/TR/accname-1.1/#terminology
+        if (self.isVisuallyHidden(element)) {
+            return '';
+        }
+        else if (element.getAttribute("aria-labelledby")) {
+            var nameParts = [];
+            var parts = element.getAttribute("aria-labelledby").split(" ");
+            for (var i = 0; i < parts.length; i++) {
+                var x = parts[i];
+                var nameElement = top.getElementById(x);
+                if (nameElement) {
+                    nameParts.push(nameElement.textContent);
+                }
+            }
+            return nameParts.join(" ");
+        } else if (element.getAttribute("aria-label")) {
+            return element.getAttribute("aria-label");
+        } else if (element.getAttribute("title")) {
+            if (
+                element.getAttribute("role") !== "presentation" &&
+                element.getAttribute("role") !== "none"
+            ) {
+                return element.getAttribute("aria-label");
+            }
+        }
+        // Give up - we only test the 3 most obvious cases.
+        return "";
+    }
+
     return self;
 }();

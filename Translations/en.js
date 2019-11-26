@@ -166,16 +166,16 @@ _global.translation['en'] = {
 
 
     //1_3_5.js
-    ,"1_3_5_H98.FaultyValue" : 'This element contains a potentially faulty value in its autocomplete attribute: {{valuesStr}}. See <a href="https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute">https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute</a>.'
-    ,"1_3_5_H98.InvalidAutocomplete_Text" : 'Invalid autocomplete value: {{x}}. Element does not belong to Text control group. See <a href=\"https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute\">https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute</a>'
-    ,"1_3_5_H98.InvalidAutocomplete_Multiline" : 'Invalid autocomplete value: {{x}}. Element does not belong to Multiline control group. See <a href=\"https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute\">https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute</a>'
-    ,"1_3_5_H98.InvalidAutocomplete_Password" : 'Invalid autocomplete value: {{x}}. Element does not belong to Password control group. See <a href=\"https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute\">https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute</a>'
-    ,"1_3_5_H98.InvalidAutocomplete_Url" : 'Invalid autocomplete value: {{x}}. Element does not belong to Url control group. See <a href=\"https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute\">https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute</a>'
-    ,"1_3_5_H98.InvalidAutocomplete_Telephone" : 'Invalid autocomplete value: {{x}}. Element does not belong to Telephone control group. See <a href=\"https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute\">https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute</a>'
-    ,"1_3_5_H98.InvalidAutocomplete_Numeric" : 'Invalid autocomplete value: {{x}}. Element does not belong to Numeric control group. See <a href=\"https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute\">https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute</a>'
-    ,"1_3_5_H98.InvalidAutocomplete_Month" : 'Invalid autocomplete value: {{x}}. Element does not belong to Month control group. See <a href=\"https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute\">https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute</a>'
-    ,"1_3_5_H98.InvalidAutocomplete_Date" : 'Invalid autocomplete value: {{x}}. Element does not belong to Date control group. See <a href=\"https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute\">https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute</a>'
-    ,"1_3_5_H98.Purpose" : 'Check that the input field serves a purpose identified in the <a href="https://www.w3.org/TR/WCAG21/#input-purposes" target="_blank">Input Purposes for User Interface Components</a> section; and that the content is implemented using technologies with support for identifying the expected meaning for form input data.'
+    ,"1_3_5_H98.FaultyValue" : 'This element contains a potentially faulty value in its autocomplete attribute: {{valuesStr}}. See https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute</a>.'
+    ,"1_3_5_H98.InvalidAutocomplete_Text" : 'Invalid autocomplete value: {{x}}. Element does not belong to Text control group. See https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute</a>'
+    ,"1_3_5_H98.InvalidAutocomplete_Multiline" : 'Invalid autocomplete value: {{x}}. Element does not belong to Multiline control group. See https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute'
+    ,"1_3_5_H98.InvalidAutocomplete_Password" : 'Invalid autocomplete value: {{x}}. Element does not belong to Password control group. See https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute'
+    ,"1_3_5_H98.InvalidAutocomplete_Url" : 'Invalid autocomplete value: {{x}}. Element does not belong to Url control group. See https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute'
+    ,"1_3_5_H98.InvalidAutocomplete_Telephone" : 'Invalid autocomplete value: {{x}}. Element does not belong to Telephone control group. See https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute'
+    ,"1_3_5_H98.InvalidAutocomplete_Numeric" : 'Invalid autocomplete value: {{x}}. Element does not belong to Numeric control group. See https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute'
+    ,"1_3_5_H98.InvalidAutocomplete_Month" : 'Invalid autocomplete value: {{x}}. Element does not belong to Month control group. See https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute'
+    ,"1_3_5_H98.InvalidAutocomplete_Date" : 'Invalid autocomplete value: {{x}}. Element does not belong to Date control group. See https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute'
+    ,"1_3_5_H98.Purpose" : 'Check that the input field serves a purpose identified in the Input Purposes for User Interface Components section; and that the content is implemented using technologies with support for identifying the expected meaning for form input data.'
     ,"1_3_5_H98.MissingAutocomplete" : 'This element does not have an autocomplete attribute. If this field collects information about the user, consider adding one to comply with this Success Criterion.'
 
 
@@ -242,11 +242,9 @@ _global.translation['en'] = {
 
     //1_4_10.js
     ,"1_4_10_C32,C31,C33,C38,SCR34,G206.Check" : "Check that content can be presented without loss of information or functionality, and without requiring scrolling in two dimensions for: \
-    <ul> \
-    <li>Vertical scrolling content at a width equivalent to 320 CSS pixels;</li> \
-    <li>Horizontal scrolling content at a height equivalent to 256 CSS pixels;</li> \
-    <li>Except for parts of the content which require two-dimensional layout for usage or meaning.</li> \
-    </ul>"
+    Vertical scrolling content at a width equivalent to 320 CSS pixels; \
+    Horizontal scrolling content at a height equivalent to 256 CSS pixels; \
+    Except for parts of the content which require two-dimensional layout for usage or meaning."
     ,"1_4_10_C32,C31,C33,C38,SCR34,G206.Fixed" : 'This element has "position: fixed". This may require scrolling in two dimensions, which is considered a failure of this Success Criterion.'
     ,"1_4_10_C32,C31,C33,C38,SCR34,G206.Scrolling" : 'Preformatted text may require scrolling in two dimensions, which is considered a failure of this Success Criterion.'
     ,"1_4_10_C32,C31,C33,C38,SCR34,G206.Zoom" : "Interfering with a user agent's ability to zoom may be a failure of this Success Criterion."
@@ -254,29 +252,25 @@ _global.translation['en'] = {
 
     //1_4_11.js
     ,"1_4_11_G195,G207,G18,G145,G174,F78.Check" : 'Check that the visual presentation of the following have a contrast ratio of at least 3:1 against adjacent color(s): \
-    <ul> \
-      <li>User Interface Components: Visual information required to identify user interface components and states, except for inactive components or where the appearance of the component is determined by the user agent and not modified by the author;</li> \
-      <li>Graphical Objects: Parts of graphics required to understand the content, except when a particular presentation of graphics is essential to the information being conveyed.</li> \
-    </ul>'
+    User Interface Components: Visual information required to identify user interface components and states, except for inactive components or where the appearance of the component is determined by the user agent and not modified by the author; \
+    Graphical Objects: Parts of graphics required to understand the content, except when a particular presentation of graphics is essential to the information being conveyed.'
 
 
     //1_4_12.js
     ,"1_4_12_C36,C35.Check" : 'Check that no loss of content or functionality occurs by setting all of the following and by changing no other style property: \
-    <ul> \
-        <li>Line height (line spacing) to at least 1.5 times the font size;</li> \
-        <li>Spacing following paragraphs to at least 2 times the font size;</li> \
-        <li>Letter spacing (tracking) to at least 0.12 times the font size;</li> \
-        <li>Word spacing to at least 0.16 times the font size.</li> \
-    </ul>'
+     \
+        Line height (line spacing) to at least 1.5 times the font size; \
+        Spacing following paragraphs to at least 2 times the font size; \
+        Letter spacing (tracking) to at least 0.12 times the font size; \
+        Word spacing to at least 0.16 times the font size.'
 
     
     //1_4_13.js
     ,"1_4_13_F95.Check" : 'Check that where receiving and then removing pointer hover or keyboard focus triggers additional content to become visible and then hidden, the following are true: \
-    <ul> \
-        <li>Dismissable: A mechanism is available to dismiss the additional content without moving pointer hover or keyboard focus, unless the additional content communicates an input error or does not obscure or replace other content;</li> \
-        <li>Hoverable: If pointer hover can trigger the additional content, then the pointer can be moved over the additional content without the additional content disappearing;</li> \
-        <li>Persistent: The additional content remains visible until the hover or focus trigger is removed, the user dismisses it, or its information is no longer valid.</li> \
-    <ul>'
+     \
+        Dismissable: A mechanism is available to dismiss the additional content without moving pointer hover or keyboard focus, unless the additional content communicates an input error or does not obscure or replace other content; \
+        Hoverable: If pointer hover can trigger the additional content, then the pointer can be moved over the additional content without the additional content disappearing; \
+        Persistent: The additional content remains visible until the hover or focus trigger is removed, the user dismisses it, or its information is no longer valid.'
 
     //2_1_1.js
     ,"2_1_1_G90" : 'Ensure the functionality provided by an event handler for this element is available through the keyboard'
@@ -294,11 +288,11 @@ _global.translation['en'] = {
 
     //2_1_4.js
     ,"2_1_4.Check" : 'Check that if a keyboard shortcut is implemented in content using only letter (including upper- and lower-case letters), punctuation, number, or symbol characters, then at least one of the following is true: \
-    <ul> \
-        <li>Turn off: A mechanism is available to turn the shortcut off;</li> \
-        <li>Remap: A mechanism is available to remap the shortcut to use one or more non-printable keyboard characters (e.g. Ctrl, Alt, etc);</li> \
-        <li>Active only on focus: The keyboard shortcut for a user interface component is only active when that component has focus.</li> \
-    <ul>'
+     \
+        Turn off: A mechanism is available to turn the shortcut off; \
+        Remap: A mechanism is available to remap the shortcut to use one or more non-printable keyboard characters (e.g. Ctrl, Alt, etc); \
+        Active only on focus: The keyboard shortcut for a user interface component is only active when that component has focus. \
+    '
 
 
     //2_2_1.js
@@ -391,20 +385,22 @@ _global.translation['en'] = {
 
 
     //2_5_2.js
+    ,"2_5_2.SinglePointer_Check" : "Check that for functionality that can be operated using a single pointer, at least one of the following is true: \
+        No Down-Event: The down-event of the pointer is not used to execute any part of the function; \
+        Abort or Undo: Completion of the function is on the up-event, and a mechanism is available to abort the function before completion or to undo the function after completion; \
+        Up Reversal: The up-event reverses any outcome of the preceding down-event; \
+        Essential: Completing the function on the down-event is essential."
     ,"2_5_2.Mousedown_Check" : "This element has an mousedown event listener. Check that for functionality that can be operated using a single pointer, at least one of the following is true: \
-    <ul> \
-        <li>No Down-Event: The down-event of the pointer is not used to execute any part of the function;</li> \
-        <li>Abort or Undo: Completion of the function is on the up-event, and a mechanism is available to abort the function before completion or to undo the function after completion;</li> \
-        <li>Up Reversal: The up-event reverses any outcome of the preceding down-event;</li> \
-        <li>Essential: Completing the function on the down-event is essential.</li> \
-    </ul>"
+        No Down-Event: The down-event of the pointer is not used to execute any part of the function; \
+        Abort or Undo: Completion of the function is on the up-event, and a mechanism is available to abort the function before completion or to undo the function after completion; \
+        Up Reversal: The up-event reverses any outcome of the preceding down-event; \
+        Essential: Completing the function on the down-event is essential."
     ,"2_5_2.Touchstart_Check" : "This element has a touchstart event listener. Check that for functionality that can be operated using a single pointer, at least one of the following is true: \
-    <ul> \
-        <li>No Down-Event: The down-event of the pointer is not used to execute any part of the function;</li> \
-        <li>Abort or Undo: Completion of the function is on the up-event, and a mechanism is available to abort the function before completion or to undo the function after completion;</li> \
-        <li>Up Reversal: The up-event reverses any outcome of the preceding down-event;</li> \
-        <li>Essential: Completing the function on the down-event is essential.</li> \
-    </ul>"
+     \
+        No Down-Event: The down-event of the pointer is not used to execute any part of the function; \
+        Abort or Undo: Completion of the function is on the up-event, and a mechanism is available to abort the function before completion or to undo the function after completion; \
+        Up Reversal: The up-event reverses any outcome of the preceding down-event; \
+        Essential: Completing the function on the down-event is essential."
 
 
     //2_5_3.js
@@ -414,25 +410,25 @@ _global.translation['en'] = {
 
     //2_5_4.js
     ,"2_5_4.Check" : "Check that functionality that can be operated by device motion or user motion can also be operated by user interface components and responding to the motion can be disabled to prevent accidental actuation, except when: \
-    <ul> \
-        <li>Supported Interface: The motion is used to operate functionality through an accessibility supported interface;</li> \
-        <li>Essential: The motion is essential for the function and doing so would invalidate the activity.</li> \
-    </ul>"
+     \
+        Supported Interface: The motion is used to operate functionality through an accessibility supported interface; \
+        Essential: The motion is essential for the function and doing so would invalidate the activity. \
+    "
     ,"2_5_4.Devicemotion" : "This element has a devicemotion event listener. Check that functionality that can be operated by device motion or user motion can also be operated by user interface components and responding to the motion can be disabled to prevent accidental actuation, except when: \
-    <ul> \
-        <li>Supported Interface: The motion is used to operate functionality through an accessibility supported interface;</li> \
-        <li>Essential: The motion is essential for the function and doing so would invalidate the activity.</li> \
-    </ul>"
+     \
+        Supported Interface: The motion is used to operate functionality through an accessibility supported interface; \
+        Essential: The motion is essential for the function and doing so would invalidate the activity. \
+    "
 
 
     //2_5_5.js
     ,"2_5_5.Check" : 'Check that the size of the target for pointer inputs is at least 44 by 44 CSS pixels except when: \
-    <ul> \
-        <li>Equivalent: The target is available through an equivalent link or control on the same page that is at least 44 by 44 CSS pixels;</li> \
-        <li>Inline: The target is in a sentence or block of text;</li> \
-        <li>User Agent Control: The size of the target is determined by the user agent and is not modified by the author;</li> \
-        <li>Essential: A particular presentation of the target is essential to the information being conveyed.</li> \
-    </ul>'
+     \
+        Equivalent: The target is available through an equivalent link or control on the same page that is at least 44 by 44 CSS pixels; \
+        Inline: The target is in a sentence or block of text; \
+        User Agent Control: The size of the target is determined by the user agent and is not modified by the author; \
+        Essential: A particular presentation of the target is essential to the information being conveyed. \
+    '
 
 
     //2_5_6.js

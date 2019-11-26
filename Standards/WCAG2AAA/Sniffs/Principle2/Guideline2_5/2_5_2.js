@@ -34,13 +34,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_5_2_5_2 = {
         HTMLCS.addMessage(
             HTMLCS.NOTICE,
             top,
-            "Check that for functionality that can be operated using a single pointer, at least one of the following is true: \
-        <ul> \
-            <li>No Down-Event: The down-event of the pointer is not used to execute any part of the function;</li> \
-            <li>Abort or Undo: Completion of the function is on the up-event, and a mechanism is available to abort the function before completion or to undo the function after completion;</li> \
-            <li>Up Reversal: The up-event reverses any outcome of the preceding down-event;</li> \
-            <li>Essential: Completing the function on the down-event is essential.</li> \
-        </ul>",
+            _global.HTMLCS.getTranslation("2_5_2.SinglePointer_Check"),
             ""
         );
 

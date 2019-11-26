@@ -533,40 +533,46 @@ _global.HTMLCS_WCAG2AAA = {
         var techniques    = msgCodeParts[4].split(',');
         var techniquesStr = [];
         function getPrefix(x) {
-            if (x.startsWith('ARIA')) {
+            // From https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/startsWith
+            function startsWith(str, search, rawPos) {
+                var pos = rawPos > 0 ? rawPos|0 : 0;
+                return str.substring(pos, pos + search.length) === search;
+            }
+
+            if (startsWith(x, 'ARIA')) {
                 return 'aria/';
             }
-            if (x.startsWith('SCR')) {
+            if (startsWith(x, 'SCR')) {
                 return 'client-side-script/';
             }
-            if (x.startsWith('C')) {
+            if (startsWith(x, 'C')) {
                 return 'css/';
             }
-            if (x.startsWith('FLASH')) {
+            if (startsWith(x, 'FLASH')) {
                 return 'flash/';
             }
-            if (x.startsWith('F')) {
+            if (startsWith(x, 'F')) {
                 return 'failures/';
             }
-            if (x.startsWith('G')) {
+            if (startsWith(x, 'G')) {
                 return 'general/';
             }
-            if (x.startsWith('H')) {
+            if (startsWith(x, 'H')) {
                 return 'html/';
             }
-            if (x.startsWith('PDF')) {
+            if (startsWith(x, 'PDF')) {
                 return 'pdf/';
             }
-            if (x.startsWith('SVR')) {
+            if (startsWith(x, 'SVR')) {
                 return 'server-side-script/';
             }
-            if (x.startsWith('SL')) {
+            if (startsWith(x, 'SL')) {
                 return 'silverlight/';
             }
-            if (x.startsWith('SM')) {
+            if (startsWith(x, 'SM')) {
                 return 'smil/';
             }
-            if (x.startsWith('T')) {
+            if (startsWith(x, 'T')) {
                 return 'text/';
             }
             return '';
