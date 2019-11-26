@@ -1332,11 +1332,12 @@ _global.HTMLCS.util = function() {
     /**
      * Get the accessible name.
      *
-     * @param {DOMNode} element           Element to process.
+     * @param {DOMNode} element Element to process.
+     * @param {DOMNode} top     Scoped container element.
      *
      * @returns {String} The accessible name.
      */
-    self.getAccessibleName = function(element) {
+    self.getAccessibleName = function(element, top) {
         // See https://www.w3.org/TR/accname-1.1/#terminology
         if (self.isVisuallyHidden(element)) {
             return '';
@@ -1346,7 +1347,7 @@ _global.HTMLCS.util = function() {
             var parts = element.getAttribute("aria-labelledby").split(" ");
             for (var i = 0; i < parts.length; i++) {
                 var x = parts[i];
-                var nameElement = document.getElementById(x);
+                var nameElement = top.getElementById(x);
                 if (nameElement) {
                     nameParts.push(nameElement.textContent);
                 }
