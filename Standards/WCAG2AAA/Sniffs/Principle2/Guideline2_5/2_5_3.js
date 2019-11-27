@@ -31,43 +31,6 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_5_2_5_3 = {
    * @param {DOMNode} top     The top element of the tested code.
    */
     process: function(element, top) {
-        function getTextContent(el) {
-            if (el.textContent !== undefined) {
-                return el.textContent;
-            } else {
-                return el.innerText;
-            }
-        }
-        function getAccessibleName(el) {
-            // See https://www.w3.org/TR/accname-1.1/#terminology
-            if (el.getAttribute('hidden')) {
-                return '';
-            }
-            else if (el.getAttribute("aria-labelledby")) {
-                var nameParts = [];
-                var parts = el.getAttribute("aria-labelledby").split(" ");
-                for (var i = 0; i < parts.length; i++) {
-                    var x = parts[i];
-                    var nameEl = top.getElementById(x);
-                    if (nameEl) {
-                        nameParts.push(nameEl.textContent);
-                    }
-                }
-                return nameParts.join(" ");
-            } else if (el.getAttribute("aria-label")) {
-                return el.getAttribute("aria-label");
-            } else if (el.getAttribute("title")) {
-                if (
-                    el.getAttribute("role") !== "presentation" &&
-        el.getAttribute("role") !== "none"
-                ) {
-                    return el.getAttribute("aria-label");
-                }
-            }
-            // Give up - we only test the 3 most obvious cases.
-            return "";
-        }
-
         if (element == top) {
             HTMLCS.addMessage(
                 HTMLCS.NOTICE,
@@ -82,15 +45,15 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_5_2_5_3 = {
             var accessibleName = "";
             switch (nodeName) {
             case "a":
-                visibleLabel = getTextContent(element);
-                accessibleName = getAccessibleName(element);
+                visibleLabel = HTMLCS.util.getTextContent(element);
+                accessibleName = HTMLCS.util.getAccessibleName(element, top);
                 break;
             case "button":
-                visibleLabel = getTextContent(element);
-                accessibleName = getAccessibleName(element);
+                visibleLabel = HTMLCS.util.getTextContent(element);
+                accessibleName = HTMLCS.util.getAccessibleName(element, top);
                 break;
             case "label":
-                visibleLabel = getTextContent(element);
+                visibleLabel = HTMLCS.util.getTextContent(element);
                 var labelFor = element.getAttribute("for");
                 if (labelFor) {
                     if (top.ownerDocument) {
@@ -98,14 +61,14 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_5_2_5_3 = {
                     } else {
                         var refNode = top.getElementById(labelFor);
                     }
-                    accessibleName = getAccessibleName(refNode);
+                    accessibleName = HTMLCS.util.getAccessibleName(refNode, top);
                 }
                 break;
             case "input":
                 if (element.getAttribute("type") === "submit") {
                     visibleLabel = element.getAttribute("value");
                 }
-                accessibleName = getAccessibleName(element);
+                accessibleName = HTMLCS.util.getAccessibleName(element, top);
                 break;
             }
             if (!!visibleLabel && !!accessibleName) {
