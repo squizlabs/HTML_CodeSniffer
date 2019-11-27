@@ -56,7 +56,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
      * Driver function for the null alt text tests.
      *
      * This takes the generic result given by the alt text testing functions,
-     * and converts them into WCAG 2.0-specific messages.
+     * and converts them into WCAG 2.1-specific messages.
      *
      * @param {DOMNode} element The element to test.
      */
@@ -337,7 +337,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
      * Driver function for the media alternative (object/applet) tests.
      *
      * This takes the generic result given by the media alternative testing function,
-     * and converts them into WCAG 2.0-specific messages.
+     * and converts them into WCAG 2.1-specific messages.
      *
      * @param {DOMNode} element The element to test.
      */

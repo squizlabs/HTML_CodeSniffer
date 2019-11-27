@@ -4,13 +4,17 @@
 
 BOSA Accessibility Check is a JavaScript application that checks a HTML document
 or source code, and detects violations of a defined presentation or accessibility
-standard, such as Section508 or WCAG2.0.
+standard, such as Section508 or WCAG2.1.
 
 This is a fork of [HTML_CodeSniffer](https://github.com/squizlabs/HTML_CodeSniffer), which is released under a BSD-style license.
 
+<<<<<<< HEAD
 ### Standards included
 
 By default, BOSA Accessiblity Check comes with standards that cover the three conformance
+=======
+By default, HTML_CodeSniffer comes with standards that cover the three conformance
+>>>>>>> 1468596e1a9623ac8b65704d87233bf99f3b4564
 levels of the <abbr title="World Wide Web Consortium">W3C</abbr> [Web Content Accessibility Guidelines (WCAG) 2.1](https://www.w3.org/TR/WCAG21/),
 and the <abbr title="United States of America">U.S.</abbr> [Section 508](http://section508.gov/index.cfm?fuseAction=stdsdoc) legislation.
 It also provides tools to write your own standards, which can be useful in situations

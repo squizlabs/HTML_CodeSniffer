@@ -48,7 +48,7 @@ _global.HTMLCS_Section508_Sniffs_A = {
             if ((nodeName === 'object') || (nodeName === 'bgsound') || (nodeName === 'audio')) {
                 // Audio transcript notice. Yes, this is in A rather than B, since
                 // audio is not considered "multimedia" (roughly equivalent to a
-                // "synchronised media" presentation in WCAG 2.0). It is non-text,
+                // "synchronised media" presentation in WCAG 2.1). It is non-text,
                 // though, so a transcript is required.
                 HTMLCS.addMessage(HTMLCS.NOTICE, element, 'For multimedia containing audio only, ensure an alternative is available, such as a full text transcript.', 'Audio');
             }
@@ -177,7 +177,7 @@ _global.HTMLCS_Section508_Sniffs_A = {
      * Driver function for the null alt text tests.
      *
      * This takes the generic result given by the alt text testing functions
-     * (located in WCAG 2.0 SC 1.1.1), and converts them into Section 508-specific
+     * (located in WCAG 2.1 SC 1.1.1), and converts them into Section 508-specific
      * messages.
      *
      * @param {DOMNode} element The element to test.
@@ -293,7 +293,7 @@ _global.HTMLCS_Section508_Sniffs_A = {
      * Driver function for the media alternative (object/applet) tests.
      *
      * This takes the generic result given by the media alternative testing function
-     * (located in WCAG 2.0 SC 1.1.1), and converts them into Section
+     * (located in WCAG 2.1 SC 1.1.1), and converts them into Section
      * 508-specific messages.
      *
      * @param {DOMNode} element The element to test.
