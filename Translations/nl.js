@@ -162,7 +162,7 @@ _global.translation['nl'] = {
 
 
     //1_3_4.js
-    ,"1_3_4.RestrictView" : "Controleer dat de inhoud zijn uitzicht en werking niet beperkt tot ÈÈn weergave-oriÎntatie, zoals staand of liggend, tenzij zo'n specifieke weergave-oriÎntatie essentieel is."
+    ,"1_3_4.RestrictView" : "Controleer dat de inhoud zijn uitzicht en werking niet beperkt tot ÈÈn weergave-oriëntatie, zoals staand of liggend, tenzij zo'n specifieke weergave-oriëntatie essentieel is."
 
 
     //1_3_5.js
@@ -175,7 +175,7 @@ _global.translation['nl'] = {
     ,"1_3_5_H98.InvalidAutocomplete_Numeric" : 'Ongeldige autocomplete waarde: {{x}}. Element maakt geen deel uit van de Numeric besturingselementen. Zie https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute'
     ,"1_3_5_H98.InvalidAutocomplete_Month" : 'Ongeldige autocomplete waarde: {{x}}. Element maakt geen deel uit van de Month besturingselementen. Zie https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute'
     ,"1_3_5_H98.InvalidAutocomplete_Date" : 'Ongeldige autocomplete waarde: {{x}}. Element maakt geen deel uit van de Date besturingselementen. Zie https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute'
-    ,"1_3_5_H98.Purpose" : 'Controleer dat het invoerveld een doel dient zoals beschreven in Input Purposes for User Interface Components sectie, en dat de inhoud is geÔmplementeerd met technologiÎn die het identificeren van de verwachtte betekenis van formulierinvoerdata ondersteunen.'
+    ,"1_3_5_H98.Purpose" : 'Controleer dat het invoerveld een doel dient zoals beschreven in Input Purposes for User Interface Components sectie, en dat de inhoud is geÔmplementeerd met technologiën die het identificeren van de verwachtte betekenis van formulierinvoerdata ondersteunen.'
     ,"1_3_5_H98.MissingAutocomplete" : 'Dit element heeft geen autocomplete attribuut. Indien dit veld informatie verzamelt over de gebruiker, overweeg dan er ÈÈn toe te voegen om te conformeren met dit succescriterium.'
 
 
@@ -192,8 +192,8 @@ _global.translation['nl'] = {
 
 
     //1_4_3_F24.js
-    ,"1_4_3_F24.BGColour" : 'Controleer of dit element een overgeÎrfde voorgrondkleur heeft die complementair is met de overeenkomstige inline achtergrondkleur of afbeelding.'
-    ,"1_4_3_F24.FGColour" : 'Controleer of dit element een overgeÎrfde achtergrondkleur of afbeelding heeft die complementair is met de overeenkomstige inline voorgrondkleur.'
+    ,"1_4_3_F24.BGColour" : 'Controleer of dit element een overgeërfde voorgrondkleur heeft die complementair is met de overeenkomstige inline achtergrondkleur of afbeelding.'
+    ,"1_4_3_F24.FGColour" : 'Controleer of dit element een overgeërfde achtergrondkleur of afbeelding heeft die complementair is met de overeenkomstige inline voorgrondkleur.'
 
 
     //1_4_3.js
@@ -231,7 +231,7 @@ _global.translation['nl'] = {
     ,"1_4_8_G148,G156,G175" : 'Controleer dat een mechanisme beschikbaar is voor de gebruiker om de voorgrond- en achtergrondkleuren van tekstblokken te kiezen, via de webpagina of via de browser.'
     ,"1_4_8_H87,C20" : 'Controleer of een mechanisme bestaat om de breedte van een blok tekst te beperken tot niet meer dan 80 tekens (of 40 tekens in Chineese, Japans of Koreaans schrift)'
     ,"1_4_8_C19,G172,G169" : 'Controleer dat tekstblokken niet vol uitgelijnd zijn - dat wil zeggen, op zowel de linker- als rechterrand - of dat een mechanisme beschikbaar is om de volle uitlijning af te zetten.'
-    ,"1_4_8_G188,C21" : 'Controleer dat de lijnspatiÎring in tekstblokken minstens 150% is in paragrafen en de spatiÎring tussen paragrafen minstens 1,5 keer de lijnspatiÎring, of dat een mechanisme beschikbaar is om dit te bereiken.'
+    ,"1_4_8_G188,C21" : 'Controleer dat de lijnspatiëring in tekstblokken minstens 150% is in paragrafen en de spatiëring tussen paragrafen minstens 1,5 keer de lijnspatiëring, of dat een mechanisme beschikbaar is om dit te bereiken.'
     ,"1_4_8_H87,G146,C26" : 'Controleer dat de tekst tot 200% uitvergroot kan worden zonder hulptechnologie zonder dat de gebruiker verplicht wordt horizontaal te scrollen in een schermbreed venster.'
 
 
@@ -251,7 +251,7 @@ _global.translation['nl'] = {
 
 
     //1_4_12.js
-    ,"1_4_12_C36,C35.Check" : 'Controleer dat er geen verlies van inhoud of functionaliteit optreedt bij het instellen van de volgende eigenschappen en zonder andere stijleigenschappen te wijzigen: Lijnhoogte (lijnspatiering) naar minstens 1,5 maal de lettergrootte Spatieing na paragrafen tot minstens 2 maal de lettergrootte Letterspatiering (tracking) tot minstens 0,12 de lettergrootte Woordspatiering tot minstens 0,16 maal de lettergrootte.'
+    ,"1_4_12_C36,C35.Check" : 'Controleer dat er geen verlies van inhoud of functionaliteit optreedt bij het instellen van de volgende eigenschappen en zonder andere stijleigenschappen te wijzigen: Lijnhoogte (lijnspatiëring) naar minstens 1,5 maal de lettergrootte Spatieing na paragrafen tot minstens 2 maal de lettergrootte Letterspatiëring (tracking) tot minstens 0,12 de lettergrootte Woordspatiëring tot minstens 0,16 maal de lettergrootte.'
 
 
     //1_4_13.js
@@ -451,7 +451,7 @@ _global.translation['nl'] = {
 
 
     //3_3_4.js
-    ,"3_3_4_G98,G99,G155,G164,G168.LegalForms" : 'Indien dit formulier de gebruiker tot een financiÎel of legaal engagement verplicht, gebruiker-beheerbare gegevens wijzigt of verwijdert of test-antwoorden indient, zorg er dan voor dat indiening omkeerbaar is, gecontroleerd wordt voor invoerfouten en/of bevestigd wordt door de gebruiker.'
+    ,"3_3_4_G98,G99,G155,G164,G168.LegalForms" : 'Indien dit formulier de gebruiker tot een financiëel of legaal engagement verplicht, gebruiker-beheerbare gegevens wijzigt of verwijdert of test-antwoorden indient, zorg er dan voor dat indiening omkeerbaar is, gecontroleerd wordt voor invoerfouten en/of bevestigd wordt door de gebruiker.'
 
 
     //3_3_5.js
