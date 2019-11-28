@@ -1318,7 +1318,6 @@ _global.HTMLCS.util = function() {
         return nextNode;
     };
 
-<<<<<<< HEAD
     /**
      * Get the value of a given pseudo-selector for a given CSS property that
      * applies to a given element.
@@ -1400,7 +1399,6 @@ _global.HTMLCS.util = function() {
         // Give up - we only test the 3 most obvious cases.
         return "";
     };
->>>>>>> 1468596e1a9623ac8b65704d87233bf99f3b4564
 
     return self;
 }();
