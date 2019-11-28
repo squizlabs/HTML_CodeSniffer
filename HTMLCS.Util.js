@@ -1344,7 +1344,6 @@ _global.HTMLCS.util = function() {
             }
         }
     }
-=======
 
     /**
      * Get the text content of a DOM node.
