@@ -8,13 +8,9 @@ standard, such as Section508 or WCAG2.1.
 
 This is a fork of [HTML_CodeSniffer](https://github.com/squizlabs/HTML_CodeSniffer), which is released under a BSD-style license.
 
-<<<<<<< HEAD
 ### Standards included
 
 By default, BOSA Accessiblity Check comes with standards that cover the three conformance
-=======
-By default, HTML_CodeSniffer comes with standards that cover the three conformance
->>>>>>> 1468596e1a9623ac8b65704d87233bf99f3b4564
 levels of the <abbr title="World Wide Web Consortium">W3C</abbr> [Web Content Accessibility Guidelines (WCAG) 2.1](https://www.w3.org/TR/WCAG21/),
 and the <abbr title="United States of America">U.S.</abbr> [Section 508](http://section508.gov/index.cfm?fuseAction=stdsdoc) legislation.
 It also provides tools to write your own standards, which can be useful in situations
@@ -186,7 +182,30 @@ contribute, you do not need to do both.
 
 ## More Information
 
+<<<<<<< HEAD
 More information on BOSA Accessibility Check can be found on its GitHub site,
 [http://openfed.github.io/AccessibilityCheck/](http://openfed.github.io/AccessibilityCheck/). This site provides:
+=======
+More information on HTML_CodeSniffer can be found on its GitHub site,
+[http://squizlabs.github.io/HTML_CodeSniffer/](http://squizlabs.github.io/HTML_CodeSniffer/). This site provides:
+
+* Information on the tests performed (and messages emitted) by HTML_CodeSniffer's standards, organised by conformance level and Success Criterion;
+* A source test area that allows you to try out HTML_CodeSniffer with your own HTML source code; and
+* A link to the HTML_CodeSniffer bookmarklet, letting you check other pages using the pop-up auditor interface.
+
+## Translation Contributors
+
+Special thanks to:
+
+* [nsulzycki](https://github.com/nsulzycki) (Polish Translation)
+* [dmassiani](https://github.com/dmassiani) (French Translation)
+* [jamadam](https://github.com/jamadam) (Japanese Translation)
+* [tassoman](https://github.com/tassoman) (Italian Translation)
+* [bdeclerc](https://github.com/bdeclerc) (Dutch Translation)
+
+## License
+
+Licensed under [the BSD 3-Clause "New" or "Revised" License](https://opensource.org/licenses/BSD-3-Clause).
+>>>>>>> 783c78fe613037fbdf86ad93b9629803fac83de9
 
 - A link to the BOSA Accessibility Check bookmarklet, letting you check other pages using the pop-up auditor interface.

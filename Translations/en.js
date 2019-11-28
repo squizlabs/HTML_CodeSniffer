@@ -37,6 +37,7 @@ _global.translation['en'] = {
     ,"auditor_suggested_techniques" : "Suggested Techniques"
     ,"auditor_applies_entire_document" : "This applies to the entire document"
 
+
     //1_1_1.js
     ,"1_1_1_H30.2" : 'Img element is the only content of the link, but is missing alt text. The alt text should describe the purpose of the link.'
     ,"1_1_1_H67.1" : 'Img element with empty alt text must have absent or empty title attribute.'
@@ -102,7 +103,7 @@ _global.translation['en'] = {
     ,"1_3_1_H44.NotFormControl" : 'This label\'s "for" attribute contains an ID for an element that is not a form control. Ensure that you have entered the correct ID for the intended element.'
     ,"1_3_1_H65" : 'This form control has a "title" attribute that is empty or contains only spaces. It will be ignored for labelling test purposes.'
     ,"1_3_1_ARIA6" : 'This form control has an "aria-label" attribute that is empty or contains only spaces. It will be ignored for labelling test purposes.'
-    //{{id}} will be replace with element ID:
+    //{{id}} will be replaced with element ID:
     ,"1_3_1_ARIA16,ARIA9" : 'This form control contains an aria-labelledby attribute, however it includes an ID "{{id}}" that does not exist on an element. The aria-labelledby attribute will be ignored for labelling test purposes.'
 
     ,"1_3_1_F68.Hidden" : 'This hidden form field is labelled in some way. There should be no need to label a hidden form field.'
@@ -225,7 +226,6 @@ _global.translation['en'] = {
     ,"1_4_6_G18_or_G17.Fail.Recomendation" : 'Recommendation: '
     ,"1_4_6_G18_or_G17.Fail.Recomendation.Text" : 'change text colour to {{value}}'
     ,"1_4_6_G18_or_G17.Fail.Recomendation.Background" : 'change background to {{value}}'
-
 
 
     //1_4_7.js
@@ -511,7 +511,6 @@ _global.translation['en'] = {
 
     //3_3_6.js
     ,"3_3_6_G98,G99,G155,G164,G168.AllForms" : 'Check that submissions to this form are either reversible, checked for input errors, and/or confirmed by the user.'
-
 
 
     //4_1_1.js
