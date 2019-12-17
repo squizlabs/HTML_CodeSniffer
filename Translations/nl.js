@@ -200,7 +200,7 @@ _global.translation['nl'] = {
     ,"1_4_3_G18_or_G145.Abs" : 'Dit element is absoluut gepositioneerd en de achtergrondkleur kan niet bepaald worden. Zorg ervoor dat de contrastverhouding tussen de tekst en alle bedekte delen van de achtergond minstens {{required}}:1 is.'
     ,"1_4_3_G18_or_G145.BgImage" : 'De tekst van dit element werd geplaatst op een achtergrondafbeelding. Zorg ervoor dat de contrastverhouding tussen de tekst en alle bedekte delen van de achtergrondafbeelding minstens {{required}}:1 is.'
     ,"1_4_3_G18_or_G145.Alpha" : 'De tekst of achtergrond van dit element bevat transparantie. Zorg ervoor dat de contrastverhouding tussen de tekst en de achtergond minstens {{required}}:1 is.'
-    ,"1_4_3_G18_or_G145.Fail" : 'Dit element heeft onvoldoende contrast op dit conformantie-niveau. Een contrastverhouding van minstens {{required]}}:1 wordt verwacht, maar de tekst in dit element heeft een contrastverhouding van {{value}}:1.'
+    ,"1_4_3_G18_or_G145.Fail" : 'Dit element heeft onvoldoende contrast op dit conformantie-niveau. Een contrastverhouding van minstens {{required}}:1 wordt verwacht, maar de tekst in dit element heeft een contrastverhouding van {{value}}:1.'
     ,"1_4_3_G18_or_G145.Fail.Recomendation" : 'Aanbeveling:'
     ,"1_4_3_G18_or_G145.Fail.Recomendation.Text" : 'verander tekstkleur naar {{value}}'
     ,"1_4_3_G18_or_G145.Fail.Recomendation.Background" : 'verander achtergrond naar{{value}}'
