@@ -46,11 +46,11 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_5_2_5_3 = {
             switch (nodeName) {
             case "a":
                 visibleLabel = HTMLCS.util.getTextContent(element);
-                accessibleName = HTMLCS.util.getAccessibleName(element);
+                accessibleName = HTMLCS.util.getAccessibleName(element, top);
                 break;
             case "button":
                 visibleLabel = HTMLCS.util.getTextContent(element);
-                accessibleName = HTMLCS.util.getAccessibleName(element);
+                accessibleName = HTMLCS.util.getAccessibleName(element, top);
                 break;
             case "label":
                 visibleLabel = HTMLCS.util.getTextContent(element);
@@ -71,7 +71,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_5_2_5_3 = {
                 if (element.getAttribute("type") === "submit") {
                     visibleLabel = element.getAttribute("value");
                 }
-                accessibleName = HTMLCS.util.getAccessibleName(element);
+                accessibleName = HTMLCS.util.getAccessibleName(element, top);
                 break;
             }
             if (!!visibleLabel && !!accessibleName) {

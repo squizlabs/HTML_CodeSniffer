@@ -1326,17 +1326,18 @@ _global.HTMLCS.util = function() {
         } else {
             return element.innerText;
         }
-    }
+    };
 
 
     /**
      * Get the accessible name.
      *
-     * @param {DOMNode} element           Element to process.
+     * @param {DOMNode} element Element to process.
+     * @param {DOMNode} top     Scoped container element.
      *
      * @returns {String} The accessible name.
      */
-    self.getAccessibleName = function(element) {
+    self.getAccessibleName = function(element, top) {
         // See https://www.w3.org/TR/accname-1.1/#terminology
         if (self.isVisuallyHidden(element)) {
             return '';
@@ -1364,7 +1365,7 @@ _global.HTMLCS.util = function() {
         }
         // Give up - we only test the 3 most obvious cases.
         return "";
-    }
+    };
 
     return self;
 }();
