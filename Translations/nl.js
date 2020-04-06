@@ -488,6 +488,6 @@ _global.translation['nl'] = {
 
 
     //4_1_3.js
-    ,"4_1_3_ARIA22,G199,ARIA19,G83,G84,G85,G139,G177,G194,ARIA23,ARIA22.Check" : 'Controleer dat statusboodschappen programmatisch bepaald kunnen worden door rol of eigenschappen zodanig dat ze aan de gebruiker kunnen beschikbaar gesteld worden via hulptechnologie zonder de focus te krijgen.'
+    ,"4_1_3_ARIA22,G199,ARIA19,G83,G84,G85,G139,G177,G194,ARIA23.Check" : 'Controleer dat statusboodschappen programmatisch bepaald kunnen worden door rol of eigenschappen zodanig dat ze aan de gebruiker kunnen beschikbaar gesteld worden via hulptechnologie zonder de focus te krijgen.'
 
 };

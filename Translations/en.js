@@ -535,6 +535,6 @@ _global.translation['en'] = {
 
 
     //4_1_3.js
-    ,"4_1_3_ARIA22,G199,ARIA19,G83,G84,G85,G139,G177,G194,ARIA23,ARIA22.Check" : 'Check that status messages can be programmatically determined through role or properties such that they can be presented to the user by assistive technologies without receiving focus.'
+    ,"4_1_3_ARIA22,G199,ARIA19,G83,G84,G85,G139,G177,G194,ARIA23.Check" : 'Check that status messages can be programmatically determined through role or properties such that they can be presented to the user by assistive technologies without receiving focus.'
 
 };
