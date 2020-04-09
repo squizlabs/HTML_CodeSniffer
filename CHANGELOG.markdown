@@ -14,6 +14,19 @@ The previous version was generally based on the pull request number used to upda
 Version numbers have been applied retrospectively based on the size or significance of the update; the
 old version number is in brackets.
 
+## <a id="2.5.0"></a>Version 2.5.0 (9 April 2020)
+
+Support for WCAG 2.1
+
+Thanks to @stefanruijsenaars HTMLCS now supports automated checks against parts of the [WCAG 2.1 spec](https://www.w3.org/TR/WCAG21/). There are many criteria which cannot be checked automatically and in these cases HTMLCS will show a `notice` level message prompting for manual intervention.
+
+Change list:
+* WCAG 2.1 support
+* Auditor UI improvement (#266)
+* Bug fix for elements with `display: none` (#267)
+* Dutch translation added (#273)
+* Improvements for checks against elements that use the presentation role (#274)
+
 ## <a id="2.4.0"></a>Version 2.4.0 (21 May 2019)
 
 Change List.

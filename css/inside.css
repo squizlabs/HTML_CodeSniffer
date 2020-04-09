@@ -72,19 +72,19 @@ a:link img {
  text-decoration:none;
 }
 
-#introduction a[href^='http:'], #test-area a[href^='http:'] {
+#introduction a[href^='https:'], #test-area a[href^='https:'] {
  display:inline-block;
  padding-right:18px;
  background: url(../images/external-link.png) center right no-repeat;
 }
 
-#test-area table a[href^='http:'] {
+#test-area table a[href^='https:'] {
  display:inline-block;
  padding-right:18px;
  background: url(../images/external-link-table.png) center right no-repeat;
 }
 
-#introduction a[href^='http:']:hover, #test-area a[href^='http:']:hover {
+#introduction a[href^='https:']:hover, #test-area a[href^='https:']:hover {
  display:inline-block;
  padding-right:18px;
  background: url(../images/external-link-hover.png) center right no-repeat;
