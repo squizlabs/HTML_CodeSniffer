@@ -1029,6 +1029,7 @@
 }
 
 #HTMLCS-wrapper .HTMLCS-tile-text > strong {
+    background: transparent;
     font-size: 1.7em;
     color: #FFF;
     display: block;
