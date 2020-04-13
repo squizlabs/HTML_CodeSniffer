@@ -61,7 +61,9 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_5_2_5_3 = {
                     } else {
                         var refNode = top.getElementById(labelFor);
                     }
-                    accessibleName = HTMLCS.util.getAccessibleName(refNode, top);
+                    if (refNode) {
+                        accessibleName = HTMLCS.util.getAccessibleName(refNode, top);
+                    }
                 }
                 break;
             case "input":
