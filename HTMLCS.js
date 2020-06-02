@@ -81,11 +81,19 @@ _global.HTMLCS = new function()
      * @return {String}
      */
     this.getTranslation = function(text) {
-        try {
-            return _global.translation[this.lang][text];
-        } catch (e) {
+        var translations = _global.translation[this.lang];
+
+        if (!translations) {
+            throw new Error ('Missing translations for language ' + this.lang);
+        }
+
+        var translation = translations[text];
+
+        if (!translation) {
             throw new Error('Translation for "' + text + '" does not exist in current language ' + this.lang);
         }
+
+        return translation;
     };
 
     /**
