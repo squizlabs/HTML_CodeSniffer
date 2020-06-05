@@ -84,13 +84,15 @@ _global.HTMLCS = new function()
         var translations = _global.translation[this.lang];
 
         if (!translations) {
-            throw new Error ('Missing translations for language ' + this.lang);
+            console.error('Missing translations for language ' + this.lang);
+            return '';
         }
 
         var translation = translations[text];
 
         if (!translation) {
-            throw new Error('Translation for "' + text + '" does not exist in current language ' + this.lang);
+            console.error('Translation for "' + text + '" does not exist in current language ' + this.lang);
+            return '';
         }
 
         return translation;
