@@ -168,14 +168,14 @@ _global.translation['en'] = {
 
     //1_3_5.js
     ,"1_3_5_H98.FaultyValue" : 'This element contains a potentially faulty value in its autocomplete attribute: {{valuesStr}}.'
-    ,"1_3_5_H98.InvalidAutocomplete_Text" : 'Invalid autocomplete value: {{x}}. Element does not belong to Text control group.'
-    ,"1_3_5_H98.InvalidAutocomplete_Multiline" : 'Invalid autocomplete value: {{x}}. Element does not belong to Multiline control group.'
-    ,"1_3_5_H98.InvalidAutocomplete_Password" : 'Invalid autocomplete value: {{x}}. Element does not belong to Password control group.'
-    ,"1_3_5_H98.InvalidAutocomplete_Url" : 'Invalid autocomplete value: {{x}}. Element does not belong to Url control group.'
-    ,"1_3_5_H98.InvalidAutocomplete_Telephone" : 'Invalid autocomplete value: {{x}}. Element does not belong to Telephone control group.'
-    ,"1_3_5_H98.InvalidAutocomplete_Numeric" : 'Invalid autocomplete value: {{x}}. Element does not belong to Numeric control group.'
-    ,"1_3_5_H98.InvalidAutocomplete_Month" : 'Invalid autocomplete value: {{x}}. Element does not belong to Month control group.'
-    ,"1_3_5_H98.InvalidAutocomplete_Date" : 'Invalid autocomplete value: {{x}}. Element does not belong to Date control group.'
+    ,"1_3_5_H98.InvalidAutoComplete_Text" : 'Invalid autocomplete value: {{x}}. Element does not belong to Text control group.'
+    ,"1_3_5_H98.InvalidAutoComplete_Multiline" : 'Invalid autocomplete value: {{x}}. Element does not belong to Multiline control group.'
+    ,"1_3_5_H98.InvalidAutoComplete_Password" : 'Invalid autocomplete value: {{x}}. Element does not belong to Password control group.'
+    ,"1_3_5_H98.InvalidAutoComplete_Url" : 'Invalid autocomplete value: {{x}}. Element does not belong to Url control group.'
+    ,"1_3_5_H98.InvalidAutoComplete_Telephone" : 'Invalid autocomplete value: {{x}}. Element does not belong to Telephone control group.'
+    ,"1_3_5_H98.InvalidAutoComplete_Numeric" : 'Invalid autocomplete value: {{x}}. Element does not belong to Numeric control group.'
+    ,"1_3_5_H98.InvalidAutoComplete_Month" : 'Invalid autocomplete value: {{x}}. Element does not belong to Month control group.'
+    ,"1_3_5_H98.InvalidAutoComplete_Date" : 'Invalid autocomplete value: {{x}}. Element does not belong to Date control group.'
     ,"1_3_5_H98.Purpose" : 'Check that the input field serves a purpose identified in the Input Purposes for User Interface Components section; and that the content is implemented using technologies with support for identifying the expected meaning for form input data.'
     ,"1_3_5_H98.MissingAutocomplete" : 'This element does not have an autocomplete attribute. If this field collects information about the user, consider adding one to comply with this Success Criterion.'
 
@@ -264,7 +264,7 @@ _global.translation['en'] = {
         Letter spacing (tracking) to at least 0.12 times the font size; \
         Word spacing to at least 0.16 times the font size.'
 
-    
+
     //1_4_13.js
     ,"1_4_13_F95.Check" : 'Check that where receiving and then removing pointer hover or keyboard focus triggers additional content to become visible and then hidden, the following are true: \
      \
