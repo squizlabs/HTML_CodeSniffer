@@ -121,6 +121,7 @@ _global.translation['en'] = {
     ,"1_3_1_H63.2" : 'Scope attributes on td elements that act as headings for other elements are obsolete in HTML5. Use a th element instead.'
     ,"1_3_1_H43.ScopeAmbiguous" : 'Scope attributes on th elements are ambiguous in a table with multiple levels of headings. Use the headers attribute on td elements instead.'
     ,"1_3_1_H43.IncorrectAttr" : 'Incorrect headers attribute on this td element. Expected "{{expected}}" but found "{{actual}}"'
+    ,"1_3_1_H43.IncorrectAttrNotice" : 'Check that headers attribute on td element is correct.'
 
     ,"1_3_1_H43.HeadersRequired" : 'The relationship between td elements and their associated th elements is not defined. As this table has multiple levels of th elements, you must use the headers attribute on td elements.'
     ,"1_3_1_H43.MissingHeaderIds" : 'Not all th elements in this table contain an id attribute. These cells should contain ids so that they may be referenced by td elements\' headers attributes.'
