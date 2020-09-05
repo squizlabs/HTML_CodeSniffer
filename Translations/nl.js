@@ -114,11 +114,11 @@ _global.translation['nl'] = {
     ,"1_3_1_H49.Semantic" : 'Semantische markup zou gebruikt moeten worden om benadrukte of speciale tekst aan te duiden zodat dit programmatisch bepaald kan worden.'
     ,"1_3_1_H49.AlignAttr.Semantic" : 'Semantische markup zou gebruikt moeten worden om benadrukte of speciale tekst aan te duiden zodat dit programmatisch bepaald kan worden.'
 
-    ,"1_3_1_H42" : 'Heading markup zou gebruikt moeten worden indien deze inhoud bedoeld is als een kop.'
+    ,"1_3_1_H42" : 'Heading markup zou gebruikt moeten worden indien deze inhoud bedoeld is als een hoofding.'
 
     ,"1_3_1_H63.3" : 'Tabelcel heeft een ongeldig scope attribuut. Geldige waardes zijn row, col, rowgroup of colgroup'
-    ,"1_3_1_H63.2" : 'Scope attributen op td elementen die als koppen gebruikt worden voor andere elementen zijn vervallen in HTML. Gebruik in plaats daarvan een th element.'
-    ,"1_3_1_H43.ScopeAmbiguous" : 'Scope attributen op th elementen zijn ambigu in een tabel met meerdere niveaus van kop. Gebruik in plaats daarvan het headers attribuut op td elementen.'
+    ,"1_3_1_H63.2" : 'Scope attributen op td elementen die als hoofdingpen gebruikt worden voor andere elementen zijn vervallen in HTML. Gebruik in plaats daarvan een th element.'
+    ,"1_3_1_H43.ScopeAmbiguous" : 'Scope attributen op th elementen zijn ambigu in een tabel met meerdere niveaus van hoofding. Gebruik in plaats daarvan het headers attribuut op td elementen.'
     ,"1_3_1_H43.IncorrectAttr" : 'Foutief headers attribuut op dit td element. \"{{expected}}\" werd verwacht maar \"{{actual}}\" gevonden'
 
     ,"1_3_1_H43.HeadersRequired" : 'De relatie tussen td elementen en de eraan gebonden th elementen werd niet omschreven. Gezien deze tabel meerdere niveaus th elmenten bevat, moet het headers attribuut gebruikt worden op td elementen.'
@@ -143,13 +143,13 @@ _global.translation['nl'] = {
     ,"1_3_1_H48.1" : 'Deze inhoud lijkt op een gesimuleerde niet-geordende lijst in tekst zonder opmaak. Indien dit klopt, dan zou deze inhoud markeren met een ul-element de informatie in het document een betere structuur geven.'
     ,"1_3_1_H48.2" : 'Deze inhoud lijkt op een gesimuleerde geordende lijst in tekst zonder opmaak. Indien dit klopt, dan zou deze inhoud markeren met een ol-element de informatie in het document een betere structuur geven.'
 
-    ,"1_3_1_G141_a" : 'De kopstructuur is niet logisch genest. Dit h{{headingNum}} element lijkt de primaire documentkop te zijn, dit zou dan een h1 element moeten zijn.'
-    ,"1_3_1_G141_b" : 'De kopstructuur is niet logisch genest. Dit h{{headingNum}} element zou een h{{properHeadingNum}} moeten zijn voor een juiste structuur.'
+    ,"1_3_1_G141_a" : 'De hoofdingstructuur is niet logisch genest. Dit h{{headingNum}} element lijkt de primaire documenthoofding te zijn, dit zou dan een h1 element moeten zijn.'
+    ,"1_3_1_G141_b" : 'De hoofdingstructuur is niet logisch genest. Dit h{{headingNum}} element zou een h{{properHeadingNum}} moeten zijn voor een juiste structuur.'
 
-    ,"1_3_1_H42.2" : 'Kop tag gevonden zonder inhoud. Tekst die niet bedoeld is als kop zou niet mogen gemarkeerd worden met een kop tag.'
+    ,"1_3_1_H42.2" : 'Hoofding tag gevonden zonder inhoud. Tekst die niet bedoeld is als hoofding zou niet mogen gemarkeerd worden met een hoofding tag.'
     ,"1_3_1_H48" : 'Indien dit element een navigatie-sectie bevat, wordt aanbevolen lijst-markup te gebruiken.'
 
-    ,"1_3_1_LayoutTable" : 'Deze tabel lijkt een opmaaktabel te zijn. Indien deze bedoeld is als een datatabel, zorg er dan voor dat kop cellen geÔdentificeerd worden met th elementen.'
+    ,"1_3_1_LayoutTable" : 'Deze tabel lijkt een opmaaktabel te zijn. Indien deze bedoeld is als een datatabel, zorg er dan voor dat hoofding cellen geÔdentificeerd worden met th elementen.'
     ,"1_3_1_DataTable" : 'Deze tabel lijkt een datatabel te zijn. Indien deze bedoeld is als een opmaaktabel, zorg er dan voor dat er geen th elementen, summary of caption aanwezig zijn.'
 
 
@@ -253,7 +253,6 @@ _global.translation['nl'] = {
     //1_4_12.js
     ,"1_4_12_C36,C35.Check" : 'Controleer dat er geen verlies van inhoud of functionaliteit optreedt bij het instellen van de volgende eigenschappen en zonder andere stijleigenschappen te wijzigen: Lijnhoogte (lijnspatiëring) naar minstens 1,5 maal de lettergrootte Spatieing na paragrafen tot minstens 2 maal de lettergrootte Letterspatiëring (tracking) tot minstens 0,12 de lettergrootte Woordspatiëring tot minstens 0,16 maal de lettergrootte.'
 
-
     //1_4_13.js
     ,"1_4_13_F95.Check" : 'Controleer dat waar een pointer hover of toetsenbordfocus aanvullende content doet zichtbaar worden en terug verbergen, het volgende waar is:         Als de aanvullende content een deel van de andere content bedekt, moet het mogelijk zijn om de aanvullende content (zoals een tooltip) opnieuw te verbergen zonder dat de muisaanwijzer verplaatst hoeft te worden en zonder de focus van het element weg te hoeven nemen Als de aanvullende content verschijnt door een element aan te wijzen (zonder te klikken), dan mag de content niet verdwijnen als de gebruiker de muis beweegt in het gebied waarin de aanvullende content is verschenen.De aanvullende content moet zichtbaar blijven totdat de gebruiker de muisaanwijzer buiten het element plaatst, de toetsenbordfocus actief verplaatst of op Escape drukt. Ten slotte mag de aanvullende content ook automatisch verdwijnen, maar enkel wanneer de weergegeven informatie niet meer geldig is ó bijvoorbeeld wanneer gemeld wordt dat een e-mailadres niet correct is ingevuld, maar de gebruiker deze fout al heeft verbeterd.'
 
@@ -318,7 +317,7 @@ _global.translation['nl'] = {
     //2_4_1.js
     ,"2_4_1_H64.1" : 'Iframe element vereist een niet-leeg title attribuut dat het kader identificeert.'
     ,"2_4_1_H64.2" : 'Controleer dat het title attribuut van dit element tekst bevat die het kader identificeert.'
-    ,"2_4_1_G1,G123,G124,H69" : 'Controleer dat veel voorkomende navigatie-elementen overgeslagen kunnen wordenbijvoorbeeld door gebruik van skip links, kop elementen of ARIA landmark rollen.'
+    ,"2_4_1_G1,G123,G124,H69" : 'Controleer dat veel voorkomende navigatie-elementen overgeslagen kunnen wordenbijvoorbeeld door gebruik van skip links, hoofding elementen of ARIA landmark rollen.'
     ,"2_4_1_G1,G123,G124.NoSuchID" : 'Deze link wijst naar een genaamd anker \"{{id}}\" binnen het document, maar er is geen anker met deze naam.'
     ,"2_4_1_G1,G123,G124.NoSuchIDFragment" : 'Deze link wijst naar een genaamd anker \"{{id}}\" binnen het document, maar er is geen anker met deze naam binnen het geteste fragment.'
 
@@ -344,7 +343,7 @@ _global.translation['nl'] = {
 
 
     //2_4_6.js
-    ,"2_4_6_G130,G131" : 'Controleer dat de koppen en labels de inhoud en het doel beschrijven.'
+    ,"2_4_6_G130,G131" : 'Controleer dat de hoofdingpen en labels de inhoud en het doel beschrijven.'
 
 
     //2_4_7.js
@@ -366,8 +365,8 @@ _global.translation['nl'] = {
 
 
     //2_5_2.js
-    ,"2_5_2.Mousedown_Check" : 'Dit element heeft een mousedown event listener. Controleer dat voor functinaliteit die gebruikt kan worden met één enkele pointer, minstens één van de volgende stellingen waar is:     Geen Down-event: Het down-event van de pointer wordt niet gebruikt om een deel van de functie uit te voeren; Afbreken of ongedaan maken: Vervollediging van deze functie is gekoppeld aan het up-event en een mechanisme is beschikbaar om de functie voortijdig af te breken of ongedaan te maken na uitvoering; Up omkering: Het up-event keert de resultaten van het voorafgaande down-event om; Essentieel: De functie vervolledigen op het down-event is essentieel.'
-    ,"2_5_2.Touchstart_Check" : 'Dit element heeft een touchstart event listener. Controleer dat voor functinaliteit die gebruikt kan worden met één enkele pointer, minstens één van de volgende stellingen waar is:     Geen Down-event: Het down-event van de pointer wordt niet gebruikt om een deel van de functie uit te voeren; Afbreken of ongedaan maken: Vervollediging van deze functie is gekoppeld aan het up-event en een mechanisme is beschikbaar om de functie voortijdig af te breken of ongedaan te maken na uitvoering; Up omkering: Het up-event keert de resultaten van het voorafgaande down-event om; Essentieel: De functie vervolledigen op het down-event is essentieel.'
+    ,"2_5_2.Mousedown_Check" : 'Dit element heeft een mousedown event listener. Controleer dat voor functinaliteit die gebruikt kan worden met één enkele pointer, minstens één van de volgende stellingen waar is:     Geen Down-event: Het down-event van de pointer wordt niet gebruikt om een deel van de functie uit te voeren; Afbreken of ongedaan maken: Vervollediging van deze functie is gehoofdingpeld aan het up-event en een mechanisme is beschikbaar om de functie voortijdig af te breken of ongedaan te maken na uitvoering; Up omkering: Het up-event keert de resultaten van het voorafgaande down-event om; Essentieel: De functie vervolledigen op het down-event is essentieel.'
+    ,"2_5_2.Touchstart_Check" : 'Dit element heeft een touchstart event listener. Controleer dat voor functinaliteit die gebruikt kan worden met één enkele pointer, minstens één van de volgende stellingen waar is:     Geen Down-event: Het down-event van de pointer wordt niet gebruikt om een deel van de functie uit te voeren; Afbreken of ongedaan maken: Vervollediging van deze functie is gehoofdingpeld aan het up-event en een mechanisme is beschikbaar om de functie voortijdig af te breken of ongedaan te maken na uitvoering; Up omkering: Het up-event keert de resultaten van het voorafgaande down-event om; Essentieel: De functie vervolledigen op het down-event is essentieel.'
 
 
     //2_5_3.js
