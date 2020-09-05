@@ -37,6 +37,7 @@ _global.translation['en'] = {
     ,"auditor_suggested_techniques" : "Suggested Techniques"
     ,"auditor_applies_entire_document" : "This applies to the entire document"
 
+
     //1_1_1.js
     ,"1_1_1_H30.2" : 'Img element is the only content of the link, but is missing alt text. The alt text should describe the purpose of the link.'
     ,"1_1_1_H67.1" : 'Img element with empty alt text must have absent or empty title attribute.'
@@ -102,7 +103,7 @@ _global.translation['en'] = {
     ,"1_3_1_H44.NotFormControl" : 'This label\'s "for" attribute contains an ID for an element that is not a form control. Ensure that you have entered the correct ID for the intended element.'
     ,"1_3_1_H65" : 'This form control has a "title" attribute that is empty or contains only spaces. It will be ignored for labelling test purposes.'
     ,"1_3_1_ARIA6" : 'This form control has an "aria-label" attribute that is empty or contains only spaces. It will be ignored for labelling test purposes.'
-    //{{id}} will be replace with element ID:
+    //{{id}} will be replaced with element ID:
     ,"1_3_1_ARIA16,ARIA9" : 'This form control contains an aria-labelledby attribute, however it includes an ID "{{id}}" that does not exist on an element. The aria-labelledby attribute will be ignored for labelling test purposes.'
 
     ,"1_3_1_F68.Hidden" : 'This hidden form field is labelled in some way. There should be no need to label a hidden form field.'
@@ -166,15 +167,15 @@ _global.translation['en'] = {
 
 
     //1_3_5.js
-    ,"1_3_5_H98.FaultyValue" : 'This element contains a potentially faulty value in its autocomplete attribute: {{valuesStr}}. See https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute</a>.'
-    ,"1_3_5_H98.InvalidAutocomplete_Text" : 'Invalid autocomplete value: {{x}}. Element does not belong to Text control group. See https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute</a>'
-    ,"1_3_5_H98.InvalidAutocomplete_Multiline" : 'Invalid autocomplete value: {{x}}. Element does not belong to Multiline control group. See https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute'
-    ,"1_3_5_H98.InvalidAutocomplete_Password" : 'Invalid autocomplete value: {{x}}. Element does not belong to Password control group. See https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute'
-    ,"1_3_5_H98.InvalidAutocomplete_Url" : 'Invalid autocomplete value: {{x}}. Element does not belong to Url control group. See https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute'
-    ,"1_3_5_H98.InvalidAutocomplete_Telephone" : 'Invalid autocomplete value: {{x}}. Element does not belong to Telephone control group. See https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute'
-    ,"1_3_5_H98.InvalidAutocomplete_Numeric" : 'Invalid autocomplete value: {{x}}. Element does not belong to Numeric control group. See https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute'
-    ,"1_3_5_H98.InvalidAutocomplete_Month" : 'Invalid autocomplete value: {{x}}. Element does not belong to Month control group. See https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute'
-    ,"1_3_5_H98.InvalidAutocomplete_Date" : 'Invalid autocomplete value: {{x}}. Element does not belong to Date control group. See https://www.w3.org/TR/html52/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute'
+    ,"1_3_5_H98.FaultyValue" : 'This element contains a potentially faulty value in its autocomplete attribute: {{valuesStr}}.'
+    ,"1_3_5_H98.InvalidAutoComplete_Text" : 'Invalid autocomplete value: {{x}}. Element does not belong to Text control group.'
+    ,"1_3_5_H98.InvalidAutoComplete_Multiline" : 'Invalid autocomplete value: {{x}}. Element does not belong to Multiline control group.'
+    ,"1_3_5_H98.InvalidAutoComplete_Password" : 'Invalid autocomplete value: {{x}}. Element does not belong to Password control group.'
+    ,"1_3_5_H98.InvalidAutoComplete_Url" : 'Invalid autocomplete value: {{x}}. Element does not belong to Url control group.'
+    ,"1_3_5_H98.InvalidAutoComplete_Telephone" : 'Invalid autocomplete value: {{x}}. Element does not belong to Telephone control group.'
+    ,"1_3_5_H98.InvalidAutoComplete_Numeric" : 'Invalid autocomplete value: {{x}}. Element does not belong to Numeric control group.'
+    ,"1_3_5_H98.InvalidAutoComplete_Month" : 'Invalid autocomplete value: {{x}}. Element does not belong to Month control group.'
+    ,"1_3_5_H98.InvalidAutoComplete_Date" : 'Invalid autocomplete value: {{x}}. Element does not belong to Date control group.'
     ,"1_3_5_H98.Purpose" : 'Check that the input field serves a purpose identified in the Input Purposes for User Interface Components section; and that the content is implemented using technologies with support for identifying the expected meaning for form input data.'
     ,"1_3_5_H98.MissingAutocomplete" : 'This element does not have an autocomplete attribute. If this field collects information about the user, consider adding one to comply with this Success Criterion.'
 
@@ -223,7 +224,6 @@ _global.translation['en'] = {
     ,"1_4_6_G18_or_G17.Fail.Recomendation.Background" : 'change background to {{value}}'
 
 
-
     //1_4_7.js
     ,"1_4_7_G56" : 'For pre-recorded audio-only content in this element that is primarily speech (such as narration), any background sounds should be muteable, or be at least 20 dB (or about 4 times) quieter than the speech.'
 
@@ -264,7 +264,7 @@ _global.translation['en'] = {
         Letter spacing (tracking) to at least 0.12 times the font size; \
         Word spacing to at least 0.16 times the font size.'
 
-    
+
     //1_4_13.js
     ,"1_4_13_F95.Check" : 'Check that where receiving and then removing pointer hover or keyboard focus triggers additional content to become visible and then hidden, the following are true: \
      \
@@ -509,7 +509,6 @@ _global.translation['en'] = {
     ,"3_3_6_G98,G99,G155,G164,G168.AllForms" : 'Check that submissions to this form are either reversible, checked for input errors, and/or confirmed by the user.'
 
 
-
     //4_1_1.js
     ,"4_1_1_F77" : 'Duplicate id attribute value "{{id}}" found on the web page.'
 
@@ -536,6 +535,6 @@ _global.translation['en'] = {
 
 
     //4_1_3.js
-    ,"4_1_3_ARIA22,G199,ARIA19,G83,G84,G85,G139,G177,G194,ARIA23,ARIA22.Check" : 'Check that status messages can be programmatically determined through role or properties such that they can be presented to the user by assistive technologies without receiving focus.'
+    ,"4_1_3_ARIA22,G199,ARIA19,G83,G84,G85,G139,G177,G194,ARIA23.Check" : 'Check that status messages can be programmatically determined through role or properties such that they can be presented to the user by assistive technologies without receiving focus.'
 
 };
