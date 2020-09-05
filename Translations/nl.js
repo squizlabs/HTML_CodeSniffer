@@ -114,11 +114,11 @@ _global.translation['nl'] = {
     ,"1_3_1_H49.Semantic" : 'Semantische markup zou gebruikt moeten worden om benadrukte of speciale tekst aan te duiden zodat dit programmatisch bepaald kan worden.'
     ,"1_3_1_H49.AlignAttr.Semantic" : 'Semantische markup zou gebruikt moeten worden om benadrukte of speciale tekst aan te duiden zodat dit programmatisch bepaald kan worden.'
 
-    ,"1_3_1_H42" : 'Heading markup zou gebruikt moeten worden indien deze inhoud bedoeld is als een hoofding.'
+    ,"1_3_1_H42" : 'Heading markup zou gebruikt moeten worden indien deze inhoud bedoeld is als een kop.'
 
     ,"1_3_1_H63.3" : 'Tabelcel heeft een ongeldig scope attribuut. Geldige waardes zijn row, col, rowgroup of colgroup'
-    ,"1_3_1_H63.2" : 'Scope attributen op td elementen die als hoofdingen gebruikt worden voor andere elementen zijn vervallen in HTML. Gebruik in plaats daarvan een th element.'
-    ,"1_3_1_H43.ScopeAmbiguous" : 'Scope attributen op th elementen zijn ambigu in een tabel met meerdere niveaus van hoofding. Gebruik in plaats daarvan het headers attribuut op td elementen.'
+    ,"1_3_1_H63.2" : 'Scope attributen op td elementen die als koppen gebruikt worden voor andere elementen zijn vervallen in HTML. Gebruik in plaats daarvan een th element.'
+    ,"1_3_1_H43.ScopeAmbiguous" : 'Scope attributen op th elementen zijn ambigu in een tabel met meerdere niveaus van kop. Gebruik in plaats daarvan het headers attribuut op td elementen.'
     ,"1_3_1_H43.IncorrectAttr" : 'Foutief headers attribuut op dit td element. \"{{expected}}\" werd verwacht maar \"{{actual}}\" gevonden'
 
     ,"1_3_1_H43.HeadersRequired" : 'De relatie tussen td elementen en de eraan gebonden th elementen werd niet omschreven. Gezien deze tabel meerdere niveaus th elmenten bevat, moet het headers attribuut gebruikt worden op td elementen.'
@@ -143,13 +143,13 @@ _global.translation['nl'] = {
     ,"1_3_1_H48.1" : 'Deze inhoud lijkt op een gesimuleerde niet-geordende lijst in tekst zonder opmaak. Indien dit klopt, dan zou deze inhoud markeren met een ul-element de informatie in het document een betere structuur geven.'
     ,"1_3_1_H48.2" : 'Deze inhoud lijkt op een gesimuleerde geordende lijst in tekst zonder opmaak. Indien dit klopt, dan zou deze inhoud markeren met een ol-element de informatie in het document een betere structuur geven.'
 
-    ,"1_3_1_G141_a" : 'De hoofdingstructuur is niet logisch genest. Dit h{{headingNum}} element lijkt de primaire documenthoofding te zijn, dit zou dan een h1 element moeten zijn.'
-    ,"1_3_1_G141_b" : 'De hoofdingstructuur is niet logisch genest. Dit h{{headingNum}} element zou een h{{properHeadingNum}} moeten zijn voor een juiste structuur.'
+    ,"1_3_1_G141_a" : 'De kopstructuur is niet logisch genest. Dit h{{headingNum}} element lijkt de primaire documentkop te zijn, dit zou dan een h1 element moeten zijn.'
+    ,"1_3_1_G141_b" : 'De kopstructuur is niet logisch genest. Dit h{{headingNum}} element zou een h{{properHeadingNum}} moeten zijn voor een juiste structuur.'
 
-    ,"1_3_1_H42.2" : 'Hoofding tag gevonden zonder inhoud. Tekst die niet bedoeld is als hoofding zou niet mogen gemarkeerd worden met een hoofding tag.'
+    ,"1_3_1_H42.2" : 'Kop tag gevonden zonder inhoud. Tekst die niet bedoeld is als kop zou niet mogen gemarkeerd worden met een kop tag.'
     ,"1_3_1_H48" : 'Indien dit element een navigatie-sectie bevat, wordt aanbevolen lijst-markup te gebruiken.'
 
-    ,"1_3_1_LayoutTable" : 'Deze tabel lijkt een opmaaktabel te zijn. Indien deze bedoeld is als een datatabel, zorg er dan voor dat hoofding cellen geÔdentificeerd worden met th elementen.'
+    ,"1_3_1_LayoutTable" : 'Deze tabel lijkt een opmaaktabel te zijn. Indien deze bedoeld is als een datatabel, zorg er dan voor dat kop cellen geÔdentificeerd worden met th elementen.'
     ,"1_3_1_DataTable" : 'Deze tabel lijkt een datatabel te zijn. Indien deze bedoeld is als een opmaaktabel, zorg er dan voor dat er geen th elementen, summary of caption aanwezig zijn.'
 
 
@@ -200,7 +200,7 @@ _global.translation['nl'] = {
     ,"1_4_3_G18_or_G145.Abs" : 'Dit element is absoluut gepositioneerd en de achtergrondkleur kan niet bepaald worden. Zorg ervoor dat de contrastverhouding tussen de tekst en alle bedekte delen van de achtergond minstens {{required}}:1 is.'
     ,"1_4_3_G18_or_G145.BgImage" : 'De tekst van dit element werd geplaatst op een achtergrondafbeelding. Zorg ervoor dat de contrastverhouding tussen de tekst en alle bedekte delen van de achtergrondafbeelding minstens {{required}}:1 is.'
     ,"1_4_3_G18_or_G145.Alpha" : 'De tekst of achtergrond van dit element bevat transparantie. Zorg ervoor dat de contrastverhouding tussen de tekst en de achtergond minstens {{required}}:1 is.'
-    ,"1_4_3_G18_or_G145.Fail" : 'Dit element heeft onvoldoende contrast op dit conformantie-niveau. Een contrastverhouding van minstens {{required]}}:1 wordt verwacht, maar de tekst in dit element heeft een contrastverhouding van {{value}}:1.'
+    ,"1_4_3_G18_or_G145.Fail" : 'Dit element heeft onvoldoende contrast op dit conformantie-niveau. Een contrastverhouding van minstens {{required}}:1 wordt verwacht, maar de tekst in dit element heeft een contrastverhouding van {{value}}:1.'
     ,"1_4_3_G18_or_G145.Fail.Recomendation" : 'Aanbeveling:'
     ,"1_4_3_G18_or_G145.Fail.Recomendation.Text" : 'verander tekstkleur naar {{value}}'
     ,"1_4_3_G18_or_G145.Fail.Recomendation.Background" : 'verander achtergrond naar{{value}}'
@@ -318,7 +318,7 @@ _global.translation['nl'] = {
     //2_4_1.js
     ,"2_4_1_H64.1" : 'Iframe element vereist een niet-leeg title attribuut dat het kader identificeert.'
     ,"2_4_1_H64.2" : 'Controleer dat het title attribuut van dit element tekst bevat die het kader identificeert.'
-    ,"2_4_1_G1,G123,G124,H69" : 'Controleer dat veel voorkomende navigatie-elementen overgeslagen kunnen wordenbijvoorbeeld door gebruik van skip links, hoofding elementen of ARIA landmark rollen.'
+    ,"2_4_1_G1,G123,G124,H69" : 'Controleer dat veel voorkomende navigatie-elementen overgeslagen kunnen wordenbijvoorbeeld door gebruik van skip links, kop elementen of ARIA landmark rollen.'
     ,"2_4_1_G1,G123,G124.NoSuchID" : 'Deze link wijst naar een genaamd anker \"{{id}}\" binnen het document, maar er is geen anker met deze naam.'
     ,"2_4_1_G1,G123,G124.NoSuchIDFragment" : 'Deze link wijst naar een genaamd anker \"{{id}}\" binnen het document, maar er is geen anker met deze naam binnen het geteste fragment.'
 
@@ -344,7 +344,7 @@ _global.translation['nl'] = {
 
 
     //2_4_6.js
-    ,"2_4_6_G130,G131" : 'Controleer dat de hoofdingen en labels de inhoud en het doel beschrijven.'
+    ,"2_4_6_G130,G131" : 'Controleer dat de koppen en labels de inhoud en het doel beschrijven.'
 
 
     //2_4_7.js
@@ -362,22 +362,22 @@ _global.translation['nl'] = {
 
 
     //2_5_1.js
-    ,"2_5_1.Check" : 'Controleer dat alle functionaliteit die multipoint of pad-gebaseerde bewegingen gebruikt voor de werking gebruiokt kan worden met ÈÈn enkele pointer zonder pad-gebaseerde bewegingen, tenzij multipoint of pad-gebaseerde bewegingen essentieel zijn.'
+    ,"2_5_1.Check" : 'Controleer dat alle functionaliteit die multipoint of pad-gebaseerde bewegingen gebruikt voor de werking gebruikt kan worden met één enkele pointer zonder pad-gebaseerde bewegingen, tenzij multipoint of pad-gebaseerde bewegingen essentieel zijn.'
 
 
     //2_5_2.js
-    ,"2_5_2.Mousedown_Check" : 'Dit element heeft een mousedown event listener. Controleer dat voor functinaliteit die gebruikt kan worden met ÈÈn enkele pointer, minstens ÈÈn van de volgende stellingen waar is:         Geen Down-event: Het down-event van de pointer wordt niet gebruikt om een deel van de functie uit te voeren Afbreken of ongedaan maken: Vervollediging van deze functie is gekoppeld aan het up-avent en een mechanisme is beschikbaar om de functie voortijdig af te breken of ongedaan te maken na uitvoering Up omkering: Het up-event keert de resultaten van het voorafgaande down-event om Essentieel: De functie vervolledigen op het down-event is essentieel.     ,'
-    ,"2_5_2.Touchstart_Check" : 'Dit element heeft een touchstart event listener. Controleer dat voor functinaliteit die gebruikt kan worden met ÈÈn enkele pointer, minstens ÈÈn van de volgende stellingen waar is:         Geen Down-event: Het down-event van de pointer wordt niet gebruikt om een deel van de functie uit te voeren Afbreken of ongedaan maken: Vervollediging van deze functie is gekoppeld aan het up-avent en een mechanisme is beschikbaar om de functie voortijdig af te breken of ongedaan te maken na uitvoering Up omkering: Het up-event keert de resultaten van het voorafgaande down-event om Essentieel: De functie vervolledigen op het down-event is essentieel.     ,'
+    ,"2_5_2.Mousedown_Check" : 'Dit element heeft een mousedown event listener. Controleer dat voor functinaliteit die gebruikt kan worden met één enkele pointer, minstens één van de volgende stellingen waar is:     Geen Down-event: Het down-event van de pointer wordt niet gebruikt om een deel van de functie uit te voeren; Afbreken of ongedaan maken: Vervollediging van deze functie is gekoppeld aan het up-event en een mechanisme is beschikbaar om de functie voortijdig af te breken of ongedaan te maken na uitvoering; Up omkering: Het up-event keert de resultaten van het voorafgaande down-event om; Essentieel: De functie vervolledigen op het down-event is essentieel.'
+    ,"2_5_2.Touchstart_Check" : 'Dit element heeft een touchstart event listener. Controleer dat voor functinaliteit die gebruikt kan worden met één enkele pointer, minstens één van de volgende stellingen waar is:     Geen Down-event: Het down-event van de pointer wordt niet gebruikt om een deel van de functie uit te voeren; Afbreken of ongedaan maken: Vervollediging van deze functie is gekoppeld aan het up-event en een mechanisme is beschikbaar om de functie voortijdig af te breken of ongedaan te maken na uitvoering; Up omkering: Het up-event keert de resultaten van het voorafgaande down-event om; Essentieel: De functie vervolledigen op het down-event is essentieel.'
 
 
     //2_5_3.js
     ,"2_5_3_F96.Check" : 'Controleer dat voor gebruiksinterface componenten met labels die tekst or afbeeldingen van tekst gebruiken, de naam de tekst bevat die visueel weergegeven wordt.'
-    ,"2_5_3_F96.AccessibleName" : 'De toegankelijke naam voor dit element bevat geen zichtbare label tekst.Controleer dat voor gebruiksinterface componenten met labels die tekst or afbeeldingen van tekst gebruiken, de naam de tekst bevat die visueel weergegeven wordt.'
+    ,"2_5_3_F96.AccessibleName" : 'De toegankelijke naam voor dit element bevat geen zichtbare label tekst. Controleer dat voor gebruiksinterface componenten met labels die tekst or afbeeldingen van tekst gebruiken, de naam de tekst bevat die visueel weergegeven wordt.'
 
 
     //2_5_4.js
     ,"2_5_4.Check" : 'Controleer dat de functionaliteit die bediend kan worden door beweging van het toestel of de gebruiker bediend kan worden via gebruiksinterface compoonenten en dat reageren op de beweging kan afgezet worden om accidentele actuatie te voorkomen, behalve waar:    Ondersteunde Interface: De beweging gebruikt wordt om de functionaliteit te bedienen rond een toegankelijkheid ondersteunende interface Essentieel: De beweging is essentieel voor het goed functioneren en deze niet gebruiken zou de activiteit onmogelijk maken.     ,'
-    ,"2_5_4.Devicemotion" : 'Dit element heeft een devicemotion event listener. Controleer dat de functionaliteit die bediend kan worden door beweging van het toestel of de gebruiker bediend kan worden via gebruiksinterface compoonenten en dat reageren op de beweging kan afgezet worden om accidentele actuatie te voorkomen, behalve waar:    Ondersteunde Interface: De beweging gebruikt wordt om de functionaliteit te bedienen rond een toegankelijkheid ondersteunende interface Essentieel: De beweging is essentieel voor het goed functioneren en deze niet gebruiken zou de activiteit onmogelijk maken.     ,'
+    ,"2_5_4.Devicemotion" : 'Dit element heeft een devicemotion event listener. Controleer dat de functionaliteit die bediend kan worden door beweging van het toestel of de gebruiker bediend kan worden via gebruiksinterface componenten en dat reageren op de beweging kan afgezet worden om accidentele actuatie te voorkomen, behalve waar:    Ondersteunde Interface: De beweging gebruikt wordt om de functionaliteit te bedienen rond een toegankelijkheid ondersteunende interface; Essentieel: De beweging is essentieel voor het goed functioneren en deze niet gebruiken zou de activiteit onmogelijk maken.'
 
 
     //2_5_5.js
@@ -451,7 +451,7 @@ _global.translation['nl'] = {
 
 
     //3_3_4.js
-    ,"3_3_4_G98,G99,G155,G164,G168.LegalForms" : 'Indien dit formulier de gebruiker tot een financiëel of legaal engagement verplicht, gebruiker-beheerbare gegevens wijzigt of verwijdert of test-antwoorden indient, zorg er dan voor dat indiening omkeerbaar is, gecontroleerd wordt voor invoerfouten en/of bevestigd wordt door de gebruiker.'
+    ,"3_3_4_G98,G99,G155,G164,G168.LegalForms" : 'Indien dit formulier de gebruiker tot een financieel of legaal engagement verplicht, gebruiker-beheerbare gegevens wijzigt of verwijdert of test-antwoorden indient, zorg er dan voor dat indiening omkeerbaar is, gecontroleerd wordt voor invoerfouten en/of bevestigd wordt door de gebruiker.'
 
 
     //3_3_5.js
