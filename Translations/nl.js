@@ -117,7 +117,7 @@ _global.translation['nl'] = {
     ,"1_3_1_H42" : 'Heading markup zou gebruikt moeten worden indien deze inhoud bedoeld is als een hoofding.'
 
     ,"1_3_1_H63.3" : 'Tabelcel heeft een ongeldig scope attribuut. Geldige waardes zijn row, col, rowgroup of colgroup'
-    ,"1_3_1_H63.2" : 'Scope attributen op td elementen die als hoofdingpen gebruikt worden voor andere elementen zijn vervallen in HTML. Gebruik in plaats daarvan een th element.'
+    ,"1_3_1_H63.2" : 'Scope attributen op td elementen die als hoofdingen gebruikt worden voor andere elementen zijn vervallen in HTML. Gebruik in plaats daarvan een th element.'
     ,"1_3_1_H43.ScopeAmbiguous" : 'Scope attributen op th elementen zijn ambigu in een tabel met meerdere niveaus van hoofding. Gebruik in plaats daarvan het headers attribuut op td elementen.'
     ,"1_3_1_H43.IncorrectAttr" : 'Foutief headers attribuut op dit td element. \"{{expected}}\" werd verwacht maar \"{{actual}}\" gevonden'
 
@@ -343,7 +343,7 @@ _global.translation['nl'] = {
 
 
     //2_4_6.js
-    ,"2_4_6_G130,G131" : 'Controleer dat de hoofdingpen en labels de inhoud en het doel beschrijven.'
+    ,"2_4_6_G130,G131" : 'Controleer dat de hoofdingen en labels de inhoud en het doel beschrijven.'
 
 
     //2_4_7.js
