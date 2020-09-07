@@ -459,9 +459,13 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
             }
         }//end if
 
-        // Incorrect usage of headers - error; emit always.
-        for (var i = 0; i < headersAttr.wrongHeaders.length; i++) {
-            HTMLCS.addMessage(HTMLCS.ERROR, headersAttr.wrongHeaders[i].element, _global.HTMLCS.getTranslation("1_3_1_H43.IncorrectAttr").replace(/\{\{expected\}\}/g, headersAttr.wrongHeaders[i].expected).replace(/\{\{actual\}\}/g, headersAttr.wrongHeaders[i].actual), 'H43.IncorrectAttr');
+        if (headersAttr.isMultiLevelHeadersTable) {
+            HTMLCS.addMessage(HTMLCS.NOTICE, table, _global.HTMLCS.getTranslation("1_3_1_H43.IncorrectAttrNotice"), 'H43.IncorrectAttr');
+        } else {
+            // Incorrect usage of headers - error; emit always.
+            for (var i = 0; i < headersAttr.wrongHeaders.length; i++) {
+                HTMLCS.addMessage(HTMLCS.ERROR, headersAttr.wrongHeaders[i].element, _global.HTMLCS.getTranslation("1_3_1_H43.IncorrectAttr").replace(/\{\{expected\}\}/g, headersAttr.wrongHeaders[i].expected).replace(/\{\{actual\}\}/g, headersAttr.wrongHeaders[i].actual), 'H43.IncorrectAttr');
+            }
         }
 
         // Errors where headers are compulsory.

@@ -909,6 +909,8 @@ _global.HTMLCS.util = function() {
      * - wrongHeaders (Array): Array of elements where headers attr is incorrect.
      *                         Each is a structure with following keys: element,
      *                         expected [headers attr], actual [headers attr].
+     * - isMultiLevelHeadersTable (Boolean): Whether this table has multi-level headers.
+     *                                    See: https://www.w3.org/WAI/tutorials/tables/multi-level/
      *
      * @param {DOMNode} element Table element to test upon.
      *
@@ -923,7 +925,8 @@ _global.HTMLCS.util = function() {
             allowScope: true,
             missingThId: [],
             missingTd: [],
-            wrongHeaders: []
+            wrongHeaders: [],
+            isMultiLevelHeadersTable: false,
         };
 
         var rows      = self.getChildrenForTable(element, 'tr');
@@ -1028,6 +1031,7 @@ _global.HTMLCS.util = function() {
 
         if ((multiHeaders.rows > 1) || (multiHeaders.cols > 1)) {
             retval.allowScope = false;
+            retval.isMultiLevelHeadersTable = true;
         } else if ((retval.allowScope === true) && ((multiHeaders.rows === 0) || (multiHeaders.cols === 0))) {
             // If only one column OR one row header.
             retval.required = false;
