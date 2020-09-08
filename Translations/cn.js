@@ -106,6 +106,7 @@ _global.translation['cn'] = {
     ,"1_3_1_H63.2" : 'td元素上作为其他元素标题的作用域属性在HTML5中已经过时了。使用th元素代替。'
     ,"1_3_1_H43.ScopeAmbiguous" : '元素的作用域属性在具有多级标题的表中是不明确的。在td元素上使用headers属性。'
     ,"1_3_1_H43.IncorrectAttr" : '此td元素上不正确的headers属性。期望的“{{expected}}”，但发现“{{actual}}”'
+    ,"1_3_1_H43.IncorrectAttrNotice" : 'Check that headers attribute on td element is correct.'
     ,"1_3_1_H43.HeadersRequired" : 'td元素与其关联的th元素之间的关系没有定义。由于该表有多个层次的th元素，因此必须在td元素上使用headers属性。'
     ,"1_3_1_H43.MissingHeaderIds" : '并非该表中的所有th元素都包含id属性。这些单元格应该包含id，以便td元素的header属性可以引用它们。'
     ,"1_3_1_H43.MissingHeadersAttrs" : '并非此表中的所有td元素都包含header属性。每个headers属性应该列出与该单元格关联的所有th元素的id。'

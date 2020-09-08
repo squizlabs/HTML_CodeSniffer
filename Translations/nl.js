@@ -120,6 +120,7 @@ _global.translation['nl'] = {
     ,"1_3_1_H63.2" : 'Scope attributen op td elementen die als hoofdingen gebruikt worden voor andere elementen zijn vervallen in HTML. Gebruik in plaats daarvan een th element.'
     ,"1_3_1_H43.ScopeAmbiguous" : 'Scope attributen op th elementen zijn ambigu in een tabel met meerdere niveaus van hoofding. Gebruik in plaats daarvan het headers attribuut op td elementen.'
     ,"1_3_1_H43.IncorrectAttr" : 'Foutief headers attribuut op dit td element. \"{{expected}}\" werd verwacht maar \"{{actual}}\" gevonden'
+    ,"1_3_1_H43.IncorrectAttrNotice" : 'Check that headers attribute on td element is correct.'
 
     ,"1_3_1_H43.HeadersRequired" : 'De relatie tussen td elementen en de eraan gebonden th elementen werd niet omschreven. Gezien deze tabel meerdere niveaus th elmenten bevat, moet het headers attribuut gebruikt worden op td elementen.'
     ,"1_3_1_H43.MissingHeaderIds" : 'Niet alle th elementen in deze tabel hebben een id attribuut. Deze cellen zouden ids moeten bevatten zodat er kan naar verwezen worden in het headers attribuut van td elementen.'
