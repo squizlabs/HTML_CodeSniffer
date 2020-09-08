@@ -120,6 +120,7 @@ _global.translation['ja'] = {
     ,"1_3_1_H63.2" : '他の要素の見出しとして機能する td 要素のスコープ属性は、HTML5では廃止されました。代わりに th 要素を使用してください。'
     ,"1_3_1_H43.ScopeAmbiguous" : '複数のレベルの見出しを持つテーブルでは、 th 要素のスコープ属性はあいまいです。代わりに td 要素の headers 属性を使用してください。'
     ,"1_3_1_H43.IncorrectAttr" : 'この td 要素のヘッダー属性が正しくありません。 "{{expected}}" を予期していましたが、 "{{actual}}" を検出しました'
+    ,"1_3_1_H43.IncorrectAttrNotice" : 'Check that headers attribute on td element is correct.'
 
     ,"1_3_1_H43.HeadersRequired" : 'td 要素とそれに関連する th 要素の関係は定義されていません。このテーブルには複数レベルの th 要素があるため、 td 要素には headers 属性を使用する必要があります。'
     ,"1_3_1_H43.MissingHeaderIds" : 'このテーブルに id 属性を含まない th 要素があります。これらのセルは、それらが td 要素の headers 属性によって参照されるように ID を含むべきです。'
