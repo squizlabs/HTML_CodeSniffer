@@ -529,5 +529,5 @@ _global.translation['fr'] = {
 
 
     //4_1_3.js
-    ,"4_1_3_ARIA22,G199,ARIA19,G83,G84,G85,G139,G177,G194,ARIA23,ARIA22.Check" : 'Vérifier que les messages de statut peuvent être déterminés par programme grâce à des rôles ou des propriétés tels qu\'ils peuvent être présentés à l\'utilisateur par des technologies d\'assistance sans recevoir de mise au point.'
+    ,"4_1_3_ARIA22,G199,ARIA19,G83,G84,G85,G139,G177,G194,ARIA23.Check" : 'Vérifier que les messages de statut peuvent être déterminés par programme grâce à des rôles ou des propriétés tels qu\'ils peuvent être présentés à l\'utilisateur par des technologies d\'assistance sans recevoir de mise au point.'
 };
