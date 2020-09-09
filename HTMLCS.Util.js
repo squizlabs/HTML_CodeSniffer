@@ -282,6 +282,12 @@ _global.HTMLCS.util = function() {
             if (element.hasAttribute('aria-hidden') && element.getAttribute('aria-hidden') === 'true') {
                 return true;
             }
+
+            // Consider iframes to be "invisible" as well, if the setting is set, so that
+            // checks don't run for external widgets we don't have control over.
+            if (element.tagName == 'IFRAME' && HTMLCS.getBosaOption('skipIframes') == true) {
+                return true;
+            }
         } while (element = element.parentElement);
 
         return false;
@@ -903,6 +909,8 @@ _global.HTMLCS.util = function() {
      * - wrongHeaders (Array): Array of elements where headers attr is incorrect.
      *                         Each is a structure with following keys: element,
      *                         expected [headers attr], actual [headers attr].
+     * - isMultiLevelHeadersTable (Boolean): Whether this table has multi-level headers.
+     *                                    See: https://www.w3.org/WAI/tutorials/tables/multi-level/
      *
      * @param {DOMNode} element Table element to test upon.
      *
@@ -917,7 +925,8 @@ _global.HTMLCS.util = function() {
             allowScope: true,
             missingThId: [],
             missingTd: [],
-            wrongHeaders: []
+            wrongHeaders: [],
+            isMultiLevelHeadersTable: false,
         };
 
         var rows      = self.getChildrenForTable(element, 'tr');
@@ -1022,6 +1031,7 @@ _global.HTMLCS.util = function() {
 
         if ((multiHeaders.rows > 1) || (multiHeaders.cols > 1)) {
             retval.allowScope = false;
+            retval.isMultiLevelHeadersTable = true;
         } else if ((retval.allowScope === true) && ((multiHeaders.rows === 0) || (multiHeaders.cols === 0))) {
             // If only one column OR one row header.
             retval.required = false;
@@ -1312,6 +1322,32 @@ _global.HTMLCS.util = function() {
         return nextNode;
     };
 
+    /**
+     * Get the value of a given pseudo-selector for a given CSS property that
+     * applies to a given element.
+     *
+     * @param {DOMNode} element           Element to look up the CSS declarations for.
+     * @param {String}  pseudoSelector    Pseudo-selector to look up the value for (eg. ".hover")
+     * @param {String}  property          CSS property to look up (e.g. "color")
+     *
+     * @returns {String} The appropriate property value or undefined if none is found.
+     */
+    self.getPseudoSelectorPropertyValue = function (el, pseudoSelector, property) {
+        var sheets = el.ownerDocument.styleSheets;
+        el.matches = el.matches || el.webkitMatchesSelector || el.mozMatchesSelector
+            || el.msMatchesSelector || el.oMatchesSelector;
+        for (var i in sheets) {
+            try {
+                var rules = sheets[i].rules || sheets[i].cssRules;
+                for (var r in rules) {
+                    if (rules[r].selectorText.includes(pseudoSelector) && el.matches(rules[r].selectorText.replace(pseudoSelector, ''))) {
+                        return rules[r].style[property];
+                    }
+                }
+            } catch (e) {
+            }
+        }
+    }
 
     /**
      * Get the text content of a DOM node.

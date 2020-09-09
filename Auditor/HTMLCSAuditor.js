@@ -13,6 +13,22 @@
 
 _global.HTMLCSAuditor = new function()
 {
+    WebFontConfig = {
+      google: {
+        families: ['Roboto']
+      }
+    };
+
+    (function(d) {
+      var wf = d.createElement('script'), s = d.scripts[0];
+      wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js';
+      wf.async = true;
+      // s may not be set when injected into headless chrome by pa11y
+      if (s !== undefined) {
+        s.parentNode.insertBefore(wf, s);
+      }
+    })(document);
+
     var _prefix   = 'HTMLCS-';
     var _screen   = '';
     var _standard = '';
@@ -150,7 +166,7 @@ _global.HTMLCSAuditor = new function()
     var buildHeaderSection = function(standard, wrapper) {
         var header       = _doc.createElement('div');
         header.className = _prefix + 'header';
-        header.innerHTML = 'HTML_CodeSniffer by Squiz';
+        header.innerHTML = 'BOSA Accessibility Check';
         header.setAttribute('title', _global.HTMLCS.getTranslation("auditor_using_standard") + standard);
 
         var dragging = false;
@@ -291,7 +307,19 @@ _global.HTMLCSAuditor = new function()
         // Issue totals.
         var lineageTotalsItem       = _doc.createElement('li');
         lineageTotalsItem.className = _prefix + 'lineage-item';
-        lineageTotalsItem.innerHTML = leftContents.join(divider);
+
+        // Used to default to leftContents.join(divider), but removed due to lack of space.
+        // See https://github.com/openfed/AccessibilityCheck/issues/12
+        lineageTotalsItem.innerHTML = '';
+        // Add link to printable report.
+        if (HTMLCS.getBosaOption('showResultsFor') === HTMLCS.RESULTS_FOR_DEVELOPERS) {
+            lineageTotalsItem.innerHTML += "Filter: Dev";
+        } else if (HTMLCS.getBosaOption('showResultsFor') === HTMLCS.RESULTS_FOR_CONTENT_MANAGERS) {
+            lineageTotalsItem.innerHTML += "Filter: Content Mgr";
+        } else {
+            lineageTotalsItem.innerHTML += "All Results";
+        }
+        lineageTotalsItem.innerHTML += ' (<a class="export" href="#" onclick="HTMLCSAuditor.bosaExportReport();">Export</a>)';
 
         lineageHomeItem.appendChild(lineageHomeLink);
         lineage.appendChild(lineageHomeItem);
@@ -301,6 +329,149 @@ _global.HTMLCSAuditor = new function()
         rightPane.appendChild(_doc.createTextNode(String.fromCharCode(160)));
 
         return summary;
+    };
+
+    /**
+     * Opens a new window with a printable, exported version of the report.
+     */
+    this.bosaExportReport = function() {
+      var win = window.open("", "Export");
+      var newWrapper = self.bosaBuildReport(_standard, _messages, _options);
+      var intro = "<h2>Report for " + window.location.href + "</h2>" +
+                  "<h3>Standard: " + _standard + "</h3>";
+      var styleSrc = self.bosaAddCurrentProtocol(_options.path) + 'HTMLCS.css';
+      win.document.body.parentElement.innerHTML = "<html><head><title>Export of " + window.location.href + "</title>" +
+                                    "<link rel=\"stylesheet\" type=\"text/css\" href=\"" + styleSrc + "\"></head>" +
+                                    "<body class=\"bosareport\">" + intro + newWrapper.outerHTML + "</body></html>";
+      return false;
+    }
+
+    /**
+     * Adds the current protocol if the URL starts with "//".
+     *
+     * @return string
+     */
+    this.bosaAddCurrentProtocol = function(path) {
+       if (path.slice(0,2) == '//') {
+         var url = window.location.href;
+         return url.split("/")[0] + path;
+       }
+       return path;
+    }
+
+    /**
+     * Builds the body of the printable version of the report.
+     *
+     * @return {HTMLDivElement}
+     */
+    this.bosaBuildReport = function(standard, messages, options) {
+        var wrapper = null;
+        var errors   = 0;
+        var warnings = 0;
+        var notices  = 0;
+
+        for (var i = 0; i < messages.length; i++) {
+            // Filter only the wanted error types.
+            var ignore = false;
+            switch (messages[i].type) {
+                case HTMLCS.ERROR:
+                    if (_options.show.error === false) {
+                        ignore = true;
+                    } else {
+                        errors++;
+                    }
+                break;
+
+                case HTMLCS.WARNING:
+                    if (_options.show.warning === false) {
+                        ignore = true;
+                    } else {
+                        warnings++;
+                    }
+                break;
+
+                case HTMLCS.NOTICE:
+                    if (_options.show.notice === false) {
+                        ignore = true;
+                    } else {
+                        notices++;
+                    }
+                break;
+            }//end switch
+
+            if (ignore === true) {
+                messages.splice(i, 1);
+                i--;
+            }
+        }//end for
+
+        var settingsContents = '';
+
+        var details   = _doc.createElement('ul');
+
+        var liErrors = _doc.createElement('li');
+        var liWarnings = _doc.createElement('li');
+        var liNotices = _doc.createElement('li');
+        var liIframes = _doc.createElement('li');
+        var liResultsFor = _doc.createElement('li');
+
+        if (_options.show.error === false) {
+            liErrors.innerHTML = 'Ignoring Errors';
+        } else {
+            liErrors.innerHTML = errors + (errors === 1 ? ' Error' : ' Errors');
+        }
+        if (_options.show.warning === false) {
+            liWarnings.innerHTML = 'Ignoring Warnings';
+        } else {
+            liWarnings.innerHTML = warnings + (warnings === 1 ? ' Warning' : ' Warnings');
+        }
+        if (_options.show.notice === false) {
+            liNotices.innerHTML = 'Ignoring Notices';
+        } else {
+            liNotices.innerHTML = notices + (errors === 1 ? ' Notice' : ' Notices')
+        }
+        if (HTMLCS.getBosaOption('skipIframes')) {
+            liIframes.innerHTML = 'Iframes are not checked';
+        } else {
+            liIframes.innerHTML = 'Iframes are also checked';
+        }
+
+        var showResultsFor = HTMLCS.getBosaOption('showResultsFor');
+        if (showResultsFor === HTMLCS.RESULTS_FOR_ALL) {
+            liResultsFor.innerHTML = 'Showing results for: all';
+        } else if (showResultsFor === HTMLCS.RESULTS_FOR_DEVELOPERS) {
+            liResultsFor.innerHTML = 'Results filtered for: Developers';
+        } else if (showResultsFor === HTMLCS.RESULTS_FOR_CONTENT_MANAGERS) {
+            liResultsFor.innerHTML = 'Results filtered for: Content managers';
+        }
+        else {
+            alert('error');
+        }
+        details.appendChild(liErrors);
+        details.appendChild(liWarnings);
+        details.appendChild(liNotices);
+        details.appendChild(liIframes);
+        details.appendChild(liResultsFor);
+
+        var wrapper       = _doc.createElement('div');
+        wrapper.id        = _prefix + 'bosareport-wrapper';
+
+        var outerWrapper       = _doc.createElement('div');
+        outerWrapper.className = _prefix + 'bosareport-outer-wrapper';
+
+        var innerWrapper       = _doc.createElement('div');
+        innerWrapper.id        = _prefix + 'bosareport-issues-detail-wrapper';
+        innerWrapper.className = _prefix + 'bosareport-inner-wrapper';
+
+        var issueDetail = buildIssueDetailSection(messages);
+
+        innerWrapper.appendChild(details);
+        innerWrapper.appendChild(issueDetail);
+        outerWrapper.appendChild(innerWrapper);
+
+        wrapper.appendChild(outerWrapper);
+
+        return wrapper;
     };
 
     /**
@@ -514,12 +685,77 @@ _global.HTMLCSAuditor = new function()
             };
         }
 
+        var resultsForDiv = _doc.createElement('div');
+        resultsForDiv.id = _prefix + 'settings-bosa-show-results-wrapper';
+
+        var resultsForLabel       = _doc.createElement('label');
+        resultsForLabel.innerHTML = 'Show results for:';
+        resultsForLabel.setAttribute('for', _prefix + 'settings-bosa-show-results-select');
+
+        var resultsForSelect       = _doc.createElement('select');
+        resultsForSelect.id        = _prefix + 'settings-bosa-show-results-select';
+        resultsForSelect.innerHTML = '';
+
+        resultsForDiv.appendChild(resultsForLabel);
+        resultsForDiv.appendChild(resultsForSelect);
+
+        var allOption       = _doc.createElement('option');
+        allOption.innerHTML = 'All';
+        allOption.value     = HTMLCS.RESULTS_FOR_ALL;
+
+        var showResultsFor = HTMLCS.getBosaOption('showResultsFor');
+        if (showResultsFor === allOption.value) {
+            allOption.selected = true;
+        }
+        resultsForSelect.appendChild(allOption);
+
+        var devOption       = _doc.createElement('option');
+        devOption.innerHTML = 'Developers';
+        devOption.value     = HTMLCS.RESULTS_FOR_DEVELOPERS;
+
+        var showResultsFor = HTMLCS.getBosaOption('showResultsFor');
+        if (showResultsFor === devOption.value) {
+            devOption.selected = true;
+        }
+        resultsForSelect.appendChild(devOption);
+
+        var cmOption       = _doc.createElement('option');
+        cmOption.innerHTML = 'Content Managers';
+        cmOption.value     = HTMLCS.RESULTS_FOR_CONTENT_MANAGERS;
+
+        var showResultsFor = HTMLCS.getBosaOption('showResultsFor');
+        if (showResultsFor === cmOption.value) {
+            cmOption.selected = true;
+        }
+        resultsForSelect.appendChild(cmOption);
+
+        resultsForSelect.onchange = function() {
+            HTMLCS.setBosaOption('showResultsFor', this.options[this.selectedIndex].value);
+            self.run(_standard, _sources, _options);
+        };
+
         var issueCountDiv = _doc.createElement('div');
         issueCountDiv.id  = _prefix + 'settings-issue-count';
 
         var issueCountHelpDiv       = _doc.createElement('div');
         issueCountHelpDiv.id        = _prefix + 'settings-issue-count-help';
         issueCountHelpDiv.innerHTML = _global.HTMLCS.getTranslation("auditor_select_types");
+
+        var advancedBosaSettingsDiv       = _doc.createElement('div');
+        advancedBosaSettingsDiv.id        = _prefix + 'settings-advanced';
+
+        var skipIframesLabel = _doc.createElement('label');
+        skipIframesLabel.innerHTML = 'Skip iframes';
+        skipIframesLabel.setAttribute('for', _prefix + 'skip-iframes');
+        var skipIframesChecked = HTMLCS.getBosaOption('skipIframes');
+        var skipIframesCheckbox = buildCheckbox(_prefix + 'skip-iframes', 'Toggle iframe checking', skipIframesChecked, false, function(input) {
+            HTMLCS.setBosaOption('skipIframes', input.checked);
+            self.run(_standard, _sources, _options);
+        });
+        advancedBosaSettingsDiv.appendChild(skipIframesLabel);
+        advancedBosaSettingsDiv.appendChild(skipIframesCheckbox);
+
+        advancedBosaSettingsDiv.appendChild(resultsForDiv);
 
         var viewReportDiv       = _doc.createElement('div');
         viewReportDiv.id        = _prefix + 'settings-view-report';
@@ -660,6 +896,7 @@ _global.HTMLCSAuditor = new function()
         settingsDiv.appendChild(useStandardDiv);
         settingsDiv.appendChild(issueCountDiv);
         settingsDiv.appendChild(issueCountHelpDiv);
+        settingsDiv.appendChild(advancedBosaSettingsDiv);
         settingsDiv.appendChild(viewReportDiv);
 
         return settingsDiv;
@@ -871,7 +1108,10 @@ _global.HTMLCSAuditor = new function()
                 self.pointToElement(message.element);
             });
 
-            msgElementSourceHeader.appendChild(msgSourceHeaderText);
+            // Don't print "Code snippet" message if none is available (noise in print reports)
+            if (message.element.outerHTML) {
+               msgElementSourceHeader.appendChild(msgSourceHeaderText);
+            }
             msgElementSourceHeader.appendChild(btnPointTo);
             msgElementSource.appendChild(msgElementSourceHeader);
 

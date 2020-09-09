@@ -184,6 +184,29 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3_Contrast = {
                                 recommendation: recommendation
                             });
                         }//end if
+
+                        var hoverIsUnderlined = HTMLCS.util.getPseudoSelectorPropertyValue(node, ':hover', 'textDecoration') === 'underline';
+
+                        var hoverForeColour = HTMLCS.util.getPseudoSelectorPropertyValue(node, ':hover', 'color');
+                        var hoverBgColour = HTMLCS.util.getPseudoSelectorPropertyValue(node, ':hover', 'backgroundColor');
+
+                        if (hoverBgColour && hoverForeColour && !hoverIsUnderlined) {
+                            var hoverContrastRatio = HTMLCS.util.contrastRatio(hoverBgColour, hoverForeColour);
+
+                            if (hoverContrastRatio < reqRatio) {
+                                var recommendation = this.recommendColour(hoverForeColour, hoverBgColour, reqRatio);
+
+                                failures.push({
+                                    element: node,
+                                    colour: hoverForeColour,
+                                    bgColour: hoverBgColour,
+                                    value: hoverContrastRatio,
+                                    required: reqRatio,
+                                    recommendation: recommendation,
+                                    isHover: true
+                                });
+                            }//end if
+                        }
                     }//end if
                 }//end if
             }//end if

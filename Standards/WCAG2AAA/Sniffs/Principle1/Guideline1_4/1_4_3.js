@@ -47,6 +47,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3 = {
                 var hasBgImg  = failures[i].hasBgImage || false;
                 var isAbsolute = failures[i].isAbsolute || false;
                 var hasAlpha   = failures[i].hasAlpha || false;
+                var isHover = failures[i].isHover || false;
 
                 // If the values would look identical, add decimals to the value.
                 while (required === value) {
@@ -83,6 +84,9 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3 = {
                 } else if (hasAlpha === true) {
                     code += '.Alpha';
                     HTMLCS.addMessage(HTMLCS.WARNING, element,  _global.HTMLCS.getTranslation("1_4_3_G18_or_G145.Alpha").replace(/\{\{required\}\}/g, required), code);
+                } else if (isHover === true) {
+                    code += '.FailHover';
+                    HTMLCS.addMessage(HTMLCS.WARNING, element, _global.HTMLCS.getTranslation("1_4_3_G18_or_G145.FailHover").replace(/\{\{required\}\}/g, required).replace(/\{\{value\}\}/g, value) + recommendText, code);
                 } else {
                     code += '.Fail';
                     HTMLCS.addMessage(HTMLCS.ERROR, element, _global.HTMLCS.getTranslation("1_4_3_G18_or_G145.Fail").replace(/\{\{required\}\}/g, required).replace(/\{\{value\}\}/g, value) + recommendText, code);
