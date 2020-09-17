@@ -120,6 +120,7 @@ _global.translation['fr'] = {
     ,"1_3_1_H63.2" : 'Les attributs Scope sur les éléments td qui servent de titres pour d\'autres éléments sont obsolètes dans HTML5. Utilisez un th élément à la place.'
     ,"1_3_1_H43.ScopeAmbiguous" : 'Les attributs de portée sur ces éléments sont ambigus dans un tableau à niveaux multiples d\'en-têtes. Utilisez plutôt l\'attribut headers sur les éléments td.'
     ,"1_3_1_H43.IncorrectAttr" : 'L\'attribut d\'en-tête incorrect sur cet élément td. Attendue "{{expected}}" mais trouvée "{{actual}}".'
+    ,"1_3_1_H43.IncorrectAttrNotice" : 'Check that headers attribute on td element is correct.'
 
     ,"1_3_1_H43.HeadersRequired" : 'La relation entre les éléments td et leurs éléments associés n\'est pas définie. Comme cette table a plusieurs niveaux de ces éléments, vous devez utiliser l\'attribut headers sur les éléments td.'
     ,"1_3_1_H43.MissingHeaderIds" : 'Tous les éléments de cette table ne contiennent pas un attribut id. Ces cellules devraient contenir des ids de sorte qu\'elles puissent être référencées par des éléments td attributs d\'en-têtes.'

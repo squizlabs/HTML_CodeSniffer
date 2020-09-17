@@ -120,6 +120,7 @@ _global.translation['pl'] = {
     ,"1_3_1_H63.2" : 'Atrybuty scope używane na komórkach tabeli (<td>) aby oznaczyć nagłówek są przestarzałe w HTML5. Zaleca się skorzystanie ze znacznika <th>.'
     ,"1_3_1_H43.ScopeAmbiguous" : 'Użycie atrybutów scope na elementach th jest niejasne w tabeli z wieloma nagłówkami. Rekomenduje się użycie atrybutu "headers" w znaczniku <td>.'
     ,"1_3_1_H43.IncorrectAttr" : 'Nieprawidłowy atrybut nagłówka w znaczniku <td>. Zamiast "{{actual}}" powinien być "{{expected}}".'
+    ,"1_3_1_H43.IncorrectAttrNotice" : 'Check that headers attribute on td element is correct.'
 
     ,"1_3_1_H43.HeadersRequired" : 'Nie zdefiniowano relacji pomiędzy komórką <td> a powiązanym z nią nagłówkiem <th>. Wskazana tabela ma wiele poziomów <th>, zatem należałoby użyć atrybutu "headers" w komórkach <td>.'
     ,"1_3_1_H43.MissingHeaderIds" : 'Nie wszystkie nagłówki th w tej tabeli posiadają atrybut "id" i nie będzie się można do nich odwołać za pomocą atrybutu "headers" w znacznikach <td>.'
