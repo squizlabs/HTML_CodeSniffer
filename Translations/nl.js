@@ -201,7 +201,7 @@ _global.translation['nl'] = {
     ,"1_4_3_G18_or_G145.Abs" : 'Dit element is absoluut gepositioneerd en de achtergrondkleur kan niet bepaald worden. Zorg ervoor dat de contrastverhouding tussen de tekst en alle bedekte delen van de achtergond minstens {{required}}:1 is.'
     ,"1_4_3_G18_or_G145.BgImage" : 'De tekst van dit element werd geplaatst op een achtergrondafbeelding. Zorg ervoor dat de contrastverhouding tussen de tekst en alle bedekte delen van de achtergrondafbeelding minstens {{required}}:1 is.'
     ,"1_4_3_G18_or_G145.Alpha" : 'De tekst of achtergrond van dit element bevat transparantie. Zorg ervoor dat de contrastverhouding tussen de tekst en de achtergond minstens {{required}}:1 is.'
-    ,"1_4_3_G18_or_G145.Fail" : 'Dit element heeft onvoldoende contrast op dit conformantie-niveau. Een contrastverhouding van minstens {{required]}}:1 wordt verwacht, maar de tekst in dit element heeft een contrastverhouding van {{value}}:1.'
+    ,"1_4_3_G18_or_G145.Fail" : 'Dit element heeft onvoldoende contrast op dit conformantie-niveau. Een contrastverhouding van minstens {{required}}:1 wordt verwacht, maar de tekst in dit element heeft een contrastverhouding van {{value}}:1.'
     ,"1_4_3_G18_or_G145.Fail.Recomendation" : 'Aanbeveling:'
     ,"1_4_3_G18_or_G145.Fail.Recomendation.Text" : 'verander tekstkleur naar {{value}}'
     ,"1_4_3_G18_or_G145.Fail.Recomendation.Background" : 'verander achtergrond naar{{value}}'
@@ -253,7 +253,6 @@ _global.translation['nl'] = {
 
     //1_4_12.js
     ,"1_4_12_C36,C35.Check" : 'Controleer dat er geen verlies van inhoud of functionaliteit optreedt bij het instellen van de volgende eigenschappen en zonder andere stijleigenschappen te wijzigen: Lijnhoogte (lijnspatiëring) naar minstens 1,5 maal de lettergrootte Spatieing na paragrafen tot minstens 2 maal de lettergrootte Letterspatiëring (tracking) tot minstens 0,12 de lettergrootte Woordspatiëring tot minstens 0,16 maal de lettergrootte.'
-
 
     //1_4_13.js
     ,"1_4_13_F95.Check" : 'Controleer dat waar een pointer hover of toetsenbordfocus aanvullende content doet zichtbaar worden en terug verbergen, het volgende waar is:         Als de aanvullende content een deel van de andere content bedekt, moet het mogelijk zijn om de aanvullende content (zoals een tooltip) opnieuw te verbergen zonder dat de muisaanwijzer verplaatst hoeft te worden en zonder de focus van het element weg te hoeven nemen Als de aanvullende content verschijnt door een element aan te wijzen (zonder te klikken), dan mag de content niet verdwijnen als de gebruiker de muis beweegt in het gebied waarin de aanvullende content is verschenen.De aanvullende content moet zichtbaar blijven totdat de gebruiker de muisaanwijzer buiten het element plaatst, de toetsenbordfocus actief verplaatst of op Escape drukt. Ten slotte mag de aanvullende content ook automatisch verdwijnen, maar enkel wanneer de weergegeven informatie niet meer geldig is ó bijvoorbeeld wanneer gemeld wordt dat een e-mailadres niet correct is ingevuld, maar de gebruiker deze fout al heeft verbeterd.'
@@ -363,22 +362,22 @@ _global.translation['nl'] = {
 
 
     //2_5_1.js
-    ,"2_5_1.Check" : 'Controleer dat alle functionaliteit die multipoint of pad-gebaseerde bewegingen gebruikt voor de werking gebruiokt kan worden met ÈÈn enkele pointer zonder pad-gebaseerde bewegingen, tenzij multipoint of pad-gebaseerde bewegingen essentieel zijn.'
+    ,"2_5_1.Check" : 'Controleer dat alle functionaliteit die multipoint of pad-gebaseerde bewegingen gebruikt voor de werking gebruikt kan worden met één enkele pointer zonder pad-gebaseerde bewegingen, tenzij multipoint of pad-gebaseerde bewegingen essentieel zijn.'
 
 
     //2_5_2.js
-    ,"2_5_2.Mousedown_Check" : 'Dit element heeft een mousedown event listener. Controleer dat voor functinaliteit die gebruikt kan worden met ÈÈn enkele pointer, minstens ÈÈn van de volgende stellingen waar is:         Geen Down-event: Het down-event van de pointer wordt niet gebruikt om een deel van de functie uit te voeren Afbreken of ongedaan maken: Vervollediging van deze functie is gekoppeld aan het up-avent en een mechanisme is beschikbaar om de functie voortijdig af te breken of ongedaan te maken na uitvoering Up omkering: Het up-event keert de resultaten van het voorafgaande down-event om Essentieel: De functie vervolledigen op het down-event is essentieel.     ,'
-    ,"2_5_2.Touchstart_Check" : 'Dit element heeft een touchstart event listener. Controleer dat voor functinaliteit die gebruikt kan worden met ÈÈn enkele pointer, minstens ÈÈn van de volgende stellingen waar is:         Geen Down-event: Het down-event van de pointer wordt niet gebruikt om een deel van de functie uit te voeren Afbreken of ongedaan maken: Vervollediging van deze functie is gekoppeld aan het up-avent en een mechanisme is beschikbaar om de functie voortijdig af te breken of ongedaan te maken na uitvoering Up omkering: Het up-event keert de resultaten van het voorafgaande down-event om Essentieel: De functie vervolledigen op het down-event is essentieel.     ,'
+    ,"2_5_2.Mousedown_Check" : 'Dit element heeft een mousedown event listener. Controleer dat voor functinaliteit die gebruikt kan worden met één enkele pointer, minstens één van de volgende stellingen waar is:     Geen Down-event: Het down-event van de pointer wordt niet gebruikt om een deel van de functie uit te voeren; Afbreken of ongedaan maken: Vervollediging van deze functie is gehoofdingpeld aan het up-event en een mechanisme is beschikbaar om de functie voortijdig af te breken of ongedaan te maken na uitvoering; Up omkering: Het up-event keert de resultaten van het voorafgaande down-event om; Essentieel: De functie vervolledigen op het down-event is essentieel.'
+    ,"2_5_2.Touchstart_Check" : 'Dit element heeft een touchstart event listener. Controleer dat voor functinaliteit die gebruikt kan worden met één enkele pointer, minstens één van de volgende stellingen waar is:     Geen Down-event: Het down-event van de pointer wordt niet gebruikt om een deel van de functie uit te voeren; Afbreken of ongedaan maken: Vervollediging van deze functie is gehoofdingpeld aan het up-event en een mechanisme is beschikbaar om de functie voortijdig af te breken of ongedaan te maken na uitvoering; Up omkering: Het up-event keert de resultaten van het voorafgaande down-event om; Essentieel: De functie vervolledigen op het down-event is essentieel.'
 
 
     //2_5_3.js
     ,"2_5_3_F96.Check" : 'Controleer dat voor gebruiksinterface componenten met labels die tekst or afbeeldingen van tekst gebruiken, de naam de tekst bevat die visueel weergegeven wordt.'
-    ,"2_5_3_F96.AccessibleName" : 'De toegankelijke naam voor dit element bevat geen zichtbare label tekst.Controleer dat voor gebruiksinterface componenten met labels die tekst or afbeeldingen van tekst gebruiken, de naam de tekst bevat die visueel weergegeven wordt.'
+    ,"2_5_3_F96.AccessibleName" : 'De toegankelijke naam voor dit element bevat geen zichtbare label tekst. Controleer dat voor gebruiksinterface componenten met labels die tekst or afbeeldingen van tekst gebruiken, de naam de tekst bevat die visueel weergegeven wordt.'
 
 
     //2_5_4.js
     ,"2_5_4.Check" : 'Controleer dat de functionaliteit die bediend kan worden door beweging van het toestel of de gebruiker bediend kan worden via gebruiksinterface compoonenten en dat reageren op de beweging kan afgezet worden om accidentele actuatie te voorkomen, behalve waar:    Ondersteunde Interface: De beweging gebruikt wordt om de functionaliteit te bedienen rond een toegankelijkheid ondersteunende interface Essentieel: De beweging is essentieel voor het goed functioneren en deze niet gebruiken zou de activiteit onmogelijk maken.     ,'
-    ,"2_5_4.Devicemotion" : 'Dit element heeft een devicemotion event listener. Controleer dat de functionaliteit die bediend kan worden door beweging van het toestel of de gebruiker bediend kan worden via gebruiksinterface compoonenten en dat reageren op de beweging kan afgezet worden om accidentele actuatie te voorkomen, behalve waar:    Ondersteunde Interface: De beweging gebruikt wordt om de functionaliteit te bedienen rond een toegankelijkheid ondersteunende interface Essentieel: De beweging is essentieel voor het goed functioneren en deze niet gebruiken zou de activiteit onmogelijk maken.     ,'
+    ,"2_5_4.Devicemotion" : 'Dit element heeft een devicemotion event listener. Controleer dat de functionaliteit die bediend kan worden door beweging van het toestel of de gebruiker bediend kan worden via gebruiksinterface componenten en dat reageren op de beweging kan afgezet worden om accidentele actuatie te voorkomen, behalve waar:    Ondersteunde Interface: De beweging gebruikt wordt om de functionaliteit te bedienen rond een toegankelijkheid ondersteunende interface; Essentieel: De beweging is essentieel voor het goed functioneren en deze niet gebruiken zou de activiteit onmogelijk maken.'
 
 
     //2_5_5.js
@@ -452,7 +451,7 @@ _global.translation['nl'] = {
 
 
     //3_3_4.js
-    ,"3_3_4_G98,G99,G155,G164,G168.LegalForms" : 'Indien dit formulier de gebruiker tot een financiëel of legaal engagement verplicht, gebruiker-beheerbare gegevens wijzigt of verwijdert of test-antwoorden indient, zorg er dan voor dat indiening omkeerbaar is, gecontroleerd wordt voor invoerfouten en/of bevestigd wordt door de gebruiker.'
+    ,"3_3_4_G98,G99,G155,G164,G168.LegalForms" : 'Indien dit formulier de gebruiker tot een financieel of legaal engagement verplicht, gebruiker-beheerbare gegevens wijzigt of verwijdert of test-antwoorden indient, zorg er dan voor dat indiening omkeerbaar is, gecontroleerd wordt voor invoerfouten en/of bevestigd wordt door de gebruiker.'
 
 
     //3_3_5.js
