@@ -326,7 +326,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
                     if ((nodes.previous.text !== '') && (nodes.anchor.alt === '')) {
                         HTMLCS.addMessage(HTMLCS.ERROR, element, _global.HTMLCS.getTranslation("1_1_1_H2.EG4"), 'H2.EG4');
                     } else if (nodes.previous.text.toLowerCase() === nodes.anchor.alt.toLowerCase()) {
-                        HTMLCS.addMessage(HTMLCS.ERROR, element, _global.HTMLCS.getTranslation("1_1_1_H2.EG3"));
+                        HTMLCS.addMessage(HTMLCS.ERROR, element, _global.HTMLCS.getTranslation("1_1_1_H2.EG3"), 'H2.EG3');
                     }
                 }
             }//end if
