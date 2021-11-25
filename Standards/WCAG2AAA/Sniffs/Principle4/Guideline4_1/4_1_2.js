@@ -317,7 +317,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
             if (valueFound === false) {
                 var msgNodeType = nodeName + ' ' + _global.HTMLCS.getTranslation("4_1_2_element");
                 if (nodeName.substr(0, 6) === 'input_') {
-                    msgNodeType = nodeName.substr(6) + _global.HTMLCS.getTranslation("4_1_2_input_element");
+                    msgNodeType = nodeName.substr(6) + ' ' + _global.HTMLCS.getTranslation("4_1_2_input_element");
                 }
 
                 var msg = _global.HTMLCS.getTranslation("4_1_2_msg_pattern2").replace(/\{\{msgNodeType\}\}/g, msgNodeType);
