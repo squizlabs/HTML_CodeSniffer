@@ -21,7 +21,7 @@ _global.HTMLCS = new function()
 
     var _messages     = [];
     var _msgOverrides = {};
-
+    var _duplicates   = {};
     /*
         Message type constants.
     */
@@ -226,22 +226,31 @@ _global.HTMLCS = new function()
     /**
      * Adds a message.
      *
-     * @param {Number}  type    The type of the message.
-     * @param {Node}    element The element that the message is related to.
-     * @param {String}  msg     The message string.
-     * @param {String}  code    Unique code for the message.
-     * @param {Object}  [data]  Extra data to store for the message.
+     * @param {Number}  type        The type of the message.
+     * @param {Node}    element     The element that the message is related to.
+     * @param {String}  msg         The message string.
+     * @param {String}  code        Unique code for the message.
+     * @param {Number}  recurrence  The amount of times this issue re-appeared.
+     * @param {Object}  [data]      Extra data to store for the message.
      */
     this.addMessage = function(type, element, msg, code, data) {
         code = _getMessageCode(code);
 
-        _messages.push({
-            type: type,
-            element: element,
-            msg: _msgOverrides[code] || msg,
-            code: code,
-            data: data
-        });
+        if (!_duplicates[code + element]) {
+            // track the position to use to update the prior message on duplicates.
+            _duplicates[code + element] = _messages.length + "";
+            _messages.push({
+                type: type,
+                element: element,
+                msg: _msgOverrides[code] || msg,
+                code: code,
+                data: data,
+                recurrence: 0
+            });
+        } else {
+            // increment the recurrence counter.
+            _messages[_duplicates[code + element]].recurrence = _messages[_duplicates[code + element]].recurrence + 1;
+        }
     };
 
     /**
