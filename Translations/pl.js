@@ -76,7 +76,7 @@ _global.translation['pl'] = {
 
 
     //1_2_5.js
-    ,"1_2_5_G78,G173,G8" : 'Sprawdź, czy materiał wideo ma dołączoną audiodeskrypcję obrazu.'
+    ,"1_2_5_G78,G173,G8" : 'Sprawdź, czy materiał wideo ma dołączoną audiodeskrypcję treści wizualnych.'
 
 
     //1_2_6.js
@@ -92,7 +92,7 @@ _global.translation['pl'] = {
 
 
     //1_2_9.js
-    ,"1_2_9_G150,G151,G157" : 'Sprawdź, czy material audio przekazywany na żywo jest umieszczony wraz z wersją tekstową tworzoną na żywo.'
+    ,"1_2_9_G150,G151,G157" : 'Sprawdź, czy materiał audio przekazywany na żywo jest umieszczony wraz z wersją tekstową tworzoną na żywo.'
 
 
     //1_3_1.js
@@ -294,8 +294,8 @@ _global.translation['pl'] = {
         Aktywny tylko po otrzymaniu fokusu: Skrót klawiaturowy dla komponentu interfejsu użytkownika jest aktywny tylko wtedy, gdy ten komponent ma fokus. \
     '
     //2_2_1.js
-    ,"2_2_1_F40.2" : 'Tag <meta> z atrybutem "redirect" przekierowuje na inną stronę w czesie określonym jako 0. Użytkownicy nie mają kontroli w taki krótkim czasie.'
-    ,"2_2_1_F41.2" : 'Tag <meta> z atrybutem "refresh" odświeża aktualną stronę. Użytkownicy nie mają kontroli nad tym odświeżaniem.'
+    ,"2_2_1_F40.2" : 'Znacznik <meta> z atrybutem "redirect" przekierowuje na inną stronę w czesie określonym jako 0. Użytkownicy nie mają kontroli w taki krótkim czasie.'
+    ,"2_2_1_F41.2" : 'Znacznik <meta> z atrybutem "refresh" odświeża aktualną stronę. Użytkownicy nie mają kontroli nad tym odświeżaniem.'
 
 
     //2_2_2.js
