@@ -55,14 +55,15 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_5_2_5_3 = {
             case "label":
                 visibleLabel = HTMLCS.util.getTextContent(element);
                 var labelFor = element.getAttribute("for");
+                var refNode = undefined;
                 if (labelFor) {
                     if (top.ownerDocument) {
-                        var refNode = top.ownerDocument.getElementById(labelFor);
+                        refNode = top.ownerDocument.getElementById(labelFor);
                     } else {
-                        var refNode = top.getElementById(labelFor);
+                        refNode = top.getElementById(labelFor);
                     }
-                    if (refNode) {
-                        accessibleName = HTMLCS.util.getAccessibleName(refNode, top);
+                    if (!!refNode) {
+                        accessibleName = HTMLCS.util.getAccessibleName(refNode);
                     }
                 }
                 break;
