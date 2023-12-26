@@ -56,3 +56,5 @@ var HTMLCS_WCAG2A = {
         return HTMLCS_WCAG2AAA.getMsgInfo(code);
     }
 };
+
+module.exports.HTMLCS_WCAG2A = HTMLCS_WCAG2A;
