@@ -11,7 +11,7 @@
  *
  */
 
-_global.HTMLCS_WCAG2AAA = {
+var HTMLCS_WCAG2AAA = {
     name: 'WCAG2AAA',
     description: 'Web Content Accessibility Guidelines (WCAG) 2.1 AAA',
     sniffs: [
@@ -589,10 +589,10 @@ _global.HTMLCS_WCAG2AAA = {
         /* eslint-disable-next-line no-unused-vars */
         var principleStr   = ['<a href="', principles[principle].link, '" target="_blank">', principles[principle].name, '</a>'].join('');
         var retval = [
-            [_global.HTMLCS.getTranslation("auditor_success_criterion"), successCritStr],
+            [HTMLCS.getTranslation("auditor_success_criterion"), successCritStr],
         ];
         if (techniquesStr.length > 0) {
-            retval.push([_global.HTMLCS.getTranslation("auditor_suggested_techniques"), techniquesStr.join(' ')]);
+            retval.push([HTMLCS.getTranslation("auditor_suggested_techniques"), techniquesStr.join(' ')]);
         }
 
         return retval;

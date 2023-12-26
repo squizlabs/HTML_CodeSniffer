@@ -11,7 +11,7 @@
  *
  */
 
-_global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
+var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
     /**
    * Determines the elements to register for processing.
    *
@@ -115,7 +115,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
             HTMLCS.addMessage(
                 HTMLCS.WARNING,
                 element,
-                _global.HTMLCS.getTranslation("1_3_5_H98.FaultyValue").replace(/\{\{valuesStr\}\}/g, valuesStr),
+                HTMLCS.getTranslation("1_3_5_H98.FaultyValue").replace(/\{\{valuesStr\}\}/g, valuesStr),
                 "H98"
             );
         }
@@ -279,7 +279,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
                 HTMLCS.addMessage(
                     HTMLCS.ERROR,
                     element,
-                    _global.HTMLCS.getTranslation("1_3_5_H98.InvalidAutoComplete_Text").replace(/\{\{x\}\}/g, x),
+                    HTMLCS.getTranslation("1_3_5_H98.InvalidAutoComplete_Text").replace(/\{\{x\}\}/g, x),
                     "H98"
                 );
             }
@@ -287,7 +287,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
                 HTMLCS.addMessage(
                     HTMLCS.ERROR,
                     element,
-                    _global.HTMLCS.getTranslation("1_3_5_H98.InvalidAutoComplete_Multiline").replace(/\{\{x\}\}/g, x),
+                    HTMLCS.getTranslation("1_3_5_H98.InvalidAutoComplete_Multiline").replace(/\{\{x\}\}/g, x),
                     "H98"
                 );
             }
@@ -295,7 +295,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
                 HTMLCS.addMessage(
                     HTMLCS.ERROR,
                     element,
-                    _global.HTMLCS.getTranslation("1_3_5_H98.InvalidAutoComplete_Password").replace(/\{\{x\}\}/g, x),
+                    HTMLCS.getTranslation("1_3_5_H98.InvalidAutoComplete_Password").replace(/\{\{x\}\}/g, x),
                     "H98"
                 );
             }
@@ -303,7 +303,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
                 HTMLCS.addMessage(
                     HTMLCS.ERROR,
                     element,
-                    _global.HTMLCS.getTranslation("1_3_5_H98.InvalidAutoComplete_Url").replace(/\{\{x\}\}/g, x),
+                    HTMLCS.getTranslation("1_3_5_H98.InvalidAutoComplete_Url").replace(/\{\{x\}\}/g, x),
                     "H98"
                 );
             }
@@ -311,7 +311,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
                 HTMLCS.addMessage(
                     HTMLCS.ERROR,
                     element,
-                    _global.HTMLCS.getTranslation("1_3_5_H98.InvalidAutoComplete_Telephone").replace(/\{\{x\}\}/g, x),
+                    HTMLCS.getTranslation("1_3_5_H98.InvalidAutoComplete_Telephone").replace(/\{\{x\}\}/g, x),
                     "H98"
                 );
             }
@@ -319,7 +319,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
                 HTMLCS.addMessage(
                     HTMLCS.ERROR,
                     element,
-                    _global.HTMLCS.getTranslation("1_3_5_H98.InvalidAutoComplete_Numeric").replace(/\{\{x\}\}/g, x),
+                    HTMLCS.getTranslation("1_3_5_H98.InvalidAutoComplete_Numeric").replace(/\{\{x\}\}/g, x),
                     "H98"
                 );
             }
@@ -327,7 +327,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
                 HTMLCS.addMessage(
                     HTMLCS.ERROR,
                     element,
-                    _global.HTMLCS.getTranslation("1_3_5_H98.InvalidAutoComplete_Month").replace(/\{\{x\}\}/g, x),
+                    HTMLCS.getTranslation("1_3_5_H98.InvalidAutoComplete_Month").replace(/\{\{x\}\}/g, x),
                     "H98"
                 );
             }
@@ -335,7 +335,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
                 HTMLCS.addMessage(
                     HTMLCS.ERROR,
                     element,
-                    _global.HTMLCS.getTranslation("1_3_5_H98.InvalidAutoComplete_Date").replace(/\{\{x\}\}/g, x),
+                    HTMLCS.getTranslation("1_3_5_H98.InvalidAutoComplete_Date").replace(/\{\{x\}\}/g, x),
                     "H98"
                 );
             }
@@ -360,7 +360,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
             HTMLCS.addMessage(
                 HTMLCS.NOTICE,
                 element,
-                _global.HTMLCS.getTranslation("1_3_5_H98.Purpose"),
+                HTMLCS.getTranslation("1_3_5_H98.Purpose"),
                 "H98"
             );
             // See table in https://www.w3.org/TR/html52/sec-forms.html#the-input-element
@@ -382,7 +382,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_5 = {
                 HTMLCS.addMessage(
                     HTMLCS.NOTICE,
                     element,
-                    _global.HTMLCS.getTranslation("1_3_5_H98.MissingAutocomplete"),
+                    HTMLCS.getTranslation("1_3_5_H98.MissingAutocomplete"),
                     "H98"
                 );
             }

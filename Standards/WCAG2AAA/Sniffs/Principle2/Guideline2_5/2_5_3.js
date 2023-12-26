@@ -11,7 +11,7 @@
  *
  */
 
-_global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_5_2_5_3 = {
+var HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_5_2_5_3 = {
     /**
    * Determines the elements to register for processing.
    *
@@ -35,7 +35,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_5_2_5_3 = {
             HTMLCS.addMessage(
                 HTMLCS.NOTICE,
                 top,
-                _global.HTMLCS.getTranslation("2_5_3_F96.Check"),
+                HTMLCS.getTranslation("2_5_3_F96.Check"),
                 "F96"
             );
         } else {
@@ -80,7 +80,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_5_2_5_3 = {
                     HTMLCS.addMessage(
                         HTMLCS.WARNING,
                         element,
-                        _global.HTMLCS.getTranslation("2_5_3_F96.AccessibleName"),
+                        HTMLCS.getTranslation("2_5_3_F96.AccessibleName"),
                         "F96"
                     );
                 }

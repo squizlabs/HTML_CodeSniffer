@@ -11,7 +11,7 @@
  *
  */
 
-_global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
+var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
     /**
      * Determines the elements to register for processing.
      *
@@ -52,27 +52,27 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
     {
         var errors = this.processLinks(top);
         for (var i = 0; i < errors.empty.length; i++) {
-            HTMLCS.addMessage(HTMLCS.WARNING, errors.empty[i], _global.HTMLCS.getTranslation("4_1_2_H91.A.Empty"), 'H91.A.Empty');
+            HTMLCS.addMessage(HTMLCS.WARNING, errors.empty[i], HTMLCS.getTranslation("4_1_2_H91.A.Empty"), 'H91.A.Empty');
         }
 
         for (var i = 0; i < errors.emptyWithName.length; i++) {
-            HTMLCS.addMessage(HTMLCS.WARNING, errors.emptyWithName[i],  _global.HTMLCS.getTranslation("4_1_2_H91.A.EmptyWithName"), 'H91.A.EmptyWithName');
+            HTMLCS.addMessage(HTMLCS.WARNING, errors.emptyWithName[i],  HTMLCS.getTranslation("4_1_2_H91.A.EmptyWithName"), 'H91.A.EmptyWithName');
         }
 
         for (var i = 0; i < errors.emptyNoId.length; i++) {
-            HTMLCS.addMessage(HTMLCS.ERROR, errors.emptyNoId[i], _global.HTMLCS.getTranslation("4_1_2_H91.A.EmptyNoId"), 'H91.A.EmptyNoId');
+            HTMLCS.addMessage(HTMLCS.ERROR, errors.emptyNoId[i], HTMLCS.getTranslation("4_1_2_H91.A.EmptyNoId"), 'H91.A.EmptyNoId');
         }
 
         for (var i = 0; i < errors.noHref.length; i++) {
-            HTMLCS.addMessage(HTMLCS.WARNING, errors.noHref[i], _global.HTMLCS.getTranslation("4_1_2_H91.A.NoHref"), 'H91.A.NoHref');
+            HTMLCS.addMessage(HTMLCS.WARNING, errors.noHref[i], HTMLCS.getTranslation("4_1_2_H91.A.NoHref"), 'H91.A.NoHref');
         }
 
         for (var i = 0; i < errors.placeholder.length; i++) {
-            HTMLCS.addMessage(HTMLCS.WARNING, errors.placeholder[i], _global.HTMLCS.getTranslation("4_1_2_H91.A.Placeholder"), 'H91.A.Placeholder');
+            HTMLCS.addMessage(HTMLCS.WARNING, errors.placeholder[i], HTMLCS.getTranslation("4_1_2_H91.A.Placeholder"), 'H91.A.Placeholder');
         }
 
         for (var i = 0; i < errors.noContent.length; i++) {
-            HTMLCS.addMessage(HTMLCS.ERROR, errors.noContent[i], _global.HTMLCS.getTranslation("4_1_2_H91.A.NoContent"), 'H91.A.NoContent');
+            HTMLCS.addMessage(HTMLCS.ERROR, errors.noContent[i], HTMLCS.getTranslation("4_1_2_H91.A.NoContent"), 'H91.A.NoContent');
         }
     },
 
@@ -250,25 +250,25 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
                 }//end for
 
                 if (i === matchingRequiredNames.length) {
-                    var msgNodeType = nodeName + ' ' + _global.HTMLCS.getTranslation("4_1_2_element");
+                    var msgNodeType = nodeName + ' ' + HTMLCS.getTranslation("4_1_2_element");
                     if (nodeName.substr(0, 6) === 'input_') {
-                        msgNodeType = nodeName.substr(6) + _global.HTMLCS.getTranslation("4_1_2_input_element");
+                        msgNodeType = nodeName.substr(6) + HTMLCS.getTranslation("4_1_2_input_element");
                     }
 
                     var builtAttrs = matchingRequiredNames.slice(0, matchingRequiredNames.length);
                     for (var a = 0; a < builtAttrs.length; a++) {
                         if (builtAttrs[a] === '_content') {
-                            builtAttrs[a] = _global.HTMLCS.getTranslation("4_1_2_element_content");
+                            builtAttrs[a] = HTMLCS.getTranslation("4_1_2_element_content");
                         } else if (builtAttrs[a].charAt(0) === '@') {
-                            builtAttrs[a] = builtAttrs[a].substr(1) + ' '+ _global.HTMLCS.getTranslation("4_1_2_attribute");
+                            builtAttrs[a] = builtAttrs[a].substr(1) + ' '+ HTMLCS.getTranslation("4_1_2_attribute");
                         } else {
-                            builtAttrs[a] = builtAttrs[a] + ' ' + _global.HTMLCS.getTranslation("4_1_2_element");
+                            builtAttrs[a] = builtAttrs[a] + ' ' + HTMLCS.getTranslation("4_1_2_element");
                         }
                     }
 
-                    var msg = _global.HTMLCS.getTranslation("4_1_2_msg_pattern").replace(/\{\{msgNodeType\}\}/g, msgNodeType).replace(/\{\{builtAttrs\}\}/g, builtAttrs.join(', '));
+                    var msg = HTMLCS.getTranslation("4_1_2_msg_pattern").replace(/\{\{msgNodeType\}\}/g, msgNodeType).replace(/\{\{builtAttrs\}\}/g, builtAttrs.join(', '));
                     if (element.hasAttribute('role') && element.getAttribute('role') === 'button') {
-                        msg = _global.HTMLCS.getTranslation("4_1_2_msg_pattern_role_of_button").replace(/\{\{builtAttrs\}\}/g, builtAttrs.join(', '));
+                        msg = HTMLCS.getTranslation("4_1_2_msg_pattern_role_of_button").replace(/\{\{builtAttrs\}\}/g, builtAttrs.join(', '));
                     }
                     errors.push({
                         element: element,
@@ -315,27 +315,27 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_2 = {
             }
 
             if (valueFound === false) {
-                var msgNodeType = nodeName + ' ' + _global.HTMLCS.getTranslation("4_1_2_element");
+                var msgNodeType = nodeName + ' ' + HTMLCS.getTranslation("4_1_2_element");
                 if (nodeName.substr(0, 6) === 'input_') {
-                    msgNodeType = nodeName.substr(6) + _global.HTMLCS.getTranslation("4_1_2_input_element");
+                    msgNodeType = nodeName.substr(6) + HTMLCS.getTranslation("4_1_2_input_element");
                 }
 
-                var msg = _global.HTMLCS.getTranslation("4_1_2_msg_pattern2").replace(/\{\{msgNodeType\}\}/g, msgNodeType);
+                var msg = HTMLCS.getTranslation("4_1_2_msg_pattern2").replace(/\{\{msgNodeType\}\}/g, msgNodeType);
 
                 var builtAttr = '';
                 var warning   = false;
                 if (requiredValue === '_content') {
-                    builtAttr = ' ' + _global.HTMLCS.getTranslation("4_1_2_msg_add_one");
+                    builtAttr = ' ' + HTMLCS.getTranslation("4_1_2_msg_add_one");
                 } else if (requiredValue === 'option_selected') {
                     // Change the message instead. The value is only undefined in HTML 4/XHTML 1;
                     // in HTML5 the first option in a single select dropdown is automatically selected.
                     // Because of this, it should also be sent out as a warning, not an error.
                     warning = true;
-                    msg = _global.HTMLCS.getTranslation("4_1_2_msg_pattern2").replace(/\{\{msgNodeType\}\}/g, msgNodeType);
+                    msg = HTMLCS.getTranslation("4_1_2_msg_pattern2").replace(/\{\{msgNodeType\}\}/g, msgNodeType);
                 } else if (requiredValue.charAt(0) === '@') {
-                    builtAttr = ' ' +  _global.HTMLCS.getTranslation("4_1_2_value_exposed_using_attribute").replace(/\{\{requiredValue\}\}/g, requiredValue);
+                    builtAttr = ' ' +  HTMLCS.getTranslation("4_1_2_value_exposed_using_attribute").replace(/\{\{requiredValue\}\}/g, requiredValue);
                 } else {
-                    builtAttr = ' ' +  _global.HTMLCS.getTranslation("4_1_2_value_exposed_using_element").replace(/\{\{requiredValue\}\}/g, requiredValue);
+                    builtAttr = ' ' +  HTMLCS.getTranslation("4_1_2_value_exposed_using_element").replace(/\{\{requiredValue\}\}/g, requiredValue);
                 }
 
                 msg += builtAttr;

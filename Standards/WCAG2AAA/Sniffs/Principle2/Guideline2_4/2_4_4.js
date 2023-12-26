@@ -11,7 +11,7 @@
  *
  */
 
-_global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_4_2_4_4 = {
+var HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_4_2_4_4 = {
     /**
      * Determines the elements to register for processing.
      *
@@ -35,9 +35,9 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_4_2_4_4 = {
     process: function(element, top)
     {
         if (element.hasAttribute('title') === true) {
-            HTMLCS.addMessage(HTMLCS.NOTICE, element, _global.HTMLCS.getTranslation("2_4_4_H77,H78,H79,H80,H81,H33"), 'H77,H78,H79,H80,H81,H33');
+            HTMLCS.addMessage(HTMLCS.NOTICE, element, HTMLCS.getTranslation("2_4_4_H77,H78,H79,H80,H81,H33"), 'H77,H78,H79,H80,H81,H33');
         } else {
-            HTMLCS.addMessage(HTMLCS.NOTICE, element, _global.HTMLCS.getTranslation("2_4_4_H77,H78,H79,H80,H81"), 'H77,H78,H79,H80,H81');
+            HTMLCS.addMessage(HTMLCS.NOTICE, element, HTMLCS.getTranslation("2_4_4_H77,H78,H79,H80,H81"), 'H77,H78,H79,H80,H81');
         }
 
     }

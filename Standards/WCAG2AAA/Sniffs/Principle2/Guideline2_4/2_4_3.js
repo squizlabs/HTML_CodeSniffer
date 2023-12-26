@@ -11,7 +11,7 @@
  *
  */
 
-_global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_4_2_4_3 = {
+var HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_4_2_4_3 = {
     /**
      * Determines the elements to register for processing.
      *
@@ -38,7 +38,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_4_2_4_3 = {
             var tabIndexExists = top.querySelector('*[tabindex]');
 
             if (tabIndexExists) {
-                HTMLCS.addMessage(HTMLCS.NOTICE, element, _global.HTMLCS.getTranslation("2_4_3_H4.2"), 'H4.2');
+                HTMLCS.addMessage(HTMLCS.NOTICE, element, HTMLCS.getTranslation("2_4_3_H4.2"), 'H4.2');
             }
         }
     }

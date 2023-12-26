@@ -11,7 +11,7 @@
  *
  */
 
-_global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3 = {
+var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3 = {
     /**
      * Determines the elements to register for processing.
      *
@@ -63,29 +63,29 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3 = {
                 var recommendText = [];
                 if (recommend) {
                     if (recommend.fore.from !== recommend.fore.to) {
-                        recommendText.push(_global.HTMLCS.getTranslation("1_4_3_G18_or_G145.Fail.Recomendation.Text").replace(/\{\{value\}\}/g, recommend.fore.to));
+                        recommendText.push(HTMLCS.getTranslation("1_4_3_G18_or_G145.Fail.Recomendation.Text").replace(/\{\{value\}\}/g, recommend.fore.to));
                     }
                     if (recommend.back.from !== recommend.back.to) {
-                        recommendText.push(_global.HTMLCS.getTranslation("1_4_3_G18_or_G145.Fail.Recomendation.Background").replace(/\{\{value\}\}/g, recommend.back.to));
+                        recommendText.push(HTMLCS.getTranslation("1_4_3_G18_or_G145.Fail.Recomendation.Background").replace(/\{\{value\}\}/g, recommend.back.to));
                     }
                 }//end if
 
                 if (recommendText.length > 0) {
-                    recommendText = ' ' + _global.HTMLCS.getTranslation("1_4_3_G18_or_G145.Fail.Recomendation") + ' ' + recommendText.join(', ') + '.';
+                    recommendText = ' ' + HTMLCS.getTranslation("1_4_3_G18_or_G145.Fail.Recomendation") + ' ' + recommendText.join(', ') + '.';
                 }
 
                 if (isAbsolute === true) {
                     code += '.Abs';
-                    HTMLCS.addMessage(HTMLCS.WARNING, element, _global.HTMLCS.getTranslation("1_4_3_G18_or_G145.Abs").replace(/\{\{required\}\}/g, required), code);
+                    HTMLCS.addMessage(HTMLCS.WARNING, element, HTMLCS.getTranslation("1_4_3_G18_or_G145.Abs").replace(/\{\{required\}\}/g, required), code);
                 } else if (hasBgImg === true) {
                     code += '.BgImage';
-                    HTMLCS.addMessage(HTMLCS.WARNING, element,  _global.HTMLCS.getTranslation("1_4_3_G18_or_G145.BgImage").replace(/\{\{required\}\}/g, required), code);
+                    HTMLCS.addMessage(HTMLCS.WARNING, element,  HTMLCS.getTranslation("1_4_3_G18_or_G145.BgImage").replace(/\{\{required\}\}/g, required), code);
                 } else if (hasAlpha === true) {
                     code += '.Alpha';
-                    HTMLCS.addMessage(HTMLCS.WARNING, element,  _global.HTMLCS.getTranslation("1_4_3_G18_or_G145.Alpha").replace(/\{\{required\}\}/g, required), code);
+                    HTMLCS.addMessage(HTMLCS.WARNING, element,  HTMLCS.getTranslation("1_4_3_G18_or_G145.Alpha").replace(/\{\{required\}\}/g, required), code);
                 } else {
                     code += '.Fail';
-                    HTMLCS.addMessage(HTMLCS.ERROR, element, _global.HTMLCS.getTranslation("1_4_3_G18_or_G145.Fail").replace(/\{\{required\}\}/g, required).replace(/\{\{value\}\}/g, value) + recommendText, code);
+                    HTMLCS.addMessage(HTMLCS.ERROR, element, HTMLCS.getTranslation("1_4_3_G18_or_G145.Fail").replace(/\{\{required\}\}/g, required).replace(/\{\{value\}\}/g, value) + recommendText, code);
                 }//end if
             }//end for
         }//end if
