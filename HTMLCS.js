@@ -33,18 +33,6 @@ var HTMLCS = new function()
     // The current language to use.
     this.lang = 'en';
 
-    this.setCurrentSniff = function( sniff ){
-        _currentSniff = sniff;
-    };
-
-    this.setStandard = function( standard ){
-        _standard = standard;
-    };
-
-    this.setCurrentGuideLine = function( guideline ){
-
-    };
-
     /**
      * Loads the specified standard and run the sniffs.
      *
