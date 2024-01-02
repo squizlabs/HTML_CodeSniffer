@@ -5,6 +5,19 @@ module.exports = function (grunt) {
         eslint: {
             target: ['Standards/**/*.js', 'Contrib/PhantomJS/*.js']
         },
+        browserify:{
+            dist:{
+                src: ['index.js'],
+                dest: 'build/HTMLCS.js',
+                options:{
+                    browserifyOptions: {
+                        debug: true
+                    },
+                    require: [
+                    ],
+                }
+            }
+        },
         uglify: {
             debug: {
                 options: {
@@ -71,6 +84,8 @@ module.exports = function (grunt) {
     grunt.file.setBase('./');
     require('load-grunt-tasks')(grunt);
 
+    grunt.loadNpmTasks('grunt-browserify');
+
     grunt.registerTask('default', ['eslint']);
     grunt.registerTask('build', ['exportVars', 'uglify:dist', 'copy:dist']);
     grunt.registerTask('build-bookmarklet', ['exportVars', 'uglify:bookmarklet', 'copy:dist']);
@@ -91,5 +106,5 @@ module.exports = function (grunt) {
         grunt.file.write('Standards/all.js', catted, { encoding: 'utf8' })
     });
     
-    return grunt.registerTask('build-debug', ['exportVars', 'uglify:debug', 'copy:dist']);
+    return grunt.registerTask('build-debug', ['exportVars', 'browserify:dist', 'copy:dist']);
 };
