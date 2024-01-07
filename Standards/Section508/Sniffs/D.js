@@ -11,7 +11,7 @@
  *
  */
 
-_global.HTMLCS_Section508_Sniffs_D = {
+var HTMLCS_Section508_Sniffs_D = {
     /**
      * Determines the elements to register for processing.
      *
@@ -57,7 +57,7 @@ _global.HTMLCS_Section508_Sniffs_D = {
      */
     testPresentationMarkup: function(top)
     {
-        _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1.testPresentationMarkup(top);
+        HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1.testPresentationMarkup(top);
     },
 
     testHeadingOrder: function(top) {

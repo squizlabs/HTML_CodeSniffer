@@ -11,13 +11,11 @@
  *
  */
 
-_global.HTMLCS_WCAG2A = {
+var HTMLCS_WCAG2A = {
     name: 'WCAG2A',
+    subsetOf: 'WCAG2AAA_Sniffs_',
     description: 'Web Content Accessibility Guidelines (WCAG) 2.1 A',
     sniffs: [
-        {
-            standard: 'WCAG2AAA',
-            include: [
                 'Principle1.Guideline1_1.1_1_1',
                 'Principle1.Guideline1_2.1_2_1',
                 'Principle1.Guideline1_2.1_2_2',
@@ -49,10 +47,10 @@ _global.HTMLCS_WCAG2A = {
                 'Principle3.Guideline3_3.3_3_2',
                 'Principle4.Guideline4_1.4_1_1',
                 'Principle4.Guideline4_1.4_1_2'
-            ]
-        }
-    ],
+            ],
     getMsgInfo: function(code) {
         return HTMLCS_WCAG2AAA.getMsgInfo(code);
     }
 };
+
+module.exports.HTMLCS_WCAG2A = HTMLCS_WCAG2A;

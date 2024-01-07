@@ -11,7 +11,7 @@
  *
  */
 
-_global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_11 = {
+var HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_11 = {
     /**
      * Determines the elements to register for processing.
      *
@@ -34,6 +34,6 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_11 = {
      */
     process: function(element, top)
     {
-        HTMLCS.addMessage(HTMLCS.NOTICE, top, _global.HTMLCS.getTranslation("1_4_11_G195,G207,G18,G145,G174,F78.Check"), 'G195,G207,G18,G145,G174,F78');
+        HTMLCS.addMessage(HTMLCS.NOTICE, top, HTMLCS.getTranslation("1_4_11_G195,G207,G18,G145,G174,F78.Check"), 'G195,G207,G18,G145,G174,F78');
     }
 };

@@ -5,6 +5,19 @@ module.exports = function (grunt) {
         eslint: {
             target: ['Standards/**/*.js', 'Contrib/PhantomJS/*.js']
         },
+        browserify:{
+            dist:{
+                src: ['index.js'],
+                dest: 'build/HTMLCS.js',
+                options:{
+                    browserifyOptions: {
+                        debug: true
+                    },
+                    require: [
+                    ],
+                }
+            }
+        },
         uglify: {
             debug: {
                 options: {
@@ -16,7 +29,7 @@ module.exports = function (grunt) {
                     footer: grunt.file.read('Contrib/Build/umd-footer.js')
                 },
                 files: {
-                    'build/HTMLCS.js': ['Translations/*.js', 'Standards/**/*.js', 'HTMLCS.js', 'HTMLCS.Util.js', 'Contrib/PhantomJS/runner.js', 'Auditor/HTMLCSAuditor.js']
+                    'build/HTMLCS.js': ['Translations/*.js', 'Standards/all.js', 'HTMLCS.js', 'HTMLCS.Util.js', 'Contrib/PhantomJS/runner.js', 'Auditor/HTMLCSAuditor.js']
                 }
             },
             dist: {
@@ -25,7 +38,7 @@ module.exports = function (grunt) {
                     footer: grunt.file.read('Contrib/Build/umd-footer.js')
                 },
                 files: {
-                    'build/HTMLCS.js': ['Translations/*.js', 'Standards/**/*.js', 'HTMLCS.js', 'HTMLCS.Util.js', 'Contrib/PhantomJS/runner.js', 'Auditor/HTMLCSAuditor.js']
+                    'build/HTMLCS.js': ['Translations/*.js', 'Standards/all.js', 'HTMLCS.js', 'HTMLCS.Util.js', 'Contrib/PhantomJS/runner.js', 'Auditor/HTMLCSAuditor.js']
                 }
             },
             bookmarklet: {
@@ -34,7 +47,7 @@ module.exports = function (grunt) {
                     footer: grunt.file.read('Contrib/Build/umd-footer.js')
                 },
                 files: {
-                    'build/HTMLCS.js': ['Translations/*.js', 'Standards/**/*.js', 'HTMLCS.js', 'HTMLCS.Util.js', 'Contrib/PhantomJS/runner.js', 'Auditor/Auditor_with_beacon.js']
+                    'build/HTMLCS.js': ['Translations/*.js', 'Standards/all.js', 'HTMLCS.js', 'HTMLCS.Util.js', 'Contrib/PhantomJS/runner.js', 'Auditor/Auditor_with_beacon.js']
                 }
             }
         },
@@ -71,9 +84,30 @@ module.exports = function (grunt) {
     grunt.file.setBase('./');
     require('load-grunt-tasks')(grunt);
 
-    grunt.registerTask('default', ['eslint']);
-    grunt.registerTask('build', ['uglify:dist', 'copy:dist']);
-    grunt.registerTask('build-bookmarklet', ['uglify:bookmarklet', 'copy:dist']);
+    grunt.loadNpmTasks('grunt-browserify');
 
-    return grunt.registerTask('build-debug', ['uglify:debug', 'copy:dist']);
+    grunt.registerTask('default', ['eslint']);
+    grunt.registerTask('build', ['exportVars', 'uglify:dist', 'copy:dist']);
+    grunt.registerTask('build-bookmarklet', ['exportVars', 'uglify:bookmarklet', 'copy:dist']);
+
+    grunt.registerTask('exportVars', function() {
+        var catted = '';
+
+        grunt.file.expand({ filter: 'isFile' }, 'Standards/{Section508,WCAG2AAA}/**/**/**/*.js')
+            .forEach(function(file) {
+                catted += grunt.file.read(file) + '\n';
+                var parts = file.split("/"),
+                    varName = "HTMLCS_" + parts.slice(1).join('_').replace(/[.]js$/, "");
+                if(varName.match(/_ruleset$/))
+                    varName = varName.replace(/_ruleset$/, "");
+                catted += "module.exports." + varName + " = " + varName + ";\n";
+            }
+        );
+        catted += grunt.file.read('Standards/WCAG2AA/ruleset.js');
+        catted += grunt.file.read('Standards/WCAG2A/ruleset.js');
+        catted += grunt.file.read('Standards/Section508/ruleset.js');
+        grunt.file.write('Standards/all.js', catted, { encoding: 'utf8' })
+    });
+    
+    return grunt.registerTask('build-debug', ['exportVars', 'browserify:dist', 'copy:dist']);
 };

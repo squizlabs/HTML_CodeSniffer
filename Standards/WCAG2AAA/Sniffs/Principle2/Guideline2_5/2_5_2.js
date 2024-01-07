@@ -11,7 +11,7 @@
  *
  */
 
-_global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_5_2_5_2 = {
+var HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_5_2_5_2 = {
     /**
    * Determines the elements to register for processing.
    *
@@ -34,7 +34,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_5_2_5_2 = {
         HTMLCS.addMessage(
             HTMLCS.NOTICE,
             top,
-            _global.HTMLCS.getTranslation("2_5_2.SinglePointer_Check"),
+            HTMLCS.getTranslation("2_5_2.SinglePointer_Check"),
             ""
         );
 
@@ -45,7 +45,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_5_2_5_2 = {
                 HTMLCS.addMessage(
                     HTMLCS.NOTICE,
                     x,
-                    _global.HTMLCS.getTranslation("2_5_2.Mousedown_Check"),
+                    HTMLCS.getTranslation("2_5_2.Mousedown_Check"),
                     ""
                 );
             }
@@ -55,7 +55,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_5_2_5_2 = {
                 HTMLCS.addMessage(
                     HTMLCS.NOTICE,
                     x,
-                    _global.HTMLCS.getTranslation("2_5_2.Touchstart_Check"),
+                    HTMLCS.getTranslation("2_5_2.Touchstart_Check"),
                     ""
                 );
             }

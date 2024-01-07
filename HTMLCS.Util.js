@@ -10,7 +10,9 @@
  * +--------------------------------------------------------------------+
  *
  */
-_global.HTMLCS.util = function() {
+HTMLCS = HTMLCS || {}
+
+HTMLCS.util = function() {
     var self = {};
 
     /**

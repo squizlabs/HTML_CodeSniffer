@@ -11,7 +11,7 @@
  *
  */
 
-_global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_2_2_2_1 = {
+var HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_2_2_2_1 = {
     /**
      * Determines the elements to register for processing.
      *
@@ -43,10 +43,10 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_2_2_2_1 = {
                 if (/^[1-9]\d*/.test(element.getAttribute('content').toLowerCase()) === true) {
                     if (/url=/.test(element.getAttribute('content').toLowerCase()) === true) {
                         // Redirect.
-                        HTMLCS.addMessage(HTMLCS.ERROR, element, _global.HTMLCS.getTranslation("2_2_1_F40.2"), 'F40.2');
+                        HTMLCS.addMessage(HTMLCS.ERROR, element, HTMLCS.getTranslation("2_2_1_F40.2"), 'F40.2');
                     } else {
                         // Just a refresh.
-                        HTMLCS.addMessage(HTMLCS.ERROR, element, _global.HTMLCS.getTranslation("2_2_1_F41.2"), 'F41.2');
+                        HTMLCS.addMessage(HTMLCS.ERROR, element, HTMLCS.getTranslation("2_2_1_F41.2"), 'F41.2');
                     }
                 }
             }//end if

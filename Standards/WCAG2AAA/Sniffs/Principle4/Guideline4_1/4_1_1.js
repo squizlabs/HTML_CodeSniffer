@@ -11,7 +11,7 @@
  *
  */
 
-_global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_1 = {
+var HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_1 = {
     /**
      * Determines the elements to register for processing.
      *
@@ -50,7 +50,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle4_Guideline4_1_4_1_1 = {
                 if (usedIds[id] !== undefined) {
                     // F77 = "Failure of SC 4.1.1 due to duplicate values of type ID".
                     // Appropriate technique in HTML is H93.
-                    HTMLCS.addMessage(HTMLCS.ERROR, elsWithIds[i], _global.HTMLCS.getTranslation("4_1_1_F77").replace(/\{\{id\}\}/g, id), 'F77');
+                    HTMLCS.addMessage(HTMLCS.ERROR, elsWithIds[i], HTMLCS.getTranslation("4_1_1_F77").replace(/\{\{id\}\}/g, id), 'F77');
                 } else {
                     usedIds[id] = true;
                 }

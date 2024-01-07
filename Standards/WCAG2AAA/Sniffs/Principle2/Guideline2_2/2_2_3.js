@@ -11,7 +11,7 @@
  *
  */
 
-_global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_2_2_2_3 = {
+var HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_2_2_2_3 = {
     /**
      * Determines the elements to register for processing.
      *
@@ -34,6 +34,6 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_2_2_2_3 = {
      */
     process: function(element, top)
     {
-        HTMLCS.addMessage(HTMLCS.NOTICE, element, _global.HTMLCS.getTranslation("2_2_3_G5"), 'G5');
+        HTMLCS.addMessage(HTMLCS.NOTICE, element, HTMLCS.getTranslation("2_2_3_G5"), 'G5');
     }
 };

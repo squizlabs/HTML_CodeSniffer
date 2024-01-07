@@ -11,7 +11,7 @@
  *
  */
 
-_global.HTMLCSAuditor = new function()
+var HTMLCSAuditor = new function()
 {
     var _prefix   = 'HTMLCS-';
     var _screen   = '';
@@ -151,7 +151,7 @@ _global.HTMLCSAuditor = new function()
         var header       = _doc.createElement('div');
         header.className = _prefix + 'header';
         header.innerHTML = 'HTML_CodeSniffer by Squiz';
-        header.setAttribute('title', _global.HTMLCS.getTranslation("auditor_using_standard") + standard);
+        header.setAttribute('title', HTMLCS.getTranslation("auditor_using_standard") + standard);
 
         var dragging = false;
         var prevX    = 0;
@@ -210,7 +210,7 @@ _global.HTMLCSAuditor = new function()
 
         var closeIcon       = _doc.createElement('div');
         closeIcon.className = _prefix + 'close';
-        closeIcon.setAttribute('title', _global.HTMLCS.getTranslation("auditor_close"));
+        closeIcon.setAttribute('title', HTMLCS.getTranslation("auditor_close"));
         closeIcon.onmousedown = function() {
             self.close.call(self);
         };
@@ -245,25 +245,25 @@ _global.HTMLCSAuditor = new function()
         var divider = ', &#160;<span class="' + _prefix + 'divider"></span>';
 
         if (errors > 0) {
-            var typeName = _global.HTMLCS.getTranslation("auditor_errors");
+            var typeName = HTMLCS.getTranslation("auditor_errors");
             if (errors === 1) {
-                typeName = _global.HTMLCS.getTranslation("auditor_error");
+                typeName = HTMLCS.getTranslation("auditor_error");
             }
             leftContents.push('<strong>' + errors + '</strong> ' + typeName);
         }
 
         if (warnings > 0) {
-            var typeName = _global.HTMLCS.getTranslation("auditor_warnings");
+            var typeName = HTMLCS.getTranslation("auditor_warnings");
             if (warnings === 1) {
-                typeName = _global.HTMLCS.getTranslation("auditor_warning");
+                typeName = HTMLCS.getTranslation("auditor_warning");
             }
             leftContents.push('<strong>' + warnings + '</strong> ' + typeName);
         }
 
         if (notices > 0) {
-            var typeName = _global.HTMLCS.getTranslation("auditor_notices");
+            var typeName = HTMLCS.getTranslation("auditor_notices");
             if (notices === 1) {
-                typeName = _global.HTMLCS.getTranslation("auditor_notice");
+                typeName = HTMLCS.getTranslation("auditor_notice");
             }
             leftContents.push('<strong>' + notices + '</strong> ' + typeName);
         }
@@ -333,7 +333,7 @@ _global.HTMLCSAuditor = new function()
         lineageHomeLink.href      = 'javascript:';
 
         var lineageHomeSpan       = _doc.createElement('span');
-        lineageHomeSpan.innerHTML = _global.HTMLCS.getTranslation("auditor_home");
+        lineageHomeSpan.innerHTML = HTMLCS.getTranslation("auditor_home");
         lineageHomeLink.appendChild(lineageHomeSpan);
 
         lineageHomeLink.onmousedown = function() {
@@ -347,8 +347,8 @@ _global.HTMLCSAuditor = new function()
         var lineageReportLink       = _doc.createElement('a');
         lineageReportLink.className = _prefix + 'lineage-link';
         lineageReportLink.href      = 'javascript:';
-        lineageReportLink.innerHTML = _global.HTMLCS.getTranslation("auditor_report");
-        lineageReportLink.setAttribute('title', _global.HTMLCS.getTranslation("auditor_back_to_report"));
+        lineageReportLink.innerHTML = HTMLCS.getTranslation("auditor_report");
+        lineageReportLink.setAttribute('title', HTMLCS.getTranslation("auditor_back_to_report"));
 
         lineageReportLink.onmousedown = function() {
             var list = _doc.querySelectorAll('.HTMLCS-inner-wrapper')[0];
@@ -363,7 +363,7 @@ _global.HTMLCSAuditor = new function()
         // Issue Count item.
         var lineageTotalsItem       = _doc.createElement('li');
         lineageTotalsItem.className = _prefix + 'lineage-item';
-        lineageTotalsItem.innerHTML = _global.HTMLCS.getTranslation("auditor_issue") + ' ' + issue + ' ' + _global.HTMLCS.getTranslation("auditor_of") + ' ' + totalIssues;
+        lineageTotalsItem.innerHTML = HTMLCS.getTranslation("auditor_issue") + ' ' + issue + ' ' + HTMLCS.getTranslation("auditor_of") + ' ' + totalIssues;
 
         lineageHomeItem.appendChild(lineageHomeLink);
         lineageReportItem.appendChild(lineageReportLink);
@@ -375,7 +375,7 @@ _global.HTMLCSAuditor = new function()
         var buttonGroup       = _doc.createElement('div');
         buttonGroup.className = _prefix + 'button-group';
 
-        var prevButton = buildSummaryButton(_prefix + 'button-previous-issue', 'previous', _global.HTMLCS.getTranslation("auditor_previous_issue"), function(target) {
+        var prevButton = buildSummaryButton(_prefix + 'button-previous-issue', 'previous', HTMLCS.getTranslation("auditor_previous_issue"), function(target) {
             var newIssue = Number(issue) - 1;
 
             if (newIssue >= 1) {
@@ -391,7 +391,7 @@ _global.HTMLCSAuditor = new function()
             }//end if
         });
 
-        var nextButton = buildSummaryButton(_prefix + 'button-next-issue', 'next', _global.HTMLCS.getTranslation("auditor_next_issue"), function(target) {
+        var nextButton = buildSummaryButton(_prefix + 'button-next-issue', 'next', HTMLCS.getTranslation("auditor_next_issue"), function(target) {
             var newIssue = Number(issue) + 1;
 
             if (newIssue <= _messages.length) {
@@ -489,7 +489,7 @@ _global.HTMLCSAuditor = new function()
         useStandardDiv.id = _prefix + 'settings-use-standard';
 
         var useStandardLabel       = _doc.createElement('label');
-        useStandardLabel.innerHTML = _global.HTMLCS.getTranslation("auditor_standards") + ':';
+        useStandardLabel.innerHTML = HTMLCS.getTranslation("auditor_standards") + ':';
         useStandardLabel.setAttribute('for', _prefix + 'settings-use-standard-select');
 
         var useStandardSelect       = _doc.createElement('select');
@@ -519,11 +519,11 @@ _global.HTMLCSAuditor = new function()
 
         var issueCountHelpDiv       = _doc.createElement('div');
         issueCountHelpDiv.id        = _prefix + 'settings-issue-count-help';
-        issueCountHelpDiv.innerHTML = _global.HTMLCS.getTranslation("auditor_select_types");
+        issueCountHelpDiv.innerHTML = HTMLCS.getTranslation("auditor_select_types");
 
         var viewReportDiv       = _doc.createElement('div');
         viewReportDiv.id        = _prefix + 'settings-view-report';
-        viewReportDiv.innerHTML = _global.HTMLCS.getTranslation("auditor_view_report");
+        viewReportDiv.innerHTML = HTMLCS.getTranslation("auditor_view_report");
 
         viewReportDiv.onclick = function() {
             if (/disabled/.test(this.className) === false) {
@@ -576,23 +576,23 @@ _global.HTMLCSAuditor = new function()
             levelCountDiv.className = 'HTMLCS-tile-text';
 
             if(level == "error") {
-                levelName = _global.HTMLCS.getTranslation('auditor_error');
+                levelName = HTMLCS.getTranslation('auditor_error');
                 if (msgCount !== 1) {
-                    levelName = _global.HTMLCS.getTranslation('auditor_errors');
+                    levelName = HTMLCS.getTranslation('auditor_errors');
                 }
             }
 
             if(level == "warning") {
-                levelName = _global.HTMLCS.getTranslation('auditor_warning');
+                levelName = HTMLCS.getTranslation('auditor_warning');
                 if (msgCount !== 1) {
-                    levelName = _global.HTMLCS.getTranslation('auditor_warnings');
+                    levelName = HTMLCS.getTranslation('auditor_warnings');
                 }
             }
 
             if(level == "notice") {
-                levelName = _global.HTMLCS.getTranslation('auditor_notice');
+                levelName = HTMLCS.getTranslation('auditor_notice');
                 if (msgCount !== 1) {
-                    levelName = _global.HTMLCS.getTranslation('auditor_notices');
+                    levelName = HTMLCS.getTranslation('auditor_notices');
                 }
             }
             var content = '<strong>' + msgCount + '</strong> ' + levelName;
@@ -822,20 +822,20 @@ _global.HTMLCSAuditor = new function()
 
             var msgElementSourceInner       = _doc.createElement('div');
             msgElementSourceInner.className = _prefix + 'issue-source-inner-u2p';
-            var msg = _global.HTMLCS.getTranslation('auditor_unable_to_point');
+            var msg = HTMLCS.getTranslation('auditor_unable_to_point');
 
             if (message.element.nodeName === '#document') {
-                msg = _global.HTMLCS.getTranslation('auditor_applies_entire_document');
+                msg = HTMLCS.getTranslation('auditor_applies_entire_document');
             } else if (message.element.ownerDocument === null) {
-                msg = _global.HTMLCS.getTranslation('auditor_unable_to_point_removed');
+                msg = HTMLCS.getTranslation('auditor_unable_to_point_removed');
             } else {
                 var body = message.element.ownerDocument.getElementsByTagName('body')[0];
                 if (HTMLCS.util.isInDocument(message.element) === false) {
-                    msg += _global.HTMLCS.getTranslation('auditor_unable_to_point_entire');
+                    msg += HTMLCS.getTranslation('auditor_unable_to_point_entire');
                 } else if (HTMLCS.util.contains(body, message.element) === false) {
-                    msg = _global.HTMLCS.getTranslation('auditor_unable_to_point_outside');
+                    msg = HTMLCS.getTranslation('auditor_unable_to_point_outside');
                 } else {
-                    msg += ' ' + _global.HTMLCS.getTranslation('auditor_unable_to_point_outside');
+                    msg += ' ' + HTMLCS.getTranslation('auditor_unable_to_point_outside');
                 }
             }
 
@@ -865,9 +865,9 @@ _global.HTMLCSAuditor = new function()
             msgElementSourceHeader.className = _prefix + 'issue-source-header';
 
             var msgSourceHeaderText       = _doc.createElement('strong');
-            msgSourceHeaderText.innerHTML =  _global.HTMLCS.getTranslation("auditor_code_snippet");
+            msgSourceHeaderText.innerHTML =  HTMLCS.getTranslation("auditor_code_snippet");
 
-            var btnPointTo = buildSummaryButton(_prefix + 'button-point-to-element-' + id, 'pointer', _global.HTMLCS.getTranslation("auditor_point_to_element"), function() {
+            var btnPointTo = buildSummaryButton(_prefix + 'button-point-to-element-' + id, 'pointer', HTMLCS.getTranslation("auditor_point_to_element"), function() {
                 self.pointToElement(message.element);
             });
 
@@ -960,7 +960,7 @@ _global.HTMLCSAuditor = new function()
                 var msgElementSourceInner       = _doc.createElement('div');
                 msgElementSourceInner.className = _prefix + 'issue-source-not-supported';
 
-                var nsText = _global.HTMLCS.getTranslation('auditor_unsupported_browser');
+                var nsText = HTMLCS.getTranslation('auditor_unsupported_browser');
 
                 msgElementSourceInner.appendChild(_doc.createTextNode(nsText));
                 msgElementSource.appendChild(msgElementSourceInner);
@@ -989,7 +989,7 @@ _global.HTMLCSAuditor = new function()
         var pageNum       = _doc.createElement('span');
         pageNum.className = _prefix + 'page-number';
         // pageNum.innerHTML = 'Page ' + page + ' of ' + totalPages;
-        pageNum.innerHTML = _global.HTMLCS.getTranslation("auditor_page") + ' ' + page + ' ' + _global.HTMLCS.getTranslation("auditor_of") + ' ' + totalPages;
+        pageNum.innerHTML = HTMLCS.getTranslation("auditor_page") + ' ' + page + ' ' + HTMLCS.getTranslation("auditor_of") + ' ' + totalPages;
         navDiv.appendChild(pageNum);
 
         var next       = _doc.createElement('span');
@@ -1015,7 +1015,7 @@ _global.HTMLCSAuditor = new function()
             }
 
             pageNum.innerHTML = '';
-            pageNum.appendChild(document.createTextNode(_global.HTMLCS.getTranslation("auditor_page") + ' ' + _page + ' ' + _global.HTMLCS.getTranslation("auditor_of") + ' ' + totalPages));
+            pageNum.appendChild(document.createTextNode(HTMLCS.getTranslation("auditor_page") + ' ' + _page + ' ' + HTMLCS.getTranslation("auditor_of") + ' ' + totalPages));
 
             var issueList = _doc.querySelectorAll('.HTMLCS-issue-list')[0];
             issueList.style.marginLeft = ((_page - 1) * -300) + 'px';
@@ -1034,7 +1034,7 @@ _global.HTMLCSAuditor = new function()
             }
 
             pageNum.innerHTML = '';
-            pageNum.appendChild(document.createTextNode(_global.HTMLCS.getTranslation("auditor_page") + ' ' + _page + ' ' + _global.HTMLCS.getTranslation("auditor_of") + ' ' + totalPages));
+            pageNum.appendChild(document.createTextNode(HTMLCS.getTranslation("auditor_page") + ' ' + _page + ' ' + HTMLCS.getTranslation("auditor_of") + ' ' + totalPages));
 
             var issueList = _doc.querySelectorAll('.HTMLCS-issue-list')[0];
             issueList.style.marginLeft = ((_page - 1) * -300) + 'px';
@@ -2189,3 +2189,5 @@ _global.HTMLCSAuditor = new function()
     };
 
 };
+
+module.exports.HTMLCSAuditor = HTMLCSAuditor;

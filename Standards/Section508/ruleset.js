@@ -11,8 +11,9 @@
  *
  */
 
-_global.HTMLCS_Section508 = {
+var HTMLCS_Section508 = {
     name: 'Section508',
+    subsetOf: 'Section508_Sniffs_',
     description: 'U.S. Section 508 Standard',
     sniffs: [
         'A',
@@ -41,3 +42,5 @@ _global.HTMLCS_Section508 = {
         return retval;
     }
 };
+
+module.exports.HTMLCS_Section508 = HTMLCS_Section508; 

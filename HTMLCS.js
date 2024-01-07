@@ -11,8 +11,9 @@
  *
  */
 
-_global.HTMLCS = new function()
+var HTMLCS = new function()
 {
+    var translation   = _global.translation;
     var _standards    = {};
     var _sniffs       = [];
     var _tags         = {};
@@ -59,7 +60,7 @@ _global.HTMLCS = new function()
         }
 
         // Set a language to use.
-        var languages = Object.keys(_global.translation);
+        var languages = Object.keys(translation);
         if (language && languages.indexOf(language) !== -1) {
             this.lang = language;
         }
@@ -628,3 +629,5 @@ _global.HTMLCS = new function()
         }
     };
 };
+
+module.exports.HTMLCS = HTMLCS;
