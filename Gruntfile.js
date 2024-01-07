@@ -93,7 +93,7 @@ module.exports = function (grunt) {
     grunt.registerTask('exportVars', function() {
         var catted = '';
 
-        grunt.file.expand({ filter: 'isFile' }, 'Standards/WCAG2AAA/**/**/**/*.js')
+        grunt.file.expand({ filter: 'isFile' }, 'Standards/{Section508,WCAG2AAA}/**/**/**/*.js')
             .forEach(function(file) {
                 catted += grunt.file.read(file) + '\n';
                 var parts = file.split("/"),
@@ -103,6 +103,9 @@ module.exports = function (grunt) {
                 catted += "module.exports." + varName + " = " + varName + ";\n";
             }
         );
+        catted += grunt.file.read('Standards/WCAG2AA/ruleset.js');
+        catted += grunt.file.read('Standards/WCAG2A/ruleset.js');
+        catted += grunt.file.read('Standards/Section508/ruleset.js');
         grunt.file.write('Standards/all.js', catted, { encoding: 'utf8' })
     });
     

@@ -13,6 +13,7 @@
 
 var HTMLCS_Section508 = {
     name: 'Section508',
+    subsetOf: 'Section508_Sniffs_',
     description: 'U.S. Section 508 Standard',
     sniffs: [
         'A',
@@ -41,3 +42,5 @@ var HTMLCS_Section508 = {
         return retval;
     }
 };
+
+module.exports.HTMLCS_Section508 = HTMLCS_Section508; 
