@@ -13,6 +13,7 @@
 
 var HTMLCS_WCAG2AAA = {
     name: 'WCAG2AAA',
+    subsetOf: 'WCAG2AAA_Sniffs_',
     description: 'Web Content Accessibility Guidelines (WCAG) 2.1 AAA',
     sniffs: [
         'Principle1.Guideline1_1.1_1_1',
